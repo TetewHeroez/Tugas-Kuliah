@@ -1,0 +1,10 @@
+\begin{lstlisting}[title={Triangle},firstnumber=102]
+        \begin{tikzpicture}[]
+            \draw[thick,blue] (0,0)--(1,1)--(2,0)--cycle;
+        \end{tikzpicture}
+    \end{lstlisting}
+    \begin{figure}[c!]
+        \fbox{\includegraphics[width=0.4\textwidth]{Segitiga.pdf}}
+        \captionsetup{labelformat=empty}
+        \caption{Output}
+    \end{figure}

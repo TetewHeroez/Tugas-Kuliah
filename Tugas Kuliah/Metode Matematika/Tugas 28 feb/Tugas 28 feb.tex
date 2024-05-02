@@ -1,0 +1,137 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \begin{enumerate}
+        \item[16.] Buktikan bahwa $\Gamma(p)\Gamma(1-p)=\frac{\pi}{\sin{p\pi}},\quad 0<p<1$\\
+        \textbf{Bukti}:\\
+        Menggunakan bentuk (II) fungsi gamma, didapatkan
+        \begin{flalign*}
+            \Gamma(p)\Gamma(1-p)&=\int_{0}^{\infty}x^{2p-1}e^{-x^2}\,dx \int_{0}^{\infty}y^{2(1-p)-1}e^{-y^2}\,dy&\\
+            &=\int_{0}^{\infty}x^{2p-1}e^{-x^2}\,dx \int_{0}^{\infty}y^{1-2p}e^{-y^2}\,dy&\\
+            &=\int_{0}^{\infty}\int_{0}^{\infty}\left(\frac{x}{y}\right)^{2p-1}e^{-(x^2+y^2)}\,dx\,dy
+        \end{flalign*}
+        Ubah kedalam koordinat kutub $x=r\cos(\theta)$ dan $y=r\sin(\theta)$.
+        \begin{flalign*}
+            \bullet&\, r^2=x^2+y^2,\quad 0\leq r\leq\infty&\\
+            \bullet&\, \cot(\theta)=\frac{x}{y},\quad 0\leq\theta\leq2\pi&\\
+            \Rightarrow&\int_{0}^{2\pi}\int_{0}^{\infty}\cot^{2p-1}(\theta)e^{-r^2}\,|r|\,dr\,d\theta&\\
+            &=4\int_{0}^{\frac{\pi}{2}}\cot^{2p-1}(\theta)\,d\theta\int_{0}^{\infty}re^{-r^2}\,dr&\\
+            &=4\int_{0}^{\frac{\pi}{2}}\cot^{2p-1}(\theta)\,d\theta\,\lim_{p\to\infty}\left[\frac{1}{2}e^{-r^2}\right]^{p}_0&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\cot^{2p-1}(\theta)\,d\theta\,\left(0-1\right)&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\cot^{2p-1}(\theta)\,d\theta=\frac{\pi}{\sin{p\pi}}
+        \end{flalign*}
+
+        \item[17.] Buktikan $\Gamma(x)\Gamma\left(x+\frac{1}{2}\right)=\frac{\sqrt{\pi}}{2^{2x-1}}\Gamma(2x)$\\
+        \textbf{Bukti}:
+        \begin{flalign*}
+            \beta(x,x)&=\frac{\Gamma(x)\Gamma(x)}{\Gamma(x+x)}=\frac{\Gamma(x)^2}{\Gamma(2x)}&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\sin^{2x-1}(\theta)\cos^{2x-1}(\theta)\,d\theta&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\left(\sin(\theta)\cos(\theta)\right)^{2x-1}\,d\theta&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\left(\frac{2\sin(\theta)\cos(\theta)}{2}\right)^{2x-1}\,d\theta&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\left(\frac{\sin(2\theta)}{2}\right)^{2x-1}\,d\theta&\\
+            &=2\int_{0}^{\frac{\pi}{2}}\left(\frac{1}{2}\right)^{2x-1}\sin^{2x-1}(2\theta)\,d\theta&\\
+            &=\frac{1}{2^{2x-2}}\int_{0}^{\frac{\pi}{2}}\sin^{2x-1}(2\theta)\,d\theta
+        \end{flalign*}
+        Subtitusi $t=2\theta\,\Rightarrow\,dt=2d\theta$. 
+        \begin{flalign*}
+            &=\frac{1}{2^{2x-2}}\int_{0}^{\pi}\sin^{2x-1}(t)\,\left(\frac{1}{2}\right) dt&\\
+            &=\frac{1}{2^{2x-2}}\left(\frac{1}{2}\right)\int_{0}^{\pi}\sin^{2x-1}(t)\, dt&\\
+            &=\frac{1}{2^{2x-2}}\left(\frac{1}{2}\right)2\int_{0}^{\frac{\pi}{2}}\sin^{2x-1}(t)\, dt&\\
+            &=\frac{1}{2^{2x-2}}\int_{0}^{\frac{\pi}{2}}\sin^{2x-1}(t)\, dt&\\
+            &=\frac{1}{2^{2x-2}}\beta\left(x,\frac{1}{2}\right)
+        \end{flalign*}
+        Sehingga kita memiliki persamaan $\beta(x,x)=\frac{1}{2^{2x-2}}\beta\left(x,\frac{1}{2}\right)$. dapat direpresentasikan oleh fungsi gamma
+        \begin{flalign*}
+            \frac{\Gamma(x)^2}{\Gamma(2x)}&=\frac{1}{2^{2x-2}}\frac{\Gamma(x)\Gamma\left(\frac{1}{2}\right)}{\Gamma\left(x+\frac{1}{2}\right)}&\\
+            \frac{\Gamma(x)^{\cancel{2}}}{\Gamma(2x)}&=\frac{1}{2^{2x-2}}\frac{\cancel{\Gamma(x)}\sqrt{\pi}}{\Gamma\left(x+\frac{1}{2}\right)}&\\
+            \therefore\quad&\boxed{\Gamma(x)\Gamma\left(x+\frac{1}{2}\right)=\frac{\sqrt{\pi}}{2^{2x-1}}\Gamma(2x)}
+        \end{flalign*}
+        
+        \item[19.] Buktikan $\int_{0}^{\frac{\pi}{2}}\left(\frac{1}{\sin^3x}-\frac{1}{\sin^2x}\right)^{\frac{1}{4}}\cos x \,dx=\beta\left(\frac{1}{4},\frac{5}{4}\right)$\\~\\
+        \textbf{Bukti}:\\
+        Lakukan subtitusi $u=\sin x\Rightarrow du=\cos x\,dx$.
+        \begin{flalign*}
+            \bullet\,x=0&\Rightarrow u=\sin (0)= 0&\\
+            \bullet\,x=0&\Rightarrow u=\sin (\pi/2)= 1&\\
+            \int_{u=0}^{u=1}&\left(\frac{1}{u^3}-\frac{1}{u^2}\right)^{\frac{1}{4}}\,du=\int_{0}^{1}\left(\frac{1-u}{u^3}\right)^{\frac{1}{4}}\,du=\int_{0}^{1}(u)^{-\frac{3}{4}}\left(1-u\right)^{\frac{1}{4}}\,du&\\
+            \bullet\,m-1&=-\frac{3}{4}\Rightarrow m=\frac{1}{4}&\\
+            \bullet\,m-1&=\frac{1}{4}\Rightarrow m=\frac{5}{4}&\\
+            \Rightarrow \int_{0}^{1}&(u)^{-\frac{3}{4}}\left(1-u\right)^{\frac{1}{4}}\,du=\beta\left(\frac{1}{4},\frac{5}{4}\right)&\\
+            \therefore\quad&\boxed{\int_{0}^{\frac{\pi}{2}}\left(\frac{1}{\sin^3x}-\frac{1}{\sin^2x}\right)^{\frac{1}{4}}\cos x \,dx=\beta\left(\frac{1}{4},\frac{5}{4}\right)}&\\
+        \end{flalign*}
+
+        \item[21.] Buktikan rumus Stirling berikut ini $n!=\sqrt{2\pi n}\,n^n e^{-n}$.\\
+        \textbf{Bukti}:\\
+        Diketahui bahwa $n!=\Gamma(n+1)=\int_{0}^{\infty}x^n e^{-x}\,dx$. Lalu dengan melakukan subtitusi $x=nt$, didapatkan
+        \begin{flalign*}
+            \int_{0}^{\infty}(nt)^{n} e^{-nt}\,d(nt)&=\int_{0}^{\infty}n^n\,t^n\,e^{-n}\,e^{-t}\,n\,dt&\\
+            &=n^{n+1} \int_{0}^{\infty}t^n\,e^{-nt}\,dt&\\
+            &=n^{n+1} \int_{0}^{\infty}e^{n \ln(t)}\,e^{-nt}\,dt&\\
+            &=n^{n+1} \int_{0}^{\infty}e^{n (\ln(t)-t)}\,dt
+        \end{flalign*}
+        Dengan menggunakan aproksimasi deret taylor $\boxed{\ln(t)-t\approx-1-\frac{(t-1)^2}{2}}$. maka
+        \begin{flalign*}
+            n^{n+1} \int_{0}^{\infty}e^{n (\ln(t)-t)}\,dt&\approx n^{n+1} \int_{0}^{\infty}e^{n (-1-\frac{(t-1)^2}{2})}\,dt&\\
+            &=n^{n+1} e^{-n}\int_{0}^{\infty}e^{-n\frac{(t-1)^2}{2}}\,dt&\\
+            &=n^{n+1} e^{-n}\int_{0}^{\infty}e^{-\left(\frac{\sqrt{n}(t-1)}{\sqrt{2}}\right)^2}\,dt
+        \end{flalign*}
+        Selanjutnya dengan subtitusi $u=\frac{\sqrt{n}(t-1)}{\sqrt{2}}\,\Rightarrow\,du=\sqrt{\frac{n}{2}}dt$
+        \begin{flalign*}
+            n^{n+1} e^{-n}\int_{-\sqrt{\frac{n}{2}}}^{\infty}e^{-u^2}\sqrt{\frac{2}{n}}\,du&= n^{n} e^{-n}\sqrt{2n}\int_{-\sqrt{\frac{n}{2}}}^{\infty}e^{-u^2}\,du&
+        \end{flalign*}
+        Perhatikan untuk $n$ yang sangat besar $(n\to\infty)$, maka $-\sqrt{\frac{n}{2}}\to-\infty$
+        \begin{flalign*}
+            n^{n} e^{-n}\sqrt{2n}\int_{-\infty}^{\infty}e^{-u^2}\,du&=n^{n} e^{-n}\sqrt{2n}(\sqrt{\pi}),\quad \left(\int_{-\infty}^{\infty}e^{-u^2}\,du=\sqrt{\pi}\right)&\\
+            &=n^{n} e^{-n}\sqrt{2n\pi}
+        \end{flalign*}
+        Sehingga untuk $n$ yang sangat besar terbukti bahwa
+        \begin{flalign*}
+            \boxed{n!\approx\sqrt{2\pi n}\,n^n e^{-n}}
+        \end{flalign*}
+
+        \item[24.] Tunjukkan $\int_{-\infty}^{\infty}\frac{e^{ax}}{e^x+1}\,dx=\frac{\pi}{\sin\pi}$\\
+        \textbf{Bukti}:
+        \begin{flalign*}
+            \int_{-\infty}^{\infty}\frac{e^{ax}}{e^x+1}\,dx&=\int_{-\infty}^{\infty}\frac{(e^{x})^a}{e^x+1}\,dx&
+        \end{flalign*}
+        Subtitusi $u=e^x\,\Rightarrow\, du=e^x\,dx$.
+        \begin{flalign*}
+            \Rightarrow \int_{0}^{\infty}\frac{u^a}{u+1}\,\frac{1}{u}\,du&=\int_{0}^{\infty}\frac{u^{a-1}}{u+1}\,du&
+        \end{flalign*}
+        Bentuk (iv) fungsi beta $\beta(m,n)=\int_{0}^{\infty}\frac{x^{m-1}}{(x+1)^{m+n}}\,dx$. Sehingga
+        \begin{flalign*}
+            \bullet\,& m-1=a-1 \iff m=a&\\
+            \bullet\,& m+n=1 \iff n=1-a
+        \end{flalign*}
+        \begin{flalign*}
+            \int_{0}^{\infty}\frac{u^{a-1}}{u+1}\,du&=\beta(a,1-a)&\\
+            &=\frac{\Gamma(a)\Gamma(1-a)}{\Gamma(a+1-a)}&\\
+            &=\Gamma(a)\Gamma(1-a)=\frac{\pi}{\sin a\pi}
+        \end{flalign*}
+        \begin{flalign*}
+            \therefore\,& \boxed{\int_{-\infty}^{\infty}\frac{e^{ax}}{e^x+1}\,dx=\frac{\pi}{\sin a\pi}},\quad 0<a<1&
+        \end{flalign*}
+    \end{enumerate}
+\end{document}

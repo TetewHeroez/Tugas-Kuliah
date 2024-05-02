@@ -1,0 +1,99 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Jawab}:}
+
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+
+    \begin{enumerate}
+        \begin{tcolorbox}[title=Operator Beda Maju, colback=lightgray]
+            Misalkan ada fungsi $f$ yang nilainya $f(t)$ pada waktu $t$ dan bernilai $f(t+1)$ pada waktu $(t+1)$, 
+            maka beda pertama didefinisikan sebagai berikut:
+            \[f(t)=f(t+1)-f(t)\]
+        \end{tcolorbox}
+        \item[2.]Buktikan $\Delta\sin(a+bx)=2\sin\left(\frac{b}{2}\right)\cos\left(a+\frac{b}{2}+bx\right)$\\
+        \jawab
+        \begin{flalign*}
+            \Delta\sin(a+bx)&=\sin(a+b(x+1))-\sin(a+bx)&\\
+            &=\sin(a+bx+b)-\sin(a+bx)
+        \end{flalign*}
+        Ingat $\sin(x)-\sin(y)=2\sin\left(\frac{x-y}{2}\right)\cos\left(\frac{x+y}{2}\right)$, Sehingga
+        \begin{flalign*}
+            \sin(a+bx+b)-\sin(a+bx)&=2\sin\left(\frac{a+bx+b-(a+bx)}{2}\right)\cos\left(\frac{a+bx+b+(a+bx)}{2}\right)&\\
+            &=2\sin\left(\frac{b}{2}\right)\cos\left(a+bx+\frac{b}{2}\right)\,\blacksquare
+        \end{flalign*}
+        \item[6.]Buktikan $\Delta^n\,x^{(n)}=n!$\\
+        \jawab\\
+        Sebelumnya telah dibuktikan bahwa $\Delta x^{(n)}=nx^{(n-1)}$. Sehingga didapatkan
+        \begin{flalign*}
+            \Delta^2\,x^{(n)}&=\Delta(\Delta x^{(n)})=\Delta nx^{(n-1)}=n\Delta x^{(n-1)}=n(n-1)x^{(n-2)}&\\
+            \Delta^3\,x^{(n)}&=\Delta(\Delta^2 x^{(n)})=\Delta n(n-1)x^{(n-2)}=n(n-1)\Delta x^{(n-2)}=n(n-1)(n-2)x^{(n-3)}&\\
+            &\vdots\quad\vdots\quad\vdots&\\
+            \Delta^n\,x^{(n)}&=n(n-1)(n-2)...2\cdot 1\cdot x^{(n-n)}&\\
+            &=n!x^{(0)}=n!\,\blacksquare&\\
+        \end{flalign*}
+        Mengubah fungsi polinomial ke polinomial faktorial.
+        \item[11.]$f(x)=x^3-x+1$\\
+        \jawab
+        \begin{flalign*}
+            x^3-x+1&=Ax^{(3)}+Bx^{(2)}+Cx^{(1)}+D&\\
+            x^3-x+1&=Ax(x-1)(x-2)+Bx(x-1)+Cx+D
+        \end{flalign*}
+        \begin{flalign*}
+            \bullet&\,x=0\,\Rightarrow\,D=1&\\
+            \bullet&\,x=1\,\Rightarrow\,C=0&\\
+            \bullet&\,x=2\,\Rightarrow\,B=3&\\
+            \bullet&\,x=3\,\Rightarrow\,A=1
+        \end{flalign*}
+        $\therefore\,x^3-x+1=x^{(3)}+3x^{(2)}+1$\\
+
+        \item[13.]$f(x)=3x^3-7x^2+8x-1$
+        \begin{flalign*}
+            3x^3-7x^2+8x-1&=Ax^{(3)}+Bx^{(2)}+Cx^{(1)}+D&\\
+            3x^3-7x^2+8x-1&=Ax(x-1)(x-2)+Bx(x-1)+Cx+D
+        \end{flalign*}
+        \begin{flalign*}
+            \bullet&\,x=0\,\Rightarrow\,D=-1&\\
+            \bullet&\,x=1\,\Rightarrow\,3-7+8-1=C-1\,\Rightarrow\,C=4&\\
+            \bullet&\,x=2\,\Rightarrow\,24-28+16-1=2B+8-1\,\Rightarrow\,B=2&\\
+            \bullet&\,x=-1\,\Rightarrow\,-3-7-8-1=-6A+4-4-1\,\Rightarrow\,A=3
+        \end{flalign*}
+        $\therefore\,3x^3-7x^2+8x-1=3x^{(3)}+2x^{(2)}+4x^{(1)}-1$\\
+
+        \item[15.]$f(x)=x^4-2x^3-x$
+        \begin{flalign*}
+            x^4-2x^3-x&=Ax^{(4)}+Bx^{(3)}+Cx^{(2)}+Dx^{(1)}&\\
+            x^4-2x^3-x&=Ax(x-1)(x-2)(x-3)+Bx(x-1)(x-2)+Cx(x-1)+Dx
+        \end{flalign*}
+        \begin{flalign*}
+            \bullet&\,x=1\,\Rightarrow\,1-2-1=D\,\Rightarrow\,D=-2&\\
+            \bullet&\,x=2\,\Rightarrow\,16-16-2=2C-4\,\Rightarrow\,C=1&\\
+            \bullet&\,x=3\,\Rightarrow\,81-54-3=6B+6-6\,\Rightarrow\,B=4&\\
+            \bullet&\,A=1
+        \end{flalign*}
+        $\therefore\,x^4-2x^3-x=x^{(4)}+4x^{(3)}+x^{(2)}-2x^{(1)}$\\
+    \end{enumerate}
+\end{document}

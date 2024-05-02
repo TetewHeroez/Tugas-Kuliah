@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{geometry}
+    \geometry{
+        paperwidth=17.5cm, 
+        paperheight=24cm
+        }
+
+\begin{document}
+    \pagenumbering{gobble}
+    \setcounter{section}{7}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \subsection{}
+    \begin{enumerate}
+        \item[10.]Misalkan $g(x):=0$ jika $x\in[0,1]$ adalah rasional dan $g(x):=1/x$ jika $x\in[0,1]$ 
+        adalah irasional. Jelaskan mengapa $g\notin\mathcal{R}[a,b]$. Namun, tunjukkan bahwa terdapat
+        sebuah barisan $(\dot{\mathcal{P}}_n)$ dari partisi bertanda di $[a,b]$ sedemikian sehingga 
+        $\|\dot{\mathcal{P}}_n\|\to 0$ dan $\lim_n S(g;\dot{\mathcal{P}}_n)$ ada.\\
+        \textbf{Jawab}:\\
+        Asumsikan $g$ terbatas di $M\ge 1$ ($g(x)\le M, \forall x\in[0,1]$). Ambil $x_0=t/M$ dimana $t\in[0,1]$ dan irasional,
+        sehingga $g(x_0)=1/x_0=M/t$. Sebab $M\ge 1$ dan $0\le t\le 1$, maka $g(x_0)=M/t>M$. Hal ini kontradiksi dengan
+        mengasumsikan $g$ terbatas, Sehingga didapatkan kesimpulan bahwa $g$ tidak terbatas di $[0,1]$.
+        \[\fbox{\textit{\textbf{Teorema}: Jika $f\in\mathcal{R}[a,b]$, maka $f$ terbatas di $[a,b]$}}\]
+        $\therefore g\notin\mathcal{R}[0,1]$.\\
+        Misalkan $(\dot{\mathcal{P}}_n)$ adalah barisan dimana $\dot{\mathcal{P}}_n$ merupakan partisi bertanda di 
+        $[c,d]\subseteq[0,1]$ dengan $n$ sub-interval yang panjangnya sama, setiap partisi ditandai
+        dengan bilangan irasional (kepadatan bilangan real). Sehingga dapat ditulis $\|\dot{\mathcal{P}}_n\|=(d-c)/n$, 
+        dari hal tersebut didapatkan $\lim\|\dot{\mathcal{P}}_n\|=0$. Di sisi lain untuk bilangan rasional, 
+        $S(g;\dot{\mathcal{P}}_n)=\sum_{i=1}^{n}g(t_i)(x_i-x_{i-1})=\sum_{i=1}^{n}0\cdot(x_i-x_{i-1})=0$.\\
+        $\therefore\lim S(g;\dot{\mathcal{P}}_n)=0$.
+
+        \item[13.]Andaikan $c\leq d$ sebuah titik di $[a.b]$. Jika $\varphi:[a,b]\to\mathbb{R}$ 
+        memenuhi $\varphi(x)=\alpha>0$ untuk $x\in[c,d]$ dan $\varphi(x)=0$ untuk yang lain di [a,b],
+        tunjukkan bahwa $\varphi\in\mathcal{R}[a,b]$ dan $\int_{a}^{b}\varphi=\alpha(d-c)$. 
+        [\textit{Petunjuk}: Diberikan $\varepsilon>0$ misalkan $\delta_{\varepsilon}:=\varepsilon/4\alpha$ 
+        dan tunjukkan bahwa jika $\|\dot{\mathcal{P}}\|<\delta_{\varepsilon}$ maka didapatkan 
+        $\alpha(d-c-2\delta_{\varepsilon})\leq S(\varphi;\dot{\mathcal{P}})\leq \alpha(d-c+2\delta_{\varepsilon})$]
+        \textbf{Jawab}:\\
+        Andaikan $\dot{\mathcal{P}}$ adalah sembarang partisi bertanda di $[a,b]$. Asumsikan:
+        \begin{itemize}
+            \item $\dot{\mathcal{P}}_1\subseteq\dot{\mathcal{P}}$ partisi bertanda di $[a,c)$
+            \item $\dot{\mathcal{P}}_2\subseteq\dot{\mathcal{P}}$ partisi bertanda di $[c,d]$
+            \item $\dot{\mathcal{P}}_3\subseteq\dot{\mathcal{P}}$ partisi bertanda di $(d,b]$
+        \end{itemize}
+        Sehingga $S(\varphi;\dot{\mathcal{P}})=S(\varphi;\dot{\mathcal{P}}_1)+S(\varphi;\dot{\mathcal{P}}_2)+S(\varphi;\dot{\mathcal{P}}_3)$.
+        Sebab $\varphi(t_i)=0$ untuk setiap titik di $\dot{\mathcal{P}}_1$ dan $\dot{\mathcal{P}}_3$
+        maka integral riemann-nya adalah $0$. Sekarang akan dibuktikan integral riemann menggunakan definisi
+        $\varepsilon-\delta$.\\
+        Untuk setiap $\varepsilon>0$ terdapat $\delta_\varepsilon>0$ Sehingga jika $\dot{\mathcal{P}}_2$ sebarang
+        partisi bertanda dari $[c,d]$ dengan $\dot{\mathcal{P}}<\delta_\varepsilon$, maka $|S(\varphi;\dot{\mathcal{P}})-\alpha(d-c)|< \varepsilon$.\\
+        Sekarang asumsikan karena $\varphi(t_i)=\alpha$ di $[c,d]$, sehingga dapat ditulis sebagai berikut
+        \begin{align*}
+            [c+\delta_{\varepsilon},d-\delta_{\varepsilon}]&\subseteq[c,d]\subseteq[c-\delta_{\varepsilon},d+\delta_{\varepsilon}]\\
+            \alpha(d-\delta_{\varepsilon}-(c+\delta_{\varepsilon}))&\leq S(\varphi;\dot{\mathcal{P}}_2)\leq \alpha(d+\delta_{\varepsilon}-(c-\delta_{\varepsilon}))\\
+            \alpha(d-c-2\delta_{\varepsilon})&\leq S(\varphi;\dot{\mathcal{P}}_2)\leq \alpha(d-c+2\delta_{\varepsilon})\\
+            -2\alpha\delta_{\varepsilon}&\leq S(\varphi;\dot{\mathcal{P}}_2)-\alpha(d-c)\leq 2\alpha\delta_{\varepsilon}\\
+            |S(\varphi;\dot{\mathcal{P}}_2)-\alpha(d-c)|&=|S(\varphi;\dot{\mathcal{P}})-\alpha(d-c)|\leq 2\alpha\delta_{\varepsilon}
+        \end{align*}
+        Dari asumsi diatas, dapat dipilih $\delta_{\varepsilon}<\varepsilon/2\alpha$. Akhirnya didapatkan
+        $|S(\varphi;\dot{\mathcal{P}})-\alpha(d-c)|\leq 2\alpha\delta_{\varepsilon}<2\alpha(\varepsilon/2\alpha)=\varepsilon$.\\
+        $\therefore \varphi\in\mathcal{R}[a,b]$ dan $\int_{a}^{b}\varphi=\alpha(d-c)$.
+    \end{enumerate}
+    \subsection{}
+    \begin{enumerate}
+        \item[12.]Tunjukkan bahwa $g(x):=\sin(1/x)$ untuk $x\in(0,1]$ dan $g(0):=0$ berada di $\mathcal{R}[0,1]$.\\
+        \textbf{Jawab}:\\
+        Dengan teorema apit didapatkan $-1\leq\sin(1/x)\leq<1$
+
+        \item[15.]Jika $f$ terbatas dan suatu himpunan $E$ yang elemennya berhingga sedemikian sehingga $f$ kontinu
+        di setiap titik pada $[a,b]\verb|\|E$, tunjukkan bahwa $f\in\mathcal{R}[a,b]$.\\
+        \textbf{Jawab}:\\
+        Karena $f$ kontinu di setiap titik pada $[a,b]\verb|\|E$, dapat disimpulkan bahwa $E\cap[a,b]=\emptyset$. 
+        Karena $f$ terbatas maka $|f(x)|\leq M$ untuk suatu $M>0$, sehingga didapatkan
+        \begin{flalign*}
+            \int_{a}^{b}f\leq\int_{a}^{b}|f|\leq\int_{a}^{b}M=M(a-b)
+        \end{flalign*}
+        $\therefore f\in\mathcal{R}[a,b]$
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{geometry}
+    \geometry{
+        paperwidth=16cm, 
+        paperheight=24cm
+        }
+
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \begin{enumerate}
+        \item Diketahui $\theta$ adalah sudut antara dua vektor $\vec{a},\vec{b},$ dengan $\vec{a}\cdot\vec{b}\ne 0$. 
+        Tunjukkan bahwa $\tan \theta=\frac{||\vec{a}\times\vec{b}||}{\vec{a}\cdot\vec{b}}$\\
+        \textbf{Jawab}:\\
+        Diketahui bahwa 
+        \begin{flalign*}
+            \bullet& \sin\theta=\frac{||\vec{a}\times\vec{b}||}{||\vec{a}||||\vec{b}||}&\\
+            \bullet& \cos\theta=\frac{\vec{a}\cdot\vec{b}}{||\vec{a}||||\vec{b}||}
+        \end{flalign*}
+        Sehingga didapatkan
+        \[\tan\theta=\frac{\sin\theta}{\cos\theta}=\frac{\frac{||\vec{a}\times\vec{b}||}{\cancel{||\vec{a}||||\vec{b}||}}}{\frac{\vec{a}\cdot\vec{b}}{\cancel{||\vec{a}||||\vec{b}||}}}=\frac{||\vec{a}\times\vec{b}||}{\vec{a}\cdot\vec{b}}\quad\blacksquare\]
+        
+        \item Hitung luas segitga dengan titik-titik sudutnya $P(1,5,-2),Q(0,0,0),R(3,5,1).$
+        \textbf{Jawab}:
+        \[\overrightarrow{QP}=(1,5,-2)^T,\quad\overrightarrow{QR}=(3,5,1)^T\]
+        \begin{flalign*}
+            L_{\triangle}&=\frac{1}{2}||\overrightarrow{QP}||||\overrightarrow{QP}||\sin\theta&\\
+            &=\frac{1}{2}||\overrightarrow{QP}\times\overrightarrow{QP}||&\\
+            &=\frac{1}{2}\left|\left|\begin{vmatrix}
+                i&j&k\\
+                1&5&-2\\
+                3&5&1
+            \end{vmatrix}\right|\right|&\\
+            &=\frac{1}{2}||15i-7j-10k||&\\
+            &=\frac{1}{2}\sqrt{15^2+(-7)^2+(-10)^2}=\boxed{\frac{\sqrt{374}}{2}}
+        \end{flalign*}
+
+        \item Hitung luas jajaran genjang yang dibangun oleh vektor-vektor:
+        \[\vec{u}=i-j+2k,\quad\vec{v}=3j+k\]
+        \textbf{Jawab}:
+        \begin{flalign*}
+            L&=|||\vec{u}\times\vec{v}|||&\\
+            &=\left|\left|\begin{vmatrix}
+                i&j&k\\
+                1&-1&2\\
+                0&3&1
+            \end{vmatrix}\right|\right|&\\
+            &=||-7i-j+3k||&\\
+            &=\sqrt{(-7)^2+(-1)^2+3^2}=\boxed{\sqrt{59}}
+        \end{flalign*}
+
+        \item Tentukan persamaan segmen garis dalam bentuk persamaan simetrik melalui dua titik $P(2,3,-1)$ dan $Q(5,0,7)$.\\
+        \textbf{Jawab}:\\
+        Segmen garis sejajar dengan vektor $\vec{a}=\overrightarrow{PQ}=3i-3j+8k$, sehingga garis tersebut
+        mempunyai bilangan arah $a_1=3,\,a_2=-3,\,a_3=8$. Rumus umum persamaan simetrik 
+        $\frac{x-x_0}{a_1}=\frac{y-y_0}{a_2}=\frac{z-z_0}{a_3}$.\\~\\
+        Dapat kita pilih titik $P$ sebagai $(x_0,y_0,z_0)$, maka persamaan simetriknya adalah
+        \[\boxed{\frac{x-2}{3}=\frac{y-3}{-3}=\frac{z+1}{8}}\]
+        
+        \item Selidiki apakah tiga vektor berikut sebidang:
+        \[\vec{a}=(1,-2,1),\quad\vec{b}=(3,0,-2),\quad\vec{c}=(2,2,-4)\]
+        \textbf{Jawab}:\\
+        Untuk mengecek apakah ketiga vektor sebidang adalah menunjukkan bahwa salah satu vektor merupakan 
+        kombinasi linear dari dua vektor lainnya. Atau bisa dibilang ketiga vektor tersebut haruslah
+        \textbf{tidak bebas linear}. Dapat kita cek syarat untuk tidak bebas linear adalah 
+        $\det(\vec{a}\quad\vec{b}\quad\vec{c})=0$
+        \[\det(\vec{a}\quad\vec{b}\quad\vec{c})=\begin{vmatrix}
+            1&3&2\\
+            -2&0&2\\
+            1&-2&-4
+        \end{vmatrix}=-3\begin{vmatrix}-2&2\\1&-4\end{vmatrix}+2\begin{vmatrix}1&2\\-2&2\end{vmatrix}=-3(6)+2(6)=-6\]
+        Karena $\det(\vec{a}\quad\vec{b}\quad\vec{c})\ne 0$, maka dapat disimpulkan bahwa ketiga 
+        vektor \underline{tidak sebidang} 
+
+        \item Tentukan persamaan bidang dalam $\mathbb{R}^3$ yang melalui titik pangkal koordinat dan sejajar dengan bidang $4x-2y+7z+12=0$\\
+        \textbf{Jawab}:\\
+        Titik pangkal koordinat adalah $(0,0,0)$. persamaan bidang yang melalui titik $(0,0,0)$
+        dan mempunyai vektor normal $\vec{n}=\langle 4,-2,7\rangle$ adalah
+        \[\boxed{4x-2y+7z=0}\]
+    \end{enumerate}
+\end{document}

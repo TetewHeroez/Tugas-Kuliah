@@ -1,0 +1,113 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Jawab}:}
+
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+
+    \begin{enumerate}
+        \item[2.]Buktikan $\Delta\sin(a+bx)=2\sin\left(\frac{b}{2}\right)\cos\left(a+\frac{b}{2}+bx\right)$\\
+        \jawab
+        \begin{flalign*}
+            \Delta\sin(a+bx)&=\sin(a+b(x+1))-\sin(a+bx)&\\
+            &=\sin(a+bx+b)-\sin(a+bx)
+        \end{flalign*}
+        Ingat $\sin(x)-\sin(y)=2\sin\left(\frac{x-y}{2}\right)\cos\left(\frac{x+y}{2}\right)$, Sehingga
+        \begin{flalign*}
+            \sin(a+bx+b)-\sin(a+bx)&=2\sin\left(\frac{a+bx+b-(a+bx)}{2}\right)\cos\left(\frac{a+bx+b+(a+bx)}{2}\right)&\\
+            &=2\sin\left(\frac{b}{2}\right)\cos\left(a+bx+\frac{b}{2}\right)\,\blacksquare
+        \end{flalign*}
+        \item[9.]Hubungan antara tekanan uap$(P)$ dan temperatur$(T)$ diberikan oleh tabel berikut:\\
+        \begin{tabular}{c|ccccc}
+            $T$:&$361$&$367$&$378$&$387$&$399$\\
+            \hline
+            $P$:&$154,9$&$167$&$191$&$212,5$&$244,2$
+        \end{tabular}\\
+        Dengan rumus interpolasi Lagrange dapatkan tekanannya pada saat temperaturnya $372,1^{\circ}$.
+        \jawab\\
+        Diketahui:\\
+        \begin{tabular}{lllll}
+            $T_0=361$&$T_1=367$&$T_2=378$&$T_3=387$&$T_4=399$\\
+            $P_0=154,9$&$P_1=167$&$P_2=191$&$P_3=212,5$&$P_4=244,2$
+        \end{tabular}\\
+        $P(T)$ dinyatakan sebagai
+        \begin{flalign*}
+            P(T)=&\frac{(T-T_1)(T-T_2)(T-T_3)(T-T_4)}{(T_0-T_1)(T_0-T_2)(T_0-T_3)(T_0-T_4)}P_0
+            +\frac{(T-T_1)(T-T_2)(T-T_3)(T-T_4)}{(T_1-T_0)(T_1-T_2)(T_1-T_3)(T_1-T_4)}P_1&\\
+            &+\frac{(T-T_1)(T-T_2)(T-T_3)(T-T_4)}{(T_2-T_0)(T_2-T_1)(T_2-T_3)(T_2-T_4)}P_2
+            +\frac{(T-T_1)(T-T_2)(T-T_3)(T-T_4)}{(T_3-T_0)(T_3-T_1)(T_3-T_2)(T_3-T_4)}P_3&\\
+            &+\frac{(T-T_1)(T-T_2)(T-T_3)(T-T_4)}{(T_4-T_0)(T_4-T_1)(T_4-T_2)(T_4-T_3)}P_4
+        \end{flalign*}
+        Sehingga untuk $P(372,1)$ didapatkan
+        \begin{flalign*}
+            P(372,1)=&\frac{(372,1-367)(372,1-378)(372,1-387)(372,1-244,2)}{(361-367)(361-378)(361-387)(361-244,2)}(154,9)&\\
+            &+\frac{(372,1-367)(372,1-378)(372,1-387)(372,1-244,2)}{(367-361)(367-378)(367-387)(367-244,2)}(167)&\\
+            &+\frac{(372,1-367)(372,1-378)(372,1-387)(372,1-244,2)}{(378-361)(378-367)(378-387)(378-244,2)}(191)&\\
+            &+\frac{(372,1-367)(372,1-378)(372,1-387)(372,1-244,2)}{(387-361)(387-367)(387-378)(387-244,2)}(212)&\\
+            &+\frac{(372,1-367)(372,1-378)(372,1-387)(372,1-244,2)}{(244,2-361)(244,2-367)(244,2-378)(244,2-387)}(244,2)&\\
+            =&177,4
+        \end{flalign*}
+        \item[2.(b)]$1^4+2^4+3^4+4^4+...+n^4$\\
+        \jawab
+        \begin{flalign*}
+            x^4&=Ax^{(4)}+Bx^{(3)}+Cx^{(2)}+Dx^{(1)}+E&\\
+            x^4&=Ax(x-1)(x-2)(x-3)+Bx(x-1)(x-2)+Cx(x-1)+Dx+E
+        \end{flalign*}
+        Didapatkan $E-0;D=1;C=7;B=6;A=1$.
+        \[x^4=x^{(4)}+6x^{(3)}+7x^{(2)}+x^{(1)}\]
+        Deret Hingganya
+        \begin{flalign*}
+            \sum_{1}^{n}x^{(4)}+6x^{(3)}+7x^{(2)}+x^{(1)}&=\Delta^{-1}\left.x^{(4)}+6x^{(3)}+7x^{(2)}+x^{(1)}\right|_0^{n+1}&\\
+            &=\left.\frac{1}{5}x^{(5)}+\frac{3}{2}x^{(4)}+\frac{7}{3}x^{(3)}+\frac{1}{2}x^{(2)}\right|_0^{n+1}&\\
+            &=\frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}
+        \end{flalign*}
+        
+        \item[3.]$2\cdot5\cdot8+5\cdot8\cdot11+8\cdot11\cdot14+...+20\cdot23\cdot26$.\\
+        \jawab\\
+        Suku umum $U_x=(3x-1)(3x+2)(3x+5)=(3x+5)^{(3)}$.
+        \begin{flalign*}
+            \sum_{1}^7 (3x+5)^{(3)}&=\left.\Delta^{-1}(3x+5)^{(3)}\right|_1^{7+1}&\\
+            &=\left.\frac{(3x+5)^{(4)}}{3(4)}\right|_1^8&\\
+            &=\left.\frac{(3x+5)(3x+2)(3x-1)(3x-4)}{12}\right|_1^8&\\
+            &=\frac{(29)(26)(23)(20)}{12}-\frac{(8)(5)(2)(-1)}{12}&\\
+            &=\frac{346840+80}{12}&\\
+            &=\frac{346920}{12}&\\
+            &=28910
+        \end{flalign*}
+
+        \item[15.]$\dfrac{1}{1\cdot4}+\dfrac{1}{4\cdot7}+\dfrac{1}{7\cdot10}+...$ s/d suku ke-$n$.\\
+        \jawab\\
+        Suku umum $U_x=\dfrac{1}{(3x-2)(3x+1)}=\dfrac{1}{(3x+1)^{(2)}}=\dfrac{1}{(3(x+2)+1-6)^{(2)}}=(3x-5)^{(-2)}$.
+        \begin{flalign*}
+            \sum_{1}^n (3x-5)^{(-2)}&=\left.\Delta^{-1}(3x-5)^{(-1-1)}\right|_0^{n+1}&\\
+            &=\left.-\frac{(3x-5)^{(-1)}}{3(1)}\right|_0^{n+1}&\\
+            &=\left.-\frac{1}{3}\cdot\frac{1}{3(x+1)-5}\right|_0^{n+1}&\\
+            &=\left.-\frac{1}{3}\cdot\frac{1}{3x-2}\right|_0^{n+1}&\\
+            &=\frac{1}{9n+3}+\frac{1}{6}&\\
+            &=\frac{n+1}{6n+2}
+        \end{flalign*}
+    \end{enumerate}
+\end{document}
