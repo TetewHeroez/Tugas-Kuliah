@@ -19,6 +19,7 @@
 	}
 
 \newcommand{\jawab}{\textbf{Jawab}:}
+\newcommand{\del}{\partial}
 \begin{document}
     \pagenumbering{gobble}
     \begin{tabular}{|lcl|}
@@ -29,6 +30,36 @@
     \end{tabular}
     \begin{enumerate}
         \setcounter{enumi}{11}
-        \item 
+        \item Misalkan $r=x\vec{i}+y\vec{j}+z\vec{k}$ dan $r=|r|$ periksalah kebenaran 
+        persamaan berikut ini
+        \begin{enumerate}
+            \item $\nabla\cdot r=3$\\
+            \jawab
+            \begin{flalign*}
+                \nabla r&=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\left(x\vec{i}+y\vec{j}+z\vec{k}\right)&\\
+                &=1+1+1=3~\blacksquare
+            \end{flalign*}
+            \item $\nabla^2r^3=12r$\\
+            \jawab
+            \begin{flalign*}
+                \nabla^2r^3&=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)^2\left(\sqrt{x^2+y^2+z^2}\right)^3&\\
+                &=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\left(\frac{\del\left(x^2+y^2+z^2\right)^{3/2}}{\del x}\vec{i}+\frac{\del\left(x^2+y^2+z^2\right)^{3/2}}{\del y}\vec{j}+\frac{\del\left(x^2+y^2+z^2\right)^{3/2}}{\del z}\vec{k}\right)&\\
+                &=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\left(3x\left(x^2+y^2+z^2\right)^{1/2}\vec{i}+3y\left(x^2+y^2+z^2\right)^{1/2}\vec{j}+3z\left(x^2+y^2+z^2\right)^{1/2}\vec{k}\right)&\\
+                &=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\left(3x\vec{i}+3y\vec{j}+3z\vec{k}\right)\sqrt{x^2+y^2+z^2}&\\
+                &=\left[(3+3+3)\sqrt{x^2+y^2+z^2}\right]+\left[\frac{3x^2}{\sqrt{x^2+y^2+z^2}}\vec{i}+\frac{3y^2}{\sqrt{x^2+y^2+z^2}}\vec{j}+\frac{3z^2}{\sqrt{x^2+y^2+z^2}}\vec{k}\right]&\\
+                &=\left[9r\right]+\frac{1}{r}\left(3x^2\vec{i}+3y^2\vec{j}+3z^2\vec{k}\right)&\\
+                &=9r+\frac{3r^2}{r}=12r\,\blacksquare&\\
+            \end{flalign*}
+            \item $\nabla\cdot r\,r=4r$\\
+            \jawab
+            \begin{flalign*}
+                \nabla\cdot r\,r&=
+            \end{flalign*}
+            \item $\nabla r=r/r$
+            \item $\nabla\left(\dfrac{1}{r}\right)=-r/r^3$
+            \item $\nabla\times r=0$
+            \item $\nabla \ln r=r/r^2$
+            \item $\nabla r\,f(r)=3f(r)+|r|\dfrac{df}{dr}$
+        \end{enumerate}
     \end{enumerate}
 \end{document}
