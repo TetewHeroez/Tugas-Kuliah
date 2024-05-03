@@ -53,13 +53,122 @@
             \item $\nabla\cdot r\,r=4r$\\
             \jawab
             \begin{flalign*}
-                \nabla\cdot r\,r&=
+                \nabla\cdot r\,r&=r(\nabla\cdot r)+r(\nabla r)&\\
+                &=3r+r(\nabla \sqrt{x^2+y^2+z^2})&\\
+                &=3r+r\left(\frac{x}{\sqrt{x^2+y^2+z^2}}\vec{i}+\frac{y}{\sqrt{x^2+y^2+z^2}}\vec{j}+\frac{z}{\sqrt{x^2+y^2+z^2}}\vec{k}\right)&\\
+                &=3r+r\left(\frac{r}{r}\right)=4r\,\blacksquare
             \end{flalign*}
             \item $\nabla r=r/r$
-            \item $\nabla\left(\dfrac{1}{r}\right)=-r/r^3$
-            \item $\nabla\times r=0$
-            \item $\nabla \ln r=r/r^2$
-            \item $\nabla r\,f(r)=3f(r)+|r|\dfrac{df}{dr}$
+            \jawab
+            \begin{flalign*}
+                \nabla r&=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\sqrt{x^2+y^2+z^2}&\\
+                &=\frac{x}{\sqrt{x^2+y^2+z^2}}\vec{i}+\frac{y}{\sqrt{x^2+y^2+z^2}}\vec{j}+\frac{z}{\sqrt{x^2+y^2+z^2}}\vec{k}&\\
+                &=\frac{x\vec{i}+y\vec{j}+z\vec{k}}{r}=r/r\, \blacksquare
+            \end{flalign*}
+            \item $\nabla\left(\dfrac{1}{r}\right)=-r/r^3$\\
+            \jawab 
+            \begin{flalign*}
+                \nabla\left(\dfrac{1}{r}\right)&=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)(x^2+y^2+z^2)^{-1/2}&\\
+                &=\frac{-x}{2\sqrt{(x^2+y^2+z^2)^3}}\vec{i}+\frac{-y}{2\sqrt{(x^2+y^2+z^2)^3}}\vec{j}+\frac{z}{2\sqrt{(x^2+y^2+z^2)^3}}\vec{k}&\\
+                &=\frac{-x\vec{i}-y\vec{j}-z\vec{k}}{r^3}=-r/r^3\, \blacksquare
+            \end{flalign*}
+            \item $\nabla\times r=0$\\
+            \jawab
+            \begin{flalign*}
+                \nabla\times r&=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\times\left(x\vec{i}+y\vec{j}+z\vec{k}\right)&\\
+                &=\begin{vmatrix}
+                    \vec{i}&\vec{j}&\vec{k}\\
+                    \dfrac{\del}{\del x}&\dfrac{\del}{\del y}&\dfrac{\del}{\del z}\\
+                    x&y&z
+                \end{vmatrix}=0\vec{i}-0\vec{j}+0\vec{k}=0\,\blacksquare
+            \end{flalign*}
+            \item $\nabla \ln r=r/r^2$\\
+            \jawab
+            \begin{flalign*}
+                \nabla \ln r&=\left(\frac{\del}{\del x}\vec{i}+\frac{\del}{\del y}\vec{j}+\frac{\del}{\del z}\vec{k}\right)\left(\frac{1}{2}\ln(x^2+y^2+z^2)\right)&\\
+                &=\frac{x}{x^2+y^2+z^2}\vec{i}+\frac{y}{x^2+y^2+z^2}\vec{j}+\frac{z}{x^2+y^2+z^2}\vec{k}&\\
+                &=\frac{x\vec{i}+y\vec{j}+z\vec{k}}{r^2}=r/r^2\, \blacksquare
+            \end{flalign*}
+            \item $\nabla r\,f(r)=3f(r)+|r|\dfrac{df}{dr}$\\
+            \jawab
+            \begin{flalign*}
+                \nabla r\,f(r)&=(\nabla r)f(r)+r(\nabla f(r))&\\
+                &=3f(r)+r\left(\frac{\del f}{\del x}\vec{i}+\frac{\del f}{\del y}\vec{j}+\frac{\del f}{\del z}\vec{k}\right)&\\
+                &=3f(r)+r\left(\frac{\del f}{\del r}\frac{\del r}{\del x}\vec{i}+\frac{\del f}{\del r}\frac{\del r}{\del y}\vec{j}+\frac{\del f}{\del r}\frac{\del r}{\del z}\vec{k}\right)&\\
+                &=3f(r)+r\left(\frac{\del r}{\del x}\vec{i}+\frac{\del r}{\del y}\vec{j}+\frac{\del r}{\del z}\vec{k}\right)\frac{\del f}{\del r}&\\
+                &=3f(r)+r\left(\nabla r\right)\frac{\del f}{\del r}&\\
+                &=3f(r)+r\left(\frac{r}{r}\right)\frac{\del f}{\del r}&\\
+                &=3f(r)+|r|\frac{df}{dr}\,\blacksquare
+            \end{flalign*}
         \end{enumerate}
+        \item 
+        \begin{enumerate}
+            \item Buktikan bahwa $div(grad\,f)=\dfrac{\del^2 f}{\del x^2}+\dfrac{\del^2 f}
+            {\del y^2}+\dfrac{\del^2 f}{\del z^2}=\nabla^2f$, ($\nabla^2f$ disebut laplacian)\\
+            \jawab
+            \begin{flalign*}
+                \nabla(\nabla f)&=\nabla\left(\frac{\del f}{\del x}\vec{i}+\frac{\del f}{\del y}\vec{j}+\frac{\del f}{\del z}\vec{k}\right)&\\
+                &=\frac{\del}{\del x}\left(\frac{\del f}{\del x}\right)+\frac{\del}{\del x}\left(\frac{\del f}{\del y}\right)+\frac{\del}{\del x}\left(\frac{\del f}{\del z}\right)&\\
+                &=\dfrac{\del^2 f}{\del x^2}+\dfrac{\del^2 f}{\del y^2}+\dfrac{\del^2 f}{\del z^2}\,\blacksquare
+            \end{flalign*}
+            \item Jika $\Phi=x^2z-3xy^2z-xy^2$ maka tentukan $\nabla\Phi$, $|\nabla\Phi|$ dan 
+            $laplace\,\Phi$ pada titik $(1,1,0)$.\\
+            \jawab
+            \begin{flalign*}
+                \nabla\Phi&=\frac{\del\Phi}{\del x}\vec{i}+\frac{\del\Phi}{\del y}\vec{j}+\frac{\del\Phi}{\del z}\vec{k}&\\
+                &=(2xz-3y^2z-y^2)\vec{i}+(-6xyz-2xy)\vec{j}+(x^2-3xy^2)\vec{k}&\\
+                \boxed{\nabla\Phi_{(1,1,0)}}&=-\vec{i}-2\vec{j}-2\vec{k}&\\
+                \boxed{|\nabla\Phi|_{(1,1,0)}}&=\sqrt{(-1)^2+(-2)^2+(-2)^2}=\sqrt{9}=3&\\
+                \nabla^2\Phi&=\frac{\del^2\Phi}{\del x}+\frac{\del^2\Phi}{\del y}+\frac{\del^2\Phi}{\del z}&\\
+                &=2z+(-6xz-2x)+0=-6xz-2x-2z&\\
+                \boxed{\nabla^2\Phi_{(1,1,0)}}&=-2
+            \end{flalign*}
+        \end{enumerate}
+        \item Jika $F=r/r^p$ carilah $div F$. Apakah terdapat nilai $p$ sehingga berlaku $div\,F=0$.\\
+        \jawab\\
+        Misalkan $r=x\vec{i}+y\vec{j}+z\vec{k}$ dan $r=|r|=\sqrt{x^2+y^2+z^2}$
+        \begin{flalign*}
+            \nabla\cdot F&=\nabla(r/r^p)=(\nabla r)r^{-p}+r(\nabla r^{-p})&\\
+            &=3r^{-p}+r(-p\,r^{-p-2}\,r)&\\
+            &=3r^{-p}-p\,r^{-p-2}&\\
+            &=r^{-p}(3-p)
+        \end{flalign*}
+        Jika $\nabla F=0$, maka
+        \begin{flalign*}
+            r^{-p}(3-p)=0&\\
+            p=3
+        \end{flalign*}
+        \item Dapatkan derivatif berarah dari $\varphi=4xz^2-3x^2y^2z$ pada $(2,-1,2)$ dalam 
+        arah $2\vec{i}-3\vec{j}+6\vec{k}$.\\
+        \jawab\\
+        Vektor gradiennya sebagai berikut
+        \begin{flalign*}
+            \nabla\varphi&=(4z^2-6xy^2z)\vec{i}+(-6x^2yz)\vec{j}+(8xz-3x^2y^2)\vec{k}&\\
+            \nabla\varphi_{(2,-1,2)}&=-8\vec{i}+48\vec{j}+20\vec{k}
+        \end{flalign*}
+        Akan dicari panjang vektor yang searah dengan $\vec{u}=2\vec{i}-3\vec{j}+6\vec{k}$, hal ini dapat 
+        dihitung menggunakan konsep proyeksi vektor
+        \begin{flalign*}
+            D_{\vec{u}}\varphi(2,-1,2)&=\nabla\varphi\cdot\frac{\vec{u}}{|\vec{u}|}&\\
+           &=(-8\vec{i}+48\vec{j}+20\vec{k})\cdot\frac{1}{7}(2\vec{i}-3\vec{j}+6\vec{k})&\\
+           &=\frac{1}{7}(-16-144+120)=-\frac{40}{7}
+        \end{flalign*}
+        \item Suatu benda mempunyai massa $m$, berputar dalam suatu orbit melingkar dengan 
+        kecepatan sudur $\omega$ akan mengalami gaya sentrifugal yang diberikan oleh 
+        $F(x,y,z)=m\omega^2r$.\\
+        Tunjukkan bahwa $f(x,y,z)=\dfrac{1}{2}m\omega^2(x^2+y^2+z^2)$ adalah fungsi potensial
+        untuk $F$.\\
+        \jawab\\
+        Diketahui $r=x\vec{i}+y\vec{j}+z\vec{k}$, $|r|=\sqrt{x^2+y^2+z^2}$ dan $\nabla\times F=0$ yang berakibat bahwa $F$ medan 
+        konservatif, sehingga didapatkan bahwa fungsi potensial $F$ adalah $f$ yang dimana 
+        $F=\nabla f$
+        \begin{flalign*}
+            F(x,y,z)&=\frac{\del f}{\del x}\vec{i}+\frac{\del f}{\del y}\vec{j}+\frac{\del f}{\del z}\vec{k}&\\
+            m\omega^2(x\vec{i}+y\vec{j}+z\vec{k})&=\frac{\del f}{\del x}\vec{i}+\frac{\del f}{\del y}\vec{j}+\frac{\del f}{\del z}\vec{k}&\\
+            &\Rightarrow f=\int m\omega^2x dx=\frac{1}{2}m\omega^2x^2&\\
+            &\Rightarrow f=\int m\omega^2y dy=\frac{1}{2}m\omega^2y^2&\\
+            &\Rightarrow f=\int m\omega^2z dz=\frac{1}{2}m\omega^2z^2
+        \end{flalign*}
+        Sehingga dapat disimpulkan bahwa $f(x,y,z)=\dfrac{1}{2}m\omega^2(x^2+y^2+z^2)\,\blacksquare$
     \end{enumerate}
 \end{document}

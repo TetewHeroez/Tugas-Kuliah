@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1714737457 "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis Vektor/Tugas 4.5 12-16/Tugas no 12-16.tex" "Tugas no 12-16.pdf" "Tugas no 12-16" 1714737459 0
+["pdflatex"] 1714753979 "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis Vektor/Tugas 4.5 12-16/Tugas no 12-16.tex" "Tugas no 12-16.pdf" "Tugas no 12-16" 1714753981 0
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1714542864 81424 302ea179ecbb90d8ef2108b3618d82bc ""
   "C:/Users/teoso/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1698504575 24141909 3ef3e227142007ad81b98baa22789cf0 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -17,6 +17,7 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1247596673 31764 459c573c03a4949a528c2cc7f557e217 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty" 1643997108 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
@@ -225,8 +226,8 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 9829c50ab36366d4da41fdc87e7d0699 ""
-  "Tugas no 12-16.aux" 1714737459 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis Vektor/Tugas 4.5 12-16/Tugas no 12-16.tex" 1714737456 3010 dfbf5c06f09837b67c9284f52e34b265 ""
+  "Tugas no 12-16.aux" 1714753980 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
+  "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis Vektor/Tugas 4.5 12-16/Tugas no 12-16.tex" 1714753978 10228 cadcea6ec1a40a0c0bfe652ba2f7a3e3 ""
   (generated)
   "Tugas no 12-16.aux"
   "Tugas no 12-16.log"
