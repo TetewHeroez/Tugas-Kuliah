@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{geometry}
+    \geometry{
+        paperwidth=17.5cm, 
+        paperheight=24cm
+        }
+\newcommand{\jawab}{\textbf{Jawab}:}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \begin{enumerate}
+        \item Tunjukkan bahwa barisan $x^n/(1+x^n)$ tidak konvergen seragam pada $[0,2]$ 
+        dengan menunjukkan bahwa limit fungsinya tidak kontinu pada $[0,2]$\\
+        \jawab\\
+        Perhatikan bahwa $\lim(x^n/(1+x^n))$ menuju ke fungsi sepotong-sepotong $g$ yaitu
+        \begin{flalign*}
+            g=\begin{cases}
+                0,&\quad x=0\\
+                \frac{1}{2},&\quad x\in(0,1]\\
+                1,&\quad x\in(1,2]\\
+            \end{cases}
+        \end{flalign*}
+        Dapat dilihat bahwa $g$ tidak kontinu untuk semua $x\in[0,2]$, sehingga menggunakan 
+        \textbf{Teorema 8.2.2} dapat disimpulkan bahwa barisan diatas tidak konvergen seragam. 
+        $\blacksquare$
+        \item[4.] Misalkan $(f_n)$ barisan fungsi yang kontinu pada interval $I$ juga 
+        konvergen seragam pada $I$ ke fungsi $f$. Jika $(x_n)\subseteq I$ konvergen ke 
+        $x_0\in I$, tunjukkan bahwa $\lim(f_n(x_n))=f(x_0)$.\\
+        \jawab\\
+        Karena $f_n$ konvergen seragam pada $I$, maka $\lim(f_n(x))=f(x)$ untuk setiap $x\in I$.
+        Sebab $(x_n)\subseteq I$, maka untuk setiap $n$ berlaku $f_n(x_n)$ akan konvergen ke 
+        $f(x_n)$. Kemudian barisan $(x_n)$ juga konvergen ke $x_0\in I$ atau $\lim(x_n)=x_0$. 
+        Sehingga dari informasi diatas dapat disimpulkan
+        \begin{flalign*}
+            \lim(f_n(x_n))=f(\lim(x_n))=f(x_0)\quad\blacksquare
+        \end{flalign*}  
+        \item[7.] Misalkan barisan $(f_n)$ konvergen seragam ke $f$ pada himpunan $A$, 
+        dan andaikan setiap $f_n$ terbatas pada $A$. (Artinya, untuk setiap $n$ terdapat 
+        konstanta $M_n$ sedemikian sehingga $|f_n(x)|\leq M_n$ untuk setiap $x\in A$.) 
+        Tunjukkan bahwa fungsi $f$ terbatas di $A$.\\
+        \jawab\\
+        Karena barisan $f_n$ selalu terbatas pada $M_n$, maka barisan $M_n$ juga terbatas pada suatu 
+        $M$. Dengan menggunakan fakta tersebut maka didapatkan
+        \begin{flalign*}
+           \lim|f_n(x)|&\leq\lim(M_n)
+        \end{flalign*}
+        Fakta bahwa $f_n$ konvergen seragam berakibat $\lim|f_n(x)|=|\lim(f_n(x))|$.
+        \begin{flalign*}
+            |\lim(f_n(x))|&\leq M\quad x\in A\\
+            |f(x)|&\leq M,\quad x\in A
+        \end{flalign*}
+        Hai diatas menunjukkan bahwa $f$ konvergen terbatas di $A$. $\blacksquare$
+    \end{enumerate}
+\end{document}
