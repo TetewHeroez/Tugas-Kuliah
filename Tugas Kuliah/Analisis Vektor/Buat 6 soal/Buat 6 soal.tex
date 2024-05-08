@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Jawab}:}
+\newcommand{\del}{\partial}
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \begin{enumerate}
+        \item Panjang busur kurva vektor yang diberikan oleh $F(t)=3\cos{t}\vec{i}+3\sin{t}\vec{j}+2t^{3/2}\vec{k}$.
+        untuk $0\leq t\leq 3$ adalah...\\
+        \jawab
+        \begin{flalign*}
+            \int_{t_0}^{t_1}|F'(t)|\,dt&=\int_{0}^{3}\sqrt{(-3\sin{t})^2+(3\cos{t})^2+(3t^{1/2})^2}\,dt&\\
+            &=\int_{0}^{3}\sqrt{9\sin^2{t}+9\cos^2{t}+9t}\,dt&\\
+            &=\int_{0}^{3}\sqrt{9+9t}\,dt&\\
+            &=9\int_{0}^{3}\sqrt{1+t}\,dt&\\
+            &=9\left[\frac{2}{3}(1+t)^{3/2}\right]_0^3\,dt&\\
+            &=6\left[(4)^{3/2}-1\right]_0^3\,dt&\\
+            &=6\cdot 8=42
+        \end{flalign*}
+
+        \item Hasil dari $\displaystyle\oint_C(4x^4-xy^2)dx+(4y^4-yx^2)dy$ dengan $C$ merupakan daerah 
+        yang dibatasi oleh lingkaran $x^2+y^2=9$ adalah...\\
+        \jawab\\
+        Perhatikan bahwa $\dfrac{\del N}{\del x}=\dfrac{\del M}{\del y}=2xy$ yang mengakibatkan 
+        fungsi tersebut termasuk fungsi konservatif. Sehingga dengan menggunakan teorema didapatkan 
+        $\displaystyle\oint_C(4x^4-xy^2)dx+(4y^4-yx^2)dy=0$.
+
+        \item Jika diberikan sebuah kurva yang dinyatakan dalam persamaan parametrik:
+        \[x=a(t-\sin{t}),\quad y=a(1-\cos{t});\quad 0\leq t\leq\pi\]
+        maka keliling kurva tersebut adalah...
+
+        \item Diberikan $\vec{F}=(axy-x^2)\vec{i}+(a-2)x^2\vec{j}$. Nilai konstanta $a$ sedemikian 
+        sehingga $\vec{F}$ merupakan medan vektor yang konservatif adalah...
+
+        \item Jika diberikan gaya $F(x,y)=(3xy+x^2)\vec{i}+(x^2-3y^2)\vec{j}$, carilah $f$ 
+        sehingga $F$ adalah gaya konservatif...
+
+        \item Hitung $\displaystyle\int_{C}(4+y^2)dx+(2xy-y^3)dy$ dengan C adalah kurva parametrik yaitu 
+        $r(t)=t^2\,\vec{i}+t\,\vec{j}$ untuk $0<t<2$.
+        \begin{flalign*}
+            x=t^2\Longrightarrow dx=2t\,dt\\
+            y=t\Longrightarrow dy=dt
+        \end{flalign*}
+    \end{enumerate}
+\end{document}
