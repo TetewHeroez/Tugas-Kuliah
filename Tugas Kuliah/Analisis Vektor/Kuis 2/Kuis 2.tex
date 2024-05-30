@@ -93,6 +93,15 @@
                         color=blue,
                     ]
                     {sqrt(8*x)} node[pos=0.9](endofplotsquare){} ;
+                    \addplot [
+                        dashed,
+                        domain=0:2, 
+                        samples=10, 
+                        color=red,
+                    ]
+                    {4};
+                    \addplot[dashed, 
+                    samples=10, smooth,domain=1:3,red] coordinates {(2,0)(2,4)};
                     \node [below right] at (endofplotsquare) {$y^2=8x$};
                     \addplot[fill=gray,opacity=0.4] fill between[of=A and B,split,soft clip={domain=0:2}];
                     \node at (axis cs:1,2) {$D$};
@@ -114,8 +123,34 @@
                 &=\frac{32}{15}
             \end{flalign*}
             \item Hitung integral tersebut secara langsung tanpa menggunakan teorema Green.\\
-            \jawab
-            
+            \jawab\\
+            Misalkan $C_1$ adalah kurva $y=x^2$ dan $C_2$ adalah kurva $8x=y^2$.
+            \begin{enumerate}[label=(\roman*)]
+                \item Hitung integral di sepanjang $C_1$.
+                \begin{flalign*}
+                    \int_{C_1}(2xy-x^2)dx+(x+y^2)dy&=\int_{0}^{2}\left(2x(x^2)-x^2\right)dx+\left(x+x^2\right)2xdx&\\
+                    &=\int_{0}^{2}\left(2x^3-x^2+x+2x^2\right)dx&\\
+                    &=\int_{0}^{2}\left(2x^3+x^2+x\right)dx&\\
+                    &=\left[\frac{1}{2}x^4+\frac{1}{3}x^3+\frac{1}{2}x^2\right]_{0}^{2}&\\
+                    &=\frac{1}{2}(16)+\frac{1}{3}(8)+\frac{1}{2}(4)&\\
+                    &=8+\frac{8}{3}+2&\\
+                    &=\frac{32}{3}
+                \end{flalign*}
+                \item Hitung integral di sepanjang $C_2$.
+                \begin{flalign*}
+                    \int_{C_2}(2xy-x^2)dx+(x+y^2)dy&=\int_{0}^{4}\left(2\left(\frac{y^2}{8}\right)y-\left(\frac{y^2}{8}\right)^2\right)\frac{y}{4}dy+\left(\left(\frac{y^2}{8}\right)+y^2\right)dy&\\
+                    &=\int_{0}^{4}\left(\frac{y^4}{16}-\frac{y^5}{256}+\frac{y^3}{8}+y^2\right)dy&\\
+                    &=\left[\frac{1}{5}\frac{y^5}{16}-\frac{1}{6}\frac{y^6}{256}\right]_{0}^{4}+\left[\frac{1}{4}\frac{y^4}{8}+\frac{1}{3}y^3\right]_{0}^{4}&\\
+                    &=\frac{1}{5}\frac{4^5}{16}-\frac{1}{6}\frac{4^6}{256}+\frac{1}{4}\frac{4^4}{8}+\frac{1}{3}4^3&\\
+                    &=\frac{592}{15}
+                \end{flalign*}
+            \end{enumerate}
+            Sehingga nilai integralnya adalah
+            \begin{flalign*}
+                \oint_{C}(2xy-x^2)dx+(x+y^2)dy&=\oint_{C_2-C1}(2xy-x^2)dx+(x+y^2)dy=&\\
+                &=\frac{592}{15}-\frac{32}{3}&\\
+                &=\frac{32}{15}
+            \end{flalign*}
         \end{enumerate}
         \item Diberikan vektor gaya $\bar{A}=(2xy+z)\vec{i}+y^2\vec{j}+(x+3y)\vec{k}$ dan $S$ 
         adalah permukaan yang dibatasi oleh $z=4-y^2,\,x=0,\,x=2$ dan bidang $xy$.
@@ -133,7 +168,9 @@
                     \draw[dashed] (0,0,0) -- (0,-3,0);
                     \draw[thick] (0,0,0.0) -- (0,0,4.0);
                     % The curves slicing the surface
-                    \draw[blue,thick,opacity=0.5] plot[domain=-2:2,smooth,variable=\t] ({2.0},{\t},{4.0 - \t*\t}); 
+                    \draw[blue,thick,opacity=0.5] plot[domain=-2:2,smooth,variable=\t] ({2.0},{\t},{4.0 - \t*\t});
+                    % Region of integration
+		            \draw[gray,thick,fill=yellow,opacity=0.35] (2,2,0) -- (2,-2,0) -- (-2,-2,0) -- (-2,0,0) -- cycle;
                     % The surface
                     \foreach \x in {0,\step,...,2.0}{
                         \draw[cyan,thick,opacity=0.25] plot[domain=-2:2,smooth,variable=\t] ({\x},{\t},{4.0 - \t*\t}); 
@@ -153,20 +190,56 @@
                     \draw[red,dashed] (-2,-2,0) -- (-2,2,0);
                     \draw[red,dashed] (2,2,0) -- (-2,2,0);
                     \draw[red,dashed] (-2,2,0) -- (2,2,0);
+                    \foreach \x in {-2,2} 
+                        \draw[shift={(\x,0,0)},color=black] (0pt,0.1pt,0pt) -- (0pt,-0.1pt,0pt) node[below] {$\x$};
+                    \foreach \x in {-2,2} 
+                        \draw[shift={(0,\x,0)},color=black] (0.1pt,0pt,0pt) -- (-0.1pt,0pt,0pt) node[below] {$\x$};
+                    %point
+                    \node[cyan,right] at (0,2,3.5) {$S$};
+                    \node[red,right] at (1,-1,0) {$D$};
+                \end{tikzpicture}
+                \begin{tikzpicture}
+                    \draw[thick,->] (-3.2,0) -- (3.2,0) node[right] {$y$};
+                    \draw[thick,->] (0,-1.0) -- (0,4.5) node[above] {$z$};
+                    \draw[thick,<-] (-3.2,0) -- (3.2,0) node[right] {$y$};
+                    \draw[thick,<-] (0,-1.2) -- (0,4.5) node[above] {$z$};
                     
+                    \foreach \x in {-2,2} \draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt) node[below] {$\x$};
+                    \draw [shift={(0,4)},color=black] (3pt,0pt) -- (-3pt,0pt) node[above] {$4$};
+                    
+                    \draw[thick,blue,domain=-2.1:2.1,smooth] plot (\x,{4-(\x)^2}) {};
+                    \node[blue] at (2,3) {$z=4-y^2$};
                 \end{tikzpicture}
             \end{center}
             \item Hitunglah $\displaystyle \iint_S \bar{A}\cdot\bar{n}\,dS$ dengan menggunakan 
-            teorema Gauss.
+            teorema Gauss.\\
             \jawab
             \begin{flalign*}
                 \iint_S \bar{A}\cdot\bar{n}\,dS&=\iiint_V \nabla\cdot\bar{A}\,dV&\\
                 &=\iiint_V \left(\frac{\del}{\del x}(2xy+z)+\frac{\del}{\del y}(y^2)+\frac{\del}{\del z}(x+3y)\right)dV&\\
-                &=\iiint_V (2y+1)dV&\\
-                &=\int_{0}^{2}\int_{0}^{2}\int_{0}^{4-y^2} (2y+1)dz\,dy\,dx&\\
+                &=\iiint_V (2y+2y+0)dV&\\
+                &=\int_{0}^{2}\int_{0}^{2}\int_{0}^{4-y^2} 4y\,dz\,dy\,dx&\\
+                &=\int_{0}^{2}\int_{0}^{2} 4y(4-y^2)dy\,dx&\\
+                &=\int_{0}^{2}\int_{0}^{2} 16y-4y^3\,dy\,dx&\\
+                &=\int_{0}^{2} \left[8y^2-y^4\right]_{0}^{2}dx&\\
+                &=\int_{0}^{2} \left[8(2)^2-(2)^4\right]dx&\\
+                &=\int_{0}^{2} \left[8(4)-16\right]dx&\\
+                &=\int_{0}^{2} 16\,dx=32
             \end{flalign*}
             \item Hitunglah $\displaystyle \iint_S \bar{A}\cdot\bar{n}\,dS$ secara langsung 
-            tanpa menggunakan teorema Gauss.
+            tanpa menggunakan teorema Gauss.\\
+            \jawab\\
+            Diketahui $g(x,y,z)=4-y^2$ dan misalkan $D$ adalah daerah yang berada dibawah permukaan.
+            \begin{flalign*}
+                \iint_S \bar{A}\cdot\bar{n}\,dS&=\iint_D \left(-Pg_x-Qg_y+R\right)\,dS&\\
+                &=\iint_D \left(-(2xy+z)0-y^2(-2y)+(x+3y)0\right)\,dS&\\
+                &=\iint_D 2y^3\,dS&\\
+                &=\int_{0}^{2}\int_{0}^{2} 2y^3\,dy\,dx&\\
+                &=\int_{0}^{2} \left[\frac{1}{2}y^4\right]_{0}^{2}dx&\\
+                &=\int_{0}^{2} \left[\frac{1}{2}(2)^4\right]dx&\\
+                &=\int_{0}^{2} 8\,dx=16
+            \end{flalign*}
+            
         \end{enumerate}
     \end{enumerate}
 \end{document}

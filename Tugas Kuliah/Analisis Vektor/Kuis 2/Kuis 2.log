@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  30 MAY 2024 21:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  30 MAY 2024 22:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -675,7 +675,7 @@ Overfull \hbox (13.98499pt too wide) detected at line 50
 []
  []
 
-Package pgfplots info on input line 100: fill between: activating layered graphics
+Package pgfplots info on input line 109: fill between: activating layered graphics
 \pgf@layerbox@axis background=\box80
 \pgf@layerboxsaved@axis background=\box81
 \pgf@layerbox@axis grid=\box82
@@ -692,29 +692,34 @@ Package pgfplots info on input line 100: fill between: activating layered graphi
 \pgf@layerboxsaved@axis descriptions=\box93
 \pgf@layerbox@axis foreground=\box94
 \pgf@layerboxsaved@axis foreground=\box95
-Package pgfplots info on input line 100: Setting layers 'axis background,axis grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis foreground'...
-Package pgfplots info on input line 100: fillbetween: skipping empty intersection segment no 0
-Package pgfplots info on input line 100: fillbetween: skipping empty intersection segment no 2
+Package pgfplots info on input line 109: Setting layers 'axis background,axis grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis foreground'...
+Package pgfplots info on input line 109: fillbetween: skipping empty intersection segment no 0
+Package pgfplots info on input line 109: fillbetween: skipping empty intersection segment no 2
 [1
 
-{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] (Kuis 2.aux)
+{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+Overfull \hbox (0.14012pt too wide) detected at line 146
+[]
+ []
+
+[3] [4] [5] (Kuis 2.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 32585 strings out of 475248
- 846212 string characters out of 5757812
- 2067785 words of memory out of 5000000
- 53488 multiletter control sequences out of 15000+600000
+ 32644 strings out of 475248
+ 847490 string characters out of 5757812
+ 2082785 words of memory out of 5000000
+ 53547 multiletter control sequences out of 15000+600000
  563176 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,15n,95p,1284b,2414s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,15n,95p,1284b,2415s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "Kuis 2.pdf" (3 pages, 377911 bytes).
+Output written on "Kuis 2.pdf" (5 pages, 386932 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
+ 76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
