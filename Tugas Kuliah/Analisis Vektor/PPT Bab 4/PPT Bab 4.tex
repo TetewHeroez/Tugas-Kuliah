@@ -1,0 +1,111 @@
+\documentclass[10pt]{beamer}
+\usepackage{pgf}
+\usepackage{colortbl,tabularx,amsfonts,mathrsfs,calligra}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{filecontents}
+\usepackage{amsmath,amssymb}
+
+
+\bibliographystyle{apalike}
+
+\usetheme{CambridgeUS}
+\usecolortheme{orchid}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamercovered{transparent}
+
+\setbeamercolor{boxbiru}{fg=yellow,bg=black!50!blue!90}
+\setbeamercolor{boxpurple}{fg=white,bg=purple}
+\setbeamercolor{boxpink}{fg=black,bg=pink}
+\setbeamercolor{boxviolet}{fg=white,bg=violet}
+\setbeamercolor{boxabu}{fg=black!30!blue!100,bg=gray!40}
+\setbeamertemplate{background canvas}[vertical shading][bottom=red!15,top=blue!15]
+
+
+
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\newtheorem{theorems}{Teorema}
+\newtheorem{Lemmas}[theorems]{Lema}
+\newtheorem{remark}[theorems]{Catatan}
+\newtheorem{proposition}[theorems]{Proposisi}
+\newtheorem{algorithm}[theorems]{Algoritma}
+\newtheorem{problems}[theorems]{Problem}
+\newtheorem{exercise}[theorem]{Latihan}
+\newtheorem{contoh}[theorems]{Contoh}
+\newtheorem{corollaries}[theorems]{Akibat}
+\newtheorem{definisi}{Definisi}
+%\newproof{proof}{Proof}
+\newenvironment{proofs}{\paragraph{Proof:}}{\hfill$\blacksquare$\newline}
+
+
+
+ \pgfdeclareimage[height=.85cm]{logo}{logoITS}
+ \logo{\pgfuseimage{logo}}
+
+\date{}
+\title{INSTITUT TEKNOLOGI SEPULUH NOPEMBER}
+\author{Teori Peluang\part{The Probability Theory}}
+\institute{by Team Teaching}
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+    %\frametitle{\bf Analisis Real I}
+    \transboxout
+
+    \vspace{10ex}
+
+    \begin{beamercolorbox}[wd=\textwidth,rounded=true,shadow=true]{boxbiru}
+        \centering
+        \resizebox{.8\textwidth}{1em}{%
+        \textsf{\textbf{BAB 4: INTEGRAL GARIS DAN APLIKASINYA}}}\\[1.5ex]
+    \end{beamercolorbox}
+
+%    \centerline{Bagian I}
+%	\centerline{Himpunan dan Fungsi}
+
+    \vspace*{6ex}
+
+    \centerline{\includegraphics[scale=.1]{logoITS}}
+
+    \vspace*{2ex}
+
+    \begin{center}
+    \tiny
+    \rm
+    \color{magenta!50!cyan!100}
+    INSTITUT TEKNOLOGI SEPULUH NOPEMBER\\
+    Departemen Matematika\\
+    %Institut Teknologi Sepuluh Nopember\\
+    Indonesia\\
+    \end{center}
+\end{frame}%--------------------------------------------
+
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Daftar Isi}
+		\tableofcontents[hidesubsections,currentsection]
+	\end{frame}
+}
+\section{Pendahuluan}
+
+\begin{frame}
+    \frametitle{Operator Vektor Delta ($\nabla$)}
+    \begin{definisi}
+        Operator vektor $\nabla$ atau disebut juga \textbf{del} adalah operator diferensial yang didefinisikan sebagai
+        \begin{equation}
+            \nabla = \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)
+        \end{equation}
+    \end{definisi}
+\end{frame}
+
+\end{document}
