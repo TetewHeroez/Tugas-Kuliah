@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{geometry}
+    \geometry{
+        paperwidth=23cm, 
+        paperheight=30cm
+        }
+\newcommand{\jawab}{\textbf{Jawab}:}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \begin{enumerate}
+        \item Perhatikan barisan fungsi $(f_n)$ yang didefinisikan dengan $f_n(x)=\dfrac{nx}{1+nx^2}$ untuk $x\in A:=[0,\infty)$.
+        \begin{enumerate}
+            \item Tunjukkan bahwa $(f_n)$ terbatas pada $A$ untuk semua $n\in\N$.\\
+            \jawab\\
+            Kita perhatikan bahwa $f_n(x)=\dfrac{nx}{1+nx^2}$. Karena $x\geq 0$ dan $n\in\N$, maka $nx\geq 0$ dan $1+nx^2\geq 1$. Sehingga $f_n(x)\leq \dfrac{nx}{1}$. Dengan demikian, $f_n(x)$ terbatas pada $A$ untuk semua $n\in\N$.
+            \item Tunjukkan bahwa $(f_n)$ konvergen titik-demi-titik ke suatu fungsi $f$, tetapi tidak terbatas.
+            \item Apakah $(f_n)$ konvergen seragam pada $A$? Jelaskan!
+        \end{enumerate}
+        \item Jika $\sum a_n$ konvergen mutlak dan $(b_n)$ barisan terbatas, tunjukkan bahwa $\sum a_nb_n$ konvergen mutlak.
+        \item Tunjukkan bahwa deret $\dfrac{1}{1^2}+\dfrac{1}{2^3}+\dfrac{1}{3^2}+\dfrac{1}{4^3}+\dots$ adalah konvergen,tetapi uji rasio dan uji akar gagal \\~\\
+        diterapkan untuk memeriksa konvergensi deret tersebut.
+        \item Diberikan $\sum a_n$ deret yang konvergen mutlak. Tunjukkan bahwa $\sum a_n \sin(nx)$ adalah deret yang konvergen mutlak dan seragam.
+    \end{enumerate}
+\end{document}
