@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+\usepackage{fancyhdr}
+\usepackage{enumerate,enumitem}
+\usepackage{cancel}
+\usepackage{varwidth}
+\usepackage{fontawesome}
+\usepackage{derivative}
+\usepackage{xfrac}
+
+% TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
+
+\usepackage{geometry}
+\geometry{
+	total = {160mm, 237mm},
+	left = 25mm,
+	right = 20mm,
+	top = 30mm,
+	bottom = 30mm,
+}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[c]{\large{\textbf{Script Pembahasan Soal Matematika - Deret Tak Hingga}}}
+\fancyfoot[r]{\textit{By: Teosofi Hidayah Agung (5002221132)}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\jawab}{\textbf{Jawab}:}
+
+\begin{document}
+\pagenumbering{gobble}
+    \begin{enumerate}
+        \item[2.] Tentukan apakah deret-deret berikut konvergen atau divergen. Jika konvergen, dapatkan nilainya.
+        \begin{enumerate}
+            \item[(b)] $\displaystyle \sum_{k=1}^{\infty} \dfrac{1}{\ln 2^k}$\\\\
+            \jawab\\
+            Kita tahu bahwa $\ln 2^k = k\ln 2$. Maka, deret tersebut dapat ditulis ulang sebagai
+            \[\sum_{k=1}^{\infty} \dfrac{1}{k\ln 2} = \dfrac{1}{\ln 2}\sum_{k=1}^{\infty} \dfrac{1}{k}\]
+            Deret $\displaystyle \sum_{k=1}^{\infty} \dfrac{1}{k}$ adalah deret harmonik merupakan deret yang divergen. Maka, deret diatas divergen.\\
+
+            \item[(h)] $\displaystyle \sum_{k=1}^{\infty} \dfrac{4^{k+2}}{7^{k-1}}$\\\\
+            \jawab\\
+            Kita tahu bahwa $4^{k+2} = 4^2\cdot 4^k = 16\cdot 4^k$ dan $7^{k-1} = \dfrac{1}{7}\cdot 7^k$. Maka, deret tersebut dapat ditulis ulang sebagai
+            \[\sum_{k=1}^{\infty} \dfrac{16\cdot 4^k}{7\cdot 7^k} = \dfrac{16}{7}\sum_{k=1}^{\infty} \left(\dfrac{4}{7}\right)^k\]
+            Deret $\displaystyle \sum_{k=1}^{\infty} \left(\dfrac{4}{7}\right)^k$ adalah deret geometri dengan $a = 4/7$ dan $r = 4/7$. Karena $|r| < 1$, maka deret tersebut konvergen. Maka, deret diatas konvergen dan nilainya adalah
+            \[\dfrac{16}{7}\sum_{k=1}^{\infty} \left(\dfrac{4}{7}\right)^k=\dfrac{16}{7}\cdot \dfrac{1}{1-\dfrac{4}{7}} = \dfrac{16}{7}\cdot \dfrac{7}{3} = \dfrac{16}{3}\]
+
+            \item[(m)] $\displaystyle \sum_{k=1}^{\infty} (e/\pi)^{k-1}$\\\\
+            \jawab\\
+            Kita tahu bahwa $(e/\pi)^{k-1} = \dfrac{e^{k-1}}{\pi^{k-1}} = \dfrac{\pi}{e}\cdot \dfrac{e^k}{\pi^k}$. Maka, deret tersebut dapat ditulis ulang sebagai
+            \[\sum_{k=1}^{\infty} \dfrac{\pi}{e}\cdot \left(\dfrac{e}{\pi}\right)^{k} = \dfrac{\pi}{e}\sum_{k=1}^{\infty} \left(\dfrac{e}{\pi}\right)^k\]
+            Deret $\displaystyle \sum_{k=1}^{\infty} \left(\dfrac{e}{\pi}\right)^k$ adalah deret geometri dengan $a = e/\pi$ dan $r = e/\pi$. Perhatikan bahwa $e=2,78...$ dan 
+            $\pi=3,14...$, maka $e<\pi\implies \dfrac{e}{\pi}<1$. Karena $|r| < 1$, maka deret tersebut konvergen dan nilainya adalah
+            \[\dfrac{\pi}{e}\sum_{k=1}^{\infty} \left(\dfrac{e}{\pi}\right)^k=\dfrac{\pi}{e}\cdot\frac{1}{1-\dfrac{e}{\pi}}=\dfrac{\pi}{e}\cdot\frac{\pi}{\pi-e}=\frac{\pi^2}{e\pi-e^2}\]
+        \end{enumerate}
+        \item[4.] Dapatkan bentuk tertutup untuk jumlahan parsial ke-$n$ dari deret.
+        \[\ln\frac{1}{2}+\ln\frac{2}{3}+\ln\frac{3}{4}+...+\ln\frac{n}{n+1}+...\]
+        \jawab\\
+        Kita tahu bahwa $\ln\dfrac{k}{k+1} = \ln k - \ln (k+1)$. Maka, deret tersebut dapat ditulis ulang sebagai
+        \[\ln 1 - \ln 2 + \ln 2 - \ln 3 + \ln 3 - \ln 4 + ... + \ln n - \ln (n+1) + ...\]
+        Dengan mengelompokkan suku-suku yang sama, kita dapatkan
+        \[\ln 1 - \ln 2 + \ln 2 - \ln 3 + \ln 3 - \ln 4 + ... + \ln n - \ln (n+1) = \ln 1 - \ln (n+1)\]
+        Sehingga, jumlahan parsial ke-$n$ dari deret tersebut adalah
+        \[S_n = \ln 1 - \ln (n+1) = -\ln (n+1)\]
+
+        \item[6.] Tunjukkan bahwa:
+        \begin{enumerate}
+            \item $\displaystyle \sum_{k=1}^{\infty} \ln(1-1/k^2) = -\ln 2$\\
+            \jawab
+            \begin{flalign*}
+                \sum_{k=1}^{\infty} \ln(1-1/k^2)&=\sum_{k=1}^{\infty} \ln\left(\frac{k^2-1}{k^2}\right)&\\
+            \end{flalign*}
+
+            \item[(f)] $\displaystyle \sum_{k=1}^{\infty} (-1)^{k+1}\dfrac{2k+1}{k(k+1)} = 1$ 
+        \end{enumerate}
+        \item[11.] Dapatkan semua nilai $x$ yang menyebabkan deret konvergen, dan untuk nilai-nilai $x$ ini dapatkan jumlahannya.
+        \begin{enumerate}
+            \item[(b)] $\displaystyle e^{-x}+e^{-2x}+e^{-3x}+e^{-4x}+e^{-5x}+...$
+            \item[(f)] $\displaystyle \sin x-\frac{1}{2}\sin^2 x+\frac{1}{4}\sin^3 x-\frac{1}{8}\sin^4 x+...$ 
+        \end{enumerate}
+    \end{enumerate}
+\end{document}
