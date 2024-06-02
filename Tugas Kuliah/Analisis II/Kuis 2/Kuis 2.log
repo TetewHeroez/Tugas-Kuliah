@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  2 JUN 2024 10:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  2 JUN 2024 10:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -275,7 +275,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--70
 [1
 
 {C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (8.96439pt too wide) in paragraph at lines 71--78
+Overfull \hbox (8.96439pt too wide) in paragraph at lines 71--79
 \OT1/cmr/m/n/10 Karena $[] \OML/cmm/m/it/10 a[]$ \OT1/cmr/m/n/10 kon-ver-gen mut-lak, maka $[] \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 a[]\OMS/cmsy/m/n/10 j$ \OT1/cmr/m/n/10 kon-ver-gen. Karena $[](\OML/cmm/m/it/10 nx\OT1/cmr/m/n/10 )$ ter-batas se-hingga $\OMS/cmsy/m/n/10 j []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 nx\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j ^^T
  []
 
@@ -292,7 +292,7 @@ Here is how much of TeX's memory you used:
  25509 multiletter control sequences out of 15000+600000
  560411 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,348b,376s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,295b,376s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on "Kuis 2.pdf" (2 pages, 108255 bytes).
 PDF statistics:
