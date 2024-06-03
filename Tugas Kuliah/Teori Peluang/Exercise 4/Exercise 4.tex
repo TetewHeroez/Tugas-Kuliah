@@ -201,12 +201,11 @@
             \item Find the marginal pdf of $X$.
             \begin{flalign*}
                 f_1(x)&=\int_{-\infty}^\infty f(x,y)\,dy&\\
-                &=\int_{2x}^{1-x}24xy\,dy&\\
-                &=\left[12xy^2\right]_{2x}^{1-x}&\\
-                &=12x(1-x)^2-12x(2x)^2&\\
-                &=12x(1-2x+x^2)-48x^3&\\
-                &=12x-24x^2+12x^3-48x^3&\\
-                &=12x-24x^2-36x^3
+                &=\int_0^{1-x}24xy\,dy&\\
+                &=\left[12xy^2\right]_0^{1-x}&\\
+                &=12x(1-x)^2&\\
+                &=12x(1-2x+x^2)&\\
+                &=12x-24x^2+12x^3
             \end{flalign*}
         \end{enumerate}
     \end{enumerate}
