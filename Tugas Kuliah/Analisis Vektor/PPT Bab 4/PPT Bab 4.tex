@@ -106,6 +106,92 @@
             \nabla = \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)
         \end{equation}
     \end{definisi}
+    \begin{definisi}
+        Dalam koordinat silinder, operator $\nabla$ didefinisikan sebagai
+        \begin{equation}
+            \nabla = \left(\frac{\partial}{\partial r}, \frac{1}{r}\frac{\partial}{\partial \theta}, \frac{\partial}{\partial z}\right)
+        \end{equation}
+    \end{definisi}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Operator Vektor Delta ($\nabla$)}
+    \begin{definisi}
+        Dalam koordinat bola, operator $\nabla$ didefinisikan sebagai
+        \begin{equation}
+            \nabla = \left(\frac{\partial}{\partial r}, \frac{1}{r}\frac{\partial}{\partial \theta}, \frac{1}{r\sin\theta}\frac{\partial}{\partial \phi}\right)
+        \end{equation}
+    \end{definisi}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Gradien}
+    \begin{definisi}
+        Gradien dari suatu fungsi skalar $f(x,y,z)$ adalah vektor yang didefinisikan sebagai
+        \begin{equation}
+            \nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)
+        \end{equation}
+    \end{definisi}
+    Gradien mengubah fungsi skalar menjadi vektor.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Gradien}
+    \begin{example}
+        Tentukan gradien dari fungsi $f(x,y,z) = x^2 + y^2 + z^2$.\\
+        \textbf{Jawab:}
+        \begin{eqnarray*}
+            \nabla f &=& \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)\\
+            &=& \left(2x, 2y, 2z\right)
+        \end{eqnarray*}
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Divergensi}
+    \begin{definisi}
+        Divergensi dari suatu vektor $F(x,y,z) = (P(x,y,z), Q(x,y,z), R(x,y,z))$ adalah fungsi skalar yang didefinisikan sebagai
+        \begin{equation}
+            \nabla \cdot F = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}
+        \end{equation}
+    \end{definisi}
+    Divergensi mengubah vektor menjadi fungsi skalar.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Divergensi}
+    \begin{example}
+        Tentukan divergensi dari vektor $F(x,y,z) = (\sin xy, \cos yz, \tan xz)$.\\
+        \textbf{Jawab:}
+        \begin{eqnarray*}
+            \nabla \cdot F &=& \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}\\
+            &=& y\cos xy - z \sin yz + x\sec^2 xz
+        \end{eqnarray*}
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Curl}
+    \begin{definisi}
+        Curl dari suatu vektor $F(x,y,z) = (P(x,y,z), Q(x,y,z), R(x,y,z))$ adalah vektor yang didefinisikan sebagai
+        \begin{equation}
+            \nabla \times F = \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}, \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}, \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)
+        \end{equation}
+    \end{definisi}
+    Curl mengubah vektor menjadi vektor.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Curl}
+    \begin{example}
+        Tentukan curl dari vektor $F(x,y,z) = (2y \ln x,4e^{xyz}, z^y )$.\\
+        \textbf{Jawab:}
+        \begin{eqnarray*}
+            \nabla \times F &=& \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}, \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}, \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\\
+            &=& (z^y - 0, 0 - 0, 0 - 4e^{xyz})\\
+            &=& (z^y, 0, -4e^{xyz})
+        \end{eqnarray*}
+    \end{example}
 \end{frame}
 
 \end{document}
