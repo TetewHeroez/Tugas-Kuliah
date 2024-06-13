@@ -1,0 +1,65 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+\newcommand{\jawab}{\textbf{Jawab}:}
+
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item Kembang $\displaystyle f(x)=\begin{cases}
+            2x+1\quad&;\quad 0< x\leq 1\\
+            0\quad&;\quad -1\leq x<0
+        \end{cases}$ pada $a_nP_n(x)$.\\
+        \jawab
+        \[\boxed{a_n=\frac{2n+1}{2}\int_{-1}^{1}f(x)P_0(x)~dx}\]
+        \begin{flalign*}
+            a_0&=\frac{1}{2}\int_{-1}^{1}f(x)P_0(x)dx&\\
+            &=\frac{1}{2}\int_{-1}^{0}0\,dx+\frac{1}{2}\int_{0}^{1}(2x+1)\,dx&\\
+            &=\frac{1}{2}\left[x^2+x\right]_0^1=1&\\
+            a_1&=\frac{3}{2}\int_{-1}^{1}f(x)P_1(x)dx&\\
+            &=\frac{3}{2}\int_{-1}^{0}0\,dx+\frac{3}{2}\int_{0}^{1}(2x+1)x\,dx&\\
+            &=\frac{3}{2}\left[\frac{2}{3}x^3+\frac{1}{2}x^2\right]_0^1=\frac{3}{2}\left[\frac{7}{6}\right]=\frac{7}{4}&\\
+            a_2&=\frac{5}{2}\int_{-1}^{1}f(x)P_2(x)dx&\\
+            &=\frac{5}{2}\int_{-1}^{0}0\,dx+\frac{5}{2}\int_{0}^{1}(2x+1)\left(\frac{3}{2}x^2-\frac{1}{2}\right)dx&\\
+            &=\frac{5}{2}\int_{0}^{1}(6x^3+3x^2-2x-1)\,dx&\\
+            &=\frac{5}{2}\left[\frac{3}{2}x^4+x^3-x^2-x\right]_0^1=\frac{5}{2}\left[\frac{1}{2}+\frac{1}{2}\right]=\frac{5}{8}&\\
+            a_3&=\frac{7}{2}\int_{-1}^{1}f(x)P_3(x)dx&\\
+            &=\frac{7}{2}\int_{-1}^{0}0\,dx+\frac{7}{2}\int_{0}^{1}(2x+1)\left(\frac{5}{2}x^3-\frac{3}{2}x\right)dx&\\
+            &=\frac{7}{4}\int_{0}^{1}(10x^4+5x^3-6x^2-3x)\,dx&\\
+            &=\frac{7}{4}\left[2x^5+\frac{5}{4}x^4-2x^3-\frac{3}{2}x^2\right]_0^1=\frac{7}{4}\left[2+\frac{5}{4}-2-\frac{3}{2}\right]=-\frac{7}{8}&\\
+        \end{flalign*}
+        $\displaystyle \therefore\,f(x)=\frac{1}{2}P_0(x)+\frac{7}{4}P_1(x)+\frac{5}{8}P_2(x)-\frac{7}{8}P_3(x)$
+
+        \item Nyatakan $\displaystyle J_{\frac{5}{2}}(x)=\sqrt{\frac{2}{\pi x}}\left(\frac{3-x^2}{x}\sin x-\frac{3}{x}\cos x\right)$.\\
+        \jawab
+        \begin{flalign*}
+            \frac{2n}{x}J_n(x)&=J_{n-1}(x)+J_{n+1}(x)\\
+            \frac{3}{x}J_{\frac{3}{2}}(x)&=J_{\frac{1}{2}}(x)+J_{\frac{5}{2}}(x)\\
+            J_{\frac{5}{2}}(x)&=\frac{3}{x}J_{\frac{3}{2}}(x)-J_{\frac{1}{2}}(x)\\
+            &=\frac{3}{x}\left(\sqrt{\frac{2}{\pi x}}\left(\frac{\sin x}{x}-\cos x\right)\right)-\sqrt{\frac{2}{\pi x}}\sin x\\
+            &=\sqrt{\frac{2}{\pi x}}\left(\frac{3-x^2}{x}\sin x-\frac{3}{x}\cos x\right)
+        \end{flalign*}
+    \end{enumerate}
+\end{document}
