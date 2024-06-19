@@ -1,0 +1,288 @@
+\documentclass[extrafontsizes, 9pt]{memoir}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+
+\usepackage{hyperref}
+
+\pagestyle{empty}
+
+\setlrmarginsandblock{1cm}{1cm}{*}
+\setulmarginsandblock{1cm}{1cm}{*}
+\checkandfixthelayout
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+
+\let\bf\textbf{}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.3}
+
+\newcommand{\textbetweenrules}[2][.4pt]{%
+  \par\vspace{\topsep}
+  \noindent\makebox[\textwidth]{%
+    \sbox0{#2}%
+    \dimen0=.5\dimexpr\ht0+#1\relax
+    \dimen2=-.5\dimexpr\ht0-#1\relax
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+    \quad #2\quad
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+  }\par\nopagebreak\vspace{\topsep}
+}
+
+\begin{document}
+	\begin{center}
+		\textbf{{Lembar Curang -- Teori Peluang}} \hfill Teosofi Hidayah Agung/5002221132
+	\end{center}
+	
+	\begin{multicols}{3}			
+		\section*{\small Distribusi Bersama}
+			\subsection*{\small \textsl{PDF} $\leftrightarrow$ \textsl{CDF}}
+				\textsl{PDF} ditulis sebagai,
+					\begin{align*}
+						& f\left(x_{1}, x_{2}, x_{3}, \ldots, x_{n}\right)\\
+						& = P\left[X_{1} = x_{1}, X_{2} = x_{2}, \ldots, X_{n} = x_{n}\right]
+					\end{align*}
+				Sementara \textsl{CDF} terdefinisi sebagai,
+					\begin{align*}
+						& F\left(x_{1}, x_{2}, x_{3}, \ldots, x_{n}\right)\\
+						& = P\left[X_{1} \leq x_{1}, X_{2} \leq x_{2}, \ldots, X_{n} \leq x_{n}\right]
+					\end{align*}
+				\textsl{CDF} diskrit dapat dicari dengan
+					\[
+						\sum_{x_{1}}\sum_{x_{2}}\cdots\sum_{x_{n}}f\left(x_{1}, x_{2}, \ldots, x_{n}\right)
+					\]					
+				Sementara, \textsl{PDF} ke \textsl{CDF} kontinu,
+					\begin{align*}
+						& F\left(x_{1}, x_{2}, \ldots, x_{n}\right)\\
+						& = \int_{-\infty}^{x_{n}}\cdots\int_{-\infty}^{x_{1}}f\left(t_{1}, t_{2}, \ldots, t_{n}\right)\,\mathrm{d}t_{1}\cdots\mathrm{d}t_{n}
+					\end{align*}
+				Sebaliknya, dari \textsl{CDF} ke \textsl{PDF} kontinu,
+					\begin{align*}
+						& f\left(x_{1}, x_{2}, \ldots, x_{n}\right)\\
+						& = \dfrac{\partial^{k}}{\partial x_{1}\cdots \partial x_{k}}F\left(x_{1}, x_{2}, \ldots, x_{n}\right)
+					\end{align*}
+					
+			\subsection*{\small Peluang Marginal}
+				Untuk dua buah variabel acak $\left(X_{1}, X_{2}\right)$ dengan \textsl{pdf} bersama $f\left(x_{1}, x_{2}\right)$, maka peluang marginalnya adalah (jika diskrit)
+					\begin{align*}
+						f_{1}\left(x_{1}\right) & = \sum_{x_{2}}f\left(x_{1}, x_{2}\right)\\
+						f_{2}\left(x_{2}\right) & = \sum_{x_{1}}f\left(x_{1}, x_{2}\right)
+					\end{align*}
+				Sementara jika kontinu,
+					\begin{align*}
+						f_{1}\left(x_{1}\right) & = \int_{-\infty}^{\infty}f\left(x_{1}, x_{2}\right)\, \mathrm{d}x_{2}\\
+						f_{2}\left(x_{2}\right) & = \int_{-\infty}^{\infty}f\left(x_{1}, x_{2}\right)\, \mathrm{d}x_{1}
+					\end{align*}
+					
+			\subsection*{\small Variabel Acak Independen}
+				Variabel dikatakan independen (saling bebas), jika memenuhi
+					\begin{align*}
+						& f\left(x_{1}, x_{2}, \ldots, x_{n}\right)\\
+						& = f\left(x_{1}\right)f\left(x_{2}\right)\cdots f\left(x_{n}\right)
+					\end{align*}
+			
+			\subsection*{\small Distribusi Bersyarat}
+				Rumusnya terdefinisi,
+					\begin{align*}
+						f\left(x_{1} \mid x_{2}\right) & = \dfrac{f\left(x_{1}, x_{2}\right)}{f_{2}\left(x_{2}\right)}\\
+						f\left(x_{2} \mid x_{1}\right) & = \dfrac{f\left(x_{1}, x_{2}\right)}{f_{1}\left(x_{1}\right)}\\
+						f\left(x_{3} \mid x_{1}, x_{2}\right) & = \dfrac{f\left(x_{1}, x_{2}, x_{3}\right)}{f\left(x_{1}, x_{2}\right)}
+					\end{align*}
+				Tinjau pula hubungannya dengan peluang marginal
+					\begin{align*}
+						f\left(x_{1}, x_{2}\right) & = f_{1}\left(x_{1}\right)f\left(x_{2} \mid x_{1}\right)\\
+						& = f_{2}\left(x_{2}\right)f\left(x_{1} \mid x_{2}\right)
+					\end{align*}
+				Jika kedua variabel di atas saling bebas, maka $f(x_{2} \mid x_{1}) = f(x_{2})$ dan $f(x_{1} \mid x_{2}) = f(x_{1})$.
+		
+		\section*{\small Sifat Variabel Acak}
+			\subsection*{\small Sifat Nilai Ekspektasi}
+				Misalkan suatu variabel acak $X = \left(X_{1}, X_{2}, \ldots, X_{n}\right)$ memiliki \textsl{pdf} gabungan $f(x_{1}, x_{2}, \ldots, x_{n})$ dan jika $Y = u\left(X_{1}, X_{2}, \ldots, X_{n}\right)$ atau sebagai fungsi dari variabel $X$, maka nilai ekspektasinya adalah
+					\begin{align*}
+						E(Y) & = E_{X}\left[u\left(X_{1}, X_{2}, \ldots, X_{n}\right)\right]\\
+						& = \sum_{x_{1}}\cdots\sum_{x_{n}}u\left(x_{1}, x_{2}, \ldots, x_{n}\right)\\
+						& \qquad \times f(x_{1}, x_{2}, \ldots, x_{n})
+					\end{align*}
+				jika $X$ diskrit,
+					\begin{align*}
+						E(Y) & = E_{X}\left[u\left(X_{1}, X_{2}, \ldots, X_{n}\right)\right]\\
+						& = \int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}u\left(x_{1}, x_{2}, \ldots, x_{n}\right)\\
+						& \qquad \times f(x_{1}, x_{2}, \ldots, x_{n})\,\mathrm{d}x_{1}\cdots\mathrm{d}x_{n}
+					\end{align*}
+				jika $X$ kontinu.
+				
+				Hal lain juga perlu diperhatikan,
+					\[
+						E\left(X_{1} + X_{2}\right) = E(X_{1}) + E(X_{2})
+					\]
+				untuk $X_{1}$ dan $X_{2}$ merupakan variabel acak dengan \textsl{pdf} $f\left(x_{1}, x_{2}\right)$.
+			\subsection*{\small Kovarian}
+				Kovarian (atau, \textsl{covariant}) ditulis sebagai
+					\[
+						\Cov(X, Y) = E\left[(X - \mu_{X})(Y - \mu_{Y})\right]
+					\]
+				atau,
+					\[
+						\Cov(X, Y) = E(XY) - E(X)E(Y)
+					\]
+					
+			\subsection*{\small Sifat-sifat Kovarian}
+				Adapun sifat-sifat dari kovarian adalah
+					\begin{align*}
+						\Cov(aX, bY) & = ab\Cov(X, Y)\\
+						\Cov(X + a, Y + b) & = \Cov(X, Y)\\
+						\Cov(X, aX + b) & = a\Var(X)
+					\end{align*}
+				Jika dua variabel, $X$ dan $Y$, saling bebas (\textsl{independent}), maka $\Cov(X, Y) = 0$
+			
+			\subsection*{\small Varian (Ragam Data) dan Kovarian}
+				Pada dasarnya, untuk dua variabel $X$ dan $Y$ yang memiliki \textsl{pdf} $f(x, y)$,
+					\begin{align*}
+						\Var(X + Y) & = \Var(X) + \Var(Y)\\
+						& \quad + 2\Cov(X, Y)
+					\end{align*}
+				Jika kedua variabel saling bebas (\textsl{independent}),
+					\begin{align*}
+						\Var(X + Y) = \Var(X) + \Var(Y)
+					\end{align*}
+				Untuk banyak variabel $X_{1}$, $X_{2}$, $\ldots$, $X_{k}$, kita memiliki
+					\begin{align*}
+						& \Var\left(\sum_{i\, = \, 1}^{k}a_{i}X_{i}\right)\\
+						& = \sum_{i\, = \, 1}^{k}a_{i}^{2}\Var\left(X_{i}\right)\\
+						& \quad + 2 \mathop{\sum\sum}\limits_{i\, < \, j}a_{i}a_{j}\Cov(X_{i}, X_{j})
+					\end{align*}
+				Kalau semua variabel saling independen satu sama lain,
+					\begin{align*}
+						\Var\left(\sum_{i\, = \, 1}^{k}a_{i}X_{i}\right) = \sum_{i\, = \, 1}^{k}a_{i}^{2}\Var\left(X_{i}\right)
+					\end{align*}
+					
+			\subsection*{\small Nilai Korelasi}
+				Diberikan dua variabel acak $X$ dan $Y$ dengan ragam $\sigma_{X}^{2}$ dan $\sigma_{Y}^{2}$ serta kovarian $\sigma_{XY}^{2} = \Cov(X, Y)$, maka koefisien atau nilai korelasinya adalah
+					\[
+						\rho = \dfrac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}}
+					\] 
+					
+			\subsection*{\small Nilai Ekspektasi Bersyarat}
+				Jika $X$ dan $Y$ adalah variabel acak yang terdistribusi secara bersama, maka nilai ekspektasi bersyarat $Y$ untuk $X = x$ dinyatakan sebagai
+					\begin{align}
+						E(Y \mid x) & = \sum_{y}yf(y\mid x) \label{disccondexp}\\
+						E(Y \mid x) & = \int_{-\infty}^{\infty}yf(y \mid x)\, \mathrm{d}y \label{contcondexp}
+					\end{align}
+				dengan \eqref{disccondexp} dan \eqref{contcondexp} untuk kedua variabel yang diskrit dan kontinu, berturut-turut.
+				
+				Selanjutnya, diketahui pula
+					\[
+						E\left[E\middle(Y \mid X\middle)\right] = E(Y)
+					\]
+				Untuk $X$ dan $Y$ yang saling bebas (\textsl{independent}), $E(Y\mid x) = E(Y)$ dan $E(X \mid y) = E(X)$
+				
+			\subsection*{\small Varian (Ragam Data) Bersyarat}
+				Ragam data bersyarat terdefinisi sebagai (menurut aturan nilai ekspektasi),
+					\begin{align*}
+						\Var(Y \mid x) & = E\left\{\middle[Y - E\middle(Y\mid x\middle)\middle]^2\mid x\right\}\\
+						& = E\left(Y^2 \mid x\right) - \left[E\middle(Y\mid x\middle)\right]^2
+					\end{align*}
+					
+				Jika $X$ dan $Y$ merupakan variabel acak yang terdistribusi secara bersama,
+					\begin{align*}
+						\Var(Y) & = E_{X}\left[\Var\left(Y \mid X\right)\right]\\
+						& \quad + \Var_{X}\left[E\left(Y\mid X\right)\right]
+					\end{align*}
+					
+			\subsection*{\small Fungsi Pembangkit Momen Gabungan}
+				Jika $X = \left(X_{1}, X_{2}, \ldots, X_{n}\right)$, dan jika ada, \textsl{MGF} (Fungsi Pembangkit Momen) gabungannya adalah
+					\[
+						M_{X}({\bf t}) = E\left[\exp\middle(\sum_{k\, = \, 1}^{n}t_{k}X_{k}\middle)\right]
+					\]
+				dengan $\exp(\heartsuit) = e^{\heartsuit}$, $e$ adalah bilangan euler. Serta, ${\bf t} = \left(t_{1}, t_{2}, \ldots, t_{n}\right)$ dan $-h < t_{k} < h$ untuk beberapa $h > 0$
+		\section*{\small Fungsi dari Variabel Acak}
+            \subsection*{\small Metode CDF}
+                Misal $A_y=\{x\mid u(x)\leq y\}$, maka
+                    \begin{flalign*}
+                        F_Y(y)&=P(Y\leq y)=P(u(X)\leq y)&\\
+                        &=P(X\in A_y)=F_X(A_y)
+                    \end{flalign*}
+                Misal $X=(X_1,X_2,\dots,X_k)$ adalah variabel acak kontinu dengan \textsl{pdf} bersama $f(x_1,x_2,\dots,x_k)$, jika $Y=u(X)$ fungsi dari $X$, maka
+                \[f_Y(y)=\int\dots\int_{A_y}f(x_1,\dots,x_k)\,dx_1\dots dx_k\] 
+            \subsection*{\small Metode Transformasi}
+                \subsubsection*{\small \textit{one-to-one}}
+                Pada kasus diskrit, Misalkan $X$ adalah variabel acak diskrit dengan pdf $f_X(x)$ dan asumsikan bahwa
+                $Y = u(X)$ mendefinisikan transformasi satu-satu. Sehingga misalkan $x = w(y)$ dan $B=\{y\,|\,f_Y(y)>0\}$. Maka pdf dari $Y$
+                adalah
+                \[f_Y(y) = f_X(w(y)),\quad y\in B\]
+                Sedangkan untuk kontinu
+                \[f_Y(y) = f_X(w(y))\left|\dfrac{dw(y)}{dy}\right|,\quad y\in B\]
+                \textbf{Note}: $E_Y(Y) = E_X(u(X))$
+                
+                Jika transformasi tidak satu-satu, dapat kita partisi $A$ menjadi $A_1,A_2,\dots,A_n$ sehingga $u(x)$ satu-satu pada $A_i$.
+                Sehingga untuk kasus diskrit dan kontinu dirumuskan sebagai berikut
+                \begin{flalign*}
+                    f_Y(y) &= \sum_{i=1}^{n}f_X(w_i(y)),\quad y\in B&\\
+                    f_Y(y) &= \sum_{i=1}^{n}f_X(w_i(y))\left|\dfrac{dw_i(y)}{dy}\right|,\quad y\in B
+                \end{flalign*}
+                \subsubsection*{\small Multidimensi}
+                    Untuk kasus diskrit sama seperti sebelumnya, hanya perlu menambah peubah acak pada fungsinya. Namun untuk kasus kontinu kita perlu meninjau Jacobian dari fungsi transformasi tersebut.
+
+                    Misal $X = (X_1,X_2,\dots,X_n)$ variabel acak kontinu dengan pdf
+                    bersama $f_X(x_1, x_2,\dots, x_n) > 0$ atas $A$, dan $Y = (Y_1, Y_2,\dots, Y_n)$ didefinisikan
+                    oleh transformasi satu-satu $Y_i = u_i(X_1,X_2,\dots ,X_n)$, maka pdf bersama dari $Y$ adalah
+                    \[f_Y(y_1,y_2,\dots,y_n) = f_X(x_1,x_2,\dots,x_n)\left|J\right|\]
+                    dengan $J=\begin{vmatrix}
+                        \frac{\partial x_1}{\partial y_1} & \frac{\partial x_1}{\partial y_2} & \dots & \frac{\partial x_1}{\partial y_n}\\
+                        \vdots & \vdots & \ddots & \vdots\\
+                        \frac{\partial x_n}{\partial y_1} & \frac{\partial x_n}{\partial y_2} & \dots & \frac{\partial x_n}{\partial y_n}
+                    \end{vmatrix}$ 
+                
+                Jika transformasi tidak satu-satu, dengan cara yang sama yaitu kita partisi $A$ sehingga $u(x)$ satu-satu pada $A_i$. Kemudian jumlahkan semua pdf nya.
+	\end{multicols}
+    \textbetweenrules[2pt]{\textbf{Distribusi Bersama}}
+    \vspace*{-10pt}
+	\section*{\small Tabel Distribusi Diskrit}
+	\begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Nama & Notasi dan & \textbf{PDF} Diskrit & \textbf{Ekspektasi} & \textbf{Varian} & \textbf{MGF}\\
+        Distribusi& Parameter & $f(x)$ & $E(X)$ & $\Var(X)$ & $M_{X}(t)$\\
+        \hline
+        \hline
+        Bernoulli & $X\sim B(1,p)$ & $p^{x}(1-p)^{1-x}$ & $p$ & $p(1-p)$ & $1-p+pe^{t}$\\
+        \hline
+        Binomial & $X\sim B(n,p)$ & $\displaystyle\binom{n}{x}p^{x}(1-p)^{n-x}$ & $np$ & $np(1-p)$ & $(1-p+pe^{t})^{n}$\\
+        \hline
+        Negatif Binomial & $X\sim NB(r,p)$ & $\displaystyle\binom{x-1}{r-1}p^{r}(1-p)^{x}$ & $\dfrac{r}{p}$ & $\dfrac{r(1-p)}{p^{2}}$ & $\left(\dfrac{p}{1-(1-p)e^{t}}\right)^{r}$\\
+        \hline
+        Geometrik & $X\sim G(p)$ & $p(1-p)^{x-1}$ & $\dfrac{1}{p}$ & $\dfrac{1-p}{p^{2}}$ & $\dfrac{p}{1-(1-p)e^{t}}$\\
+        \hline
+        Hypergeometrik & $X\sim H(n,M,N)$ & $\dfrac{\displaystyle\binom{M}{x}\binom{N-M}{n-x}}{\displaystyle\binom{N}{n}}$ & $n\dfrac{M}{N}$ & $n\dfrac{M}{N}\left(1-\dfrac{M}{N}\right)\dfrac{N-n}{N-1}$ & -\\
+        \hline
+        Poisson & $X\sim P(\mu)$ & $\dfrac{e^{-\mu}\mu^{x}}{x!}$ & $\mu$ & $\mu$ & $e^{\mu(e^{t}-1)}$\\
+        \hline
+        Uniform Diskrit & $X\sim U(a,b)$ & $\dfrac{1}{b-a}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^{2}}{12}$ & $\dfrac{e^{tb}-e^{ta}}{t(b-a)}$\\
+        \hline
+    \end{tabular}
+    \section*{\small Tabel Distribusi Kontinu}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Nama & Notasi dan & \textbf{PDF} Kontinu & \textbf{Ekspektasi} & \textbf{Varian} & \textbf{MGF}\\
+        Distribusi& Parameter & $f(x)$ & $E(X)$ & $\Var(X)$ & $M_{X}(t)$\\
+        \hline
+        \hline
+        Uniform & $X\sim UNIF(a,b)$ & $\dfrac{1}{b-a}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^{2}}{12}$ & $\dfrac{e^{bt}-e^{at}}{(b-a)t}$\\
+        \hline
+        Normal & $X\sim N(\mu,\sigma^{2})$ & $\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}$ & $\mu$ & $\sigma^{2}$ & $e^{\mu t+\dfrac{\sigma^{2}t^{2}}{2}}$\\
+        \hline
+        Gamma & $X\sim GAM(\theta,\kappa)$ & $\dfrac{1}{\theta^\kappa\Gamma(\kappa)}x^{\kappa-1}e^{-x/\theta}$ & $\kappa\theta$ & $\kappa\theta^2$ & $\left(\dfrac{1}{1-\theta t}\right)^{\kappa}$\\
+        \hline
+        Exponential & $X\sim EXP(\theta)$ & $\dfrac{1}{\theta} e^{-x/\theta}$ & $\theta$ & $\theta^2$ & $\dfrac{1}{1-\theta t}$\\
+        \hline
+        Weibull & $X\sim WEI(\theta,\beta)$ & $\dfrac{\beta}{\theta^\beta}x^{\beta-1}e^{-(x/\theta)^{\beta}}$ & $\theta\Gamma\left(1+\dfrac{1}{\beta}\right)$ & $\theta^{2}\left[\Gamma\left(1+\dfrac{2}{\beta}\right)-\Gamma^2\left(1+\dfrac{1}{\beta}\right)\right]$ & -\\
+        \hline
+        Pareto & $X\sim PAR(\theta,\kappa)$ & $\dfrac{\kappa}{\theta(1+x/\theta)^{\kappa+1}}$ & $\dfrac{\theta}{\kappa-1}$ & $\dfrac{\theta^{2}\kappa}{(\kappa-1)^{2}(\kappa-2)}$ & -\\
+        \hline
+    \end{tabular}
+\end{document}
