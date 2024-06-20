@@ -1,4 +1,4 @@
-\documentclass[extrafontsizes, 9pt]{memoir}
+\documentclass[a4paper,extrafontsizes, 9pt]{memoir}
 
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
 \usepackage{multicol}
@@ -21,7 +21,7 @@
 \let\bf\textbf{}
 
 \setlength{\parindent}{0pt}
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.5}
 
 \newcommand{\textbetweenrules}[2][.4pt]{%
   \par\vspace{\topsep}
@@ -229,8 +229,7 @@
                 \subsubsection*{\small Multidimensi}
                     Untuk kasus diskrit sama seperti sebelumnya, hanya perlu menambah peubah acak pada fungsinya. Namun untuk kasus kontinu kita perlu meninjau Jacobian dari fungsi transformasi tersebut.
 
-                    Misal $X = (X_1,X_2,\dots,X_n)$ variabel acak kontinu dengan pdf
-                    bersama $f_X(x_1, x_2,\dots, x_n) > 0$ atas $A$, dan $Y = (Y_1, Y_2,\dots, Y_n)$ didefinisikan
+                    Misal $X=(X_1,\dots,X_n)$ variabel acak kontinu dengan pdf bersama $f_X(x_1, x_2,\dots, x_n) > 0$ atas $A$, dan $Y = (Y_1, Y_2,\dots, Y_n)$ didefinisikan
                     oleh transformasi satu-satu $Y_i = u_i(X_1,X_2,\dots ,X_n)$, maka pdf bersama dari $Y$ adalah
                     \[f_Y(y_1,y_2,\dots,y_n) = f_X(x_1,x_2,\dots,x_n)\left|J\right|\]
                     dengan $J=\begin{vmatrix}
@@ -260,6 +259,8 @@
         \hline
         Hypergeometrik & $X\sim H(n,M,N)$ & $\dfrac{\displaystyle\binom{M}{x}\binom{N-M}{n-x}}{\displaystyle\binom{N}{n}}$ & $n\dfrac{M}{N}$ & $n\dfrac{M}{N}\left(1-\dfrac{M}{N}\right)\dfrac{N-n}{N-1}$ & -\\
         \hline
+		Multinomial & $X\sim M(n,p_{1},\ldots,p_{k})$ & $\dfrac{n!}{x_{1}!\cdots x_{k}!}p_{1}^{x_{1}}\cdots p_{k}^{x_{k}}$ & $np_{i}$ & $np_{i}(1-p_{i})$ & $\left(\sum_{i=1}^{k}p_{i}e^{t_{i}}\right)^{n}$\\
+		\hline
         Poisson & $X\sim P(\mu)$ & $\dfrac{e^{-\mu}\mu^{x}}{x!}$ & $\mu$ & $\mu$ & $e^{\mu(e^{t}-1)}$\\
         \hline
         Uniform Diskrit & $X\sim U(a,b)$ & $\dfrac{1}{b-a}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^{2}}{12}$ & $\dfrac{e^{tb}-e^{ta}}{t(b-a)}$\\

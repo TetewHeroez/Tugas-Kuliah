@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  19 JUN 2024 23:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  20 JUN 2024 16:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -948,22 +948,22 @@ Package: memhfixc 2023/09/10 v1.22 hyperref package fixes for memoir class
 )
 
 ******************************************************
-Stock height and width: 794.96999pt by 614.295pt
+Stock height and width: 845.04684pt by 597.50787pt
 Top and edge trims: 0pt and 0pt
-Page height and width: 794.96999pt by 614.295pt
-Text height and width: 739pt by 557pt
+Page height and width: 845.04684pt by 597.50787pt
+Text height and width: 789pt by 540pt
 Spine and edge margins: 28.45274pt and 28.45274pt
-Upper and lower margins: 28.45274pt and 27.51724pt
+Upper and lower margins: 28.45274pt and 27.5941pt
 Headheight and headsep: 11pt and 16.26118pt
 Footskip: 23.84923pt
 Columnsep and columnseprule: 10pt and 0pt
 Marginparsep and marginparwidth: 7pt and 14.45274pt
-Sidecapsep and sidecapwidth: 7pt and 144pt
-Sidebarhsep and sidebarwidth: 7pt and 144pt
+Sidecapsep and sidecapwidth: 7pt and 134pt
+Sidebarhsep and sidebarwidth: 7pt and 134pt
 Sidebarvsep and sidebartopsep: 10pt and 0pt
-Sidebarheight: 546.99997pt
-Sidefoothsep and sidefootwidth: 7pt and 144pt
-Sidefootvsep and sidefootheight: 10pt and 546.99997pt
+Sidebarheight: 596.99997pt
+Sidefoothsep and sidefootwidth: 7pt and 134pt
+Sidefootvsep and sidefootheight: 10pt and 596.99997pt
 ******************************************************
 
 (Cheatsheet Teopel.aux)
@@ -1048,25 +1048,35 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 47.
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
+Underfull \hbox (badness 5924) in paragraph at lines 106--107
 \T1/lmr/m/n/9 Misalkan su-atu vari-abel acak $\OML/lmm/m/it/9 X \OT1/lmr/m/n/9 =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
+Underfull \hbox (badness 6252) in paragraph at lines 106--107
 []$ \T1/lmr/m/n/9 memi-liki \T1/lmr/m/sl/9 pdf \T1/lmr/m/n/9 gabun-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
+Underfull \hbox (badness 5431) in paragraph at lines 106--107
 \T1/lmr/m/n/9 gan $\OML/lmm/m/it/9 f\OT1/lmr/m/n/9 (\OML/lmm/m/it/9 x[]; x[]; [] ; x[]\OT1/lmr/m/n/9 )$ \T1/lmr/m/n/9 dan jika $\OML/lmm/m/it/9 Y \OT1/lmr/m/n/9 =
  []
 
 [1
 
 {C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 232--235
-[]\T1/lmr/m/n/9 Misal $\OML/lmm/m/it/9 X \OT1/lmr/m/n/9 = (\OML/lmm/m/it/9 X[]; X[]; [] ; X[]\OT1/lmr/m/n/9 )$ \T1/lmr/m/n/9 vari-
+Overfull \hbox (4.30339pt too wide) detected at line 228
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--234
+[]\T1/lmr/m/n/9 Misal $\OML/lmm/m/it/9 X \OT1/lmr/m/n/9 = (\OML/lmm/m/it/9 X[]; [] ; X[]\OT1/lmr/m/n/9 )$ \T1/lmr/m/n/9 vari-abel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--234
+\T1/lmr/m/n/9 acak kon-tinu den-gan pdf bersama
  []
 
 [2] (Cheatsheet Teopel.aux)
@@ -1080,13 +1090,13 @@ Package rerunfilecheck Info: File `"Cheatsheet Teopel".out' has not changed.
 Here is how much of TeX's memory you used:
  35319 strings out of 475248
  800648 string characters out of 5757812
- 1996785 words of memory out of 5000000
+ 2002785 words of memory out of 5000000
  56247 multiletter control sequences out of 15000+600000
  623543 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,11n,103p,800b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx9.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxo10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro9.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb>
-Output written on "Cheatsheet Teopel.pdf" (2 pages, 279204 bytes).
+Output written on "Cheatsheet Teopel.pdf" (2 pages, 280244 bytes).
 PDF statistics:
  136 PDF objects out of 1000 (max. 8388607)
  26 named destinations out of 1000 (max. 500000)
