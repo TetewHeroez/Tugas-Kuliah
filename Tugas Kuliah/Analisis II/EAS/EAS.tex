@@ -1,0 +1,166 @@
+\documentclass[12pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{geometry}
+	\geometry{
+        left=10mm,
+        right=22mm,
+        top=20mm,
+        bottom=20mm,
+    }
+\usepackage{fancyhdr}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+
+\newtheorem*{teorema}{Teorema}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\jawab}{\textbf{Jawab}:}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\begin{tabular}{r c l}
+    \includegraphics[width=2.5cm]{ITS.png}
+     &\begin{tabular}{lcll}
+        \multicolumn{4}{c}{\begin{tabular}{c}
+          \MakeUppercase{evaluasi tengah semester genap 2023/2024}\\
+          \MakeUppercase{departemen matematika fsad its}\\
+          \MakeUppercase{program sarjana}\\
+     \end{tabular}}\\
+     \\
+          Matakuliah&:&\multicolumn{2}{l}{Analisis II}\\
+          Hari, Tanggal&:&\multicolumn{2}{l}{Rabu, 19 Juni 2024}\\
+          Waktu / Sifat&:&\multicolumn{2}{l}{100 menit / \textit{Closed Book}}\\
+          Kelas, Dosen&:&A.&Sunarsini, S.Si, M.Si.\\
+          &&B, C.&Dr. Mahmud Yunus, M.Si.\\
+          &&D.&Dr. Rinurwati, M.Si.\\
+          &&E, F.&Dr.mont. Kistosil Fahim, M.Si.\\
+     \end{tabular}
+     & 
+     \includegraphics[width=2.5cm]{M.png}
+     \\ \hline
+\multicolumn{3}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}\\
+\multicolumn{3}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}\\
+\multicolumn{3}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}\\
+\hline
+\end{tabular}\\
+
+\begin{enumerate}
+    \item Misal $A:=[0,\infty)$, perhatikan barisan fungsi $(f_n(x))$ yang didefinisikan dengan
+    \[f_n(x):=nx/(1+nx^2)\]
+    untuk $x\in A$.
+    \begin{enumerate}
+        \item Tunjukkan bahwa $(f_n)$ terbatas pada $A$ untuk semua $n\in\N$.\\
+            \jawab\\
+            Kita perhatikan bahwa $f_n(x)=\dfrac{nx}{1+nx^2}$. Karena $x\geq 0$ dan $n\in\N$, 
+            maka $nx\geq 0$ dan $1+nx^2\geq 1$. Sehingga $f_n(x)\leq \dfrac{nx}{1}$. Dengan 
+            demikian, $f_n(x)$ terbatas pada $A$ untuk semua $n\in\N$.
+            
+            \item Tunjukkan bahwa $(f_n)$ konvergen titik-demi-titik ke suatu fungsi $f$, tetapi tidak terbatas.\\
+            \jawab
+            \begin{itemize}
+                \item Untuk $x=0$, kita punya $f_n(0)=0$ untuk setiap $n\in\N$. Sehingga $f_n(x)$ konvergen ke $0$.
+                \item Untuk $x>0$, kita punya $f_n(x)=\dfrac{nx}{1+nx^2}=\dfrac{1}{1/nx+x}\implies\dfrac{1}{x}$. 
+                Sehingga $f_n(x)$ konvergen ke $1/x$.
+            \end{itemize}
+            Jadi, $(f_n)$ konvergen titik-demi-titik ke suatu fungsi $f$ yaitu $f(x)=\begin{cases}0&\text{jika }x=0\\1/x&\text{jika }x>0\end{cases}$.\\
+            Sekarang untuk menujukkan bahwa $f$ tidak terbatas, kita gunakan kontradiksi. 
+            Asumsikan $f$ terbatas, maka ada $M>0$ sehingga $|f(x)|\leq M$ untuk setiap $x\in A$. 
+            Kita ambil $x=1/(2M)$, maka $f(1/(2M))=2M$ yang mana bertentangan dengan asumsi bahwa $f$ terbatas.\\\\
+            $\therefore$ $f$ tidak terbatas.\\
+
+            \item Apakah $(f_n)$ konvergen seragam pada $A$? Jelaskan!\\
+            \jawab
+            \begin{teorema}
+                Misalkan $f_n(x)$ adalah sebuah barisan fungsi kontinu pada suatu himpunan 
+                $A \subseteq \R$. Jika $(f_n)$ konvergen seragam pada $A$ ke fungsi $f : A \to \R$, 
+                maka $f$ kontinu pada $A$.
+            \end{teorema}
+            Jelas bahwa $f_n(x)$ kontinu untuk $n\in\N$, hal ini diperoleh dari $g(x)=1$ dan 
+            $h_n(x)=1+nx^2\ne 0$ dimana kedua fungsi tersebut kontinu pada $A$, sehingga 
+            $f_n(x)=g(x)/h_n(x)$ kontinu pada $A$ juga.
+            
+            Dengan Modus Tolen, karena $f$ tidak kontinu pada $A$ maka $(f_n)$ tidak konvergen seragam pada $A$.
+    \end{enumerate}
+    \item Diberikan deret fungsi $\sum f_n$ dengan $f_n(x)=\sin(\frac{x}{n^2})$. Apakah deret 
+    tersebut konvergen seragam pada $[0,\pi]$? Jelaskan! (Petunjuk: Gunakan Weierstrass M-Test)\\
+    \jawab
+    \begin{teorema}[Weierstrass M-Test]
+        Misalkan $f_n : A \to \R$ adalah fungsi pada himpunan $A \subseteq \R$. Jika ada barisan 
+        bilangan real positif $M_n$ sehingga $|f_n(x)| \leq M_n$ untuk setiap $x \in A$ dan $n \in \N$, 
+        dan deret $\sum M_n$ konvergen, maka deret $\sum f_n$ konvergen seragam pada $A$.
+    \end{teorema}
+    Perhatikan ketaksamaan $\sin(\alpha)\leq \alpha$ untuk setiap $\alpha\in\R$. Dari hal tersebut 
+    kita modifikasi dengan mensubsitusi $\alpha=\frac{x}{n^2}$, sehingga ketaksamannya menjadi 
+    $\sin\left(\frac{x}{n^2}\right)\leq \frac{x}{n^2}$ untuk $x\in[0,\pi]\subseteq\R$ dan $n\in\N$.
+
+    Kita definisikan $f_n(x)=\sin\left(\frac{x}{n^2}\right)$ dan $M_n(x)=\frac{x}{n^2}$, maka
+    \[|f_n(x)|\leq M_n(x)\quad\text{untuk }x\in[0,\pi]\text{ dan }n\in\N.\]
+    Sekarang tinjau deret $\sum M_n=\sum\frac{x}{n^2}$. Dengan menggunakan sifat notasi sigma
+    kita dapatkan $\sum\frac{x}{n^2}=x\sum\frac{1}{n^2}$. Karena deret $\sum\frac{1}{n^2}$ konvergen 
+    dengan nilai konvergennya adalah $\frac{\pi^2}{6}$, maka deret $\sum M_n$ konvergen pada $[0,\pi]$.
+
+    Dengan Weierstrass M-Test, kita dapatkan bahwa deret $\sum f_n$ konvergen seragam pada $[0,\pi]$.
+
+    \item Tunjukkan bahwa $A=\{1/n\,:\,n\in \N\}$ bukan himpunan tertutup.\\
+    \jawab
+    \begin{teorema}
+        Himpunan $A\subseteq\R$ adalah tertutup jika dan hanya jika $A$ mengandung semua titik klusternya.
+    \end{teorema}
+    Pertama kita buktikan bahwa $0$ adalah titik kluster dari $A$. Ambil
+    sebarang $\varepsilon > 0$. Perhatikan bahwa $V_\varepsilon(0)\setminus \{0\} = (-\varepsilon, 0)\cup(0, \varepsilon)$.
+    Sifat archimedean memberikan bahwa ada $n_\varepsilon\in\N$ sehingga $1/n_\varepsilon<\varepsilon$. 
+    Akibatnya $(V_\varepsilon(0)\setminus \{0\})\cap A\ne \emptyset$ yang berarti $0$ adalah titik kluster dari $A$.
+
+    Namun dapat dilihat bahwa $0\notin A$, sehingga $A$ tidak mengandung semua titik klusternya.
+    Jadi, $A$ bukan himpunan tertutup.
+
+    \item Tunjukkan bahwa $(-2,1)$ tidak kompak di $\R$.\\
+    \jawab
+    \begin{teorema}[Heine-Borel]
+        Himpunan $A\subseteq\R$ adalah kompak jika dan hanya jika $A$ tertutup dan terbatas.
+    \end{teorema}
+    Cukup dibuktikan bahwa $(-2,1)$ tidak tertutup. Ambil $x=1\notin(-2,1)$, maka untuk setiap 
+    $\varepsilon>0$ berapapun mengakibatkan $V_\varepsilon(1)\cap(-2,1)\ne\emptyset$. Jadi 
+    $(-2,1)$ tidak tertutup.
+
+    Dengan demikian $(-2,1)$ tidak kompak di $\R$.
+
+    \item Diberikan fungsi $d:\R^2\times\R^2\to\R$ yang didefinisikan oleh
+    \[d\left(\begin{bmatrix}x_1\\y_1\end{bmatrix},\begin{bmatrix}x_2\\y_2\end{bmatrix}\right):=
+    |x_1-x_2|+|y_1-y_2|,\quad\text{untuk }x_1,x_2,y_1,y_2\in\R.\]
+    Buktikan bahwa pasangan $(\R^2,d)$ adalah ruang metrik.\\
+    \jawab\\
+    Misalkan $v_1=\begin{bmatrix}x_1\\y_1\end{bmatrix}$, $v_2=\begin{bmatrix}x_2\\y_2\end{bmatrix}\in \R^2$.
+    \begin{enumerate}
+        \item $d(v_1,v_2)=|x_1-x_2|+|y_1-y_2|$. Karena nilai mutlak selalu positif, maka 
+        $|x_1-x_2|\geq 0$ dan $|y_1-y_2|\geq 0$. Sehingga $|x_1-x_2|+|y_1-y_2|\geq 0$. (\textbf{kepositifan})
+        \item Kiri ke kanan\\
+        $\implies$ $d(v_1,v_2)=0\iff |x_1-x_2|+|y_1-y_2|=0\iff |x_1-x_2|=0 \text{ dan } |y_1-y_2|=0 \iff x_1=x_2\text{ dan }y_1=y_2 \iff v_1=v_2$.\\
+        Kanan ke kiri\\
+        $\impliedby$ $v_1=v_2 \iff x_1=x_2\text{ dan }y_1=y_2 \implies d(v_1,v_2)=|x_1-x_2|+|y_1-y_2|=|x_1-x_1|+|y_1-y_1|=0$.
+        (\textbf{definit})
+        \item $d(v_1,v_2)=|x_1-x_2|+|y_1-y_2|=|x_2-x_1|+|y_2-y_1|=d(v_2,v_1)$. (\textbf{simetri})
+        \item Misalkan $v_3=\begin{bmatrix}x_3\\y_3\end{bmatrix}\in \R^2$.
+        \begin{flalign*}
+            d(v_1,v_2)&=|x_1-x_2|+|y_1-y_2|&\\
+            &=|(x_1-x_3)+(x_3-x_2)|+|(y_1-y_3)+(y_3-y_2)|&\\
+            &\leq |x_1-x_3|+|x_3-x_2|+|y_1-y_3|+|y_3-y_2|&\\
+            &=d(v_1,v_3)+d(v_3,v_2)\quad\text{(\textbf{ketaksamaan segitiga})}
+        \end{flalign*}
+    \end{enumerate}
+    Jadi, $(\R^2,d)$ adalah ruang metrik.
+\end{enumerate}
+\end{document}
