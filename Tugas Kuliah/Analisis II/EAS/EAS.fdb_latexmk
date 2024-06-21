@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1718958483 "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis II/EAS/EAS.tex" "EAS.pdf" "EAS" 1718958485 0
+["pdflatex"] 1718959001 "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis II/EAS/EAS.tex" "EAS.pdf" "EAS" 1718959003 0
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1718798030 81424 302ea179ecbb90d8ef2108b3618d82bc ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1718769034 14064 0b12400091778f2b76aa0f478422311d ""
   "C:/Users/teoso/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1698504575 24141909 433df9831d3d5def141b09c8a957124f ""
@@ -248,11 +248,11 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1686255640 10214 75bcd28386d4b4b9f28b2aff3cea7b24 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
-  "EAS.aux" 1718958485 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
-  "EAS.tex" 1718958482 8665 661224834a00851af6b73b6cd4445b00 ""
+  "EAS.aux" 1718959003 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
+  "EAS.tex" 1718959000 8713 bfccd92f26357643edf42bd0b52bb417 ""
   "ITS.png" 1698505635 14896 5867c94129cd44c711e998ddd4275857 ""
   "M.png" 1698505638 319443 64b8fb6171fd3f6d1533dc42ddef7441 ""
-  "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis II/EAS/EAS.tex" 1718958482 8665 661224834a00851af6b73b6cd4445b00 ""
+  "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Analisis II/EAS/EAS.tex" 1718959000 8713 bfccd92f26357643edf42bd0b52bb417 ""
   (generated)
   "EAS.aux"
   "EAS.log"
