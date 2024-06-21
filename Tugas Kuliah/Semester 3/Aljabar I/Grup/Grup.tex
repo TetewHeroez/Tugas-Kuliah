@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+\title{Tugas Aljabar I}
+\author{Teosofi Hidayah Agung\\
+5002221132}
+\date{}
+\begin{document}
+\maketitle
+\pagenumbering{gobble}
+\setlength{\belowdisplayskip}{-4.5mm}
+\setlength{\abovedisplayskip}{1.5mm}
+\allowdisplaybreaks
+
+\begin{enumerate}
+    %nomor 1
+    \item Buatlah contoh grup.\\~\\
+    \textbf{Jawab}:\\
+    Himpunan bilangan rasional $\mathbb{Q}\setminus\{0\}$ terhadap operasi perkalian $(\boldsymbol{\cdot})$.
+    \begin{enumerate}[label=(\arabic*)]
+        \item Sifat \textbf{asosiatif}.\\
+        jelas karena $\mathbb{Q}\setminus\{0\}\subset\mathbb{R}$ yang dimana bilangan real $\mathbb{R}$ sudah terbukti sifat asosiatifnya.
+        \item Eksistensi \textbf{identitas}\\
+        Terdapat identitas $e\in\mathbb{Q}\setminus\{0\}$ yaitu $1\in\mathbb{Q}\setminus\{0\}$, sedemikian sehingga untuk sembarang $a\in\mathbb{Q}\setminus\{0\}$ berlaku $1\boldsymbol{\cdot}a=a\boldsymbol{\cdot}1=a$ 
+        \item Eksistensi \textbf{invers}\\
+        Untuk setiap $a\in\mathbb{Q}\setminus\{0\}$ terdapat $a^{-1}\in\mathbb{Q}\setminus\{0\}$ yaitu $\frac{1}{a}\in\mathbb{Q}\setminus\{0\}$ yang saling invers, sehingga $a\boldsymbol{\cdot}\frac{1}{a}=\frac{1}{a}\boldsymbol{\cdot}a=e=1$
+    \end{enumerate}
+    $\therefore$ Himpunan bilangan rasional $\mathbb{Q}\setminus\{0\}$ termasuk grup terhadap operasi perkalian $(\boldsymbol{\cdot})$.
+    
+    %nomor 2
+    \item Buatlah contoh bukan grup.\\~\\
+    \textbf{Jawab}:\\
+    Didefinisikan $G=\{a,b\in\mathbb{R}|a\:\heartsuit\:b=ab+a+b\}$.\\
+    Mempunyai identitas yaitu $0\in G$ sebab\\
+    $a\:\heartsuit\:0=0\:\heartsuit\:a=a(0)+a+0=(0)a+0+a=a$.\\
+    Sekarang perhatikan untuk $-1\in G$. Asumsikan $-1\in G$ mempunyai invers yaitu $p\in G$, Sehingga nilai $b$:
+    \begin{flalign*}
+        -1\:\heartsuit\:p\Longleftrightarrow(-1)p+(-1)+p&=0&\\
+        -p-1+p&=0&\\
+        p-p-1+p&=p+0&\\
+        0-1+p&=p&\\
+        -1+p-p&=p-p&\\
+        -1&=0\quad\textrm{\textbf{(Kontradiksi)}}&\\
+    \end{flalign*}
+    Karena pembuktian mendapati kontradiksi, maka kesimpulannya adalah bahwa asumsi awalnya salah. Oleh karena itu, haruslah $-1\in G$ tidak mempunyai invers.
+
+    \vspace{0.1mm}
+    $\therefore$ $G$ bukan termasuk grup
+    %nomor 3
+    \item Tunjukkan bahwa bila $G$ adalah grup komutatif, maka untuk semua $a, b \in G$ dan untuk semua bilangan bulat $n$, $(ab)^n = a^nb^n$.\\~\\
+    \textbf{Jawab}:\\
+    \[(ab)^n\defeq\underbrace{(ab)\boldsymbol{\cdot} (ab)\boldsymbol{\cdot}(ab)\boldsymbol{\cdot}...\boldsymbol{\cdot} (ab)}_n\]
+    Perhatikan untuk $n=0$, diperoleh $a^0=b^0=(ab)^0=a^0b^0=e\in G$. Selanjutnya akan digunakan induksi matematika untuk membuktikan setiap $n\in \mathbb{N}$ memenuhi.\\
+    Untuk setiap $a,b\in G$, misalkan $P(k):(ab)^n=a^nb^n$.Untuk $P(1)$ terbukti benar karena $(ab)^1=ab=a^1b^1$. Selanjutnya anggap benar untuk $P(k):(ab)^k=a^kb^k$ dan akan dibuktikan benar pula untuk $P(k+1).$  
+    \begin{flalign*}
+        (ab)^{k+1} &= (ab)^k(ab)\quad\textrm{\textbf{(Definisi)}}&\\
+        &= (a^kb^k)(ab)\quad\textrm{\textbf{(Asumsi $P(k)$ benar)}}&\\
+        &= (a^kb^k)(ba)\quad\textrm{\textbf{(Komutatif)}}&\\
+        &= a^k(b^k(ba))\quad\textrm{\textbf{(Asosiatif)}}&\\
+        &= a^k((b^kb)a)\quad\textrm{\textbf{(Asosiatif)}}&\\
+        &= a^k(b^{k+1}a)\quad\textrm{\textbf{(Definisi)}}&\\
+        &= a^k(ab^{k+1})\quad\textrm{\textbf{(Komutatif)}}&\\
+        &= (a^ka)b^{k+1}\quad\textrm{\textbf{(Asosiatif)}}&\\
+        &= a^{k+1}b^{k+1}\quad\textrm{\textbf{(Definisi)}}&\\
+    \end{flalign*}
+    Oleh karena itu, $P(n)$ terbukti benar untuk setiap $n\in \mathbb{N}$.
+    
+    \vspace{0.1mm}
+    Sekarang akan dibuktikan $P(n)$ benar untuk $n$ bilangan bulat negatif. Selanjutnya ambil sembarang $a,b\in G$ yang berakibat $(ab)^{-k}$ merupakan invers dari $(ab)^{k}$, Sehingga notasi $(-k)$ dapat mempresentasikan bilangan bulat negatif untuk $k\in\mathbb{N}$.
+    \begin{flalign*}
+        (ab)^{-k} &= b^{-k}a^{-k}\quad\textrm{\textbf{(Invers $a^kb^k$)}}&\\
+        &= a^{-k}b^{-k}\quad\textrm{\textbf{(Komutatif)}}&\\
+    \end{flalign*}
+    Juga $P(n)$ terbukti benar untuk setiap $n$ bilangan bulat negatif.
+    
+    \vspace{0.1mm}
+    $\therefore (ab)^n = a^nb^n$ terbukti benar $\forall n \in\mathbb{Z}$
+    
+    %nomor 4
+    \item Dapatkan invers masing-masing elemen dari $\mathbb{U}(10)$ dan $\mathbb{U}(15)$.\\
+    \textit{Catatan}: $\mathbb{U}(n)=\{[u]_n\in\mathbb{Z}\:|\:\textrm{fpb}(u,n)=1\}\subset\mathbb{Z}_n$\\~\\
+    \textbf{Jawab}:\\
+    Identitas masing-masing adalah $[1]_{10}\in\mathbb{U}(10)$ dan $[1]_{15}\in\mathbb{U}(15)$.\\
+    
+    \vspace{0.1mm}
+    $\mathbb{U}(10)=\{[1]_{10},[3]_{10},[7]_{10},[9]_{10}\}$
+    \newcolumntype{l}{>{\columncolor{lime}}c}
+    \begin{center}
+    \begin{tabular}{|l|| c c c c|} 
+        \hline
+        \rowcolor{cyan}
+         \color{purple}$\times$ & $[1]_{10}$ & $[3]_{10}$ & $[7]_{10}$ & $[9]_{10}$ \\
+         \hline\hline
+         $[1]_{10}$ & $[1]_{10}$ & $[3]_{10}$ & $[7]_{10}$ & $[9]_{10}$ \\
+         $[3]_{10}$ & $[3]_{10}$ & $[9]_{10}$ & $[1]_{10}$ & $[7]_{10}$ \\
+         $[7]_{10}$ & $[7]_{10}$ & $[1]_{10}$ & $[9]_{10}$ & $[3]_{10}$ \\
+         $[9]_{10}$ & $[9]_{10}$ & $[7]_{10}$ & $[3]_{10}$ & $[1]_{10}$ \\
+    \end{tabular}
+    \end{center}
+    \begin{itemize}
+        \item $[1]_{10}^{-1}=[1]_{10}$
+        \item $[3]_{10}^{-1}=[7]_{10}$
+        \item $[7]_{10}^{-1}=[3]_{10}$
+        \item $[9]_{10}^{-1}=[9]_{10}$
+    \end{itemize}
+    
+    \vspace{0.1mm}
+    $\mathbb{U}(15)=\{[1]_{15},[2]_{15},[4]_{15},[7]_{15},[8]_{15},[11]_{15},[13]_{15},[14]_{15}\}$
+    \newcolumntype{l}{>{\columncolor{lime}}c}
+    \begin{center}
+    \begin{tabular}{|l|| c c c c c c c c|} 
+        \hline
+        \rowcolor{cyan}
+         \color{purple}$\times$ & $[1]_{15}$ & $[2]_{15}$ & $[4]_{15}$ & $[7]_{15}$ & $[8]_{15}$ & $[11]_{15}$ & $[13]_{15}$ & $[14]_{15}$\\
+         \hline\hline
+         $[1]_{15}$ & $[1]_{15}$ & $[2]_{15}$ & $[4]_{15}$ & $[7]_{15}$ & $[8]_{15}$ & $[11]_{15}$ & $[13]_{15}$ & $[14]_{15}$\\
+         $[2]_{15}$ & $[2]_{15}$ & $[4]_{15}$ & $[8]_{15}$ & $[14]_{15}$ & $[1]_{15}$ & $[7]_{15}$ & $[11]_{15}$ & $[13]_{15}$\\
+         $[4]_{15}$ & $[4]_{15}$ & $[8]_{15}$ & $[1]_{15}$ & $[13]_{15}$ & $[2]_{15}$ & $[14]_{15}$ & $[7]_{15}$ & $[11]_{15}$\\
+         $[7]_{15}$ & $[7]_{15}$ & $[14]_{15}$ & $[13]_{15}$ & $[4]_{15}$ & $[11]_{15}$ & $[2]_{15}$ & $[1]_{15}$ & $[8]_{15}$\\
+         $[8]_{15}$ & $[8]_{15}$ & $[1]_{15}$ & $[2]_{15}$ & $[11]_{15}$ & $[4]_{15}$ & $[13]_{15}$ & $[14]_{15}$ & $[7]_{15}$\\
+         $[11]_{15}$ & $[11]_{15}$ & $[7]_{15}$ & $[14]_{15}$ & $[2]_{15}$ & $[13]_{15}$ & $[1]_{15}$ & $[8]_{15}$ & $[4]_{15}$\\
+         $[13]_{15}$ & $[13]_{15}$ & $[11]_{15}$ & $[7]_{15}$ & $[1]_{15}$ & $[14]_{15}$ & $[8]_{15}$ & $[4]_{15}$ & $[2]_{15}$\\
+         $[14]_{15}$ & $[14]_{15}$ & $[13]_{15}$ & $[11]_{15}$ & $[8]_{15}$ & $[7]_{15}$ & $[4]_{15}$ & $[2]_{15}$ & $[1]_{15}$\\
+         \hline
+    \end{tabular}
+    \end{center}
+    \begin{itemize}
+        \item $[1]_{15}^{-1}=[1]_{15}$
+        \item $[2]_{15}^{-1}=[8]_{15}$
+        \item $[4]_{15}^{-1}=[4]_{15}$
+        \item $[7]_{15}^{-1}=[13]_{15}$
+        \item $[8]_{15}^{-1}=[2]_{15}$
+        \item $[11]_{15}^{-1}=[11]_{15}$
+        \item $[13]_{15}^{-1}=[7]_{15}$
+        \item $[14]_{15}^{-1}=[14]_{15}$
+    \end{itemize}
+    
+    %nomor 5
+    \item Apakah $H_{2\times 2}(\mathbb{R})=\left\{A=\begin{bmatrix}a&b\\c&d\end{bmatrix}\Big|\textrm{ det}(A)=2 \textrm{ dan }a,b,c,d\in\mathbb{R} \right\}$ merupakan grup?\\~\\
+    \textbf{Jawab}:\\
+    $H_{2\times 2}(\mathbb{R})$ bukan merupakan grup karena elemen identitas $I=\begin{bmatrix}1&0\\0&1\end{bmatrix}\notin H_{2\times 2}(\mathbb{R})$ dikarenakan det$(I)=1\neq2$, sehingga $H_{2\times 2}(\mathbb{R})$ tidak mempunyai elemen identitas.
+    
+    \vspace{0.1mm}
+    $\therefore H_{2\times 2}(\mathbb{R})$ bukan merupakan grup.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,111 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+ \begin{document}
+    \pagenumbering{gobble}
+    \setcounter{section}{3}
+    \setcounter{subsection}{1}
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+    \subsection{}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item Tunjukkan jika $X$ dan $Y$ suatu barisan yang sedemikian sehingga $X$ konvergen ke $x\neq0$ dan $XY$ konvergen, maka $Y$ juga konvergen.\\~\\
+        \textbf{Jawab}:\\
+        Karena $XY=(x_ny_n)$ barisan konvergen, maka dapat diandaikan lim$(x_ny_n)=z$ dan lim$(x_n)=x\neq0$.\\
+        Selanjutnya perhatikan bahwa bahwa limit barisan $Y$ adalah lim$(y_n)=\textrm{lim}(\frac{x_ny_n}{x_n})$.
+        Dapat disimpulkan bahwa barisan $Y$ konvergen ke $\frac{z}{x}$.
+        
+    \end{enumerate}
+    
+    \subsection{}
+    \begin{enumerate}
+        \setcounter{enumi}{6}
+        \item Misal $x_1:=a>0$ dan $x_{n+1}=x_n+1/x_n$ untuk $n\in\mathbb{N}$. Tentukan apakah $(x_n)$ konvergen atau divergen.\\~\\
+        \textbf{Jawab}:\\
+        Andaikan bahwa $(x_n)$ konvergen ke L, sehingga lim$(x_n)=L$. Menurut teorema ketunggalan limit diperoleh
+        \begin{flalign*}
+            \textrm{lim}(x_{n})&=\textrm{lim}(x_{n+1})&\\
+            \textrm{lim}(x_{n})&=\textrm{lim}(x_n+1/x_n)&\\
+            \textrm{lim}(x_{n})&=\textrm{lim}(x_n)+\textrm{lim}(1/x_n)&\\
+            L&=L+1/L&\\
+            0&=1/L\quad\textrm{\textbf{(Kontradiksi)}}
+        \end{flalign*}
+        Jadi harusnlah $(x_n)$ divergen.
+    \end{enumerate}
+
+    \subsection{}
+    \begin{enumerate}
+        \setcounter{enumi}{8}
+        \item Misalkan untuk setiap subbarisan dari $X=(x_n)$ memiliki subbarisan yang konvergen ke $0$. Tunjukkan bahwa lim $X=0$.\\~\\
+        \textbf{Jawab}:\\
+        Andaikan lim$(x_n)=L\neq0$, sehingga untuk setiap $\epsilon>0$ terdapat $K(\epsilon)\in\mathbb{N}$ sedemikian sehingga $\forall n\geq K(\epsilon)\in\mathbb{N}$ berlaku $|x_n-L|<\epsilon$.\\
+        Menurut sebuah teorema, Jika $X=(x_n)$ konvergen ke $L$ maka sebarang barisan bagian dari $X$ juga konvergen ke $L\neq0$. Namun hal ini kontradiksi bahwa setiap subbarisan dari $X=(x_n)$ memiliki subbarisan yang konvergen ke $0$.\\~\\
+        $\therefore$ dapat disimpulkan barisan $X=(x_n)$ konvergen ke $0$ atau lim $X=0$
+    \end{enumerate}
+
+    \subsection{}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item Tunjukkan menurut definisi bahwa jika $(x_n)$ dan $(y_n)$ adalah barisan Cauchy, maka $(x_n+y_n)$ dan $(x_ny_n)$ juga merupakan barisan Cauchy.\\~\\
+        \textbf{Jawab}:\\
+        Menurut definisi, barisan $A=(a_n)$ dikatakan barisan Cauchy jika untuk setiap $\epsilon>0$, $\exists H(\epsilon)\in\mathbb{N}$ sedemikian sehingga $\forall n,m \geq H(\epsilon)$ berlaku $|a_n-a_m|<\epsilon$.
+        \begin{enumerate}[label=(\roman*)]
+            \item Untuk $(x_n+y_n)$ diberikan $\forall n,m \geq H(\epsilon)$, maka diperoleh
+            \begin{flalign*}
+                |(x_n+y_n)-(x_m+y_m)|&=|(x_n-x_m)+(y_n-y_m)|&\\
+                &\leq|x_n-x_m|+|y_n-y_m|&\\
+            \end{flalign*}
+            Karena $(x_n)$ dan $(y_n)$ adalah barisan Cauchy, maka 
+            \begin{flalign*}
+                \forall n,m \geq H(\epsilon)_x &\Longrightarrow |x_n-x_m|<\epsilon/2&\\
+                &\textrm{dan}&\\
+                \forall n,m \geq H(\epsilon)_y &\Longrightarrow |y_n-y_m|<\epsilon/2&\\
+            \end{flalign*}
+            Sehingga untuk $H(\epsilon)=\textrm{sup}\{H(\epsilon)_x,H(\epsilon)_y\}$ diperoleh
+            \begin{flalign*}
+                |x_n-x_m|+|y_n-y_m|<\epsilon/2+\epsilon/2=\epsilon
+            \end{flalign*}
+            Maka didapat $|(x_n+y_n)-(x_m+y_m)|<\epsilon$ yang dimana merupakan definisi bahwa $(x_n+y_n)$ adalah barisan Cauchy\\
+
+            \item Untuk $(x_ny_n)$ diberikan $\forall n,m \geq H(\epsilon)$, maka diperoleh
+            \begin{flalign*}
+                |x_ny_n-x_my_m|&=|x_ny_n-x_my_n+x_my_n-x_my_m|&\\
+                &\leq|x_ny_n-x_my_n|+|x_my_n-x_my_m|&\\
+                &\leq|y_n||x_n-x_m|+|x_m||y_n-y_m|
+            \end{flalign*}
+            Sebuah teorema mengatakan \textit{"jika barisan $(a_n)$ konvergen maka barisan itu terbatas"}. Karena $(x_n)$ dan $(y_n)$ adalah barisan Cauchy, maka sudah tentu barisan itu konvergen juga terbatas. Sehingga didapat $|x_m|\leq M_x$ dan $|y_n|\leq M_y$, lalu dapat diambil $M=\textrm{sup}\{M_x,M_y\}$ yang berakibat
+            \begin{flalign*}
+                |y_n||x_n-x_m|+|x_m||y_n-y_m|\leq M|x_n-x_m|+M|y_n-y_m|
+            \end{flalign*}
+            Kembali lagi bahwa $(x_n)$ dan $(y_n)$ adalah barisan Cauchy, maka
+            \begin{flalign*}
+                \forall n,m \geq H(\epsilon)_x &\Longrightarrow |x_n-x_m|<\frac{\epsilon}{2M}&\\
+                &\textrm{dan}&\\
+                \forall n,m \geq H(\epsilon)_y &\Longrightarrow |y_n-y_m|<\frac{\epsilon}{2M}&\\
+            \end{flalign*}
+            Sehingga untuk $H(\epsilon)=\textrm{sup}\{H(\epsilon)_x,H(\epsilon)_y\}$ diperoleh
+            \begin{flalign*}
+                M|x_n-x_m|+M|y_n-y_m|< M\left(\frac{\epsilon}{2M}\right)+M\left(\frac{\epsilon}{2M}\right)=\epsilon
+            \end{flalign*}
+             Maka didapat $|(x_ny_n)-(x_my_m)|<\epsilon$ yang dimana merupakan definisi bahwa $(x_ny_n)$ adalah barisan Cauchy\\
+        \end{enumerate}
+    \end{enumerate}
+ \end{document}

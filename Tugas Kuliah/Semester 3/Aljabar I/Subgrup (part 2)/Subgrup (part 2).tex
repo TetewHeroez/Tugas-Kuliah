@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+\newenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+
+\newlist{myitems}{enumerate}{3}
+\setlist[myitems, 1]
+{label=2.2.\arabic{myitemsi},leftmargin=22pt,
+rightmargin=10pt}
+
+\title{Tugas Aljabar I}
+\author{Teosofi Hidayah Agung\\
+5002221132}
+\date{}
+\begin{document}
+\maketitle
+\pagenumbering{gobble}
+\setlength{\belowdisplayskip}{-4.5mm}
+\setlength{\abovedisplayskip}{1.5mm}
+\allowdisplaybreaks
+
+\begin{enumerate}
+    \item Buatlah contoh subgrup dari $(M_{2\times 2}(\mathbb{R}),+)$.
+    \[ M_1=\left\{\begin{bmatrix}a&b\\c&d\end{bmatrix}\Big|a,b,c,d\in \mathbb{Z}_{10}\right\}\]\\~\\
+    Jelas bahwa $\mathbb{Z}_{10}$ subgrup dari $\mathbb{R}$ akibatnya $M_1\subset M_{2\times 2}(\mathbb{R}),+$ dan $M_1$ himpunan tak kosong karena $\begin{bmatrix}1&1\\1&1\end{bmatrix}\in M_1$. Selanjutnya akan dibuktikan untuk sembarang $A,B\in M_1$ berlaku $A+(-B)\in M_1$.
+    \begin{flalign*}
+        A+B^{-1}&=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}+\begin{bmatrix}-b_1&-b_2\\-b_3&-b_4\end{bmatrix}&\\
+        &=\begin{bmatrix}a_1-b_1&a_2-b_2\\a_3-b_3&a_4-b_4\end{bmatrix}\in M_1&\\
+    \end{flalign*}
+    $\therefore\:M_1$ merupakan subgrup dari $M_{2\times 2}(\mathbb{R})$
+    \item Buatlah contoh bukan subgrup dari $(M_{2\times 2}(\mathbb{R}),+)$.
+    \[ M_2=\left\{\begin{bmatrix}a&1\\1&d\end{bmatrix}\Big|a,d\in 3\mathbb{Z},\right\}\]\\~\\
+    Perhatikan bahwa $M_2$ bukan merupakan grup karena $\begin{bmatrix}3&1\\1&6\end{bmatrix}\in M_2$ namun inversnya $\begin{bmatrix}-3&-1\\-1&-6\end{bmatrix}\notin M_2$.\\
+    $\therefore\:M_2$ bukan subgrup dari $M_{2\times 2}(\mathbb{R})$
+\end{enumerate}
+
+\begin{myitems}
+    \item Dapatkan order elemen dari grup yang berikut ini.
+    \[a^k=e\Rightarrow|a|=k\]
+    \begin{enumerate}[label=\fbox{\arabic*}]
+        \item $2\in\mathbb{Z}_3$\\
+        \textbf{Jawab}:
+        \begin{itemize}
+            \item $2^1=2$
+            \item $2^2=4=1$
+        \end{itemize}
+        $\therefore\:|2|=2$
+        \setcounter{enumi}{7}
+        \item $-i\in\mathbb{C}^*$
+         \begin{itemize}
+            \item $(-i)^1=-i$
+            \item $(-i)^2=-1$
+            \item $(-i)^3=i$
+            \item $(-i)^4=1$
+        \end{itemize}
+        $\therefore\:|-i|=4$
+    \end{enumerate}
+    \item Dapatkan setidaknya dua subgrup sejati taktrivial dari grup berikut.
+    \begin{enumerate}[label=\fbox{\arabic*}]
+    \setcounter{enumi}{3}
+    \item $\mathbb{Z}_8=\{[0]_8,[1]_8,[2]_8,[3]_8,[4]_8,[5]_8,[6]_8,[7]_8\}$
+    \begin{itemize}
+        \item $H=\{[0]_8,[2]_8,[4]_8,[6]_8\}$
+        \newcolumntype{l}{>{\columncolor{lime}}c}
+        \begin{center}
+        \begin{tabular}{|l|| c c c c|} 
+        \hline
+        \rowcolor{cyan}
+         \color{purple}$+$ & $[0]_8$ & $[2]_8$ & $[4]_8$ & $[6]_8$ \\
+         \hline\hline
+             $[0]_8$ & $[0]_8$ & $[2]_8$ & $[4]_8$ & $[6]_8$ \\
+             $[2]_8$ & $[2]_8$ & $[4]_8$ & $[6]_8$ & $[0]_8$ \\
+             $[4]_8$ & $[4]_8$ & $[6]_8$ & $[0]_8$ & $[2]_8$ \\
+             $[6]_8$ & $[6]_8$ & $[0]_8$ & $[2]_8$ & $[4]_8$ \\
+        \end{tabular}
+        \end{center}
+        $\therefore\:H$ subgrup dari $\mathbb{Z}_8$
+        \item $H'=\{[0]_8,[4]_8\}$
+        \newcolumntype{l}{>{\columncolor{lime}}c}
+        \begin{center}
+        \begin{tabular}{|l|| c c |}
+        \hline
+        \rowcolor{cyan}
+         \color{purple}$+$ & $[0]_8$ & $[4]_8$ \\
+         \hline\hline
+             $[0]_8$ & $[0]_8$  & $[4]_8$  \\
+             $[4]_8$ & $[4]_8$  & $[0]_8$  \\
+        \end{tabular}
+        \end{center}
+        $\therefore\:H'$ juga subgrup dari $\mathbb{Z}_8$
+    \end{itemize}
+    \setcounter{enumi}{6}
+    \item $8\mathbb{Z}=\{...,-8,0,8,16,24,...\}$
+    \begin{itemize}
+        \item $16\mathbb{Z}=\{...,-16,0,16,32,48,...\}$ (Jelas $16\mathbb{Z}$ subgrup dari $8\mathbb{Z}$)
+        \item $32\mathbb{Z}=\{...,-32,0,32,64,96,...\}$ (Jelas $32\mathbb{Z}$ subgrup dari $8\mathbb{Z}$)
+    \end{itemize}
+    \item $GL(2,\mathbb{Q})=\left\{\begin{bmatrix}a&b\\c&d\end{bmatrix}\Big|\textrm{ det}(A)\neq0 \textrm{ dan }a,b,c,d\in\mathbb{Q} \right\}$
+    \begin{itemize}
+        \item $SL(2,\mathbb{Q})=\left\{\begin{bmatrix}a&b\\c&d\end{bmatrix}\Big|\textrm{ det}(A)=1 \textrm{ dan }a,b,c,d\in\mathbb{Q} \right\}$\\
+        \textbf{Bukti}:\\
+        Jelas $SL(2,\mathbb{Q})\subseteq GL(2,\mathbb{Q})$. Selanjutnya cek untuk setiap $A,B\in SL(2,\mathbb{Q})$ mengakibatkan $AB^{-1}\in SL(2,\mathbb{Q})$.
+        \begin{flalign*}
+            AB^{-1}&=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\begin{bmatrix}b_1&b_2\\b_3&b_4\end{bmatrix}^{-1}&\\
+            &=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\frac{1}{\textrm{det}(B)}\begin{bmatrix}b_4&-b_2\\-b_3&b_1\end{bmatrix}&\\
+            &=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\frac{1}{1}\begin{bmatrix}b_4&-b_2\\-b_3&b_1\end{bmatrix}&\\
+            &=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\begin{bmatrix}b_4&-b_2\\-b_3&b_1\end{bmatrix}&\\
+            &=\begin{bmatrix}a_1b_4-a_2b_3&a_2b_1-a_1b_2\\a_3b_4-a_4b_3&a_4b_1-a_3b_2\end{bmatrix}\in SL(2,\mathbb{Q})&\\
+        \end{flalign*}
+        $\therefore\:SL(2,\mathbb{Q})$ subgrup dari $GL(2,\mathbb{Q})$.
+        \item $SL(2,\mathbb{Z})=\left\{\begin{bmatrix}a&b\\c&d\end{bmatrix}\Big|\textrm{ det}(A)=1 \textrm{ dan }a,b,c,d\in\mathbb{Z} \right\}$
+        \textbf{Bukti}:\\
+        Karena $\mathbb{Z}\subset\mathbb{Q}$, maka $SL(2,\mathbb{Z})\subseteq GL(2,\mathbb{Z})\subseteq GL(2,\mathbb{Q})$. Selanjutnya cek untuk setiap $A,B\in SL(2,\mathbb{Z})$ mengakibatkan $AB^{-1}\in SL(2,\mathbb{Z})$.
+        \begin{flalign*}
+            AB^{-1}&=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\begin{bmatrix}b_1&b_2\\b_3&b_4\end{bmatrix}^{-1}&\\
+            &=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\frac{1}{\textrm{det}(B)}\begin{bmatrix}b_4&-b_2\\-b_3&b_1\end{bmatrix}&\\
+            &=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\frac{1}{1}\begin{bmatrix}b_4&-b_2\\-b_3&b_1\end{bmatrix}&\\
+            &=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\begin{bmatrix}b_4&-b_2\\-b_3&b_1\end{bmatrix}&\\
+            &=\begin{bmatrix}a_1b_4-a_2b_3&a_2b_1-a_1b_2\\a_3b_4-a_4b_3&a_4b_1-a_3b_2\end{bmatrix}\in SL(2,\mathbb{Z})&\\
+        \end{flalign*}
+        $\therefore\:SL(2,\mathbb{Z})$ juga subgrup dari $GL(2,\mathbb{Q})$.
+    \end{itemize}
+    \end{enumerate}
+    \setcounter{myitemsi}{8}
+    \item Dalam $SL(2,\mathbb{Z}_{10})$, misalkan
+    \[A=\begin{bmatrix}
+        1&2\\ 0&1
+    \end{bmatrix}\]
+    \begin{enumerate}[label=(\alph*)]
+        \item Hitung $A^3$ dan $A^{11}$.
+        \begin{flalign*}
+            A^3&=A\cdot A\cdot A&\\
+            &=\begin{bmatrix}1&2\\ 0&1\end{bmatrix}\begin{bmatrix}1&2\\ 0&1\end{bmatrix}\begin{bmatrix}1&2\\ 0&1\end{bmatrix}&\\
+            &=\begin{bmatrix}1+0&2+2\\ 0+0&0+1\end{bmatrix}\begin{bmatrix}1&2\\ 0&1\end{bmatrix}&\\
+            &=\begin{bmatrix}1&4\\ 0&1\end{bmatrix}\begin{bmatrix}1&2\\ 0&1\end{bmatrix}&\\
+            &=\begin{bmatrix}1&6\\ 0&1\end{bmatrix}&\\
+        \end{flalign*} 
+        \begin{flalign*}
+            A^{11}&=A^3\cdot A^3\cdot A^3\cdot A^2&\\
+            &=\begin{bmatrix}1&6\\ 0&1\end{bmatrix}\begin{bmatrix}1&6\\ 0&1\end{bmatrix}\begin{bmatrix}1&6\\ 0&1\end{bmatrix}
+            \begin{bmatrix}1&4\\ 0&1\end{bmatrix}&\\
+            &=\begin{bmatrix}1&12\\ 0&1\end{bmatrix}\begin{bmatrix}1&6\\ 0&1\end{bmatrix}\begin{bmatrix}1&4\\ 0&1\end{bmatrix}&\\
+            &=\begin{bmatrix}1&18\\ 0&1\end{bmatrix}\begin{bmatrix}1&4\\ 0&1\end{bmatrix}&\\
+            &=\begin{bmatrix}1&22\\ 0&1\end{bmatrix}=\begin{bmatrix}1&2\\ 0&1\end{bmatrix}&\\
+        \end{flalign*}
+        \item Dapatkan order dari $A$.\\
+        Perhatikan bahwa dilihat dari pola perpangkatan pada matriks $A$, dapat disimpulkan
+        \[A^k=\begin{bmatrix}
+            1&2k\\0&1
+        \end{bmatrix},k\in \mathbb{N}\]\\~\\~\\
+        Akibatnya $A^5=\begin{bmatrix}1&2(5)\\0&1\end{bmatrix}=\begin{bmatrix}1&10\\0&1\end{bmatrix}
+        =\begin{bmatrix}1&0\\0&1\end{bmatrix}$. Sehingga dapat disimpulkan order dari $A$ adalah $5$.
+    \end{enumerate}
+    \item Dalam $SL(3,\mathbb{R})$, untuk sebarang $a,b\in\mathbb{R}$, misalkan
+    \[D(a,b,c)=\begin{bmatrix}1&a&b\\0&1&c\\0&0&1\end{bmatrix}\]\\~\\
+    Tunjukkan bahwa $H=\{D(a,b,c)\:|\:a,b,c\in\mathbb{R}\}$ adalah subgrup dari $SL(3,\mathbb{R})$.\\~\\
+    \textbf{Jawab}:\\
+    Perhatikan bahwa $M\in H$ merupakan matriks segitiga atas, yang dimana determinannya diperoleh dari mengalikan semua elemen diagonal utamanya. Sehingga untuk setiap $M\in H$ berakibat det$(M)=1\boldsymbol{\cdot}1\boldsymbol{\cdot}1=1$. Jadi $H\subseteq SL(3,\mathbb{R})$.\\
+    Selanjutnya ambil sembarang $A,B\in H$ dan akan dibuktikan $AB^{-1}\in H$.
+    \begin{flalign*}
+        AB^{-1}&=\begin{bmatrix}1&a_1&a_2\\0&1&a_3\\0&0&1\end{bmatrix}\begin{bmatrix}1&b_1&b_2\\0&1&b_3\\0&0&1\end{bmatrix}^{-1}&\\
+        &=\begin{bmatrix}1&a_1&a_2\\0&1&a_3\\0&0&1\end{bmatrix}
+        \begin{bmatrix}1&-b_1&b_1b_3-b_2\\0&1&-b_3\\0&0&1\end{bmatrix}&\\
+        &=\begin{bmatrix}1&a_1-b_1&-a_1b_3+a_2-b_2+b_1b_3\\0&1&a_3-b_3\\0&0&1\end{bmatrix}\in H&\\
+    \end{flalign*}
+    Dapat disimpulkan bahwa $AB^{-1}\in H$.
+    
+    \vspace{0.1mm}
+    $\therefore$ $H$ merupakan subgrup dari $SL(3,\mathbb{R})$.
+\end{myitems}
+
+\end{document}

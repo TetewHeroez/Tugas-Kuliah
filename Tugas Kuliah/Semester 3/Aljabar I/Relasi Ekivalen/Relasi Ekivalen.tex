@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\title{Tugas Aljabar I}
+\author{Teosofi Hidayah Agung\\
+5002221132}
+\date{}
+\begin{document}
+\maketitle
+\pagenumbering{gobble}
+\setlength{\belowdisplayskip}{-4.5mm}
+\setlength{\abovedisplayskip}{0.5mm}
+\allowdisplaybreaks
+
+\begin{enumerate}
+    %nomor 1
+    \item Buatlah relasi ekivalensi pada $A=\{1,2,3,4,5\}$ dan jelaskan!\\~\\
+    \textbf{Pembahasan:}\\
+    Didefinisikan $R=\{(a,a)\:|\:a\in A\}\subset A \times A$.\\
+    Misalkan $R=\{(1,1),(2,2),(3,3),(4,4),(5,5),(2,5),(5,2),(3,4),(4,3),\\(1,5),(5,1),(1,2),(2,1)\}$.
+
+    \vspace{0.1mm}
+    Cek 3 syarat relasi ekivalen:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Apakah $R$ \textbf{refleksif}?\\
+        $R$ \textbf{refleksif} bila $\forall x\in A$ berlaku $(x,x)\in R$. Sekarang perhatikan bahwa $(1,1),(2,2),(3,3),(4,4),(5,5)\in R$\\
+        $\therefore R$ bersifat \textbf{refleksif}.
+        
+        \item Apakah $R$ \textbf{simetri}?\\
+        $R$ \textbf{simetri} jika $(x,y)\in R$ maka $(y,x)\in R$, $\forall x,y\in A$. Perhatikan:
+        \begin{flalign*}
+        (2,5)\in R &\Rightarrow (5,2)\in R&\\
+        (3,4)\in R &\Rightarrow (4,3)\in R&\\
+        (1,5)\in R &\Rightarrow (5,1)\in R&\\
+        (1,2)\in R &\Rightarrow (2,1)\in R&\\
+        \end{flalign*}
+        $\therefore R$ bersifat \textbf{simetri}.
+
+        \item Apakah $R$ \textbf{transitif}?\\
+        $R$ \textbf{transitif} jika $\forall x,y\in A$ sedemikian sehingga $(x,y),(y,z)\in R$ berakibat $(x,z)\in R$. Perhatikan untuk setiap anggota $R$:
+        \begin{flalign*}
+            (2,5),(5,2)\in R &\Rightarrow (2,2)\in R&\\
+            (2,5),(5,1)\in R &\Rightarrow (2,1)\in R&\\
+            (5,2),(2,5)\in R &\Rightarrow (5,5)\in R&\\
+            (5,2),(2,1)\in R &\Rightarrow (5,1)\in R&\\
+            (3,4),(4,3)\in R &\Rightarrow (3,3)\in R&\\
+            (4,3),(3,4)\in R &\Rightarrow (4,4)\in R&\\
+            (1,5),(5,1)\in R &\Rightarrow (1,1)\in R&\\
+            (1,5),(5,2)\in R &\Rightarrow (1,2)\in R&\\
+            (5,1),(1,5)\in R &\Rightarrow (5,5)\in R&\\
+            (5,1),(1,2)\in R &\Rightarrow (5,2)\in R&\\
+            (1,2),(2,1)\in R &\Rightarrow (1,1)\in R&\\
+            (1,2),(2,5)\in R &\Rightarrow (1,5)\in R&\\
+            (2,1),(1,2)\in R &\Rightarrow (2,2)\in R&\\
+            (2,1),(1,5)\in R &\Rightarrow (2,5)\in R&\\
+        \end{flalign*}
+        $\therefore R$ bersifat \textbf{transitif}.
+    \end{enumerate}
+    Karena $R$ memenuhi ketiga syarat, maka $R$ termasuk relasi ekivalensi.
+    
+    %nomor 2
+    \item Buatlah relasi yang bukan relasi ekivalensi pada $A=\{1,2,3,4,5\}$ dan jelaskan!\\~\\
+    \textbf{Pembahasan:}\\
+    Didefinisikan $R=\{(a,a)\:|\:a\in A\}\subset A \times A$.\\
+    Misalkan $R=\{(1,1),(2,2),(3,3),(4,4)\}$.\\
+    Apakah $R$ merupakan relasi ekivalensi? Tidak, karena salah satu syarat tidak terpenuhi. contohnya yaitu sifat refleksif ($(5,5)\notin R$).
+    
+    %nomor3
+    \item Buatlah relasi ekivalensi pada suatu himpunan dan jelaskan!\\~\\
+    \textbf{Pembahasan:}\\
+    Misalkan $R$ adalah relasi pada himpunan bilangan bulat $\mathbb{Z}$ yang didefinisikan: $\forall x,y\in \mathbb{Z}$ berlaku $R=\{(x,y)\:|\:x+y\in \mathbb{Z}\}$.
+    
+    \vspace{0.1mm}
+    Cek 3 syarat relasi ekivalen:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Apakah $R$ \textbf{refleksif}? Iya, karena $x+x=2x\in \mathbb{Z}$.
+        \item Apakah $R$ \textbf{simetri}?\\
+        Perhatikan bahwa penjumlahan dua bilangan bulat bersifat komutatif, sehingga $\forall x,y\in \mathbb{Z}$ berlaku $x+y=y+x\in\mathbb{Z}$. Dapat disimpulkan bahwa $R$ bersifat simetri.
+        \item Apakah $R$ \textbf{transitif}?\\
+        Ambil sebarang $x,y,z\in\mathbb{Z}$. Perhatikan bahwa $x+y\in\mathbb{Z}$ dan $y+z\in\mathbb{Z}$, sehingga $(x+y)+(y+z)=x+(y+y)+z=x+2y+z\in\mathbb{Z}$.
+        
+        \vspace{1mm}
+        Misalkan $x+2y+z=k$ lalu jumlahkan kedua ruas dengan $-2y$ sehingga $x+z=k+(-2y)$. Ingat bahwa $k$ merupakan hasil penjumlahan bilangan bulat sehingga $k\in\mathbb{Z}$ dan $-2y$ merupakan invers penjumlahan dari $2y$ yang juga bilangan bulat sehingga $-2y\in\mathbb{Z}$.
+        
+        \vspace{1mm}
+        Karena keduanya bilangan bulat maka $k+(-2y)=x+z\in\mathbb{Z}$. $R$ bersifat transitif. 
+    \end{enumerate}
+    $\therefore$ $R$ adalah relasi ekivalensi.
+
+    \item Buatlah relasi yang bukan relasi ekivalen pada suatu himpunan dan jelaskan!\\~\\
+    \textbf{Pembahasan:}\\
+    Misalkan $R$ adalah relasi pada himpunan bilangan asli $\mathbb{N}$ yang didefinisikan: $\forall x,y\in \mathbb{N}$ berlaku $R=\{(x,y)\:|\:x-y\in \mathbb{N}\}$.\\
+    Relasi diatas bukan merupakan relasi ekivalensi, sebab melanggar syarat sifat refleksif $x-x=0\notin\mathbb{N}$.
+
+\end{enumerate}
+\end{document}

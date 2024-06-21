@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+
+\begin{document}
+\pagenumbering{gobble}
+\setlength{\belowdisplayskip}{-4.5mm}
+\setlength{\abovedisplayskip}{1.5mm}
+\allowdisplaybreaks
+\setlength\parindent{0pt}
+
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}
+
+    \begin{enumerate}
+        \item Buatlah grup permutasi yang isomorphisma dengan grup $\mathbb{Z}_8$.
+        \textbf{Jawab}:
+        \begin{flalign*}
+            \phi_0&=\begin{pmatrix}0&1&2&3&4&5&6&7\\0&1&2&3&4&5&6&7\end{pmatrix}=\begin{pmatrix}1\end{pmatrix}&\\
+            \phi_1&=\begin{pmatrix}0&1&2&3&4&5&6&7\\1&2&3&4&5&6&7&0\end{pmatrix}=\begin{pmatrix}0&1&2&3&4&5&6&7\end{pmatrix}&\\
+            \phi_2&=\begin{pmatrix}0&1&2&3&4&5&6&7\\2&3&4&5&6&7&0&1\end{pmatrix}=\begin{pmatrix}0&2&4&6\end{pmatrix}\begin{pmatrix}1&3&5&7\end{pmatrix}&\\
+            \phi_3&=\begin{pmatrix}0&1&2&3&4&5&6&7\\3&4&5&6&7&0&1&2\end{pmatrix}=\begin{pmatrix}0&3&6&1&4&7&2&5\end{pmatrix}&\\
+            \phi_4&=\begin{pmatrix}0&1&2&3&4&5&6&7\\4&5&6&7&0&1&2&3\end{pmatrix}=\begin{pmatrix}0&4\end{pmatrix}\begin{pmatrix}1&5\end{pmatrix}\begin{pmatrix}2&6\end{pmatrix}\begin{pmatrix}3&7\end{pmatrix}&\\
+            \phi_5&=\begin{pmatrix}0&1&2&3&4&5&6&7\\5&6&7&0&1&2&3&4\end{pmatrix}=\begin{pmatrix}0&5&2&7&4&1&6&3\end{pmatrix}&\\
+            \phi_6&=\begin{pmatrix}0&1&2&3&4&5&6&7\\6&7&0&1&2&3&4&5\end{pmatrix}=\begin{pmatrix}0&6&4&2\end{pmatrix}\begin{pmatrix}1&7&5&3\end{pmatrix}&\\
+            \phi_7&=\begin{pmatrix}0&1&2&3&4&5&6&7\\7&0&1&2&3&4&5&6\end{pmatrix}=\begin{pmatrix}7&6&5&4&3&2&1&0\end{pmatrix}&\\
+            \therefore \overline{\mathbb{Z}_8}&=\{\phi_0,\phi_1,\phi_2,\phi_3,\phi_4,\phi_5,\phi_6,\phi_7\}&\\
+        \end{flalign*}
+        
+        \item Buatlah grup permutasi yang isomorphisma dengan grup $\mathbb{U}(8)$.\\
+        \textbf{Jawab}:
+        \begin{flalign*}
+            \phi_1&=\begin{pmatrix}1&3&5&7\\1&3&5&7\end{pmatrix}=\begin{pmatrix}1\end{pmatrix}&\\
+            \phi_3&=\begin{pmatrix}1&3&5&7\\3&1&7&5\end{pmatrix}=\begin{pmatrix}1&3\end{pmatrix}\begin{pmatrix}5&7\end{pmatrix}&\\
+            \phi_5&=\begin{pmatrix}1&3&5&7\\5&7&1&3\end{pmatrix}=\begin{pmatrix}1&5\end{pmatrix}\begin{pmatrix}3&7\end{pmatrix}&\\
+            \phi_7&=\begin{pmatrix}1&3&5&7\\7&5&3&1\end{pmatrix}=\begin{pmatrix}1&7\end{pmatrix}\begin{pmatrix}3&5\end{pmatrix}&\\
+            \therefore \overline{\mathbb{U}(8)}&=\{\phi_1,\phi_3,\phi_5,\phi_7\}&\\
+        \end{flalign*}
+        
+        \item Buatlah grup permutasi yang isomorphisma dengan grup $G={A,B,C,D}$,dimana
+        \[A=\begin{bmatrix}1&0\\0&1\end{bmatrix},
+        B=\begin{bmatrix}1&0\\0&-1\end{bmatrix},
+        C=\begin{bmatrix}-1&0\\0&1\end{bmatrix},
+        D=\begin{bmatrix}-1&0\\0&-1\end{bmatrix}\]\\~\\
+        Catatan: Buatlah domain untuk permutasinya $A,B,C,D$.\\
+        \textbf{Jawab}:
+        \begin{flalign*}
+            \phi_A&=\begin{pmatrix}
+                \begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}\\\\
+                \begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}
+            \end{pmatrix}=\begin{pmatrix}A\end{pmatrix}&\\
+            \\
+            \phi_B&=\begin{pmatrix}
+                \begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}\\\\
+                \begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}
+            \end{pmatrix}=\begin{pmatrix}A&B\end{pmatrix}\begin{pmatrix}C&D\end{pmatrix}&\\
+            \\
+            \phi_C&=\begin{pmatrix}
+                \begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}\\\\
+                \begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}&\begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}
+            \end{pmatrix}=\begin{pmatrix}A&C\end{pmatrix}\begin{pmatrix}B&D\end{pmatrix}&\\
+            \\
+            \phi_D&=\begin{pmatrix}
+                \begin{bmatrix}1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}-1&0\\0&-1\end{bmatrix}\\\\
+                \begin{bmatrix}-1&0\\0&-1\end{bmatrix}&\begin{bmatrix}-1&0\\0&1\end{bmatrix}&\begin{bmatrix}1&0\\0&-1\end{bmatrix}&\begin{bmatrix}1&0\\0&1\end{bmatrix}
+            \end{pmatrix}=\begin{pmatrix}A&D\end{pmatrix}\begin{pmatrix}B&C\end{pmatrix}&\\
+            \therefore \overline{G}&=\{\phi_A,\phi_B,\phi_C,\phi_D\}&\\
+        \end{flalign*}
+        
+        \item Misalkan $\phi:\mathbb{Z}_{12}\rightarrow\mathbb{Z}_{3}$ adalah suatu homomorpisma dengan
+        \[\textrm{ker}(\phi)=\left\{[0]_{12},[3]_{12},[6]_{12},[9]_{12}\right\}\]\\
+        dan $\phi([4]_{12})=[2]_{3}$. Dapatkan semua $x\in\mathbb{Z}_{12}$ yang memenuhi $\phi(x)=[1]_{3}$, dan tunjukkan bahwa himpunan $\{x\in\mathbb{Z}_{12}\:|\:\phi(x)=[1]_3\}$ suatu koset dari ker$(\phi)$ dalam $\mathbb{Z}_{12}$.\\
+        \textbf{Jawab}:\\
+        Diketahui bahwa $\phi([4]_{12})=[2]_{3}$ dan ker$(\phi)=\{[0]_{12},[3]_{12},[6]_{12},[9]_{12}\}$. Dengan sifat homomorpisma grup didapatkan
+        \begin{flalign*}
+            \bullet&\:\phi([7]_{12})=\phi([4]_{12}+[3]_{12})=\phi([4]_{12})+\phi([3]_{12})=[2]_{3}+[0]_{3}=[2]_{3}&\\
+            \bullet&\:\phi([10]_{12})=\phi([4]_{12}+[6]_{12})=\phi([4]_{12})+\phi([6]_{12})=[2]_{3}+[0]_{3}=[2]_{3}&\\
+            \bullet&\:\phi([1]_{12})=\phi([4]_{12}+[9]_{12})=\phi([4]_{12})+\phi([9]_{12})=[2]_{3}+[0]_{3}=[2]_{3}&\\
+        \end{flalign*}\\
+        Sehingga kita bisa dapatkan himpunan $\{x\in\mathbb{Z}_{12}\:|\:\phi(x)=[1]_3\}$
+        \begin{flalign*}
+            \bullet&\:\phi([2]_{12})=\phi([1]_{12}+[1]_{12})=\phi([1]_{12})+\phi([1]_{12})=[2]_{3}+[2]_{3}=[1]_{3}&\\
+            \bullet&\:\phi([5]_{12})=\phi([4]_{12}+[1]_{12})=\phi([4]_{12})+\phi([1]_{12})=[2]_{3}+[2]_{3}=[1]_{3}&\\
+            \bullet&\:\phi([8]_{12})=\phi([7]_{12}+[1]_{12})=\phi([7]_{12})+\phi([1]_{12})=[2]_{3}+[2]_{3}=[1]_{3}&\\
+            \bullet&\:\phi([11]_{12})=\phi([10]_{12}+[1]_{12})=\phi([10]_{12})+\phi([1]_{12})=[2]_{3}+[2]_{3}=[1]_{3}&\\
+        \end{flalign*}\\
+        Perhatikan bahwa hal diatas tidak lain adalah salah satu koset dari ker$(\phi)$ dalam $\mathbb{Z}_{12}$, yaitu ker$(\phi)_{[2]_{12}}$. \textbf{(Terbukti)}\\
+        
+        \item Diberikan suatu grup $G,a\in G$ dan $\phi:\mathbb{Z}\rightarrow G$ adalah homomorpisma yang diberikan oleh $\phi(n)=a^n,\forall n \in\mathbb{Z}$. Uraikan semua ker$(\phi)$ yang mungkin.\\
+        \textbf{Jawab}:
+        \begin{flalign*}
+            \textrm{ker}(\phi)&=\{n\in\mathbb{Z}\:|\:\phi(n)=e_G\}&\\
+            &=\{n\in\mathbb{Z}\:|\:a^n=e_G\}&\\
+            &=\{n\in\mathbb{Z}\:|\:(a^m)^k=e_G \textrm{ dengan } |a|=m\}&\\
+            &=\{k|a|\:|\:k\in\mathbb{Z}\textrm{ dan }a\in G\}&\\
+        \end{flalign*}
+        
+        \item Diberikan $f:\mathbb{U}(10)\rightarrow\mathbb{Z}_4$ homomorphisma grup dimana dimana $f([3]_{10})=[3]_4$.
+        \begin{enumerate}
+            \item Tentukan  $f([x]_{10})$ untuk setiap $[x]_{10}\in\mathbb{U}(10)$.\\
+            \textbf{Jawab}:
+            \begin{flalign*}
+                f([1]_{10})&=[0]_4\quad\textit{Sifat Homgrup}&\\
+                f([3]_{10})&=[3]_4&\\
+                f([7]_{10})&=f([3\cdot3\cdot3]_{10})=[3]_4+[3]_4+[3]_4=[1]_4&\\
+                f([9]_{10})&=f([3\cdot3]_{10})=[3]_4+[3]_4=[2]_4&\\
+            \end{flalign*}
+            
+            \item Tentukan ker$(f)$.\\
+            \textbf{Jawab}:\\
+            Dapat dilihat pada nomor 6a bahwa hanya ada satu anggota ker$(f)$ yaitu $\{[1]_{10}\}$.\\
+            
+            \item Apakah $f$ isomorphisma?\\
+            \textbf{Jawab}:\\
+            $f$ akan isomorphisma jika dan hanya jika $f$ homomorphisma yang pemetaannya bijektif.\\~\\
+            Adit. bahwa $f$ injektif dan surjektif.\\
+            $f$ bersifat injektif karena
+            \begin{flalign*}
+                \bullet\:&[0]_4=[0]_4\Longrightarrow[1]_{10}=[1]_{10}&\\
+                \bullet\:&[1]_4=[1]_4\Longrightarrow[7]_{10}=[7]_{10}&\\
+                \bullet\:&[2]_4=[2]_4\Longrightarrow[9]_{10}=[9]_{10}&\\
+                \bullet\:&[3]_4=[1]_4\Longrightarrow[3]_{10}=[3]_{10}&\\
+            \end{flalign*}
+            $f$ bersifat surjektif karena
+            \begin{flalign*}
+                \bullet\:&[0]_4=f([1]_{10})&\\
+                \bullet\:&[1]_4=f([7]_{10})&\\
+                \bullet\:&[2]_4=f([9]_{10})&\\
+                \bullet\:&[3]_4=f([3]_{10})&\\
+            \end{flalign*}
+            $\therefore$ $f$ merupakan isomorphisma.
+        \end{enumerate}
+    \end{enumerate}
+    
+
+\end{document}

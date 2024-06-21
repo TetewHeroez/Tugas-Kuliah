@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+\title{Tugas Aljabar I}
+\author{Teosofi Hidayah Agung\\
+5002221132}
+\date{}
+\begin{document}
+\maketitle
+\pagenumbering{gobble}
+\setlength{\belowdisplayskip}{-4.5mm}
+\setlength{\abovedisplayskip}{1.5mm}
+\allowdisplaybreaks
+\setlength\parindent{0pt}
+
+\textbf{Latihan 3.2.1} Pada latihan berikut tentukan apakah pemetaan $\phi$ adalah homomorpisma atau tidak. Bila $\phi$ homomorpisma maka tentukan ker($\phi$).
+    \begin{enumerate}
+        \item[2.] $\phi : \mathbb{Z}\to\mathbb{Z}$, dimana $\phi(n)=3n,\forall n \in\mathbb{Z}$.\\
+        \textbf{Jawab}:\\
+        Ambil sebarang $a,b\in\mathbb{Z}$, sehingga
+        \begin{align*}
+            \phi(a+b)=3(a+b)
+            =3a+3b
+            =\phi(a)+\phi(b),\: \forall a,b\in\mathbb{Z}\\
+        \end{align*}\\
+        Maka $\phi$ adalah homomorpisma. Untuk ker($\phi$) didapatkan
+        \begin{flalign*}
+            \bullet\textrm{ker}(\phi)&=\{n\in\mathbb{Z}\:|\:\phi(n)=0\}&\\
+            &=\{n\in\mathbb{Z}\:|\:3n=0\}&\\
+            &=\{n\in\mathbb{Z}\:|\:n=0\}&\\
+            \therefore\textrm{ker}(\phi)&=\{0\}&\\
+        \end{flalign*}
+        
+        \item[4.] $\phi : GL(2,\mathbb{R})\to\mathbb{R}^*$, dimana $GL(2,\mathbb{R})$ adalah grup linier umum matriks ukuran $(2\times2)$ yang mempunyai invers dan $\phi(A)=\textrm{det}(A),\forall A\in GL(2,\mathbb{R})$.\\
+        \textbf{Jawab}:\\
+        Ambil sebarang $A,B\in GL(2,\mathbb{R})$, sehingga
+        \begin{align*}
+            \phi(AB)=\textrm{det}(AB)=\textrm{det}(A)\textrm{det}(B)=\phi(A)\phi(B), \:\forall A,B\in GL(2,\mathbb{R})\\
+        \end{align*}\\
+        Maka $\phi$ adalah homomorpisma. Untuk ker($\phi$) didapatkan
+        \begin{flalign*}
+            \bullet\textrm{ker}(\phi)&=\{A'\in GL(2,\mathbb{R})\:|\:\phi(A')=1\}&\\
+            &=\{A'\in GL(2,\mathbb{R})\:|\:\textrm{det}(A')=1\}&\\
+            \therefore\textrm{ker}(\phi)&=\{A \in SL(2,\mathbb{R})\}&\\
+        \end{flalign*}
+        
+        \item[5.] $\phi : S_3\to\mathbb{Z}_2$, dimana
+        \begin{align*}
+            \phi(\sigma)=\begin{cases}
+                [0]_2,\quad\textrm{bila $\sigma$ permutasi genap}\\
+                [1]_2,\quad\textrm{bila $\sigma$ permutasi ganjil}
+            \end{cases}\\
+        \end{align*}
+        \textbf{Jawab}:
+        \begin{enumerate}[label=\textcircled{\arabic*}]
+            \item bila $\sigma_1$ dan $\sigma_2$ bersama-sama permutasi genap atau ganjil, maka $\sigma_1\sigma_2\in S_3$ adalah permutasi genap. Sehingga
+            \begin{flalign*}
+                \phi(\sigma_1\sigma_2)=[0]_2=[0]_2+[0]_2=[1]_2+[1]_2=\phi(\sigma_1)+\phi(\sigma_2)
+            \end{flalign*}
+
+            \item bila $\sigma_1$ permutasi ganjil dan $\sigma_2$ permutasi genap ataupun sebaliknya, maka $\sigma_1\sigma_2\in S_3$ adalah permutasi ganjil. Sehingga
+            \begin{flalign*}
+                \phi(\sigma_1\sigma_2)=[1]_2=[1]_2+[0]_2=[0]_2+[1]_2=\phi(\sigma_1)+\phi(\sigma_2)
+            \end{flalign*}
+        \end{enumerate}
+        Jadi $\phi$ adalah homomorpisma. Untuk ker($\phi$) didapatkan
+        \begin{flalign*}
+            \bullet\textrm{ker}(\phi)&=\{\sigma\in S_3\:|\:\phi(\sigma)=[0]_2\}&\\
+            &=\{\sigma\in S_3\:|\:\sigma \textrm{ permutasi genap}\}&\\
+            \therefore\textrm{ker}(\phi)&=\{\sigma\in A_3\}&\\
+        \end{flalign*}
+        
+        \item[6.] $\phi : D_4\to\mathbb{Z}_4$, dimana
+        \begin{align*}
+            D_4=\{\rho_0,\rho,\rho^2,\rho^3,\tau,\rho\tau,\rho^2\tau,\rho^3\tau\}\\
+        \end{align*}\\
+        adalah dihedral grup dan $\phi(\rho^i)=[0]_4,\:\phi(\rho^i\tau)=[1]_4$, untuk semua $i,\:0\leq i\leq3$.\\
+        \textbf{Jawab}:\\
+        Perhatikan bahwa
+        \begin{flalign*}
+            \phi(\tau\tau)=\phi(\rho_0)=[0]_4\neq[1]_4+[1]_4=\phi(\tau)+\phi(\tau)\\
+        \end{flalign*}\\
+        Karena $\phi(\tau\tau)\neq\phi(\tau)+\phi(\tau)$, maka $\phi$ bukanlah homomorpisma.
+        
+        \item[7.] $\phi : \mathbb{R}\to GL(2,\mathbb{R})$, $\mathbb{R}$ adalah grup himpunan bilangan riil dengan operasi penjumlahan dan
+        \begin{align*}
+            \phi(x)=\begin{bmatrix}
+                1&x\\
+                0&1
+            \end{bmatrix}, \forall x\in\mathbb{R}.\\
+        \end{align*}
+        \textbf{Jawab}:\\
+        Ambil sebarang $x,y\in\mathbb{R}$, sehingga
+        \begin{flalign*}
+            \phi(x+y)=\begin{bmatrix}1&x+y\\0&1\end{bmatrix}= \begin{bmatrix}1&x\\0&1\end{bmatrix} \begin{bmatrix}1&y\\0&1\end{bmatrix}=\phi(x)\phi(y)\\
+        \end{flalign*}\\
+        Maka $\phi$ adalah homomorpisma. Untuk ker($\phi$) didapatkan
+        \begin{flalign*}
+            \bullet\textrm{ker}(\phi)&=\{x\in\mathbb{R}\:|\:\phi(x)=\begin{bmatrix}1&0\\0&1\end{bmatrix}\}&\\
+            &=\{x\in\mathbb{R}\:|\:x=0\}&\\
+            \therefore\textrm{ker}(\phi)&=\{0\}&\\
+        \end{flalign*}
+        
+        \item[8.] $\phi:G\to G$, dimana $G$ adalah sebarang grup dan $\phi(x)=x^{-1}, \forall x\in G$.\\
+        \textbf{Jawab}:\\
+        Ambil sebarang $a,b\in G$, sehingga
+        \begin{flalign*}
+            \phi(ab)=(ab)^{-1}=b^{-1}a^{-1}=\phi(b)\phi(a)\\
+        \end{flalign*}\\
+        Karena $G$ adalah sebarang grup maka $\phi(b)\phi(a)\neq\phi(a)\phi(b)$ yang berakibat $\phi(ab)\neq\phi(a)\phi(b)$.\\
+        $\therefore\phi$ bukanlah homomorpisma.
+        
+    \end{enumerate}
+\end{document}

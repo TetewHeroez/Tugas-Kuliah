@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+\newenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+
+
+\title{Tugas Aljabar I}
+\author{Teosofi Hidayah Agung\\
+5002221132}
+\date{}
+\begin{document}
+\maketitle
+\pagenumbering{gobble}
+\setlength{\belowdisplayskip}{-4.5mm}
+\setlength{\abovedisplayskip}{1.5mm}
+\allowdisplaybreaks
+
+\begin{enumerate}
+    \item Misalkan $G = \{a + b\sqrt{2}i\:|\:a, b \in \mathbb{Q}\}$ . Tunjukkan bahwa $G$ adalah subgrup dari $\mathbb{R}$ terhadap operasi penjumlahan.\\~\\
+    \textbf{Jawab}:\\
+    Dapat dilihat bahwa $a+b\sqrt{2}i\notin\mathbb{R}$ yang akibatnya $G\not\subset\mathbb{R}$.
+    
+    \vspace{0.1mm}
+    $\therefore$ $G$ bukan subgrup dari $\mathbb{R}$
+    
+    \item Misalkan $G=\{n+mi\:|\:m,n\in\mathbb{Z},\:i^2=-1\}$. Tunjukkan bahwa $G$ adalah subgrup dari $\mathbb{C}$ terhadap operasi penjumlahan.\\~\\
+    \textbf{Jawab}:\\
+    Perhatikan bahwa pada $m,n\in\mathbb{Z}$ pada $G$, Sedangkan pada $\mathbb{C}$ didefinisikan $m,n\in\mathbb{R}$. Dari informasi yang sudah diketahui bahwa $\mathbb{Z}\subset\mathbb{R}$, Sehingga dapat disimpulkan bahwa $G\subset\mathbb{C}$.\\
+    Seperti yang sudah diketahui juga bahwa himpunan bilangan kompleks $\mathbb{C}$ merupakan grup terhadap operasi penjumlahan. Sekarang akan dibuktikan bahwa $G$ memenuhi definisi grup.
+    \begin{enumerate}[label=(\arabic*)]
+        \item Sifat \textbf{tertutup}.\\
+        Ambil sembarang $z=n+mi\in G$ yaitu $z_1=n_1+m_1i\in G$ dan $z_2=n_2+m_2i\in G$, maka
+        \begin{flalign*}
+        z_1+z_2 &= (n_1+m_1i)+(n_2+m_2i)&\\
+        &= n_1+n_2+m_1i+m_2i&\\
+        &= (n_1+n_2)+(m_1+m_2)i\in G&\\
+        \end{flalign*}
+        Jadi $G$ bersifat tertutup.
+        \item Sifat \textbf{asosiatif}.\\
+        Asosiatif diwariskan dari $\mathbb{C}$ yang merupakan grup. 
+        \item Eksistensi \textbf{identitas}\\
+        Terdapat identitas $e\in G$ yaitu $\theta=0+0i\in G$, sedemikian sehingga $\forall z\in G$ memenuhi $z+\theta=\theta+z=z$. Bukti
+        \begin{flalign*}
+        z+\theta &= (n+mi)+(0+0i)&\\
+        &= (n+0)+(m+0)i&\\
+        &= n+mi=z\quad\textrm{(\textbf{Identitas kanan})}&\\
+        \theta+z &= (0+0i)+(n+mi)&\\
+        &= (0+n)+(0+m)i&\\
+        &= n+mi=z\quad\textrm{(\textbf{Identitas kiri})}&\\
+        \end{flalign*}
+        Jadi $\theta$ adalah elemen identitas dari $G$
+        \item Eksistensi \textbf{invers}\\
+        Untuk setiap $z\in G$ terdapat $-z\in G$ yang saling invers. Bukti:
+        \begin{flalign*}
+        z+(-z) &= (n+mi)+(-n-mi)&\\
+        &= (n+(-n))+(m+(-m))i&\\
+        &= 0+0i=\theta\quad\textrm{(\textbf{Invers kanan})}&\\
+        (-z)+z &= (-n-mi)+(n+mi)&\\
+        &= ((-n)+n)+((-m)+m)i&\\
+        &= 0+0i=\theta\quad\textrm{(\textbf{Invers kiri})}&\\
+        \end{flalign*}
+        Jadi $\forall z\in G$ memiliki invers yaitu $-z\in G$.
+    \end{enumerate}
+    $\therefore$ $G$ merupakan subgrup dari $\mathbb{C}$, karena $G\subset\mathbb{C}$ dan $G$ memenuhi definisi sebagai grup.
+
+    \item Dalam $SL(3,\mathbb{R})$, untuk sebarang $a,b\in\mathbb{R}$, misalkan
+    \[D(a,b,c)=\begin{bmatrix}1&a&b\\0&1&c\\0&0&1\end{bmatrix}\]\\~\\
+    Tunjukkan bahwa $H=\{D(a,b,c)\:|\:a,b,c\in\mathbb{R}\}$ adalah subgrup dari $SL(3,\mathbb{R})$.\\~\\
+    \textbf{Jawab}:\\
+    Perhatikan bahwa $M\in H$ merupakan matriks segitiga atas, yang dimana determinannya diperoleh dari mengalikan semua elemen diagonal utamanya. Sehingga untuk setiap $M\in H$ berakibat det$(M)=1\boldsymbol{\cdot}1\boldsymbol{\cdot}1=1$. Jadi $H\subseteq SL(3,\mathbb{R})$.\\
+    Selanjutnya ambil sembarang $A,B\in H$ dan akan dibuktikan $AB^{-1}\in H$. Cek determinan matriks $AB^{-1}$:
+    \begin{flalign*}
+        \textrm{det}(AB^{-1})&=\textrm{det}(A)\boldsymbol{\cdot}\textrm{det}(B^{-1})&\\
+        &=\textrm{det}(A)\boldsymbol{\cdot}\frac{1}{\textrm{det}(B)}\quad\textrm{(\textbf{Sifat Determinan})}&\\
+        &=1\boldsymbol{\cdot}\frac{1}{1}=1&\\
+    \end{flalign*}
+    Dapat disimpulkan bahwa $AB^{-1}\in H$.
+    
+    \vspace{0.1mm}
+    $\therefore$ $H$ merupakan subgrup dari $SL(3,\mathbb{R})$.
+    
+    \item Tunjukkan bahwa bila $H$ dan $K$ adalah subgrup dari $G$, maka $H\cap K$ adalah subgrup dari $G$.\\~\\
+    \textbf{Jawab}:\\
+    Diketahui bahwa $H\subseteq G$ dan $K\subseteq G$. $H$ dan $K$ bersama-sama subgrup dari $G$ yang berarti memiliki elemen identitas yang sama anggap saja $e$. Perhatikan bahwa
+    \begin{flalign*}
+        &\begin{rcases}
+            H\cap K\subseteq H\subseteq G&\\
+            H\cap K\subseteq K\subseteq G&
+        \end{rcases}\text{$H\cap K\subseteq G$}&\\
+    \end{flalign*}
+    Selanjutnya perhatikan bahwa $H\cap K\neq\varnothing$, sebab $H\cap K$ sedikitnya memiliki satu anggota yaitu $e$.\\
+    Anggota $H\cap K$ lebih dari satu anggota bila dan hanya bila $\forall x,x^{-1}\in H$ dan $\forall x,x^{-1}\in K$, yang dimana berakibat $\forall x,x^{-1}\in H\cap K$.
+    
+    \vspace{0.1mm}
+    $\therefore$ $H\cap K$ juga merupakan subgrup dari $G$.
+    
+    \end{enumerate}
+\end{document}

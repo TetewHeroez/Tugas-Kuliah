@@ -1,0 +1,70 @@
+\documentclass[14pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+\newcommand{\inlineitem}{%
+\leavevmode\usebeamertemplate{itemize item}
+}
+
+\title{Tugas Video Aljabar 1}
+\author{Teosofi Hidayah Agung\\ 5002221132}
+\date{December 2023}
+
+\begin{document}
+    \maketitle
+    \begin{frame}
+        \begin{block}{ETS Aljabar 1 2023 no.1}
+            Diberikan $a\in\mathbb{R}$ dan $n=\frac{\sqrt{3-|a-1|}+\sqrt{|a-1|-3}}{a+2}+\frac{1+2a}{a-3}$. Tentukan digit terakhir dari nilai $n^{2023}$. 
+        \end{block}
+        \begin{alertblock}{Ingat}<2->
+            \inlineitem $\sqrt{f(x)}$ terdefinisi, jika $f(x)\geq0$\\
+            \inlineitem $\frac{f(x)}{g(x)}$ terdefinisi untuk $g(x)\neq0$
+        \end{alertblock}
+    \end{frame}
+    \begin{frame}
+        \onslide<2->{Untuk $\sqrt{3-|a-1|}$, maka
+        \[3-|a-1|\geq 0\Longrightarrow|a-1|\leq3.............(1)\]}
+        
+        \onslide<3->{Untuk $\sqrt{|a-1|-3}$, maka
+        \[|a-1|-3\geq 0\Longrightarrow|a-1|\geq3.............(2)\]}
+
+        \onslide<4->{Dari (1) dan (2) didapatkan $|a-1|=3$. Sehingga nilai $a$ yang memenuhi adalah $a=-2$ atau $a=4$.}
+    \end{frame}
+    \begin{frame}
+        \onslide<2->{\begin{exampleblock}{Perhatikan}
+            $a=-2$ tidak memenuhi sebab membuat penyebut menjadi $0$. Sehingga $a=4$ adalah solusi satu-satunya.
+        \end{exampleblock}}
+        \onslide<3->{Nilai $n=\frac{\sqrt{3-|4-1|}+\sqrt{|4-1|-3}}{4+2}+\frac{1+2(4)}{4-3}=9$}
+        \onslide<4->{\begin{block}{Grup modulo}
+            Perhatikan bahwa untuk menentukan digit terakhir suatu bilangan, dapat digunakan konsep grup $(\mathbb{Z}_{10},\cdot)$. Dimana untuk $[9]_{10}$ berorde $2$ pada grup tersebut.
+        \end{block}}
+        \onslide<5->{$([9]_{10})^{2023}=([9]_{10})^{2022}\cdot[9]_{10}=([9]_{10}^2)^{1011}\cdot[9]_{10}=([1]_{10})^{1011}\cdot[9]_{10}=[9]_{10}$.\\~\\}
+        \onslide<6->{$\therefore$ Digit terakhir $9^{2023}$ adalah $9$.}
+    \end{frame}
+    \begin{frame}
+        \begin{block}{Kuis 2 Aljabar 1 Kelas B 2023 no.4}
+            Diberikan $f:G\to G'$ homomorpisma grup. Tunjukkan bahwa ker$(f)$ subgrup normal dari $G$.
+        \end{block}
+        \onslide<2->{\begin{exampleblock}{Diketahui}
+            \inlineitem $f$ memenuhi $f(ab)=f(a)f(b),\forall a,b\in G$.\\
+            \inlineitem ker$(f)=\{x\in G\:|\:f(x)=e_{G'}\}$
+        \end{exampleblock}}
+        \onslide<3->{Pertama-tama akan ditunjukkan bahwa ker$(f)<G$. Ambil sembarang $a,b\in$ ker$(f)$, maka}
+        \onslide<4->{\[f(ab^{-1})=f(a)f(b^{-1})=f(a)f(b)^{-1}=e_{G'}e_{G'}^{-1}=e_{G'}\]}
+        \onslide<5->{Jadi $ab^{-1}\in$ ker$(f)$ yang secara definisi adalah ker$(f)<G$.}
+    \end{frame}
+    \begin{frame}
+        \onslide<2->{Selanjutnya akan ditunjukkan bahwa ker$(f)\triangleleft G$. Ambil sembarang $g\in G$ dan $x\in$ ker$(f)$, maka}
+        \onslide<3->{\[f(gxg^{-1})=f(g)f(x)f(g^{-1})=f(g)e_{G'}f(g)^{-1}=f(g)f(g)^{-1}=e_{G'}\]}
+        \onslide<4->{Jadi $gxg^{-1}\in$ ker$(f)$ yang secara definisi adalah ker$(f)\triangleleft G$.\\}
+        \onslide<5->{$\therefore$ Terbukti bahwa ker$(f)$ subgrup normal dari $G$}
+    \end{frame}
+\end{document}
