@@ -1,0 +1,251 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\newtheorem*{teorema}{Teorema}
+
+\usepackage{scalerel}
+\setcounter{MaxMatrixCols}{20}
+
+\newcommand{\longdiv}{\smash{\mkern-0.43mu\vstretch{1.31}{\hstretch{.7}{)}}\mkern-5.2mu\vstretch{1.31}{\hstretch{.7}{)}}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Jawab}:}
+%\newcommand{\jawab}[1]{\\\begin{tabular}{|p{0.9\textwidth}|}\hline \textbf{Solusi} \\ \hline #1 \\ \hline \end{tabular}}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\begin{tabular}{r c l}
+    \includegraphics[width=2cm]{ITS.png}
+     &\begin{tabular}{lcll}
+        \multicolumn{4}{c}{
+    \begin{tabular}{c}
+          \MakeUppercase{quis 2 semester genap 2023/2024}\\
+          \MakeUppercase{departemen matematika fsad its}\\
+          \MakeUppercase{program sarjana}\\
+     \end{tabular}}\\
+     \\
+          Matakuliah&:&\multicolumn{2}{l}{Aljabar 2}\\
+          Hari, Tanggal&:&\multicolumn{2}{l}{Selasa, 14 - 06 - 2024}\\
+          Waktu / Sifat&:&\multicolumn{2}{l}{90 menit tertutup}\\
+          Kelas, Dosen&:&\multicolumn{2}{l}{Drs. Komar Baihaqi, M.Si.}\\
+     \end{tabular}
+     & 
+     \includegraphics[width=2cm]{M.png}
+     \\    
+\multicolumn{3}{l}{}\\
+\hline  
+\multicolumn{3}{|l|}{\MakeUppercase{harap diperhatikan !!!}}\\
+\multicolumn{3}{|l|}{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}\\
+\multicolumn{3}{|l|}{akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}\\
+\hline
+\end{tabular}
+
+\begin{enumerate}
+    \item Diberikan $0\ne f(x)\in\Z_3[x]$, tentukan semua unit di $\Z_3[x]$.\\
+    \jawab\\
+    Perhatikan kedua teorema berikut:
+    \begin{teorema}[Akibat 6.3.1]
+        Himpunan $\Z_p$ adalah lapangan jika dan hanya jika $p$ adalah bilangan prima.
+    \end{teorema}
+    \vspace*{-0.5cm}
+    \begin{teorema}[Teorema 6.3.4]
+        Setiap lapangan adalah suatu daerah integral
+    \end{teorema}
+    Karena $3$ adalah bilangan prima, maka $\Z_3$ adalah lapangan. Dan karena $\Z_3$ adalah lapangan maka $\Z_3$ merupakan daerah integral.
+    Sekarang dapat digunakan teorema berikut:
+    \begin{teorema}[Teorema 8.1.1]
+        Bila $D$ adalah suatu daerah integral, maka $D[x]$ adalah daerah integral dan hasil 
+        perkalian dua polinomial taknol $f (x), g(x) \in D[x]$ memenuhi $\deg( f (x).g(x)) = \deg( f (x))+ \deg(g(x))$.
+    \end{teorema}
+    Misalkan $f(x)$ sebarang unit di $\Z_3[x]$, maka ada $g(x)\in\Z_3[x]$ sehingga $f(x)g(x)=1$. Dari 
+    teorema 8.1.1, kita punya $\deg(f(x)g(x))=\deg(f(x))+\deg(g(x))=0$. Karena $f(x)g(x)=1$, 
+    maka $\deg(f(x)g(x))=0$ berarti $f(x)$ dan $g(x)$ haruslah masing-masing konstanta.\\
+    $\therefore$ Semua unit di $\Z_3[x]$ adalah polinomial konstanta tak nol yaitu $f(x)=1$ dan $f(x)=2$.
+
+    \item Tinjau polynomial $f(x)=x^4+2x^2+1$ dan $g(x)=x^2+x+2$ di $\Z_3[x]$, tentukan $\gcd(f(x),g(x))$ dan tulislah dalam kombinasi linear.\\
+    \jawab\\
+    Kita gunakan algoritma Euclid untuk mencari $\gcd(f(x),g(x))$.
+    \begin{enumerate}[label=(\roman*)]
+        \item $f(x)=x^4+2x^2+1$ dan $g(x)=x^2+x+2$
+        \[
+        \arraycolsep=1pt
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{*1r @{\hskip\arraycolsep}c@{\hskip\arraycolsep} *{11}r}
+            & &x^2&-x&+1&\\
+    \cline{2-5}
+    x^2+x+1 & \longdiv & x^4 & + 2x^2 &+ 1  \\
+            &  & x^4 &+ x^3 & + 2x^2  \\
+    \cline{2-5}
+            &  & &-x^3 &+ 1  \\
+            &  & &-x^3 &-x^2 &-2x  \\
+    \cline{4-7}
+            &  & & &x^2 &+2x &+ 1  \\
+            &  & & &x^2 &+ x &+2  \\
+    \cline{5-7}
+            &  & & & &x &-1  \\
+    \end{array}\]
+    hasil baginya adalah $x^2+2x+1$ dan sisa bagi $x+2$ di $\Z_3$. 
+    \begin{equation}\label{1}
+        f(x)=(x^2+2x+1)g(x)+(x+2)
+    \end{equation}
+        \item $g(x)=x^2+x+2$ dan $r_1(x)=x+2$
+        \[\arraycolsep=1pt
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{*1r @{\hskip\arraycolsep}c@{\hskip\arraycolsep} *{11}r}
+        & & x &-1 &\\
+        \cline{2-5}
+        x+2 & \longdiv & x^2 & +x & +2 \\
+        & & x^2 & +2x\\
+        \cline{2-5}
+        & & & -x & +2 \\
+        & & & -x & -2 \\
+        \cline{4-5}
+        & & & & 4
+        \end{array}\]
+        hasil baginya adalah $x+2$ dan sisa bagi $1$ di $\Z_3$.
+        \begin{equation}\label{2}
+            g(x)=(x+2)(x+2)+1
+        \end{equation}
+        \item $r_1(x)=x+2$ dan $r_2(x)=1$\\~\\
+        Perhatikan bahwa $\gcd(x+2,1)=1$. Sehingga $\gcd(f(x),g(x))=\gcd(r_1(x),r_2(x))=1$.
+    \end{enumerate}
+    Kemudian untuk mencari kombinasi linearnya, diperlukan sedikit manipulasi pada kedua persamaan. 
+    Persamaan \eqref{1} dapat ditulis ulang sebagai berikut
+    \begin{flalign*}
+        (x+2)&=f(x)-(x^2+2x+1)g(x)&
+    \end{flalign*}
+    Subtitusi \eqref{1} ke \eqref{2}, sehingga kita punya
+    \begin{flalign*}
+        \left[f(x)-(x^2+2x+1)g(x)\right](x+2)+1&=g(x)&\\
+        g(x)-\left[f(x)-(x^2+2x+1)g(x)\right](x+2)&=1&\\
+        g(x)-f(x)(x+2)+g(x)(x^2+2x+1)(x+2)&=1&\\
+        f(x)(-x-2)+(x^3+4x^2+x+5x+3)g(x)&=1&\\
+        \boxed{(2x+1)f(x)+(x^3+x^2+2x)g(x)=1}\\
+    \end{flalign*}
+    \item Misalkan $f(x)$ adalah suatu polynomial di $\Q[x]$. Bila $\alpha=a+b\sqrt{c}$ adalah 
+    suatu akar dari $f(x)$, dimana $a,b\in\Q$ dan $\sqrt{c}\notin\Q$, Tunjukkan bahwa $\overline{\alpha}=a-b\sqrt{c}$ juga akar dari $f(x)$.\\
+    \jawab\\
+    Karena $f(x)$ adalah polynomial di $\Q[x]$, maka $f(x)$ dapat ditulis sebagai
+    \[f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\]
+    dimana $a_i\in\Q$ untuk $i=0,1,\ldots,n$. Karena $\alpha$ adalah akar dari $f(x)$, maka
+    \[f(\alpha)=a_n\alpha^n+a_{n-1}\alpha^{n-1}+\cdots+a_1\alpha+a_0=0\]
+    Kita konjugatkan kedua ruas persamaan tersebut, sehingga kita punya
+    \begin{equation}\label{3}
+        \overline{a_n\alpha^n+a_{n-1}\alpha^{n-1}+\cdots+a_1\alpha+a_0}=\overline{0}
+    \end{equation}
+    Disini kita gunakan sifat konjugat, dimana misalkan $\alpha_1=a_1+b_1\sqrt{c}$ dan $\alpha_2=a_2+b_2\sqrt{c}$, maka akan memenuhi
+    \begin{flalign*}
+        \overline{\alpha_1+\alpha_2}&=\overline{\alpha_1}+\overline{\alpha_2}&\\
+        \overline{\alpha_1\alpha_2}&=\overline{\alpha_1}\cdot\overline{\alpha_2}&\\
+        \overline{\alpha_1^n}&=\left(\overline{\alpha_1}\right)^n&
+    \end{flalign*}
+    Dari persamaan \eqref{3}, didapatkan
+    \begin{flalign*}
+        \overline{a_n\alpha^n+a_{n-1}\alpha^{n-1}+\cdots+a_1\alpha+a_0}&=\overline{0}\\
+        \overline{a_n}\,\overline{\alpha^n}+\overline{a_{n-1}}\,\overline{\alpha^{n-1}}+\cdots+\overline{a_1}\,\overline{\alpha}+\overline{a_0}&=0\\
+        \overline{a_n}\,(\overline{\alpha})^n+\overline{a_{n-1}}\,(\overline{\alpha})^{n-1}+\cdots+\overline{a_1}\,\overline{\alpha}+\overline{a_0}&=0\\
+    \end{flalign*}
+    Sekarang perhatikan karena $a_i\in\Q$ untuk $i=0,1,\ldots,n$, maka $\overline{a_i}=a_i$. Pada akhirnya diperoleh
+    \begin{flalign*}
+        a_n(\overline{\alpha})^n+a_{n-1}(\overline{\alpha})^{n-1}+\cdots+a_1\overline{\alpha}+a_0&=0\\
+        \boxed{f(\overline{\alpha})=0}
+    \end{flalign*}
+    $\therefore$ terbukti bahwa $\overline{\alpha}$ juga akar dari $f(x)$.\\
+
+    \item Tunjukkan bahwa polinomial $f(x)=x^4-5x^2+6x+1\in\Q[x]$ adalah tak tereduksi\\
+    \jawab\\
+    Untuk menunjukkan bahwa polinomial \( f(x) = x^4 - 5x^2 + 6x + 1 \) adalah tak tereduksi dalam \(\mathbb{Q}[x]\), kita bisa menggunakan Kriteria Eisenstein.
+
+Kriteria Eisenstein menyatakan bahwa suatu polinomial \( a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \) dalam \(\mathbb{Q}[x]\) adalah tak tereduksi jika terdapat bilangan prima \( p \) sedemikian rupa sehingga:
+\begin{enumerate}[label=(\arabic*)]
+    \item \( p \) tidak membagi \( a_n \)
+    \item \( p \) membagi \( a_i \) untuk semua \( i < n \)
+    \item \( p^2 \) tidak membagi \( a_0 \)
+\end{enumerate}
+
+Mari kita coba beberapa bilangan prima.
+\begin{itemize}
+    \item \( p = 2 \),\( a_4 = 1 \) tidak habis dibagi 2, tidak memenuhi kondisi kedua.
+    \item \( p = 3 \),\( a_4 = 1 \) tidak habis dibagi 3, tidak memenuhi kondisi kedua.
+    \item \( p = 5 \),\( a_4 = 1 \) tidak habis dibagi 5, tidak memenuhi kondisi kedua.
+\end{itemize}
+
+Tidak ada bilangan prima \( p \) yang memenuhi Kriteria Eisenstein. Karena itu, kita harus mencari metode lain untuk menunjukkan bahwa \( f(x) \) tak tereduksi.
+
+{\color{red} NOTE*: Kriteria Eisenstein bersifat "\textbf{jika maka}" bukan "\textbf{jika dan hanya jika}". Artinya, jika kita tidak menemukan bilangan prima yang memenuhi kriteria Eisenstein, kita tidak bisa menyimpulkan bahwa polinomial tersebut tereduksi.}
+
+\begin{teorema}[Teorema 8.4.5]
+Misalkan $f(x)$ suatu polinomial taknol di $\Z[x]$. Maka $f(x)$ dapat difaktorkan
+menjadi perkalian dua polinomial berderajad r dan s di $\Q[x]$ bila dan hanya bila $f(x)$ juga
+bisa difaktorkan kedalam hasil kali dua polinomial yang mempunyai derajad sama r dan s
+di $\Z[x]$.
+\end{teorema}
+Sekarang kita periksa apakah \( f(x) \) bisa difaktorkan menjadi dua polinomial dengan derajat yang lebih rendah. Misalnya, jika \( f(x) \) bisa difaktorkan menjadi dua polinomial kuadrat, maka kita dapat menulis:
+\[
+f(x) = (x^2 + ax + b)(x^2 + cx + d)
+\]
+Mengalikan kedua polinomial kuadrat tersebut dan menyamakan koefisien dengan \( f(x) \):
+\[
+(x^2 + ax + b)(x^2 + cx + d) = x^4 + (a+c)x^3 + (ac+b+d)x^2 + (ad+bc)x + bd
+\]
+Bandingkan dengan \( f(x) = x^4 - 5x^2 + 6x + 1 \)
+\begin{enumerate}[label=(\roman*)]
+    \item \( a+c = 0 \)
+    \item \( ac + b + d = -5 \)
+    \item \( ad + bc = 6 \)
+    \item \( bd = 1 \).
+\end{enumerate}
+
+Menurut teorema jika \( f(x) \) bisa difaktorkan di $\Z[x]$, maka \( f(x) \) juga bisa difaktorkan di $\Q[x]$. 
+Sekarang pandang $a,b,c,d\in\Z$, maka $bd=1$ berakibat $b=d=\pm 1$.  Kemudia subtitusi pada (iii) sehingga kita punya $a+c=\pm 6$.
+Hal ini kontradiksi dengan (i) yang menyatakan $a+c=0$.\\
+
+$\therefore$ $f(x)$ adalah tak tereduksi di $\Q[x]$.
+
+\item Misalkan $f(x)=3x^4-6x^3+10x^2-5x+9\in\Z[x]$. Tunjukkan $f(x)$ tak tereduksi di $\Z[x]$\\
+\jawab
+\begin{teorema}[Teorema 8.4.7]
+Misalkan $f (x) \in \Z[x]$ dengan $\deg( f (x)) \leq 1$. Untuk suatu bilangan prima $p$,
+polinomial $\mathcal{F}(x) \in \Z_p[x]$ diperoleh dari $f (x) \in Z[x]$ dengan melakukan semua koefisien
+menjadi modulo $p$. Bila $\deg( f (x)) = \deg(\mathcal{F}(x))$ dan $\mathcal{F}(x)$ tak-tereduksi di $Z_p[x]$, maka $f (x)$
+tak-tereduksi di $\Z[x]$.
+\end{teorema}
+Hal yang pertama dilakukan adalah memilih bilangan prima $p$. Kita pilih $p$ sehingga dia tak tereduksi di $\Z_p[x]$, karena jika tidak 
+kita tidak dapat menarik kesimpulan.\\
+Disini dengan mudahnya bisa kita pilih $p=2$, sehingga polinomial $\mathcal{F}(x)\in \Z_2[x]$ adalah
+\[\mathcal{F}(x)=x^4+x+1\]
+Subtitusi semua anggota $Z_2$
+\begin{flalign*}
+    x=0&\implies \mathcal{F}(0)=0+0+1=1\in\Z_2&\\
+    x=1&\implies \mathcal{F}(1)=1+1+1=1\in\Z_2&
+\end{flalign*}
+Namun hal ini kurang tepat sebab cara ini menunjukkan bahwa $\mathcal{F}(x)$ tidak bisa 
+dibentuk menjadi $\mathcal{F}(x)=(x-\alpha)(x^3+\beta x^2+\gamma x+\delta)$.
+Seharusnya kita cukup perlu menunjukkan bahwa $\mathcal{F}(x)$ tidak bisa difaktorkan menjadi dua polinomial kuadrat. (karena polinom kuadrat bisa difaktorkan kembali jika memang punya akar)
+\[x^4+x+1=(x^2+ax+b)(x^2+cx+d)\]
+Dengan cara yang sama seperti nomor 4 kita dapatkan $bd=1$ akibatnya $b=d=1$.
+Namun $1=bc+ad=a+c$ yang bertentangan dengan $a+c=0$. Oleh sebab itu, $\mathcal{F}(x)$ tak tereduksi di $\Z_2[x]$.\\
+$\therefore$ $f(x)$ tak tereduksi di $\Z[x]$.
+\end{enumerate}
+\end{document}
