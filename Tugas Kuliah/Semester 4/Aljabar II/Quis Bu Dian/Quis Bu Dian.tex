@@ -4,6 +4,7 @@
 \usepackage{enumitem}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage{cancel}
 \usepackage{geometry}
@@ -22,7 +23,156 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
-\newcommand{\jawab}{\textbf{Jawab}:}
-\begin{document}
+\newcommand{\jawab}{\textbf{Solusi}:}
 
+\begin{document}
+\begin{center}
+    \textbf{QUIS 2}
+\end{center}
+\begin{enumerate}
+    \item Diberikan $f(x),g(x)\in \Z_7[x]$ dimana $f(x)=x^4+x^3+x^2+x$ dan $g(x)=x^3+1$.
+    \begin{enumerate}
+        \item Tentukan $\gcd(f(x),g(x))$.\\
+        \jawab\\
+        Dengan menggunakan algoritma Euclid
+        \begin{itemize}
+            \item Cari hasil dan sisa bagi $f(x)$ dengan $g(x)$
+            \[
+        \arraycolsep=1pt
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{*1r @{\hskip\arraycolsep}c@{\hskip\arraycolsep} *{11}r}
+            & &x&+1&\\
+        \cline{2-6}
+        x^3+1 & \longdiv & x^4 & + x^3 &+ x^2 & +x  \\
+            &  & x^4 &+ x \\
+        \cline{2-5}
+            &  & &x^3 &+ x^2  \\
+            &  & &x^3 &+1\\
+        \cline{4-6}
+            &  & & &x^2 &- 1\\
+        \end{array}\]
+        Hasil bagi adalah $x+1$ dan sisa bagi adalah $r_1(x)=x^2+6$.
+        \begin{equation}\label{1}
+            f(x)=(x+1)g(x)+(x^2+6)
+        \end{equation}
+            \item Kemudian hasil dan sisa bagi $g(x)$ dengan $r_1(x)$
+            \[
+        \arraycolsep=1pt
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{*1r @{\hskip\arraycolsep}c@{\hskip\arraycolsep} *{11}r}
+            & &x&\\
+        \cline{2-4}
+        x^2+6 & \longdiv & x^3 & + 1  \\
+            &  & x^3 &+ 6x \\
+        \cline{2-5}
+            &  & &-6x & +1  \\
+        \end{array}\]
+        Hasil bagi adalah $x$ dan sisa bagi adalah $r_2(x)=x+1$.
+        \begin{equation}\label{2}
+            g(x)=(x)r_1(x)+(x+1)
+        \end{equation}
+        \item Selanjutnya hasil dan sisa bagi $r_1(x)$ dengan $r_2(x)$
+        \[
+        \arraycolsep=1pt
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{*1r @{\hskip\arraycolsep}c@{\hskip\arraycolsep} *{11}r}
+            & &x&-1\\
+        \cline{2-5}
+        x+1 & \longdiv & x^2 & + 6  \\
+            &  & x^2 &+ x \\
+        \cline{2-5}
+            &  & &-x & +6  \\
+            &  & &-x & -1  \\
+        \cline{3-5}
+            &  & & &7 &=0 \\
+        \end{array}\]
+        Hasil bagi adalah $x+6$ dan sisa bagi adalah $0$.
+        \begin{equation}\label{3}
+            r_1(x)=(x+6)r_2(x)+0
+        \end{equation}
+        Ketika sisa bagi adalah $0$ maka proses algoritma Euclid selesai.
+        \end{itemize}
+        Hal diatas menyatakan bahwa $\gcd(r_1(x),r_2(x))=r_2(x)=x+1$.\\
+        Jadi $\gcd(f(x),g(x))=\gcd(g(x),r_1(x))=\gcd(r_1(x),r_2(x))=\boxed{x+1}$.\\
+
+        \item Nyatakan $\gcd(f(x),g(x))$ sebagai kombinasi linear dari $f(x)$ dan $g(x)$.\\
+        \jawab\\
+        Dari persamaan \eqref{1} dapat diubah
+        \begin{equation*}
+            f(x)-(x+1)g(x)=r_1(x)
+        \end{equation*}
+        subtistusi persamaan diatas ke persamaan \eqref{2}
+        \begin{flalign*}
+            g(x)=x\left[f(x)-(x+1)g(x)\right]+(x+1)\\
+            g(x)-x\left[f(x)-(x+1)g(x)\right]=x+1\\
+            g(x)-xf(x)+x(x+1)g(x)=x+1\\
+            (-x)f(x)+(x^2+x+1)g(x)=x+1\\
+            \boxed{(6x)f(x)+(x^2+x+1)g(x)=x+1}
+        \end{flalign*}
+
+    \end{enumerate}
+    \item Tunjukkan bahwa $f(x)=7x^3+9x^2+4x+11$ tak tereduksi di $\Z[x]$.\\
+    Catatan: Terapkan Teorema berikut:
+    \begin{teorema}
+        Misalkan $f (x) \in \Z[x]$ dengan $\deg( f (x)) \leq 1$. Untuk suatu bilangan prima $p$,
+        polinomial $\mathcal{F}(x) \in \Z_p[x]$ diperoleh dari $f (x) \in \Z[x]$ dengan melakukan semua koefisien
+        menjadi modulo $p$. Bila $\deg( f (x)) = \deg(\mathcal{F}(x))$ dan $\mathcal{F}(x)$ tak-tereduksi di $\Z_p[x]$, maka $f (x)$
+        tak-tereduksi di $\Z[x]$.
+    \end{teorema}
+    \jawab\\
+    Kalimat "Untuk suatu bilangan prima $p$" berarti cukup pilih satu nilai $p$. Disini kita pilih $p=2$.\\
+    {\color{red}CATAT*:Jika nilai $p$ nantinya membuat polinomial $\mathcal{F}(x)$ tereduksi, maka kita harus memilih nilai $p$ yang lain. Dikarenakan Teorema tersebut berbunyi \textbf{"Jika Maka"} yang nantinya kita tak dapat menarik kesimpulan jika $\mathcal{F}(x)$ tereduksi}\\
+
+    Kita dapatkan $\mathcal{F}(x)=x^3+x^2+1$ dengan melakukan semua koefisien dari $f(x)$ menjadi modulo $2$. Jelas bahwa $\deg(f(x))=\deg(\mathcal{F}(x))=3$, kemudian kita cek apakah $\mathcal{F}(x)$ tereduksi di $\Z_2[x]$ atau tidak.\\
+
+    Dalam kasus ini, disebabkan $\mathcal{F}(x)$ polinom derajat 3, maka kemungkinan tereduksinya adalah menjadi polinom derajat 1 dan 2. Dapat ditulis
+    \[\mathcal{F}(x)=(x-a)(x^2+bx+c)\]
+    Disini kita cukup mencari nilai akarnya yaitu $a$ yang memenuhi $\mathcal{F}(a)=0$.
+    Subtistusi semua $x\in\Z_2$ ke $\mathcal{F}(x)$ 
+    \begin{flalign*}
+        x=0&\implies\mathcal{F}(0)=0^3+0^2+1=1\\
+        x=1&\implies\mathcal{F}(1)=1^3+1^2+1=3=1
+    \end{flalign*}
+    Dari hasil diatas, kita tidak dapat menemukan nilai $a$ yang memenuhi $\mathcal{F}(a)=0$. Sehingga $\mathcal{F}(x)$ tidak tereduksi di $\Z_2[x]$.\\
+
+    Dengan demikian, berdasarkan Teorema diatas, $f(x)$ tidak tereduksi di $\Z[x]$.\\
+    \item \begin{enumerate}
+        \item Tunjukkan bahwa $I=\langle x^3+x+1 \rangle$ bukan merupakan ideal maksimal dari $\Z_3[x]$.\\
+        \jawab
+        \begin{teorema}[Teorema 8.6.2]
+            Misalkan $\mathbb{F}$ adalah suatu lapangan. Suatu ideal nontrivial $I = \langle p(x)\rangle$ adalah
+            suatu ideal maksimal dalam $\mathbb{F}[x]$ jika dan hanya jika $p(x)$ tak-tereduksi atas $\mathbb{F}$.
+        \end{teorema}
+        Dengan cara yang sama seperti soal nomor 2, derajat dari $x^3+x+1$ adalah 3. Kita cek apakah $x^3+x+1$ tereduksi di $\Z_3[x]$.
+        \begin{flalign*}
+            x=0&\implies 0^3+0+1=1\\
+            x=1&\implies 1^3+1+1=3=0\\
+            x=2&\implies 2^3+2+1=11=2
+        \end{flalign*}
+        Ternyata terdapat akar dari $x^3+x+1$ yaitu $x=1$. Sehingga $x^3+x+1$ tereduksi di $\Z_3[x]$.\\
+
+        $\therefore$ Berdasarkan Teorema diatas, $I=\langle x^3+x+1 \rangle$ bukan merupakan ideal maksimal dari $\Z_3[x]$.
+
+        \item Tentukan ideal $J$ dari $\Z_3[x]$ sehingga $I\subset J$ dan $J\ne \Z_3[x]$. Jelaskan jawaban anda\\
+        \jawab\\
+        Polinomial $x^3+x+1$ dapat difaktorkan menjadi 
+        \[x^3+x+1=(x+2)(x^2+x+2)\]
+        Perhatikan bahwa $x^2+x+2$ dan $x+2$ masing masing sudah tidak dapat difaktorkan.
+        Dari sini kita dapat memilih $J=\langle x+2 \rangle$ atau $J=\langle x^2+x+2 \rangle$, mengapa?
+        \begin{itemize}
+            \item Untuk $J=\langle x+2 \rangle$ jika ditulis secara definisi adalah sebagai berikut 
+            \[J=\{f(x)(x+2)\,|\,f(x)\in\Z_3[x]\}\]
+            Ketika kita memilih $g(x)=(x^2+x+2)h(x)$ untuk suatu $h(x)\in J$, maka
+            berakibat $\langle g(x) \rangle\subset J$. Atau
+            \[\langle g(x) \rangle=\{(x^2+x+2)(x+2)f(x)\,|\,f(x)\in\Z_3[x]\}=I\]
+            Sehingga $I\subset J$.
+
+            \item Dengan cara yang sama untuk $J=\langle x^2+x+2 \rangle$, 
+            pilih $g(x)=(x+2)h(x)$ untuk suatu $h(x)\in J$, maka
+            berakibat $\langle g(x) \rangle\subset J$. Atau
+            \[\langle g(x) \rangle=\{(x+2)(x^2+x+2)f(x)\,|\,f(x)\in\Z_3[x]\}=I\]
+            Pada akhirnya $I\subset J$ juga.
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
 \end{document}
