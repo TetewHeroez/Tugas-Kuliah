@@ -1,7 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1719565098 "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex" "EAS.pdf" "EAS" 1719565100 2
+["pdflatex"] 1719567485 "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex" "EAS.pdf" "EAS" 1719567487 0
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1719400582 81424 302ea179ecbb90d8ef2108b3618d82bc ""
+  "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1700108174 11548 1d6f8dddb69af0672de13df14be54107 ""
   "C:/Users/teoso/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1698504575 24141909 433df9831d3d5def141b09c8a957124f ""
+  "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -27,6 +29,8 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
+  "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/line10.pfb" 1247596653 11493 4f5ed183a47d3197cf8cd322325db6de ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1247596673 31764 459c573c03a4949a528c2cc7f557e217 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty" 1643997108 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
@@ -243,9 +247,9 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
-  "EAS.aux" 1719565099 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
-  "EAS.tex" 1719565094 7634 160200cec592b50f127e4937c2724a4e ""
-  "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex" 1719565094 7634 160200cec592b50f127e4937c2724a4e ""
+  "EAS.aux" 1719567487 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
+  "EAS.tex" 1719567484 8923 bf19e42b4c5092c51a03e9e610be0bef ""
+  "c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex" 1719567484 8923 bf19e42b4c5092c51a03e9e610be0bef ""
   (generated)
   "EAS.aux"
   "EAS.log"

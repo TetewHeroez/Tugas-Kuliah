@@ -410,6 +410,9 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontr
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\pgflibraryfillbetween.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\libs\tikzlibrarypgfplots.decorations.softclip.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\libs\tikzlibrarypgfplots.decorations.softclip.code.tex
+INPUT .\EAS.aux
+INPUT .\EAS.aux
+INPUT EAS.aux
 OUTPUT EAS.aux
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -443,8 +446,11 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.t
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
 OUTPUT EAS.pdf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT EAS.aux
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbsy10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbsy10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
@@ -463,5 +469,9 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\latxfont\line10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\latxfont\line10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb

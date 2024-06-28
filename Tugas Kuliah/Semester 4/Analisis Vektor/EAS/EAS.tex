@@ -59,7 +59,7 @@
                     f(x,y,z)&=\displaystyle\int y^2z^3\, dx=xy^2z^3+g(y,z)\\
                     f(x,y,z)&=\displaystyle\int 2xyz^3\, dy=xy^2z^3+h(x,z)\\
                     f(x,y,z)&=\displaystyle\int 3xy^2z^2\, dz =xy^2z^3+l(x,y)
-                \end{cases}&\\
+                \end{cases}
             \end{flalign*}
             Ketiga persamaan di atas terpenuhi ketika $g(y,z)=h(x,z)=l(x,y)=C$ dengan $C$ adalah suatu konstanta sembarang.
             
@@ -80,11 +80,34 @@
                 \draw[blue,smooth,-Latex] (-2,2)--(-2,1);
                 \node[blue] at (2,2) [above right] {$C$};
 
-                \draw[fill=patterns, pattern=north east lines] (-2,0) -- (2,0) -- (2,2) -- (-2,2) -- cycle;
+                \fill[pattern=north west lines] (-2,0) -- (2,0) -- (2,2) -- (-2,2) -- cycle;
+                \node at (2,0) [below] {$a$};
+                \node at (-2,0) [below] {$-a$};
+                \node at (0,2) [above right] {$b$};
 
-                \node at (2,-2) [below right] {$A$};
+                \node at (1,1) [] {\colorbox{lightgray}{$A$}};
             \end{tikzpicture}
         \end{center}
+        \begin{itemize}
+            \item Dengan Teorema Green
+            \begin{flalign*}
+                \oint_C \vb*{F}\cdot d\vb*{r}&=\iint_A \left(-\frac{\del}{\del x}(-2xy)-\frac{\del}{\del y}(x^2+y^2)\right)\, dA&\\
+                &=\iint_A (-2y-2y)\, dA&\\
+                &=-4\int_{-a}^a\int_0^b y\, dy\, dx&\\
+                &=-4\int_{-a}^a\left[\frac{1}{2}y^2\right]_0^b\, dx&\\
+                &=-2\int_{-a}^a b^2\, dx&\\
+                &=-2b^2[a-(-a)]=-4ab^2
+            \end{flalign*}
+            \item Secara langsung
+            \begin{flalign*}
+                \oint_C \vb*{F}\cdot d\vb*{r}&=\oint_C (x^2+y^2)\, dx-2xy\, dy&\\
+                &=\int_{-a}^a (x^2+0)\, dx-2x(0)d(0) +\int_0^b (0+y^2)\, d(0)-2aydy&\\
+                &+\int_{-a}^a ((-x)^2+b^2)\, d(-x)-2xb\,d(0)+\int_0^b (0+(-y)^2)\, d(0)-2(-a)(-y)dy&\\
+                &=\cancel{\int_{-a}^a x^2\, dx}-\int_0^b 2ay\, dy-\cancel{\int_{-a}^a x^2\, dx}-\int_{-a}^a b^2\, dx-\int_0^b 2ay\, dy&\\
+                &=-4a\int_0^b y\, dx-[b^2x]^a_{-a}&\\
+                &=-2ab^2-2ab^2=-4ab^2
+            \end{flalign*}
+        \end{itemize}
         
         \item untuk menghitung $\displaystyle\oint_C \vb*{F}\cdot d\vb*{r}$ dengan $\vb*{F}=2z\vb*{i}+x\vb*{j}+3y\vb*{k}$ dan $C$ adalah batas luasan elips bidang $z=x$ yang berada dalam silinder $x^2+y^2=4$  yang berorientasi searah dengan putaran jarum jam seperti yang digambarkan jika dilihat dari atas\\
         \jawab\\
@@ -101,8 +124,8 @@
             &=\dfrac{1}{\sqrt{2}}\iint_S (3-1)\, dS&\\
             &=\sqrt{2}\iint_S dS
         \end{flalign*}
-        $\displaystyle\iint_S dS$ adalah luas permukaan elips bidang. Dengan rumus luas elips $A=\pi ab$ dengan $a$ dan $b$ masing-masing adalah sumbu mayor dan sumbu minor elips.
-        Pada gambar dapat dilihat bahwa sumbu minor $a=2$ dan untuk sumbu mayor dapat dihitung menggunkan Teorema Pythagoras yaitu $b=\sqrt{2^2+2^2}=2\sqrt{2}$. Sehingga 
+        $\displaystyle\iint_S dS$ adalah luas permukaan elips bidang. Dengan rumus luas elips $A=\pi ab$ dengan $a$ dan $b$ masing-masing adalah sumbu minor dan sumbu mayor elips.
+        Pada gambar sebelumnya dapat dilihat bahwa sumbu minor $a=2$ dan untuk sumbu mayor dapat dihitung menggunkan Teorema Pythagoras yaitu $b=\sqrt{2^2+2^2}=2\sqrt{2}$. Sehingga 
         \[\iint_S dS=\pi(2)(2\sqrt{2})=4\pi\sqrt{2}\]
         $\therefore\boxed{\displaystyle\oint_C \vb*{F}\cdot d\vb*{r}=\sqrt{2}(4\pi\sqrt{2})=8\pi}$ 
         \item Diketahui medan vektor $\vb*{F}(x,y,z)=27\vb*{i}+x\vb*{j}+z^2\vb*{k}$. Dengan Teorema Gauss, hitung $\displaystyle\iint_S \vb*{F}\cdot d\vb*{S}$ dengan $S$ adalah permukaan benda padat berupa shell silinder (lihat gambar), $1\leq x^2+y^2\leq 16$, $0\leq z\leq 2$.
