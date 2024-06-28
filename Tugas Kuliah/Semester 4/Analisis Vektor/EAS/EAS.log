@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  28 JUN 2024 10:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  28 JUN 2024 15:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/Kuis 2/Kuis 2.tex"
-(c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/Kuis 2/Kuis 2.tex
+**"c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex"
+(c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -312,16 +312,26 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \tcb@temp=\box66
 \tcb@temp=\box67
 \tcb@temp=\box68
-) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/physics\physics.sty
+Package: physics 
+ (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2023-08-29 L3 programming layer (loader) 
+ (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count290
+\l__pdf_internal_box=\box69
+))
+Package: xparse 2023-08-29 L3 Experimental document command parser
+)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count290
-\Gm@cntv=\count291
-\c@Gm@tempcnt=\count292
+\Gm@cnth=\count291
+\Gm@cntv=\count292
+\c@Gm@tempcnt=\count293
 \Gm@bindingoffset=\dimen193
 \Gm@wd@mp=\dimen194
 \Gm@odd@mp=\dimen195
@@ -341,7 +351,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count293
+\pgf@plot@mark@count=\count294
 \pgfplotmarksize=\dimen259
 )
 \tikz@lastx=\dimen260
@@ -352,21 +362,21 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@lastmovetoy=\dimen265
 \tikzleveldistance=\dimen266
 \tikzsiblingdistance=\dimen267
-\tikz@figbox=\box69
-\tikz@figbox@bg=\box70
-\tikz@tempbox=\box71
-\tikz@tempbox@bg=\box72
-\tikztreelevel=\count294
-\tikznumberofchildren=\count295
-\tikznumberofcurrentchild=\count296
-\tikz@fig@count=\count297
+\tikz@figbox=\box70
+\tikz@figbox@bg=\box71
+\tikz@tempbox=\box72
+\tikz@tempbox@bg=\box73
+\tikztreelevel=\count295
+\tikznumberofchildren=\count296
+\tikznumberofcurrentchild=\count297
+\tikz@fig@count=\count298
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count298
-\pgfmatrixcurrentcolumn=\count299
-\pgf@matrix@numberofcolumns=\count300
+\pgfmatrixcurrentrow=\count299
+\pgfmatrixcurrentcolumn=\count300
+\pgf@matrix@numberofcolumns=\count301
 )
-\tikz@expandcount=\count301
+\tikz@expandcount=\count302
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/tikz-3dplot\tikz-3dplot.sty (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
@@ -387,33 +397,33 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 \t@pgfplots@tokb=\toks41
 \t@pgfplots@tokc=\toks42
 \pgfplots@tmpa=\dimen269
-\c@pgfplots@coordindex=\count302
-\c@pgfplots@scanlineindex=\count303
+\c@pgfplots@coordindex=\count303
+\c@pgfplots@scanlineindex=\count304
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplotssysgeneric.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgfplotslibrary.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
 \t@pgf@toka=\toks43
 \t@pgf@tokb=\toks44
 \t@pgf@tokc=\toks45
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructure.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructureext.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count304
+\c@pgfplotsarray@tmp=\count305
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsmatrix.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count305
+\c@pgfplotstable@counta=\count306
 \t@pgfplotstable@a=\toks46
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsdeque.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.data.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.verb.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibrarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count306
+\c@pgfplotslibrarysurf@no=\count307
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolormap.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolor.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsstackedplots.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsplothandlers.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplothandler.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplotimage.code.tex))) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.scaling.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscoordprocessing.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.errorbars.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.markers.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsticks.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.paths.code.tex) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen270
 \pgfdecoratedremainingdistance=\dimen271
 \pgfdecoratedinputsegmentcompleteddistance=\dimen272
 \pgfdecoratedinputsegmentremainingdistance=\dimen273
 \pgf@decorate@distancetomove=\dimen274
-\pgf@decorate@repeatstate=\count307
+\pgf@decorate@repeatstate=\count308
 \pgfdecorationsegmentamplitude=\dimen275
 \pgfdecorationsegmentlength=\dimen276
 )
-\tikz@lib@dec@box=\box73
+\tikz@lib@dec@box=\box74
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphing.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplacing.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count308
+\pgfplots@numplots=\count309
 \pgfplots@xmin@reg=\dimen277
 \pgfplots@xmax@reg=\dimen278
 \pgfplots@ymin@reg=\dimen279
@@ -437,16 +447,16 @@ File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowlinewidth=\dimen286
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@layerbox@background=\box74
-\pgf@layerboxsaved@background=\box75
+\pgf@layerbox@background=\box75
+\pgf@layerboxsaved@background=\box76
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.markings.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.markings.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.shapes.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.shapes.code.tex)) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.text.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.text.code.tex
-\pgf@lib@dec@text@box=\box76
+\pgf@lib@dec@text@box=\box77
 )
-\tikz@lib@dec@te@box=\box77
+\tikz@lib@dec@te@box=\box78
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryintersections.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryintersections.code.tex
-\pgf@intersect@solutions=\count309
+\pgf@intersect@solutions=\count310
 )) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymath.code.tex (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfpu.code.tex)
-\tikz@math@for@depth=\count310
+\tikz@math@for@depth=\count311
 \tikz@math@dimen=\dimen287
 \tikz@math@toks=\toks47
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.code.tex
@@ -459,19 +469,11 @@ File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarythrough.code.tex
 File: tikzlibrarythrough.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xfp\xfp.sty (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2023-08-29 L3 programming layer (loader) 
- (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count311
-\l__pdf_internal_box=\box78
-))
+) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xfp\xfp.sty
 Package: xfp 2023-08-29 L3 Floating point unit
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
 Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
- (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
-Package: xparse 2023-08-29 L3 Experimental document command parser
-))
+)
 \tkzRadius=\dimen288
 \tkzLength=\dimen289
 \tkz@radi=\dimen290
@@ -589,24 +591,24 @@ Package geometry Warning: Over-specification in `h'-direction.
 Package geometry Warning: Over-specification in `v'-direction.
     `height' (674.3303pt) is ignored.
 
-(Kuis 2.aux)
-\openout1 = `"Kuis 2.aux"'.
+No file EAS.aux.
+\openout1 = `EAS.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
- (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count316
 \scratchdimen=\dimen301
@@ -661,65 +663,64 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 26.
+ on input line 27.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (13.98499pt too wide) detected at line 50
-[]
- []
 
-Package pgfplots info on input line 109: fill between: activating layered graphics
-\pgf@layerbox@axis background=\box80
-\pgf@layerboxsaved@axis background=\box81
-\pgf@layerbox@axis grid=\box82
-\pgf@layerboxsaved@axis grid=\box83
-\pgf@layerbox@axis ticks=\box84
-\pgf@layerboxsaved@axis ticks=\box85
-\pgf@layerbox@axis lines=\box86
-\pgf@layerboxsaved@axis lines=\box87
-\pgf@layerbox@axis tick labels=\box88
-\pgf@layerboxsaved@axis tick labels=\box89
-\pgf@layerbox@pre main=\box90
-\pgf@layerboxsaved@pre main=\box91
-\pgf@layerbox@axis descriptions=\box92
-\pgf@layerboxsaved@axis descriptions=\box93
-\pgf@layerbox@axis foreground=\box94
-\pgf@layerboxsaved@axis foreground=\box95
-Package pgfplots info on input line 109: Setting layers 'axis background,axis grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis foreground'...
-Package pgfplots info on input line 109: fillbetween: skipping empty intersection segment no 0
-Package pgfplots info on input line 109: fillbetween: skipping empty intersection segment no 2
+c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex:83: Package xcolor Error: Undefined color `patterns'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.83 ...2,0) -- (2,0) -- (2,2) -- (-2,2) -- cycle;
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+c:/Users/teoso/OneDrive/Documents/Latex/Tugas Kuliah/Semester 4/Analisis Vektor/EAS/EAS.tex:83: Package pgf Error: Unsupported color model `black'. Sorry.
+
+See the pgf package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.83 ...2,0) -- (2,0) -- (2,2) -- (-2,2) -- cycle;
+                                                  
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+Missing character: There is no , in font nullfont!
+Missing character: There is no , in font nullfont!
 [1
 
-{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-Overfull \hbox (0.14012pt too wide) detected at line 146
-[]
- []
-
-[3] [4] [5] (Kuis 2.aux)
+{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] (EAS.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 32644 strings out of 475248
- 847567 string characters out of 5757812
- 2081785 words of memory out of 5000000
- 53547 multiletter control sequences out of 15000+600000
- 563176 words of font info for 57 fonts, out of 8000000 for 9000
+ 32432 strings out of 475248
+ 832571 string characters out of 5757812
+ 1941785 words of memory out of 5000000
+ 53332 multiletter control sequences out of 15000+600000
+ 562525 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,15n,95p,1295b,2415s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "Kuis 2.pdf" (5 pages, 386873 bytes).
+ 83i,18n,93p,1289b,879s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on EAS.pdf (3 pages, 124627 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

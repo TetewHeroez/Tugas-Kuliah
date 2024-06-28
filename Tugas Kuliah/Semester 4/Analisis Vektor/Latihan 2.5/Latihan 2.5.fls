@@ -1,7 +1,7 @@
-PWD c:\Users\teoso\OneDrive\Documents\Latex\Tugas Kuliah\Semester 4\Analisis Vektor\Kuis 2
+PWD c:\Users\teoso\OneDrive\Documents\Latex\Tugas Kuliah\Semester 4\Analisis Vektor\Latihan 2.5
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\teoso\OneDrive\Documents\Latex\Tugas Kuliah\Semester 4\Analisis Vektor\Kuis 2\Kuis 2.tex
-OUTPUT Kuis 2.log
+INPUT c:\Users\teoso\OneDrive\Documents\Latex\Tugas Kuliah\Semester 4\Analisis Vektor\Latihan 2.5\Latihan 2.5.tex
+OUTPUT Latihan 2.5.log
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
@@ -164,18 +164,6 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\tikz-3dplot\tikz-3dplot.sty
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\tikz-3dplot\tikz-3dplot.sty
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrary3d.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrary3d.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgfplots\pgfplots.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgfplots\pgfplots.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfplots.revision.tex
@@ -238,11 +226,17 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\tkz-euclide\tkz-euc
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\tkz-euclide\tkz-euclide.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryangles.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryangles.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarybackgrounds.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarybackgrounds.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.markings.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.markings.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.markings.code.tex
@@ -397,21 +391,12 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshapes.arrows.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\shapes\pgflibraryshapes.arrows.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\libs\tikzlibrarypgfplots.fillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\libs\tikzlibrarypgfplots.fillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\tikzlibraryfillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\tikzlibraryfillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\tikzlibrarydecorations.softclip.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\tikzlibrarydecorations.softclip.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\pgflibraryfillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\pgflibraryfillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\pgfcontrib\pgflibraryfillbetween.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\libs\tikzlibrarypgfplots.decorations.softclip.code.tex
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgfplots\libs\tikzlibrarypgfplots.decorations.softclip.code.tex
-INPUT .\Kuis 2.aux
-INPUT .\Kuis 2.aux
-INPUT Kuis 2.aux
-OUTPUT Kuis 2.aux
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrary3d.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrary3d.code.tex
+INPUT .\Latihan 2.5.aux
+INPUT .\Latihan 2.5.aux
+INPUT Latihan 2.5.aux
+OUTPUT Latihan 2.5.aux
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -435,21 +420,9 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-OUTPUT Kuis 2.pdf
+OUTPUT Latihan 2.5.pdf
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
-INPUT Kuis 2.aux
+INPUT Latihan 2.5.aux
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
@@ -458,12 +431,8 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb

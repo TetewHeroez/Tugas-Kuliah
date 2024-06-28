@@ -167,8 +167,6 @@
                     \draw[thick,->] (0,0,0) -- (0,3,0) node [right] {\footnotesize$y$};
                     \draw[dashed] (0,0,0) -- (0,-3,0);
                     \draw[thick] (0,0,0.0) -- (0,0,4.0);
-                    % The curves slicing the surface
-                    \draw[blue,thick,opacity=0.5] plot[domain=-2:2,smooth,variable=\t] ({2.0},{\t},{4.0 - \t*\t});
                     % Region of integration
 		            \draw[gray,thick,fill=yellow,opacity=0.35] (2,2,0) -- (2,-2,0) -- (-2,-2,0) -- (-2,0,0) -- cycle;
                     % The surface
@@ -180,7 +178,8 @@
                         \draw[cyan,thick,opacity=0.25] plot[domain=-2:2,smooth,variable=\t] ({-\x},{\t},{4.0 - \t*\t}); 
                     }
                     % The curves slicing the surface
-                    \draw[blue,thick,opacity=0.5] plot[domain=-2:2,smooth,variable=\t] ({-2.0},{\t},{4.0 - \t*\t}); 
+                    \draw[blue,thick,opacity=0.5] plot[domain=-2:2,smooth,variable=\t] ({-2.0},{\t},{4.0 - \t*\t});
+                    \draw[blue,thick,opacity=0.5] plot[domain=-2:2,smooth,variable=\t] ({2.0},{\t},{4.0 - \t*\t});
                     %
                     \node[blue,above right] at (0,2.5,4.125) {$z = 4 - y^2$};
                     % Last part of the z axis
