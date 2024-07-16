@@ -9,5 +9,5 @@ Sayangnya disini hanya ada 2 mata kuliah yang kukerjakan pake `Latex` yaitu Alja
 
 | Mata Kuliah | Deskripsi |
 | ------ | ------ |
-| [Aljabar 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203) |  |
-| [Analisis 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203) |  |
+| [Aljabar 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203/Aljabar%20I) |  |
+| [Analisis 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203/Analisis%20I) |  |
