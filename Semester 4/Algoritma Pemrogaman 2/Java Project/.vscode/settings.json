@@ -1,0 +1,13 @@
+[
+{
+    "key": "f5",
+    "command": "runCommands",
+    "args": {
+        "commands": [
+            "workbench.output.action.clearOutput",
+            "testing.refreshTests",
+            "cmake.ctest"
+        ]
+    }
+}
+]
