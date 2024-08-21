@@ -9,5 +9,5 @@ Sayangnya disini hanya ada 2 mata kuliah yang kukerjakan pake `Latex` yaitu Alja
 
 | Mata Kuliah | Deskripsi |
 | ------ | ------ |
-| [Aljabar 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203/Aljabar%20I) | Mata kuliah abstrak, namun matkul ini lebih digemari karena tidak terlalu banyak definisi dan step-step untuk membuktikan atau menghitung permasalahannya masih bisa diterima oleh sebagian besar mahasiswa |
-| [Analisis 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203/Analisis%20I) | "**Real namun abstrak**" kata yang cocok untuk menggambarkan mata kuliah yang seharusnya menjadi dasar dari kalkulus, namun pada kenyataannya banyaknya definisi dan kurangnya pemahaman korelasi antar teorema membuat mahasiswa nge-cap sebagai Matkul **Gak Jelas** |
+| [Aljabar 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203/Aljabar%20I) | Mata kuliah abstrak, namun matkul ini lebih digemari kebanyakan mahasiswa karena tidak terlalu banyak definisi|
+| [Analisis 1](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203/Analisis%20I) | "**Real namun abstrak**" kata yang cocok untuk menggambarkan mata kuliah yang seharusnya menjadi dasar dari kalkulus|
