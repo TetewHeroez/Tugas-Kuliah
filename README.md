@@ -4,7 +4,7 @@ Bahasa pemograman yang sering kupake saat mengerjakan tugas-tugas dari dosen. Aw
 ## Tugas Kuliah
 Berisi tugas-tugas kuliah yang kukerjakan dalam bentuk file `.tex` dan diconvert ke bentuk `.pdf`. Akan ku jelaskan deskripsi beberapa mata kuliah yang telah kuambil dan kujalani
 
-### [Semester 3](https://github.com/TetewHeroez/Latex-Assignment/tree/main/Tugas%20Kuliah/Semester%203)
+### [Semester 3](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%203)
 Sayangnya disini hanya ada 2 mata kuliah yang kukerjakan pake `Latex` yaitu Aljabar 1 dan Analisis 1. Mungkin saat itu aku masih awam soal `Latex` yang menurutku lebih cepet ngerjain di kertas daripada ngetik.
 
 | Mata Kuliah | Deskripsi |
