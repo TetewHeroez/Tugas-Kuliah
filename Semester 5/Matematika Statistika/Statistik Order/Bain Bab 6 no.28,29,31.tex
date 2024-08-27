@@ -1,0 +1,245 @@
+\documentclass{exam}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Solution}:}
+\newcommand{\del}{\partial}
+\footer{}{\thepage}{}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\underline{Solusi:}}\par\noindent}
+\printanswers
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{tabular}{|lcl|}
+    \hline
+    Nama&:&Teosofi Hidayah Agung\\
+    NRP&:&5002221132\\
+    \hline
+\end{tabular}
+    \begin{enumerate}
+        \item [28.] Misalkan $X_1$ dan $X_2$ adalah sampel acak berukuran $n=2$ dari distribusi kontinu dengan pdf yang didefinisikan $f(x)=2x$ untuk $0<x<1$ dan $f(x)=0$ untuk yang lain.
+        \begin{enumerate}
+            \item Tentukan pdf marginal dari statistik order terkecil dan terbesar, $Y_1$ dan $Y_2$.
+            \begin{solution}
+                Untuk mencari pdf marginal, kita gunakan formula berikut
+                \begin{align*}
+                    g_k(y_k)=\frac{n!}{(k-1)!(n-k)!}[F(y_k)]^{k-1}[1-F(y_k)]^{n-k}f(y_k)
+                \end{align*}
+
+                Diketahui bahwa $n=2,\,f(y_k)=2y_k$ dan $F(y_k)=y_k^2$.
+                \begin{itemize}
+                    \item Untuk $Y_1$
+                    \begin{align*}
+                        g_{1}(y_1) &= \frac{2!}{((1-1)!(2-1)!)}[F(y_1)]^{1-1}[1-F(y_1)]^{2-1}f(y_1)\\
+                        &= 2[1-y_1^2]2y_1 = 4y_1-4y_1^3,\quad 0<y_1<1
+                    \end{align*}
+                    \item Untuk $Y_2$
+                    \begin{align*}
+                        g_{2}(y_2) &= \frac{2!}{((2-1)!(2-2)!)}[F(y_2)]^{2-1}[1-F(y_2)]^{2-2}f(y_2)\\
+                        &= 2[y_2^2]2y_2 = 4y_2^3,\quad 0<y_2<1
+                    \end{align*}
+                \end{itemize}
+                
+            \end{solution}
+            \item Tentukan pdf bersama dari $Y_1$ dan $Y_2$.
+            \begin{solution}
+                Untuk mencari pdf bersama dari $Y_1$ dan $Y_2$ kita gunakan formula berikut
+                \begin{align*}
+                    g(y_1,y_2) &= 2!f(y_1)f(y_2), \quad y_1<y_2
+                \end{align*}
+                Sehingga, kita dapatkan
+                \begin{align*}
+                    g(y_1,y_2) &= 2!\cdot 2y_1\cdot 2y_2\cdot = 8y_1y_2, \quad 0<y_1<y_2<1
+                \end{align*}
+            \end{solution}
+            \item Tentukan pdf dari rentang sampel $R=Y_2-Y_1$.
+            \begin{solution}
+                Misalkan $R=Y_2-Y_1$ dan $S=Y_1$, sehingga $Y_2=R+S$. Disini akan kita transformasikan sampel acak $(Y_1,Y_2)$ ke $(R,S)$.
+                \[J=\begin{vmatrix}
+                    \displaystyle\frac{\del Y_1}{\del R} & \displaystyle\frac{\del Y_1}{\del S}\\\\
+                    \displaystyle\frac{\del Y_2}{\del R} & \displaystyle\frac{\del Y_2}{\del S}
+                \end{vmatrix}=\begin{vmatrix}
+                    0 & 1\\
+                    1 & 1
+                \end{vmatrix}=-1\] 
+                Perhatikan untuk interval variabel sampelnya
+                \begin{align*}
+                    &0<y_1<y_2<1\\
+                    \iff& 0<s<r+s<1\\
+                    \iff& 0<s<1-r
+                \end{align*}
+                maka pdf bersama dari $R$ dan $S$ adalah
+                \begin{align*}
+                    g(r,s) &= g(y_1,y_2)|J|\\
+                    &= 8y_1y_2\\
+                    &= 8s(r+s),\quad 0<s<1-r
+                \end{align*}
+                Sekarang kita akan mencari pdf marginal dari $R$.
+                \begin{align*}
+                    g_R(r) &= \int_{0}^{1-r}8s(r+s)ds\\
+                    &= 8r\int_{0}^{1-r}s\,ds+8\int_{0}^{1-r}s^2ds\\
+                    &= 8r\left[\frac{s^2}{2}\right]_{0}^{1-r}+8\left[\frac{s^3}{3}\right]_{0}^{1-r}\\
+                    &= 8r\left[\frac{(1-r)^2}{2}\right]+8\left[\frac{(1-r)^3}{3}\right]\\
+                    &= 4r(1-r)^2+\frac{8}{3}(1-r)^3
+                \end{align*}
+                $\therefore$ pdf dari rentang sampel $R$ adalah $\displaystyle g_R(r)=4r(1-r)^2+\frac{8}{3}(1-r)^3, \quad 0<r<1$.
+            \end{solution}
+        \end{enumerate}
+
+        \item [29.] Tinjau sampel acak berukuran $n$ dari distribusi dengan pdf $f(x)=1/x^2$ untuk $1\leq x<\infty$ dan $f(x)=0$ untuk yang lain.
+        \begin{enumerate}
+            \item Dapatkan pdf bersama statistik order
+            \begin{solution}
+                Untuk mencari pdf bersama dari statistik order berukuran $n$, kita gunakan formula berikut
+                \begin{align*}
+                    g(y_1,y_2,...,y_n) &= n!f(y_1)f(y_2)\dots f(y_n),\quad y_1<\cdots<y_n
+                \end{align*}
+                Sehingga didapatkan pdf bersamanya
+                \begin{align*}
+                    g(y_1,y_2,...,y_n) &= n!\left(\frac{1}{y_1^2}\right)\left(\frac{1}{y_2^2}\right)\dots\left(\frac{1}{y_n^2}\right)\\
+                    &=\frac{n!}{\left(y_1y_2\dots y_n\right)^2},\quad 1<y_1<\cdots<y_n<\infty
+                \end{align*}
+            \end{solution}
+            \item Dapatkan pdf dari statistik order terkecil, $Y_1$.
+            \begin{solution}
+                Diketahui $\displaystyle f(y_k)=\frac{1}{y_k^2}$ dan $\displaystyle F(y_k)=\int_{1}^{y_k}\frac{1}{x^2}dx=1-\frac{1}{y_k}$. Kemudian kita gunakan formula berikut
+                \begin{align*}
+                    g_1(y_1) &= \frac{n!}{(1-1)!(n-1)!}[F(y_1)]^{1-1}[1-F(y_1)]^{n-1}f(y_1)\\
+                    &= \frac{n!}{(n-1)!}\left[1-\left(1-\frac{1}{y_1}\right)\right]\left(\frac{1}{y_1^2}\right)\\
+                    &= \frac{n}{y_1^3},\quad 1<y_1<\infty
+                \end{align*}
+            \end{solution}
+            \item Dapatkan pdf dari statistik order terbesar, $Y_n$.
+            \begin{solution}
+                Dengan cara yang sama, kita dapatkan
+                \begin{align*}
+                    g_n(y_n) &= \frac{n!}{(n-1)!(n-n)!}[F(y_n)]^{n-1}[1-F(y_n)]^{n-n}f(y_n)\\
+                    &= n\left(1-\frac{1}{y_n}\right)^{n-1}\left(\frac{1}{y_n^2}\right)\\
+                    &= \frac{n}{y_n^2}\left(1-\frac{1}{y_n}\right)^{n-1},\quad 1<y_n<\infty
+                \end{align*}
+            \end{solution}
+            \item Dapatkan pdf dari rentang sampel, $R=Y_n-Y_1$, untuk $n=2$.
+            \begin{solution}
+                Misalkan $R=Y_n-Y_1$ dan $S=Y_1$, sehingga $Y_2=R+S$. Disini akan kita transformasikan sampel acak $(Y_1,Y_2)$ ke $(R,S)$.
+                \[J=\begin{vmatrix}
+                    \displaystyle\frac{\del Y_1}{\del R} & \displaystyle\frac{\del Y_1}{\del S}\\\\
+                    \displaystyle\frac{\del Y_2}{\del R} & \displaystyle\frac{\del Y_2}{\del S}
+                \end{vmatrix}=\begin{vmatrix}
+                    0 & 1\\
+                    1 & 1
+                \end{vmatrix}=-1\] 
+                Perhatikan untuk interval variabel sampelnya
+                \begin{align*}
+                    &1<y_1<y_2<\infty\\
+                    \iff& 1<s<r+s<\infty\\
+                    \iff& 1<s<\infty
+                \end{align*}
+                maka pdf bersama dari $R$ dan $S$ adalah
+                \begin{align*}
+                    g(r,s) &= g(y_1,y_2)|J|\\
+                    &= 2\left(\frac{1}{y_1^2}\right)\left(\frac{1}{y_2^2}\right)\\
+                    &= 2\left(\frac{1}{s^2}\right)\left(\frac{1}{(r+s)^2}\right),\quad 1<s<\infty
+                \end{align*}
+                Sekarang kita akan mencari pdf marginal dari $R$.
+                \begin{align*}
+                    g_R(r) &= 2\int_{1}^{\infty}\frac{1}{s^2(r+s)^2}ds\\
+                    &= 2\int_{1}^{\infty} \frac{2}{r^3(r+s)}+\frac{1}{r^2(r+s)^2}+\frac{1}{r^2s^2}-\frac{2}{r^3s}ds\\
+                    &= 2\left[\frac{2}{r^3}\ln(r+s)-\frac{1}{r^2(r+s)}-\frac{1}{r^2s}-\frac{2}{r^3}\ln s\right]_{1}^{\infty}\\
+                    &= 2\left[\frac{2}{r^3}\ln\left(\frac{r+s}{s}\right)-\frac{1}{r^2(r+s)}-\frac{1}{r^2s}\right]_{1}^{\infty}\\
+                    &= 2\left[\frac{2}{r^3}\ln\left(1\right)-0-0-\left(\frac{2}{r^3}\ln(r+1)-\frac{1}{r^2(r+1)}-\frac{1}{r^2}\right)\right]\\
+                    &= \frac{1}{r^2(r+1)}+\frac{1}{r^2}-\frac{2}{r^3}\ln(r+1)
+                \end{align*}
+                $\therefore$ pdf dari rentang sampel $R$ adalah $\displaystyle g_R(r)=\frac{1}{r^2(r+1)}+\frac{1}{r^2}-\frac{2}{r^3}\ln(r+1), \quad 1<r<\infty$.
+            \end{solution}
+            \item Dapatkan pdf dari median sampel $Y_r$, asumsikan $n$ ganjil sehingga $r=(n+1)/2$.
+            \begin{solution}
+                Gunakan formula yang sama
+                \begin{align*}
+                    g_r(y_r) &= \frac{n!}{(r-1)!(n-r)!}[F(y_r)]^{r-1}[1-F(y_r)]^{n-r}f(y_r)\\
+                    &= \frac{n!}{\left(\frac{n-1}{2}\right)!\left(\frac{n-1}{2}\right)!}\left[1-\frac{1}{y_r}\right]^{\frac{n-1}{2}}\left[1-\left(1-\frac{1}{y_r}\right)\right]^{\frac{n-1}{2}}\left(\frac{1}{y_r^2}\right)\\
+                    &= \frac{n!}{\left(\left(\frac{n-1}{2}\right)!\right)^2}\left(1-\frac{1}{y_r}\right)^{\frac{n-1}{2}}\left(\frac{1}{y_r}\right)^\frac{n+3}{2},\quad 1<y_r<\infty
+                \end{align*}
+            \end{solution}
+        \end{enumerate}
+
+        \item [31.] Tinjau sampel acak berukuran $n$ dari distribusi eksponensial, $X_i\sim \text{EXP}(1)$. Dapatkan setiap pdf berikut:
+        \begin{enumerate}
+            \item statistik order terkecil, $Y_1$.
+            \begin{solution}
+                Diketahui bahwa $f(x)=e^{-x}$ dan $F(x)=1-e^{-x}$. Maka, kita dapatkan
+                \begin{align*}
+                    g_1(y_1) &= \frac{n!}{(1-1)!(n-1)!}[F(y_1)]^{1-1}[1-F(y_1)]^{n-1}f(y_1)\\
+                    &= n [1-(1-e^{-y_1})]^{n-1}e^{-y_1}\\
+                    &= n[e^{-y_1}]^{n-1}e^{-y_1}\\
+                    &= \frac{n}{e^{ny_1}},\quad 0<y_1<\infty
+                \end{align*}
+            \end{solution}
+            \item statistik order terbesar, $Y_n$.
+            \begin{solution}
+                Dengan cara yang sama, kita dapatkan
+                \begin{align*}
+                    g_n(y_n) &= \frac{n!}{(n-1)!(n-n)!}[F(y_n)]^{n-1}[1-F(y_n)]^{n-n}f(y_n)\\
+                    &= n(1-e^{-y_n})^{n-1}e^{-y_n},\quad 0<y_n<\infty
+                \end{align*}
+            \end{solution}
+            \item rentang sampel, $R=Y_n-Y_1$.
+            \begin{solution}
+                Misalkan $R=Y_n-Y_1$ dan $S=Y_1$, sehingga $Y_n=R+S$. Disini akan kita transformasikan sampel acak $(Y_1,Y_n)$ ke $(R,S)$.
+                \[J=\begin{vmatrix}
+                    \displaystyle\frac{\del Y_1}{\del R} & \displaystyle\frac{\del Y_1}{\del S}\\\\
+                    \displaystyle\frac{\del Y_n}{\del R} & \displaystyle\frac{\del Y_n}{\del S}
+                \end{vmatrix}=\begin{vmatrix}
+                    0 & 1\\
+                    1 & 1
+                \end{vmatrix}=-1\] 
+                Perhatikan untuk interval variabel sampelnya
+                \begin{align*}
+                    &0<y_1<y_n<\infty\\
+                    \iff& 0<s<r+s<\infty\\
+                    \iff& 0<s<\infty
+                \end{align*}
+                Dengan menggunakan formula
+                \begin{align*}
+                    g(y_i,y_j)=&\frac{n!}{(i-1)!(j-i-1)!(n-j)!}[F(y_i)]^{i-1}f(y_i)[F(y_j)-F(y_i)]^{j-i-1}\\
+                    &[1-F(y_j)]^{n-j}f(y_j), \quad y_i<y_j
+                \end{align*}
+                maka pdf bersama dari $R$ dan $S$ adalah
+                \begin{align*}
+                    g(r,s) &= g(y_1,y_n)|J|\\
+                    &= \frac{n!}{(1-1)!(n-1-1)!(n-n)!}[F(y_1)]^{1-1}f(y_1)[F(y_n)-F(y_1)]^{n-1-1}\\
+                    &\quad\,\,[1-F(y_n)]^{n-n}f(y_n)\\
+                    &=\frac{n!}{(n-2)!}e^{-y_1}[(1-e^{-y_n})-(1-e^{-y_1})]^{n-2}e^{-y_n}\\
+                    &=\frac{n!}{(n-2)!}e^{-y_1}(e^{-y_1}-e^{-y_n})^{n-2}e^{-y_n}\\
+                    &=\frac{n!}{(n-2)!}e^{-r-2s}(e^{-s}-e^{-r-s})^{n-2},\quad 0<s<\infty
+                \end{align*}
+                Dengan demikian pdf dari rentang sampel $R$ adalah
+                \begin{align*}
+                    g_R(r) &= \int_{0}^{\infty}\frac{n!}{(n-2)!}e^{-r-2s}(e^{-s}-e^{-r-s})^{n-2}ds\\
+                    &= \frac{n!}{(n-2)!}e^{-r}\int_{0}^{\infty}e^{-2s}(e^{-s}-e^{-r-s})^{n-2}ds
+                \end{align*}
+            \end{solution}
+            \item $r$ statistik pertama, $Y_1,...,Y_r$.
+        \end{enumerate}
+    \end{enumerate}
+\end{document}
