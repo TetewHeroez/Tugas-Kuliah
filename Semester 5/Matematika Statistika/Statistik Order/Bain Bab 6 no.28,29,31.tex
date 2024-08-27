@@ -236,10 +236,25 @@
                 Dengan demikian pdf dari rentang sampel $R$ adalah
                 \begin{align*}
                     g_R(r) &= \int_{0}^{\infty}\frac{n!}{(n-2)!}e^{-r-2s}(e^{-s}-e^{-r-s})^{n-2}ds\\
-                    &= \frac{n!}{(n-2)!}e^{-r}\int_{0}^{\infty}e^{-2s}(e^{-s}-e^{-r-s})^{n-2}ds
+                    &= \frac{n!}{(n-2)!}e^{-r}\int_{0}^{\infty}e^{-2s}(e^{-s}-e^{-r-s})^{n-2}ds\\
+                    &= \frac{n!}{(n-2)!}e^{-r}\int_{0}^{\infty}e^{-2s}(e^{-s}(1-e^{-r}))^{n-2}ds\\
+                    &= \frac{n!}{(n-2)!}e^{-r}(1-e^{-r})^{n-2}\int_{0}^{\infty}e^{-2ns}ds\\
+                    &= \frac{n!}{(n-2)!}e^{-r}(1-e^{-r})^{n-2}\left[-\frac{1}{2n}e^{-2ns}\right]_{0}^{\infty}\\
+                    &= \frac{n!}{2n(n-2)!}e^{-r}(1-e^{-r})^{n-2}
                 \end{align*}
+                $\therefore$ pdf dari rentang sampel $R$ adalah $\displaystyle g_R(r)=\frac{n!}{2n(n-2)!}e^{-r}(1-e^{-r})^{n-2}, \quad 0<r<\infty$.
             \end{solution}
             \item $r$ statistik pertama, $Y_1,...,Y_r$.
+            \begin{solution}
+                Gunakan formula berikut
+                \[g(y_1,...,y_r)=\frac{n!}{(n-r)!}[1-F(y_r)]^{n-r}\prod_{i=1}^r f(y_i)\]
+                sehingga
+                \begin{align*}
+                    g(y_1,...,y_r) &= \frac{n!}{(n-r)!}[1-(1-e^{-y_r})]^{n-r}\prod_{i=1}^r e^{-y_i}\\
+                    &= \frac{n!}{(n-r)!}e^{-(n-r)y_r}e^{-\sum_{i=1}^r y_i}\\
+                    &= \frac{n!}{(n-r)!}e^{(r-n)y_r-(y_1+...+y_r)},\quad 0<y_1<\cdots<y_r<\infty
+                \end{align*}
+            \end{solution}
         \end{enumerate}
     \end{enumerate}
 \end{document}
