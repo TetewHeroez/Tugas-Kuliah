@@ -1,0 +1,160 @@
+\documentclass[a4paper,extrafontsizes, 9pt]{memoir}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{hyperref}
+
+\pagestyle{empty}
+
+\setlrmarginsandblock{1cm}{1cm}{*}
+\setulmarginsandblock{1cm}{1cm}{*}
+\checkandfixthelayout
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+
+\let\bf\textbf{}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.5}
+
+\newcommand{\textbetweenrules}[2][.4pt]{%
+  \par\vspace{\topsep}
+  \noindent\makebox[\textwidth]{%
+    \sbox0{#2}%
+    \dimen0=.5\dimexpr\ht0+#1\relax
+    \dimen2=-.5\dimexpr\ht0-#1\relax
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+    \quad #2\quad
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+  }\par\nopagebreak\vspace{\topsep}
+}
+
+\begin{document}
+\footnotesize
+	\begin{center}
+		\textbf{{\st{Citsit} Catatan -- Matstat}} \hfill Teosofi Hidayah Agung/5002221132
+	\end{center}
+	
+	\begin{multicols}{3}			
+            \subsection*{\small Metode Transformasi}
+                \subsubsection*{\small Multidimensi}
+                    Untuk kasus diskrit sama seperti sebelumnya, hanya perlu menambah peubah acak pada fungsinya. Namun untuk kasus kontinu kita perlu meninjau Jacobian dari fungsi transformasi tersebut.
+
+                    Misal $X=(X_1,\dots,X_n)$ variabel acak kontinu dengan pdf bersama $f_X(x_1, x_2,\dots, x_n) > 0$ atas $A$, dan $Y = (Y_1, Y_2,\dots, Y_n)$ didefinisikan
+                    oleh transformasi satu-satu $Y_i = u_i(X_1,X_2,\dots ,X_n)$, maka pdf bersama dari $Y$ adalah
+                    \[f_Y(y_1,y_2,\dots,y_n) = f_X(x_1,x_2,\dots,x_n)\left|J\right|\]
+                    dengan $J=\begin{vmatrix}
+                        \frac{\partial x_1}{\partial y_1} & \frac{\partial x_1}{\partial y_2} & \dots & \frac{\partial x_1}{\partial y_n}\\
+                        \vdots & \vdots & \ddots & \vdots\\
+                        \frac{\partial x_n}{\partial y_1} & \frac{\partial x_n}{\partial y_2} & \dots & \frac{\partial x_n}{\partial y_n}
+                    \end{vmatrix}$ 
+                
+                Jika transformasi tidak satu-satu, dengan cara yang sama yaitu kita partisi $A$ sehingga $u(x)$ satu-satu pada $A_i$. Kemudian jumlahkan semua pdf nya.
+            \subsection*{\small Order Statistik}
+                Misal $X_1, X_2, \dots, X_n$ adalah sampel acak. Kemudian didefinisikan
+                \begin{itemize}
+                    \item $X_{(1)}$ adalah sampel terkecil dari $X_1, X_2, \dots, X_n$.
+                    \item $X_{(i)}$ adalah sampel terkecil ke-$i$ dari $X_1, X_2, \dots, X_n$ untuk $i=2,3,\dots,n-1$.
+                    \item $X_{(n)}$ adalah sampel terbesar dari $X_1, X_2, \dots, X_n$.
+                \end{itemize}
+                Misalkan $Y_k=X_{(k)}$, maka pdf bersama untuk order statistik $Y_1,Y_2,\dots,Y_n$ adalah
+                \[g(y_1,y_2,\dots,y_n) = n!f(y_1)f(y_2)\dots f(y_n)\]
+                \[y_1<y_2<\dots<y_n\]
+                Kemudian untuk pdf dari $Y_k$ adalah
+                \[g_{k}(y) = \dfrac{n!F(y)^{k-1}[1-F(y)]^{n-k}f(y)}{(k-1)!(n-k)!},\,a<y_k<b\]
+                \begin{itemize}
+                    \item PDF $Y_1$: $g_1(y_1) = nf(y_1)[1-F(y_1)]^{n-1}$
+                    \item PDF $Y_n$: $g_n(y_n) = nf(y_n)[F(y_n)]^{n-1}$
+                    \item CDF $Y_k$: $G_k(y_k) = \sum_{i=k}^{n}\binom{n}{i}F(y_k)^{i}[1-F(y_k)]^{n-i}$
+                    \item CDF $Y_1$: $G_1(y_1) = 1-[1-F(y_1)]^{n}$
+                    \item CDF $Y_n$: $G_n(y_n) = [F(y_n)]^{n}$
+                \end{itemize}
+                \subsection*{\small Teorema Limit Pusat}
+                Misal $Y_1,Y_2,\dots$ adalah barisan variabel acak dengan CDF $G_1(y),G_2(y),\dots$ dan MGF $M_1(t),M_2(t),\dots$. Jika $\displaystyle\lim_{n\to\infty}M_n(t)=M(t)$ untuk setiap $t$ dalam suatu interval $-h<t<h$, maka $\displaystyle\lim_{n\to\infty}G_n(y)=G(y)$.\\
+
+                Jika $X_1,X_2,\dots,X_n$ adalah sampel acak dari distribusi dengan mean $\mu$ dan varian $\sigma^2$, maka limiting distribution dari
+                \[Z_n=\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\]
+                adalah distribusi normal standar, $Z_n\xrightarrow{d} N(0,1)$.
+
+                \subsection*{\small Asimtotik Distribusi Normal}
+                Jika $Y_1,Y_2,...$ adalah barisan variabel acak dan $m$ dan $c$ adalah konstan sedemikian sehingga
+                \[Z_n=\dfrac{Y_n-m}{c}\xrightarrow{d}Z\sim N(0,1)\]
+                untuk $n\to\infty$, maka $Y_n$ dikatakan berdistribusi normal asimtotik dengan mean $m$ dan varians $c^2/n$.\\
+
+                Misalkan $X_1,X_2,\dots,X_n$ adalah sampel acak dari distribusi kontinu dengan PDF $f(x)$ dan tidak nol pada persentil ke-$p$. Jika $k/n\to p$, maka barisan order statistik ke-$k$, $X_{k:n}$ adalah normal asimtotik dengan mean $x_p$ dan varians $c^2/n$, dimana 
+                \[c^2 = \dfrac{p(1-p)}{f^2(x_p)}\]
+
+                \subsection*{\small Konvergen Stokastik}
+                Barisan $Y_1,Y_2,\dots$ konvergen stokastik ke $c$ jika dan hanya jika untuk setiap $\epsilon>0$, 
+                \[\lim_{n\to\infty}P(|Y_n-c|<\epsilon)=1\]
+                Barisan tersebut dapat dikatakan konvergen dalam peluang menuju suatu konstanta $c$, yang dinotasikan dengan $Y_n\xrightarrow{P}c$.\\
+
+                Ketaksamaan Chebyshev: $P(|X-\mu|\geq k\sigma)\leq\dfrac{1}{k^2}$ atau dapat ditulis $P(|X-\mu|< k\sigma)\geq 1-\dfrac{1}{k^2}$,
+                dengan $X$ adalah variabel acak, $\mu$ adalah mean, dan $\sigma$ adalah standar deviasi.\\
+
+                Jika $X_1,X_2,\dots,X_n$ adalah sampel acak dari distribusi dengan mean $\mu$ dan varian $\sigma^2$, maka barisan sampel mean konvergen dalam peluang menuju $\mu$, dinotasikan dengan $\bar{X}_n\xrightarrow{P}\mu$.
+                \vspace*{-0.3cm}
+                \subsection*{\small Sifat-sifat}
+                Jika $X_n\xrightarrow{P}c$ dan $Y_n\xrightarrow{P}d$, maka
+                \begin{itemize}
+                    \setlength\itemsep{0.5mm}
+                    \item $X_n+Y_n\xrightarrow{P}c+d$
+                    \item $X_n-Y_n\xrightarrow{P}c-d$
+                    \item $X_nY_n\xrightarrow{P}cd$
+                    \item $X_n/c\xrightarrow{P}1$ jika $c\neq 0$
+                    \item $\sqrt{X_n}\xrightarrow{P}\sqrt{c}$
+                \end{itemize}
+	\end{multicols}
+    \textbetweenrules[2pt]{\textbf{Distribusi Bersama}}
+    \vspace*{-10pt}
+	\section*{\small Tabel Distribusi Diskrit}
+	\begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Nama & Notasi dan & \textbf{PDF} Diskrit & \textbf{Ekspektasi} & \textbf{Varian} & \textbf{MGF}\\
+        Distribusi& Parameter & $f(x)$ & $E(X)$ & $\Var(X)$ & $M_{X}(t)$\\
+        \hline
+        \hline
+        Bernoulli & $X\sim B(1,p)$ & $p^{x}(1-p)^{1-x}$ & $p$ & $p(1-p)$ & $1-p+pe^{t}$\\
+        \hline
+        Binomial & $X\sim B(n,p)$ & $\displaystyle\binom{n}{x}p^{x}(1-p)^{n-x}$ & $np$ & $np(1-p)$ & $(1-p+pe^{t})^{n}$\\
+        \hline
+        Negatif Binomial & $X\sim NB(r,p)$ & $\displaystyle\binom{x-1}{r-1}p^{r}(1-p)^{x}$ & $\dfrac{r}{p}$ & $\dfrac{r(1-p)}{p^{2}}$ & $\left(\dfrac{p}{1-(1-p)e^{t}}\right)^{r}$\\
+        \hline
+        Geometrik & $X\sim G(p)$ & $p(1-p)^{x-1}$ & $\dfrac{1}{p}$ & $\dfrac{1-p}{p^{2}}$ & $\dfrac{p}{1-(1-p)e^{t}}$\\
+        \hline
+        Hypergeometrik & $X\sim H(n,M,N)$ & $\dfrac{\displaystyle\binom{M}{x}\binom{N-M}{n-x}}{\displaystyle\binom{N}{n}}$ & $n\dfrac{M}{N}$ & $n\dfrac{M}{N}\left(1-\dfrac{M}{N}\right)\dfrac{N-n}{N-1}$ & -\\
+        \hline
+		Multinomial & $X\sim M(n,p_{1},\ldots,p_{k})$ & $\dfrac{n!}{x_{1}!\cdots x_{k}!}p_{1}^{x_{1}}\cdots p_{k}^{x_{k}}$ & $np_{i}$ & $np_{i}(1-p_{i})$ & $\left(\sum_{i=1}^{k}p_{i}e^{t_{i}}\right)^{n}$\\
+		\hline
+        Poisson & $X\sim P(\mu)$ & $\dfrac{e^{-\mu}\mu^{x}}{x!}$ & $\mu$ & $\mu$ & $e^{\mu(e^{t}-1)}$\\
+        \hline
+        Uniform Diskrit & $X\sim U(a,b)$ & $\dfrac{1}{b-a}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^{2}}{12}$ & $\dfrac{e^{tb}-e^{ta}}{t(b-a)}$\\
+        \hline
+    \end{tabular}
+    \section*{\small Tabel Distribusi Kontinu}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Nama & Notasi dan & \textbf{PDF} Kontinu & \textbf{Ekspektasi} & \textbf{Varian} & \textbf{MGF}\\
+        Distribusi& Parameter & $f(x)$ & $E(X)$ & $\Var(X)$ & $M_{X}(t)$\\
+        \hline
+        \hline
+        Uniform & $X\sim UNIF(a,b)$ & $\dfrac{1}{b-a}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^{2}}{12}$ & $\dfrac{e^{bt}-e^{at}}{(b-a)t}$\\
+        \hline
+        Normal & $X\sim N(\mu,\sigma^{2})$ & $\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}$ & $\mu$ & $\sigma^{2}$ & $e^{\mu t+\dfrac{\sigma^{2}t^{2}}{2}}$\\
+        \hline
+        Gamma & $X\sim GAM(\theta,\kappa)$ & $\dfrac{1}{\theta^\kappa\Gamma(\kappa)}x^{\kappa-1}e^{-x/\theta}$ & $\kappa\theta$ & $\kappa\theta^2$ & $\left(\dfrac{1}{1-\theta t}\right)^{\kappa}$\\
+        \hline
+        Exponential & $X\sim EXP(\theta)$ & $\dfrac{1}{\theta} e^{-x/\theta}$ & $\theta$ & $\theta^2$ & $\dfrac{1}{1-\theta t}$\\
+        \hline
+        Weibull & $X\sim WEI(\theta,\beta)$ & $\dfrac{\beta}{\theta^\beta}x^{\beta-1}e^{-(x/\theta)^{\beta}}$ & $\theta\Gamma\left(1+\dfrac{1}{\beta}\right)$ & $\theta^{2}\left[\Gamma\left(1+\dfrac{2}{\beta}\right)-\Gamma^2\left(1+\dfrac{1}{\beta}\right)\right]$ & -\\
+        \hline
+        Pareto & $X\sim PAR(\theta,\kappa)$ & $\dfrac{\kappa}{\theta(1+x/\theta)^{\kappa+1}}$ & $\dfrac{\theta}{\kappa-1}$ & $\dfrac{\theta^{2}\kappa}{(\kappa-1)^{2}(\kappa-2)}$ & -\\
+        \hline
+    \end{tabular}
+\end{document}

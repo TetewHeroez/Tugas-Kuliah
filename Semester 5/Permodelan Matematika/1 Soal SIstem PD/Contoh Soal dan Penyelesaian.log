@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  3 SEP 2024 00:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  9 SEP 2024 07:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1097,18 +1097,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 147--152
 
 [1
 
-{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-(Contoh Soal dan Penyelesaian.aux)
+{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+Overfull \hbox (96.67549pt too wide) detected at line 215
+[]
+ []
+
+<autonomus.jpg, id=17, 562.1pt x 421.575pt>
+File: autonomus.jpg Graphic file (type jpg)
+<use autonomus.jpg>
+Package pdftex.def Info: autonomus.jpg  used on input line 242.
+(pdftex.def)             Requested size: 168.6313pt x 126.47346pt.
+[2 <./autonomus.jpg>] (Contoh Soal dan Penyelesaian.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 33456 strings out of 475248
- 855656 string characters out of 5757812
+ 33463 strings out of 475248
+ 855795 string characters out of 5757812
  1946785 words of memory out of 5000000
- 54341 multiletter control sequences out of 15000+600000
+ 54348 multiletter control sequences out of 15000+600000
  562860 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,15n,93p,1276b,787s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1126,9 +1135,9 @@ teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:
 pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmsy7.pfb>
-Output written on "Contoh Soal dan Penyelesaian.pdf" (2 pages, 132960 bytes).
+Output written on "Contoh Soal dan Penyelesaian.pdf" (2 pages, 161679 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
+ 73 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
