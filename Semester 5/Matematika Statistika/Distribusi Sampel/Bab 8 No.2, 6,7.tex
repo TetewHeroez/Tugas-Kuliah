@@ -1,0 +1,110 @@
+\documentclass{exam}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Solution}:}
+\newcommand{\del}{\partial}
+\footer{}{\thepage}{}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\underline{Solusi:}}\par\noindent}
+\printanswers
+
+\begin{document}
+    \pagenumbering{gobble}
+    \begin{tabular}{|lcl|}
+        \hline
+        Nama&:&Teosofi Hidayah Agung\\
+        NRP&:&5002221132\\
+        \hline
+    \end{tabular}
+    \begin{enumerate}
+        \item[2.] $S$ menyatakan diameter lubang poros dan $B$ diameter bantalan, dimana $S$ dan $B$ saling independen dengan $S \sim N(1, 0.0004)$ dan $B \sim N(1.01, 0.0009)$.
+        \begin{enumerate}
+            \item Jika poros dan bantalan dipilih secara acak, tentukan probabilitas bahwa diameter poros akan melebihi diameter bantalan.
+            \begin{solution}
+                Diketahui bahwa $\mu_S=1$, $\mu_B=1.01$, $\sigma_S=0.02$, dan $\sigma_B=0.03$. Misalkan $X = B-S \sim N(1-1.01, 0.0004+0.0009) = N(0.01, 0.0013)$ yang dimana mempresentasikan selisih diameter bantalan dan poros. Karena bantalan harus lebih kecil dari poros, maka selisih bantalan dan poros harus negatif. sehingga
+                \begin{flalign*}
+                    P[X<0] &= P\left[\frac{X-0.01}{\sqrt{0.0013}}<\frac{0-0.01}{\sqrt{0.0013}}\right] &\\
+                    &= P\left[Z<\frac{-0.01}{\sqrt{0.0013}}\right] &\\
+                    &= P[Z< -0.27735] &\\
+                    &= 0.3936
+                \end{flalign*}
+                $\therefore$ Probabilitas bahwa diameter poros akan melebihi bantalan adalah $39,36\%$.
+            \end{solution}
+            \item Asumsikan variansnya sama $\sigma_1^2 = \sigma_2^2 = \sigma^2$, dan carilah nilai $\sigma$ yang menghasilkan probabilitas non-gangguan sebesar $0.95$.
+            \begin{solution}
+                Mungkin yang dimaksud soal adalah probabilitas bahwa poros tidak dapat gangguan untuk masuk ke dalam bantalan. Karena diasumsikan variansnya sama, maka $X=B-S \sim N(0.01,2\sigma^2)$. Sehingga diperoleh persamaan
+                \begin{flalign*}
+                    P[X>0] = 0.95 \\
+                    P\left[Z>\frac{-0.01}{\sqrt{2\sigma^2}}\right] = 0.95 \\
+                    1 - P\left[Z\leq\frac{-0.01}{\sqrt{2\sigma^2}}\right] = 0.95 \\
+                    P\left[Z\leq\frac{-0.01}{\sqrt{2\sigma^2}}\right] = 0.05 \\
+                    \frac{-0.01}{\sqrt{2\sigma^2}} = -1.6449 \\
+                    \sigma \approx 0.0043
+                \end{flalign*}
+            \end{solution}
+        \end{enumerate}
+        \item[6. ] Sebuah komponen baru mulai diletakkan dan tersedia 9 komponen cadangan. Waktu hingga kegagalan dalam satuan hari adalah variabel yang independen , $T_i \sim \text{GAM}(100,1.2)$.
+        \begin{enumerate}
+            \item Apa jenis distribusi dari $\displaystyle\sum_{i=1}^{10}T_i$?
+            \begin{solution}
+                Disini kita akan gunakan sifat dari fungsi pembangkit momen yang dimana untuk variabel $T_i$ yang independen, maka berakibat $\displaystyle\prod_{i=1}^{n}M_{T_i}(t)$ adalah fungsi pembangkit momen dari $\displaystyle\sum_{i=1}^{n}T_i$. Sehingga kita dapatkan
+                \[\prod_{i=1}^{10}M_{T_i}(t)=\prod_{i=1}^{10}\left(\frac{1}{1-100t}\right)^{1.2}=\left(\frac{1}{1-100t}\right)^{12}\]
+                Dapat dilihat bahwa fungsi pembangkit momen tersebut merupakan fungsi pembangkit momen dari distribusi gamma dengan parameter $\theta=100$ dan $\kappa=12$.\\
+                $\therefore\,\displaystyle\sum_{i=1}^{10}T_i \sim \text{GAM}(100,12)$.
+            \end{solution}
+            \item Berapa probabilitas bahwa operasi yang sukses dapat dipertahankan setidaknya selama 1.5 tahun? Petunjuk: Gunakan \textbf{Teorema 8.3.3} untuk mengubah ke variabel chi-square.
+            \begin{solution}
+                $1.5$ tahun $=$ $547.5$ hari. Misalkan $X=\displaystyle\sum_{i=1}^{10}T_i\sim\text{GAM}(100,12)$, maka untuk $Y=2X/100\sim\chi^2(24)$.
+                \begin{flalign*}
+                    P[X>547.5] &= P\left[\frac{2X}{100}>10.95\right] &\\
+                    &= P\left[\chi^2(24)>10.95\right] &\\
+                    &= 0.99
+                \end{flalign*} 
+            $\therefore$ Probabilitas bahwa operasi yang sukses dapat dipertahankan setidaknya selama 1.5 tahun adalah $99\%$.
+            \end{solution}
+            \item Berapa banyak cadangan yang dibutuhkan agar dapat diyakini bahwa $95\%$ operasi berhasil selama setidaknya dua tahun?
+            \begin{solution}
+                $2$ tahun $=$ $730$ hari. Dengan informasi yang sama seperti sebelumnya, maka disini kita akan mencari nilai $k$ yang mempresentasikan derajat kebebasan dari distribusi $\chi^2$
+                \begin{flalign*}
+                    P[X>730] = 0.95\\
+                    P\left[\frac{2X}{100}>14.6\right] = 0.95\\
+                    P\left[\chi^2(k)>14.6\right] = 0.95\\
+                    k = 25
+                \end{flalign*}
+                $\therefore$ Dibutuhkan 25 cadangan agar dapat diyakini bahwa $95\%$ operasi berhasil selama setidaknya dua tahun.
+            \end{solution}
+        \end{enumerate}
+        \item[7. ] Lima tugas yang independen akan dikerjakan, dimana waktu dalam satuan jam untuk menyelesaikan tugas ke-$i$ diberikan oleh $T_i \sim \text{GAM}(100,\kappa_i)$, dimana $\kappa_i = 3+i/3$. Berapa probabilitas bahwa lima tugas akan selesai dalam waktu kurang dari $2600$ jam?
+        \begin{solution}
+            Diketahui informasi distribusi gamma yang independen. Dengan menggunakan sifat fungsi pembangkit, kita bisa langsung menulis $X=\displaystyle\sum_{i=1}^{5}T_i\sim\text{GAM}\left(100,\sum_{i=1}^{5}(3+i/3)\right)$ atau $X\sim\text{GAM}(100,20)$. Sehingga untuk $Y=2X/100\sim\chi^2(40)$.
+            \begin{flalign*}
+                P[X<2600] &= P\left[\frac{2X}{100}<52\right] &\\
+                &= P\left[\chi^2(40)<52\right] &\\
+                &= 1-P\left[\chi^2(40)\geq 52\right] &\\
+                &= 1-0.1 = 0.9
+            \end{flalign*}
+            $\therefore$ Probabilitas lima tugas akan selesai dalam waktu kurang dari $2600$ jam adalah $90\%$.
+        \end{solution}
+    \end{enumerate}
+\end{document}
