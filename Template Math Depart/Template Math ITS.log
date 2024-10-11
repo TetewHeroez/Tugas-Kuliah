@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  28 OCT 2023 22:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  11 OCT 2024 12:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/teoso/OneDrive/Documents/Latex/Template Math Depart/Template Math ITS.tex"
-(c:/Users/teoso/OneDrive/Documents/Latex/Template Math Depart/Template Math ITS.tex
+**"c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/Template Math ITS.tex"
+(c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/Template Math ITS.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -296,12 +296,12 @@ L3 programming layer <2023-08-29>
  ) 
 Here is how much of TeX's memory you used:
  4163 strings out of 475248
- 61791 string characters out of 5757812
+ 61840 string characters out of 5757812
  1925785 words of memory out of 5000000
  25661 multiletter control sequences out of 15000+600000
  560467 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,18n,65p,295b,253s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,18n,65p,302b,253s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
 Output written on "Template Math ITS.pdf" (1 page, 253029 bytes).
 PDF statistics:
