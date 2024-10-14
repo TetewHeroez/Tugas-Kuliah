@@ -95,8 +95,8 @@
     \end{itemize}
     \item Misalkan $a,b\in G$ dengan $G$ grup. 
     \begin{itemize}
-        \item Agar jawaban kita mendapat nilai sempurna, perlu dituliskan pembuktian yang lengkap pula.
-        Pertama andaikan $|ab|=n$, maka
+        \item Agar jawaban kita mendapat nilai sempurna, perlu dituliskan pembuktian yang lengkap.\\
+        Sekarang andaikan $|ab|=n$ dan $|ba|=m$, maka
         \begin{flalign*}
             (ab)^n&=e&\\
             \underbrace{(ab)(ab)\cdots (ab)}_{n}&=e&\\
@@ -107,9 +107,9 @@
             \underbrace{(ba)\cdots (ba)}_{n}&=e&\\
             (ba)^n&=e&
         \end{flalign*}
-        Dari hasil di atas didapatkan $|ba|=k_1n$ dengan $k_1=1,2,3,\ldots$.\\
+        Dari hasil di atas didapatkan $n=k_1m$ dengan $k_1=1,2,3,\ldots$.\\
 
-        Kedua andaikan $|ba|=m$, maka
+        Selanjutnya dapat kita tinjau 
         \begin{flalign*}
             (ba)^m&=e&\\
             \underbrace{(ba)(ba)\cdots (ba)}_{m}&=e&\\
@@ -120,9 +120,9 @@
             \underbrace{(ab)\cdots (ab)}_{m}&=e&\\
             (ab)^m&=e&
         \end{flalign*}
-        Dari hasil di atas didapatkan $|ab|=k_2m$ dengan $k_2=1,2,3,\ldots$.\\
+        Dari hasil di atas didapatkan $m=k_2n$ dengan $k_2=1,2,3,\ldots$.\\
 
-        Alhasil kita dapatkan $n=k_2m\longrightarrow n=k_2(k_1n)\longrightarrow k_1=k_2=1$. Sehingga didapatkan kesimpulan $|ab|=|ba|$.
+        Alhasil kita dapatkan $n=k_1m\longrightarrow n=k_1(k_2n)\longrightarrow k_1=k_2=1$. Sehingga didapatkan kesimpulan $|ab|=|ba|$.
         \item Dengan cara yang sama, seperti yang dilakukan pada poin pertama.\\
         Andaikan $|aba^{-1}|=n$, maka
         \begin{flalign*}
@@ -133,11 +133,12 @@
             a^{-1}a\underbrace{bb\cdots b}_na^{-1}a&=a^{-1}a&\\
             b^n&=e&
         \end{flalign*}
-        Dari hasil di atas didapatkan $|b|=k_1n$.\\
+        Dari hasil di atas didapatkan $n=k_1|b|$.\\
 
-        Kemudian andaikan $|b|=m$, maka dengan cara yang sama didapatkan $|aba^{-1}|=k_2m$. Disini nantinya berakibat $k_1=k_2=1$. 
-        $\therefore |aba^{-1}|=|b|$.
+        Kemudian andaikan $|b|=m$, maka dengan cara yang sama didapatkan $m=k_2|aba^{-1}|$. Disini nantinya berakibat $k_1=k_2=1$.
     \end{itemize}
+    $\therefore \,|aba^{-1}|=|b|$.
+
     \item Perhatikan bahwa $|\Z_3|=3$ dan agar $\det(A)\ne 0$, maka $a,c\ne 0$. Dengan menggunakan kaidah perkalian akan ada $2\cdot 2\cdot 3=12$ elemen dalam $S_{2\times 2}(\Z_3)$.\footnote{Lebih jelasnya bisa dilihat di web Prof. Bi \href{https://sites.google.com/view/aljabar-i/grup/pembahasan-soal-soal?authuser=0}{disini}}
     \begin{eqnarray*}
         S_{2\times 2}(\mathbb{Z}_3)&=&\left\{\left(\begin{array}{rr}

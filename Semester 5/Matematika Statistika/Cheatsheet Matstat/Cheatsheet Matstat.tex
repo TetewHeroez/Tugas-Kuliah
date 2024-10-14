@@ -8,6 +8,8 @@
 \usepackage{pgfplots}
 \usepackage{soul}
 \usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
 
 \pagestyle{empty}
 
@@ -36,14 +38,10 @@
 }
 
 \begin{document}
-\footnotesize
-	\begin{center}
-		\textbf{{\st{Citsit} Catatan -- Matstat}} \hfill Teosofi Hidayah Agung/5002221132
-	\end{center}
-	
+\footnotesize \textbf{{Cheatsheet -- Matematika Statistika}} \hfill \textit{Teosofi Hidayah Agung/5002221132}
 	\begin{multicols}{3}			
-            \subsection*{\small Metode Transformasi}
-                \subsubsection*{\small Multidimensi}
+        \subsection*{\small Metode Transformasi}
+            \subsubsection*{\small Multidimensi}
                     Untuk kasus diskrit sama seperti sebelumnya, hanya perlu menambah peubah acak pada fungsinya. Namun untuk kasus kontinu kita perlu meninjau Jacobian dari fungsi transformasi tersebut.
 
                     Misal $X=(X_1,\dots,X_n)$ variabel acak kontinu dengan pdf bersama $f_X(x_1, x_2,\dots, x_n) > 0$ atas $A$, dan $Y = (Y_1, Y_2,\dots, Y_n)$ didefinisikan
@@ -110,7 +108,74 @@
                     \item $X_n/c\xrightarrow{P}1$ jika $c\neq 0$
                     \item $\sqrt{X_n}\xrightarrow{P}\sqrt{c}$
                 \end{itemize}
+            \section*{\small Distribusi Sampel}
+            \subsection*{\small Kombinasi Linear dari Variabel Normal}
+                Jika $X_i\sim N(\mu_i,\sigma_i^2)$ dengan $i=1,2,\dots,n$ menotasikan variabel normal independen, maka
+                \[Y=\sum_{i=1}^{n}a_iX_i\sim N\left(\sum_{i=1}^{n}a_i\mu_i,\sum_{i=1}^{n}a_i^2\sigma_i^2\right)\]
+            \subsection*{\small Distribusi Chi-Square}
+                Jika $Y\sim\chi^2(\nu)$, maka
+                \begin{itemize}
+                    \item MGF: $M_Y(t)=(1-2t)^{-\nu/2}$
+                    \item $E(Y)=\nu$
+                    \item $\Var(Y)=2\nu$
+                \end{itemize}
+                Jika $X\sim GAM(\theta,\kappa)$, maka $Y=2\theta X\sim\chi^2(2\kappa)$.
+
+                Persentil ke-$p$ dari distribusi gamma dapat diperoleh dari $x_p=\theta\chi^2_p(2\kappa)$.
+
+                Jika $Y_i\sim\chi^2(\nu_i);i=1,\dots,n$ adalah variabel chi-square independen, maka
+                \[V=\sum_{i=1}^{n}Y_i\sim\chi^2\left(\sum_{i=1}^{n}\nu_i\right)\]
+
+                Jika $Z\sim N(0,1)$, maka $Z^2\sim\chi^2(1)$.
+
+                Jika $X_1,\dots,X_n$ menotasikan suatu sampel acak dari $N(\mu,\sigma^2)$, maka
+                \[\sum_{i=1}^{n}\left(\dfrac{X_i-\mu}{\sigma}\right)^2\sim\chi^2(n)\]
+                \[\frac{n(\bar{X}-\mu)^2}{\sigma^2}\sim\chi^2(1)\]
+                \[\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)\]
+            \subsection*{\small Distribusi Student's t}
+                Jika $Z\sim N(0,1)$ dan $V\sim\chi^2(\nu)$, untuk $Z$ dan $V$ independen berakibat distribusi $\displaystyle T=\dfrac{Z}{\sqrt{V/\nu}}$ adalah distribusi t dengan $\nu$ derajat kebebasan. Dinotasikan dengan $T\sim t(\nu)$, dimana pdf dari $T$ adalah
+                \[f(t;\nu)=\dfrac{\Gamma\left(\dfrac{\nu+1}{2}\right)}{\sqrt{\nu\pi}\Gamma\left(\dfrac{\nu}{2}\right)}\left(1+\dfrac{t^2}{\nu}\right)^{-\dfrac{(\nu+1)}{2}}\]
+
+                Jika $T\sim t(\nu)$, maka untuk $\nu>2r$
+                \[E(T^{2r})=\dfrac{\Gamma\left(\dfrac{2r+1}{2}\right)\Gamma\left(\dfrac{\nu-2r}{2}\right)}{\sqrt{\pi}\Gamma(\nu/2)}v^r\]
+                \[E(T^{2r-1})=0 \text{ untuk } r=1,2,\dots\]
+                \[\Var(T)=\dfrac{\nu}{\nu-2},\,\nu>2\]
+
+                Jika $X_1,\dots,X_n$ adalah sampel acak dari $N(\mu,\sigma^2)$, maka
+                \[\dfrac{\bar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)\]
+
+            \subsection*{\small Distribusi F}
+                Jika $V_1\sim\chi^2(\nu_1)$ dan $V_2\sim\chi^2(\nu_2)$ adalah independen, maka distribusi $X=\dfrac{V_1/\nu_1}{V_2/\nu_2}$ adalah distribusi F dengan derajat kebebasan $\nu_1$ dan $\nu_2$. Dinotasikan dengan $X\sim F(\nu_1,\nu_2)$.\\
+
+                JIka $X\sim F(\nu_1,\nu_2)$, maka
+                \[E(X)=\dfrac{\nu_2}{\nu_2-2}\]
+                \[\Var(X)=\dfrac{2\nu_2^2(\nu_1+\nu_2-2)}{\nu_1(\nu_2-2)^2(\nu_2-4)}\]
+
+                Fakta bahwa $X\sim F(\nu_1,\nu_2)$ dan $1/X\sim F(\nu_2,\nu_1)$. berakibat 
+                \[f_{1-\gamma}(\nu_1,\nu_2)=\dfrac{1}{f_{\gamma}(\nu_1,\nu_2)}\]
+
+            \subsection*{\small Distribusi Beta}
+                Suatu variabel F dapat dtransformasikan untuk distribusi beta. Jika $X\sim F(\nu_1,\nu_2)$, maka
+                \[Y=\dfrac{(\nu_1/\nu_2)X}{1+(\nu_1/\nu_2)X}\sim BETA\left(a,b\right)\]
+                dengan $a=\nu_1/2$ dan $b=\nu_2/2$ yang memiliki pdf 
+                \[f(y;a,b)=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}y^{a-1}(1-y)^{b-1}\]
+                Rataan dan varians dari distribusi beta adalah
+                \[E(Y)=\dfrac{a}{a+b}\]
+                \[\Var(Y)=\dfrac{ab}{(a+b)^2(a+b+1)}\]
+                Sedangkan, persentil dri suatu distribusi beta dapat diekspresikan dalam bentuk persentil dari distribusi $F$ sebagai hasil dari persamaan sebelumnya
+                \[y_\gamma(a,b)=\frac{af_{\gamma}(2a,2b)}{bf_{\gamma}(2a,2b)}\]
+            
+            \subsection*{\small Pendekatan Sampel Ukuran Besar}
+                Jika $Y_\nu\sim \chi^2(\nu)$, maka
+                \[Z_\nu=\dfrac{Y_\nu-\nu}{\sqrt{2\nu}}\xrightarrow{d}N(0,1)\]
+                ketika $\nu\to\infty$.
+
+                \textbf{Pendekatan Wilson-Hilferty} diberikan oleh
+                \[\chi^2_{\gamma}(\nu)=\nu\left(1-\dfrac{2}{9\nu}+z_{\gamma}\sqrt{\dfrac{2}{9\nu}}\right)^3\]
+                ketika $\nu\to\infty$.
 	\end{multicols}
+
+    \newpage
     \textbetweenrules[2pt]{\textbf{Distribusi Bersama}}
     \vspace*{-10pt}
 	\section*{\small Tabel Distribusi Diskrit}

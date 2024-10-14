@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  1 OCT 2024 13:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  14 OCT 2024 13:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -971,6 +971,25 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 Package: memhfixc 2023/09/10 v1.22 hyperref package fixes for memoir class
 \c@memhycontfloat=\count383
 \c@Hpagenote=\count384
+) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip262
+\enit@outerparindent=\dimen351
+\enit@toks=\toks61
+\enit@inbox=\box118
+\enit@count@id=\count385
+\enitdp@description=\count386
+) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip263
+\f@nch@O@elh=\skip264
+\f@nch@O@erh=\skip265
+\f@nch@O@olh=\skip266
+\f@nch@O@orh=\skip267
+\f@nch@O@elf=\skip268
+\f@nch@O@erf=\skip269
+\f@nch@O@olf=\skip270
+\f@nch@O@orf=\skip271
 )
 
 ******************************************************
@@ -995,37 +1014,37 @@ Sidefootvsep and sidefootheight: 10pt and 596.99997pt
 (Cheatsheet Matstat.aux)
 \openout1 = `"Cheatsheet Matstat.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count385
-\scratchdimen=\dimen351
-\scratchbox=\box118
-\nofMPsegments=\count386
-\nofMParguments=\count387
-\everyMPshowfont=\toks61
-\MPscratchCnt=\count388
-\MPscratchDim=\dimen352
-\MPnumerator=\count389
-\makeMPintoPDFobject=\count390
-\everyMPtoPDFconversion=\toks62
+\scratchcounter=\count387
+\scratchdimen=\dimen352
+\scratchbox=\box119
+\nofMPsegments=\count388
+\nofMParguments=\count389
+\everyMPshowfont=\toks62
+\MPscratchCnt=\count390
+\MPscratchDim=\dimen353
+\MPnumerator=\count391
+\makeMPintoPDFobject=\count392
+\everyMPtoPDFconversion=\toks63
 ) (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1034,92 +1053,102 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 38.
+ on input line 40.
 
-Package hyperref Info: Link coloring OFF on input line 38.
+Package hyperref Info: Link coloring OFF on input line 40.
 (Cheatsheet Matstat.out) (Cheatsheet Matstat.out)
 \@outlinefile=\write5
 \openout5 = `"Cheatsheet Matstat.out"'.
 
 
-Underfull \hbox (badness 5460) in paragraph at lines 47--48
+Underfull \hbox (badness 5460) in paragraph at lines 45--46
 \T1/lmr/m/n/7 Untuk ka-sus diskrit sama seperti se-belum-
  []
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 49.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 47.
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 49.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 47.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 49.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 47.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 49.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 47.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 49.
+(Font)              <7> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 49.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
+(Font)              <5> on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 62.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 60.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
 []$\OML/lmm/m/it/7 X[]$ \T1/lmr/m/n/7 adalah sam-pel terke-cil dari
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 []$\OML/lmm/m/it/7 X[]$ \T1/lmr/m/n/7 adalah sam-pel terbe-sar dari
  []
 
 
-Overfull \hbox (3.22763pt too wide) detected at line 70
+Overfull \hbox (3.22763pt too wide) detected at line 68
 \OML/lmm/m/it/7 g[]\OT1/lmr/m/n/7 (\OML/lmm/m/it/7 y\OT1/lmr/m/n/7 ) = []\OML/lmm/m/it/7 ;  a < y[] < b
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 \T1/lmr/m/n/7 den-gan CDF $\OML/lmm/m/it/7 G[]\OT1/lmr/m/n/7 (\OML/lmm/m/it/7 y\OT1/lmr/m/n/7 )\OML/lmm/m/it/7 ; G[]\OT1/lmr/m/n/7 (\OML/lmm/m/it/7 y\OT1/lmr/m/n/7 )\OML/lmm/m/it/7 ; [] $ \T1/lmr/m/n/7 dan MGF
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--97
+Underfull \hbox (badness 10000) in paragraph at lines 93--95
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--100
+Underfull \hbox (badness 10000) in paragraph at lines 96--98
+
+ []
+
+
+Underfull \hbox (badness 8094) in paragraph at lines 144--145
+[]\T1/lmr/m/n/7 Jika $\OML/lmm/m/it/7 X[]; [] ; X[]$ \T1/lmr/m/n/7 adalah sam-pel acak dari
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 
  []
 
 [1
 
-{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] (Cheatsheet Matstat.aux)
+{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [2] (Cheatsheet Matstat.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1128,17 +1157,17 @@ Package rerunfilecheck Info: File `"Cheatsheet Matstat".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35564 strings out of 475248
- 805405 string characters out of 5757812
- 2006785 words of memory out of 5000000
- 56504 multiletter control sequences out of 15000+600000
- 596930 words of font info for 59 fonts, out of 8000000 for 9000
+ 36078 strings out of 475248
+ 813675 string characters out of 5757812
+ 2002785 words of memory out of 5000000
+ 57000 multiletter control sequences out of 15000+600000
+ 604179 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,103p,832b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on "Cheatsheet Matstat.pdf" (1 page, 167106 bytes).
+<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
+Output written on "Cheatsheet Matstat.pdf" (2 pages, 199488 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
+ 100 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
