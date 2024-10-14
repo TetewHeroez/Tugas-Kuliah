@@ -123,11 +123,13 @@
     Dengan menggunakan teorema pada soal 1.(a) dapat disimpulkan bahwa $\textrm{inf}(B)-v=0$ atau $\textrm{inf}(B)=v$. \textbf{(Terbukti)}
     \vspace{1cm}
 
-    \item Menggunakan definisi lim$(\frac{1}{3^n})=0$ didapatkan untuk setiap $\varepsilon>0$, terdapat bilangan asli $K(\varepsilon)$ sehingga $\forall n\geq K(\varepsilon)$ berlaku $|\frac{1}{3^n}-0|<\varepsilon\Rightarrow|\frac{1}{3^n}|<\varepsilon\Rightarrow\frac{1}{3^n}<\varepsilon$.\\~\\
-    Perhatikan bahwa dengan induksi matematika, dapat dibuktikan bahwa $3^n>n,\:\forall n\in\mathbb{N}$ atau ekuivalen dengan $\frac{1}{3^n}<\frac{1}{n}$. Dilanjutkan dengan sifat archimedes didapatkan $\frac{1}{3^{n_\varepsilon}}<\frac{1}{n_\varepsilon}<\varepsilon\Rightarrow\frac{1}{3^{n_\varepsilon}}<\varepsilon$.\\~\\
+    \item Menggunakan definisi lim$(\frac{1}{3^n})=0$ didapatkan untuk setiap $\varepsilon>0$, terdapat bilangan asli $K(\varepsilon)$ sehingga $\forall n\geq K(\varepsilon)$ berlaku $|\frac{1}{3^n}-0|<\varepsilon$.\\~\\
+    Perhatikan bahwa dengan induksi matematika, dapat dibuktikan bahwa $3^n>n,\:\forall n\in\mathbb{N}$ atau ekuivalen dengan $\frac{1}{3^n}<\frac{1}{n}$. Dilanjutkan dengan memilih $K(\varepsilon)=\frac{1}{\varepsilon}$ didapatkan $\frac{1}{3^{n}}<\frac{1}{n}=\frac{1}{1/\varepsilon}=\varepsilon\Longrightarrow|\frac{1}{3^{n}}-0|<\varepsilon$.\\~\\
     Dengan demikian dapat disimpulkan bahwa lim$(\frac{1}{3^n})=0$ terbukti.
     \vspace{1cm}
 
-    \item Perhatikan bahwa $0\leq|x_n-y_n|<\varepsilon$ untuk setiap $\varepsilon>0$. Dengan menggunakan teorema yang sudah dibuktikan pada soal 1.(a) didapatkan $x_n-y_n=0$ atau $x_n=y_n$. Hal ini berakibat barisan $(x_n)$ dan barisan $(y_n)$ adalah barisan yang sama, sehingga karena $(x_n)$ barisan konvergen maka $(y_n)$ haruslah barisan yang konvergen juga.
+    \item Dengan menggunakan definisi konvergensi barisan, dapat dilihat $\forall n\geq M$ berlaku bahwa $|(x_n-y_n)-0|<\varepsilon$, yang menyatakan bahwa barisan $(x_n-y_n)$ konvergen ke 0. Dengan ekivalensi definisi dapat juga ditulis $\lim(x_n-y_n)=0$.\\~\\
+    Perhatikan bahwa $y_n=x_n-(x_n-y_n)$, sehingga $y_n$ merupakan hasil operasi barisan konvergen dengan barisan konvergen (didapatkan dari soal bahwa $x_n$ konvergen). Akibatnya dapat disimpulkan 
+    \[\lim(y_n)=\lim(x_n-(x_n-y_n))=\lim(x_n)-\lim(x_n-y_n)=\lim(x_n)-0=\lim(x_n)\]
 \end{enumerate}
 \end{document}
