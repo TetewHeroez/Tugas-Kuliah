@@ -1,0 +1,262 @@
+\documentclass[a4paper,extrafontsizes, 9pt]{memoir}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+\pagestyle{empty}
+
+\setlrmarginsandblock{1cm}{1cm}{*}
+\setulmarginsandblock{1cm}{1cm}{*}
+\checkandfixthelayout
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+
+\let\bf\textbf{}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.5}
+
+\newcommand{\textbetweenrules}[2][.4pt]{%
+  \par\vspace{\topsep}
+  \noindent\makebox[\textwidth]{%
+    \sbox0{#2}%
+    \dimen0=.5\dimexpr\ht0+#1\relax
+    \dimen2=-.5\dimexpr\ht0-#1\relax
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+    \quad #2\quad
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+  }\par\nopagebreak\vspace{\topsep}
+}
+
+\newtheorem{definisi}{Definisi}
+
+\begin{document}
+\tiny {\normalsize \textbf{{Catatan -- Metode Numerik}} \hfill \textit{Teosofi Hidayah Agung/5002221132}}
+	\begin{multicols}{3}
+        \section*{\small Galat}
+        Andaikan $p^*$ adalah nilai penaksiran untuk $p$, maka galatnya adalah $|p - p^*|$ dan galat relatifnya adalah $\left|\frac{p - p^*}{p}\right|$.
+
+        Bilangan $p^*$ dikatakan mendekati $p$ sampai dengan $t$ angka penting jika $\left|\frac{p - p^*}{p}\right| \leq 5 \times 10^{-t}$.
+        \subsection*{\small Metode Bagi Dua (Bisection)}
+          Metode bagi dua adalah metode sederhana dan stabil untuk menemukan akar suatu fungsi dalam interval \([a, b]\), di mana \(f(a)\) dan \(f(b)\) memiliki tanda yang berlawanan (artinya terdapat akar di dalam interval tersebut berdasarkan Teorema Nilai Antara).
+          \begin{enumerate}
+              \item Tentukan interval awal \([a, b]\) di mana \(f(a) \cdot f(b) < 0\).
+              \item Hitung titik tengah \(c = \frac{a + b}{2}\).
+              \item Evaluasi \(f(c)\):
+              \begin{itemize}
+            \item Jika \(f(c) = 0\), maka \(c\) adalah akar.
+            \item Jika \(f(a) \cdot f(c) < 0\), maka akar berada di interval \([a, c]\), dan \(b = c\).
+            \item Jika \(f(b) \cdot f(c) < 0\), maka akar berada di interval \([c, b]\), dan \(a = c\).
+              \end{itemize}
+              \item Ulangi langkah 2 dan 3 hingga mencapai toleransi kesalahan yang diinginkan.
+          \end{enumerate}
+          Metode ini konvergen secara linear, tetapi lambat dibandingkan metode lainnya. 
+
+        \subsection{\small Metode Regula Falsi}
+          Metode Regula Falsi adalah variasi dari metode bagi dua, namun menggunakan garis lurus untuk mengaproksimasi akar lebih cepat. Sama seperti metode bagi dua, ini juga memerlukan \(f(a) \cdot f(b) < 0\).
+          \begin{enumerate}
+              \item Tentukan interval awal \([a, b]\).
+              \item Hitung titik potong garis lurus antara \((a, f(a))\) dan \((b, f(b))\) sebagai \(c\):
+              \[
+              c = b - \frac{f(b) \cdot (b - a)}{f(b) - f(a)}
+              \]
+              \item Evaluasi \(f(c)\) dan perbarui interval \([a, b]\) seperti pada metode bagi dua.
+              \item Ulangi hingga mencapai toleransi kesalahan yang diinginkan.
+          \end{enumerate}
+          Metode ini umumnya lebih cepat daripada metode bagi dua, tetapi bisa menjadi lambat jika salah satu sisi interval terus-menerus dipertahankan.
+
+        \subsection{\small Metode Iterasi Titik Tetap}
+          Metode iterasi titik tetap digunakan untuk menyelesaikan persamaan yang dapat dinyatakan dalam bentuk \(x = g(x)\). Persamaan ini kemudian diiterasikan mulai dari tebakan awal \(x_0\).
+          \begin{enumerate}
+              \item Pilih tebakan awal \(x_0\).
+              \item Hitung iterasi berikutnya dengan rumus \(x_{n+1} = g(x_n)\).
+              \item Ulangi hingga nilai \(x_{n+1}\) mendekati nilai \(x_n\) dengan toleransi tertentu.
+          \end{enumerate}
+          Keberhasilan metode ini tergantung pada fungsi \(g(x)\) yang harus memenuhi syarat tertentu agar konvergen.
+
+        \subsection{\small Metode Newton-Raphson}
+          Metode Newton-Raphson adalah metode yang sangat populer dan cepat untuk menemukan akar persamaan. Metode ini menggunakan turunan dari fungsi \(f(x)\) untuk memperbaiki tebakan akar.
+          \begin{enumerate}
+              \item Pilih tebakan awal \(x_0\).
+              \item Iterasi diperoleh dengan rumus:
+              \[
+              x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+              \]
+              \item Ulangi iterasi hingga nilai \(x_{n+1}\) mendekati nilai akar dengan toleransi yang diinginkan.
+          \end{enumerate}
+          Metode ini memiliki kecepatan konvergensi kuadratik, tetapi dapat gagal jika turunan \(f'(x)\) mendekati nol atau jika tebakan awal jauh dari akar sebenarnya.
+
+        \subsection{\small Metode Secant}
+          Metode secant adalah variasi dari metode Newton-Raphson yang tidak memerlukan perhitungan turunan. Sebagai gantinya, metode ini menggunakan aproksimasi numerik dari turunan.
+          \begin{enumerate}
+              \item Pilih dua tebakan awal \(x_0\) dan \(x_1\).
+              \item Iterasi dihitung sebagai berikut:
+              \[
+              x_{n+1} = x_n - \frac{f(x_n) \cdot (x_n - x_{n-1})}{f(x_n) - f(x_{n-1})}
+              \]
+              \item Ulangi hingga mencapai toleransi kesalahan yang diinginkan.
+          \end{enumerate}
+          Metode secant biasanya lebih cepat dari metode Newton-Raphson karena tidak memerlukan perhitungan turunan, tetapi bisa kurang stabil.
+
+          \subsection*{\small Metode Jacobi}
+          Metode Jacobi adalah metode iteratif untuk menyelesaikan sistem persamaan linear dengan memisahkan setiap persamaan untuk menghitung variabel yang diinginkan.
+
+          \begin{enumerate}
+            \item Bentuk sistem persamaan dalam bentuk diagonal dominan:
+            \[
+            x_i^{(k+1)} = \frac{1}{a_{ii}} \left(b_i - \sum_{j \neq i} a_{ij} x_j^{(k)}\right)
+            \]
+            \item Pilih tebakan awal untuk setiap variabel.
+            \item Hitung solusi untuk iterasi berikutnya berdasarkan nilai variabel pada iterasi sebelumnya.
+            \item Ulangi proses hingga solusi konvergen atau mencapai toleransi yang diinginkan.
+          \end{enumerate}
+
+          Metode Jacobi mudah diterapkan, namun lambat dalam konvergensi dibandingkan metode lain.
+
+          \subsection*{\small Metode Gauss-Seidel}
+          Metode Gauss-Seidel adalah modifikasi dari metode Jacobi. Pada setiap iterasi, solusi variabel segera diperbarui dan digunakan untuk menghitung variabel lain pada iterasi yang sama.
+
+          \begin{enumerate}
+            \item Bentuk sistem persamaan dalam bentuk diagonal dominan.
+            \item Pilih tebakan awal.
+            \item Gunakan iterasi:
+            \[
+            x_i^{(k+1)} = \frac{1}{a_{ii}} \left(b_i - \sum_{j < i} a_{ij} x_j^{(k+1)} - \sum_{j > i} a_{ij} x_j^{(k)}\right)
+            \]
+            \item Perbarui nilai variabel saat iterasi berlangsung.
+          \end{enumerate}
+
+          Metode Gauss-Seidel biasanya lebih cepat dari Jacobi karena memanfaatkan nilai yang telah diperbarui secara langsung pada iterasi yang sama.
+
+          \subsection*{\small Dekomposisi LU}
+          Dekomposisi LU adalah metode langsung untuk menyelesaikan sistem persamaan linear dengan memecah matriks \(A\) menjadi dua matriks segitiga, \(L\) (lower) dan \(U\) (upper):
+          \[
+          A = LU
+          \]
+          Solusi kemudian diperoleh dengan menyelesaikan dua sistem persamaan linear:
+          \[
+          L \mathbf{y} = \mathbf{b} \quad \text{dan} \quad U \mathbf{x} = \mathbf{y}
+          \]
+
+          \subsubsection*{\small Metode Dekomposisi LU Doolittle}
+          Algoritma Doolittle memfaktorkan matriks \(A\) menjadi dua matriks, yaitu matriks segitiga bawah \(L\) dengan elemen diagonal sama dengan 1 dan matriks segitiga atas \(U\). Langkah-langkah algoritma Doolittle adalah sebagai berikut:
+          \begin{enumerate}
+            \item Berikan input matriks \(A\) yang berukuran \(n \times n\).
+            \item Tentukan matriks \(L\) dan \(U\) sedemikian rupa sehingga \(A = LU\).
+            \item Untuk setiap \(k = 1, 2, \dots, n\):
+            \begin{enumerate}
+                \item Hitung elemen-elemen pada \(U[k,i]\) untuk \(i = k, k+1, \dots, n\) dengan rumus:
+                \[
+                U[k,i] = A[k,i] - \sum_{j=1}^{k-1} L[k,j]U[j,i]
+                \]
+                \item Hitung elemen-elemen pada \(L[i,k]\) untuk \(i = k+1, k+2, \dots, n\) dengan rumus:
+                \[
+                L[i,k] = \frac{A[i,k] - \sum_{j=1}^{k-1} L[i,j]U[j,k]}{U[k,k]}
+                \]
+            \end{enumerate}
+            \item Ulangi langkah ini sampai seluruh elemen \(L\) dan \(U\) terhitung.
+        \end{enumerate}
+                
+        \subsubsection*{\small Metode Dekomposisi LU Crout}
+        Berbeda dengan metode Doolittle, metode Crout menghasilkan matriks \(U\) dengan elemen diagonal 1. Matriks \(L\) memiliki elemen non-diagonal di bawah diagonal, sedangkan \(U\) memiliki elemen di atas diagonal.
+        \begin{enumerate}
+          \item Berikan input matriks \(A\) yang berukuran \(n \times n\).
+          \item Tentukan matriks \(L\) dan \(U\) sedemikian rupa sehingga \(A = LU\).
+          \item Untuk setiap \(k = 1, 2, \dots, n\):
+          \begin{enumerate}
+              \item Hitung elemen-elemen pada \(L[i,k]\) untuk \(i = k, k+1, \dots, n\) dengan rumus:
+              \[
+              L[i,k] = A[i,k] - \sum_{j=1}^{k-1} L[i,j]U[j,k]
+              \]
+              \item Hitung elemen-elemen pada \(U[k,i]\) untuk \(i = k+1, k+2, \dots, n\) dengan rumus:
+              \[
+              U[k,i] = \frac{A[k,i] - \sum_{j=1}^{k-1} L[k,j]U[j,i]}{L[k,k]}
+              \]
+          \end{enumerate}
+          \item Ulangi langkah ini sampai seluruh elemen \(L\) dan \(U\) terhitung.
+      \end{enumerate}
+        \subsection*{\small Metode Newton-Raphson (SPNL)}
+        Metode Newton-Raphson adalah metode iteratif yang menggunakan pendekatan linier untuk menyelesaikan sistem persamaan non-linear. Misalkan terdapat sistem persamaan non-linear:
+
+        \[
+        F(x_1, x_2, \dots, x_n) = \begin{bmatrix} f_1(x_1, x_2, \dots, x_n) \\ f_2(x_1, x_2, \dots, x_n) \\ \vdots \\ f_n(x_1, x_2, \dots, x_n) \end{bmatrix} = 0
+        \]
+
+        Langkah-langkah Metode Newton-Raphson untuk sistem persamaan non-linear adalah sebagai berikut:
+
+        \begin{enumerate}
+            \item Mulai dengan tebakan awal \(x^{(0)} = \begin{bmatrix} x_i^{(0)} \end{bmatrix}\).
+            \item Hitung matriks Jacobian \(J(x)\), yaitu turunan parsial dari setiap \(f_i\) terhadap \(x_j\):
+            \[
+            J(x) = \begin{bmatrix} 
+            \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n} \\
+            \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
+            \end{bmatrix}
+            \]
+            \item Perbarui solusi menggunakan iterasi Newton-Raphson:
+            \[
+            x^{(k+1)} = x^{(k)} - J^{-1}(x^{(k)}) F(x^{(k)})
+            \]
+            \item Ulangi langkah 2 dan 3 sampai konvergensi, yaitu hingga perubahan antara iterasi \(x^{(k)}\) dan \(x^{(k+1)}\) lebih kecil dari toleransi yang ditentukan.
+      \end{enumerate}  
+      \subsection*{\small Metode Iterasi (SPNL)}
+Tebakan awal yang diberikan sebagai:
+
+\[
+\mathbf{x}^{(0)} = \begin{bmatrix} x_i^{(0)} \end{bmatrix}
+\]
+
+Sistem disusun ulang menjadi bentuk iterasi:
+
+\[
+x_1 = F_1(x_1, x_2, \dots, x_n)
+\]
+\[
+x_2 = F_2(x_1, x_2, \dots, x_n)
+\]
+\[
+\vdots
+\]
+\[
+x_n = F_n(x_1, x_2, \dots, x_n)
+\]
+
+Seperti pada metode Gauss-Seidel untuk sistem persamaan linear, metode iterasi ini juga memperbaharui setiap variabel \( x_i \) satu per satu. Hasil baru yang dihitung langsung digunakan dalam iterasi berikutnya, tanpa menunggu hasil iterasi seluruh variabel. Proses iterasi dapat dituliskan sebagai berikut:
+
+\[
+x_1^{(k+1)} = F_1(x_1^{(k+1)}, x_2^{(k)}, \dots, x_n^{(k)})
+\]
+\[
+x_2^{(k+1)} = F_2(x_1^{(k+1)}, x_2^{(k+1)}, \dots, x_n^{(k)})
+\]
+\[
+\vdots
+\]
+\[
+x_n^{(k+1)} = F_n(x_1^{(k+1)}, x_2^{(k+1)}, \dots, x_n^{(k+1)})
+\]
+\begin{enumerate}
+    \item Tentukan tebakan awal \( \mathbf{x}^{(0)} \) untuk solusi.
+    \item Susun sistem persamaan non-linear ke dalam bentuk iteratif seperti yang dituliskan di atas.
+    \item Hitung iterasi berikutnya \( \mathbf{x}^{(k+1)} \) menggunakan rumus:
+    \[
+    x_i^{(k+1)} = F_i(x_1^{(k+1)}, x_2^{(k+1)}, \dots, x_n^{(k)})
+    \]
+    \item Ulangi proses ini sampai konvergensi dicapai, yaitu saat \( \|\mathbf{x}^{(k+1)} - \mathbf{x}^{(k)}\| \) lebih kecil dari toleransi yang ditentukan \( \epsilon \).
+\end{enumerate}
+    \end{multicols}
+\end{document}

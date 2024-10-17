@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  14 OCT 2024 13:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  15 OCT 2024 17:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1127,22 +1127,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--87
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--95
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--98
+Underfull \hbox (badness 10000) in paragraph at lines 103--105
 
  []
 
 
-Underfull \hbox (badness 8094) in paragraph at lines 144--145
+Underfull \hbox (badness 8094) in paragraph at lines 151--152
 []\T1/lmr/m/n/7 Jika $\OML/lmm/m/it/7 X[]; [] ; X[]$ \T1/lmr/m/n/7 adalah sam-pel acak dari
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--149
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
@@ -1157,15 +1157,15 @@ Package rerunfilecheck Info: File `"Cheatsheet Matstat".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 36078 strings out of 475248
- 813675 string characters out of 5757812
- 2002785 words of memory out of 5000000
- 57000 multiletter control sequences out of 15000+600000
+ 36080 strings out of 475248
+ 813729 string characters out of 5757812
+ 2005785 words of memory out of 5000000
+ 57002 multiletter control sequences out of 15000+600000
  604179 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,103p,832b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on "Cheatsheet Matstat.pdf" (2 pages, 199488 bytes).
+Output written on "Cheatsheet Matstat.pdf" (2 pages, 200295 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  19 named destinations out of 1000 (max. 500000)
