@@ -1,0 +1,871 @@
+PWD c:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Semester 3\Analisis I\ETS 2024
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Semester 3\Analisis I\ETS 2024\ETS 2024.tex
+OUTPUT ETS 2024.log
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphics.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphics.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\trig.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\trig.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\graphics.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\graphics.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\graphics.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsmath.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsmath.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsopn.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amstext.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amstext.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsgen.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsgen.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsbsy.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsbsy.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsopn.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\xcolor\xcolor.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\xcolor\xcolor.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\cancel\cancel.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\cancel\cancel.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\utilities\pgfrcs.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\utilities\pgfrcs.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfutil-common.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfutil-latex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfrcs.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfrcs.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfrcs.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\pgf.revision.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\pgf.revision.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\basiclayer\pgfcore.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\basiclayer\pgfcore.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\systemlayer\pgfsys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\systemlayer\pgfsys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeyslibraryfiltered.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgf.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathutil.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathparser.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.base.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.round.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathcalc.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmathfloat.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfint.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\basiclayer\pgfcorerdf.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\utilities\pgffor.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\utilities\pgffor.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\utilities\pgfkeys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\utilities\pgfkeys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\math\pgfmath.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\pgf\math\pgfmath.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgffor.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgffor.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgffor.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\animate\animate.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\animate\animate.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\iftex\iftex.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\iftex\iftex.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\oberdiek\ifdraft.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\oberdiek\ifdraft.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\media9\pdfbase.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\media9\pdfbase.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-abspage.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-abspage.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-base.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-base.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\etexcmds\etexcmds.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\etexcmds\etexcmds.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\auxhook\auxhook.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\auxhook\auxhook.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\ocgx2\ocgbase.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\ocgx2\ocgbase.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\ragged2e\ragged2e.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\ragged2e\ragged2e.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifvtex.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifvtex.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty
+INPUT .\ETS 2024.aux
+INPUT .\ETS 2024.aux
+INPUT ETS 2024.aux
+OUTPUT ETS 2024.aux
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\ITS.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\ITS.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\ITS.png
+OUTPUT ETS 2024.pdf
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\ITS.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\ITS.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\ITS.png
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\M.png
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsl10.tfm
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-0.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-1.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-2.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-3.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-4.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-5.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-6.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-7.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-8.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-9.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-10.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-11.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-12.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-13.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-14.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-15.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-16.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-17.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-18.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-19.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-20.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-21.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-22.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-23.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-24.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-25.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-26.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-27.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-28.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-29.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-30.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-31.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-32.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-33.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-34.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-35.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-36.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-37.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-38.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-39.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-40.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-41.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-42.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-43.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-44.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-45.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-46.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-47.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-48.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-49.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-50.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-51.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-52.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-53.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-54.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-55.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-56.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-57.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-58.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-59.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-60.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-61.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-62.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-63.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-64.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-65.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-66.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-67.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-68.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-69.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-70.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-71.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-72.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-73.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-74.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-75.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-76.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-77.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-78.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-79.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-80.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-81.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-82.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-83.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-84.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT C:\Users\teoso\OneDrive\Documents\Tugas Kuliah\Template Math Depart\Kita Ikuyo Doodle\Kita Ikuyo Doodle-85.png
+INPUT ETS 2024.aux
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\latxfont\line10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\latxfont\line10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb

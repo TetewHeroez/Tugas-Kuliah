@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{color,xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \geometry{
+        total = {160mm, 237mm},
+        left = 25mm,
+        right = 35mm,
+        top = 30mm,
+        bottom = 30mm,
+      }
+
+\newcommand{\enter}{\raisebox{-1.8pt}{\begin{tikzpicture}[scale=0.3]
+    \draw[thin,fill=lightgray] (0,0) rectangle (2,1);
+    \draw (0.3,0.3) -- (0.7,0.3)--(0.7,0.6);     
+\end{tikzpicture}}}
+
+\definecolor{pgray}{rgb}{0.5,0.5,0.5}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{pcyan}{HTML}{D4EFFC}
+\definecolor{lblue}{HTML}{00AEEF}
+\definecolor{input}{HTML}{AAE1FA}
+\definecolor{bg}{rgb}{0.95, 0.95, 0.92}
+\definecolor{vscode}{HTML}{282A36}
+
+\newcommand{\inputscan}[1]{\raisebox{0pt}[1pt]{\colorbox{darkgray}{#1}}}
+
+\usepackage{listings}
+
+\lstdefinestyle{standard}{
+    language            = Java,
+    showspaces          = false,
+    showtabs            = false,
+    breaklines          = true,
+    showstringspaces    = false,
+    breakatwhitespace   = true,
+    commentstyle        = \color{pgray},
+    keywordstyle        = \color{pblue},
+    stringstyle         = \color{pgreen},
+    basicstyle          = \footnotesize\ttfamily,
+    frame               = single,
+    backgroundcolor     = \color{brown!10!white},
+    escapeinside        = {(*}{*)},
+    numbers             = left, % {none, left, right}
+    numberstyle         = \scriptsize\color{lightgray},
+    numbersep           = -8pt,
+    }
+
+\lstdefinestyle{output}{
+    language=Java,
+    backgroundcolor     =\color{vscode},
+    basicstyle          =\footnotesize\ttfamily\color{white},
+    frame               =shadowbox,
+    escapeinside        ={(*}{*)},
+    showspaces          =false,
+    showtabs            =false,
+    breaklines          =true,
+    showstringspaces    =false,
+    breakatwhitespace   =true,
+    rulesepcolor        =\color{HIMAtua!50!white},
+    rulecolor           =\color{HIMAtua!50!white},
+    numbers             =none,
+    }
+
+\lstdefinestyle{soal}{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,                     % Menampilkan nomor baris
+    numberstyle=\tiny\color{gray},    % Ukuran dan warna nomor baris
+    stepnumber=1,                     % Menampilkan nomor baris setiap baris
+    numbersep=5pt,                    % Jarak antara nomor baris dan teks
+    backgroundcolor=\color{white},    % Warna latar belakang
+    showspaces=false,                 % Jangan tampilkan spasi
+    showstringspaces=false,           % Jangan tampilkan spasi di dalam string
+    showtabs=false,                   % Jangan tampilkan karakter tab
+    frame=single,                     % Bingkai di sekitar kode
+    tabsize=4,                        % Ukuran tab
+    captionpos=b,                     % Posisi caption (b=bottom, t=top)
+    breaklines=true,                  % Membungkus baris yang panjang
+    breakatwhitespace=false,          % Membungkus di whitespace
+    escapeinside={(*}{*)}            % Escape dari LaTeX dalam kode
+}
+
+\lstset{style=standard}
+
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\begin{document}
+
+\begin{minted}{java}
+import java.util.Scanner;
+
+public class SalesTax {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter purchase amount: ");
+
+        double purchaseAmount = input.nextDouble();
+        double tax = purchaseAmount * 0.06;
+        System.out.println("Sales tax is $" + (int)(tax * 100) / 100.0);
+    }
+}
+\end{minted}
+hai semua
+\end{document}

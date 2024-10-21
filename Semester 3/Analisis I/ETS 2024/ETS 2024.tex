@@ -1,0 +1,257 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{animate}
+\usepackage{ragged2e}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\begin{tabular}{r c l}
+    \includegraphics[width=2cm]{ITS.png}
+     &\begin{tabular}{lcll}
+        \multicolumn{4}{c}{\begin{tabular}{c}
+          \MakeUppercase{evaluasi tengah semester gasal 2024/2025}\\
+          \MakeUppercase{departemen matematika fsad its}\\
+          \MakeUppercase{program sarjana}\\
+     \end{tabular}}\\
+     \\
+          Matakuliah&:&\multicolumn{2}{l}{Analisis 1}\\
+          Hari, Tanggal&:&\multicolumn{2}{l}{Kamis, 16 Oktober 2024}\\
+          Waktu / Sifat&:&\multicolumn{2}{l}{100 menit / \textit{Closed Book}}\\
+          Kelas, Dosen&:&A.&Dr. Mahmud Yunus, M.Si.\\
+          &&B.&Drs. Sadjidon, M.Si.\\
+          &&C.&Dr. Sunarsini, M.Si.\\
+          &&D.&Dr. Rinurwati, M.Si.\\
+     \end{tabular}
+     & 
+     \includegraphics[width=2cm]{M.png}
+     \\ \hline
+\multicolumn{3}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}\\
+\multicolumn{3}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}\\
+\multicolumn{3}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}\\
+\hline
+\end{tabular}
+
+\begin{enumerate}
+    \justifying
+    \item Pandang $A,B\subseteq\R$ dan fungsi $f\,:\,A\,\to\,B$ yang didefinisikan dengan $f(x)\,=\,\dfrac{2x-3}{x+1}$.\\
+    Dapatkan \textit{domain} dan \textit{range} dari $f$ agar $f$ bijektif. Buktikan jawaban Anda.\\
+
+    \item Buktikan dengan Induksi Matematika bahwa jumlah $n$ bilangan ganjil yang pertama adalah $n^2$, yaitu $1+3+5+\cdots+(2n-1)=n^2$ untuk setiap $n\in\N$.\\
+    
+    \item Buktikan bahwa tidak ada bilangan rasional $q$ sehingga $q^2=3$.\\
+    
+    \item Tunjukkan bahwa:
+    \begin{enumerate}
+        \item Jika $a\in\R$ dan $0\leq a< \varepsilon$ untuk setiap $\varepsilon>0$, maka $a=0$.
+        \item Jika $\mathcal{N}_\varepsilon(a)$ adalah persekitaran-$\varepsilon$ dari $a$ dan $x\in\mathcal{N}_\varepsilon(a)$ untuk setiap $\varepsilon>0$, maka $x=a$.\\
+    \end{enumerate}
+
+    \item Diberikan barisan bilangan real $X=(x_n)$ dengan $x_n=(2-\frac{1}{n})^2$ untuk semua $n\in\N$. 
+    \begin{enumerate}
+        \item Tunjukkan bahwa $X$ barisan terbatas.
+        \item Dapatkan $\inf(X)$ dan $\sup(X)$; dan buktikan jawaban Anda.
+        \item Dengan menerapkan definisi konvergensi barisan dan hasil bagian (b), buktikan bahwa $\lim_{n\to\infty}x_n=\sup(X)$.
+    \end{enumerate}
+\end{enumerate}
+
+\newpage
+\fancyfoot[C]{}
+\fancyfoot[R]{\color{blue}\textit{Teosofi Hidayah Agung - 5002221132}}
+\jawab
+\begin{enumerate}
+    \item Pertama lakukan oret-oretan untuk mendapatkan \textit{domain} dan \textit{range} (Hal ini bertujuan untuk melakukan suatu klaim atau biasa kita kenal sebagai \textit{conjecture}). Dengan menggunakan konsep kalkulus, didapatkan \textit{domain}-nya adalah $A=\R\backslash\{-1\}$ dan \textit{range}-nya adalah $B=\R\backslash\{2\}$.\\
+    
+    Selanjutnya kita perlu buktikan bahwa dengan memilih \textit{domain} dan \textit{range} tersebut, fungsi $f$ menjadi bijektif. Ingat bahwa bijektif adalah gabungan dari sifat Injektif dan sifat Surjektif.\\
+
+    \begin{definisi}
+        Sebuah fungsi $f\,:\,A\,\to\,B$ dikatakan injektif jika untuk setiap $x_1,x_2\in A$ dengan $x_1\ne x_2$ maka $f(x_1)\ne f(x_2)$.
+    \end{definisi}
+    Atau kita bisa menggunakan kontraposisi dari definisi diatas, yaitu
+    \begin{definisi}
+        Sebuah fungsi $f\,:\,A\,\to\,B$ dikatakan injektif jika untuk setiap $x_1,x_2\in A$ dengan $f(x_1)=f(x_2)$ maka $x_1=x_2$.
+    \end{definisi}
+    Ambil sebarang $x_1,x_2\in A$. Kemudian misalkan $f(x_1)=f(x_2)$, maka
+    \begin{flalign*}
+        \dfrac{2x_1-3}{x_1+1}&=\dfrac{2x_2-3}{x_2+1}
+    \end{flalign*}
+    Sebab $x_1,x_2\ne -1$, maka $x_1+1\ne 0$ dan $x_2+1\ne 0$. Artinya $x_1+1$ dan $x_2+1$ masing-masing punya invers yaitu $\dfrac{1}{x_1+1}$ dan $\dfrac{1}{x_2+1}$. Dengan demikian, kita bisa mengalikan kedua ruas persamaan di atas dengan $(x_1+1)(x_2+1)$ sehingga didapatkan
+    \begin{flalign*}
+        \dfrac{2x_1-3}{x_1+1}\cdot(x_1+1)(x_2+1)&=\dfrac{2x_2-3}{x_2+1}\cdot(x_1+1)(x_2+1)\\
+        2x_1(x_2+1)-3(x_2+1)&=2x_2(x_1+1)-3(x_1+1)\\
+        \cancel{2x_1x_2}+2x_1-3x_2\cancel{-3}&=\cancel{2x_2x_1}+2x_2-3x_1\cancel{-3}\\
+        2x_1-3x_2&=2x_2-3x_1\\
+        2x_1+3x_1&=2x_2+3x_2\\
+        5x_1&=5x_2\\
+        x_1&=x_2
+    \end{flalign*}
+    didapatkan $x_1=x_2$. Hal ini mengimplikasikan $f$ adalah fungsi injektif.\\
+    
+    \begin{definisi}
+        Sebuah fungsi $f\,:\,A\,\to\,B$ dikatakan surjektif jika untuk setiap $y\in B$ terdapat $x\in A$ sehingga $f(x)=y$.
+    \end{definisi}
+    Ambil sebarang $y\in B$. Karena $B$ adalah kodomain dari $f$, maka $y$ dapat dinyatakan sebagai $y=\dfrac{2x-3}{x+1}$ untuk suatu $x\in A$. Dengan demikian, kita bisa mendapatkan $x$ sebagai berikut
+    \begin{flalign*}
+        y&=\dfrac{2x-3}{x+1}\\
+        y(x+1)&=2x-3\\
+        yx+y&=2x-3\\
+        yx-2x&=-3-y\\
+        x(y-2)&=-3-y\\
+        x&=\dfrac{-3-y}{y-2}
+    \end{flalign*}
+    Sebab $y\ne 2$, maka $y-2\ne 0$. Artinya selalu ada $x\in A$ sehingga $f(x)=y$. Hal ini mengimplikasikan $f$ adalah fungsi surjektif.\\
+
+    $\therefore$ Dengan demikian, $f$ adalah fungsi bijektif.
+
+    \item Misalkan $P(n)$ adalah pernyataan bahwa $1+3+5+\cdots+(2n-1)=n^2$.
+    \begin{itemize}
+        \item Untuk $n=1$, maka $P(1)$ adalah $1=1^2$ yang dimana adalah pernyataan yang benar.
+        \item Asumsi bahwa $P(k)$ benar untuk suatu $k\in\N$, yaitu $1+3+5+\cdots+(2k-1)=k^2$.
+        \item Untuk $n=k+1$, maka $P(k+1)$ adalah
+        \begin{flalign*}
+            \underbrace{1+3+5+\cdots+(2k-1)}_{k^2}+(2(k+1)-1)=k^2+2k+1=(k+1)^2
+        \end{flalign*}
+    \end{itemize}
+    Dengan demikian, berdasarkan prinsip induksi matematika, kita bisa menyimpulkan bahwa $P(n)$ benar untuk setiap $n\in\N$.
+
+    \item Disini kita dapat melakukan pembuktian seperti yang biasanya dilakukan untuk membuktikan tidak ada bilangan rasional $p$ yang memenuhi $p^2=2$, yaitu dengan menggunakan kontradiksi.\\
+    
+    Asumsikan bahwa $q$ adalah bilangan rasional, maka $q$ dapat dinyatakan sebagai $q=\dfrac{a}{b}$ dengan $a,b\in \Z\setminus\{0\}$ dan $\text{fpb}(a,b)=1$. Sehingga didapatkan
+    \[q^2=3\iff \left(\dfrac{a}{b}\right)^2=3\iff \dfrac{a^2}{b^2}=3\iff a^2=3b^2\]
+    Akibatnya $a^2$ adalah kelipatan dari 3. Sebab $a^2$ adalah bilangan bulat, maka $a$ juga adalah kelipatan dari 3. Dengan demikian, $a$ dapat dinyatakan sebagai $a=3c$ untuk suatu $c\in\Z$. Sehingga didapatkan
+    \[a^2=(3c)^2=9c^2=3b^2\iff 3c^2=b^2\iff b^2\]
+    Hal ini juga berarti $b^2$ adalah kelipatan dari 3. Dari sini didapatkan hasil $\text{fpb}(a,b)=3$ yang bertentangan dengan asumsi bahwa $\text{fpb}(a,b)=1$.\\
+
+    $\therefore$ Tidak ada bilangan rasional $q$ yang memenuhi $q^2=3$.
+
+    \item 
+    \begin{enumerate}
+        \item Diketahui $a\in\mathbb{R}$, sehingga akan memenuhi sifat-sifat pada bilangan real. Asumsikan $a\neq0$. Maka didapat
+        \begin{flalign*}
+            &0<a<\varepsilon&\\
+            &a<\varepsilon\:,\: a>0
+        \end{flalign*}
+        Karena berlaku untuk setiap $\varepsilon>0$, dapat dipilih $\varepsilon_0=\frac{1}{2}a$ sehingga
+        \begin{flalign*}
+            &a<\varepsilon_0\:,\: a>0&\\
+            &a<\frac{1}{2}a\:,\:a>0\quad \textrm{(Kontradiksi)}
+        \end{flalign*}
+        Akibatnya asumsi $a\neq0$ salah. Jadi haruslah $a=0$.
+
+        \item Sebelumnya kita harus mengetahui terlebih dahulu definisi dari persekitaran-$\varepsilon$ dari $a$.
+        \begin{definisi}
+            Sebuah himpunan $\mathcal{N}_\varepsilon(a)$ disebut sebagai persekitaran-$\varepsilon$ dari $a$ jika terdapat $\varepsilon>0$ sehingga $\mathcal{N}_\varepsilon(a)=\{x\in\mathbb{R}\,:\,|x-a|<\varepsilon\}$.
+        \end{definisi}
+        Perhatikan bahwa soal mengiginkan untuk setiap $\varepsilon>0$, maka untuk $x\in\mathcal{N}_\varepsilon(a)$ haruslah $|x-a|<\varepsilon$ memenuhi untuk setiap $\varepsilon>0$. Sehingga dari informasi pada soal (a), didapatkan $|x-a|=0$ yang berarti $x=a$.
+    \end{enumerate}
+
+    \item 
+    \begin{enumerate}
+        \item Barisan dikatakan terbatas jika dia terbatas di atas dan terbatas di bawah. Sekarang perhatikan bahwa untuk setiap $n\in\N$, berlaku
+        \[\left(2-\frac{1}{n}\right)^2>0\]
+        Sehingga didapatkan bahwa $(x_n)$ terbatas di bawah oleh 0.\\
+        Selanjutnya, perhatikan bahwa untuk setiap $n\in\N$, berlaku
+        \begin{flalign*}
+            \frac{1}{n}&>0\\
+            -\frac{1}{n}&<0\\
+            0<2-\frac{1}{n}&<2\\
+            \left(2-\frac{1}{n}\right)^2&<4
+        \end{flalign*}
+        Sehingga didapatkan bahwa $(x_n)$ terbatas di atas oleh 4.\\
+
+        $\therefore$ Barisan $X$ adalah barisan terbatas.
+
+        \item Untuk mencari $\inf(X)$ dan $\sup(X)$, kita perlu menggunakan konsep kalkulus kembali seperti menggunakan limit dsb. Dari hasil analisa, dapat kita klaim bahwa $\inf(X)=1$ dan $\sup(X)=4$.\\
+        
+        Sekarang kita akan buktikan klaim tersebut.
+        \begin{itemize}
+            \item Pertama kita akan buktikan bahwa $\inf(X)=1$.
+            \begin{teorema}
+                Misalkan $H$ adalah himpunan tak kosong dari $\R$. Sebuah bilangan $a\in\R$ dikatakan sebagai infimum dari $H$ jika
+                \begin{enumerate}
+                    \item $a\leq x$ untuk setiap $x\in H$.
+                    \item Untuk setiap $\varepsilon>0$, terdapat $x\in H$ sehingga $a\leq x<a+\varepsilon$.\\
+                \end{enumerate}
+            \end{teorema}
+
+            Menggunakan teorema di atas, diperloleh
+            \begin{enumerate}
+                \item Untuk setiap $n\geq 1,n\in\N$, berlaku
+                \[\frac{1}{n}\leq 1\iff 2-\frac{1}{n}\geq 1\iff \left(2-\frac{1}{n}\right)^2\geq 1\]
+                Sehingga $1$ adalah batas bawah dari barisan $X$.
+                \item Untuk setiap $\varepsilon>0$, dapat dengan mudah kita pilih $x=1\in X$ sehingga $1\leq x<1+\varepsilon$.\\
+            \end{enumerate}
+
+            $\therefore$ Terbukti $\inf(X)=1$.\\
+
+            \item Kedua kita akan buktikan bahwa $\sup(X)=4$.
+            \begin{teorema}
+                Misalkan $H$ adalah himpunan tak kosong dari $\R$. Sebuah bilangan $b\in\R$ dikatakan sebagai supremum dari $H$ jika
+                \begin{enumerate}
+                    \item $b\geq x$ untuk setiap $x\in H$.
+                    \item Untuk setiap $\varepsilon>0$, terdapat $x\in H$ sehingga $b-\varepsilon<x\leq b$.\\
+                \end{enumerate}
+            \end{teorema}
+            Menggunakan teorema di atas, diperloleh
+            \begin{enumerate}
+                \item Dari hasil (a), jelas bahwa $4$ adalah batas atas dari barisan $X$.
+                \item Dengan sifat Archimedes, didapatkan untuk setiap $\varepsilon>0$ selalu terdapat $n_\varepsilon\in\N$ sehingga $\frac{1}{n_\varepsilon}<\varepsilon$. Informasi tersebut dapat digunakan sebagai berikut 
+                \[\left(2-\frac{1}{n_\varepsilon}\right)^2=4-\frac{4}{n_\varepsilon}+\frac{1}{n^2_\varepsilon}>4-\frac{4}{n_\varepsilon}\]
+                Pilih $n_\varepsilon=\dfrac{4}{\varepsilon}$, sehingga
+                \[4-\frac{4}{n_\varepsilon}>4-\varepsilon\]
+                Hal ini menunjukkan terdapat $x=\left(2-\frac{1}{n_\varepsilon}\right)^2\in X$ sehingga $4-\varepsilon<x\leq 4$.\\
+            \end{enumerate}
+
+            $\therefore$ Terbukti $\sup(X)=4$.
+        \end{itemize}
+        \item Ingat tentang definisi konvergensi barisan
+        \begin{definisi}
+            Sebuah barisan $(x_n)$ dikatakan konvergen ke $a\in\R$ jika untuk setiap $\varepsilon>0$, terdapat $N_\varepsilon\in\N$ sehingga untuk setiap $n\geq N_\varepsilon$ berlaku $|x_n-a|<\varepsilon$ .
+        \end{definisi}
+        Dari hasil sebelumnya, kita sudah mengetahui bahwa $\sup(X)=4$. Sehingga kita bisa klaim bahwa $\lim_{n\to\infty}x_n=4$.\\
+
+        Sekarang akan kita buktikan klaim tersebut. Perhatikan bahwa
+        \begin{flalign*}
+            |x_n-4|&=\left|\left(2-\frac{1}{n}\right)^2-4\right|=\left|\frac{1}{n^2}-\frac{4}{n}\right|\leq\frac{1}{n^2}+\frac{4}{n}<\frac{4}{n}
+        \end{flalign*} 
+        Pilih $N_\varepsilon=\dfrac{4}{\varepsilon}$, sehingga untuk setiap $n\geq N_\varepsilon$ berlaku
+        \[|x_n-4|<\varepsilon\]
+        Sehingga berdasarkan definisi konvergensi barisan, didapatkan $\lim_{n\to\infty}x_n=4$.
+    \end{enumerate}
+\end{enumerate}
+
+\tikz[remember picture,overlay]
+ \node at ([xshift=-4cm,yshift=0cm]current page.east) 
+{\animategraphics[autoplay,loop,width=0.3\textwidth]{30}{Kita Ikuyo Doodle/Kita Ikuyo Doodle-}{0}{85}};
+
+\end{document}
