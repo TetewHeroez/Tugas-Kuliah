@@ -1,0 +1,49 @@
+\begin{thebibliography}{}
+
+\bibitem[Arum, 2015]{Arum2015}
+Arum, S. .~S. (2015).
+\newblock Analisa tarif angkutan umum berdasarkan biaya operasional kendaraan,
+  atp dan wtp.
+\newblock {\em Jurnal Media Teknik Sipil}, 12(2).
+
+\bibitem[Baccelli et~al., 1992]{baccelli}
+Baccelli, F., Cohen, G., Olsder, G., and Quadrat, J.-P. (1992).
+\newblock {\em Synchronization and Linearity: An Algebra for Discrete Event
+  Systems}.
+\newblock Wiley.
+
+\bibitem[Budi, 2018]{budi2018}
+Budi, A.~S. (2018).
+\newblock Perencanaan busway untuk mendukung bus rapid transit antara terminal
+  purabaya sampai terminal joyoboyo.
+
+\bibitem[Butkovič, 2010]{butkovic2010maxplus}
+Butkovič, P. (2010).
+\newblock {\em Max-Linear Systems: Theory and Algorithms}.
+\newblock Springer, London.
+
+\bibitem[Cassandras and Lafortune, 1999]{cassandras}
+Cassandras, C. and Lafortune, S. (1999).
+\newblock {\em Introduction to Discrete Event Systems}.
+\newblock Kluwer Academic Publisher.
+
+\bibitem[Heidergott et~al., 2006]{heidergott}
+Heidergott, B., Olsder, G., and van~der Woude, J. (2006).
+\newblock {\em Max Plus at Work: Modelling and Analysis of Synchronized
+  Systems: A Course on Max-Plus Algebra and Its Applications}.
+\newblock Princeton University Press.
+
+\bibitem[Subiono, 2015]{subiono2015minmaxplus}
+Subiono (2015).
+\newblock {\em Aljabar Min-Max Plus dan Terapannya}.
+\newblock Jurusan Matematika, Institut Teknologi Sepuluh Nopember, Institut
+  Teknologi Sepuluh Nopember, Surabaya, Indonesia.
+\newblock Available at: subiono2008@matematika.its.ac.id.
+
+\bibitem[Subiono and van~der Woude, 2000]{subionopower}
+Subiono and van~der Woude, J. (2000).
+\newblock Power algorithms for (max,+)- and bipartite (min,max,+)-systems.
+\newblock {\em Discrete Event Dynamic Systems: Theory and Applications},
+  10(4):369--389.
+
+\end{thebibliography}

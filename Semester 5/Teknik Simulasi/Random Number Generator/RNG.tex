@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{animate}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+\definecolor{pgray}{rgb}{0.5,0.5,0.5}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{pcyan}{HTML}{D4EFFC}
+\definecolor{lblue}{HTML}{00AEEF}
+\definecolor{input}{HTML}{AAE1FA}
+\definecolor{bg}{rgb}{0.95, 0.95, 0.92}
+\definecolor{vscode}{HTML}{282A36}
+\definecolor{PastelGreen}{HTML}{77DD77}
+
+\lstdefinestyle{standard}{
+    language            = Python,
+    showspaces          = false,
+    showtabs            = false,
+    breaklines          = true,
+    showstringspaces    = false,
+    breakatwhitespace   = true,
+    commentstyle        = \color{pgray},
+    keywordstyle        = \color{pblue},
+    stringstyle         = \color{pgreen},
+    basicstyle          = \footnotesize\ttfamily,
+    frame               = single,
+    backgroundcolor     = \color{brown!10!white},
+    escapeinside        = {(*}{*)},
+    numbers             = left, % {none, left, right}
+    numberstyle         = \scriptsize\color{gray},
+    numbersep           = -8pt,
+    }
+
+\lstdefinestyle{output}{
+    language            =Python,
+    backgroundcolor     =\color{vscode},
+    basicstyle          =\footnotesize\ttfamily\color{white},
+    frame               =shadowbox,
+    escapeinside        ={(*}{*)},
+    showspaces          =false,
+    showtabs            =false,
+    breaklines          =true,
+    showstringspaces    =false,
+    breakatwhitespace   =true,
+    rulesepcolor        =\color{HIMAtua!50!white},
+    rulecolor           =\color{HIMAtua!50!white},
+    numbers             =none,
+    }
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\renewcommand{\lstlistingname}{Code}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\section{Midsquare Method}
+The midsquare method algorithm is as follows:
+\begin{enumerate}
+    \item Choose an integer seed $X_0$ that has four digits.
+    \item Calculate $X_0^2$.
+    \item Extract the middle four digits of $X_0^2$ as the next random number.
+    \item Repeat the process from step 2.
+\end{enumerate}
+The following is the implementation of the midsquare method algorithm in Python:
+\begin{lstlisting}[style=standard,caption={Midsquare Method Algorithm in Python}]
+    def midsquare(seed, n):
+        # Initialize an empty list
+        random_numbers = []
+
+        # Loop n times to generate n random numbers
+        for i in range(n):
+            # Square the current seed
+            seed = str(seed ** 2)
+
+            # Add leading zero's if the result has odd length
+            if len(seed) % 2 == 1:
+                seed = '0' + seed
+
+            # Extract the middle 4 digits of the squared result
+            seed = int(seed[2:6])
+
+            # Append the new seed (random number) to the list
+            random_numbers.append(seed)
+
+        # Return the list of generated random numbers
+        return random_numbers
+\end{lstlisting}
+\section{Linear Congruential Method}
+The linear congruential method algorithm is as follows:
+\begin{enumerate}
+    \item Choose four integers $a$, $c$, $m$, and $X_0$. The integer must satisfy the following conditions: $m > 0$ and $a,\,c,\,X_0 < m$.
+    \item Calculate $X_{i+1} \equiv (aX_i + c) \mod m$.
+    \item Convert $X_{i+1}$ to a random number by dividing it by $m$.
+    \item Repeat the process from step 2.
+\end{enumerate}
+The following is the implementation of the linear congruential method algorithm in Python:
+\begin{lstlisting}[style=standard,caption={Linear Congruential Method Algorithm in Python}]
+    def linear_congruential(a, c, m, seed, n):
+        # Initialize an empty list
+        random_numbers = []
+
+        # Loop n times to generate n random numbers
+        for i in range(n):
+            # Calculate the next random number
+            seed = (a * seed + c) % m
+
+            # Append the new seed (random number) to the list
+            random_numbers.append(seed / m)
+
+        # Return the list of generated random numbers
+        return random_numbers
+\end{lstlisting}
+\begin{theorem}
+    The LCM has a full period if and only if:
+    \begin{enumerate}
+        \item $c$ and $m$ are relatively prime,
+        \item if $q$ is a prime number that divides $m$, then $q$ divides $a - 1$,
+        \item $a - 1$ is divisible by 4 if $m$ is divisible by 4.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    The full period means that the sequence must not be repeated until the $m$-th number. Consider the recurrence relation:
+    \begin{equation}
+        X_{i+1} \equiv (aX_i + c) \mod m \label{eq1}
+    \end{equation}
+    The sequence will be repeated if $X_{i+1} = X_i$. This means that:
+    \begin{equation}
+        (aX_i + c) \mod m = X_i \label{eq2}
+    \end{equation}
+    Rearranging equation \eqref{eq2} gives:
+    \begin{equation}
+        aX_i \equiv X_i - c \mod m \label{eq3}
+    \end{equation}
+    Since $X_i < m$, then $X_i - c < m$. This means that $X_i - c$ is a non-negative number. Therefore, $X_i - c \mod m = X_i - c$. Substituting this into equation \eqref{eq3} gives:
+    \begin{equation}
+        aX_i \equiv X_i - c \mod m \label{eq4}
+    \end{equation}
+    Rearranging equation \eqref{eq4} gives:
+    \begin{equation}
+        (a - 1)X_i \equiv -c \mod m \label{eq5}
+    \end{equation}
+    Since $c < m$, then $-c < m$. This means that $-c$ is a non-negative number. Therefore, $-c \mod m = -c$. Substituting this into equation \eqref{eq5} gives:
+    \begin{equation}
+        (a - 1)X_i \equiv -c \mod m \label{eq6}
+    \end{equation}
+    Since $X_i < m$, then $X_i$ is relatively prime to $m$. This means that $X_i$ has a multiplicative inverse modulo $m$. Multiplying both sides of equation \eqref{eq6} by $X_i^{-1}$ gives:
+    \begin{equation}
+        a - 1 \equiv -cX_i^{-1} \mod m \label{eq7}
+    \end{equation}
+    Since $X_i$ is relatively prime to $m$, then $X_i^{-1}$ exists. This means that equation \eqref{eq7} has a solution if and only if $c$ and $m$ are relatively prime. This proves the first condition. The second condition can be proven similarly. The third condition can be proven by considering the case when $m$ is divisible by 4. This completes the proof.
+\end{proof}
+
+\section{Combined Linear Congruential Generators}
+The combined linear congruential generator (CLCG) is a method to generate random numbers by combining multiple LCGs. The algorithm is as follows:
+\begin{enumerate}
+    \item Choose $k$ LCGs with parameters $a_i$, $c_i$, $m_i$, and $X_{0i}$ for $i = 1, 2, \ldots, k$.
+    \item Calculate $X_{i+1} \equiv \left(\sum_{j=1}^{k} a_jX_{ij} + c_j\right) \mod m_j$ for $i = 1, 2, \ldots$.
+    \item Convert $X_{i+1}$ to a random number by dividing it by $m_j$.
+    \item Repeat the process from step 2.
+\end{enumerate}
+The following is the implementation of the CLCG algorithm in Python:
+\begin{lstlisting}[style=standard,caption={Combined Linear Congruential Generator Algorithm in Python}]
+    def clcg(a, c, m, seed, n):
+        # Initialize an empty list
+        random_numbers = []
+
+        # Loop n times to generate n random numbers
+        for i in range(n):
+            # Calculate the next random number
+            seed = sum([ai * xi for ai, xi in zip(a, seed)]) + c
+            seed = [si % mi for si, mi in zip(seed, m)]
+
+            # Append the new seed (random number) to the list
+            random_numbers.append(seed)
+
+        # Return the list of generated random numbers
+        return random_numbers
+\end{lstlisting}
+    
+\end{document}

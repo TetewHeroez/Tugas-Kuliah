@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: .\Proposal TA.aux
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+The style file: apalike.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+Warning--entry type for "budi2018" isn't style-file defined
+--line 1 of file references.bib
+You've used 8 entries,
+            1935 wiz_defined-function locations,
+            519 strings with 4953 characters,
+and the built_in function-call counts, 2522 in all, are:
+= -- 235
+> -- 95
+< -- 6
++ -- 30
+- -- 30
+* -- 189
+:= -- 469
+add.period$ -- 24
+call.type$ -- 8
+change.case$ -- 50
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 107
+empty$ -- 182
+format.name$ -- 42
+if$ -- 485
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 12
+newline$ -- 43
+num.names$ -- 24
+pop$ -- 56
+preamble$ -- 1
+purify$ -- 55
+quote$ -- 0
+skip$ -- 81
+stack$ -- 0
+substring$ -- 117
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 38
+warning$ -- 0
+while$ -- 17
+width$ -- 0
+write$ -- 102
+(There was 1 warning)
