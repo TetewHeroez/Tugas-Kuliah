@@ -1,0 +1,30 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.Scanner}\PYG{p}{;}
+
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{no5}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{n}{String}\PYG{o}{[}\PYG{o}{]}\PYG{+w}{ }\PYG{n}{args}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{Scanner}\PYG{+w}{ }\PYG{n}{input}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Scanner}\PYG{p}{(}\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{in}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Masukkan jumlah data yang diinginkan: }\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{input}\PYG{p}{.}\PYG{n+na}{nextInt}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{sum\PYGZus{}2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Jumlahan kuadrat per data }
+
+\PYG{+w}{        }\PYG{c+c1}{// Loop untuk input data}
+\PYG{+w}{        }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Masukkan }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ buah data:}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{input}\PYG{p}{.}\PYG{n+na}{nextDouble}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{sum\PYGZus{}2}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{data}\PYG{o}{*}\PYG{n}{data}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{mean}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Math}\PYG{p}{.}\PYG{n+na}{sqrt}\PYG{p}{(}\PYG{p}{(}\PYG{n}{sum\PYGZus{}2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{sum}\PYG{o}{*}\PYG{n}{sum}\PYG{p}{)}\PYG{o}{/}\PYG{n}{n}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Print hasil}
+\PYG{+w}{        }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Mean: }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{mean}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Standar deviasi: }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

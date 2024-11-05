@@ -1,0 +1,379 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, top=3cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{courier}
+\usepackage{lscape}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{amsmath}
+%\usepackage{times}
+\usepackage{courier}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{natbib}
+\bibliographystyle{apalike}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%\titleformat*{\section}{\normalsize\bfseries}
+%\titleformat*{\subsection}{\normalsize\bfseries}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries\centering}
+  {\chaptertitlename\ \thechapter}{0pt}{\Huge}
+\titleformat{\section}
+  {\normalfont\large\bfseries\centering}
+  {\thesection}{1em}{}
+\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+\titleformat{\subsection}
+{\normalfont\normalsize\bfseries}
+{\thesubsection}{1em}{}
+
+\renewcommand{\thesection}{BAB \Roman{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\contentsname}{Daftar Isi}
+\renewcommand{\arraystretch}{1.2}
+\renewcommand{\refname}{}
+
+\usepackage{amsthm}
+\renewcommand*{\proofname}{\textbf{Bukti.}}
+\newtheorem{theorem}{Teorema}
+\renewcommand*{\thetheorem}{\Alph{theorem}}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+\numberwithin{lemma}{subsection}
+\newtheorem{definisi}[lemma]{Definisi}
+\newtheorem{proposition}[lemma]{Proposisi}
+\newtheorem{example}[lemma]{Contoh}
+\newtheorem{thm}[lemma]{Teorema}
+\newtheorem{remark}[lemma]{Catatan}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners=0.5cm, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!40]
+\tikzstyle{process} = [rectangle, minimum width=10cm, minimum height=1cm, text width=12cm, text centered, draw=black]
+\tikzstyle{processRR} = [rectangle, minimum width=3cm, minimum height=1cm, text width=4cm, text centered, draw=black]
+\tikzstyle{decision} = [diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!20]
+\tikzstyle{pj} = [rectangle, minimum width=2cm, minimum height=2cm, text width=2cm, text centered, draw=orange!50, fill=orange!40]
+\tikzstyle{pb} = [rectangle, minimum width=2cm, minimum height=2cm, text width=2cm, text centered, draw=blue!30, fill=blue!30]
+\tikzstyle{mon} = [rectangle, minimum width=2cm, minimum height=1.25cm, text width=5cm, text centered, draw=black!20, fill=black!20]
+\tikzstyle{invol} = [rectangle, minimum width=2cm, minimum height=1.25cm, text width=3.5cm, text centered, draw=white]
+\tikzstyle{op} = [rectangle, minimum width=2cm, minimum height=1.75cm, text width=4cm, text centered, draw=yellow!50, fill = yellow!30]
+\tikzstyle{res} = [rectangle, minimum width=2cm, minimum height=1.8cm, text width=4cm, text centered, draw=green!50, fill = green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{arrowX} = [thick,->,>=stealth]
+\tikzstyle{arrowLeft} = [thick,<-,>=stealth]
+\thispagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+
+\begin{document}
+	\begin{center}
+		\textbf{PROPOSAL TUGAS AKHIR}\\
+		\vspace{1cm}
+		\textbf{\MakeUppercase{Optimisasi Jadwal Jaringan Bus di Terminal Purabaya Menggunakan Aljabar Max-Plus}}\\
+		\vspace{1cm}
+		\textbf{\textit{\MakeUppercase{Optimization of Bus Network Scheduling at Purabaya Terminal Using Max-Plus Algebra}}}\\
+		\vspace{2cm}
+		\includegraphics[width=8cm]{logoITSBiru}\\
+		\vspace{3cm}
+		Oleh:\\
+		Teosofi Hidayah Agung\\
+		5002221132\\
+		\vspace{3.5cm}
+		\textbf{
+		LABORATORIUM ANALISIS, ALJABAR, DAN PEMBELAJARAN MATEMATIKA\\
+		DEPARTEMEN MATEMATIKA\\
+		FAKULTAS SAINS DAN ANALITIKA DATA\\
+		INSTITUT TEKNOLOGI SEPULUH NOPEMBER\\
+		SURABAYA\\
+		2024}
+	\end{center}
+\pagebreak
+\pagenumbering{roman}
+% \begin{center}
+% 	\textbf{LEMBAR PENGESAHAN\\PROPOSAL TUGAS AKHIR
+% 	}\\
+% \vspace{1cm}
+% 	\textbf{JUDUL BAHASA INDONESIA}\\
+% \vspace{1cm}
+% \textbf{\textit{ENGLISH TITLE}}\\
+% \vspace{1cm}
+% 	Dipersiapkan dan diusulkan oleh,\\
+% 	Mohamad Ilham Dwi Firmansyah\\
+% 	NRP. 06111640000003\vspace{0.25cm}\\
+% 	Telah dipertahankan dan diterima pada Seminar Proposal pada tanggal 20 September 2019\\
+% 	Surabaya, 30 September 2019\vspace{0.5cm}\\
+% 	Menyetujui,\\
+% 	\begin{tabular}{C{6cm}C{6cm}}
+% 		&\\
+% 		Dosen Pembimbing II,&Dosen Pembimbing I,\\
+% 		&\\	
+% 		&\\
+% 		&\\
+% 		\underline{Dr. Chairul Imron, M.I.Komp}&\underline{Dr. Mahmud Yunus, M.Si}\\
+% 		NIP. 19611115 198703 1 003&NIP. 19620407 198703 1 005 001\\
+% 	\end{tabular}\\
+% 	\vspace{1cm}
+% 	Mengetahui\\
+% 	Kaprodi S1 Departemen Matematika\\
+% 	FMKSD ITS\\
+% 	\vspace{2.5cm}
+% 	\underline{Dr. Didik Khusnul Arif, S.Si, M.Si}\\
+% 	NIP. 19730930 199702 1 001\\
+% \end{center}
+
+%\pagebreak
+%\setstretch{1}
+
+%\begin{center}
+%	\textbf{ABSTRAK}
+%	
+%\end{center}
+%$\,$\hskip 1cm Dalam matematika, analisis fungsional merupakan bidang yang sering dikaji oleh para ilmuan, salah satu konsep dari analisis fungsional yang sering dikaji adalah ruang metrik. Konsep ruang metrik dapat diperluas, beberapa perluasan ruang metrik antara lain ruang metrik parsial dan ruang metrik rectangular. Ruang metrik yang akan dibahas pada penelitian ini adalah ruang metrik parsial rectangular,  ruang ini merupakan gabungan konsep ruang metrik parsial dan ruang metrik rectangular. Ruang metrik parsial memiliki perbedaan dengan ruang metrik. Pada ruang metrik, jarak suatu titik ke dirinya sendiri selalu bernilai nol, sedangkan untuk ruang metrik parsial jarak suatu titik ke dirinya sendiri tidak selalu nol. Sedangakan perbedaan antara ruang metrik dengan ruang metrik parsial recatngular terletak pada sifat pertidaksamannya, pada ruang metrik pertidaksamaan yang berlaku adalah pertidaksamaan segitiga, sedangkan untuk ruang metrik rectangular menggunakan pertidaksamaan rectangular. Kemudian akan dibahas pada penelitian ini tentang ruang metrik parsial rectangular dengan permasalahan eksistensi dan ketunggalan titik tetap pemetaan pada ruang tersebut denga prinsip pemetaan quasi-kontraksi.  \\
+%
+%\textbf{Kata kunci :} \textit{ruang metrik, ruang metrik parsial, ruang metrik rectangular, teorema titik tetap, pemetaan quasi-kontraksi.}
+\tableofcontents
+
+\pagebreak
+\setstretch{1}
+\pagenumbering{arabic}
+\section{\\PENDAHULUAN}
+\subsection{Latar Belakang}
+$\,$\hskip 1cm Bus merupakan salah satu transportasi umum yang paling banyak digunakan oleh masyarakat Indonesia, terutama karena keunggulannya dalam menjangkau berbagai wilayah, baik perkotaan maupun pedesaan. Layanan bus tidak hanya melayani kebutuhan transportasi dalam kota, tetapi juga digunakan secara luas untuk perjalanan antar kota dan antar provinsi, terutama bagi mereka yang ingin bepergian ke kota-kota besar untuk bekerja, atau sebaliknya, pulang ke kampung halaman untuk berkumpul bersama keluarga. Popularitas bus sebagai sarana transportasi publik di Indonesia juga didukung oleh biayanya yang relatif terjangkau serta fleksibilitas rutenya yang mencakup area yang tidak selalu terjangkau oleh moda transportasi lain seperti kereta api atau pesawat \citep{Arum2015}.
+
+Terminal Purabaya, yang dikenal sebagai salah satu terminal bus terbesar di Asia Tenggara, memegang peranan penting dalam sistem transportasi publik di Surabaya dan sekitarnya. Terminal ini melayani ribuan penumpang setiap harinya, baik dari dalam kota maupun antarprovinsi. Berdasarkan studi mengenai transportasi publik, pengelolaan terminal bus seperti Purabaya membutuhkan perencanaan yang matang untuk memastikan kelancaran operasi, mengurangi waktu tunggu penumpang, dan meningkatkan efisiensi rute bus. Hal ini sejalan dengan kebutuhan untuk terus mengembangkan sistem transportasi yang lebih terintegrasi dan tepat waktu. Kondisi lalu lintas di sekitar terminal juga menjadi tantangan yang signifikan, karena kemacetan sering terjadi akibat kepadatan kendaraan, terutama di area persimpangan yang dilalui rute bus. Hal ini mempengaruhi jadwal kedatangan dan keberangkatan bus, sehingga penting untuk menerapkan sistem yang dapat meningkatkan efisiensi operasional di terminal \citep{budi2018}.
+
+Sistem transportasi publik, terutama jaringan bus, memainkan peran penting dalam mobilitas masyarakat urban. Efisiensi dalam pengelolaan dan operasi bus sangat bergantung pada kemampuan untuk mengelola antrian penumpang dan waktu kedatangan bus secara efektif. Dalam konteks ini, aljabar max-plus muncul sebagai alat matematis yang menjanjikan untuk memodelkan dan menganalisis antrian dalam sistem transportasi.
+
+Aljabar max-plus, yang telah dikembangkan lebih lanjut dalam beberapa dekade terakhir, merupakan perluasan dari aljabar biasa yang menggantikan operasi penjumlahan dan perkalian dengan operasi maksimum dan penjumlahan. Pendekatan ini sangat berguna dalam memodelkan proses yang melibatkan waktu dan urutan, seperti dalam antrian bus, di mana waktu kedatangan dan waktu tunggu merupakan variabel kunci. Sebagai contoh, penelitian terbaru oleh \citet{butkovic2010maxplus} membahas aplikasi aljabar max-plus dalam sistem penjadwalan dan optimasi waktu, termasuk transportasi publik. Melalui pendekatan ini, kita dapat menganalisis dinamika sistem antrian dan mengoptimalkan pengaturan jadwal bus untuk meminimalkan waktu tunggu penumpang serta meningkatkan kepuasan pelanggan \citep{butkovic2010maxplus}.
+
+Penggunaan aljabar max-plus dalam sistem antrian tidak hanya terbatas pada optimasi jadwal tetapi juga mencakup pengembangan algoritma yang efisien untuk penjadwalan dan pengendalian lalu lintas bus. Penelitian oleh \citet{baccelli} menunjukkan bahwa model max-plus dapat digunakan untuk merepresentasikan interaksi antar kendaraan dalam jaringan transportasi yang kompleks. Dengan memanfaatkan struktur aljabar ini, kita dapat merumuskan solusi yang lebih baik untuk mengatasi masalah antrian, terutama dalam kondisi puncak di mana permintaan penumpang meningkat.
+
+Dengan pertumbuhan populasi dan meningkatnya permintaan akan layanan transportasi publik yang efisien, penelitian lebih lanjut mengenai aplikasi aljabar max-plus dalam antrian bus sangat penting. Penelitian ini tidak hanya bertujuan untuk meningkatkan pemahaman tentang dinamika antrian, tetapi juga untuk memberikan rekomendasi praktis dalam perancangan sistem transportasi yang lebih responsif dan efisien.
+
+\subsection{Rumusan Masalah}
+$\,$\hskip 1cm Berdasarkan latar belakang di atas, penelitian ini mengidentifikasi beberapa masalah yang perlu diselesaikan terkait dengan efisiensi sistem antrian bus di terminal bus, terutama dengan menggunakan pendekatan aljabar max-plus. Rumusan masalah yang akan dibahas dalam penelitian ini adalah sebagai berikut:
+
+\begin{enumerate}
+    \item Bagaimana memodelkan sistem antrian bus di terminal menggunakan aljabar max-plus?
+    \item Bagaimana mengoptimalkan jadwal kedatangan dan keberangkatan bus untuk meminimalkan waktu tunggu penumpang menggunakan aljabar max-plus?
+    \item Bagaimana menerapkan model aljabar max-plus untuk meningkatkan efisiensi operasional dalam kondisi puncak ketika permintaan penumpang meningkat?
+\end{enumerate}
+
+Dengan mengatasi rumusan masalah tersebut, penelitian ini bertujuan untuk mengembangkan solusi yang dapat diterapkan pada sistem transportasi publik, khususnya jaringan bus, agar lebih efisien dan tepat waktu.
+
+\subsection{Batasan Masalah}
+$\,$\hskip 1cm Untuk menjaga fokus penelitian dan memperjelas lingkup penelitian ini, terdapat beberapa batasan masalah yang ditetapkan, antara lain:
+
+\begin{enumerate}
+    \item Penelitian ini hanya akan memodelkan sistem antrian bus di terminal bus dengan menggunakan pendekatan aljabar max-plus.
+    \item Hanya antrian dan jadwal kedatangan/keberangkatan bus yang akan dianalisis, tanpa mempertimbangkan faktor eksternal seperti cuaca, kondisi jalan, atau perubahan kebijakan transportasi.
+    \item Studi kasus yang digunakan dalam penelitian ini akan difokuskan pada Terminal Purabaya sebagai salah satu contoh terminal bus besar di Indonesia.
+    \item Simulasi yang dilakukan untuk menguji model max-plus akan menggunakan data sekunder yang tersedia dari laporan transportasi publik dan literatur terkait.
+\end{enumerate}
+
+\subsection{Tujuan Penelitian}
+$\,$\hskip 1cm Tujuan dari penelitian ini adalah untuk memberikan solusi yang lebih efisien dalam pengelolaan sistem antrian bus dengan menggunakan metode aljabar max-plus. Secara khusus, penelitian ini bertujuan untuk:
+
+\begin{enumerate}
+    \item Mengembangkan model sistem antrian bus yang menggunakan aljabar max-plus untuk merepresentasikan waktu kedatangan dan keberangkatan bus.
+    \item Mengoptimalkan jadwal operasional bus di terminal untuk meminimalkan waktu tunggu penumpang.
+    \item Menganalisis penerapan model aljabar max-plus dalam meningkatkan efisiensi operasional terminal bus, terutama pada saat jam sibuk dengan permintaan penumpang yang tinggi.
+    \item Memberikan rekomendasi praktis untuk pengelolaan sistem transportasi publik yang lebih efisien berdasarkan hasil analisis dan simulasi.
+\end{enumerate}
+
+\subsection{Manfaat Penelitian}
+$\,$\hskip 1cm Penelitian ini diharapkan memberikan beberapa manfaat, baik secara teoritis maupun praktis, di antaranya:
+
+\begin{itemize}
+    \item \textbf{Manfaat Teoritis}: Penelitian ini dapat menambah wawasan dan pengetahuan dalam bidang aljabar max-plus, khususnya dalam aplikasinya pada sistem transportasi publik. Model yang dihasilkan juga dapat menjadi dasar bagi penelitian lanjutan dalam bidang optimasi antrian dan penjadwalan.
+    \item \textbf{Manfaat Praktis}: Hasil penelitian ini dapat memberikan solusi bagi pengelola terminal bus dalam meningkatkan efisiensi operasional. Dengan penerapan aljabar max-plus, sistem antrian dan jadwal bus dapat dioptimalkan sehingga mengurangi waktu tunggu penumpang dan meningkatkan pengalaman pengguna layanan transportasi publik.
+    \item \textbf{Manfaat Kebijakan}: Temuan penelitian ini juga dapat dijadikan sebagai pertimbangan oleh pemerintah atau pihak pengelola transportasi dalam perencanaan dan pengelolaan terminal bus, khususnya untuk meningkatkan efisiensi dan kualitas layanan transportasi publik di Indonesia.
+\end{itemize}
+
+\pagebreak
+\section{\\Tinjauan Pustaka}
+\hskip 1cm 
+
+\subsection{Aljabar Max-Plus}
+
+$\,$\hskip 1cm Aljabar max-plus adalah perluasan dari aljabar biasa yang menggantikan operasi penjumlahan dan perkalian dengan operasi maksimum dan penjumlahan, Sebagaimana definisi yang diberikan sebagai berikut:
+
+\begin{definisi}
+	Diberikan himpunan $\R_{\varepsilon} = \R \cup \{\varepsilon\}$ dengan $\R$ adalah himpunan bilangan real dan $\varepsilon\defeq-\infty$. Pada $\R_{\varepsilon}$, didefinisikan dua operasi biner sebagai berikut:
+	\begin{flalign}
+		a \oplus b &\defeq \max\{a, b\} , \quad \forall a, b \in \R_{\varepsilon} \label{eq:oplus} \\
+		a \otimes b &\defeq a + b , \quad \forall a, b \in \R_{\varepsilon} \label{eq:otimes}
+	\end{flalign}
+\end{definisi}
+\noindent\citep{baccelli}
+
+Selanjutnya akan ditunjukkan bahwa $\left(\R_\varepsilon,\oplus,\otimes\right)$ adalah semiring dengan elemen netral $\varepsilon=-\infty$ dan elemen satuan $e=0$. Untuk setiap $a,b,c\in\R_\varepsilon$, berlaku sifat-sifat berikut:
+\begin{enumerate}
+	\item \textbf{Komutatif} : $a\oplus b=\max\{a,b\}=\max\{b,a\}=b\oplus a$.
+	\item \textbf{Asosiatif} : $(a\oplus b)\oplus c=\max\{\max\{a,b\},c\}=\max\{a,\max\{b,c\}\}=a\oplus\max\{b,c\}=a\oplus(b\oplus c)$.
+	\item \textbf{Elemen netral} : $a\oplus\varepsilon=\max\{a,\varepsilon\}=\max\{a,-\infty\}=a$.
+	\item \textbf{Elemen satuan} : $a\otimes e=a+0=a$.
+	\item \textbf{Distributif} : $a\otimes(b\oplus c)=a\otimes\max\{b,c\}=a+\max\{b,c\}=\max\{a+b,a+c\}=a\oplus b\otimes a\oplus c$.
+\end{enumerate}
+Notasi $\left(\R_\varepsilon,\oplus,\otimes\right)$ bisa ditulis sebagai $\R_{\max}$ \citep{subiono2015minmaxplus}.
+
+\subsection{Vektor dan Matriks}
+
+$\,$\hskip 1cm Dalam aljabar max-plus, vektor dan matriks didefinisikan dengan menggunakan operasi max-plus, di mana operasi dasar penjumlahan digantikan oleh operasi maksimum (\(\oplus\)) dan perkalian digantikan oleh penjumlahan biasa (\(\otimes\)) \citep{butkovic2010maxplus,heidergott,baccelli}. Definisi untuk vektor dan matriks dalam konteks aljabar max-plus dapat dijelaskan sebagai berikut:
+
+Misalkan \( \mathbf{x} \) adalah vektor dalam aljabar max-plus dengan komponen \( x_1, x_2, \dots, x_n \). Vektor ini didefinisikan sebagai:
+
+\[
+\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}
+\]
+
+Jika kita ingin melakukan operasi penjumlahan dua vektor \( \mathbf{x} \) dan \( \mathbf{y} \), di mana \( \mathbf{y} = (y_1, y_2, \dots, y_n)^T \), maka penjumlahan max-plus didefinisikan sebagai berikut \citep{cassandras}:
+
+\[
+\mathbf{x} \oplus \mathbf{y} = \begin{pmatrix} \max(x_1, y_1) \\ \max(x_2, y_2) \\ \vdots \\ \max(x_n, y_n) \end{pmatrix}
+\]
+
+Untuk operasi perkalian skalar max-plus antara skalar \( \lambda \) dan vektor \( \mathbf{x} \), hasilnya adalah:
+
+\[
+\lambda \otimes \mathbf{x} = \begin{pmatrix} \lambda + x_1 \\ \lambda + x_2 \\ \vdots \\ \lambda + x_n \end{pmatrix}
+\]
+
+Matriks dalam aljabar max-plus juga mengikuti aturan operasi yang sama. Misalkan \( A \) adalah matriks \( m \times n \) dengan entri \( a_{ij} \). Matriks ini didefinisikan sebagai:
+
+\[
+A = \begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{pmatrix}
+\]
+
+Penjumlahan dua matriks \( A \) dan \( B \), di mana \( B = (b_{ij}) \), didefinisikan sebagai operasi maksimum elemen demi elemen:
+
+\[
+A \oplus B = \begin{pmatrix} \max(a_{11}, b_{11}) & \dots & \max(a_{1n}, b_{1n}) \\ \vdots & \ddots & \vdots \\ \max(a_{m1}, b_{m1}) & \dots & \max(a_{mn}, b_{mn}) \end{pmatrix}
+\]
+
+Perkalian matriks max-plus \( A \) dengan vektor \( \mathbf{x} \) didefinisikan menggunakan operasi maksimum dan penjumlahan biasa (dalam konteks aljabar max-plus):
+
+\[
+(A \otimes \mathbf{x})_i = \bigoplus_{j=1}^n (a_{ij} \otimes x_j) = \max_{j=1}^n (a_{ij} + x_j)
+\]
+
+Artinya, setiap elemen hasil perkalian matriks-vektor dalam aljabar max-plus diperoleh dengan menjumlahkan entri matriks dan vektor secara biasa, kemudian mengambil nilai maksimum \citep{subionopower}.
+
+Perkalian dua matriks \( A \) dan \( B \) (dengan ukuran yang sesuai) didefinisikan sebagai:
+
+\[
+(A \otimes B)_{ik} = \bigoplus_{j=1}^n (a_{ij} \otimes b_{jk}) = \max_{j=1}^n (a_{ij} + b_{jk})
+\]
+
+Operasi ini mirip dengan perkalian matriks biasa, tetapi menggunakan operasi maksimum untuk penjumlahan elemen dan operasi penjumlahan biasa untuk perkalian elemen \citep{butkovic2010maxplus}.
+
+Misalkan kita punya dua matriks \( A \) dan \( B \) berikut dalam aljabar max-plus:
+
+\[
+A = \begin{pmatrix} 1 & 2 \\ 3 & -\infty \end{pmatrix}, \quad B = \begin{pmatrix} -\infty & 4 \\ 0 & 1 \end{pmatrix}
+\]
+
+Perkalian matriks \( A \otimes B \) dalam aljabar max-plus adalah:
+
+\[
+A \otimes B = \begin{pmatrix} \max(1 + (-\infty), 2 + 0) & \max(1 + 4, 2 + 1) \\ \max(3 + (-\infty), -\infty + 0) & \max(3 + 4, -\infty + 1) \end{pmatrix}
+\]
+
+Menghitung elemen-elemen:
+
+\[
+A \otimes B = \begin{pmatrix} \max(-\infty, 2) & \max(5, 3) \\ \max(-\infty, 3) & \max(7, -\infty) \end{pmatrix}
+= \begin{pmatrix} 2 & 5 \\ 3 & 7 \end{pmatrix}
+\]
+
+\subsection{Graf dalam Aljabar Max-Plus}
+
+Dalam aljabar max-plus, graf berarah berbobot sering digunakan untuk memodelkan berbagai sistem yang melibatkan waktu penundaan atau durasi dalam suatu proses. Graf tersebut digunakan dalam konteks sistem sinkronisasi dan sistem peristiwa diskrit \cite{heidergott}.
+
+\subsubsection{Graf Berarah Berbobot}
+
+Sebuah graf \( G = (V, E) \) terdiri dari:
+\begin{itemize}
+    \item Himpunan simpul (vertices) \( V \), yang mewakili entitas atau kejadian dalam sistem.
+    \item Himpunan sisi (edges) \( E \), yang menghubungkan dua simpul dengan bobot tertentu yang sering merepresentasikan waktu atau durasi.
+\end{itemize}
+
+Setiap sisi \( e_{ij} \in E \) memiliki bobot \( w_{ij} \), yang di dalam aljabar max-plus digunakan untuk mengukur waktu yang diperlukan untuk transisi dari satu kejadian ke kejadian lainnya \cite{baccelli}.
+
+\subsubsection{Jalur Terpanjang dalam Graf}
+
+Salah satu aplikasi utama dari aljabar max-plus dalam graf adalah mencari **jalur terpanjang** antara dua simpul. Jalur terpanjang antara simpul \( i \) dan simpul \( j \) dalam graf berarah berbobot dapat dihitung menggunakan perkalian matriks max-plus \cite{heidergott}. Jalur terpanjang ini mewakili waktu maksimum yang dibutuhkan untuk mencapai simpul tujuan dari simpul asal dalam sebuah proses diskrit.
+
+Formulasi umum jalur terpanjang dalam aljabar max-plus adalah:
+
+\[
+(A^k)_{ij} = \max_{1 \leq l \leq n} (a_{il} + a_{lj})
+\]
+
+dimana \( A \) adalah matriks bobot yang merepresentasikan graf berbobot.
+
+\subsubsection{Matriks Adjacency dan Matriks Max-Plus}
+
+Dalam graf berarah berbobot, matriks adjacency digunakan untuk merepresentasikan hubungan antar simpul. Setiap entri \( a_{ij} \) dalam matriks ini mewakili bobot pada sisi dari simpul \( i \) ke simpul \( j \), dan jika tidak ada sisi, maka bobotnya adalah elemen netral dalam aljabar max-plus, yaitu \( -\infty \) \cite{baccelli}.
+
+Untuk menghitung jalur terpanjang antar simpul, perkalian matriks max-plus dilakukan sebagai berikut:
+
+\[
+(A \otimes A)_{ij} = \max_{k} (a_{ik} + a_{kj})
+\]
+
+Operasi ini serupa dengan perkalian matriks biasa, namun menggunakan operasi aljabar max-plus.
+
+
+\pagebreak
+\section{\\METODE PENELITIAN}
+%\hskip 1cm Pada bab ini akan dijelaskan langkah – langkah dalam mengerjakan penelitian tentang eksintensi dan ketunggalan titik tetap pada ruang metrik parsial rectangular. Berikut ini langkah – langkah yang akan dilaksanakan pada penilitian ini terdiri atas:
+%\begin{enumerate}
+%	\item \textbf{Studi literatur} \\Pada tahap ini akan dicari referensi yang berkaitan dengan ruang metrik parsial rectangular. Referensi yang dicari meliputi pengertian definisi ruang metrik, ruang metrik rectangular, ruang parsial, ,teorema titik tetap dan lain sebagainya yang berhubungan dengan penelitian ini. Referensi – referensi yang dicari dapat diperoleh melalui jurnal – jurnal yang sesuai dengan topik tugas akhir ini. Selain melalui jurnal – jurnal yang terkait, studi literatur dapat diperoleh melalui buku teks yang berkaitan dengan ruang metrik parsila rectangular.
+%	\item \textbf{Mengkaji ruang metrik parsial rectangular kemudian memberikan contoh himpunan dan fungsi metriknya serta pembuktiannya}\\
+%	Setelah mempelajari dan memahami referensi yang ada, pada tahap ini akan dikaji jenis – jenis ruang metrik yang berkaitan dengan ruang metrik parsial rectangular. Kemudian akan diberikan contoh dari ruang – ruang tersebut yang dilengkapi dengan pembuktiannya.  
+%	\item \textbf{Mengkaji karakterisasi teorema titik tetap dan prinsip pemetaan quasi-kontraksi pada ruang metrik parsial rectangular}\\  Selanjutnya adalah mengkaji prinsip pemetaan kontraksi quasi pada ruang metrik parsial rectangular untuk mengetahui eksistensi dan ketunggalan titik tetap pada ruang tersebut. Tahap ini merupakan langkah untuk menjawab rumusan masalah.
+%	\item \textbf{Pembuktian teorema titik tetap pada ruang metrik parsial rectangular dan mengkonstruksi contoh ruang dan pemetaan lainnya}\\
+%	Setelah melakukan kajian terhadap konsep ruang metrik parsial rectangular dan teorema titik tetap pemetaan kontrasi quasi, dilakukan pembuktian teorema titik tetap pada ruang metrik parsial rectangular, serta mengembangkan dan mengkonstruksi contoh-contoh sehingga dapat menhasilkan jawaban atas rumusan masalah.
+%	\hskip 1cm 
+%	\item \textbf{Penarikan kesimpulan dan pembukuan tugas akhir}\\
+%	Pada tahap yang terakhir, akan di tarik kesimpulan dari penelitian yang dilakukan sebelumnya dan akan dilakukan pembukuan tugas akhir. 
+%\end{enumerate}
+\pagebreak
+\section{\\JADWAL KEGIATAN}
+%	Berikut ini disajikan tabel jadwal kegiatan yang akan dilakukan selama 3 bulan yang berkoresponden dengan metode penelitian.\vspace{0.5cm}\\
+%\begin{tabular}{|C{0.6cm}|L{6.5cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}	\hline
+%	&&\multicolumn{12}{c|}{\textbf{BULAN}}\\\cline{3-14}
+%	\multicolumn{1}{|c|}{\textbf{NO}}&\multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}&\multicolumn{4}{c|}{1}&\multicolumn{4}{c|}{2}&\multicolumn{4}{c|}{3}\\\cline{3-14}
+%	&&1&2&3&4&1&2&3&4&1&2&3&4\\\cline{1-14}
+%	1&Studi literatur&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&&&&&&&&\\\hline
+%	2&Mengkaji ruang metrik parsial rectangular kemudian memberikan contoh himpunan dan fungsi metriknya serta pembuktiannya&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&&&&&&&\\\hline
+%	3&Mengkaji karakterisasi teorema titik tetap dan prinsip pemetaan quasi-kontraksi pada ruang metrik parsial rectangular&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&&&&&&\\\hline
+%	4&Pembuktian teorema titik tetap pada ruang metrik parsial rectangular dan mengkonstruksi contoh ruang dan pemetaan lainnya&&&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&&&\\\hline
+%	
+%	5&Penarikan kesimpulan dan pembukuan tugas akhir&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}\\\hline
+%\end{tabular}
+\pagebreak
+
+\addcontentsline{toc}{section}{DAFTAR PUSTAKA}
+\setstretch{0.95}
+\pagestyle{empty}
+\section*{DAFTAR PUSTAKA}
+\vspace{-1cm}
+\bibliography{references}
+
+\end{document}

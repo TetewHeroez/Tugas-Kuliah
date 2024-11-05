@@ -1,0 +1,265 @@
+\documentclass{exam}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Solution}:}
+\newcommand{\del}{\partial}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\footer{}{\thepage}{}
+
+\newtheorem{teorema}{Teorema}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\underline{Solusi:}}\par\noindent}
+\printanswers
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{tabular}{|lcl|}
+    \hline
+    Nama&:&Teosofi Hidayah Agung\\
+    NRP&:&5002221132\\
+    \hline
+\end{tabular}
+\begin{enumerate}
+    \setcounter{enumi}{30}
+    \item Pandang sebuah sampel acak berukuran $n$ dari distribusi dengan pdf $f(x;\theta) = 1/\theta$ untuk $0 < x < \theta$ dan $0$ lainnya. Misalkan $\hat{\theta}$ dan $\tilde{\theta}$ adalah MLE dan MME dari $\theta$. 
+    \begin{enumerate}
+        \item Tunjukkan bahwa $\hat{\theta}$ adalah konsisten dalam MSE.
+        \item Tunjukkan bahwa $\tilde{\theta}$ adalah konsisten dalam MSE.
+    \end{enumerate}
+    \begin{solution}
+        \begin{itemize}
+            \item Untuk $\hat{\theta}$ didapatkan melalui MLE, maka
+            \begin{align*}
+                L(\theta;x_1,\dots,x_n) &= \prod_{i=1}^n f(x_i;\theta)= \prod_{i=1}^n \dfrac{1}{\theta}= \theta^{-n}, \quad 0 < x_1,\dots,x_n < \theta\\
+                \ell(\theta;x_1,\dots,x_n) &= \ln L(\theta;x_1,\dots,x_n) = -n\ln\theta, \quad 0 < x_1,\dots,x_n < \theta
+            \end{align*}
+            Jika salah satu $x_i > \theta$, maka $L(\theta;x_1,\dots,x_n) = 0$. Sehingga haruslah fungsi likelihoodnya tidak akan nol jika $\theta \geq \max(x_1,\dots,x_n)$. Kemudian untuk memaksimalkan $\ell(\theta;x_1,\dots,x_n)$, maka perlu untuk meminimalkan $\theta$. \\~\\
+            $\therefore$ Haruslah dipilih $\hat{\theta} = \max(x_1,\dots,x_n)$.
+            \item Untuk $\tilde{\theta}$ didapatkan melalui MME. Dapat dilihat bahwa $X\sim U(0,\theta)$, maka
+            \begin{align*}
+                E(X) &= \dfrac{\theta}{2}\iff \theta = 2E(X)
+            \end{align*}
+            Sehingga $\tilde{\theta} = 2\bar{X}$.
+            \begin{teorema}
+                Barisan estimator $\hat{\theta}$ untuk parameter $\theta$ dikatakan konsisten dalam MSE jika dan hanya jika estimator tersebut takbias secara asimtotik dan variansnya menuju nol saat $n\to\infty$.
+            \end{teorema}
+        \end{itemize}
+        \begin{enumerate}
+            \item Karena $\hat{\theta} = \max(x_1,\dots,x_n)$, maka dapat digunakan order statistik. Dapat dengan mudah didapatkan CDF-nya $\displaystyle F(x) = \int_0^x \dfrac{1}{\theta}dx = \dfrac{x}{\theta}$, sehingga CDF untuk $\hat{\theta}$ adalah
+            \[F_{\hat{\theta}}(x) = [F(x)]^n = \left(\dfrac{x}{\theta}\right)^n, \quad 0 < x < \theta\]
+            Kemudian PDF-nya adalah
+            \[f_{\hat{\theta}}(x) = \dfrac{d}{dx}F_{\hat{\theta}}(x) = \dfrac{n}{\theta}\left(\dfrac{x}{\theta}\right)^{n-1}, \quad 0 < x < \theta\]
+            Selanjutnya adalah ekspektasi dari $\hat{\theta}$, yaitu
+            \begin{align*}
+                E(\hat{\theta}) &= \int_0^\theta x f_{\hat{\theta}}(x)dx = \int_0^\theta x\left[\dfrac{n}{\theta}\left(\dfrac{x}{\theta}\right)^{n-1}\right]dx = n\int_0^\theta x^n\theta^{-n}dx\\
+                &= \frac{n}{\theta^n}\int_0^\theta x^ndx = \frac{n}{\theta^n}\left[\frac{x^{n+1}}{n+1}\right]_0^\theta = \frac{n}{\theta^n}\left[\frac{\theta^{n+1}}{n+1}\right] = \frac{n\theta}{n+1}
+            \end{align*}
+            Karena $\displaystyle\lim_{n\to\infty}E(\hat{\theta})=\lim_{n\to\infty}\dfrac{n\theta}{n+1} = \theta$, maka $\hat{\theta}$ disebut estimator takbias secara asimtotik.\\~\\
+            Hal selanjutnya adalah perlu menunjukkan bahwa $\displaystyle\lim_{n\to\infty}Var(\hat{\theta})=0$. Namun sebelumnya, perlu dicari $E(\hat{\theta}^2)$, yaitu
+            \begin{align*}
+                E(\hat{\theta}^2) &= \int_0^\theta x^2 f_{\hat{\theta}}(x)dx = \int_0^\theta x^2\left[\dfrac{n}{\theta}\left(\dfrac{x}{\theta}\right)^{n-1}\right]dx = n\int_0^\theta x^{n+1}\theta^{-n}dx\\
+                &= \frac{n}{\theta^n}\int_0^\theta x^{n+1}dx = \frac{n}{\theta^n}\left[\frac{x^{n+2}}{n+2}\right]_0^\theta = \frac{n}{\theta^n}\left[\frac{\theta^{n+2}}{n+2}\right] = \frac{n\theta^2}{n+2}
+            \end{align*}
+            Sehingga varians dari $\hat{\theta}$ adalah
+            \[Var(\hat{\theta}) = E(\hat{\theta}^2) - [E(\hat{\theta})]^2 = \frac{n\theta^2}{n+2} - \left(\frac{n\theta}{n+1}\right)^2 = \frac{n\theta^2(n+1)^2 - n^2\theta^2(n+2)}{(n+1)^2(n+2)}\]
+            dan dapat dengan mudah dicek bahwa $\displaystyle\lim_{n\to\infty}Var(\hat{\theta})=0$.\\~\\
+            $\therefore$ $\hat{\theta}$ adalah konsisten dalam MSE.
+
+            \item Sebelumnya diketahui $E(X_i) = \theta/2$ dan $Var(X_i) = \theta^2/12$. Dengan cara yang sama seperti bagian (a), didapatkan
+            \[E(\tilde{\theta}) = E(2\bar{X}) = 2E(\bar{X}) = 2E\left(\dfrac{1}{n}\sum_{i=1}^n X_i\right) = 2\left(\dfrac{1}{n}\sum_{i=1}^n E(X_i)\right) = 2\left(\dfrac{1}{n}\sum_{i=1}^n \dfrac{\theta}{2}\right) = \theta\]
+            Sehingga $\tilde{\theta}$ adalah takbias secara asimtotik. Kemudian varians dari $\tilde{\theta}$ adalah
+            \[Var(\tilde{\theta}) = 4Var(\bar{X}) = 4\left(\dfrac{1}{n^2}\sum_{i=1}^n Var(X_i)\right) = 4\left(\dfrac{1}{n^2}\sum_{i=1}^n \dfrac{\theta^2}{12}\right) = \dfrac{\theta^2}{3n}\]
+            dan dapat dengan mudah dicek bahwa $\displaystyle\lim_{n\to\infty}Var(\tilde{\theta})=0$.\\~\\
+            $\therefore$ $\tilde{\theta}$ adalah konsisten dalam MSE.
+        \end{enumerate}
+    \end{solution}
+    \item Tentukan MLE dari $\theta$ dalam sampel acak berukuran $n$ dari distribusi dengan PDF
+    \[f(x;\theta) = \begin{cases}
+        2\theta^2 x^{-3}, &\,\theta\leq x\\
+        0, &\,x<\theta;\,0<\theta 
+    \end{cases}
+    \]
+    Kemudian tunjukkan bahwa MLE dari $\theta$ konsisten.
+    \begin{solution}
+        Fungsi likelihoodnya adalah
+        \begin{align*}
+            L(\theta;x_1,\dots,x_n) &= \prod_{i=1}^n f(x_i;\theta) = \prod_{i=1}^n 2\theta^2 x_i^{-3} = 2^n\theta^{2n}\left(\prod_{i=1}^n x_i\right)^{-3}\\
+            \implies \ell(\theta;x_1,\dots,x_n) &= \ln L(\theta;x_1,\dots,x_n) = n\ln 2 + 2n\ln\theta - 3\sum_{i=1}^n\ln x_i
+        \end{align*}
+        Nilai diatas akan berlaku jika $\theta\leq x_i$ untuk $i=1,\dots,n$ atau $\theta\leq \min(x_1,\dots,x_n)$, jika tidak maka $L(\theta;x_1,\dots,x_n) = 0$. Sehingga untuk memaksimalkan $\ell(\theta;x_1,\dots,x_n)$, maka dapat dipilih $\hat{\theta} = \min(x_1,\dots,x_n)$.\\~\\
+        Kemudian menggunakan rumus CDF order statistik, diketahui bahwa 
+        \[\displaystyle F(x)=\int_\theta^x 2\theta^2 t^{-3}dt = \left[-\dfrac{\theta^2}{t^2}\right]_\theta^x = 1-\dfrac{\theta^2}{x^2}, \quad \theta\leq x\]
+        sehingga CDF dari $\hat{\theta}$ adalah 
+        \[F_{\hat{\theta}}(x) = 1-[1-F(x)]^n = 1-\left(\dfrac{\theta^2}{x^2}\right)^n, \quad \theta\leq x\]
+        Kemudian PDF dari $\hat{\theta}$ adalah
+        \[f_{\hat{\theta}}(x) = \dfrac{d}{dx}F_{\hat{\theta}}(x) = \dfrac{d}{dx}\left[1-\left(\dfrac{\theta^2}{x^2}\right)^n\right] = \dfrac{2n\theta^2}{x^3}\left(\dfrac{\theta^2}{x^2}\right)^{n-1}, \quad \theta\leq x\]
+        Selanjutnya adalah ekspektasi dari $\hat{\theta}$, yaitu
+        \begin{align*}
+            E(\hat{\theta}) &= \int_\theta^\infty x f_{\hat{\theta}}(x)dx = \int_\theta^\infty x\left[\dfrac{2n\theta^2}{x^3}\left(\dfrac{\theta^2}{x^2}\right)^{n-1}\right]dx = 2n\theta^2\int_\theta^\infty \frac{1}{x^2}\left(\dfrac{\theta^2}{x^2}\right)^{n-1}dx\\
+            &= 2n\theta^{2n}\int_\theta^\infty x^{-2n}dx = 2n\theta^{2n}\left[\dfrac{x^{-2n+1}}{-2n+1}\right]_\theta^\infty = 2n\theta^{2n}\left[0 - \dfrac{\theta^{-2n+1}}{-2n+1}\right]\\
+            &= \dfrac{2n\theta}{2n-1}
+        \end{align*}
+        Karena $\displaystyle\lim_{n\to\infty}E(\hat{\theta})=\lim_{n\to\infty}\dfrac{2n\theta}{2n-1} = \theta$, maka $\hat{\theta}$ disebut estimator takbias secara asimtotik.\\~\\
+        Hal selanjutnya adalah perlu menunjukkan bahwa $\displaystyle\lim_{n\to\infty}Var(\hat{\theta})=0$. Namun sebelumnya, perlu dicari $E(\hat{\theta}^2)$, yaitu
+        \begin{align*}
+            E(\hat{\theta}^2) &= \int_\theta^\infty x^2 f_{\hat{\theta}}(x)dx = \int_\theta^\infty x^2\left[\dfrac{2n\theta^2}{x^3}\left(\dfrac{\theta^2}{x^2}\right)^{n-1}\right]dx = 2n\theta^2\int_\theta^\infty \frac{1}{x}\left(\dfrac{\theta^2}{x^2}\right)^{n-1}dx\\
+            &= 2n\theta^{2n}\int_\theta^\infty x^{-2n+1}dx = 2n\theta^{2n}\left[\dfrac{x^{-2n+2}}{-2n+2}\right]_\theta^\infty = 2n\theta^{2n}\left[0 - \dfrac{\theta^{-2n+2}}{-2n+2}\right]\\
+            &= \dfrac{2n\theta^2}{2n-2}
+        \end{align*}
+        Sehingga varians dari $\hat{\theta}$ adalah
+        \[Var(\hat{\theta}) = E(\hat{\theta}^2) - [E(\hat{\theta})]^2 = \dfrac{2n\theta^2}{2n-2} - \left(\dfrac{2n\theta}{2n-1}\right)^2 = \dfrac{2n\theta^2(2n-1)^2 - 4n^2\theta^2(2n-2)}{(2n-1)^2(2n-2)}\]
+        dan dapat dengan mudah dicek bahwa $\displaystyle\lim_{n\to\infty}Var(\hat{\theta})=0$ (Dilihat dari koefisien pangkat terbesar $x$ yang saling menghilangkan).\\~\\
+        $\therefore$ $\hat{\theta}$ adalah konsisten dalam MSE.
+    \end{solution}
+    \item Pandang sampel acak berukuran $n$ dari distribusi Poisson, $X_i\sim POI(\mu)$. Tentukan $Var(\tilde{\theta})$ dengan $\tilde{\theta}=\left(\dfrac{n-1}{n}\right)^{\sum X_i}$dan bandingkan dengan CRLB untuk varians dari estimator takbias $\theta=e^{-\mu}$.\\
+    (Petunjuk: Catat bahwa $Y=\sum X_i\sim POI(n\mu)$, kemudian $E(\tilde{\theta})$ dan $Var(\tilde{\theta})$ berelasi dengan MGF dari $Y$).
+    \begin{solution}
+        Asumsikan $Y=\sum X_i\sim POI(n\mu)$, maka didapatkan 
+        \begin{align*}
+            E(\tilde{\theta}) &= E\left(\left(\dfrac{n-1}{n}\right)^Y\right) = E\left(e^{Y\ln\left(\frac{n-1}{n}\right)}\right) = M_Y\left(\ln\left(\frac{n-1}{n}\right)\right)\\
+            &= e^{n\mu\left(e^{\ln\left(\frac{n-1}{n}\right)-1}\right)} = e^{n\mu\left(\dfrac{n-1}{n}-1\right)} = e^{-\mu}
+        \end{align*}
+        dan
+        \begin{align*}
+            E(\tilde{\theta}^2) &= E\left(\left(\dfrac{n-1}{n}\right)^{2Y}\right) = E\left(e^{2Y\ln\left(\frac{n-1}{n}\right)}\right) = M_Y\left(2\ln\left(\frac{n-1}{n}\right)\right)\\
+            &= e^{n\mu\left(e^{2\ln\left(\frac{n-1}{n}\right)-1}\right)} = e^{n\mu\left((\frac{n-1}{n})^2-1\right)} = e^{-\mu(2-\frac{1}{n})}
+        \end{align*}
+        Sehingga varians dari $\tilde{\theta}$ adalah
+        \begin{align*}
+            Var(\tilde{\theta}) &= E(\tilde{\theta}^2) - [E(\tilde{\theta})]^2 = e^{-\mu(2-\frac{1}{n})} - e^{-2\mu} = e^{-2\mu}\left(e^{\mu/n}-1\right)
+        \end{align*}
+        Disisi lain, definisikan $\theta=\tau(\mu) = e^{-\mu}$. kemudian CRLB dari $\theta$ adalah
+        \begin{align*}
+            \frac{[\tau'(\mu)]^2}{I(\mu)} &= \frac{[\tau'(\mu)]^2}{nE\left[\left(\frac{\del}{\del\mu}\ell(X;\mu)\right)^2\right]}= \frac{e^{-2\mu}}{nE\left[\left(\frac{\del}{\del\mu}\left(X\ln\mu-\mu+\ln(X!)\right)\right)^2\right]}\\
+            &= \frac{e^{-2\mu}}{nE\left[\left(\frac{X}{\mu}-1\right)^2\right]} = \frac{e^{-2\mu}}{\frac{1}{\mu^2}Var[X]}= \frac{e^{-2\mu}}{\frac{1}{\mu^2}n\mu}= \frac{\mu e^{-2\mu}}{n}
+        \end{align*}
+        Kemudian $Var(\tilde{\theta})$ bisa kita jabarkan sebagai berikut menggunakan deret Taylor
+        \begin{align*}
+            e^{-2\mu}\left(e^{\mu/n}-1\right)&= e^{-2\mu}\left(\left(1+\dfrac{\mu}{n}+\dfrac{\mu^2}{2n^2}+\ldots\right)-1\right) = e^{-2\mu}\left(\dfrac{\mu}{n}+\dfrac{\mu^2}{2n^2}+\ldots\right)\\
+            &= \dfrac{\mu e^{-2\mu}}{n}\left(1+\dfrac{\mu}{2n}+\frac{\mu^2}{3!n^2}+\ldots\right)
+        \end{align*}
+        Karena suku $\frac{\mu}{2n},\frac{\mu^2}{3!n^2},\ldots$ selalu bernilai positif, maka didapatkan hubungan
+        \[Var(\tilde{\theta}) \geq \frac{[\tau'(\mu)]^2}{I(\mu)}\]
+    \end{solution}
+    \item Pandang sampel acak berukuran $n$ dari distribusi dengan pdf diskrit
+    \[
+    f(x; p) = p(1 - p)^x, \quad x = 0, 1, \ldots
+    \]
+    \begin{enumerate}
+        \item Tentukan MLE dari $p$.
+        \item Tentukan MLE dari $\theta = \dfrac{1 - p}{p}$.
+        \item Tentukan CRLB untuk varians dari penaksir tak bias dari $\theta$.
+        \item Apakah MLE dari $\theta$ adalah UMVUE?
+        \item Apakah MLE dari $\theta$ konsisten terhadap MSE?
+        \item Tentukan distribusi asimtotik MLE $\theta$.
+        \item Misalkan $\hat{\theta} = \dfrac{n \bar{X}}{n + 1}$. Tentukan fungsi risiko dari $\hat{\theta}$ dan $\bar{X}$ dengan menggunakan fungsi kerugian $L(t; \theta) = \dfrac{(t - \theta)^2}{\theta^2 + \theta}$  
+    \end{enumerate}
+    \begin{solution}
+        Diketahui bahwa distribusi diatas merupakan distribusi geometri atas himpunan $\N_0$, sehingga $E(X) = \dfrac{1-p}{p}$ dan $Var(X) = \dfrac{1-p}{p^2}$. 
+        \begin{enumerate}
+            \item Tinjau fungsi log-likelihoodnya
+            \begin{align*}
+                \ell(p; x_1,\dots,x_n) &= \ln L(p; x_1,\dots,x_n) = \ln\left(\prod_{i=1}^n p(1-p)^{x_i}\right) = \sum_{i=1}^n \ln\left(p(1-p)^{x_i}\right)\\
+                &= \sum_{i=1}^n \ln p + \sum_{i=1}^n \ln(1-p)^{x_i} = n\ln p + \sum_{i=1}^n x_i\ln(1-p)
+            \end{align*}
+            Kemudian turunkan terhadap $p$ 
+            \begin{align*}
+                \dfrac{\del}{\del p}\ell(p; x_1,\dots,x_n) &= \dfrac{n}{p} - \sum_{i=1}^n x_i\dfrac{1}{1-p} = \dfrac{n}{p} - \dfrac{1}{1-p}\sum_{i=1}^n x_i = 0\\
+                \implies \dfrac{n}{p} &= \dfrac{1}{1-p}\sum_{i=1}^n x_i \implies \frac{1-p}{p} = \bar{x} \implies \hat{p} = \frac{1}{1+\bar{X}} 
+            \end{align*}
+            Untuk meyakinkan bahwa $\hat{p}$ adalah MLE, perlu diperiksa apakah $\hat{p}$ memaksimalkan $\ell(p; x_1,\dots,x_n)$.
+            \begin{align*}
+                \dfrac{\del^2}{\del p^2}\ell(p; x_1,\dots,x_n) &= -\dfrac{n}{p^2} - \sum_{i=1}^n x_i\dfrac{1}{(1-p)^2} = -\dfrac{n}{p^2} - \dfrac{1}{(1-p)^2}\sum_{i=1}^n x_i < 0
+            \end{align*}
+            Jadi $\hat{p}=\dfrac{1}{1+\bar{x}}$ adalah MLE dari $p$.
+            \item Dengan menggunakan hasil sebelumnya, maka $\hat{\theta} = \dfrac{1-\hat{p}}{\hat{p}} = \dfrac{1-\frac{1}{1+\bar{X}}}{\frac{1}{1+\bar{X}}} = \bar{X}$.
+            \item CRLB dari $\theta=\tau(p)=\dfrac{1-p}{p}$ adalah
+            \begin{align*}
+                \frac{[\tau'(p)]^2}{I(p)} &= \frac{[\tau'(p)]^2}{-nE\left[\left(\frac{\del^2}{\del p^2}\ell(X;p)\right)\right]} = \frac{(-1/p^2)^2}{nE\left[\frac{1}{p^2} + \frac{X}{(1-p)^2}\right]}=\frac{1/p^4}{\frac{n}{p^2(1-p)}}=\frac{1-p}{np^2}
+            \end{align*}
+            \item Menggunakan definisi UMVUE, maka tinjau 
+            \[E(\hat{\theta}) = E(\bar{X}) = E\left(\frac{1}{n}\sum_{i=1}^{n}X_i\right) = \frac{1}{n}\sum_{i=1}^{n}E(X_i) = \frac{1-p}{p} = \theta\]
+            Kemudian untuk variansnya adalah
+            \[Var(\hat{\theta}) = Var(\bar{X}) = Var\left(\frac{1}{n}\sum_{i=1}^{n}X_i\right) = \frac{1}{n^2}\sum_{i=1}^{n}Var(X_i) = \frac{1-p}{np^2}\]
+            Karena $Var(\hat{\theta})$ sama dengan CRLB, maka $\hat{\theta}$ adalah UMVUE dari $\theta$.
+            \item Dari informasi (d), $\hat{\theta}$ adalah estimator takbias dari $\theta$. Kemudian dapat dilihat bahwa
+            \[\lim_{n\to\infty}Var(\hat{\theta}) = \lim_{n\to\infty}\frac{1-p}{np^2} = 0\]
+            Sehingga $\hat{\theta}$ adalah konsisten dalam MSE.
+            \item Dari informasi sebelumnya, dapat disimpulkan menggunakan teorema bahwa untuk $n$ yang cukup besar, distribusi asimtotik dari $\hat{\theta}$ adalah normal dengan rata-rata $\theta$ dan variansnya adalah CRLB $\dfrac{1-p}{np^2}$.\\
+            $\therefore$ $\hat{\theta}\sim N\left(\theta,\dfrac{1-p}{np^2}\right)$.
+            \item Fungsi risiko didefinisikan sebagai $R_{T}(\theta) = E\left[L(T,\theta)\right]$ dengan $T$ suatu estimator. 
+            \begin{itemize}
+                \item Fungsi risiko dari $\bar{X}$ adalah
+                \begin{align*}
+                    R_{\bar{X}}(\theta) &= E\left[\dfrac{(\bar{X}-\theta)^2}{\theta^2+\theta}\right] = \frac{1}{\theta^2+\theta}E\left[\left(\bar{X}-\theta\right)^2\right] 
+                \end{align*}
+                Sekarang perhatikan bahwa $E(\bar{X}) = \theta$ yang akibatnya $\text{Bias}(\bar{X}) = E(\bar{X}) - \theta = 0$. Hal ini berarti bahwa $\bar{X}$ adalah estimator takbias dari $\theta$. Sehingga
+                \begin{align*}
+                    R_{\bar{X}}(\theta) &= \frac{1}{\theta^2+\theta}Var(\bar{X}) = \frac{1}{\theta^2+\theta}\cdot\frac{1-p}{np^2}= \frac{1}{np(\theta+1)}
+                \end{align*}
+                Agar menjadi fungsi yang hanya mengandung $\theta$, subtitusi $p=\dfrac{1}{1+\theta}$. Jadilah
+                \[R_{\bar{X}}(\theta) = \frac{1}{n}\]
+                \item Fungsi risiko dari $\hat{\theta}$ adalah
+                \begin{align*}
+                    R_{\hat{\theta}}(\theta) &= E\left[\dfrac{(\hat{\theta}-\theta)^2}{\theta^2+\theta}\right] = \frac{1}{\theta^2+\theta}E\left[\left(\hat{\theta}-\theta\right)^2\right]
+                \end{align*}
+                Kembali lagi akan dirumuskan bias dari $\hat{\theta}$, yaitu
+                \begin{align*}
+                    \text{Bias}(\hat{\theta}) &= E(\hat{\theta}) - \theta = E\left(\frac{n\bar{X}}{n+1}\right) - \theta = \frac{n\theta}{n+1} - \theta = -\frac{\theta}{n+1}
+                \end{align*}
+                Kemudian didapatkan
+                \begin{align*}
+                    R_{\hat{\theta}}(\theta) &= \frac{1}{\theta^2+\theta}\left[Var(\hat{\theta}) + (\text{Bias}(\hat{\theta}))^2\right]= \frac{1}{\theta^2+\theta}\left[\left(\frac{n}{n+1}\right)^2Var(\bar{X}) + \frac{\theta^2}{(n+1)^2}\right]\\
+                    &= \frac{1}{\theta^2+\theta}\left[\left(\frac{n}{n+1}\right)^2\cdot\frac{\theta(1+\theta)}{n} + \frac{\theta^2}{(n+1)^2}\right]\\
+                    &= \frac{1}{\theta^2+\theta}\left[\frac{n\theta(1+\theta)}{(n+1)^2} + \frac{\theta^2}{(n+1)^2}\right]\\
+                    &= \frac{1}{\theta^2+\theta}\left[\frac{n\theta+(n+1)\theta^2}{(n+1)^2}\right] \\
+                    &= \frac{n+(n+1)\theta}{(\theta+1)(n+1)^2}
+                \end{align*}
+            \end{itemize}
+            
+        \end{enumerate}
+    \end{solution}
+
+    \item Tentukan distribusi asimtotik MLE dari $p$ dalam sampel acak berukuran $n$ dari distribusi $X_i\sim BIN(1, p)$.
+    \begin{solution}
+        Diketahui bahwa distribusi $BIN(1,p)$ adalah distribusi Bernoulli dengan pdf 
+        \[f(x;p) = p^x(1-p)^{1-x},\,x=0,1\]
+        Sehingga fungsi log-likelihoodnya adalah
+        \begin{align*}
+            \ell(p;x_1,\dots,x_n) &= \ln L(p;x_1,\dots,x_n) = \ln\left(\prod_{i=1}^n p^{x_i}(1-p)^{1-x_i}\right) = \sum_{i=1}^n \ln\left(p^{x_i}(1-p)^{1-x_i}\right)\\
+            &= \sum_{i=1}^n x_i\ln p + \sum_{i=1}^n (1-x_i)\ln(1-p) = \sum_{i=1}^n x_i\ln p + \ln(1-p)\left(n-\sum_{i=1}^n x_i\right)
+        \end{align*}
+        Kemudian turunkan terhadap $p$
+        \begin{align*}
+            \dfrac{\del}{\del p}\ell(p;x_1,\dots,x_n) &= \frac{1}{p}\sum_{i=1}^n x_i - \frac{1}{1-p}\left(n-\sum_{i=1}^n x_i\right) = \frac{1}{p}\sum_{i=1}^n x_i - \frac{n}{1-p} + \frac{1}{1-p}\sum_{i=1}^n x_i = 0\\
+            \iff& \frac{1}{p\cancel{(1-p)}}\sum_{i=1}^n x_i = \frac{n}{\cancel{1-p}} \iff p = \frac{1}{n}\sum_{i=1}^n x_i \implies \hat{p} = \bar{X}
+        \end{align*}
+        Selanjutnya karena $E(\hat{p}) = p$ dan $Var(\hat{p}) = \dfrac{p(1-p)}{n}$, maka $\hat{p}$ adalah estimator takbias dari $p$ dan efisien secara asimtotis. Kemudian distribusi asimtotik dari $\hat{p}$ adalah normal dengan rata-rata $p$ dan variansnya adalah CRLB $\dfrac{p(1-p)}{n}$.
+        \[\hat{p}\sim N\left(p,\dfrac{p(1-p)}{n}\right)\]
+    \end{solution}
+\end{enumerate}
+\end{document}
