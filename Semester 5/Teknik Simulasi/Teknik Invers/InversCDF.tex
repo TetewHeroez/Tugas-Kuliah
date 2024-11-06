@@ -1,0 +1,206 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{animate}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+\definecolor{pgray}{rgb}{0.5,0.5,0.5}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{pcyan}{HTML}{D4EFFC}
+\definecolor{lblue}{HTML}{00AEEF}
+\definecolor{input}{HTML}{AAE1FA}
+\definecolor{bg}{rgb}{0.95, 0.95, 0.92}
+\definecolor{vscode}{HTML}{282A36}
+\definecolor{PastelGreen}{HTML}{77DD77}
+
+\lstdefinestyle{standard}{
+    language            = Python,
+    showspaces          = false,
+    showtabs            = false,
+    breaklines          = true,
+    showstringspaces    = false,
+    breakatwhitespace   = true,
+    commentstyle        = \color{pgray},
+    keywordstyle        = \color{pblue},
+    stringstyle         = \color{pgreen},
+    basicstyle          = \footnotesize\ttfamily,
+    frame               = single,
+    backgroundcolor     = \color{brown!10!white},
+    escapeinside        = {(*}{*)},
+    numbers             = left, % {none, left, right}
+    numberstyle         = \scriptsize\color{gray},
+    numbersep           = -8pt,
+    }
+
+\lstdefinestyle{output}{
+    language            =Python,
+    backgroundcolor     =\color{vscode},
+    basicstyle          =\footnotesize\ttfamily\color{white},
+    frame               =shadowbox,
+    escapeinside        ={(*}{*)},
+    showspaces          =false,
+    showtabs            =false,
+    breaklines          =true,
+    showstringspaces    =false,
+    breakatwhitespace   =true,
+    rulesepcolor        =\color{HIMAtua!50!white},
+    rulecolor           =\color{HIMAtua!50!white},
+    numbers             =none,
+    }
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\renewcommand{\lstlistingname}{Code}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\section*{Invers CDF of Continuous Distribution} 
+
+We know that the CDF of a continuous distribution is not always in the form of an elementary function. In such cases, we can use numerical methods to find the inverse of the CDF.
+
+The Newton-Raphson method is one approach to finding the inverse of the CDF. It is an iterative method used to find the root of a function. The formula for the Newton-Raphson method is given by
+\begin{equation}
+    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\label{eq:1}
+\end{equation}
+where \(x_{n+1}\) is the next approximation, \(x_n\) is the current approximation, \(f(x_n)\) is the function value at \(x_n\), and \(f'(x_n)\) is the derivative of the function at \(x_n\).
+
+Let's consider any continuous distribution \(X\) with the CDF \(F(x)\),
+\begin{equation}
+    P(X\leq x) = F(x) = \int_{-\infty}^{x} f(t) \, dt
+\end{equation}
+
+Next, we set the CDF to be \(R\) and aim to find \(x\) such that \(F(x) = R\). We can rewrite the equation as
+\begin{equation}
+    F(x) - R = 0
+\end{equation}
+
+Thus, we define a new function \(g(x) = F(x) - R\). Applying the Newton-Raphson method \eqref{eq:1}, we get the iterative formula as
+\begin{align}
+    x_{n+1} &= x_n - \frac{F(x_n) - R}{f(x_n)}
+\end{align}
+
+\section*{Direct Transformation}
+We know that the PDF of the standard normal distribution is given by
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}
+\end{equation}
+For any random variable \(X\) with PDF \(f(x)\) and a function \(u(X)\), the expected value of \(u(X)\) is given by
+\begin{equation}
+    E[u(X)] = \int_{-\infty}^{\infty} u(x) \cdot f(x) \, dx
+\end{equation}
+
+Next, we are interested in finding the MGF of the sum of independent random variables \(X_i\) such that \(\displaystyle Y = \sum_{i=1}^{n} X_i\). The MGF of \(Y\) is given by
+\begin{equation*}
+    M_Y(t) = E[e^{tY}] = E\left[e^{t \sum_{i=1}^{n} X_i}\right] = E\left[\prod_{i=1}^{n} e^{t X_i}\right] = \prod_{i=1}^{n} E[e^{t X_i}] = \prod_{i=1}^{n} M_{X_i}(t)
+\end{equation*}
+Thus, we conclude that the MGF of the sum of independent random variables is the product of the MGFs of each random variable:
+\begin{equation}
+    M_Y(t) = \prod_{i=1}^{n} M_{X_i}(t)\label{eq:7}
+\end{equation}
+
+\subsection*{Chi-Square and Normal Distribution}
+Consider independent random variables \(Z_1, Z_2, \dots, Z_n\) with \(Z_i \sim N(0,1)\) for \(i = 1, 2, \dots, n\). The MGF of \(Z_i^2\) is given by
+\begin{align*}
+    M_{Z_i^2}(t) = E[e^{t Z_i^2}] = \int_{-\infty}^{\infty} e^{t z^2} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} \, dz = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{(t - \frac{1}{2}) z^2} \, dz
+\end{align*}
+Let \(u = \sqrt{t - \frac{1}{2}} z\), then \(du = \sqrt{t - \frac{1}{2}} \, dz\). Thus, we get
+\begin{align*}
+    \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{u^2} \frac{1}{\sqrt{t - \frac{1}{2}}} \, du = \frac{1}{\sqrt{2\pi}} \sqrt{\frac{\pi}{t - \frac{1}{2}}} = \frac{1}{\sqrt{1 - 2t}}
+\end{align*}
+So, the MGF of \(Z_i^2\) is
+\begin{equation}
+    M_{Z_i^2}(t) = \frac{1}{\sqrt{1 - 2t}}\label{eq:8}
+\end{equation}
+This result is similar to the MGF of a chi-square distribution with 1 degree of freedom. Therefore, we conclude that \(Z_i^2 \sim \chi^2(1)\).
+
+Now, consider the sum of independent random variables \(Z_1^2, Z_2^2, \dots, Z_n^2\). Since \(Z_i\) are independent, \(Z_i^2\) are also independent. Then we can use \eqref{eq:7} to find the MGF of the sum of independent random variables \(\displaystyle Y = \sum_{i=1}^{n} Z_i^2\).
+\begin{equation}
+    M_Y(t) = \prod_{i=1}^{n} M_{Z_i^2}(t) = \prod_{i=1}^{n} \frac{1}{\sqrt{1 - 2t}} = \left(\frac{1}{\sqrt{1 - 2t}}\right)^{n}\label{eq:9}
+\end{equation}
+Equation \eqref{eq:9} is the MGF of a chi-square distribution with \(n\) degrees of freedom. Thus, we conclude that
+\begin{equation}
+    \sum_{i=1}^{n} Z_i^2 \sim \chi^2(n)\label{eq:10}
+\end{equation}
+
+\subsection*{Relation with Uniform Distribution}
+The PDF of a chi-square distribution with \(n\) degrees of freedom is given by
+\begin{equation}
+    f(x) = \frac{x^{n/2 - 1} e^{-x/2}}{2^{n/2} \Gamma(n/2)}\label{eq:11}
+\end{equation}
+Let \(B^2 = Z_1^2 + Z_2^2 \sim \chi^2(2)\) from \eqref{eq:10}. Then, from \eqref{eq:11}, the CDF of \(B^2\) is given by
+\begin{equation}
+    F_{B^2}(x) = P(B^2 \leq x) = \int_{-\infty}^{x} \frac{e^{-t/2}}{2} \, dt = 1 - e^{-x/2} \label{eq:12}
+\end{equation}
+
+Now, on the other hand, let \(R \sim U(0,1)\). Then the CDF of \(R\) is
+\begin{equation}
+    F_R(x) = P(R \leq x) = x\label{eq:13}
+\end{equation}
+If we want to understand the relation between \(B^2\) and \(R\), we can start from \eqref{eq:13} to match \eqref{eq:12}. Manipulating equation \eqref{eq:13}:
+\begin{align*}
+    P(R > x) = 1 - P(R \leq x) &= 1 - x 
+\end{align*}
+Substitute \(x\) with \(e^{-t/2}\), then we get
+\begin{align}
+    P(R > e^{-t/2}) &= 1 - e^{-t/2}\notag\\
+    P(\ln R > -t/2) &= 1 - e^{-t/2}\notag\\
+    P(-2\ln R < t) &= 1 - e^{-t/2}\label{eq:14}
+\end{align}
+We see that \eqref{eq:14} matches \eqref{eq:12}. Thus, we conclude that
+\begin{equation}
+    B = \sqrt{-2\ln R} \label{eq:15}
+\end{equation}
+
+\subsection*{Polar Coordinates}
+Since \(B^2 = Z_1^2 + Z_2^2\) resembles the equation of a circle, we can interpret \(B\) as the radius of a circle centered at \((0,0)\) with radius \(B\). So we can construct relation between $B$ and $Z_1,Z_2$ by the polar coordinate of circle
+\begin{align}
+    Z_1 &= B\cos(\theta)\label{eq:16}\\
+    Z_2 &= B\sin(\theta)\label{eq:17}
+\end{align}
+If $R_1,R_2\sim U(0,1)$ then from \eqref{eq:15} we can get $B=\sqrt{-2\ln R_1}$. In other hand, for $0\leq \theta \leq 2\pi$ then rewrite the equation as $\theta=2\pi R_2$ and its obvious because $0\leq R_2\leq 1$. So the random variables from \eqref{eq:16} and \eqref{eq:17} can be formulated as
+\begin{align}
+    Z_1 &= \sqrt{-2\ln R_1}\cos(2\pi R_2)\label{eq:18}\\
+    Z_2 &= \sqrt{-2\ln R_1}\sin(2\pi R_2)\label{eq:19}
+\end{align}
+
+\end{document}
