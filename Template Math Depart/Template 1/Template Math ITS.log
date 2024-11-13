@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.21)  21 OCT 2024 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.21)  6 NOV 2024 11:26
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/Template Math ITS.tex"
-(c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/Template Math ITS.tex
+**"c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/Template 1/Template Math ITS.tex"
+(c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/Template 1/Template Math ITS.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -282,15 +282,15 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
  (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<ITS.png, id=1, 150.5625pt x 150.5625pt>
-File: ITS.png Graphic file (type png)
-<use ITS.png>
-Package pdftex.def Info: ITS.png  used on input line 36.
+<C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/ITS.png, id=1, 150.5625pt x 150.5625pt>
+File: C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/ITS.png Graphic file (type png)
+<use C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/ITS.png>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/ITS.png  used on input line 36.
 (pdftex.def)             Requested size: 56.9055pt x 56.90648pt.
-<M.png, id=3, 2370.8575pt x 2370.8575pt>
-File: M.png Graphic file (type png)
-<use M.png>
-Package pdftex.def Info: M.png  used on input line 51.
+<C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/M.png, id=3, 2370.8575pt x 2370.8575pt>
+File: C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/M.png Graphic file (type png)
+<use C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/M.png>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/M.png  used on input line 51.
 (pdftex.def)             Requested size: 56.9055pt x 56.90535pt.
 
 Overfull \hbox (5.7702pt too wide) in paragraph at lines 35--58
@@ -299,20 +299,20 @@ Overfull \hbox (5.7702pt too wide) in paragraph at lines 35--58
 
 [1
 
-{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./ITS.png> <./M.png>] (Template Math ITS.aux)
+{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/ITS.png> <C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/M.png>] (Template Math ITS.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4252 strings out of 474486
- 64072 string characters out of 5743754
+ 4256 strings out of 474486
+ 65149 string characters out of 5743754
  1930542 words of memory out of 5000000
- 26508 multiletter control sequences out of 15000+600000
+ 26512 multiletter control sequences out of 15000+600000
  560467 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,18n,65p,302b,254s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,18n,65p,313b,254s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
 Output written on "Template Math ITS.pdf" (1 page, 252134 bytes).
 PDF statistics:

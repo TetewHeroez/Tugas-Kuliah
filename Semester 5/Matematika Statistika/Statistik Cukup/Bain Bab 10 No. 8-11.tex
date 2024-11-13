@@ -1,0 +1,203 @@
+\documentclass{exam}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{accents}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Solution}:}
+\newcommand{\del}{\partial}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newtheorem{teorema}{Teorema}
+
+\footer{}{\thepage}{}
+
+\lhead{\textit{Teosofi Hidayah Agung}}
+\rhead{\textit{5002221132}}
+\headrule
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\underline{Solusi:}}\par\noindent}
+\printanswers
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{enumerate}
+    \setcounter{enumi}{7}
+    \item Tinjau sampel acak berukuran $n$ dari distribusi eksponensial dua parameter, $X_i\sim\text{EXP}(1,\eta)$. Tunjukkan bahwa $S=X_{1:n}$ adalah statistik cukup untuk $\eta$ dengan menggunakan teorema faktorisasi.
+    \begin{solution}
+        PDF dari distribusi $X\sim\text{EXP}(1,\eta)$ adalah
+        \begin{equation*}
+            f(x;\eta) = \begin{cases}
+                e^{-(x-\eta)}&,\quad x>\eta\\
+                0&,\quad\text{lainnya}
+            \end{cases}
+        \end{equation*}
+        Kemudian definisikan fungsi indikator dari himpunan $(\eta,\infty)$ sebagai
+        \begin{equation*}
+            I_\eta(x) = \begin{cases}
+                1&,\quad x>\eta\\
+                0&,\quad x<\eta
+            \end{cases}
+        \end{equation*}
+        Sehingga, PDF dari sampel acak $X_1,\dots,X_n$ adalah
+        \begin{align*}
+            f(\underaccent{\tilde}{x};\eta) &= \prod_{i=1}^n f(x_i;\eta)\\
+            &= \prod_{i=1}^n e^{-(x_i-\eta)}I_\eta(x_i)\\
+            &= e^{-\sum_{i=1}^n(x_i-\eta)}\prod_{i=1}^n I_\eta(x_i)\\
+        \end{align*}
+        Perhatikan bahwa 
+        \begin{equation*}
+            \prod_{i=1}^n I_\eta(x_i) = \begin{cases}
+                1&,\quad x_1,\dots,x_n>\eta\\
+                0&,\quad\text{lainnya}
+            \end{cases}
+            =\begin{cases}
+                1&,\quad x_{1:n}>\eta\\
+                0&,\quad\text{lainnya}
+            \end{cases}
+        \end{equation*}
+        Dari informasi di atas, didapatkan $\displaystyle\prod_{i=1}^n I_\eta(x_i)=1$ jika dan hanya jika $\min x_i=x_{1:n}>\eta$. Sehingga 
+        \begin{align*}
+            f(\underaccent{\tilde}{x};\eta)&= e^{-\sum_{i=1}^n x_i + n\eta}I_{\eta}(\min x_i)\\
+            &= \exp\left(-\sum_{i=1}^n x_i\right)\exp\left(n\eta\right)I_{\eta}(\min x_i)
+        \end{align*}
+        Perhatikan bahwa fungsi diatas berbentuk $f(\underaccent{\tilde}{x};\eta) = g(T(\underaccent{\tilde}{x}\,|\,\eta))h(\underaccent{\tilde}{x})$ dengan 
+        \begin{align*}
+            g(T(\underaccent{\tilde}{x}\,|\,\eta)) &= \exp(n\eta)I_\eta(\min x_i)\\
+            h(\underaccent{\tilde}{x}) &= \exp\left(-\sum_{i=1}^n x_i\right)
+        \end{align*}
+        Sehingga, $S=T(\underaccent{\tilde}{x})=X_{1:n}$ adalah statistik cukup untuk $\eta$.
+    \end{solution}
+    \item Tinjau sampel acak berukuran \(n\) dari distribusi Weibull, \(X_i \sim \text{WEI}(\theta, \beta)\).
+    \begin{enumerate}
+        \item Tentukan statistik cukup untuk \(\theta\) dengan \(\beta\) diketahui, misalkan \(\beta = 2\).
+        \item Jika \(\beta\) tidak diketahui, dapatkah Anda menemukan statistik cukup tunggal untuk \(\beta\)?
+    \end{enumerate}
+    \begin{solution}
+        PDF dari distribusi Weibull adalah
+        \begin{equation*}
+            f(x;\theta,\beta) = \frac{\beta}{\theta^\beta}x^{\beta-1}e^{-(x/\theta)^\beta}, \quad x>0
+        \end{equation*}
+        Dengan $\theta,\beta>0$.
+        \begin{enumerate}
+            \item Dengan \(\beta=2\), maka PDF dari sampel acak \(X_1,\dots,X_n\) adalah
+            \begin{align*}
+                f(\underaccent{\tilde}{x};\theta) &= \prod_{i=1}^n f(x_i;\theta,2)\\
+                &= \prod_{i=1}^n \frac{2}{\theta^2}x_i e^{-(x_i/\theta)^2}\\
+                &= \left(\prod_{i=1}^n x_i\right)\frac{2^n}{\theta^{2n}}\exp\left(-\sum_{i=1}^n(x_i/\theta)^2\right)\\
+                &= \left(\prod_{i=1}^n x_i\right)\frac{2^n}{\theta^{2n}}\exp\left(-\frac{1}{\theta^2}\sum_{i=1}^nx_i^2\right)
+            \end{align*}
+            Dengan teorema faktorisasi diperoleh bahwa 
+            \begin{align*}
+                g(T(\underaccent{\tilde}{x}\,|\,\theta))&=\dfrac{2^n}{\theta^{2n}}\exp\left(-\frac{1}{\theta^2}\sum_{i=1}^nx_i^2\right)\\
+                h(\underaccent{\tilde}{x}) &= \prod_{i=1}^n x_i
+            \end{align*}
+            Sehingga, \(\displaystyle T(\underaccent{\tilde}{x})=\sum_{i=1}^n x_i^2\) adalah statistik cukup untuk \(\theta\).
+
+            \item Dengan \(\beta\) tidak diketahui, maka PDF dari sampel acak \(X_1,\dots,X_n\) adalah
+            \begin{align*}
+                f(\underaccent{\tilde}{x};\theta,\beta) &= \prod_{i=1}^n f(x_i;\theta,\beta)\\
+                &= \prod_{i=1}^n \frac{\beta}{\theta^\beta}x_i^{\beta-1}e^{-(x_i/\theta)^\beta}\\
+                &= \frac{\beta^n}{\theta^{n\beta}} \left(\prod_{i=1}^n x_i^{\beta-1}\right) \exp\left(-\sum_{i=1}^n(x_i/\theta)^\beta\right)
+            \end{align*}
+            Distribusi Weibull termasuk dalam keluarga eksponensial, sehingga dapat ditulis ulang sebagai
+            \begin{equation*}
+                f(\underaccent{\tilde}{x};\theta,\beta) = \frac{\beta^n}{\theta^{n\beta}}\exp\left((\beta-1) \sum_{i=1}^n \ln x_i - \sum_{i=1}^n \left(\frac{x_i}{\theta}\right)^\beta \right)
+            \end{equation*}
+            Dengan teorema keluarga eksponensial, kita dapat mengidentifikasi statistik cukup sebagai berikut:
+            \begin{flalign*}
+                &&w_1(\theta,\beta) &= \beta -1&w_2(\theta,\beta) &= -\frac{1}{\theta^\beta}&\\
+                &&T_1(\underaccent{\tilde}{x}) &= \sum_{i=1}^n \ln x_i &T_2(\underaccent{\tilde}{x}) &= \sum_{i=1}^n x_i^\beta&
+            \end{flalign*}
+            Dapat dilihat bahwa $\beta$ berada di kedua koefisien dari statistik cukup $T_1$ dan $T_2$, sehingga tidak ada statistik cukup tunggal untuk $\beta$.
+        \end{enumerate}
+    \end{solution}
+
+    \item Misalkan \(X_1, \dots, X_n\) adalah sampel acak dari distribusi normal, \(X_i \sim \text{N}(\mu, \sigma^2)\).
+    \begin{enumerate}
+        \item Tentukan statistik cukup tunggal untuk \(\mu\) dengan \(\sigma^2\) diketahui.
+        \item Tentukan statistik cukup tunggal untuk \(\sigma^2\) dengan \(\mu\) diketahui.
+    \end{enumerate}
+    \begin{solution}
+        Diketahui PDF dari distribusi normal adalah
+        \begin{equation*}
+            f(x;\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+        \end{equation*}
+        Kemudian karena distribusi normal merupakan keluarga eksponensial, maka dapat ditulis ulang sebagai
+        \begin{equation*}
+            f(x;\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{\mu^2}{2\sigma^2}\right)\exp\left(\frac{x\mu}{\sigma^2}-\frac{x^2}{2\sigma^2}\right)
+        \end{equation*}
+        dengan $h(x)=1$, $c(\mu,\sigma^2)=\dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac{\mu^2}{2\sigma^2}\right)$, $t_1(x)=x$, $t_2(x)=x^2$, $w_1(\mu,\sigma^2)=\dfrac{\mu}{\sigma^2}$, dan $w_2(\mu,\sigma^2)=-\dfrac{1}{2\sigma^2}$.
+        \begin{enumerate}
+            \item Karena $\sigma^2$ diketahui, maka hasil diatas menunjukkan bahwa $\displaystyle T_1(\underaccent{\tilde}{x})=\sum_{i=1}^n x_i$ adalah statistik cukup tunggal untuk $\mu$, karena $\mu$ hanya berada pada koefisien dari $T_1$.
+            \item Karena $\mu$ diketahui, maka hasil diatas menunjukkan bahwa $\sigma^2$ mempunyai statistik cukup bersama $\displaystyle\left(\sum_{i=1}^n x_i^2, \sum_{i=1}^n x_i\right)$. Hal ini dapat dibayangkan bahwa rumus varians pastilah memperhitungkan kedua statistik cukup tersebut, sehingga tidak ada statistik cukup tunggal untuk $\sigma^2$.  
+        \end{enumerate}
+    \end{solution}
+
+    \item Tinjau sampel acak berukuran \(n\) dari distribusi uniform, \(X_i \sim \text{UNIF}(\theta_1, \theta_2)\).
+    \begin{enumerate}
+        \item Tunjukkan bahwa \(X_{1:n}\) statistik cukup untuk \(\theta_1\), jika \(\theta_2\) diketahui.
+        \item Tunjukkan bahwa \(X_{1:n}\) dan \(X_{n:n}\) statistik cukup secara bersama untuk \(\theta_1\) dan \(\theta_2\).
+    \end{enumerate}
+    \begin{solution}
+        Diketahui PDF dari distribusi uniform adalah
+        \begin{equation*}
+            f(x;\theta_1,\theta_2) = \begin{cases}
+                \dfrac{1}{\theta_2-\theta_1}&,\quad\theta_1\leq x\leq\theta_2\\
+                0&,\quad\text{lainnya}
+            \end{cases}
+        \end{equation*}
+        Kemudian definisikan fungsi indikator dari himpunan \([\theta_1,\theta_2]\) sebagai
+        \begin{equation*}
+            I_{[\theta_1,\theta_2]}(x) = \begin{cases}
+                1&,\quad\theta_1\leq x\leq\theta_2\\
+                0&,\quad\text{lainnya}
+            \end{cases}
+        \end{equation*}
+        \begin{enumerate}
+            \item Dengan \(\theta_2\) diketahui, maka PDF dari sampel acak \(X_1,\dots,X_n\) adalah
+            \begin{align*}
+                f(\underaccent{\tilde}{x};\theta_1) &= \prod_{i=1}^n f(x_i;\theta_1,\theta_2)\\
+                &= \prod_{i=1}^n \frac{1}{\theta_2-\theta_1}I_{[\theta_1,\theta_2]}(x_i)\\
+                &= \frac{1}{(\theta_2-\theta_1)^n}\prod_{i=1}^n I_{[\theta_1,\theta_2]}(x_i)
+            \end{align*}
+            Agar fungsi diatas tak nol, maka haruslah \(x_1,x_2,\dots,x_n\geq\theta_1\) atau dapat ditulis \(\min X_i=\theta_1\). Kemudian dengan teorema faktorisasi
+            \begin{align*}
+                g(T(\underaccent{\tilde}{x}\,|\,\theta_1)) &= \frac{I_{[\theta_1,\theta_2]}(\min x_i)}{(\theta_2-\theta_1)^n}\\
+                h(\underaccent{\tilde}{x}) &= 1
+            \end{align*}
+            Sehingga, \(X_{1:n}\) adalah statistik cukup untuk \(\theta_1\).
+            \item Dengan \(\theta_1\) dan \(\theta_2\) tidak diketahui, maka PDF dari sampel acak \(X_1,\dots,X_n\) adalah
+            \begin{align*}
+                f(\underaccent{\tilde}{x};\theta_1,\theta_2) &= \prod_{i=1}^n f(x_i;\theta_1,\theta_2)\\
+                &= \prod_{i=1}^n \frac{1}{\theta_2-\theta_1}I_{[\theta_1,\theta_2]}(x_i)\\
+                &= \frac{1}{(\theta_2-\theta_1)^n}I_{[\theta_1,\theta_2]}(x_{1:n})I_{[\theta_1,\theta_2]}(x_{n:n})
+            \end{align*}
+            Sehingga, \(X_{1:n}\) dan \(X_{n:n}\) adalah statistik cukup secara bersama untuk \(\theta_1\) dan \(\theta_2\).
+        \end{enumerate}
+    \end{solution}
+\end{enumerate}
+\end{document}
