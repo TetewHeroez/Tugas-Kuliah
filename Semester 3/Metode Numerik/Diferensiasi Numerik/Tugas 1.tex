@@ -1,0 +1,90 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[table]{xcolor}
+%\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{animate}
+\usepackage{amsthm}
+\usepackage{caption}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+
+Cari nilai turunan sebuah fungsi dengan forward-difference formula dan backward-difference formula serta nilai erornya.
+\vspace*{-0.5cm}
+\begin{multicols}{2}
+    \[
+    \begin{array}{|c|c|c|}
+    \hline
+    x & f(x) & f'(x) \\
+    \hline
+    -0.3 & 1.9507 & \dots\\
+    -0.2 & 2.0421 & \dots\\
+    -0.1 & 2.0601 & \dots\\
+    \hline
+    \end{array}
+    \]
+
+    \[
+    \begin{array}{|c|c|c|}
+    \hline
+    x & f(x) & f'(x) \\
+    \hline
+    0.5 & 0.4794 & \dots\\
+    0.6 & 0.5646 & \dots\\
+    0.7 & 0.6442 & \dots\\
+    \hline
+    \end{array}
+    \]
+\end{multicols}
+\noindent\jawab\\
+Dari tabel, diketahui bahwa $h=0.1$ dan rumus turunan menggunakan forward-difference formula dan backward-difference formula masing-masing adalah sebagai berikut:
+\begin{align}
+    f'(x) &\approx \frac{f(x+h)-f(x)}{h} \label{eq:forward}\\
+    f'(x) &\approx \frac{f(x)-f(x-h)}{h} \label{eq:backward}
+\end{align}
+\begin{itemize}
+    \item Untuk $x = -0.3$, kita hanya dapat menggunakan forward-difference formula karena tidak ada nilai $f(x)$ yang lebih kecil dari $x$.
+    \begin{equation*}
+        f'(-0.3) \approx \frac{f(-0.3+0.1)-f(-0.3)}{0.1} = \frac{f(-2.0)-f(-0.3)}{0.1} = 0.914
+    \end{equation*}
+    \item Untuk $x = -0.2$, kita dapat menggunakan forward-difference formula dan backward-difference formula keduanya.
+    \begin{align*}
+        f'(-0.2) &\approx \frac{f(-0.2+0.1)-f(-0.2)}{0.1} = \frac{f(-0.1)-f(-0.2)}{0.1} = 0.18\\
+        f'(-0.2) &\approx \frac{f(-0.2)-f(-0.2-0.1)}{0.1} = \frac{f(-0.2)-f(-0.3)}{0.1} = 0.914
+    \end{align*}
+    \item Untuk $x = -0.1$, kita hanya dapat menggunakan backward-difference formula karena tidak ada nilai $f(x)$ yang lebih besar dari $x$.
+    \begin{equation*}
+        f'(-0.1) \approx \frac{f(-0.1)-f(-0.1-0.1)}{0.1} = \frac{f(-0.1)-f(-0.2)}{0.1} = 0.18
+    \end{equation*}
+    \item Untuk $x = 0.5$, kita hanya dapat menggunakan forward-difference formula karena tidak ada nilai $f(x)$ yang lebih kecil dari $x$.
+    \begin{equation*}
+        f'(0.5) \approx \frac{f(0.5+0.1)-f(0.5)}{0.1} = \frac{f(0.6)-f(0.5)}{0.1} = 0.852
+    \end{equation*}
+    \item Untuk $x = 0.6$, kita dapat menggunakan forward-difference formula dan backward-difference formula keduanya.
+    \begin{align*}
+        f'(0.6) &\approx \frac{f(0.6+0.1)-f(0.6)}{0.1} = \frac{f(0.7)-f(0.6)}{0.1} = 0.796\\
+        f'(0.6) &\approx \frac{f(0.6)-f(0.6-0.1)}{0.1} = \frac{f(0.6)-f(0.5)}{0.1} = 0.852
+    \end{align*}
+    \item Untuk $x = 0.7$, kita hanya dapat menggunakan backward-difference formula karena tidak ada nilai $f(x)$ yang lebih besar dari $x$.
+    \begin{equation*}
+        f'(0.7) \approx \frac{f(0.7)-f(0.7-0.1)}{0.1} = \frac{f(0.7)-f(0.6)}{0.1} = 0.796
+    \end{equation*}
+\end{itemize}
+Selanjutnya untuk eror disini tidak dapat dihitung karena tidak ada nilai eksak dari turunan fungsi yang diberikan.
+\end{document}
