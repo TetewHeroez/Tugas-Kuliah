@@ -1,0 +1,132 @@
+\documentclass{exam}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{accents}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Solution}:}
+\newcommand{\del}{\partial}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newtheorem{teorema}{Teorema}
+
+\footer{}{\thepage}{}
+
+\lhead{\textit{Teosofi Hidayah Agung}}
+\rhead{\textit{5002221132}}
+\headrule
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\underline{Solusi:}}\par\noindent}
+\printanswers
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Data berikut terdiri atas pengukuran berat (dalam ons) untuk 60 bola \textit{Major League Baseball}::
+    \[
+    \begin{array}{llllllllll}
+    5.09 & 5.08 & 5.21 & 5.17 & 5.07 & 5.24 & 5.12 & 5.16 & 5.18 & 5.19 \\
+    5.26 & 5.10 & 5.28 & 5.29 & 5.27 & 5.09 & 5.24 & 5.26 & 5.17 & 5.13 \\
+    5.27 & 5.26 & 5.17 & 5.19 & 5.28 & 5.28 & 5.18 & 5.27 & 5.25 & 5.26 \\
+    5.26 & 5.18 & 5.13 & 5.08 & 5.25 & 5.17 & 5.09 & 5.16 & 5.24 & 5.23 \\
+    5.28 & 5.24 & 5.23 & 5.23 & 5.27 & 5.22 & 5.26 & 5.27 & 5.24 & 5.27 \\
+    5.25 & 5.28 & 5.24 & 5.26 & 5.24 & 5.24 & 5.27 & 5.26 & 5.22 & 5.09
+    \end{array}
+    \]
+    Asumsikan bahwa data tersebut merupakan nilai-nilai yang diamati dari sebuah sampel acak yang berasal dari distribusi normal.
+    \begin{enumerate}
+        \item Tentukan interval kepercayaan 99\% untuk rata-rata berat bola \textit{Major League Baseball}.
+        \item Tentukan interval kepercayaan 99\% untuk simpangan baku.
+    \end{enumerate}
+    \setcounter{enumi}{6}
+    \item Misalkan \( X_1, X_2, \ldots, X_n \) adalah sampel acak dari distribusi Weibull, \( X \sim \text{WEI}(\theta, 2) \).
+    \begin{enumerate}
+        \item Tunjukkan bahwa $\displaystyle Q = 2 \sum_{i=1}^n X_i^2/\theta^2 \sim \chi^2(2n)$.
+        \item Gunakan \( Q \) untuk menentukan batas interval kepercayaan 100\( \gamma\% \) untuk \( \theta \).
+        \item Tentukan batas bawah interval kepercayaan 100\( \gamma\% \) untuk $P(X > t) = \exp\left[-(t/\theta)^2\right]$.
+        \item Tentukan batas atas interval kepercayaan 100\( \gamma\% \) untuk persentil ke-\( p \) dari distribusi tersebut.
+    \end{enumerate}
+    \begin{solution}
+        \begin{enumerate}
+            \item Diketahui bahwa \( X \sim \text{WEI}(\theta, 2) \) memiliki CDF sebagai berikut:
+            \[F(x) = 1 - \exp\left[-\left(\frac{x}{\theta}\right)^2\right], \quad x > 0\]
+            Disini akan digunakan metode CDF untuk mencari distribusi dari $Z=\frac{X^2}{\theta^2}$
+            \begin{align*}
+                P(Z \leq z) &= P\left(\frac{X^2}{\theta^2} \leq z\right) \\
+                &= P\left(X^2 \leq z\theta^2\right) 
+            \end{align*}
+            Perhatikan karena $X>0$, maka $X^2 \leq z\theta^2$ setara dengan $X \leq \theta \sqrt{z}$. Sehingga
+            \begin{align*}
+                P(Z \leq z)&= P\left(X \leq \theta \sqrt{z}\right) \\
+                &= F(\theta \sqrt{z}) \\
+                &= 1 - \exp\left[-\left(\frac{\theta \sqrt{z}}{\theta}\right)^2\right] \\
+                &= 1 - \exp\left(-z\right)
+            \end{align*}
+            Sehingga, CDF dari $Z$ adalah $1 - \exp(-z)$, yang merupakan CDF dari distribusi eksponensial. Dengan demikian, \( Z \sim \text{EXP}(1) \).\\
+            Selanjutnya untuk $\sum_{i=1}^n X_i^2/\theta^2= \sum_{i=1}^n Z_i$ menggunakan sifat MGF yang independen, didapat bahwa $\sum_{i=1}^n Z_i \sim \text{GAM}(1, n)$. Yang terakhir dengan menggunakan hubungan antara distribusi gamma dan chi-square, maka $2\sum_{i=1}^n Z_i \sim \chi^2(2n)$.\\
+
+            $\therefore Q \sim \chi^2(2n)$.
+
+            \item Interval kepercayaan 100\( \gamma\% \) untuk \( \theta \) adalah
+            \begin{align*}
+                P\left(\chi^2_{\frac{1-\gamma}{2}}(2n) \leq Q \leq \chi^2_{\frac{1+\gamma}{2}}(2n)\right) &=\gamma \\
+                P\left(\chi^2_{\frac{1-\gamma}{2}}(2n) \leq 2\sum_{i=1}^n X_i^2/\theta^2 \leq \chi^2_{\frac{1+\gamma}{2}}(2n)\right) &= \gamma \\
+                P\left(\frac{2\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1+\gamma}{2}}(2n)} \leq \theta^2 \leq \frac{2\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1-\gamma}{2}}(2n)}\right) &= \gamma \\
+                P\left(\sqrt{\frac{2\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1+\gamma}{2}}(2n)}} \leq \theta \leq \sqrt{\frac{2\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1-\gamma}{2}}(2n)}}\right) &= \gamma
+            \end{align*}
+            Sehingga, interval kepercayaan 100\( \gamma\% \) untuk \(\theta\) adalah
+            \[\left[\sqrt{\frac{2\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1+\gamma}{2}}(2n)}}, \sqrt{\frac{2\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1-\gamma}{2}}(2n)}}\right]\]
+
+            \item Dari poin sebelumnya, diketahui bahwa 
+            \begin{align*}
+                \frac{\chi^2_{\frac{1-\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2} \leq\frac{1}{\theta^2}& \leq \frac{\chi^2_{\frac{1+\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2}\\
+                \frac{t^2\chi^2_{\frac{1-\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2} \leq\left(\frac{t}{\theta}\right)^2& \leq \frac{t^2\chi^2_{\frac{1+\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2}\\
+                -\frac{t^2\chi^2_{\frac{1+\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2} \leq-\left(\frac{t}{\theta}\right)^2& \leq -\frac{t^2\chi^2_{\frac{1-\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2}\\
+                \exp\left(-\frac{t^2\chi^2_{\frac{1+\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2}\right) \leq\exp\left[-\left(\frac{t}{\theta}\right)^2\right]& \leq \exp\left(-\frac{t^2\chi^2_{\frac{1-\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2}\right)\\
+            \end{align*}
+            Sehingga, batas bawah interval kepercayaan 100\( \gamma\% \) untuk \( P(X > t) = \exp\left[-(t/\theta)^2\right] \) adalah
+            \[P(X > t)\geq\exp\left(-\frac{t^2\chi^2_{\frac{1+\gamma}{2}}(2n)}{2\sum_{i=1}^n X_i^2}\right)\]
+            \item Persentil ke-\( p \) adalah nilai \( x_p\) sehingga \( P(X \leq x_p) = p \). Dengan kata lain
+            \begin{align*}
+                P(X \leq x_p) &= p \\
+                1 - \exp\left[-\left(\frac{x_p}{\theta}\right)^2\right] &= p \\
+                \exp\left[-\left(\frac{x_p}{\theta}\right)^2\right] &= 1 - p \\
+                -\left(\frac{x_p}{\theta}\right)^2 &= \ln(1-p) \\
+                \left(\frac{x_p}{\theta}\right)^2 &= -\ln(1-p)
+            \end{align*}
+            Karena $x_p\geq 0$, maka $x_p = \theta\sqrt{-\ln(1-p)}$. Kemudian dengan menggunakan hasil dari poin (b), didapat bahwa
+            \[x_p\leq\sqrt{\frac{-2\ln(1-p)\sum_{i=1}^n X_i^2}{\chi^2_{\frac{1-\gamma}{2}}(2n)}}\]
+        \end{enumerate}
+    \end{solution}
+    
+    \item Misalkan sampel acak ukuran \( n \) berasal dari distribusi uniform \( X_i \sim \text{UNIF}(0, \theta) \), \( \theta > 0 \), dan \( X_{n:n} \) adalah order statistik terbesar.
+    \begin{enumerate}
+        \item Tentukan probabilitas bahwa interval acak \( (X_{n:n}, 2X_{n:n}) \) memuat \( \theta \).
+        \item Tentukan konstanta \( c \) sehingga \( (X_{n:n}, cX_{n:n}) \) adalah interval kepercayaan 100\( (1-\alpha)\% \) untuk \( \theta \).
+    \end{enumerate}
+\end{enumerate}
+\end{document}

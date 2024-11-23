@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots, tkz-euclide,calc}
+
+\usetikzlibrary{angles,quotes} % for pic (angle labels)
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{bending} % for arrow head angle
+\tikzset{>=latex} % for LaTeX arrow head
+\usepackage{xcolor}
+\pgfplotsset{compat=newest}
+
+\colorlet{xcol}{blue!60!black}
+\colorlet{myred}{red!80!black}
+\colorlet{myblue}{blue!80!black}
+\colorlet{mygreen}{green!40!black}
+\colorlet{mypurple}{red!50!blue!90!black!80}
+\colorlet{mydarkred}{myred!80!black}
+\colorlet{mydarkblue}{myblue!80!black}
+\tikzstyle{xline}=[xcol,thick,smooth]
+\tikzstyle{width}=[{Latex[length=5,width=3]}-{Latex[length=5,width=3]},thick]
+\tikzstyle{mydashed}=[dash pattern=on 1.7pt off 1.7pt]
+\tikzset{
+  traj/.style 2 args={xline,postaction={decorate},decoration={markings,
+    mark=at position #1 with {\arrow{<}},
+    mark=at position #2 with {\arrow{<}}}
+  }
+}
+\def\tick#1#2{\draw[thick] (#1)++(#2:0.12) --++ (#2-180:0.24)}
+\def\N{100} % number of samples
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{\underline{Solusi}}:}
+\newcommand{\del}{\partial}
+\newcommand{\cis}{\text{cis}}
+\begin{document}
+\setlength{\parindent}{0pt}
+    \pagenumbering{gobble}
+    \noindent
+    \begin{tabular}{|lcl|}
+     \hline
+     Nama&:&Teosofi Hidayah Agung\\
+     NRP&:&5002221132\\
+     \hline
+    \end{tabular}\\~\\
+Carilah fungsi \( y(x) \) yang meminimalkan integral berikut:
+
+\[
+J[y] = \int_{0}^{1} \left( y'^2 - xy \right) \, dx
+\]
+
+dengan syarat batas:
+\[
+y(0) = 0 \quad \text{dan} \quad y(1) = 1.
+\]
+\jawab
+
+Rumus Euler-Lagrange adalah:
+\[
+\frac{\partial F}{\partial y} - \frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) = 0,
+\]
+di mana \( F = y'^2 - xy \).
+
+  \[
+  \frac{\partial F}{\partial y} = \frac{\partial}{\partial y} \left( y'^2 - xy \right) = -x.
+  \]
+  \[
+  \frac{\partial F}{\partial y'} = \frac{\partial}{\partial y'} \left( y'^2 - xy \right) = 2y'.
+  \]
+  \[
+  \frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) = \frac{d}{dx} \left( 2y' \right) = 2y''.
+  \]
+
+Masukkan hasil turunan ke persamaan Euler-Lagrange:
+\[
+\frac{\partial F}{\partial y} - \frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) = 0,
+\]
+sehingga:
+\[
+-x - 2y'' = 0.
+\]
+
+Atau dapat ditulis sebagai:
+\[
+y'' + \frac{x}{2} = 0.
+\]
+
+Persamaan diferensial tersebut adalah:
+\[
+y'' = -\frac{x}{2}.
+\]
+
+Integrasikan kedua ruas terhadap \( x \) untuk mendapatkan \( y' \):
+\[
+y' = -\frac{x^2}{4} + C_1,
+\]
+dengan \( C_1 \) adalah konstanta integrasi.
+
+Integrasikan lagi untuk mendapatkan \( y \):
+\[
+y = -\frac{x^3}{12} + C_1x + C_2,
+\]
+dengan \( C_2 \) adalah konstanta integrasi kedua.
+
+
+Dari syarat batas \( y(0) = 0 \) dan \( y(1) = 1 \):
+
+- Ketika \( x = 0 \), \( y(0) = 0 \):
+  \[
+  0 = -\frac{0^3}{12} + C_1(0) + C_2 \implies C_2 = 0.
+  \]
+
+- Ketika \( x = 1 \), \( y(1) = 1 \):
+  \[
+  1 = -\frac{1^3}{12} + C_1(1) + 0 \implies C_1 = 1 + \frac{1}{12} = \frac{13}{12}.
+  \]
+
+Sehingga, fungsi \( y(x) \) adalah:
+\[
+y(x) = -\frac{x^3}{12} + \frac{13}{12}x.
+\]
+
+Kita memverifikasi bahwa fungsi $y(x)$ memenuhi syarat batas:
+\begin{itemize}
+    \item Ketika \( x = 0 \), \( y(0) = 0 \).
+    \item Ketika \( x = 1 \), \( y(1) = -\frac{1^3}{12} + \frac{13}{12}(1) = 1 \).
+\end{itemize}
+
+Fungsi ini juga meminimalkan integral \( J[y] \) sesuai dengan persamaan Euler-Lagrange.
+
+Fungsi yang meminimalkan integral adalah:
+\[
+y(x) = -\frac{x^3}{12} + \frac{13}{12}x.
+\]
+\end{document}

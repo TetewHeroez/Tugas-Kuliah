@@ -1,0 +1,33 @@
+\contentsline {chapter}{LEMBAR PENGESAHAN}{i}{Doc-Start}%
+\contentsline {chapter}{ABSTRAK}{ii}{Doc-Start}%
+\contentsline {chapter}{ABSTRACT}{iii}{Doc-Start}%
+\contentsline {chapter}{DAFTAR ISI}{iv}{Doc-Start}%
+\contentsline {chapter}{DAFTAR GAMBAR}{v}{Doc-Start}%
+\contentsline {chapter}{DAFTAR TABEL}{vi}{Doc-Start}%
+\contentsline {chapter}{DAFTAR SIMBOL}{vii}{Doc-Start}%
+\contentsline {chapter}{\numberline {BAB I}PENDAHULUAN}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Rumusan Masalah}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Batasan Masalah}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Tujuan}{3}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Manfaat}{3}{section.1.5}%
+\contentsline {chapter}{\numberline {BAB II}TINJAUAN PUSTAKA}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Terminologi Aljabar Max-Plus}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Vektor dan Matriks}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Graf dalam Aljabar Max-Plus}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Graf Berarah Berbobot}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Jalur Terpanjang dalam Graf}{6}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Matriks Adjacency dan Matriks Max-Plus}{6}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Nilai Eigen dan Vektor Eigen pada Aljabar Max-Plus}{7}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Sistem Persamaan Linear Max-Plus}{7}{section.2.5}%
+\contentsline {chapter}{\numberline {BAB III}METODOLOGI}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Identifikasi Data Awal}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Formulasi Sistem dalam Aljabar Max-Plus}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Modeling Dinamika Jadwal}{11}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Analisis Validitas Model}{11}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Optimasi Jadwal}{11}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Evaluasi dan Validasi}{11}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Implementasi dan Simulasi}{11}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Kesimpulan dan Dokumentasi}{11}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Jadwal Kegiatan}{11}{section.3.9}%
+\contentsline {chapter}{DAFTAR PUSTAKA}{13}{table.caption.2}%

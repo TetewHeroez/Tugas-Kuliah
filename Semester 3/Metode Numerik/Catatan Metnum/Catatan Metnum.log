@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.16)  17 OCT 2024 21:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.21)  22 NOV 2024 06:52
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **"c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Semester 3/Metode Numerik/Catatan Metnum/Catatan Metnum.tex"
@@ -1125,12 +1125,34 @@ Overfull \hbox (22.11732pt too wide) detected at line 137
 \OML/lmm/m/it/5 x[] \OT1/lmr/m/n/5 = [] []
  []
 
+[1
 
-Overfull \vbox (32.83014pt too high) has occurred while \output is active []
+{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
+\T1/lmr/m/n/5 Metode La-grange mem-ban-gun poli-no-mial in-ter-
+ []
 
- [1
 
-{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] (Catatan Metnum.aux)
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
+\T1/lmr/m/n/5 po-lasi $\OML/lmm/m/it/5 P\OT1/lmr/m/n/5 (\OML/lmm/m/it/5 x\OT1/lmr/m/n/5 )$ \T1/lmr/m/n/5 yang mele-wati se-mua titik data
+ []
+
+
+Overfull \hbox (28.57787pt too wide) detected at line 276
+\OML/lmm/m/it/5 P\OT1/lmr/m/n/5 (\OML/lmm/m/it/5 x\OT1/lmr/m/n/5 ) = \OML/lmm/m/it/5 f\OT1/lmr/m/n/5 [\OML/lmm/m/it/5 x[]\OT1/lmr/m/n/5 ] + \OML/lmm/m/it/5 f\OT1/lmr/m/n/5 [\OML/lmm/m/it/5 x[]; x[]\OT1/lmr/m/n/5 ](\OML/lmm/m/it/5 x \OMS/lmsy/m/n/5 ^^@ \OML/lmm/m/it/5 x[]\OT1/lmr/m/n/5 ) + \OML/lmm/m/it/5 f\OT1/lmr/m/n/5 [\OML/lmm/m/it/5 x[]; x[]; x[]\OT1/lmr/m/n/5 ](\OML/lmm/m/it/5 x \OMS/lmsy/m/n/5 ^^@ \OML/lmm/m/it/5 x[]\OT1/lmr/m/n/5 )(\OML/lmm/m/it/5 x \OMS/lmsy/m/n/5 ^^@ \OML/lmm/m/it/5 x[]\OT1/lmr/m/n/5 ) + [] \OML/lmm/m/it/5 ;
+ []
+
+
+Overfull \hbox (17.63817pt too wide) detected at line 293
+\OML/lmm/m/it/5 P\OT1/lmr/m/n/5 (\OML/lmm/m/it/5 x\OT1/lmr/m/n/5 ) = \OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + []^^A\OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + []^^A[]\OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + []^^A[]\OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + [] \OML/lmm/m/it/5 ;
+ []
+
+
+Overfull \hbox (21.64291pt too wide) detected at line 309
+\OML/lmm/m/it/5 P\OT1/lmr/m/n/5 (\OML/lmm/m/it/5 x\OT1/lmr/m/n/5 ) = \OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + []\OMS/lmsy/m/n/5 r\OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + []\OMS/lmsy/m/n/5 r[]\OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + []\OMS/lmsy/m/n/5 r[]\OML/lmm/m/it/5 y[] \OT1/lmr/m/n/5 + [] \OML/lmm/m/it/5 ;
+ []
+
+[2] (Catatan Metnum.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1139,17 +1161,17 @@ Package rerunfilecheck Info: File `"Catatan Metnum".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 36807 strings out of 474486
- 826123 string characters out of 5743754
- 2036542 words of memory out of 5000000
- 58437 multiletter control sequences out of 15000+600000
+ 36815 strings out of 474486
+ 826240 string characters out of 5743754
+ 2010542 words of memory out of 5000000
+ 58439 multiletter control sequences out of 15000+600000
  600090 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,10n,107p,817b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx9.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb>
-Output written on "Catatan Metnum.pdf" (1 page, 164693 bytes).
+Output written on "Catatan Metnum.pdf" (2 pages, 170721 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
+ 146 PDF objects out of 1000 (max. 8388607)
+ 66 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,153 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{pgf}
+\usepackage{colortbl,tabularx,mathrsfs,calligra,xcolor}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{filecontents}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{contour}
+\usepackage{fancybox}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage[scaled]{berasans}
+    \renewcommand*\familydefault{\sfdefault}  %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\hypersetup{
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+\definecolor{PastelGreen}{HTML}{77DD77}
+\definecolor{pgray}{rgb}{0.5,0.5,0.5}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{pcyan}{HTML}{D4EFFC}
+\definecolor{lblue}{HTML}{00AEEF}
+\definecolor{input}{HTML}{AAE1FA}
+\definecolor{bg}{rgb}{0.95, 0.95, 0.92}
+
+\usepackage{listings}
+
+\lstdefinestyle{standard}{
+    language            =Java,
+    showspaces          =false,
+    showtabs            =false,
+    breaklines          =true,
+    showstringspaces    =false,
+    breakatwhitespace   =true,
+    commentstyle        =\color{pgray},
+    keywordstyle        =\color{pblue},
+    stringstyle         =\color{pgreen},
+    basicstyle          =\small\ttfamily,
+    frame               =single,
+    backgroundcolor     =\color{bg},
+    escapeinside        ={(*}{*)},
+    numbers             = left, % {none, left, right}
+    numberstyle         = \scriptsize\color{black},
+    numbersep           = -8pt,
+    }
+
+\lstset{style=standard}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{block title alerted}{fg=white,bg=magenta}
+\setbeamercolor{block body alerted}{fg=black!90,bg=pink}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{itemize items}[circle]
+
+\usebackgroundtemplate{%
+\tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{plana class}};
+}
+
+\renewcommand\thesubfigure{\arabic{subfigure}}
+\theoremstyle{definition}
+\newcommand{\R}{\mathbb{R}}
+
+\AtBeginEnvironment{theorem}{
+    \setbeamercolor{block title}{bg=darkgray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+}
+
+\renewenvironment<>{proof}[1][\proofname]{%
+    \par
+    \def\insertproofname{Proof #1}%
+    \pushQED{\qed}
+    \usebeamertemplate{proof begin}#2}
+  {\popQED\usebeamertemplate{proof end}}
+
+\AtBeginEnvironment{proof}{
+    \setbeamercolor{block title}{bg=HIMAtua,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAtua!10!white}
+}
+
+\author[Teo - 5002221132]{Teosofi Hidayah Agung}
+\title[Linear Algebra]{Pengenalan Bahasa Pemrograman Java}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.02]{M.png}$\quad$\includegraphics[scale=0.2]{Provicom.png}}}
+
+\begin{document}
+    \section{Orthogonal}
+    \begin{frame}
+        \begin{theorem}
+            \frametitle{\insertsection}
+            Suppose $W$ is a subspace of an inner product space $V$. Then:
+            \begin{enumerate}[label=(\alph*)]
+              \item $W^\perp$ is a subspace of $V$.
+              \item Only the zero vector, $\mathbf{0}$, is common to both $W$ and $W^\perp$.
+              \item $(W^\perp)^\perp = W$. In other words, the orthogonal complement of $W^\perp$ is $W$.
+            \end{enumerate}
+          \end{theorem}
+          \onslide<2->{
+            In this case, assume (a) has been proven, thus use (a) to help for proofing (b) and (c).
+          }
+    \end{frame}
+    
+    \begin{frame}
+        \begin{proof}[]
+            Hence $W$ and $W^\perp$ is a subspace of $V$, its obvious that $\mathbf{0}$ is common to both $W$ and $W^\perp$.\\~\\
+            Assume there is a vector $\mathbf{v}\neq \mathbf{0}$ that is common to both $W$ and $W^\perp$. Then $\mathbf{v}\in W$ and $\mathbf{v}\in W^\perp$. Since $\mathbf{v}\in W$, then $\langle\mathbf{v},\,\mathbf{v}\rangle = 0$. This implies that $\mathbf{v} = \mathbf{0}$, which is a contradiction. Therefore, only the zero vector, $\mathbf{0}$, is common to both $W$ and $W^\perp$.
+        \end{proof}
+    \end{frame}
+
+    \begin{frame}
+        \begin{proof}[]
+            Let any $\mathbf{u}\in W$, then $\langle\mathbf{u},\,\mathbf{v}\rangle = 0$ for all $\mathbf{v}\in W^\perp$. Thus by definition, any $\mathbf{u}$ is orthogonal to any $\mathbf{v}\in W^\perp$ or can be written as $\mathbf{u}\in(W^\perp)^\perp$.
+            \begin{align}
+                W \subseteq (W^\perp)^\perp
+            \end{align}
+            Next consider $\mathbf{w}\in (W^\perp)^\perp$ but $\mathbf{w}\notin W$. By definition, exist $\mathbf{v}_0\in W^\perp$ such that is not orthogonal to $\mathbf{w}$. Other words, $\langle\mathbf{v}_0,\,\mathbf{w}\rangle = 0$ because $\mathbf{w}\in (W^\perp)^\perp$. So its contradict with the assumption that $\mathbf{w}\notin W$. Therefore, $\mathbf{w}\in W$.
+            \begin{align}
+                (W^\perp)^\perp \subseteq W 
+            \end{align}
+            Therefore, $(W^\perp)^\perp = W$.
+        \end{proof}
+    \end{frame}
+\end{document}
