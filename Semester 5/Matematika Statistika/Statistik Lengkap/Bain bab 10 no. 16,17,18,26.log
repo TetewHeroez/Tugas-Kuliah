@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.21)  14 NOV 2024 17:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.21)  16 NOV 2024 11:09
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Semester 5/Matematika Statistika/Statistik Cukup/Bain Bab 10 No. 8-11.tex"
-(c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Semester 5/Matematika Statistika/Statistik Cukup/Bain Bab 10 No. 8-11.tex
+**"c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Semester 5/Matematika Statistika/Statistik Lengkap/Bain bab 10 no. 16,17,18,26.tex"
+(c:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Semester 5/Matematika Statistika/Statistik Lengkap/Bain bab 10 no. 16,17,18,26.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/exam\exam.cls
@@ -760,8 +760,8 @@ Package geometry Warning: Over-specification in `v'-direction.
     `height' (674.3303pt) is ignored.
 
 \c@teorema=\count373
-(Bain Bab 10 No. 8-11.aux)
-\openout1 = `"Bain Bab 10 No. 8-11.aux"'.
+(Bain bab 10 no. 16,17,18,26.aux)
+\openout1 = `"Bain bab 10 no. 16,17,18,26.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
@@ -843,26 +843,26 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
-] [2] [3] [4]
+] [2]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
-(Bain Bab 10 No. 8-11.aux)
+(Bain bab 10 no. 16,17,18,26.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 33083 strings out of 474486
- 846570 string characters out of 5743754
- 1945542 words of memory out of 5000000
- 54737 multiletter control sequences out of 15000+600000
+ 33077 strings out of 474486
+ 846506 string characters out of 5743754
+ 1943542 words of memory out of 5000000
+ 54731 multiletter control sequences out of 15000+600000
  560422 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,17n,95p,1318b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Bain Bab 10 No. 8-11.pdf" (4 pages, 150028 bytes).
+ 83i,19n,95p,1327b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/line10.pfb>
+Output written on "Bain bab 10 no. 16,17,18,26.pdf" (2 pages, 134143 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

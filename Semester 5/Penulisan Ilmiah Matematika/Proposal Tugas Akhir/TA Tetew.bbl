@@ -1,0 +1,243 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Arum%
+}{%
+Arum%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+Arum2015}
+\APACinsertmetastar {%
+Arum2015}%
+\begin{APACrefauthors}%
+Arum, S\BPBI \BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Analisa Tarif Angkutan Umum Berdasarkan Biaya
+  Operasional Kendaraan, ATP dan WTP} {Analisa tarif angkutan umum berdasarkan
+  biaya operasional kendaraan, atp dan wtp}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Jurnal Media Teknik Sipil}{12}{2}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Baccelli%
+, Cohen%
+, Olsder%
+\BCBL {}\ \BBA {} Quadrat%
+}{%
+Baccelli%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1992}}%
+}]{%
+baccelli}
+\APACinsertmetastar {%
+baccelli}%
+\begin{APACrefauthors}%
+Baccelli, F.%
+, Cohen, G.%
+, Olsder, G.%
+\BCBL {}\ \BBA {} Quadrat, J\BHBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1992}.
+\newblock
+\APACrefbtitle {Synchronization and Linearity: An Algebra for Discrete Event
+  Systems} {Synchronization and linearity: An algebra for discrete event
+  systems}.
+\newblock
+\APACaddressPublisher{}{Wiley}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Budi%
+}{%
+Budi%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+budi2018}
+\APACinsertmetastar {%
+budi2018}%
+\begin{APACrefauthors}%
+Budi, A\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2018}.
+\unskip\
+\newblock
+\APACrefbtitle {Perencanaan Busway untuk Mendukung Bus Rapid Transit antara
+  Terminal Purabaya sampai Terminal Joyoboyo} {Perencanaan busway untuk
+  mendukung bus rapid transit antara terminal purabaya sampai terminal
+  joyoboyo}\ \APACtypeAddressSchool {Tugas Akhir}{}{}.
+\unskip\
+\newblock
+\APACaddressSchool {Surabaya}{Institut Teknologi Sepuluh Nopember}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Butkovič%
+}{%
+Butkovič%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+butkovic2010maxplus}
+\APACinsertmetastar {%
+butkovic2010maxplus}%
+\begin{APACrefauthors}%
+Butkovič, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2010}.
+\newblock
+\APACrefbtitle {Max-Linear Systems: Theory and Algorithms} {Max-linear systems:
+  Theory and algorithms}.
+\newblock
+\APACaddressPublisher{London}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Cassandras%
+\ \BBA {} Lafortune%
+}{%
+Cassandras%
+\ \BBA {} Lafortune%
+}{%
+{\protect \APACyear {1999}}%
+}]{%
+cassandras}
+\APACinsertmetastar {%
+cassandras}%
+\begin{APACrefauthors}%
+Cassandras, C.%
+\BCBT {}\ \BBA {} Lafortune, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1999}.
+\newblock
+\APACrefbtitle {Introduction to Discrete Event Systems} {Introduction to
+  discrete event systems}.
+\newblock
+\APACaddressPublisher{}{Kluwer Academic Publisher}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Heidergott%
+, Olsder%
+\BCBL {}\ \BBA {} van~der Woude%
+}{%
+Heidergott%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2006}}%
+}]{%
+heidergott}
+\APACinsertmetastar {%
+heidergott}%
+\begin{APACrefauthors}%
+Heidergott, B.%
+, Olsder, G.%
+\BCBL {}\ \BBA {} van~der Woude, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2006}.
+\newblock
+\APACrefbtitle {Max Plus at Work: Modelling and Analysis of Synchronized
+  Systems: A Course on Max-Plus Algebra and Its Applications} {Max plus at
+  work: Modelling and analysis of synchronized systems: A course on max-plus
+  algebra and its applications}.
+\newblock
+\APACaddressPublisher{}{Princeton University Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kurniawan%
+\ \BBA {} Suparwanto%
+}{%
+Kurniawan%
+\ \BBA {} Suparwanto%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+andro2020}
+\APACinsertmetastar {%
+andro2020}%
+\begin{APACrefauthors}%
+Kurniawan, A.%
+\BCBT {}\ \BBA {} Suparwanto, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sistem Persamaan Linear Max-Plus dan Terapannya pada
+  Sistem Jaringan Kereta Api} {Sistem persamaan linear max-plus dan terapannya
+  pada sistem jaringan kereta api}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Jurnal Matematika Thales (JMT)}{2}{1}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Subiono%
+}{%
+Subiono%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+subiono2015minmaxplus}
+\APACinsertmetastar {%
+subiono2015minmaxplus}%
+\begin{APACrefauthors}%
+Subiono.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2015}.
+\newblock
+\APACrefbtitle {Aljabar Min-Max Plus dan Terapannya} {Aljabar min-max plus dan
+  terapannya}.
+\newblock
+\APACaddressPublisher{Institut Teknologi Sepuluh Nopember, Surabaya,
+  Indonesia}{Jurusan Matematika, Institut Teknologi Sepuluh Nopember}.
+\newblock
+\APACrefnote{Available at: subiono2008@matematika.its.ac.id}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Subiono%
+\ \BBA {} van~der Woude%
+}{%
+Subiono%
+\ \BBA {} van~der Woude%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+subionopower}
+\APACinsertmetastar {%
+subionopower}%
+\begin{APACrefauthors}%
+Subiono%
+\BCBT {}\ \BBA {} van~der Woude, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Power Algorithms for (max,+)- and Bipartite
+  (min,max,+)-systems} {Power algorithms for (max,+)- and bipartite
+  (min,max,+)-systems}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Discrete Event Dynamic Systems: Theory and
+  Applications}{10}{4}{369-389}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

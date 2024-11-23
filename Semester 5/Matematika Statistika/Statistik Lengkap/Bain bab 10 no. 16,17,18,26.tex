@@ -1,0 +1,97 @@
+\documentclass{exam}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{accents}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,3d}
+    \usepgfplotslibrary{fillbetween}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newcommand{\jawab}{\textbf{Solution}:}
+\newcommand{\del}{\partial}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newtheorem{teorema}{Teorema}
+
+\footer{}{\thepage}{}
+
+\lhead{\textit{Teosofi Hidayah Agung}}
+\rhead{\textit{5002221132}}
+\headrule
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\underline{Solusi:}}\par\noindent}
+\printanswers
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{enumerate}
+    \setcounter{enumi}{15}
+    \item Untuk sampel acak berukuran $n$ dari distribusi geometri, $X_i\sim \text{GEO}(p)$. Tentukan MLE dari $p$ dengan memaksimalkan pdf dari statistik cukup $S=\sum X_i$. Apakah ini sama dengan MLE yang biasa? Jelaskan mengapa hasil ini dapat diekspektasikan.
+    \begin{solution}
+        Akan kita cari jenis distribusi dari $S$. Dengan menggunakan sifat MGF yang independen didapatkan
+        \begin{align*}
+            M_{S}(t) &= M_{X_1}(t)M_{X_2}(t)\cdots M_{X_n}(t) = \left(\frac{p}{1-(1-p)e^t}\right)^n.
+        \end{align*}
+        Dapat dilihat bahwa $S$ adalah distribusi negatif binomial, $S\sim \text{NB}(n,p)$ dengan $n$ menunjukkan jumlah keberhasilan. Sehingga pdf dari $S$ adalah 
+        \begin{align*}
+            f_S(s;n,p) &= \binom{s-1}{n-1}p^n(1-p)^{s-n}.
+        \end{align*}
+        Dengan $s$ didefinisikan banyaknya percobaan. Kemudian log-likelihood dari $S$ adalah
+        \begin{align*}
+            \ell(p;S) &= \ln\left(f_S(s;n, p)\right) = \ln\binom{s-1}{n-1} + n\ln(p) + (s-n)\ln(1-p).
+        \end{align*}
+        Kemuadian turunan $\ell(p;S)$ terhadap $p$ adalah
+        \begin{align*}
+            \frac{\del \ell(p;S)}{\del p} &= \frac{n}{p} - \frac{s-n}{1-p} = 0 \iff n-\cancel{np}=sp-\cancel{np}\implies \hat{p}=\frac{n}{S}=\frac{1}{\bar{X}}
+        \end{align*}
+        Disisi lain kita mempunyai PDF dari distribusi geometri sebagai berikut
+        \begin{align*}
+            f_X(x;p)=p(1-p)^x
+        \end{align*}
+        Selanjutnya fungsi log-likelihoodnya adalah
+        \begin{align*}
+            \ell(p;\underaccent{\tilde}{X}) &= n\ln p + \sum_{i=1}^{n}x_i\ln (1-p)\\
+            \frac{\del \ell(p;\underaccent{\tilde}{X})}{\del p} &= \frac{n}{p}-\frac{\sum_{i=1}^{n}x_i}{1-p}
+        \end{align*}
+        Karena $\displaystyle \frac{\del \ell(p;\underaccent{\tilde}{X})}{\del p}=0$, maka 
+        \begin{align*}
+            \frac{n}{p}=\frac{\sum_{i=1}^{n}x_i}{1-p}\iff n-np=p\sum_{i=1}^{n}x_i
+        \end{align*}
+
+    \end{solution}
+    \item Tinjau statistik cukup, \( S = X_{1:n} \), untuk distribusi eksponensial dua parameter, $X_i\sim \text{EXP}(1,\eta)$. 
+    \begin{enumerate}
+        \item Tunjukkan bahwa \( S \) juga lengkap.
+        \item Verifikasi bahwa \( X_{1:n} - \frac{1}{n} \) adalah UMVUE dari \( \eta \).
+        \item Temukan UMVUE dari persentil ke-\( p \).
+    \end{enumerate}
+    
+    \item Misalkan \( X \sim N(0, \theta); \, \theta > 0 \).
+    \begin{enumerate}
+        \item Tunjukkan bahwa \( X^2 \) lengkap dan cukup untuk \( \theta \).
+        \item Tunjukkan bahwa \( N(0, \theta) \) bukan keluarga lengkap.
+    \end{enumerate}
+
+    \item[26.] Untuk sampel acak $X_i\sim\text{UNIF}(\theta_1,\theta_2)$, tunjukkan bahwa statistik cukup bersama \( X_{1:n} \) dan \( X_{n:n} \) juga lengkap. Misalkan diinginkan untuk mengestimasi rata-rata \( \mu = (\theta_1 + \theta_2)/2 \). Carilah UMVUE dari \( \mu \). \textit{Petunjuk:} Pertama, carilah nilai ekspetasi \( E(X_{1:n}) \) dan \( E(X_{n:n}) \) dan tunjukkan bahwa \( (X_{1:n} + X_{n:n})/2 \) adalah penaksir tak bias untuk rata-rata.
+\end{enumerate}
+\end{document}
