@@ -1,5 +1,0 @@
-\beamer@sectionintoc {1}{Daftar Anggota Kelompok}{2}{2}{1}
-\beamer@sectionintoc {2}{Daftar Isi}{3}{4}{2}
-\beamer@sectionintoc {3}{CHAPTER 4}{4}{6}{3}
-\beamer@sectionintoc {4}{CHAPTER 5}{13}{24}{4}
-\beamer@sectionintoc {5}{CHAPTER 6}{21}{40}{5}
