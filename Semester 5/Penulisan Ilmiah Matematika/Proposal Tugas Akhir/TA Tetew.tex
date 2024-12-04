@@ -49,7 +49,7 @@
 
 \usepackage{multirow}
 \usepackage{longtable}
-
+\usepackage{tikz}
 %%% Pewarnaan code
 \usepackage{color}
 \usepackage{listings}
@@ -158,57 +158,49 @@ $[\mathbf{A}^k]_{ij}$ &:& Elemen $(i,j)$ dari matriks $\mathbf{A}$ pangkat $k$ \
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab I  %%%%%%%%%%%%%%%5%%%%%%%%%%
 \chapter{PENDAHULUAN}
 \section{Latar Belakang}
-\indent Bus merupakan salah satu transportasi umum yang paling banyak digunakan oleh masyarakat Indonesia, terutama karena keunggulannya dalam menjangkau berbagai wilayah, baik perkotaan maupun pedesaan. Layanan bus tidak hanya melayani kebutuhan transportasi dalam kota, tetapi juga digunakan secara luas untuk perjalanan antar kota dan antar provinsi, terutama bagi mereka yang ingin bepergian ke kota-kota besar untuk bekerja, atau sebaliknya, pulang ke kampung halaman untuk berkumpul bersama keluarga. Popularitas bus sebagai sarana transportasi publik di Indonesia juga didukung oleh biayanya yang relatif terjangkau serta fleksibilitas rutenya yang mencakup area yang tidak selalu terjangkau oleh moda transportasi lain seperti kereta api atau pesawat \cite{Arum2015}.
+\indent Transportasi umum merupakan salah satu kebutuhan utama masyarakat perkotaan untuk mendukung mobilitas sehari-hari. Di kota besar seperti Surabaya, keberadaan transportasi umum yang efisien dan terjadwal dengan baik sangat penting untuk mengurangi kemacetan, menghemat waktu perjalanan, serta meningkatkan kualitas hidup masyarakat. Salah satu transportasi umum yang menjadi andalan di Surabaya adalah Suroboyo Bus, yang dikenal dengan inovasi ramah lingkungannya dan upaya meningkatkan minat masyarakat menggunakan transportasi umum.
 
-Terminal Purabaya, yang dikenal sebagai salah satu terminal bus terbesar di Asia Tenggara, memegang peranan penting dalam sistem transportasi publik di Surabaya dan sekitarnya. Terminal ini melayani ribuan penumpang setiap harinya, baik dari dalam kota maupun antarprovinsi. Berdasarkan studi mengenai transportasi publik, pengelolaan terminal bus seperti Purabaya membutuhkan perencanaan yang matang untuk memastikan kelancaran operasi, mengurangi waktu tunggu penumpang, dan meningkatkan efisiensi rute bus. Hal ini sejalan dengan kebutuhan untuk terus mengembangkan sistem transportasi yang lebih terintegrasi dan tepat waktu. Kondisi lalu lintas di sekitar terminal juga menjadi tantangan yang signifikan, karena kemacetan sering terjadi akibat kepadatan kendaraan, terutama di area persimpangan yang dilalui rute bus. Hal ini mempengaruhi jadwal kedatangan dan keberangkatan bus, sehingga penting untuk menerapkan sistem yang dapat meningkatkan efisiensi operasional di terminal \cite{budi2018}.
+Transportasi ini diresmikan pada 7 April 2018 di Gedung Siola, dimana memiliki kapasitas 67 penumpang dan beroperasi setiap hari mulai pukul 06.00 hingga 22.00 WIB. Salah satu keunikan dari layanan ini adalah sistem pembayarannya, yang memanfaatkan sampah plastik. Ide ini muncul sebagai solusi untuk mengatasi permasalahan sampah plastik di Surabaya, yang setiap tahunnya terus meningkat. Kota Pahlawan sendiri menghasilkan sekitar 400 ton sampah plastik setiap harinya, sehingga langkah ini menjadi inovasi yang signifikan. Sampah plastik yang digunakan sebagai pembayaran akan dikumpulkan dan diserahkan ke Bank Sampah. Setelah itu, sampah tersebut dijual dan didaur ulang menjadi produk yang lebih bermanfaat. Suroboyo Bus menjadi satu-satunya transportasi umum di Indonesia yang menerapkan metode pembayaran unik ini. Sejak awal pengoperasiannya, masyarakat memberikan respons yang sangat positif. Mereka merasa antusias, nyaman, dan aman saat menggunakan layanan bus ini, menjadikannya salah satu inovasi transportasi yang layak diapresiasi.\cite{kusuma2020suroboyobusUU}
 
-Sistem transportasi publik, terutama jaringan bus, memainkan peran penting dalam mobilitas masyarakat urban. Efisiensi dalam pengelolaan dan operasi bus sangat bergantung pada kemampuan untuk mengelola antrian penumpang dan waktu kedatangan bus secara efektif. Dalam konteks ini, aljabar max-plus muncul sebagai alat matematis yang menjanjikan untuk memodelkan dan menganalisis antrian dalam sistem transportasi.
+Menurut penelitian yang dilakukan \citeauthor{primadhanny2023pengaruhsuroboyobus} mengenai pengaruh pelayanan Suroboyo Bus terhadap kepuasan masyarakat Surabaya, hasilnya menunjukkan bahwa mayoritas responden merasa puas dengan pelayanan Suroboyo Bus. Hal ini menunjukkan bahwa layanan transportasi umum ini telah memberikan dampak positif bagi masyarakat Surabaya.
 
-Aljabar max-plus, yang telah dikembangkan lebih lanjut dalam beberapa dekade terakhir, merupakan perluasan dari aljabar biasa yang menggantikan operasi penjumlahan dan perkalian dengan operasi maksimum dan penjumlahan. Pendekatan ini sangat berguna dalam memodelkan proses yang melibatkan waktu dan urutan, seperti dalam antrian bus, di mana waktu kedatangan dan waktu tunggu merupakan variabel kunci. Sebagai contoh, penelitian terbaru oleh \citeauthor{butkovic2010maxplus} membahas aplikasi aljabar max-plus dalam sistem penjadwalan dan optimasi waktu, termasuk transportasi publik. Melalui pendekatan ini, kita dapat menganalisis dinamika sistem antrian dan mengoptimalkan pengaturan jadwal bus untuk meminimalkan waktu tunggu penumpang serta meningkatkan kepuasan pelanggan \cite{butkovic2010maxplus}.
+Tantangan dalam pengelolaan transportasi umum seperti Suroboyo Bus adalah memastikan jadwal keberangkatan dan kedatangan bus tetap terkoordinasi dengan baik. Ketidaktepatan jadwal dapat menyebabkan ketidakpuasan pengguna, berkurangnya efektivitas layanan, dan potensi penurunan jumlah pengguna. Oleh karena itu, diperlukan metode yang tepat untuk membuat model penjadwalan yang efisien dan dapat diandalkan.
 
-Penggunaan aljabar max-plus dalam sistem antrian tidak hanya terbatas pada optimasi jadwal tetapi juga mencakup pengembangan algoritma yang efisien untuk penjadwalan dan pengendalian lalu lintas bus. Penelitian oleh \citeauthor{baccelli} menunjukkan bahwa model max-plus dapat digunakan untuk merepresentasikan interaksi antar kendaraan dalam jaringan transportasi yang kompleks. Dengan memanfaatkan struktur aljabar ini, kita dapat merumuskan solusi yang lebih baik untuk mengatasi masalah antrian, terutama dalam kondisi puncak di mana permintaan penumpang meningkat.
+Aljabar Max-Plus adalah salah satu metode matematika yang memiliki kemampuan untuk memodelkan sistem dinamis terdistribusi seperti jaringan transportasi. Metode ini memungkinkan analisis dan optimasi jadwal berdasarkan waktu operasional dan interval kedatangan sehingga dapat meminimalkan potensi keterlambatan dan meningkatkan efisiensi.
 
-Dengan pertumbuhan populasi dan meningkatnya permintaan akan layanan transportasi publik yang efisien, penelitian lebih lanjut mengenai aplikasi aljabar max-plus dalam antrian bus sangat penting. Penelitian ini tidak hanya bertujuan untuk meningkatkan pemahaman tentang dinamika antrian, tetapi juga untuk memberikan rekomendasi praktis dalam perancangan sistem transportasi yang lebih responsif dan efisien.
-
+Melalui penelitian ini, diusulkan model penjadwalan Suroboyo Bus menggunakan Aljabar Max-Plus untuk memberikan solusi terukur dan efektif dalam menghadapi tantangan penjadwalan transportasi umum di kota Surabaya. Implementasi model ini diharapkan dapat mendukung keberlanjutan operasional Suroboyo Bus sekaligus memberikan dampak positif bagi penggunanya.
 
 \section{Rumusan Masalah}
-Berdasarkan latar belakang di atas, penelitian ini mengidentifikasi beberapa masalah yang perlu diselesaikan terkait dengan efisiensi sistem antrian bus di terminal bus, terutama dengan menggunakan pendekatan aljabar max-plus. Rumusan masalah yang akan dibahas dalam penelitian ini adalah sebagai berikut:
+Berdasarkan latar belakang di atas, rumusan masalah yang akan dibahas dalam penelitian ini adalah sebagai berikut:
 
 \begin{enumerate}
-    \item Bagaimana memodelkan sistem antrian bus di terminal menggunakan aljabar max-plus?
-    \item Bagaimana mengoptimalkan jadwal kedatangan dan keberangkatan bus untuk meminimalkan waktu tunggu penumpang menggunakan aljabar max-plus?
-    \item Bagaimana menerapkan model aljabar max-plus untuk meningkatkan efisiensi operasional dalam kondisi puncak ketika permintaan penumpang meningkat?
+    \item Bagaimana memodelkan rute lalu lintas Suroboyo Bus menggunakan graf berarah dan berbobot?
+    \item Bagaimana penerapan aljabar max-plus dalam perencanaan jadwal kedatangan dan keberangkatan Suroboyo Bus?
 \end{enumerate}
-
-Dengan mengatasi rumusan masalah tersebut, penelitian ini bertujuan untuk mengembangkan solusi yang dapat diterapkan pada sistem transportasi publik, khususnya jaringan bus, agar lebih efisien dan tepat waktu.
 
 \section{Batasan Masalah}
 Untuk menjaga fokus penelitian dan memperjelas lingkup penelitian ini, terdapat beberapa batasan masalah yang ditetapkan, antara lain:
 
 \begin{enumerate}
-    \item Penelitian ini hanya akan memodelkan sistem antrian bus di terminal bus dengan menggunakan pendekatan aljabar max-plus.
-    \item Hanya antrian dan jadwal kedatangan/keberangkatan bus yang akan dianalisis, tanpa mempertimbangkan faktor eksternal seperti cuaca, kondisi jalan, atau perubahan kebijakan transportasi.
-    \item Studi kasus yang digunakan dalam penelitian ini akan difokuskan pada Terminal Purabaya sebagai salah satu contoh terminal bus besar di Indonesia.
-    \item Simulasi yang dilakukan untuk menguji model max-plus akan menggunakan data sekunder yang tersedia dari laporan transportasi publik dan literatur terkait.
+    \item Penelitian ini hanya akan memodelkan rute lalu lintas Suroboyo Bus dengan menggunakan pendekatan aljabar max-plus.
+    \item Hanya jadwal kedatangan dan keberangkatan bus yang akan dianalisis, tanpa mempertimbangkan faktor eksternal seperti cuaca, kondisi jalan, atau perubahan kebijakan transportasi.
+    \item Rute yang akan dianalisis adalah rute yang jalurnya masih berada dilingkungan kampus ITS, yakni Koridor R2, Koridor R4, dan Koridor SBT.
 \end{enumerate}
 
 \section{Tujuan}
-Tujuan dari penelitian ini adalah untuk memberikan solusi yang lebih efisien dalam pengelolaan sistem antrian bus dengan menggunakan metode aljabar max-plus. Secara khusus, penelitian ini bertujuan untuk:
+Tujuan dari penelitian ini adalah untuk memberikan solusi yang lebih efisien dalam pengelolaan rute Suroboyo Bus dengan menggunakan metode aljabar max-plus. Secara khusus, penelitian ini bertujuan untuk:
 
 \begin{enumerate}
-    \item Mengembangkan model sistem antrian bus yang menggunakan aljabar max-plus untuk merepresentasikan waktu kedatangan dan keberangkatan bus.
+    \item Memodelkan rute lalu lintas Suroboyo Bus menggunakan graf berarah dan berbobot.
     \item Mengoptimalkan jadwal operasional bus di terminal untuk meminimalkan waktu tunggu penumpang.
-    \item Menganalisis penerapan model aljabar max-plus dalam meningkatkan efisiensi operasional terminal bus, terutama pada saat jam sibuk dengan permintaan penumpang yang tinggi.
-    \item Memberikan rekomendasi praktis untuk pengelolaan sistem transportasi publik yang lebih efisien berdasarkan hasil analisis dan simulasi.
 \end{enumerate}
 
 \section{Manfaat}
 Penelitian ini diharapkan memberikan beberapa manfaat, baik secara teoritis maupun praktis, di antaranya:
 
 \begin{itemize}
-    \item \textbf{Manfaat Teoritis}: Penelitian ini dapat menambah wawasan dan pengetahuan dalam bidang aljabar max-plus, khususnya dalam aplikasinya pada sistem transportasi publik. Model yang dihasilkan juga dapat menjadi dasar bagi penelitian lanjutan dalam bidang optimasi antrian dan penjadwalan.
-    \item \textbf{Manfaat Praktis}: Hasil penelitian ini dapat memberikan solusi bagi pengelola terminal bus dalam meningkatkan efisiensi operasional. Dengan penerapan aljabar max-plus, sistem antrian dan jadwal bus dapat dioptimalkan sehingga mengurangi waktu tunggu penumpang dan meningkatkan pengalaman pengguna layanan transportasi publik.
-    \item \textbf{Manfaat Kebijakan}: Temuan penelitian ini juga dapat dijadikan sebagai pertimbangan oleh pemerintah atau pihak pengelola transportasi dalam perencanaan dan pengelolaan terminal bus, khususnya untuk meningkatkan efisiensi dan kualitas layanan transportasi publik di Indonesia.
+    \item \textbf{Manfaat Teoritis}: Memberikan kontribusi pada pengembangan ilmu pengetahuan, khususnya dalam bidang transportasi dan matematika terapan melalui penerapan aljabar max-plus dalam perencanaan jadwal transportasi umum.
+    \item \textbf{Manfaat Praktis}: Menjadikan pertimbangan Pemerintah kota Surabaya terhadap Suroboyo Bus mengoptimalkan jadwal keberangkatan dan kedatangan bus sehingga dapat meningkatkan efisiensi operasional.
 \end{itemize}
 
 \pagebreak
@@ -304,11 +296,7 @@ A \otimes B = \begin{pmatrix} \max(-\infty, 2) & \max(5, 3) \\ \max(-\infty, 3) 
 = \begin{pmatrix} 2 & 5 \\ 3 & 7 \end{pmatrix}
 \]
 
-\section{Graf dalam Aljabar Max-Plus}
-
-Dalam aljabar max-plus, graf berarah berbobot sering digunakan untuk memodelkan berbagai sistem yang melibatkan waktu penundaan atau durasi dalam suatu proses. Graf tersebut digunakan dalam konteks sistem sinkronisasi dan sistem peristiwa diskrit \cite{heidergott}.
-
-\subsection{Graf Berarah Berbobot}
+\section{Graf Berarah dan Berbobot}
 
 Sebuah graf \( G = (V, E) \) terdiri dari:
 \begin{itemize}
@@ -318,29 +306,30 @@ Sebuah graf \( G = (V, E) \) terdiri dari:
 
 Setiap sisi \( e_{ij} \in E \) memiliki bobot \( w_{ij} \), yang di dalam aljabar max-plus digunakan untuk mengukur waktu yang diperlukan untuk transisi dari satu kejadian ke kejadian lainnya \cite{baccelli}.
 
-\subsection{Jalur Terpanjang dalam Graf}
-
-Salah satu aplikasi utama dari aljabar max-plus dalam graf adalah mencari jalur terpanjang antara dua simpul. Jalur terpanjang antara simpul \( i \) dan simpul \( j \) dalam graf berarah berbobot dapat dihitung menggunakan perkalian matriks max-plus \cite{heidergott}. Jalur terpanjang ini mewakili waktu maksimum yang dibutuhkan untuk mencapai simpul tujuan dari simpul asal dalam sebuah proses diskrit.
-
-Formulasi umum jalur terpanjang dalam aljabar max-plus adalah:
-
-\[
-(A^k)_{ij} = \max_{1 \leq l \leq n} (a_{il} + a_{lj})
-\]
-
-dimana \( A \) adalah matriks bobot yang merepresentasikan graf berbobot.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=1.5cm, auto, >=stealth]
+        \node[circle, draw, fill=blue!20] (A) at (0, 0) {P};
+        \node[circle, draw, fill=blue!20] (C) at (4, 0) {Q};
+        \draw[->, thick] (A) to[bend left] node[midway, above] {3} (C);
+        \draw[->, thick] (C) to[bend left] node[midway, below] {5} (A);
+        \draw[->, thick] (C) to[loop right] node[midway, right] {1} (C);
+    \end{tikzpicture}
+    \caption{Contoh graf berarah dan berbobot.}
+    \label{contohgraf}
+\end{figure}
 
 \subsection{Matriks Adjacency dan Matriks Max-Plus}
 
 Dalam graf berarah berbobot, matriks adjacency digunakan untuk merepresentasikan hubungan antar simpul. Setiap entri \( a_{ij} \) dalam matriks ini mewakili bobot pada sisi dari simpul \( i \) ke simpul \( j \), dan jika tidak ada sisi, maka bobotnya adalah elemen netral dalam aljabar max-plus, yaitu \( -\infty \) \cite{baccelli}.
 
-Untuk menghitung jalur terpanjang antar simpul, perkalian matriks max-plus dilakukan sebagai berikut:
-
+Pada \ref{contohgraf}, matriks adjacency dari graf tersebut adalah:
 \[
-(A \otimes A)_{ij} = \max_{k} (a_{ik} + a_{kj})
+\begin{pmatrix}
+    -\infty & 3 \\
+    5 & 1
+\end{pmatrix}
 \]
-
-Operasi ini serupa dengan perkalian matriks biasa, namun menggunakan operasi aljabar max-plus.
 
 \section{Nilai Eigen dan Vektor Eigen pada Aljabar Max-Plus}
 
@@ -353,22 +342,6 @@ A \otimes v = \lambda \otimes v,
 \]
 maka \( \lambda \) disebut nilai eigen matriks \( A \), dan \( v \) disebut vektor eigen yang bersesuaian dengan \( \lambda \).
 \end{definisi}
-
-Menurut \cite{andro2020}, setiap matriks \( A \) dalam aljabar max-plus memiliki setidaknya satu nilai eigen. Penentuan nilai eigen dan vektor eigen dapat dilakukan menggunakan algoritma \textit{Power}, yang dirumuskan dalam bentuk rekursi:
-\[
-x(k+1) = A \otimes x(k), \quad k = 0, 1, 2, \dots
-\]
-
-Algoritma ini terdiri dari langkah-langkah berikut:
-\begin{enumerate}
-     \item Berikan nilai awal \( x(0) \neq (\varepsilon, \varepsilon, \dots, \varepsilon)^T \).
-        \item Iterasikan persamaan rekursif hingga terjadi perilaku periodik \( x(p) = c \otimes x(q) \), dengan \( p > q \geq 0 \).
-        \item Hitung nilai eigen \( \lambda = c^{1/(p-q)} \).
-        \item Tentukan vektor eigen menggunakan:
-        \[
-        v = \bigoplus_{i=1}^{p-q} \left( \lambda^{p-q-i} \otimes x(q+i-1) \right).
-        \]
-\end{enumerate}
 
 \section{Sistem Persamaan Linear Max-Plus}
 
@@ -416,26 +389,21 @@ A \otimes v = \lambda \otimes v
 di mana \(\lambda\) merepresentasikan periode sinkronisasi dan \(v\) menunjukkan pola stabil keadaan sistem \cite{baccelli}.
 \end{teorema}
 
-\begin{teorema}[Algoritma Power]
-Untuk sistem:
+\section{Algoritma Power}
+Menurut \citeauthor{andro2020}, setiap matriks \( A \) dalam aljabar max-plus memiliki setidaknya satu nilai eigen. Penentuan nilai eigen dan vektor eigen dapat dilakukan menggunakan algoritma \textit{Power}, yang dirumuskan dalam bentuk rekursi:
 \[
-x(k+1) = A \otimes x(k),
+x(k+1) = A \otimes x(k), \quad k = 0, 1, 2, \dots
 \]
-jika \(G(A)\) memiliki bobot sirkuit rata-rata tidak positif, maka iterasi:
-\[
-x(k+1) = A \otimes x(k)
-\]
-akan konvergen ke bentuk:
-\[
-x(k) = \lambda \otimes v
-\]
-dengan \(\lambda\) adalah nilai eigen dan \(v\) adalah vektor eigen dari \(A\) \cite{andro2020}.
-\end{teorema}
 
+Algoritma ini terdiri dari langkah-langkah berikut:
 \begin{enumerate}
-    \item Pilih \(x(0)\) secara arbitrer dengan elemen tidak semua \(-\infty\).
-    \item Hitung iterasi \(x(k+1) = A \otimes x(k)\).
-    \item Identifikasi pola stabil dan gunakan untuk menentukan \(\lambda\) dan \(v\).
+     \item Berikan nilai awal \( x(0) \neq (\varepsilon, \varepsilon, \dots, \varepsilon)^T \).
+        \item Iterasikan persamaan rekursif hingga terjadi perilaku periodik \( x(p) = c \otimes x(q) \), dengan \( p > q \geq 0 \).
+        \item Hitung nilai eigen \( \lambda = c^{1/(p-q)} \).
+        \item Tentukan vektor eigen menggunakan:
+        \[
+        v = \bigoplus_{i=1}^{p-q} \left( \lambda^{p-q-i} \otimes x(q+i-1) \right).
+        \]
 \end{enumerate}
 
 Sistem persamaan linear max-plus memungkinkan analisis sistem diskrit dengan alat aljabar yang unik. Dengan pemanfaatan matriks Kleene, nilai eigen, dan algoritma iteratif, sistem ini sangat aplikatif dalam transportasi publik, produksi, dan jaringan telekomunikasi \cite{andro2020, subiono2015minmaxplus}.
