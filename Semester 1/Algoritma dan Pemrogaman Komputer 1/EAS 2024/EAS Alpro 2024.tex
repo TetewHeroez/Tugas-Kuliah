@@ -1,0 +1,252 @@
+\documentclass[10pt,openany,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan
+    }
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{animate}
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 35mm,
+		right = 35mm,
+		top = 35mm,
+        bottom = 30mm,
+        headheight=2cm
+	}
+\renewcommand{\headrulewidth}{0pt}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+\newcommand{\solvedby}[1]{\begin{flushright} (\textit{#1}) \end{flushright}}
+\newcommand{\hafidz}{\href{https://onlinegdb.com/m6lqnJb_O}{Hafidz}}
+\newcommand{\farvez}{\href{https://onlinegdb.com/HH0MrKZ2R}{Farvez}}
+\newcommand{\alief}{\href{https://onlinegdb.com/4ddQhXOTm}{Alief}}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\definecolor{bg}{rgb}{0.95, 0.95, 0.92}
+\definecolor{prvk1}{HTML}{E5C5A7}
+\definecolor{prvk2}{HTML}{284779}
+% rainbow text (based on the gradient-text package)
+\makeatletter
+\ExplSyntaxOn
+\clist_new:N\l_gtext_First_clist
+\clist_new:N\l_gtext_Last_clist
+\int_new:N\l_gtext_MaxIndex_int
+\int_new:N\l_gtext_Ratio_int
+\newcommand{\gr@dient}[8]{
+  \int_set:Nn\l_gtext_MaxIndex_int{\int_eval:n{\str_count:n{#1}}}
+  \int_step_inline:nnn{1}{\l_gtext_MaxIndex_int}{
+      \exp_args:Ne\str_if_eq:nnTF{\str_item:Nn{#1}{##1}}{~}{}{
+        \int_set:Nn\l_gtext_Ratio_int{\int_eval:n{\l_gtext_Ratio_int+1}}
+      }
+        \color_select:nn{#8}{
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#5+(\l_gtext_MaxIndex_int-##1)*#2)/\l_gtext_MaxIndex_int},
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#6+(\l_gtext_MaxIndex_int-##1)*#3)/\l_gtext_MaxIndex_int},
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#7+(\l_gtext_MaxIndex_int-##1)*#4)/\l_gtext_MaxIndex_int}
+      }\str_item:Nn{#1}{##1}
+  }
+}
+
+\NewDocumentCommand\gradient{mmmm}{{
+  \clist_set:Nn\l_gtext_First_clist {#3}
+  \clist_set:Nn\l_gtext_Last_clist {#4}
+  \gr@dient{#2}
+  {\clist_item:Nn\l_gtext_First_clist{1}}
+  {\clist_item:Nn\l_gtext_First_clist{2}}
+  {\clist_item:Nn\l_gtext_First_clist{3}}
+  {\clist_item:Nn\l_gtext_Last_clist{1}}
+  {\clist_item:Nn\l_gtext_Last_clist{2}}
+  {\clist_item:Nn\l_gtext_Last_clist{3}}
+  {#1}
+}}
+\ExplSyntaxOff
+
+\NewDocumentCommand\gradientRGB{mmm}{
+  \gradient{RGB}{#1}{#2}{#3}
+}
+
+\NewDocumentCommand\gradientHSB{mmm}{
+  \gradient{HSB}{#1}{#2}{#3}
+}
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=1.2cm]{ITS.png}}
+\fancyhead[C]{\textbf{\MakeUppercase{Evaluasi Akhir Semester}\\ 
+                \MakeUppercase{Semester Ganjil 2024/2025}\\ 
+                \MakeUppercase{Departemen Matematika - FSAD ITS}\\ 
+                \MakeUppercase{Program Sarjana}}}
+\fancyhead[R]{\includegraphics[width=1.2cm]{M.png}}
+\begin{document}
+\begin{flushleft}
+    \begin{tabularx}{\textwidth}{l c l}
+        Mata kuliah / kode &$\quad\qquad$& : Algoritma dan Pemograman Komputer 1\\
+        Hari / tanggal && : Kamis, 5 Desember 2024\\
+        Sifat / waktu && : 100 menit - Tertutup\\
+        Dosen && : Tim Dosen Algoritma dan Pemograman Komputer 1\\
+    \end{tabularx}
+\end{flushleft}
+
+\indent
+\textbf{Aturan Pengerjaan:}
+\begin{itemize}
+    \item Dilarang bekerja sama dalam bentuk apa pun. Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat ETS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.
+    \item Tuliskan Pakta Integritas di awal lembar jawaban Anda, sebagai berikut: ``Dengan ini saya menyatakan bahwa saya mengerjakan sendiri tanpa bantuan dan membantu orang lain dalam menyelesaikan soal-soal ETS Alpro 1'' dan ditandatangani.
+\end{itemize}
+
+\noindent
+Kerjakan soal-soal berikut dengan sejelas-jelasnya!
+\begin{enumerate}
+    \item (\textbf{Skor: 20}) Buatlah sebuah method rekursif perkalian dua bilangan bulat non-negatif, yakni $m\times n$, tanpa menggunakan operator perkalian (*).
+    
+    \item (\textbf{Skor: 20}) Buatlah program Java yang mencari nilai minimum tiap baris dalam sebuah matriks berukuran $M \times N$. Gunakan metode iteratif untuk menyelesaikan masalah ini. Luaran program berupa array Minimum yang berisi $M$ elemen (minimum tiap baris).
+
+    \item (\textbf{Skor: 20}) Buatlah program Java yang menghitung jumlah vokal (a, i, u, e, o) dalam sebuah kalimat. Gunakan metode iteratif dan manipulasi string untuk menyelesaikan masalah ini.
+    
+    \item (\textbf{Skor: 20}) Perhatikan program berikut. Apa luaran dari program berikut, jika pada baris 5 diganti dengan:\\
+    \texttt{char[] kata = \{'S', 'A', 'M', 'S'\};}\\
+    \texttt{char[] kata = \{'K', 'A', 'Y', 'A', 'K'\};}\\
+    Jelaskan langkah demi langkah untuk mendapatkan hasil yang benar.
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+
+package EAS2024;
+public class soalRekursif {
+    public static void main(String[] args) {
+        char[] kata = {'U','T','E','P'};
+
+        System.out.println(p(kata, 0, kata.length - 1));
+    }
+
+    public static boolean p(char[] s, int i, int f) {
+        if (i < f) {
+            if (s[i] == s[f]) {
+                return p(s, i + 1, f - 1);
+            } 
+            else {
+                return false;
+            }
+        }
+        else{
+            return true;
+        }
+    }
+}
+
+    \end{minted}
+
+    \item (\textbf{Skor: 20}) Diberikan cuplikan program sebagai berikut. Tuliskan sebuah method indeksElemenMin untuk mengembalikan (RETURN) indeks dari elemen terkecil dari suatu array integer. Jika jumlah elemen terkecil lebih dari satu maka yang di-RETURN adalah nilai yang terkecil
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+
+package EAS2024;
+public class methoMinimum{
+    public static void main(String[] args) {
+        
+        int[] nilai = {87, 68, 94, 98, 54, 78, 85, 54, 76, 87};
+        int posisi;
+
+        posisi = indeksElemenMin(nilai);// pemanggilan method
+        System.out.println("Indeks dari elemen terkecil adalah: " + posisi);
+    }
+
+    public static int indeksElemenMin(int[] nilai){
+        // tuliskan kode disini
+    } 
+}
+    \end{minted}
+\end{enumerate}
+\begin{center}
+    \textbf{SELAMAT MENGERJAKAN}
+\end{center}
+
+\newpage
+\fancyhead[L]{\includegraphics[width=1.3cm]{Provicom.png}}
+\fancyhead[C]{\textbf{\MakeUppercase{Pembahasan EAS}\\ 
+                \MakeUppercase{Asisten laboratorium}\\ 
+                \MakeUppercase{Lab. pemrograman dan komputasi visual}}}
+\fancyhead[R]{\includegraphics[width=1.3cm]{provicomIG.png}}
+\begin{enumerate}
+    \item Ingat-ingat kembali definisi perkalian bilangan bulat yang telah diperlajari saat SD. Perkalian $m\times n$ dapat diartikan sebagai \textbf{penjumlahan berulang} $m$ sebanyak $n$ kali.
+    \[m\times n = \underbrace{m + m + m + \cdots + m}_{n \text{ kali}}\]
+    Untuk method rekrusifnya dapat secara matematis dapat dituliskan sebagai
+    \[f(m,n) = m + f(m,n-1)\] 
+    dengan syarat $n \geq 0$ dan $f(m,0) = 0$.\footnote{Jelas karena hasil perkalian 0 adalah 0.} Berikut adalah implementasi method rekrusifnya:
+    \begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=bg,fontsize=\footnotesize,linenos]{java}
+public static int kali(int m, int n) {
+    if (n == 0) return 0;
+    return m + kali(m, n - 1);
+}
+    \end{minted}
+    Karena yang ditanyakan method maka cukup tuliskan method tersebut saja tanpa class atau method main.
+    \solvedby{Teo, \hafidz}
+
+    \item Karena yang diminta "program" maka kita harus menuliskan seluruh programnya mulai dari \textit{import package}. Disini kita akan mendefinisikan dua buah method\footnote{Sebenarnya kedua method tersebut dapat digabung menjadi satu method saja, tidak ada keharusan untuk memisahkannya.}, yaitu
+    \begin{itemize}
+        \item \texttt{minArray} : Method ini akan mencari nilai minimum dari suatu array integer.
+        \item \texttt{minMatrix} : Method ini akan mencari nilai minimum tiap baris dari matriks.
+    \end{itemize}
+    Kemudian karena yang diminta adalah metode iteratif, maka kita akan menggunakan perulangan untuk menyelesaikan masalah ini. Salah satu implementasi programnya adalah sebagai berikut:
+    \inputminted[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=bg,fontsize=\footnotesize,linenos]{java}{No2.java}
+    package \texttt{Arrays} digunakan untuk menampilkan array secara langsung tanpa perlu perulangan. Program diatas akan menghasilkan keluaran \texttt{[1, 4, 7]}
+    \solvedby{\farvez, Teo, \hafidz}
+
+    \item Pada dasarnya string merupakan array dari karakter. Untuk menghitung jumlah vokal dalam sebuah kalimat, kita dapat menggunakan perulangan untuk mengecek tiap karakter apakah termasuk vokal atau tidak. Disini kita akan gunakan method \texttt{charAt()} untuk mengakses karakter pada indeks dalam string. Berikut adalah implementasi programnya: 
+    \inputminted[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=bg,fontsize=\footnotesize,linenos]{java}{No3.java}
+    Program diatas akan menghasilkan keluaran:\\
+    \texttt{Jumlah huruf vokal pada kalimat "Padamu Alpro 1" adalah 5}
+    \solvedby{\alief, Teo, \hafidz}
+
+    \item Kita coba apa analisa yang dilakukan method \texttt{p} pada program tersebut secara umum.
+    \begin{enumerate}[label=\arabic*)]
+        \item Program meminta interval $[i,f]$ yang mana akan dilakukan pengecekan terhadap array dari indeks $i$ hingga $f$. (jelas jika $i\geq f$ maka tidak ada yang perlu dicek).
+        \item Jika elemen pada indeks $i$ sama dengan elemen pada indeks $f$ maka akan dilakukan pengecekan terhadap elemen selanjutnya, yaitu $i+1$ dan $f-1$. Artinya interval pencarian akan menyempit.
+        \item Jika elemen pada indeks $i$ tidak sama dengan elemen pada indeks $f$ maka akan langsung mengembalikan \texttt{false}. Sebaliknya akan mengembalikan \texttt{false} jika untuk setiap partisi dari elemen array terhadap interval $[i,f]$ adalah sama.
+    \end{enumerate}
+    Secara singkatnya ini adalah program untuk mengecek apakah suatu kata atau kalimat dari array karakter merupakan palindrom\footnote{Palindrom merupakan sebuah kata, bilangan, frasa, atau susunan karakter lain yang serupa jika dibaca dengan urutan terurut maupun terbalik. Contoh: "kasur rusak"} atau bukan. \\
+    Jadi secara intuisi, kita tahu bahwa "SAMS" bukan palindrom (keluaran \texttt{false}) dan "KAYAK" merupakan palindrom (keluaran \texttt{true}). 
+    \solvedby{Teo}
+
+    \item Berikut adalah isi \textit{body} dari method \texttt{indeksElemenMin}:
+    \begin{minted}[frame=lines,framesep=2mm,baselinestretch=1.2,bgcolor=bg,fontsize=\footnotesize,linenos]{java}
+public static int indeksElemenMin(int[] nilai){
+    int min = nilai[0];
+    int indeks = 0;
+    for (int i = 1; i < nilai.length; i++) {
+        if (nilai[i] < min) {
+            min = nilai[i];
+            indeks = i;
+        }
+    }
+    return indeks;
+}
+    \end{minted}
+    \solvedby{\farvez, Teo, \alief}
+\end{enumerate}
+\begin{center}
+    \textbf{SAMPAI JUMPA DI \gradient{RGB}{ALPRO 2}{52, 77, 125}{229, 197, 167}}
+\end{center}
+\begin{figure}[h!]
+    \centering
+    \animategraphics[autoplay,loop,width=0.3\textwidth]{30}{Kita Ikuyo Doodle/Kita Ikuyo Doodle-}{0}{85}
+\end{figure}
+\end{document}
