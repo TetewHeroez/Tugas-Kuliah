@@ -1,0 +1,131 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{animate}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 10mm,
+		right = 25mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\arraystretch}{1.1}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\begin{document}
+
+\begin{tabular}{r c l}
+    \multirow{-3}{*}{\includegraphics[width=2cm]{ITS.png}}
+     &\begin{tabular}{|c|l l|}
+        \hline
+        &\textbf{Mata Kuliah}&: Aljabar 1\\
+        \multirow{3}{*}{{\textbf{EAS}}}&\textbf{Semester}&: Gasal\\
+        \multirow{3}{*}{{\large \textbf{GASAL 2023/2024}}}&\textbf{Hari/Tgl}&: Rabu/13 Desember 2023\\
+        &\textbf{Waktu/Sifat}&: 100 menit/Tutup\\
+        &\textbf{Dosen}&: Prof. Subiono, MS;\\
+        &&$\,\,\,\,$Dian Winda S., M.Si;\\
+        &&$\,\,\,\,$Soleha M.Si;\\
+        \hline
+     \end{tabular}
+     & 
+     \multirow{-3}{*}{\includegraphics[width=2cm]{M.png}}
+     \\ \\
+     \multicolumn{3}{l}{\color{red}\MakeUppercase{harap diperhatikan !!!}}\\
+     \multicolumn{3}{l}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS akan dikenakan}\\
+     \multicolumn{3}{l}{\color{red}sanksi pembatalan matakuliah pada semester yang sedang berjalan sesuai dengan aturan akademik}\\
+     \multicolumn{3}{l}{\color{red}yang berlaku di ITS}\\
+\end{tabular}
+\begin{center}
+    
+\end{center}
+\begin{enumerate}
+    \item Diberikan homomorfisma $\theta: \mathbb{Z}_{24} \to S_8$ di mana $\theta([1]_{24}) = \begin{pmatrix}2&3\end{pmatrix}\begin{pmatrix}1&4&6&7\end{pmatrix}$. Dapatkan $\ker(\theta)$ dan $\theta([10]_{24})$. Jelaskan!
+    
+    \item Diberikan suatu grup siklik $G$ dan $N$ adalah sebarang subgroup normal dari $G$. Maka tunjukkan bahwa grup faktor $G / N$ adalah grup siklik.
+    
+    \item 
+    \begin{enumerate}
+        \item Tentukan semua anggota dari $\operatorname{Aut}(\mathbb{Z}_{12})$.
+        \item Apakah $\operatorname{Aut}(\mathbb{Z}_{12}) \cong \mathbb{U}(12)$? Jelaskan jawaban Anda.
+    \end{enumerate}
+    
+    \item Diberikan grup $\mathbb{U}(8)$ dengan $H_1 = \{[1]_8, [3]_8\}$ dan $H_2 = \{[1]_8, [7]_8\}$ adalah subgrup dari $\mathbb{U}(8)$. Tunjukkan bahwa $\mathbb{U}(8)$ adalah jumlah langsung (\textit{internal direct product}) dari $H_1$ dan $H_2$. Jelaskan!
+\end{enumerate}
+\jawab
+\begin{enumerate}
+    \item Karena $\theta$ adalah homomorfisma, maka jelas memenuhi $\theta(a+b) = \theta(a)\circ\theta(b)$. Sehingga dari "sebiji" informasi diatas, bisa didapatkan
+    \begin{itemize}
+        \item $\theta([2]_{24})=\theta([1]_{24}+[1]_{24})=\theta([1]_{24})\circ\theta([1]_{24})=\begin{pmatrix}1&6\end{pmatrix}\begin{pmatrix}4&7\end{pmatrix}$
+        \item $\theta([3]_{24})=\theta([2]_{24}+[1]_{24})=\theta([2]_{24})\circ\theta([1]_{24})=\begin{pmatrix}1&7&6&4\end{pmatrix}\begin{pmatrix}2&3\end{pmatrix}$
+        \item $\theta([4]_{24})=\theta([3]_{24}+[1]_{24})=\theta([3]_{24})\circ\theta([1]_{24})=\begin{pmatrix}1\end{pmatrix}$
+    \end{itemize}
+    Dengan cara yang sama untuk semua elemen di $\Z_{24}$, bisa didapatkan relasi sebagai berikut
+    \begin{itemize}
+        \item $\theta([0]_{24})=\theta([4]_{24})=\theta([8]_{24})=\theta([12]_{24})=\theta([16]_{24})=\theta([20]_{24})=\begin{pmatrix}1\end{pmatrix}$
+        \item $\theta([1]_{24})=\theta([5]_{24})=\theta([9]_{24})=\theta([13]_{24})=\theta([17]_{24})=\theta([21]_{24})=\begin{pmatrix}2&3\end{pmatrix}\begin{pmatrix}1&4&6&7\end{pmatrix}$
+        \item $\theta([2]_{24})=\theta([6]_{24})=\theta([10]_{24})=\theta([14]_{24})=\theta([18]_{24})=\theta([22]_{24})=\begin{pmatrix}1&6\end{pmatrix}\begin{pmatrix}4&7\end{pmatrix}$
+        \item $\theta([3]_{24})=\theta([7]_{24})=\theta([11]_{24})=\theta([15]_{24})=\theta([19]_{24})=\theta([23]_{24})=\begin{pmatrix}1&7&6&4\end{pmatrix}\begin{pmatrix}2&3\end{pmatrix}$
+    \end{itemize}
+    Karena identitas grup $S_8$ adalah $\begin{pmatrix}1\end{pmatrix}$, maka $\ker(\theta)=\left\{[0]_{24},[4]_{24},[8]_{24},[12]_{24},[16]_{24},[20]_{24}\right\}$. Kemudian dari informasi diatas dapat dilihat bahwa $\theta([10]_{24})=\begin{pmatrix}1&6\end{pmatrix}\begin{pmatrix}4&7\end{pmatrix}$.
+
+    \item Karena $G$ adalah grup siklik, maka $G=\langle a \rangle=\{e,a,a^2,\dots\}$ untuk suatu $a\in G$. Kemudian dengan menggunakan definisi grup faktor/kuasi, didapatkan elemen dari $G/N$ adalah $\{N,N_a, N_{a^2}, N_{a^3}, \dots\}$. Lalu dapat ditinjau kembali bahwa $G/N=\langle N_a \rangle$ yang dimana $N_a$ adalah generator untuk grup faktor $G/N$. Sehingga terbukti bahwa $G/N$ adalah grup siklik.
+
+    \item \begin{enumerate}
+        \item $\operatorname{Aut}(\mathbb{Z}_{12})$ adalah grup yang himpunannya adalah fungsi $\varphi: \Z_{12}\to \Z_{12}$ yang bersifat isotomorfik (bijektif dan homomorfik) dan operasinya terhadap kompsisi fungsi. 
+        
+        Dari contoh soal pada \hyperlink{https://sites.google.com/view/aljabar-i/grup/automorpisma-grup?authuser=0}{slide materi Prof. Subiono Nomor 2}, trik yang diberikan secara tersirat adalah mencari bilangan asli apa saja yang relatif prima dengan 12\footnote{Untuk $\Z_n$ secara umum dicari bilangan apa saja yang relatif prima dengan $n$}. Terdapat 4 bilangan yang relatif prima dengan 12, yaitu 1, 5, 7, dan 11. Sehingga defisikan fungsi isomorfisma $\varphi$ sebagai berikut
+        \begin{itemize}
+            \item $\varphi_1(x)=[x]_{12}$
+            \item $\varphi_5(x)=5[x]_{12}$
+            \item $\varphi_7(x)=7[x]_{12}$
+            \item $\varphi_{11}(x)=11[x]_{12}$
+        \end{itemize}
+        $\therefore\,\operatorname{Aut}(\mathbb{Z}_{12})=\left\{\varphi_1,\varphi_5,\varphi_7,\varphi_{11}\right\}$.
+
+        \item Karena $|\operatorname{Aut}(\mathbb{Z}_{12})|=4$ dan $|\mathbb{U}(12)|=4$, maka kita buat spekulasi bahwa kedua grup saling isotomorfik. Cara menunjukkan keisomorfikan antara dua grup adalah dengan mencari suatu fungsi homomorfisma dan bijektif yang memetakan elemen satu grup $\text{Aut}(\mathbb{Z}_{12})$ ke elemen grup $\mathbb{U}(12)$ atau sebaliknya.
+        
+        Sebenarnya soal ini berhubungan dengan trik sebelumnya yaitu mencari bilangan yang relatif prima dengan 12, seperti halnya anggota dari $\mathbb{U}(12)$. 
+        
+        Jadi kita definisikan saja fungsi $\Theta: \operatorname{Aut}(\mathbb{Z}_{12})\to \mathbb{U}(12)$ sebagai $\Theta(\varphi_i)=i$ untuk $i\in\mathbb{U}(12)$. Dengan demikian, $\Theta$ pastilah isomorfisma antara $\operatorname{Aut}(\mathbb{Z}_{12})$ dan $\mathbb{U}(12)$\footnote{Jika mau dibuktikan keisomorfikan silahkan tambahin sendiri:D}.
+
+        $\therefore\,\operatorname{Aut}(\mathbb{Z}_{12}) \cong \mathbb{U}(12)$.
+    \end{enumerate}
+
+    \item Kita mulai dengan menuliskan ulang definisi dari hasil kali langsung dalam.
+    \begin{definisi}
+        grup $G$ adalah hasil kali langsung dalam dari $H_1$ dan $H_2$ jika memenuhi kondisi berikut
+        \begin{enumerate}[label=(\arabic*)]
+            \item $H_1$ dan $H_2$ adalah subgrup normal dari $G$.
+            \item $H_1\cap H_2=\{e\}$.
+            \item $G=H_1H_2=\{h_1h_2\,|\,h_1\in H_1, h_2\in H_2\}$.
+        \end{enumerate}
+    \end{definisi}
+    Karena $\mathbb{U}(8)$ komutatif, maka subgrupnya pastilah normal. Jadi $H_1$ dan $H_2$ adalah subgrup normal dari $\mathbb{U}(8)$. Kemudian dengan mudah diperoleh bahwa $H_1\cap H_2=\{[1]_8\}$ yang merupakan identitas dari $\mathbb{U}(8)$. Selanjutnya tinjau
+    \[H_1H_2=\{[1]_8\cdot[1]_8,[1]_8\cdot[7]_8,[3]_8\cdot[1]_8,[3]_8\cdot[7]_8\}=\{[1]_8,[7]_8,[3]_8,[5]_8\}=\mathbb{U}(8)\] 
+    Sehingga $\mathbb{U}(8)$ adalah \textit{internal direct product} dari $H_1$ dan $H_2$.
+\end{enumerate}
+\begin{figure}[h!]
+    \centering
+    \animategraphics[autoplay,loop,width=0.5\textwidth]{30}{Honey Pie/honey pie-}{0}{49}
+\end{figure}
+\end{document}
