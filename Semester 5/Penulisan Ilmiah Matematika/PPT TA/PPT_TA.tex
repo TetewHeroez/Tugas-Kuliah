@@ -93,8 +93,8 @@
         \frametitle{\insertsubsection}
         \begin{figure}
             \centering
-            \onslide<2->{\includegraphics[width=0.3\textwidth]{Suroboyo bus.png}$\quad\quad$
-            \caption{Suroboyo Bus \cite{jawapos2024suroboyobus}}}
+            \onslide<2->{\includegraphics[width=0.3\textwidth]{Suroboyo bus.png}$\quad\quad$}
+            \onslide<3->{{\caption{Suroboyo Bus \cite{jawapos2024suroboyobus}}}}
         \end{figure}
         \onslide<3->{Suroboyo bus adalah fasilitas publik yang disediakan oleh Pemerintah Kota Surabaya yang beroperasi dibeberapa rute krusial di Surabaya. Pada awalnya transportasi ini adalah upaya Pemerintah untuk mengurangi sampah plastik, namun sekarang telah dialihfungsikan menjadi salah satu transportasi dengan tarif yang cukup murah.}
     \end{frame}
@@ -109,7 +109,7 @@
         \begin{figure}
             \centering
             \onslide<2->{\includegraphics[width=0.25\textwidth]{rute suroboyo bus.png}$\quad$}
-            \onslide<2->{\caption{Rute Suroboyo Bus \cite{wikipedia2024suroboyobus}}}
+            \onslide<3->{\caption{Rute Suroboyo Bus \cite{wikipedia2024suroboyobus}}}
         \end{figure}
         \onslide<3->{Dapat dilihat bahwa rute Suroboyo Bus melewati beberapa terminal yang berbeda pada suatu waktu. Sehingga objek diskrit ini dapat dimodelkan dengan menggunakan representasi graf.}
     \end{frame}
@@ -133,7 +133,7 @@
     \begin{frame}
         \frametitle{\insertsubsection}
         \begin{itemize}
-            \item \onslide<2->{Penelitian ini hanya akan memodelkan rute lalu lintas Suroboyo Bus dengan menggunakan pendekatan aljabar max-plus.}
+            \item \onslide<2->{Data dikumpulkan dari data Dishub  atau secara mandiri melalui observasi lapangan dengan menaiki bus.}
             \item \onslide<3->{Hanya jadwal kedatangan dan keberangkatan bus yang akan dianalisis, tanpa mempertimbangkan faktor eksternal seperti cuaca, kondisi jalan, atau perubahan kebijakan transportasi.}
             \item \onslide<4->{Rute yang akan dianalisis adalah rute yang jalurnya masih berada dilingkungan kampus ITS, yakni Koridor R2, Koridor R4, dan Koridor SBT.}
         \end{itemize}
@@ -293,11 +293,17 @@
     \begin{frame}
         \frametitle{Langkah-Langkah Penelitian}
         \begin{enumerate}
-            \item \onslide<2->{Identifikasi Sistem Jaringan Suroboyo Bus}
-            \item \onslide<3->{Modelkan sistem dalam graf berarah dan berbobot}
-            \item \onslide<4->{Formulasikan sistem dalam aljabar max-plus}
-            \item \onslide<5->{Selesaikan Model sistem dengan bantuan \textit{software Scilab}}
-            \item \onslide<6->{Mendesain penjadwalan Suroboyo Bus}
+            \item \onslide<2->{Memperloleh data-data yang diperlukan
+            \begin{itemize}
+                \item Banyaknya bus yang beroperasi
+                \item Waktu keberangkatan dan kedatangan
+                \item Jarak dan waktu tempuh untuk setiap rute
+            \end{itemize}}
+            \item \onslide<3->{Identifikasi Sistem Jaringan Suroboyo Bus}
+            \item \onslide<4->{Modelkan sistem dalam graf berarah dan berbobot}
+            \item \onslide<5->{Formulasikan sistem dalam aljabar max-plus}
+            \item \onslide<6->{Selesaikan Model sistem dengan bantuan \textit{software Scilab}}
+            \item \onslide<7->{Mendesain penjadwalan Suroboyo Bus}
         \end{enumerate}
     \end{frame}
     % \begin{frame}
