@@ -1,0 +1,90 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{physics}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\U}{\mathbb{U}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\begin{tabular}{r c l}
+    \includegraphics[width=2cm]{ITS.png}
+     &\begin{tabular}{lcll}
+        \multicolumn{4}{c}{\begin{tabular}{c}
+          \MakeUppercase{evaluasi akhir semester gasal 2024/2025}\\
+          \MakeUppercase{departemen matematika fsad its}\\
+          \MakeUppercase{program sarjana}\\
+     \end{tabular}}\\
+     \\
+          Matakuliah&:&\multicolumn{2}{l}{Aljabar 1}\\
+          Hari, Tanggal&:&\multicolumn{2}{l}{Jum'at, 13 Desember 2024}\\
+          Waktu / Sifat&:&\multicolumn{2}{l}{100 menit / TERTUTUP}\\
+          Kelas, Dosen&:&\multicolumn{2}{l}{Prof. Dr. Drs. Subiono, M.S,}\\
+          &&\multicolumn{2}{l}{Drs. Komar Baihaqi, M.Si,}\\
+          &&\multicolumn{2}{l}{Dr. Dian Winda S., M.Si,}\\
+          &&\multicolumn{2}{l}{Soleha, M.Si,}\\
+     \end{tabular}
+     & 
+     \includegraphics[width=2cm]{M.png}
+     \\ \hline
+\multicolumn{3}{|l|}{\MakeUppercase{harap diperhatikan !!!}}\\
+\multicolumn{3}{|l|}{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}\\
+\multicolumn{3}{|l|}{akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}\\
+\hline
+\end{tabular}\\
+
+\indent\textbf{Kerjakan soal-soal di bawah ini!}
+
+\begin{enumerate}
+    \item Misalkan $\theta : G \to H$ homomorfisma grup. Tunjukkan bahwa $\theta(G)$ abelian jika dan hanya jika $xyx^{-1}y^{-1} \in \ker(\theta), \quad \forall \, x, y \in G.$
+
+    \item Diberikan grup $\mathbb{Z}_8 \times \U(8)$. Didefinisikan $([a]_8, [b]_8) * ([c]_8, [d]_8) = ([a + c]_8, [b \cdot d]_8)$, Untuk setiap $([a]_8, [b]_8), ([c]_8, [d]_8) \in \mathbb{Z}_8 \times \U(8)$:
+    \begin{enumerate}
+        \item Tentukan $([3]_8, [3]_8) * ([5]_8, [5]_8)$.
+        \item Tentukan order dari $([3]_8, [3]_8)$.
+        \item Tentukan invers dari $([5]_8, [5]_8)$.
+    \end{enumerate}
+
+    \item Diberikan $(\mathbb{Z}_2, +), (S_3, \circ)$, dan $\mathbb{Z}_2 \times S_3$ masing-masing merupakan grup. Untuk setiap 
+    $([a]_2, b),$ $([c]_2, d) \in \mathbb{Z}_2 \times S_3$ didefinisikan $([a]_2, b) * ([c]_2, d) = ([a + c]_2, b \circ d)$. Jika $\phi : \mathbb{Z}_2 \times S_3 \to \mathbb{Z}_2$ didefinisikan $\phi(([x]_2, y)) = [x]_2$ untuk setiap $([x]_2, y) \in \mathbb{Z}_2 \times S_3$, maka:
+    \begin{enumerate}
+        \item Tunjukkan $\phi$ homomorfisma grup.
+        \item Tentukan $\ker(\phi)$ dan $\operatorname{Im}(\phi)$.
+        \item Tunjukkan $\mathbb{Z}_2 \times S_3 / (\{0\} \times S_3) \cong \mathbb{Z}_2$.
+    \end{enumerate}
+
+    \item Diberikan $G = \{1, -1, i, -i\}$.
+    \begin{enumerate}
+        \item Tentukan generator dari $G$.
+        \item Tentukan $\operatorname{Inn}(G)$.
+        \item Tentukan $\operatorname{Aut}(G)$.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
