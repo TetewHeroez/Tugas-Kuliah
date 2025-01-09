@@ -35,7 +35,7 @@
 \setcounter{section}{12}
 \setcounter{subsection}{2}
 
-\newcommand{\R}{\mathbf{R}}
+\newcommand{\R}{\mathbb{R}}
 
 \begin{document}
   \begin{algoritma}\label{algoritma}
@@ -346,13 +346,13 @@
     \end{equation*}
     Tentukan solusi umum dari sistem PD tersebut.
     
-    \item 
-    \[\begin{pmatrix}
+    \item Carilah solusi umum sistem PD dimensi-$4$ berikut
+    \[\mathbf{y'}=\begin{pmatrix}
       1 & -2 & 1 & -3\\
       0 & 5 & 0 & 0\\
       0 & 2 & 0 & -1\\
       1 & 0 & -2 & 0
-    \end{pmatrix}\]
+    \end{pmatrix}\mathbf{y}\]
     
     \item Diberikan suatu sistem tiga pegas dengan dua buah massa yang dirumuskan dalam PD berikut
     \begin{equation*}
@@ -361,7 +361,7 @@
         m_2\frac{d^2x_2}{dt^2}&=k_2x_1-(k_2+k_3)x_2\\
       \end{split}
     \end{equation*}
-    Jika $m_1=m_2=\frac{1}{2},\,k_1=k_3=2,$ dan $k_2=6$. Tentukan solusi umum dari sistem PD tersebut.
+    Jika $m_1=m_2=2,$ dan $k_1=k_2=k_3=6$. Tentukan solusi umum dari sistem PD tersebut.
   \end{enumerate}
   \newpage
   \underline{JAWABAN LATIHAN 12.2}
@@ -375,19 +375,131 @@
       \end{vmatrix} = (1-\lambda)(\lambda^2-2\lambda-15-2k). 
     \end{equation*}
     Sehingga agar terdapat nilai eigen kompleks yang bagian imajinernya tak nol, maka haruslah diskriminan dari polinomial $\lambda^2-2\lambda-15-2k$ negatif. 
-    \[\Delta = b^2-4ac = (-2)^-4(1)(-15-2k)=64+8k < 0 \implies k < -8.\]
+    \[\Delta = b^2-4ac = (-2)^2-4(1)(-15-2k)=64+8k < 0 \implies k < -8.\]
     Jadi nilai $k$ yang memenuhi adalah $\{x\in\R\,|\,x<-8\}$.
 
-    \item Nilai eigen dari matriks koefisien adalah
+    \item Nilai eigen dari matriks adalah
     \[\lambda_1 = 1, \quad \lambda_2 = 1 -2i, \quad \lambda_3 = 1 + 2i.\]
     dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
     \[\bfxi_1 = \begin{pmatrix}2\\-3\\2\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}0\\-i\\1\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}0\\i\\1\end{pmatrix}.\]
-    \item .
-    \item Nilai eigen dari matriks koefisien adalah
+    Selanjutnya didapatkan masing-masing solusi $\mathbf{x}_1, \mathbf{x}_2$ dan $\mathbf{x}_3$ sebagai berikut
+    \begin{align*}
+      \mathbf{x}_1(t) &= \begin{pmatrix}2\\-3\\2\end{pmatrix}e^t\\
+      \mathbf{x}_2(t) &= e^t \left(\begin{pmatrix}0\\0\\1\end{pmatrix}\cos(2t) - \begin{pmatrix}0\\1\\0\end{pmatrix}\sin(2t)\right)=\begin{pmatrix}0\\-\sin(2t)\\ \cos(2t)\end{pmatrix}e^t\\
+      \mathbf{x}_3(t) &= e^t \left(\begin{pmatrix}0\\0\\1\end{pmatrix}\sin(2t) + \begin{pmatrix}0\\1\\0\end{pmatrix}\cos(2t)\right)=\begin{pmatrix}0\\ \cos(2t)\\ \sin(2t)\end{pmatrix}e^t
+    \end{align*}
+    Jadi solusi umum dari sistem PD tersebut adalah
+    \[\mathbf{x}(t) = c_1\begin{pmatrix}2\\-3\\2\end{pmatrix}e^t + c_2\begin{pmatrix}0\\-\sin(2t)\\ \cos(2t)\end{pmatrix}e^t + c_3\begin{pmatrix}0\\ \cos(2t)\\ \sin(2t)\end{pmatrix}e^t.\]
+    
+    \item Misalkan $\mathbf{y} = \begin{pmatrix}x\\y\\z\end{pmatrix}$, maka sistem PD tersebut dapat dituliskan sebagai
+    \begin{equation*}
+      \mathbf{y'}=\begin{pmatrix}
+        -3 & 0 & 2\\
+        1 & -1 & 0\\
+        -2 & -1 & 0
+      \end{pmatrix}\mathbf{y}.
+    \end{equation*}
+    Selanjutnya nilai eigen dari matriks tersebut adalah
+    \[\lambda_1 = -2, \quad \lambda_2 = -1+\sqrt{2}i, \quad \lambda_3 = -1-\sqrt{2}i\]
+    dengan masing-masing vektor eigen
+    \[\bfxi_1 = \begin{pmatrix}2\\-2\\1\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}2-\sqrt{2}i\\-1-\sqrt{2}i\\3\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}2+\sqrt{2}i\\-1+\sqrt{2}i\\3\end{pmatrix}.\]
+    Dari vektor eigen $\bfxi_2$ dan $\bfxi_3$ dapat diperoleh solusi kompleks
+    \begin{align*}
+      \mathbf{y}_2(t) &= e^{-t}\left(\begin{pmatrix}2\\-1\\3\end{pmatrix}\cos(\sqrt{2}t) - \begin{pmatrix}-\sqrt{2}\\-\sqrt{2}\\0\end{pmatrix}\sin(\sqrt{2}t)\right)=e^{-t}\begin{pmatrix}2\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\-\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}\\
+      \mathbf{y}_3(t) &= e^{-t}\left(\begin{pmatrix}2\\-1\\3\end{pmatrix}\sin(\sqrt{2}t) + \begin{pmatrix}-\sqrt{2}\\-\sqrt{2}\\0\end{pmatrix}\cos(\sqrt{2}t)\right)=e^{-t}\begin{pmatrix}2\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\-\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}
+    \end{align*} 
+    Sehingga solusi umum dari sistem PD tersebut adalah
+    \[\mathbf{y}(t) = c_1\begin{pmatrix}2\\-2\\1\end{pmatrix}e^{-2t} + c_2\begin{pmatrix}2\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\-\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}e^{-t} + c_3\begin{pmatrix}2\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\-\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}e^{-t}.\]
+
+    \item Nilai eigen dari matriks adalah
     \[\lambda_1 = 1, \quad \lambda_2 = 5, \quad \lambda_3 = 1 + \sqrt{2}i \quad \lambda_4 = 1 - \sqrt{2}i\]
     dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
-    \[\bfxi_1 = \begin{pmatrix}1\\0\\1\\1\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}1\\-\frac{9}{2}\\-2\\1\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}\frac{1-5\sqrt{2}}{3}\\0\\\frac{-1-\sqrt{2}i}{3}\\1\end{pmatrix} \quad \bfxi^{(4)} = \begin{pmatrix}\frac{1+5\sqrt{2}}{3}\\0\\\frac{-1+\sqrt{2}i}{3}\\1\end{pmatrix}.\]
-    \item .
+    \[\bfxi_1 = \begin{pmatrix}1\\0\\1\\1\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}2\\-9\\-4\\2\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}1-5\sqrt{2}i\\0\\\-1-\sqrt{2}i\\3\end{pmatrix} \quad \bfxi^{(4)} = \begin{pmatrix}1+5\sqrt{2}i\\0\\\-1+\sqrt{2}i\\3\end{pmatrix}.\]
+    Dengan mudah didapatkan solusi untuk $\mathbf{y}_1$ dan $\mathbf{y}_2$ adalah
+    \begin{align*}
+      \mathbf{y}_1(t) = \begin{pmatrix}1\\0\\1\\1\end{pmatrix}e^t,\quad
+      \mathbf{y}_2(t) = \begin{pmatrix}2\\-9\\-4\\2\end{pmatrix}e^{5t}
+    \end{align*}
+    dan untuk $\mathbf{y}_3$ dan $\mathbf{y}_4$ karena bilangan kompleks maka solusinya adalah
+    \begin{align*}
+      \mathbf{y}_3(t) &= e^t\left(\begin{pmatrix}1\\0\\1\\3\end{pmatrix}\cos(\sqrt{2}t) - \begin{pmatrix}-5\sqrt{2}\\0\\-\sqrt{2}\\0\end{pmatrix}\sin(\sqrt{2}t)\right)= e^t\begin{pmatrix}\cos(\sqrt{2}t)+5\sqrt{2}\sin(\sqrt{2}t)\\0\\\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}\\
+      \mathbf{y}_4(t) &= e^t\left(\begin{pmatrix}1\\0\\1\\3\end{pmatrix}\sin(\sqrt{2}t) + \begin{pmatrix}-5\sqrt{2}\\0\\-\sqrt{2}\\0\end{pmatrix}\cos(\sqrt{2}t)\right)= e^t\begin{pmatrix}\sin(\sqrt{2}t)-5\sqrt{2}\cos(\sqrt{2}t)\\0\\\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}
+    \end{align*}
+    Jadi solusi umum dari sistem PD tersebut adalah
+    \[\mathbf{y}(t) = c_1\begin{pmatrix}1\\0\\1\\1\end{pmatrix}e^t + c_2\begin{pmatrix}2\\-9\\-4\\2\end{pmatrix}e^{5t} + c_3\begin{pmatrix}\cos(\sqrt{2}t)+5\sqrt{2}\sin(\sqrt{2}t)\\0\\\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}e^t + c_4\begin{pmatrix}\sin(\sqrt{2}t)-5\sqrt{2}\cos(\sqrt{2}t)\\0\\\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}e^t.\]
+    
+    \item Subtitusi nilai variabel yang diketahui sehingga diperoleh sistem PD
+    \begin{align*}
+        \frac{d^2x_1}{dt^2}&=-6x_1+3x_2\\
+        \frac{d^2x_2}{dt^2}&=3x_1-6x_2
+    \end{align*}
+    Dapat kita misalkan $y_1=x_1,\,y_2=x_2,\,y_3=x_1',\,y_4=x_2'$, sehingga diperoleh informasi
+    \begin{align*}
+        y_1'&=x_1'=y_3,\\
+        y_2'&=x_2'=y_4,\\
+        y_3'&=x_1''=-6x_1+3x_2=-6y_1+3y_2,\\
+        y_4'&=x_2''=3x_1-6x_2=3y_1-6y_2.
+    \end{align*}
+    atau jika dituliskan dalam bentuk matriks adalah sebagai berikut
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1'\\
+            y_2'\\
+            y_3'\\
+            y_4'
+        \end{pmatrix}=\begin{pmatrix}
+            0 & 0 & 1 & 0\\
+            0 & 0 & 0 & 1\\
+            -6 & 3 & 0 & 0\\
+            3 & -6 & 0 & 0
+        \end{pmatrix}\begin{pmatrix}
+            y_1\\
+            y_2\\
+            y_3\\
+            y_4
+        \end{pmatrix}.
+    \end{equation*}
+    sehingga untuk mencari solusinya dapat dilakukan dengan cara yang sama seperti contoh-contoh sebelumnya. Nilai eigen dari matriks tersebut adalah
+    \[\lambda_1 = 3i, \quad \lambda_2 = -3i, \quad \lambda_3 = \sqrt{3}i, \quad \lambda_4 = -\sqrt{3}i\]
+    dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
+    \[\bfxi_1 = \begin{pmatrix}i\\-i\\-3\\3\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}-i\\i\\-3\\3\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}-\sqrt{3}i\\-\sqrt{3}i\\3\\3\end{pmatrix} \quad \bfxi^{(4)} = \begin{pmatrix}\sqrt{3}i\\\sqrt{3}i\\3\\3\end{pmatrix}.\]
+    Untuk masing-masing pasangan vektor eigen dapat dikelompokkan yaitu $\bfxi_1$ dan $\bfxi_2$ serta $\bfxi_3$ dan $\bfxi^{(4)}$. Solusi untuk $\bfxi_1$ dan $\bfxi_2$ adalah
+    \begin{align*}
+      \mathbf{y}_1(t) &= e^{0}\left(\begin{pmatrix}0\\0\\-3\\3\end{pmatrix}\cos(3t) - \begin{pmatrix}1\\-1\\0\\0\end{pmatrix}\sin(3t)\right)=\begin{pmatrix}-\sin(3t)\\\sin(3t)\\-3\cos(3t)\\3\cos(3t)\end{pmatrix}\\
+      \mathbf{y}_2(t) &= e^{0}\left(\begin{pmatrix}0\\0\\-3\\3\end{pmatrix}\sin(3t) + \begin{pmatrix}1\\-1\\0\\0\end{pmatrix}\cos(3t)\right)=\begin{pmatrix}\cos(3t)\\-\cos(3t)\\-3\sin(3t)\\3\sin(3t)\end{pmatrix}
+    \end{align*} 
+    dan untuk $\bfxi_3$ dan $\bfxi^{(4)}$ adalah
+    \begin{align*}
+      \mathbf{y}_3(t) &= e^{0}\left(\begin{pmatrix}0\\0\\3\\3\end{pmatrix}\cos(\sqrt{3}t) - \begin{pmatrix}-\sqrt{3}\\-\sqrt{3}\\0\\0\end{pmatrix}\sin(\sqrt{3}t)\right)=\begin{pmatrix}\sqrt{3}\sin(\sqrt{3}t)\\\sqrt{3}\sin(\sqrt{3}t)\\3\cos(\sqrt{3}t)\\3\cos(\sqrt{3}t)\end{pmatrix}\\
+      \mathbf{y}_4(t) &= e^{0}\left(\begin{pmatrix}0\\0\\3\\3\end{pmatrix}\sin(\sqrt{3}t) + \begin{pmatrix}-\sqrt{3}\\-\sqrt{3}\\0\\0\end{pmatrix}\cos(\sqrt{3}t)\right)=\begin{pmatrix}-\sqrt{3}\cos(\sqrt{3}t)\\-\sqrt{3}\cos(\sqrt{3}t)\\3\sin(\sqrt{3}t)\\3\sin(\sqrt{3}t)\end{pmatrix}
+    \end{align*}
+    Sehingga solusi umum dari sistem PD tersebut adalah
+    \[\mathbf{y}(t) = c_1\begin{pmatrix}-\sin(3t)\\\sin(3t)\\-3\cos(3t)\\3\cos(3t)\end{pmatrix} + c_2\begin{pmatrix}\cos(3t)\\-\cos(3t)\\-3\sin(3t)\\3\sin(3t)\end{pmatrix} + c_3\begin{pmatrix}\sqrt{3}\sin(\sqrt{3}t)\\\sqrt{3}\sin(\sqrt{3}t)\\3\cos(\sqrt{3}t)\\3\cos(\sqrt{3}t)\end{pmatrix} + c_4\begin{pmatrix}-\sqrt{3}\cos(\sqrt{3}t)\\-\sqrt{3}\cos(\sqrt{3}t)\\3\sin(\sqrt{3}t)\\3\sin(\sqrt{3}t)\end{pmatrix}.\]
+    Karena yang diminta adalah solusi untuk $x_1$ dan $x_2$, maka solusi masing-masingnya adalah
+    \begin{align*}
+      x_1(t) &= -c_1\sin(3t) + c_2\cos(3t) + c_3\sqrt{3}\sin(\sqrt{3}t) - c_4\sqrt{3}\cos(\sqrt{3}t)\\
+      x_2(t) &= c_1\sin(3t) - c_2\cos(3t) + c_3\sqrt{3}\sin(\sqrt{3}t)- c_4\sqrt{3}\cos(\sqrt{3}t)
+    \end{align*}
+    dengan $c_1, c_2, c_3, c_4$ sebarang konstanta.
   \end{enumerate}
+  \newpage
+  \noindent\textbf{TES FORMATIF}\\
+  Pilihlah satu jawaban yang paling tepat!
+  \begin{enumerate}
+    \item Diberikan sistem PD linear homogen dimensi-$3$ berikut
+    \[\mathbf{x'} = \begin{pmatrix}
+      6 & 0 & -3\\
+      -3 & 3 & 3\\
+      1 & -2 & 6
+    \end{pmatrix}\mathbf{x}.\]
+    Banyaknya nilai eigen yang bagian imajinernya tak nol adalah
+    \begin{enumerate}
+      \item $0$
+      \item $1$
+      \item $2$
+      \item $3$
+    \end{enumerate}
 
+    \item 
+  \end{enumerate}
 \end{document}
