@@ -1,0 +1,1566 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+  }
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{bm}
+
+\newtheoremstyle{definisi}
+{}{}% 
+{\normalfont}{}% 
+{\bfseries}{}% 
+{\newline}% 
+{\underline{\thmname{#1}\thmnumber{ #2}\thmnote{ #3}.}}
+
+\theoremstyle{definisi}
+\newtheorem{contoh}{Contoh}[section]
+\newtheorem{definisi}{Definisi}[section]
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{algoritma}{Algoritma}[section]
+\newtheorem{catatan}{Catatan}[section]
+
+\newcommand{\bfxi}{\boldsymbol{\xi}}
+\newcommand{\bfalpha}{\boldsymbol{\alpha}}
+\newcommand{\penyelesaian}{\textbf{\underline{Penyelesaian:}}\\}
+
+\numberwithin{equation}{section}
+\setcounter{section}{12}
+\setcounter{equation}{21}
+\setcounter{catatan}{6}
+\setcounter{algoritma}{2}
+\setcounter{teorema}{2}
+\setcounter{definisi}{1}
+\setcounter{contoh}{10}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\begin{document}
+  Pada Modul sebelumnya telah dibahas metode untuk menyelesaikan sistem PD linear dimensi-$2$. Pada subbab ini akan dibahas lebih lanjut mengenai penyelesaian sistem PD linear dimensi-$n$ yang memiliki nilai eigen berulang. Nilai eigen berulang terjadi ketika polinomial karakteristik dari matriks koefisien memiliki akar yang sama, atau terdapat nilai eigen $\lambda_0$ yang muncul lebih dari satu kali. Dalam kasus ini yang perlu diperhatikan adalah banyaknya eigen vektor yang bebas linear dari nilai eigen berulang tersebut.
+
+  Dibawah ini akan diberikan ulang definisi yang telah dipelajari dalam mata kuliah MATA4113 -- Aljabar Linier Elementer II. Definisi ini akan membantu dalam memahami konsep matriks dan penyelesaian sistem PD linear dimensi-$n$ untuk kasus nilai eigen berulang.
+  \begin{definisi}
+    Misalkan $\lambda_0$ nilai eigen dari matriks $A$. Bilangan $k$ terbesar sehingga $(\lambda-\lambda_0)^k$ muncul sebagai faktor dari polinomial karakteristik disebut \textbf{multiplisitas aljabar} dari $\lambda_0$.\\
+
+    \noindent Contoh: Misalkan $\det(A-\lambda I)=(\lambda-2)^3(\lambda-3)^2(\lambda-4)$. Maka, multiplisitas aljabar dari $\lambda=2$ adalah 3, $\lambda=3$ adalah 2, dan $\lambda=4$ adalah 1.
+  \end{definisi}
+  
+  \begin{definisi}
+    Misalkan $\lambda_0$ nilai eigen dari matriks $A$. Banyaknya vektor eigen yang bebas linear dari $\lambda_0$ disebut \textbf{multiplisitas geometri} dari $\lambda_0$.\\
+
+    \noindent Contoh: Matriks $A=\begin{pmatrix}
+      0&0&-2\\
+      1&2&1\\
+      1&0&3
+    \end{pmatrix}$ memiliki salah satu nilai eigen $\lambda=2$ yang dimana vektor $\begin{pmatrix}0&1&0\end{pmatrix}^T$ dan $\begin{pmatrix}1&0&-1\end{pmatrix}^T$ merupakan vektor eigennya (saling bebas linear), maka multiplisitas geometri dari $\lambda=2$ adalah 2.
+  \end{definisi}
+
+  Multiplisitas aljabar dan geometri secara umum tidak akan selalu sama untuk setiap nilai eigen, dan juga secara intuitif kita bisa tahu bahwa multiplisitas geometri pasti kurang dari atau sama dengan multiplisitas aljabar untuk suatu nilai eigen. 
+
+  Sebab itu, perlu untuk membagi kasus pada penyelesaian nilai eigen berulang menjadi dua, yaitu ketika multiplisitas geometri sama dengan multiplisitas aljabar dan ketika multiplisitas geometri kurang dari multiplisitas aljabar. Untuk kasus pertama silahkan pahami teorema berikut
+  \begin{teorema}\label{thm:multiplisitas_geometri_sama}
+    Misalkan $A$ matriks $n\times n$ dengan nilai eigen real $\lambda_1,\lambda_2,\ldots,\lambda_n$ (tidak harus berbeda) dan $\mathbf{x_1},\mathbf{x_2},\ldots,\mathbf{x_n}$ adalah vektor eigen bebas linear korespondennya, maka
+    \begin{equation*}
+      \mathbf{y_1}=\mathbf{x_1}e^{\lambda_1t},\,\mathbf{y_2}=\mathbf{x_2}e^{\lambda_2t},\,\dots\,,\mathbf{y_n}=\mathbf{x_n}e^{\lambda_nt}
+    \end{equation*}
+    merupakan penyelesaian dari sistem $\mathbf{y'}=A\mathbf{y}$. Dengan kata lain, penyelesaian umum dari sistem tersebut adalah
+    \begin{equation}
+      \mathbf{y}=c_1\mathbf{x_1}e^{\lambda_1t}+c_2\mathbf{x_2}e^{\lambda_2t}+\cdots+c_n\mathbf{x_n}e^{\lambda_nt}
+    \end{equation}
+  \end{teorema}
+
+  Teorema \ref{thm:multiplisitas_geometri_sama} menunjukkan bahwa tidak ada masalah ketika terdapat nilai eigen berulang. Asalkan untuk setiap nilai eigen multiplisitas geometrinya sama dengan multiplisitas aljabarnya, maka langkah-langkah untuk mencari penyelesaian umum dari sistem (12.1) sama seperti yang telah dibahas pada KB 1.
+
+  Selanjutnya untuk kasus kedua, akan diberikan sebuah definisi untuk memudahkan pemahaman mengenai nilai eigen yang multiplisitas geometrinya kurang dari multiplisitas aljabar.
+
+  \begin{definisi}
+    Matriks $A\in\R^{n\times n}$ dikatakan \textit{defektiv} jika dan hanya jika banyaknya vektor eigen yang bebas linear dari $A$ kurang dari $n$. Secara spesifiknya hal ini terjadi ketika terdapat nilai eigen $\lambda_0$ yang multiplisitas geometrinya kurang dari multiplisitas aljabar. Dalam kasus ini, $\lambda_0$ disebut nilai eigen yang cacat (\textit{defektiv}).
+  \end{definisi}
+
+  Pada prinsipnya penyelesaian umum dari sistem PD linear dimensi-$n$ selalu memiliki $n$ buah penyelesaian yang bebas linear, tidak peduli apakah sistem itu \textit{defektiv} atau tidak. Oleh karena itu, pada kasus ini perlu dicari penyelesaian lainnya agar jumlah penyelesaian yang bebas linearnya menjadi $n$. Dibawah ini adalah teorema yang terkait dengan nilai eigen yang \textit{defektiv}
+
+  \begin{teorema}\label{thm:multiplisitas_geometri_satu}
+    Misalkan matriks $A\in\R^{n\times n}$ memiliki nilai eigen $\lambda_0$ dengan multiplisitas aljabar $k\geq 2$ dan multiplisitas geometrinya hanya 1, artinya hanya ada satu vektor eigen $\mathbf{x}$ yang berkorespondensi dengan $\lambda_0$. Jika $\{\mathbf{v_1},\mathbf{v_2},\ldots,\mathbf{v_{k-1}}\}$ adalah vektor-vektor yang memenuhi
+    \begin{equation*}
+      \begin{split}
+        (A-\lambda_0I)\mathbf{v_1}=\mathbf{x},\quad
+        (A-\lambda_0I)\mathbf{v_2}=\mathbf{v_1}
+        ,\quad\dots,\quad
+        (A-\lambda_0I)\mathbf{v_{k-1}}=\mathbf{v_{k-2}}
+      \end{split}
+    \end{equation*}
+    maka
+    \begin{equation*}
+      \begin{split}
+        \mathbf{y_1}&=\mathbf{x}e^{\lambda_0t}\\
+        \mathbf{y_2}&=\mathbf{v_1}e^{\lambda_0t}+\mathbf{x}te^{\lambda_0t}\\
+        &\vdots\\
+        \mathbf{y_{k}}&=e^{\lambda_0t}\left(\mathbf{v_{k-1}}+\mathbf{v_{k-2}}t+\cdots+\mathbf{v_1}\frac{t^{k-2}}{(k-2)!}+\mathbf{x}\frac{t^{k-1}}{(k-1)!}\right)
+      \end{split}
+    \end{equation*}
+    adalah penyelesaian yang bebas linear dari $\mathbf{y'}=A\mathbf{y}$.
+  \end{teorema}
+  Metode pada Teorema \ref{thm:multiplisitas_geometri_satu} dinamakan \textbf{generalisasi vektor eigen}. Selanjutnya teorema dibawah ini merupakan generalisasi dari Teorema \ref{thm:multiplisitas_geometri_satu}.
+  \begin{teorema}
+    Misalkan matriks $A\in\R^{n\times n}$ memiliki nilai eigen $\lambda_0$ dengan multiplisitas aljabar $k\geq 2$ dan multiplisitas geometrinya $m$ ($1\leq m<k$). Andaikan $\{\mathbf{x_1},\mathbf{x_2},\ldots,\mathbf{x_m}\}$ adalah vektor-vektor eigen bebas yang berkorespondensi dengan $\lambda_0$. Maka terdapat $\alpha_1,\alpha_2,\ldots,\alpha_m$ (tidak semuanya nol) sehingga jika
+    \begin{equation*}
+      \mathbf{v_1}=\alpha_1\mathbf{x_1}+\alpha_2\mathbf{x_2}+\cdots+\alpha_m\mathbf{x_m}
+    \end{equation*}
+    maka ada tak hingga vektor-vektor $\{\mathbf{v_2},\mathbf{v_3},\ldots,\mathbf{v_{k-m}}\}$ sedemikian sehingga memenuhi
+    \begin{equation}\label{eq:multiplisitas_geometri_kurang_generalisasi}
+      \begin{split}
+        (A-\lambda_0I)\mathbf{v_2}=\mathbf{v_1},\quad
+        (A-\lambda_0I)\mathbf{v_3}=\mathbf{v_2}
+        ,\quad\dots,\quad
+        (A-\lambda_0I)\mathbf{v_{k-m}}=\mathbf{v_{k-m-1}}.
+      \end{split}
+    \end{equation}
+    Jika himpunan vektor $\{\mathbf{v_2},\mathbf{v_3},\ldots,\mathbf{v_{k-m}}\}$ memenuhi \eqref{eq:multiplisitas_geometri_kurang_generalisasi}, maka
+    \begin{equation*}
+      \begin{split}
+        \mathbf{y_1}=\mathbf{x_1}e^{\lambda_0t},\quad
+        \mathbf{y_2}=\mathbf{x_2}e^{\lambda_0t},\quad
+        \dots\quad,
+        \mathbf{y_{m}}=\mathbf{x_m}e^{\lambda_0t}
+      \end{split}
+    \end{equation*}
+    dan 
+    \begin{equation}\label{eq:penyelesaian_tambahan_multiplisitas_geometri_kurang}
+      \begin{split}
+        \mathbf{y_{m+1}}&=\mathbf{v_2}e^{\lambda_0t}+\mathbf{v_1}te^{\lambda_0t}\\
+        \mathbf{y_{m+2}}&=\mathbf{v_3}e^{\lambda_0t}+\mathbf{v_2}te^{\lambda_0t}+\mathbf{v_1}\frac{t^2}{2}e^{\lambda_0t}\\
+        \vdots\\
+        \mathbf{y_{k}}&=e^{\lambda_0t}\left(\mathbf{v_{k-m}}+\mathbf{v_{k-m-1}}t+\cdots+\mathbf{v_1}\frac{t^{k-m}}{(k-m)!}\right)
+      \end{split}
+    \end{equation}
+    merupakan penyelesaian yang bebas linear dari $\mathbf{y'}=A\mathbf{y}$.
+  \end{teorema}
+
+
+  Selanjutnya akan diberikan algoritma untuk menyelesaikan sistem PD linear dimensi-$n$ yang memiliki nilai eigen dengan kasus multiplisitas geometri kurang dari multiplisitas aljabar. Artinya diharapkan telah menemukan semua vektor eigen yang bebas linear sebelum melanjutkan ke langkah-langkah pada algoritma ini.
+  \begin{algoritma}\label{algoritma}
+    Definisikan terlebih dahulu $\{\lambda_i\,|\,i\in\N\}$ sebagai himpunan nilai eigen yang semuanya berbeda. Setelah mengetahui bahwa sistem PD homogen (12.1) mempunyai nilai eigen \textit{defektiv}, maka langkah-langkah yang dilakukan adalah sebagai berikut:
+  \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+    \item Carilah terlebih dahulu penyelesaian untuk nilai eigen $\lambda_i$ yang tidak cacat dengan menggunakan algoritma yang telah dipelajari pada KB 1 dan KB 2.
+    \item Tentukan nilai eigen \textit{defektiv} $\lambda_i$ dari matriks $A\in\R^{n\times n}$ yang multiplisitas geometrinya $m$ dan multiplisitas aljabarnya $k$ dengan $m<k$.
+    \item Nyatakan $\{\mathbf{x_1},\mathbf{x_2},\ldots,\mathbf{x_m}\}$ sebagai himpunan vektor eigen untuk $\lambda_i$.
+    \item Tentukan sebarang konstanta $\alpha_1,\alpha_2,\ldots,\alpha_m$ (tidak boleh semuanya nol) sedimikian sehingga
+    \begin{equation}\label{eq:algoritma_kombinasi_linear_v1}
+      (A-\lambda_iI)\mathbf{v_2}=\alpha_1\mathbf{x_1}+\alpha_2\mathbf{x_2}+\cdots+\alpha_m\mathbf{x_m}
+    \end{equation}
+    mempunyai penyelesaian untuk $\mathbf{v_2}$.
+    \item Nyatakan $\mathbf{v}_1$ sebagai $\mathbf{v_1}=\alpha_1\mathbf{x_1}+\alpha_2\mathbf{x_2}+\cdots+\alpha_m\mathbf{x_m}$ 
+    \item Dapatkan $\mathbf{v_2}$ dengan menyelesaikan persamaan \eqref{eq:algoritma_kombinasi_linear_v1} dan secara rekursif, tentukan vektor-vektor lain dimana
+    \begin{equation*}
+      \begin{split}
+        (A-\lambda_iI)\mathbf{v_3}&=\mathbf{v_2},\quad
+        (A-\lambda_iI)\mathbf{v_4}=\mathbf{v_3}
+        ,\quad\dots,\quad
+        (A-\lambda_iI)\mathbf{v_{k-m}}=\mathbf{v_{k-m-1}}
+      \end{split}
+    \end{equation*}
+    \item Selanjutnya penyelesaian yang bebas linear untuk $\lambda_i$ adalah
+    \begin{equation}\label{eq:algoritma_penyelesaian_eigen_defektiv_biasa}
+      \begin{split}
+        \mathbf{y_1}&=\mathbf{x_1}e^{\lambda_it},\quad \mathbf{y_2}=\mathbf{x_2}e^{\lambda_it}
+        \dots,\quad\mathbf{y_{m}}=\mathbf{x_m}e^{\lambda_it}\\
+      \end{split}
+    \end{equation}
+    dan
+    \begin{equation}\label{eq:algoritma_penyelesaian_eigen_defektiv_rekursif}
+      y_{m+r}=e^{\lambda_it}\left(\sum_{j=1}^{r} \mathbf{v_{j}}\frac{t^{k-m-j}}{(k-m-j)!}\right)
+    \end{equation}
+    untuk $r=1,2,\ldots,(k-m)$.
+    \item Bangun kombinasi linear dari persamaan \eqref{eq:algoritma_penyelesaian_eigen_defektiv_biasa} dan \eqref{eq:algoritma_penyelesaian_eigen_defektiv_rekursif} dengan konstanta sebarang. Sehingga
+    \begin{equation*}
+      \mathbf{y_{\lambda_i}}=c_1\mathbf{y_1}+c_2\mathbf{y_2}+\cdots+c_{k}\mathbf{y_{k}}
+    \end{equation*}
+    merupakan salah satu penyelesaian untuk PD homogen (12.1).
+    \item Jika terdapat nilai eigen \textit{defektiv} lainnya, ulangi langkah 2-8. Jika tidak, maka penyelesaian umum dari sistem $\mathbf{y'}=A\mathbf{y}$ adalah
+    \begin{equation}\label{eq:algoritma_penyelesaian_umum_eigen_defektiv}
+      \mathbf{y}=\mathbf{y_{\lambda_1}}+\mathbf{y_{\lambda_2}}+\cdots+\mathbf{y_{\lambda_p}}
+    \end{equation}
+    dengan $\mathbf{y_{\lambda_i}}$ adalah penyelesaian umum dari nilai eigen $\lambda_i$ (mempunyai konstanta sebarang sebanyak multiplisitas aljabarnya).
+  \end{enumerate}
+  \end{algoritma}
+    
+  \begin{catatan}
+    Jika diberikan sebuah syarat awal $\mathbf{y}(t_0)$, maka subtitusikan nilai awal pada persamaan \eqref{eq:algoritma_penyelesaian_umum_eigen_defektiv} dan selesaikan persamaan linear untuk mendapatkan penyelesaian tunggal konstanta $c_1,c_2,\ldots,c_n$. 
+  \end{catatan}
+
+  \begin{contoh}
+    Tinjau dan carilah penyelesaian umum dari
+    \begin{equation}\label{eq:contoh_0}
+      \mathbf{y'}=\begin{pmatrix}
+        0&0&-2\\
+        1&2&1\\
+        1&0&3
+      \end{pmatrix}\mathbf{y}
+    \end{equation}
+    \penyelesaian
+    Polinomial karakteristik dari matriks koefisien \eqref{eq:contoh_0} adalah
+    \begin{equation*}
+      \begin{vmatrix}
+        -\lambda&0&-2\\
+        1&2-\lambda&1\\
+        1&0&3-\lambda
+      \end{vmatrix}=(2-\lambda)^2(1-\lambda)
+    \end{equation*}
+    Dapat dilihat bahwa nilai eigen $\lambda=2$ bermultiplisitas 2, sehingga akan kita cek terlebih dahulu vektor eigennya. Tinjau matriks \textit{augmented} dari sistem persamaan $(A-2I)\mathbf{x}=\mathbf{0}$, yaitu
+    \begin{equation*}
+      \begin{pmatrix}
+        -2&0&-2&\vdots&0\\
+        1&0&1&\vdots&0\\
+        1&0&1&\vdots&0
+      \end{pmatrix}\sim
+      \begin{pmatrix}
+        1&0&1&\vdots&0\\
+        0&0&0&\vdots&0\\
+        0&0&0&\vdots&0
+      \end{pmatrix}
+    \end{equation*}
+    Maka diperoleh $x_1=-x_3$ dan $x_2$ bebas (tidak bergantung $x_1$ maupun $x_3$). Dapat ditulis sebagai
+    \begin{equation}\label{eq:contoh_0_bebas_linear}
+      \begin{pmatrix}
+        x_1\\x_2\\x_3
+      \end{pmatrix}=\begin{pmatrix}
+        -x_3\\x_2\\x_3
+      \end{pmatrix}=x_2\begin{pmatrix}
+        0\\1\\0
+      \end{pmatrix}+x_3\begin{pmatrix}
+        -1\\0\\1
+      \end{pmatrix}
+    \end{equation}
+    Dari \eqref{eq:contoh_0_bebas_linear} dapat diperoleh informasi bahwa multiplisitas geometri dari $\lambda=2$ juga 2 dengan vektornya adalah
+    \begin{equation*}
+      \mathbf{x_1}=\begin{pmatrix}
+        0\\1\\0
+      \end{pmatrix}\quad\text{dan}\quad
+      \mathbf{x_2}=\begin{pmatrix}
+        -1\\0\\1
+      \end{pmatrix}
+    \end{equation*}
+    Disisi lain, untuk $\lambda=1$ sudah pasti akan memberikan vektor eigen bermultiplisitas 1. Tinjau $(A-I)\mathbf{x}=\mathbf{0}$, yaitu
+    \begin{equation*}
+      \begin{pmatrix}
+        -1&0&-2&\vdots&0\\
+        1&1&1&\vdots&0\\
+        1&0&2&\vdots&0
+      \end{pmatrix}\sim
+      \begin{pmatrix}
+        1&0&2&\vdots&0\\
+        0&1&-1&\vdots&0\\
+        0&0&0&\vdots&0
+      \end{pmatrix}
+    \end{equation*}
+    Maka diperoleh $x_1=-2x_3$ dan $x_2=x_3$. Pilih saja $x_3=1$ sehingga vektor eigen dari $\lambda=1$ adalah
+    \begin{equation*}
+      \mathbf{x_3}=\begin{pmatrix}
+        -2\\1\\1
+      \end{pmatrix}
+    \end{equation*}
+    Dari yang telah kita kerjakan sebelumnya, dapat disimpulkan bahwa sistem \eqref{eq:contoh_0} tidak \textit{defektiv}. Sehingga menurut Teorema \ref{thm:multiplisitas_geometri_sama}, penyelesaian umum dari \eqref{eq:contoh_0} adalah
+    \begin{equation*}
+      \mathbf{y}=c_1\begin{pmatrix}
+        0\\1\\0
+      \end{pmatrix}e^{2t}+c_2\begin{pmatrix}
+        -1\\0\\1
+      \end{pmatrix}e^{2t}+c_3\begin{pmatrix}
+        -2\\1\\1
+      \end{pmatrix}e^{t}
+    \end{equation*}
+  \end{contoh}
+
+  \begin{contoh}
+    Carilah penyelesaian umum dari
+    \begin{equation}\label{eq:contoh_1}
+      \mathbf{y'}=\begin{pmatrix}
+        3&4&-10\\
+        2&1&-2\\
+        2&2&-5
+      \end{pmatrix}\mathbf{y}
+    \end{equation}
+    \penyelesaian
+    Polinomial karakteristik dari matriks koefisien \eqref{eq:contoh_1} adalah
+    \begin{equation*}
+      \begin{vmatrix}
+        3-\lambda&4&-10\\
+        2&1-\lambda&-2\\
+        2&2&-5-\lambda
+      \end{vmatrix}=-(\lambda-1)(\lambda+1)^2
+    \end{equation*}
+    Didapat informasi nilai eigen $\lambda_1=1$ dengan multiplisitas 1 dan $\lambda_2=-1$ dengan multiplisitas 2. Sehingga kita perlu mengecek multiplisitas geometri dari $\lambda_2=-1$, karena terdapat kemungkinan multiplisitas geometrinya hanya satu.
+
+    Untuk nilai eigen $\lambda_2=-1$, vektor eigen yang berkorespondensi harus memenuhi $(A+I)\mathbf{x}=\mathbf{0}$, sehingga matriks \textit{augmented} dari sistem persamaan tersebut adalah
+    \begin{equation*}
+      \begin{pmatrix}
+        4&4&-10&\vdots&0\\
+        2&2&-2&\vdots&0\\
+        2&2&-4&\vdots&0
+      \end{pmatrix}\sim
+      \begin{pmatrix}
+        1&1&0&\vdots&0\\
+        0&0&1&\vdots&0\\
+        0&0&0&\vdots&0
+      \end{pmatrix}
+    \end{equation*}
+    Maka diperoleh $x_3=0$ dan $x_1=-x_2$. Pilih saja $x_2=1$ sehingga vektor eigennya
+    \begin{equation}
+      \mathbf{x_2}=\begin{pmatrix}
+        -1\\1\\0
+      \end{pmatrix}
+    \end{equation}
+    Karena $\lambda_2=-1$ adalah nilai eigen yang \textit{defektiv}, maka gunakan Algoritma \ref{algoritma} untuk menyelesaikan sistem \eqref{eq:contoh_1}.
+    \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+      \item Vektor eigen yang berkorespondensi dengan $\lambda_1=1$ haruslah memenuhi $(A-I)\mathbf{x}=\mathbf{0}$, sehingga matriks \textit{augmented} dari sistem persamaan tersebut adalah
+      \begin{equation*}
+        \begin{pmatrix}
+          2&4&-10&\vdots&0\\
+          2&0&-2&\vdots&0\\
+          2&2&-6&\vdots&0
+        \end{pmatrix}\sim
+        \begin{pmatrix}
+          1&0&-1&\vdots&0\\
+          0&1&-2&\vdots&0\\
+          0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      Maka diperoleh $x_1=x_3$ dan $x_2=2x_3$. Kemudian pilih saja $x_3=1$ sehingga vektor eigennya
+      \begin{equation*}
+        \mathbf{x_1}=\begin{pmatrix}
+          1\\2\\1
+        \end{pmatrix}
+      \end{equation*}
+      Jadi
+      \begin{equation*}
+        \mathbf{y_{\lambda_1}}=c_1\begin{pmatrix}
+          1\\2\\1
+        \end{pmatrix}e^t
+      \end{equation*}
+      adalah salah satu penyelesaian dari \eqref{eq:contoh_1}.\\
+      \item Jelas bahwa $\lambda_2=-1$ \textit{defektiv} karena memiliki multiplisitas aljabar 2 dan multiplisitas geometri 1.
+      \item $\mathbf{x_2}=\begin{pmatrix}
+        -1\\1\\0
+      \end{pmatrix}$ adalah salah satu vektor eigen $\lambda_2=-1$.
+      \item Untuk vektor eigen yang hanya 1, maka tentukan saja $\alpha_1=1$ dan pastilah
+      \begin{equation}\label{eq:contoh_1_langkah_3}
+        (A+I)\mathbf{v_2}=\mathbf{x_2}
+      \end{equation}
+      mempunyai penyelesaian.
+      \item Selanjutnya nyatakan $\mathbf{v_1}=\mathbf{x_2}$ 
+      \item Dari \eqref{eq:contoh_1_langkah_3} diperoleh
+      \begin{equation*}
+        \begin{pmatrix}
+          4&4&-10&\vdots&-1\\
+          2&2&-2&\vdots&1\\
+          2&2&-4&\vdots&0
+        \end{pmatrix}
+        \sim
+        \begin{pmatrix}
+          1&1&0&\vdots&1\\
+          0&0&1&\vdots&\frac{1}{2}\\
+          0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      Akibatnya, $v_{3}=\frac{1}{2}$ dan $v_1=1-v_2$. Pilih $v_2=0$ sehingga
+      \begin{equation*}
+        \mathbf{v_2}=\begin{pmatrix}
+          1\\0\\\frac{1}{2}
+        \end{pmatrix}
+      \end{equation*}
+      \item Penyelesaian yang bebas linear dari $\lambda_2=-1$ adalah
+      \begin{align*}
+        \mathbf{y_2}&=\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}e^{-t}\quad\text{dan}\\
+        \mathbf{y_3}&=\mathbf{v_2}e^{-t}+\mathbf{v_1}te^{-t}
+        =\begin{pmatrix}
+          1\\0\\\frac{1}{2}
+        \end{pmatrix}e^{-t}+\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}te^{-t}
+      \end{align*}
+      \item Didapatkan salah stu penyelesaian dari \eqref{eq:contoh_1} adalah
+      \begin{equation*}
+        \mathbf{y_{\lambda_2}}=c_2\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}e^{-t}+c_3\left(\begin{pmatrix}
+          1\\0\\\frac{1}{2}
+        \end{pmatrix}e^{-t}+\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}te^{-t}\right)
+      \end{equation*}
+      \item Jadi, penyelesaian umum dari \eqref{eq:contoh_1} adalah
+      \begin{equation*}
+        \mathbf{y}=\mathbf{y_{\lambda_1}}+\mathbf{y_{\lambda_2}}=c_1\begin{pmatrix}
+          1\\2\\1
+        \end{pmatrix}e^t+c_2\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}e^{-t}+c_3\left(\begin{pmatrix}
+          1\\0\\\frac{1}{2}
+        \end{pmatrix}e^{-t}+\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}te^{-t}\right)
+      \end{equation*}
+    \end{enumerate}
+  \end{contoh}
+
+  \begin{contoh}
+    Tentukan penyelesaian umum untuk sistem PD linear dimensi-3 berikut
+    \begin{equation}\label{eq:contoh_2}
+      \begin{split}
+        \frac{dx}{dt}&=x+y+z\\
+        \frac{dy}{dt}&=x+3y-z\\
+        \frac{dz}{dt}&=2y+2z
+      \end{split}
+    \end{equation}
+    \penyelesaian
+    Nyatakan \eqref{eq:contoh_2} dalam bentuk matriks, yaitu
+    \begin{equation}
+      \mathbf{y'}=\begin{pmatrix}\label{eq:contoh_2_matriks}
+        1&1&1\\
+        1&3&-1\\
+        0&2&2
+      \end{pmatrix}\mathbf{y}
+    \end{equation}
+    Polinomial karakteristik dari matriks koefisien \eqref{eq:contoh_2_matriks} adalah
+    \begin{equation*}
+      \begin{vmatrix}
+        1-\lambda&1&1\\
+        1&3-\lambda&-1\\
+        0&2&2-\lambda
+      \end{vmatrix}=-(\lambda-2)^3
+    \end{equation*}
+    Artunya nilai eigen $\lambda=2$ bermultiplisitas 3. Vektor eigen yang berkorespondensi dengan $\lambda=2$ harus memenuhi $(A-2I)\mathbf{x}=\mathbf{0}$, sehingga matriks \textit{augmented} dari sistem persamaan tersebut adalah
+    \begin{equation*}
+      \begin{pmatrix}
+        -1&1&1&\vdots&0\\
+        1&1&-1&\vdots&0\\
+        0&2&0&\vdots&0
+      \end{pmatrix}\sim
+      \begin{pmatrix}
+        1&0&-1&\vdots&0\\
+        0&1&0&\vdots&0\\
+        0&0&0&\vdots&0
+      \end{pmatrix}
+    \end{equation*}
+    Maka diperoleh $x_1=x_3$ dan $x_2=0$, jadi vektor eigenya adalah
+    \begin{equation*}
+      \mathbf{x_1}=\begin{pmatrix}
+        1\\0\\1
+      \end{pmatrix}
+    \end{equation*}
+    Ternyata multiplisitas geometri dari $\lambda=2$ hanya 1, sehingga akan digunakan Algoritma \ref{algoritma} untuk menyelesaikannya.
+    \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+      \item Karena tidak ada nilai eigen lainnya, maka lewati langkah ini.
+      \item Jelas bahwa $\lambda=2$ memiliki multiplisitas aljabar 3 dan multiplisitas geometri 1.
+      \item $\mathbf{x_1}=\begin{pmatrix}
+        1\\0\\1
+      \end{pmatrix}$ adalah salah satu vektor eigen $\lambda=2$.
+      \item Tentukan saja $\alpha_1=1$ dan pastilah
+      \begin{equation}\label{eq:contoh_2_langkah_3}
+        (A-2I)\mathbf{v_2}=\mathbf{x_1}
+      \end{equation}
+      mempunyai penyelesaian.
+      \item Nyatakan $\mathbf{v_1}=\mathbf{x_1}$
+      \item Dari \eqref{eq:contoh_2_langkah_3} diperoleh
+      \begin{equation*}
+        \begin{pmatrix}
+          -1&1&1&\vdots&1\\
+          1&1&-1&\vdots&0\\
+          0&2&0&\vdots&1
+        \end{pmatrix}\sim
+        \begin{pmatrix}
+          1&0&-1&\vdots&-\frac{1}{2}\\
+          0&1&0&\vdots&\frac{1}{2}\\
+          0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      Misalkan $v_3=0$ berakibat $v_1=-\frac{1}{2}$ dan $v_2=\frac{1}{2}$, sehingga
+      \begin{equation*}
+        \mathbf{v_2}=\frac{1}{2}\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}
+      \end{equation*}
+      Lalu kita lakukan kembali untuk mendapatkan $\mathbf{v_3}$ dengan $(A-2I)\mathbf{v_3}=\mathbf{v_2}$, sehingga
+      \begin{equation*}
+        \begin{pmatrix}
+          -1&1&1&\vdots&\frac{1}{2}\\
+          1&1&-1&\vdots&\frac{1}{2}\\
+          0&2&0&\vdots&0
+        \end{pmatrix}\sim
+        \begin{pmatrix}
+          1&0&-1&\vdots&\frac{1}{2}\\
+          0&1&0&\vdots&0\\
+          0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      Misalkan $v_3=0$ berakibat $v_1=\frac{1}{2}$ dan $v_2=0$, sehingga
+      \begin{equation*}
+        \mathbf{v_3}=\frac{1}{2}\begin{pmatrix}
+          1\\0\\0
+        \end{pmatrix}
+      \end{equation*}
+      \item Penyelesaian yang bebas linear dari $\lambda=2$ adalah
+      \begin{align*}
+        \mathbf{y_1}&=\begin{pmatrix}
+          1\\0\\1
+        \end{pmatrix}e^{2t}\\
+        \mathbf{y_2}&=v_2e^{2t}+v_1te^{2t}= \begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}\frac{e^{2t}}{2}+\begin{pmatrix}
+          1\\0\\1
+        \end{pmatrix}te^{2t}\\
+        \mathbf{y_3}&=v_3e^{2t}+v_2te^{2t}+v_1\frac{t^2}{2}e^{2t}=\begin{pmatrix}
+          1\\0\\0
+        \end{pmatrix}\frac{e^{2t}}{2}+\begin{pmatrix}
+          -1\\1\\0
+        \end{pmatrix}\frac{te^{2t}}{2}+\begin{pmatrix}
+          1\\0\\1
+        \end{pmatrix}\frac{t^2}{2}e^{2t}
+      \end{align*}
+      \item Karena tak ada nilai eigen lainnya, maka satu satunya penyelesaian adalah
+      \begin{equation*}
+        \mathbf{y_{\lambda_1}}= c_1\mathbf{y_1}+c_2\mathbf{y_2}+c_3\mathbf{y_3}
+      \end{equation*}
+      \item Penyelesaian umum dari \eqref{eq:contoh_2} adalah
+      \begin{align*}
+        x&=c_1e^{2t}+c_2e^{2t}\left(t-\frac{1}{2}\right)+c_3\frac{e^{2t}}{2}\left(t^2-t+1\right)\\
+        y&=c_2\frac{{e^{2t}}}{2}+c_3\frac{te^{2t}}{2}\\
+        z&=c_1e^{2t}+c_2te^{2t}+c_3\frac{t^2e^{2t}}{2}
+      \end{align*}
+    \end{enumerate}
+  \end{contoh}
+
+  \begin{contoh}
+    Tinjau sistem linear homogen berikut dan tentukan penyelesaian untuk nilai awal $x_1(0)=1,x_2(0)=3,x_3(0)=2$
+    \begin{equation}\label{eq:contoh_3}
+      \begin{split}
+        x_1'&=4x_1+3x_2+x_3\\
+        x_2'&=-4x_1-4x_2-2x_3\\
+        x_3'&=8x_1+12x_2+6x_3
+      \end{split}
+    \end{equation}
+    \penyelesaian
+    Bentuk matriks untuk \eqref{eq:contoh_3} adalah
+    \begin{equation}\label{eq:contoh_3_matriks}
+      \mathbf{x'}=\begin{pmatrix}
+        4&3&1\\
+        -4&-4&-2\\
+        8&12&6
+      \end{pmatrix}\mathbf{x},\quad\text{dimana}\quad \mathbf{x}=\begin{pmatrix}
+        x_1\\x_2\\x_3
+      \end{pmatrix}
+    \end{equation}
+    Selanjutnya, polinomial karakteristik dari matriks koefisien \eqref{eq:contoh_3_matriks} adalah
+    \begin{equation*}
+      \begin{vmatrix}
+        4-\lambda&3&1\\
+        -4&-4-\lambda&-2\\
+        8&12&6-\lambda
+      \end{vmatrix}=-(\lambda-2)^3
+    \end{equation*}
+    $\lambda_2=2$ bermultiplisitas 3. Misal $\bfalpha=\begin{pmatrix}
+      \alpha_1&\alpha_2&\alpha_3
+    \end{pmatrix}^T$ vektor eigen yang berkorespondensi,maka
+    \begin{align*}
+      \begin{pmatrix}
+        4&3&1\\
+        -4&-4&-2\\
+        8&12&6
+      \end{pmatrix}\begin{pmatrix}
+        \alpha_1\\\alpha_2\\\alpha_3
+      \end{pmatrix}
+      &=2\begin{pmatrix}
+        \alpha_1\\\alpha_2\\\alpha_3
+      \end{pmatrix}
+    \end{align*}
+    Dari persamaan diatas dapat ditinjau bahwa $\alpha_1,\alpha_2,\alpha_3$ harus memenuhi
+    \begin{equation}\label{eq:contoh_3_persamaan}
+      \begin{split}
+        2\alpha_1+3\alpha_2+\alpha_3&=0\\
+        -4\alpha_1-6\alpha_2-2\alpha_3&=0\\
+        8\alpha_1+12\alpha_2+4\alpha_3&=0
+      \end{split}
+    \end{equation}
+    Perhatikan bahwa 
+    \[\alpha_1=1,\quad\alpha_2=-0,\quad\alpha_3=-2\]
+    dan
+    \[\alpha_1=0,\quad\alpha_2=1,\quad\alpha_3=-3\]
+    adalah dua penyelesaian berbeda dari \eqref{eq:contoh_3_persamaan}. Jadi vektor eigen untuk $\lambda=2$ adalah
+    \begin{equation*}
+      \bfalpha_1=\begin{pmatrix}
+        1\\0\\-2
+      \end{pmatrix}\quad\text{dan}\quad
+      \bfalpha_2=\begin{pmatrix}
+        0\\1\\-3
+      \end{pmatrix}
+    \end{equation*}
+    Karena multiplisitas geometrinya kurang 1 (untuk melengkapkan penyelesaian umum), maka perlu dicari 1 penyelesaian yang bebas linear lagi.
+    \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+      \item Tidak ada nilai eigen lainnya, maka lewati langkah ini.
+      \item Nilai eigen $\lambda=2$ memiliki multiplisitas aljabar 3 dan multiplisitas geometri 2.
+      \item $\{\bfalpha_1,\bfalpha_2\}$ adalah vektor eigen koresponden untuk $\lambda=2$.
+      \item Mencari $k_1$ dan $k_2$ sehingga
+      \begin{equation}\label{eq:contoh_3_langkah_3}
+        \begin{split}
+          2v_1+3v_2+v_3&=k_1\\
+          -4v_1-6v_2-2v_3&=k_2\\
+          8v_1+12v_2+4v_3&=-2k_1-3k_2
+        \end{split}
+      \end{equation}
+      mempunyai penyelesaian. Dapat ditinjau bahwa $k_1=1$ dan $k_2=-2$ memenuhi kriteria untuk \eqref{eq:contoh_3_langkah_3}.
+      \item Nyatakan $\mathbf{v_1}=k_1\bfalpha_1+k_2\bfalpha_2=\begin{pmatrix}
+        1\\0\\-2
+      \end{pmatrix}+\begin{pmatrix}
+        0\\-2\\6
+      \end{pmatrix}=\begin{pmatrix}
+        1\\-2\\4
+      \end{pmatrix}$
+      \item Dari \eqref{eq:contoh_3_langkah_3} diperoleh
+      \begin{equation*}
+        \begin{pmatrix}
+          2&3&1&\vdots&1\\
+          -4&-6&-2&\vdots&-2\\
+          8&12&6&\vdots&4
+        \end{pmatrix}\sim
+        \begin{pmatrix}
+          2&3&1&\vdots&1\\
+          0&0&0&\vdots&0\\
+          0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      dan penyelesaian tak trivialnya bisa kita pilih $v_1=v_2=0$ dan $v_3=1$ sehingga Didapatkan
+      \begin{equation*}
+        \mathbf{v_2}=\begin{pmatrix}
+          0\\0\\1
+        \end{pmatrix}
+      \end{equation*}
+      \item Penyelesaian yang bebas linear dari $\lambda=2$ adalah
+      \begin{align*}
+        \mathbf{y_1}&=\begin{pmatrix}
+          1\\0\\-2
+        \end{pmatrix}e^{2t}\\
+        \mathbf{y_2}&=\begin{pmatrix}
+          0\\1\\-3
+        \end{pmatrix}e^{2t}\\
+        \mathbf{y_3}&=\begin{pmatrix}
+          1\\-2\\4
+        \end{pmatrix}te^{2t}+\begin{pmatrix}
+          0\\0\\1
+        \end{pmatrix}e^{2t}
+      \end{align*}
+      \item Karena tak ada nilai eigen lainnya, maka satu satunya penyelesaian adalah
+      \begin{equation*}
+        \mathbf{y_\lambda}=c_1\mathbf{y_1}+c_2\mathbf{y_2}+c_3\mathbf{y_3}
+      \end{equation*}
+      \item Jadi penyelesaian umum dari sistem \eqref{eq:contoh_3} adalah
+      \begin{equation}\label{eq:contoh_3_penyelesaian_umum}
+        \begin{split}
+          x_1&=c_1e^{2t}+c_3te^{2t}\\
+          x_2&=c_2e^{2t}-2c_3te^{2t}\\
+          x_3&=-2c_1e^{2t}-3c_2e^{2t}+(4t+1)c_3e^{2t}
+        \end{split}
+      \end{equation}
+    \end{enumerate}
+    Subtitusikan nilai awal pada \eqref{eq:contoh_3_penyelesaian_umum}, akibatnya didapatkan sebuah SPL
+    \begin{equation*}
+      \begin{split}
+        c_1&=1\\
+        c_2&=3\\
+        -2c_1-3c_2+c_3&=2
+      \end{split}
+    \end{equation*}
+    Maka diperoleh $c_1=1,c_2=3,c_3=13$ sehingga penyelesaian khusus dari \eqref{eq:contoh_3} adalah
+    \begin{equation*}
+      \begin{split}
+        x_1&=e^{2t}+13te^{2t}\\
+        x_2&=3e^{2t}-26te^{2t}\\
+        x_3&=-2e^{2t}-9e^{2t}+13(4t+1)e^{2t}
+      \end{split}
+    \end{equation*}
+  \end{contoh}
+  \newpage
+  \noindent Untuk memperdalam pemahaman Anda mengenai pengertian sistem PD linear homogen dimensi-$n$ dan penyelesaiannya, kerjakanlah latihan berikut!
+  \begin{enumerate}
+    \item Tinjau sistem PD linear homogen berikut
+    \begin{equation*}
+      \mathbf{y'}=\begin{pmatrix}
+        11&6&18\\
+        9&8&18\\
+        -9&-6&-16
+      \end{pmatrix}\mathbf{y}
+    \end{equation*}
+    \begin{enumerate}
+      \item Tentukan multiplisitas aljabar dan geometri untuk setiap nilai eigen dari sistem.
+      \item Dari poin (a), bagaimana bentuk penyelesaian umum dari sistem tersebut?
+    \end{enumerate}
+    \item Diberikan sistem PD linear homogen berikut
+    \begin{align*}
+      \begin{cases}
+        \dfrac{dx}{dt}&=4x+6y-z\\
+        \dfrac{dy}{dt}&=-x-2y+z\\
+        \dfrac{dz}{dt}&=-2x-8y+4z
+      \end{cases}
+    \end{align*}
+    \begin{enumerate}
+      \item Tentukan penyelesaian umum dari sistem tersebut.
+      \item Jika diberikan kondisi awal $x(0)=0,\,y(0)=12,\,z(0)=6$, tentukan penyelesaian khususnya.
+    \end{enumerate}
+    \item Diberikan sistem PD linear homogen berikut
+    \begin{align*}
+      \mathbf{y'}&=\begin{pmatrix}
+        2&2&-3\\
+        5&1&-5\\
+        -3&4&0
+      \end{pmatrix}\mathbf{y}
+    \end{align*}
+    Buktikan bahwa $\mathbf{y_3}=\left(\begin{pmatrix}
+      1\\1\\1
+    \end{pmatrix}\dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+      1\\2\\0
+    \end{pmatrix}t+\dfrac{1}{50}\begin{pmatrix}
+      4\\3\\0
+    \end{pmatrix}\right)e^{t}$ adalah penyelesaian dari sistem tersebut.
+    
+    \item Tentukan penyelesaian umum untuk
+    \begin{equation*}
+      \mathbf{x'}=\begin{pmatrix}
+        1&3&1&2\\
+        0&1&2&4\\
+        0&0&1&0\\
+        0&0&0&1
+      \end{pmatrix}\mathbf{x}
+    \end{equation*}
+    \item Diberikan sebuah sistem sebagai berikut
+    \begin{align*}
+      \begin{cases}
+        \dfrac{d^2y_1}{dt^2}&=-2y_1+2y_2\\
+        \dfrac{d^2y_2}{dt^2}&=4y_1-4y_2
+      \end{cases}
+    \end{align*}
+    Tentukan penyelesaian umum dari sistem tersebut.
+  \end{enumerate}
+  \newpage
+  \underline{JAWABAN}
+  \begin{enumerate}
+    \item \begin{enumerate}
+      \item Polinomial karakteristik untuk matriks koefisien adalah
+      \begin{align*}
+        \begin{vmatrix}
+          11-\lambda&6&18\\
+          9&8-\lambda&18\\
+          -9&-6&-16-\lambda
+        \end{vmatrix}&=\lambda^3+3\lambda^2-4=(\lambda+1)(\lambda-2)^2
+      \end{align*}
+      Sehingga nilai eigen $\lambda_1=-1$ dan $\lambda_2=2$ dengan multiplisitas aljabar masing-masing 1 dan 2.
+      \begin{itemize}
+        \item Vektor eigen dari $\lambda_1=-1$ dapat dicari dengan menyelesaikan $(A+I)\mathbf{x}=\mathbf{0}$.
+        \begin{equation*}
+          \begin{pmatrix}
+            12&6&18&\vdots&0\\
+            9&9&18&\vdots&0\\
+            -9&-6&-15&\vdots&0
+          \end{pmatrix}\sim
+          \begin{pmatrix}
+            1&0&1&\vdots&0\\
+            0&1&1&\vdots&0\\
+            0&0&0&\vdots&0
+          \end{pmatrix}
+        \end{equation*}
+        Maka diperoleh $x_1=-x_3$ dan $x_2=-x_3$. Ambil $x_3=-1$ sehingga
+        \begin{equation*}
+          \mathbf{x_1}=\begin{pmatrix}
+            1\\1\\-1
+          \end{pmatrix}
+        \end{equation*}
+        merupakan vektor eigen dari $\lambda_1=-1$.
+        \item Vektor eigen dari $\lambda_2=2$ dapat dicari dengan menyelesaikan $(A-2I)\mathbf{x}=\mathbf{0}$.
+        \begin{equation*}
+          \begin{pmatrix}
+            9&6&18&\vdots&0\\
+            9&6&18&\vdots&0\\
+            -9&-6&-18&\vdots&0
+          \end{pmatrix}\sim
+          \begin{pmatrix}
+            3&2&6&\vdots&0\\
+            0&0&0&\vdots&0\\
+            0&0&0&\vdots&0
+          \end{pmatrix}
+        \end{equation*}
+        Dengan memisalkan $x_2$ dan $x_3$ sebagai variabel bebas, maka diperoleh $x_1=-\frac{2}{3}x_2-2x_3$. Dapat kita tulis
+        \begin{align*}
+          \begin{pmatrix}
+            x_1\\x_2\\x_3
+          \end{pmatrix}=\begin{pmatrix}
+            -\frac{2}{3}x_2-2x_3\\x_2\\x_3
+          \end{pmatrix}=x_2\begin{pmatrix}
+            -\frac{2}{3}\\1\\0
+          \end{pmatrix}+x_3\begin{pmatrix}
+            -2\\0\\1
+          \end{pmatrix}
+        \end{align*}
+        Dapat dipilih $x_2=3$ dan $x_3=1$, sehingga kita mempunyai dua vektor eigen dari $\lambda_2=2$ yaitu
+        \begin{equation*}
+          \mathbf{x_2}=\begin{pmatrix}
+            -2\\3\\0
+          \end{pmatrix}\quad\text{dan}\quad
+          \mathbf{x_3}=\begin{pmatrix}
+            -2\\0\\1
+          \end{pmatrix}
+        \end{equation*}
+      \end{itemize}
+      Dari definisi multiplisitas aljabar dan geometri, kita dapat menyimpulkan bahwa
+      \begin{itemize}
+        \item $\lambda_1=-1$ memiliki multiplisitas aljabar 1 dan multiplisitas geometri 1.
+        \item $\lambda_2=2$ memiliki multiplisitas aljabar 2 dan multiplisitas geometri 2.
+      \end{itemize}
+      \item Karena multiplisitas aljabar dan geometrinya sama untuk setiap nilai eigen, maka berdasarkan Teorema \ref{thm:multiplisitas_geometri_sama} dapat disimpulkan bahwa penyelesaian umum sistem adalah
+      \begin{equation*}
+        \mathbf{y}=c_1\begin{pmatrix}
+          1\\1\\-1
+        \end{pmatrix}e^{-t}+c_2\begin{pmatrix}
+          -2\\3\\0
+        \end{pmatrix}e^{2t}+c_3\begin{pmatrix}
+          -2\\0\\1
+        \end{pmatrix}e^{2t}
+      \end{equation*}
+    \end{enumerate}
+    \item \begin{enumerate}
+      \item Pertama kita perlu mengubah sistem tersebut kedalam bentuk matriks, yaitu
+      \begin{equation*}
+        \mathbf{y'}=\begin{pmatrix}
+          4&6&-1\\
+          -1&-2&1\\
+          -2&-8&4
+        \end{pmatrix}\mathbf{y}
+      \end{equation*}
+      Selanjutnya polinomial karakteristik dari matriks adalah $\det(A-\lambda I)=-(\lambda-2)^3$. Kemudian bisa kita dapatkan vektor eigen dengan menyelesaikan $(A-2I)\mathbf{x}=\mathbf{0}$.
+      \begin{align*}
+        \begin{pmatrix}
+          2&6&-1&\vdots&0\\
+          -1&-4&1&\vdots&0\\
+          -2&-8&2&\vdots&0
+        \end{pmatrix}&\sim
+        \begin{pmatrix}
+          1&0&1&\vdots&0\\
+          0&2&-1&\vdots&0\\
+          0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{align*}
+      Maka diperoleh $x_1=-x_3$ dan $x_2=\frac{1}{2}x_3$. Ambil $x_3=2$ sehingga didapatkan vektor eigen
+      \begin{equation*}
+        \mathbf{x_1}=\begin{pmatrix}
+          -2\\1\\2
+        \end{pmatrix}
+      \end{equation*}
+      Terlihat bahwa matriks tersebut \textit{defective} karena hanya memiliki satu vektor eigen. Oleh sebabnya, akan digunakan Algoritma \ref{algoritma} untuk menyelesaikannya.
+      \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+        \item Karena hanya ada satu nilai eigen, maka lewati langkah ini.
+        \item Nilai eigen $\lambda=2$ memiliki multiplisitas aljabar 3 dan multiplisitas geometri 1.
+        \item $\mathbf{x_1}=\begin{pmatrix}
+          -2\\1\\2
+        \end{pmatrix}$ adalah vektor eigen dari $\lambda=2$.
+        \item Dapat dipilih $\alpha_1=1$ dan pastilah
+        \begin{equation*}
+          (A-2I)\mathbf{v_2}=\mathbf{x_1}
+        \end{equation*}
+        mempunyai penyelesaian.
+        \item Nyatakan $\mathbf{v_1}=\mathbf{x_1}$
+        \item Kemudian diperoleh
+        \begin{align*}
+          \begin{pmatrix}
+            2&6&-1&\vdots&-2\\
+            -1&-4&1&\vdots&1\\
+            -2&-8&2&\vdots&2
+          \end{pmatrix}&\sim
+          \begin{pmatrix}
+            1&0&1&\vdots&-1\\
+            0&2&-1&\vdots&0\\
+            0&0&0&\vdots&0
+          \end{pmatrix}
+        \end{align*}
+        Maka diperoleh $v_1=-1-v_3$ dan $v_2=\frac{1}{2}v_3$ dengan $v_3$ bebas. Untuk $v_3=2$ diperoleh
+        \begin{equation*}
+          \mathbf{v_2}=\begin{pmatrix}
+            -3\\1\\2
+          \end{pmatrix}
+        \end{equation*}
+        Dilanjutkan dengan mencari $\mathbf{v_3}$ dengan $(A-2I)\mathbf{v_3}=\mathbf{v_2}$, sehingga
+        \begin{align*}
+          \begin{pmatrix}
+            2&6&-1&\vdots&-3\\
+            -1&-4&1&\vdots&1\\
+            -2&-8&2&\vdots&2
+          \end{pmatrix}&\sim
+          \begin{pmatrix}
+            1&0&1&\vdots&-3\\
+            0&2&-1&\vdots&1\\
+            0&0&0&\vdots&0
+          \end{pmatrix}
+        \end{align*}
+        Maka diperoleh $v_1=-3-v_3$ dan $v_2=\frac{1}{2}v_3+\frac{1}{2}$ dengan $v_3$ bebas. Untuk $v_3=1$ diperoleh
+        \begin{equation*}
+          \mathbf{v_3}=\begin{pmatrix}
+            -4\\1\\1
+          \end{pmatrix}
+        \end{equation*}
+        \item Penyelesaian yang bebas linear dari $\lambda=2$ adalah
+        \begin{align*}
+          \mathbf{y_1}&=\begin{pmatrix}
+            -2\\1\\2
+          \end{pmatrix}e^{2t}\\
+          \mathbf{y_2}&=\begin{pmatrix}
+            -2\\-1\\2
+          \end{pmatrix}te^{2t}+\begin{pmatrix}
+            -3\\1\\2
+          \end{pmatrix}e^{2t}\\
+          \mathbf{y_3}&=\begin{pmatrix}
+            -2\\-1\\2
+          \end{pmatrix}\frac{t^2}{2}e^{2t}+\begin{pmatrix}
+            -3\\1\\2
+          \end{pmatrix}te^{2t}+\begin{pmatrix}
+            -4\\1\\1
+          \end{pmatrix}e^{2t}
+        \end{align*}
+        \item Penyelesaian satu-satunya dari sistem adalah
+        \begin{equation*}
+          \mathbf{y}=c_1\mathbf{y_1}+c_2\mathbf{y_2}+c_3\mathbf{y_3}
+        \end{equation*}
+        \item Terakhir ubah persamaan dalam bentuk variabel $x,y,z$, sehingga diperoleh
+        \begin{align*}
+          x&=-2c_1e^{2t}+c_2\left(-2t-3\right)e^{2t}+c_3\left(-t^2-3t-4\right)e^{2t}\\
+          y&=c_1e^{2t}+c_2\left(-t+1\right)e^{2t}+c_3\left(-\frac{t^2}{2}+t+1\right)e^{2t}\\
+          z&=2c_1e^{2t}+c_2\left(2t+2\right)e^{2t}+c_3\left(t^2+2t+1\right)e^{2t}
+        \end{align*}
+      \end{enumerate}
+      \item Subtitusikan $t=0$ pada penyelesaian umum, sehingga diperoleh
+      \begin{equation*}
+        \begin{split}
+          -2c_1-3c_2-4c_3&=0\\
+          c_1+c_2+c_3&=12\\
+          2c_1+2c_2+c_3&=6
+        \end{split}
+      \end{equation*}
+      Dapat dicek bahwa $c_1=54,c_2=-60,c_3=18$ adalah solusi dari SPL tersebut. Maka penyelesaian khusus dari sistem tersebut adalah
+      \begin{align*}
+        x&=-108e^{2t}+(-2t-3)-60e^{2t}+18(-t^2-3t-4)e^{2t}\\
+        y&=54e^{2t}+(-t+1)-60e^{2t}+18(-\frac{t^2}{2}+t+1)e^{2t}\\
+        z&=108e^{2t}+(2t+2)-60e^{2t}+18(t^2+2t+1)e^{2t}
+      \end{align*}
+    \end{enumerate}
+    \item Untuk membuktikan bahwa $\mathbf{y_3}$ adalah penyelesaian dari sistem, maka cukup subtitusikan saja kedalam persamaan sistem.
+    \begin{itemize}
+      \item Ruas Kiri:
+      \begin{align*}
+        \mathbf{y_3'}&=\left(\begin{pmatrix}
+          1\\1\\1
+        \end{pmatrix}\dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+          1\\2\\0
+        \end{pmatrix}t+\dfrac{1}{50}\begin{pmatrix}
+          4\\3\\0
+        \end{pmatrix}\right)e^{t}+\left(\begin{pmatrix}
+          1\\1\\1
+        \end{pmatrix}t+\dfrac{1}{5}\begin{pmatrix}
+          1\\2\\0
+        \end{pmatrix}\right)e^{t}\\
+        &=\left(
+          \begin{pmatrix}
+            1\\1\\1
+          \end{pmatrix}
+          \dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+            6\\7\\5
+          \end{pmatrix}+\dfrac{1}{50}\begin{pmatrix}
+            14\\23\\0
+          \end{pmatrix}
+        \right)e^t
+      \end{align*}
+      \item Ruas Kanan:
+      \begin{align*}
+        A\mathbf{y_3}&=\begin{pmatrix}
+          2&2&-3\\
+          5&1&-5\\
+          -3&4&0
+        \end{pmatrix}\left(\begin{pmatrix}
+          1\\1\\1
+        \end{pmatrix}\dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+          1\\2\\0
+        \end{pmatrix}t+\dfrac{1}{50}\begin{pmatrix}
+          4\\3\\0
+        \end{pmatrix}\right)e^{t}\\
+        &=\left[\begin{pmatrix}
+          2&2&-3\\
+          5&1&-5\\
+          -3&4&0
+        \end{pmatrix}
+          \begin{pmatrix}
+            1\\1\\1
+          \end{pmatrix}
+          \dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+            2&2&-3\\
+            5&1&-5\\
+            -3&4&0
+          \end{pmatrix}\begin{pmatrix}
+            1\\2\\0
+          \end{pmatrix}+\dfrac{1}{50}\begin{pmatrix}
+            2&2&-3\\
+            5&1&-5\\
+            -3&4&0
+          \end{pmatrix}\begin{pmatrix}
+            4\\3\\0
+          \end{pmatrix}\right]e^t\\
+          &=\left[\begin{pmatrix}
+            2+2+-3\\
+            5+1-5\\
+            -3+4+0
+          \end{pmatrix}
+          \dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+            2+4+0\\
+            5+2+0\\
+            -3+8+0
+          \end{pmatrix}+\dfrac{1}{25}\begin{pmatrix}
+            8+6+0\\
+            20+3-0\\
+            -12-12+0
+          \end{pmatrix}\right]e^t\\
+          &=\left(
+          \begin{pmatrix}
+            1\\1\\1
+          \end{pmatrix}
+          \dfrac{t^2}{2}+\dfrac{1}{5}\begin{pmatrix}
+            6\\7\\5
+          \end{pmatrix}+\dfrac{1}{50}\begin{pmatrix}
+            14\\23\\0
+          \end{pmatrix}
+        \right)e^t
+      \end{align*}
+    \end{itemize}
+    Karena ruas kiri sama dengan ruas kanan, maka $\mathbf{y_3}$ adalah penyelesaian dari sistem tersebut.
+    \item Karena matriks diatas merupakan matriks segitiga atas, maka dengan mudah kita dapatkan bahwa nilai eigennya adalah entri-entri pada diagonal utamanya, yaitu $\lambda=1$ dengan multiplisitas aljabar 4. 
+    
+    Setelah menyelesaikan $(A-I)\mathbf{x}=\mathbf{0}$, diperoleh bahwa hanya terdapat dua vektor eigen yaitu
+    \begin{equation*}
+      \mathbf{x_1}=\begin{pmatrix}
+        1\\0\\0\\0
+      \end{pmatrix}\quad\text{dan}\quad
+      \mathbf{x_2}=\begin{pmatrix}
+        0\\0\\-2\\1
+      \end{pmatrix}
+    \end{equation*}
+    Dapat disimpulkan bahwa matriks ini \textit{defektiv} sehingga perlu menggunakan Algoritma \ref{algoritma} untuk menyelesaikannya.
+    \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+      \item Karena hanya ada satu nilai eigen, maka lewati langkah ini.
+      \item Nilai eigen $\lambda=1$ memiliki multiplisitas aljabar 4 dan multiplisitas geometri 2.
+      \item $\{\mathbf{x_1},\mathbf{x_2}\}$ adalah vektor eigen dari $\lambda=1$.
+      \item Tinjau bahwa
+      \begin{equation*}
+        \begin{pmatrix}
+          0&3&1&2&\vdots&\alpha_1\\
+          0&0&2&4&\vdots&0\\
+          0&0&0&0&\vdots&-2\alpha_2\\
+          0&0&0&0&\vdots&\alpha_2
+        \end{pmatrix}
+      \end{equation*}
+      mempunyai penyelesaian ketika $\alpha_2=0$ dan untuk $\alpha_1$ bisa dipilih bebas, misal $\alpha_1=3$.
+
+      \item Didapat $\mathbf{v_1}=\begin{pmatrix}
+        3\\0\\0\\0
+      \end{pmatrix}$
+      \item Dari informasi sebelumnya, kita dapatkan
+      \begin{equation*}
+        \begin{pmatrix}
+          0&3&1&2&\vdots&3\\
+          0&0&2&4&\vdots&0\\
+          0&0&0&0&\vdots&0\\
+          0&0&0&0&\vdots&0
+        \end{pmatrix}\sim
+        \begin{pmatrix}
+          0&1&0&0&\vdots&1\\
+          0&0&1&2&\vdots&0\\
+          0&0&0&0&\vdots&0\\
+          0&0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      Agar dapat konsisten dengan vektor selanjutnya, maka haruslah $v_3=v_4=0$. Didapat $v_2=1$ dan dapat dipilih $v_1=2$, sehingga
+      \begin{equation*}
+        \mathbf{v_2}=\begin{pmatrix}
+          2\\1\\0\\0
+        \end{pmatrix}
+      \end{equation*}
+      Selanjutnya kita cari $\mathbf{v_3}$ dengan $(A-I)\mathbf{v_3}=\mathbf{v_2}$, sehingga
+      \begin{equation*}
+        \begin{pmatrix}
+          0&3&1&2&\vdots&2\\
+          0&0&2&4&\vdots&1\\
+          0&0&0&0&\vdots&0\\
+          0&0&0&0&\vdots&0
+        \end{pmatrix}\sim
+        \begin{pmatrix}
+          0&1&0&0&\vdots&\frac{1}{2}\\
+          0&0&1&2&\vdots&\frac{1}{2}\\
+          0&0&0&0&\vdots&0\\
+          0&0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{equation*}
+      Didapat $v_2=\frac{1}{2},\,v_3=\frac{1}{2}-2v_3$ dan $v_1,v_4$ bebas. Dapat dipilih $v_1=v_4=1$, sehingga
+      \begin{equation*}
+        \mathbf{v_3}=\frac{1}{2}\begin{pmatrix}
+          2\\1\\-3\\2
+        \end{pmatrix}
+      \end{equation*}
+      \item Penyelesaian yang bebas linear dari $\lambda=1$ adalah
+      \begin{align*}
+        \mathbf{y_1}&=\begin{pmatrix}
+          1\\0\\0\\0
+        \end{pmatrix}e^{t}\\
+        \mathbf{y_2}&=\begin{pmatrix}
+          0\\0\\-2\\1
+        \end{pmatrix}e^{t}\\
+        \mathbf{y_3}&=\begin{pmatrix}
+          2\\1\\0\\0
+        \end{pmatrix}e^{t}+\begin{pmatrix}
+          3\\0\\0\\0
+        \end{pmatrix}te^{t}\\
+        \mathbf{y_4}&=\frac{1}{2}\begin{pmatrix}
+          2\\1\\-3\\2
+        \end{pmatrix}e^{t}+\begin{pmatrix}
+          2\\1\\0\\0
+        \end{pmatrix}te^{t}+\begin{pmatrix}
+          3\\0\\0\\0
+        \end{pmatrix}\frac{t^2}{2}e^{t}
+      \end{align*}
+      \item Nyatakan penyelesaian dalam bentuk
+      \begin{equation*}
+        \mathbf{y_{\lambda}}=c_1\mathbf{y_1}+c_2\mathbf{y_2}+c_3\mathbf{y_3}+c_4\mathbf{y_4}
+      \end{equation*}
+      \item Yang terakhir, penyelesaian umum dari sistem adalah
+      \begin{equation*}
+        \begin{split}
+          \mathbf{y}&=c_1\begin{pmatrix}
+            1\\0\\0\\0
+          \end{pmatrix}e^{t}+c_2\begin{pmatrix}
+            0\\0\\-2\\1
+          \end{pmatrix}e^{t}+c_3\left(\begin{pmatrix}
+            2\\1\\0\\0
+          \end{pmatrix}e^{t}+\begin{pmatrix}
+            3\\0\\0\\0
+          \end{pmatrix}te^{t}\right)\\
+          &+c_4\left(\frac{1}{2}\begin{pmatrix}
+            2\\1\\-3\\2
+          \end{pmatrix}e^{t}+\begin{pmatrix}
+            2\\1\\0\\0
+          \end{pmatrix}te^{t}+\begin{pmatrix}
+            3\\0\\0\\0
+          \end{pmatrix}\frac{t^2}{2}e^{t}\right)
+        \end{split}
+      \end{equation*}
+    \end{enumerate}
+    \item Ubah sistem orde 2 tersebut dengan permisalan sebagai berikut
+    \begin{align*}
+      x_1'=y_1'=x_3\\
+      x_2'=y_2'=x_4\\
+      x_3'=y_1''=-2y_1+2y_2\\
+      x_4'=y_2''=4y_1-4y_2
+    \end{align*}
+    Sehingga diperoleh sebuah sistem yang melibatkan matriks $4\times 4$ sebagai berikut
+    \begin{equation*}
+      \begin{pmatrix}
+        x_1'\\x_2'\\x_3'\\x_4'
+      \end{pmatrix}=\begin{pmatrix}
+        0&0&1&0\\
+        0&0&0&1\\
+        -2&2&0&0\\
+        4&-4&0&0
+      \end{pmatrix}\begin{pmatrix}
+        x_1\\x_2\\x_3\\x_4
+      \end{pmatrix}
+    \end{equation*}
+    Dapat dicek bahwa akan didapatkan persamaan karakteristik $\det(A-\lambda I)=\lambda^2(\lambda^2+6)$, sehingga nilai eigennya adalah $\lambda=0$ dan $\lambda=\pm\sqrt{6}i$.
+
+    Sekarang kita perhatikan terlebih dahulu nilai eigen $\lambda=0$ yang mempunyai multiplisitas aljabar 2. Dengan menyelesaikan $(A-0I)\mathbf{z}=\mathbf{0}$, diperoleh bahwa vektor eigen dari $\lambda=0$ adalah
+    \begin{equation*}
+      \mathbf{z_1}=\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}
+    \end{equation*}
+    Artinya matriks ini \textit{defektif} dan perlu menggunakan Algoritma \ref{algoritma} untuk menyelesaikannya.
+    \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
+      \item Terdapat nilai eigen lainnya, yaitu $\lambda=\pm\sqrt{6}i$ yang merupakan bilangan kompleks sehingga kita akan gunakan metode yang ada pada KB 2.
+      
+      Pertama-tama kita cari vektor eigennya dengan menyelesaikan $(A-\sqrt{6}iI)\mathbf{z}=\mathbf{0}$. Kemudian dapat dicek bahwa akan diperoleh vektor eigen
+      \begin{equation*}
+        \bfxi=\begin{pmatrix}
+          i\sqrt{6}\\-2\sqrt{6}i\\-6\\12
+        \end{pmatrix}= \underbrace{\begin{pmatrix}
+          0\\0\\-6\\12
+        \end{pmatrix}}_\mathbf{u}+i\underbrace{\begin{pmatrix}
+          \sqrt{6}\\-2\sqrt{6}\\0\\0
+        \end{pmatrix}}_\mathbf{v}
+      \end{equation*}
+      Jadi solusi untuk $\lambda=\pm\sqrt{6}i$ adalah
+      \begin{align*}
+        \mathbf{z_1}=\begin{pmatrix}
+          -\sqrt{6}\sin(\sqrt{6}t)\\2\sqrt{6}\sin(\sqrt{6}t)\\-6\cos(\sqrt{6}t)\\12\cos(\sqrt{6}t)
+        \end{pmatrix}\quad\text{dan}\quad
+        \mathbf{z_2}=\begin{pmatrix}
+          \sqrt{6}\cos(\sqrt{6}t)\\-2\sqrt{6}\cos(\sqrt{6}t)\\6\sin(\sqrt{6}t)\\-12\sin(\sqrt{6}t)
+        \end{pmatrix}
+      \end{align*}
+      atau kombinasi linear dari keduanya, yaitu
+      \begin{equation*}
+        \mathbf{x_{\pm i\sqrt{6}}}=c_1\begin{pmatrix}
+          -\sqrt{6}\sin(\sqrt{6}t)\\2\sqrt{6}\sin(\sqrt{6}t)\\-6\cos(\sqrt{6}t)\\12\cos(\sqrt{6}t)
+        \end{pmatrix}+c_2\begin{pmatrix}
+          \sqrt{6}\cos(\sqrt{6}t)\\-2\sqrt{6}\cos(\sqrt{6}t)\\6\sin(\sqrt{6}t)\\-12\sin(\sqrt{6}t)
+        \end{pmatrix}
+      \end{equation*}
+      \item $\lambda=0$ memiliki multiplisitas aljabar 2 dan multiplisitas geometri 1.
+      \item $\mathbf{z_1}=\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}$ adalah vektor eigen dari $\lambda=0$.
+      \item Dapat dipilih $\alpha_1=1$ dan pastilah
+      \begin{equation*}
+        (A-0I)\mathbf{v_2}=\mathbf{z_1}
+      \end{equation*}
+      mempunyai penyelesaian.
+      \item Nyatakan $\mathbf{v_1}=\mathbf{z_1}$
+      \item Kemudian diperoleh
+      \begin{align*}
+        \begin{pmatrix}
+          0&0&1&0&\vdots&1\\
+          0&0&0&1&\vdots&1\\
+          -2&2&0&0&\vdots&0\\
+          4&-4&0&0&\vdots&0
+        \end{pmatrix}&\sim
+        \begin{pmatrix}
+          1&-1&0&0&\vdots&0\\
+          0&0&1&0&\vdots&1\\
+          0&0&0&1&\vdots&1\\
+          0&0&0&0&\vdots&0
+        \end{pmatrix}
+      \end{align*}
+      Maka didapatkan $v_1=v_2$ dan $v_3=v_4=1$, sehingga untuk $v_2=1$ diperoleh
+      \begin{equation*}
+        \mathbf{v_2}=\begin{pmatrix}
+          1\\1\\1\\1
+        \end{pmatrix}
+      \end{equation*}
+      \item Penyelesaian yang bebas linear dari $\lambda=0$ adalah
+      \begin{align*}
+        \mathbf{z_2}=\begin{pmatrix}
+          1\\1\\0\\0
+        \end{pmatrix}\quad\text{dan}\quad
+        \mathbf{z_3}=\begin{pmatrix}
+          1\\1\\1\\1
+        \end{pmatrix}+\begin{pmatrix}
+          1\\1\\0\\0
+        \end{pmatrix}t
+      \end{align*}
+      \item Kombinasi linear untuk penyelesaian $\lambda=0$ adalah
+      \begin{equation*}
+        \mathbf{x_0}=c_1\begin{pmatrix}
+          1\\1\\0\\0
+        \end{pmatrix}+c_2\left(\begin{pmatrix}
+          1\\1\\1\\1
+        \end{pmatrix}+\begin{pmatrix}
+          1\\1\\0\\0
+        \end{pmatrix}t\right)
+      \end{equation*}
+      \item Jadi penyelesaian umum dari sistem adalah
+      \begin{equation*}
+        \begin{split}
+          \mathbf{x}&=c_1\begin{pmatrix}
+            1\\1\\0\\0
+          \end{pmatrix}+c_2\left(\begin{pmatrix}
+            1\\1\\1\\1
+          \end{pmatrix}+\begin{pmatrix}
+            1\\1\\0\\0
+          \end{pmatrix}t\right)
+          +c_3\begin{pmatrix}
+            -\sqrt{6}\sin(\sqrt{6}t)\\2\sqrt{6}\sin(\sqrt{6}t)\\-6\cos(\sqrt{6}t)\\12\cos(\sqrt{6}t)
+          \end{pmatrix}
+          +c_4\begin{pmatrix}
+            \sqrt{6}\cos(\sqrt{6}t)\\-2\sqrt{6}\cos(\sqrt{6}t)\\6\sin(\sqrt{6}t)\\-12\sin(\sqrt{6}t)
+          \end{pmatrix}
+        \end{split}
+      \end{equation*}
+    \end{enumerate}
+    Kembali ke permintaan pada soal, kita hanya perlu menyebutkan penyelesaian untuk $y_1$ dan $y_2$. Sehingga cukup dengan 2 baris pertama dari penyelesaian umum diatas.
+    \begin{align*}
+      y_1&=c_1+c_2(1+t)-c_3\sqrt{6}\sin(\sqrt{6}t)+c_4\sqrt{6}\cos(\sqrt{6}t)\\
+      y_2&=c_1+c_2(1+t)+c_3(2\sqrt{6}\sin(\sqrt{6}t))-c_4(2\sqrt{6}\cos(\sqrt{6}t)).
+    \end{align*}
+  \end{enumerate}
+  \newpage
+  \section*{RANGKUMAN}
+  \begin{itemize}
+    \item Jika sebuah sistem PD linear dimensi-$n$ memiliki beberapa nilai eigen kembar namun banyaknya vektor eigen yang bebas linear sama seperti dimensi matriksnya, maka penyelesaian untuk sistem tersebut berbentuk
+    \begin{equation*}
+      \mathbf{y}=c_1\mathbf{y_1}e^{\lambda_1 t}+c_2\mathbf{y_2}te^{\lambda_2 t}+\cdots+c_n\mathbf{y_n}t^{n-1}e^{\lambda_n t}
+    \end{equation*}
+    dengan $\{\lambda_1,\lambda_2,\ldots,\lambda_n\}$ adalah nilai eigen yang tidak semuanya berbeda dan $\{\mathbf{y_1},\mathbf{y_2},\ldots,\mathbf{y_n}\}$ adalah vektor eigen yang berkorespondensi.
+    \item Jika sebuah matriks dikatakan \textit{defektif}, maka diperlukan metode generalisasi vektor eigen untuk menentukan vektor eigen sebanyaknya kurangnya dari matriks tersebut.
+    \item Misalkan nilai eigen $\lambda$ memiliki multiplisitas aljabar $m$ dan multiplisitas geometri $k$, maka $m-k$ penyelesaian yang lain dapat dicari menggunakan rumus
+    \begin{equation*}
+      y_{i}=e^{\lambda t}\left(\sum_{j=1}^{i} \mathbf{v_{j}}\frac{t^{i-j}}{(i-j)!}\right)
+    \end{equation*}
+    untuk $i=1,2,\ldots,m-k$ dengan $\mathbf{v_{j}}$ didapatkan dari generalisasi vektor eigen.
+  \end{itemize}
+  \newpage
+  \section*{Tes Formatif}
+  \begin{enumerate}
+    \item Berikut yang merupakan kriteria matriks dapat langsung dikatakan \textit{defektif} adalah...
+    \begin{enumerate}
+      \item Matriks simetri ($A=A^T$)
+      \item Semua nilai eigennya sama/berulang
+      \item Multiplisitas aljabar lebih besar dari multiplisitas geometrinya
+      \item Multiplisitas geometri lebih besar dari multiplisitas aljabarnya
+    \end{enumerate}
+    \item Diberikan sistem PD dimensi-3 berikut
+    \begin{align*}
+      \mathbf{y'}&=\begin{pmatrix}
+        7&4&4\\
+        -6&-4&-7\\
+        -2&-1&2
+      \end{pmatrix}\mathbf{y}
+    \end{align*}
+    Salah satu penyelesaian dari sistem tersebut adalah...
+    \begin{enumerate}
+      \item $\mathbf{y}=e^{3t}\begin{pmatrix}
+        -1\\-t+3\\t-2
+      \end{pmatrix}$
+      \item $\mathbf{y}=te^{3t}\begin{pmatrix}
+        -1\\2\\0
+      \end{pmatrix}$
+      \item $\mathbf{y}=e^{t}\begin{pmatrix}
+        1\\1\\1
+      \end{pmatrix}$
+      \item $\mathbf{y}=e^{3t}\begin{pmatrix}
+        t^2-1\\-t+5\\t^2-4
+      \end{pmatrix}$
+    \end{enumerate}
+    \item Diberikan PD orde-3 berikut
+    \begin{equation*}
+      x'''-11x''+24x'+36x=0
+    \end{equation*}
+    Jika $x(0)=-11,\,x'(0)=16,$ dan $x''(0)=0$, maka solusi untuk $x'(t)$ adalah...
+    \begin{enumerate}
+      \item $x'(t)=(1-2t)e^{6t}-12e^{-t}$
+      \item $x'(t)=(4-12t)e^{6t}+12e^{-t}$
+      \item $x'(t)=(12-72t)e^{6t}-12e^{-t}$
+      \item $x'(t)=-432te^{6t}+12e^{-t}$
+    \end{enumerate}
+    \item Diberikan penyelesaian umum dari sebuah sistem PD dimensi-3 berikut:
+    \begin{align*}
+      \mathbf{y}&=c_1\begin{pmatrix}
+        1\\-2\\3
+      \end{pmatrix}e^{-t}+c_2\begin{pmatrix}
+        0\\4\\10
+      \end{pmatrix}e^{-t}+c_3\begin{pmatrix}
+        5\\0\\1
+      \end{pmatrix}e^{t}
+    \end{align*}
+    Pasangan konstanta $c_1,c_2,c_3$ sehingga penyelesaian khususnya $\mathbf{y}(1)=\begin{pmatrix}
+      9e^{-1}+10e\\-16e^{-1}\\32e^{-1}+2e
+    \end{pmatrix}$ adalah...
+    \begin{enumerate}
+      \item $c_1=9,c_2=\frac{1}{2},c_3=2$
+      \item $c_1=\frac{1}{2},c_2=3,c_3=\frac{3}{2}$
+      \item $c_1=4,c_2=0,c_3=1$
+      \item $c_1=3,c_2=4,c_3=0$
+    \end{enumerate}
+    \item Penyelesaian umum dari sistem
+    \begin{align*}
+      \begin{cases}
+        \dfrac{dx}{dt}=x+9y+9z\\
+        \dfrac{dy}{dt}=19y+18z\\
+        \dfrac{dz}{dt}=9y+10z
+      \end{cases}
+    \end{align*}
+    adalah...
+    \begin{enumerate}
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1\begin{pmatrix}
+        1\\3\\1
+      \end{pmatrix}e^{2t}+c_2\begin{pmatrix}
+        1\\1\\0
+      \end{pmatrix}e^{3t}+c_3\begin{pmatrix}
+        1\\0\\1
+      \end{pmatrix}e^{3t}$
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1\begin{pmatrix}
+        1\\0\\0
+      \end{pmatrix}e^{t}+c_2\begin{pmatrix}
+        0\\1\\-1
+      \end{pmatrix}e^{t}+c_3\begin{pmatrix}
+        1\\2\\1
+      \end{pmatrix}e^{28t}$
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1\begin{pmatrix}
+        1\\1\\1
+      \end{pmatrix}e^{t}+c_2\left(\begin{pmatrix}
+        1\\1\\1
+      \end{pmatrix}t+\begin{pmatrix}
+        1\\1\\0
+      \end{pmatrix}\right)e^{t}+c_3\begin{pmatrix}
+        1\\0\\1
+      \end{pmatrix}e^{28t}$
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1\begin{pmatrix}
+        1\\1\\-1
+      \end{pmatrix}e^{-2t}+c_2\begin{pmatrix}
+        1\\-1\\0
+      \end{pmatrix}e^{3t}+c_3\begin{pmatrix}
+        1\\0\\-1
+      \end{pmatrix}e^{3t}$
+    \end{enumerate}
+    \item Penyelesaian umum untuk
+    \begin{align*}
+      \mathbf{z'}=\begin{pmatrix}
+        2&1&0&9\\
+        6&-3&0&6\\
+        -4&-4&-3&-4\\
+        -2&-2&0&-1
+      \end{pmatrix}\mathbf{z}
+    \end{align*}
+    adalah...
+    \begin{enumerate}
+      \item $\mathbf{z}(t)=e^{-t}\begin{pmatrix}
+        -2\\-3\\2\\1
+      \end{pmatrix}+e^{-2t}\begin{pmatrix}
+        -3\\-6\\4\\2
+      \end{pmatrix}+e^{3t}\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}+e^{2t}\begin{pmatrix}
+        0\\0\\1\\0
+      \end{pmatrix}$
+      \item $\mathbf{z}(t)=e^{-t}\begin{pmatrix}
+        -2\\-3\\2\\1
+      \end{pmatrix}+e^{-t}\begin{pmatrix}
+        -3\\-6\\4\\2
+      \end{pmatrix}+e^{3t}\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}+e^{3t}\begin{pmatrix}
+        0\\0\\1\\0
+      \end{pmatrix}$
+      \item $\mathbf{z}(t)=e^{-t}\begin{pmatrix}
+        -2\\-3\\2\\1
+      \end{pmatrix}+e^{-2t}\begin{pmatrix}
+        -3\\-6\\4\\2
+      \end{pmatrix}+e^{3t}\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}+e^{3t}\begin{pmatrix}
+        0\\0\\1\\0
+      \end{pmatrix}$
+      \item $\mathbf{z}(t)=e^{-t}\begin{pmatrix}
+        -2\\-3\\2\\1
+      \end{pmatrix}+e^{-2t}\begin{pmatrix}
+        -3\\-6\\4\\2
+      \end{pmatrix}+e^{3t}\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}+e^{4t}\begin{pmatrix}
+        0\\0\\1\\0
+      \end{pmatrix}$
+    \end{enumerate}
+    
+    Perhatikan sistem PD berikut untuk menjawab soal nomor 7-10.
+    \begin{equation*}
+      \mathbf{x'}=\begin{pmatrix}
+        -2&0&1&-2\\
+        0&-2&1&-2\\
+        -2&2&-2&3\\
+        0&0&0&-2
+      \end{pmatrix}\mathbf{x}
+    \end{equation*}
+    \item Banyaknya nilai eigen yang berbeda dari matriks tersebut adalah...
+    \begin{enumerate}
+      \item 1
+      \item 2
+      \item 3
+      \item 4
+    \end{enumerate}
+    \item Total multiplisitas geometri dari matriks tersebut adalah...
+    \begin{enumerate}
+      \item 1
+      \item 2
+      \item 3
+      \item 4
+    \end{enumerate}
+    \item Salah satu penyelesaian dari sistem tersebut adalah...
+    \begin{enumerate}
+      \item $\mathbf{x}=te^{-2t}\begin{pmatrix}
+        1\\1\\0\\0
+      \end{pmatrix}$
+      \item $\mathbf{x}=te^{-2t}\begin{pmatrix}
+        3\\0\\4\\2
+      \end{pmatrix}$
+      \item $\mathbf{x}=e^{-2t}\begin{pmatrix}
+        6t\\3\\4t-1\\1
+      \end{pmatrix}$
+      \item $\mathbf{x}=e^{-2t}\begin{pmatrix}
+        6\\3\\4\\2
+      \end{pmatrix}$
+    \end{enumerate}
+    \item Penyelesaian umum dari sistem tersebut adalah...
+    \begin{enumerate}
+      \item $\mathbf{x}=e^{-2t}\begin{pmatrix}
+        1&3&t+2&{t^2}+2t+2\\
+        1&0&t+2&{t^2}+2t+1\\
+        0&4&1&t+4\\
+        0&2&0&1
+      \end{pmatrix}\begin{pmatrix}
+        c_1\\c_2\\c_3\\c_4
+      \end{pmatrix}$
+      \item $\mathbf{x}=e^{-2t}\begin{pmatrix}
+        1&3&t+2&\dfrac{{t^2}}{2}+t+2\\
+        1&0&t+2&\dfrac{{t^2}}{2}+t+1\\
+        0&4&1&t+4\\
+        0&2&0&1
+      \end{pmatrix}\begin{pmatrix}
+        c_1\\c_2\\c_3\\c_4
+      \end{pmatrix}$
+      \item $\mathbf{x}=e^{-2t}\begin{pmatrix}
+        1&3&t+2&t+2\\
+        1&0&t+2&t+1\\
+        0&4&1&t+4\\
+        0&2&0&1
+      \end{pmatrix}\begin{pmatrix}
+        c_1\\c_2\\c_3\\c_4
+      \end{pmatrix}$
+      \item $\mathbf{x}=e^{-2t}\begin{pmatrix}
+        1&3&t+2&\dfrac{{t^2}}{2}+2t+2\\
+        1&0&t+2&\dfrac{{t^2}}{2}+2t+1\\
+        0&4&1&t+4\\
+        0&2&0&1
+      \end{pmatrix}\begin{pmatrix}
+        c_1\\c_2\\c_3\\c_4
+      \end{pmatrix}$
+    \end{enumerate}
+  \end{enumerate}
+  \underline{KUNCI JAWABAN:}
+  \begin{enumerate}
+    \item C
+    \item A
+    \item B
+    \item A
+    \item B
+    \item C
+    \item A
+    \item B
+    \item D
+    \item D
+  \end{enumerate}
+\end{document}

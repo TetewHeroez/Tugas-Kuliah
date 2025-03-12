@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\section*{Contoh Ruang Metrik Lengkap}
+\noindent Buktikan bahwa Ruang Metrik dengan himpunan $[0,1]\times[0,1]$ dan fungsi 
+\[d(\mathbf{x},\mathbf{y})=\min\{1,\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}\},\quad \] 
+adalah ruang metrik lengkap.
+\begin{bukti}
+  Sebelumnya kita tahu bahwa jika $(X,l)$ merupakan ruang metrik, maka $(X,\min\{1,l\})$ juga merupakan ruang metrik. Sehingga dapat disimpulkan bahwa $([0,1]\times[0,1],d)$ adalah ruang metrik. 
+  
+  Selanjutnya misalkan barisan $(\mathbf{x}_n)_{n\in\N}=(x_n,y_n)$ adalah barisan Cauchy sehingga untuk setiap $\varepsilon>0$ terdapat $n,m>N$ yang berakibat
+  \[d(\mathbf{x}_n,\mathbf{x}_m)<\varepsilon\]
+  Perhatikan Teorema berikut
+  \begin{teorema}
+    Misalkan $(M, d)$ adalah ruang metrik lengkap, dan misalkan $X$ adalah subhimpunan dari $M$. Subruang $(X, d)$ adalah ruang metrik lengkap jika dan hanya jika $X$ adalah subhimpunan tertutup dari $M$.
+  \end{teorema}
+  Dari teorema di atas, dapat diingat bahwa $(\R^2,d)$ adalah ruang metrik lengkap dan $[0,1]\times[0,1]$ adalah subhimpunan tertutup dari $\R^2$. Sehingga $([0,1]\times[0,1],d)$ adalah ruang metrik lengkap.$\blacksquare$
+\end{bukti} 
+\end{document}
