@@ -22,62 +22,122 @@
 {\underline{\thmname{#1}\thmnumber{ #2}\thmnote{ #3}.}}
 
 \theoremstyle{definisi}
-\newtheorem{contoh}{Contoh}[subsection]
-\newtheorem{definisi}{Definisi}[subsection]
-\newtheorem{teorema}{Teorema}[subsection]
-\newtheorem{algoritma}{Algoritma}[subsection]
-\newtheorem{catatan}{Catatan}[subsection]
+\newtheorem{contoh}{Contoh}[section]
+\newtheorem{definisi}{Definisi}[section]
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{algoritma}{Algoritma}[section]
+\newtheorem{catatan}{Catatan}[section]
+\newtheorem{akibat}{Akibat}[section]
 
 \newcommand{\bfxi}{\boldsymbol{\xi}}
-\newcommand{\solusi}{\textbf{\underline{Penyelesaian:}}\\}
+\newcommand{\penyelesaian}{\textbf{\underline{Penyelesaian:}}\\}
 
 \numberwithin{equation}{section}
+\setcounter{equation}{3}
+\setcounter{catatan}{2}
+\setcounter{algoritma}{1}
+\setcounter{teorema}{1}
+\setcounter{definisi}{0}
+\setcounter{contoh}{6}
 \setcounter{section}{12}
-\setcounter{subsection}{2}
 
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 
 \begin{document}
+  Pada Kegiatan Belajar 2 kali ini akan dibahas mengenai penyelesaian sistem PD linear homogen dimensi-$n$ yang memiliki nilai eigen kompleks. Sebagai pengingat, bilangan kompleks biasanya ditulis dalam bentuk $z=x+iy$ dengan $x,y\in\R\text{ dan }i=\sqrt{-1}$. 
+
+  \begin{catatan}
+    Pada umumnya bilangan real juga merupakan bilangan kompleks ($\R\subseteq\C$). Namun pada Kegiatan Belajar ini, bilangan kompleks yang dimaksud adalah bilangan yang memiliki bagian imajiner tak nol ($z=x+iy,\,y\ne 0$).
+  \end{catatan}
+
+  Selanjutnya akan diberikan sebuah definisi sebagai pendahuluan terkait nilai eigen dan vektor eigen untuk bilangan kompleks.
+
+  \begin{definisi}\label{definisi_vektor_kompleks}
+    Vektor $\mathbf{u}$ dan $\mathbf{v}$ masing-masing disebut bagian real dan bagian imajiner dari sebuah vektor $\bfxi$ jika $\bfxi$ dapat ditulis sebagai $\mathbf{u} + i\mathbf{v}$. Disisi lain, $\overline{\bfxi} = \mathbf{u} - i\mathbf{v}$ disebut konjugat dari $\bfxi$.
+  \end{definisi}
+  \begin{akibat}\label{akibat_vektor_kompleks}
+    Jika $\bfxi=\mathbf{u}+i\mathbf{v}$ adalah vektor eigen yang berkoresponden dengan nilai eigen kompleks $\lambda=\alpha+i\beta$, maka $\overline{\bfxi}=\mathbf{u}-i\mathbf{v}$ adalah vektor eigen yang berkoresponden dengan nilai eigen konjugatnya yaitu $\overline{\lambda}=\alpha-i\beta$.
+  \end{akibat}
+
+  Definisi \ref{definisi_vektor_kompleks} dan Akibat \ref{akibat_vektor_kompleks} akan digunakan untuk memisalkan suatu vektor eigen yang berkoresponden dengan nilai eigen kompleks. Tinjau sistem (12.1), kemudian misalkan $\lambda=\alpha+i\beta$ dan $\bfxi=\mathbf{u}+i\mathbf{v}$ masing-masing adalah nilai eigen dan vektor eigen dari $A$, maka salah satu penyelesaian umumnya adalah
+  \begin{equation}\label{eq:umum_eigen_kompleks}
+    \mathbf{x}(t) = e^{\lambda t}\bfxi = e^{(\alpha+i\beta)t}(\mathbf{u}+i\mathbf{v})
+  \end{equation}
+  Jika kita mengingat kembali tentang persamaan Euler, maka bentuk $e^{(\alpha+i\beta)t}$ dapat ditulis sebagai
+  \begin{equation}\label{eq:euler_eigen_kompleks}
+    e^{(\alpha+i\beta)t} =e^{\alpha t}e^{i\beta t}=e^{\alpha t}(\cos\beta t + i\sin\beta t).
+  \end{equation}
+  Dari \eqref{eq:umum_eigen_kompleks} dan \eqref{eq:euler_eigen_kompleks} kita dapatkan sebuah penyelesaian kompleks
+  \begin{equation}\label{eq:penyelesaian_eigen_kompleks}
+    \mathbf{x}(t) = e^{\alpha t}(\cos\beta t + i\sin\beta t)(\mathbf{u}+i\mathbf{v}).
+  \end{equation}
+  Namun pada umumnya kita lebih memfokuskan pada penyelesaian yang bersifat real, sehingga dari \eqref{eq:penyelesaian_eigen_kompleks} perlu kita tinjau ulang untuk mencari semua penyelesaian yang bersifat real. Berikut adalah teorema yang akan membantu kita dalam mencari penyelesaian dari sistem (12.1) yang memiliki nilai eigen kompleks
+
+  \begin{teorema}\label{thm:penyelesaian_nilai_eigen_kompleks}
+    Misalkan $A$ matriks berukuran $n\times n$ dengan entri-entrinya real. Andaikan $\lambda = \alpha + i\beta\,(\beta \ne 0)$ adalah nilai eigen kompleks dari $A$ dan $\bfxi=\mathbf{u}+i\mathbf{v}$ adalah vektor eigen yang bersesuaian, dimana $\mathbf{u}$ dan $\mathbf{v}$ adalah komponen real yang masing-masing tak nol. Maka 
+    \[\mathbf{y_1} = e^{\alpha t}(\mathbf{u}\cos\beta t - \mathbf{v}\sin\beta t)\quad\text{dan}\quad \mathbf{y_2} = e^{\alpha t}(\mathbf{u}\sin\beta t + \mathbf{v}\cos\beta t)\]
+    yang merupakan bagian real dan imajiner dari
+    \begin{equation}
+      e^{\alpha t}(\cos\beta t + i\sin\beta t)(\mathbf{u} + i\mathbf{v}) 
+    \end{equation}
+    merupakan penyelesaian yang bebas linear dari $\mathbf{y'}=A\mathbf{y}$.
+  \end{teorema}
+
+  \begin{catatan}
+    Teorema \ref{thm:penyelesaian_nilai_eigen_kompleks} menunjukan bahwa penyelesaian $\mathbf{y_1}$ dan $\mathbf{y_2}$ sudah merupakan satu set penyelesaian yang bebas linear dari nilai eigen kompleks dan konjugatnya.
+  \end{catatan}
+
+  Sebelumnya pada Modul 11 Kegiatan Belajar 2, telah dijelaskan langkah-langkah penyelesaiannya untuk sistem PD linear homogen dimensi-$2$. Pada Modul 12 Kegiatan Belajar 2 ini akan dibahas secara lanjut langkah-langkah yang sama namun dengan kasus yang lebih umum yaitu dimensi-$n$. 
+
   \begin{algoritma}\label{algoritma}
-  Setelah mengetahui solusi polinomial karakteristiknya terdapat akar kompleks, maka langkah selanjutnya adalah mencari solusi umum dari PD linear homogen dimensi-$n$. Berikut adalah langkah-langkahnya:
+  Setelah mengetahui penyelesaian polinomial karakteristik dari sistem homogen (12.1) terdapat akar kompleks, maka langkah selanjutnya adalah mencari penyelesaian umum dari PD linear homogen dimensi-$n$. Berikut adalah langkah-langkahnya:
   \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
-    \item Misalkan $\bfxi_{m+1}$ dan $\bfxi_{m+2}$ masing-masing adalah vektor eigen yang saling konjugat serta berkoresponden dengan pasangan konjugat nilai eigen $r_{m+1} = \alpha + i\beta$ dan $r_{m+2} = \alpha - i\beta$.
-    \item Ambil salah satu dari kedua vektor eigen kemudian pisahkan bagian real dan imajiner. Misalkan $\bfxi_{m+1} = \mathbf{u} + i\mathbf{v}$.
-    \item Selanjutnya kita bisa dapatkan dua solusi real yaitu
-    \begin{equation}\label{eq:solusi_vektor_eigen}
+    \item Pisahkan himpunan nilai eigen menjadi dua kelompok, yaitu nilai eigen real dan kompleks. Misalkan terdapat $r$ nilai eigen real dan $s$ nilai eigen kompleks, maka $\{\lambda_1, \lambda_2, \ldots, \lambda_r\}$ dan $\{\mu_1, \mu_2, \ldots, \mu_s\}$ adalah himpunan nilai eigen real dan kompleks dari matriks $A$.
+    \item Carilah solusi dari nilai-nilai eigen real dengan menggunakan metode yang telah dijelaskan pada KB 1. Sehingga didapatkan penyelesaian umum dari nilai eigen real adalah
+    \begin{equation}\label{eq:penyelesaian_nilai_eigen_real}
+      \mathbf{x}_\mathcal{R}=c_1\mathbf{x_1}+c_2\mathbf{x_2}+\cdots+c_r\mathbf{x_r}
+    \end{equation}
+    \item Selanjutnya untuk nilai eigen kompleks, dapat kita ambil sepasang $\mu = \alpha + i\beta$ dan $\overline{\mu} = \alpha - i\beta$. Kemudian cukup cari vektor eigen $\bfxi$ yang berkoresponden dengan nilai eigen $\mu$ menggunakan $(A-\mu I)\bfxi = \mathbf{0}$
+    \item Dapatkan bagian real dan imajinernya dengan menuliskannya sebagai $\bfxi = \mathbf{u} + i\mathbf{v}$.
+    \item Selanjutnya kita bisa dapatkan dua penyelesaian real untuk nilai eigen kompleks yaitu
+    \begin{equation}\label{eq:penyelesaian_vektor_eigen}
       \begin{split}
-        \mathbf{x}_{m+1}(t) &= e^{\alpha t}(\mathbf{u}\cos(\beta t) - \mathbf{v}\sin(\beta t))\\
-        \mathbf{x}_{m+2}(t) &= e^{\alpha t}(\mathbf{u}\sin(\beta t) + \mathbf{v}\cos(\beta t))
+        \mathbf{z}_1(t) &= e^{\alpha t}(\mathbf{u}\cos(\beta t) - \mathbf{v}\sin(\beta t))\\
+        \mathbf{z}_2(t) &= e^{\alpha t}(\mathbf{u}\sin(\beta t) + \mathbf{v}\cos(\beta t))
       \end{split}
     \end{equation}
-    Dimana sudah merupakan solusi dari pasangan nilai eigen $r_{m+1}$ dan $r_{m+2}$.
-    \item Jika terdapat vektor eigen kompleks lainnya, maka ulangi langkah 1 sampai 3 untuk mendapatkan semua solusi nilai eigen kompleks. Jika tidak, maka solusi umum dari sistem PD linear homogen dimensi-$n$ adalah
+    Dimana sudah merupakan penyelesaian dari pasangan nilai eigen $r$ dan $\overline{r}$ sesuai dengan Teorema \ref{thm:penyelesaian_nilai_eigen_kompleks}.
+    \item Jika terdapat vektor eigen kompleks lainnya, maka ulangi langkah 3 sampai 5 untuk mendapatkan semua penyelesaian nilai eigen kompleks lain. Jika tidak ada lagi, maka penyelesaian umumnya adalah kombinasi linear dari \eqref{eq:penyelesaian_nilai_eigen_real} dan penyelesaian nilai eigen kompleks.
     \begin{equation}
-      \mathbf{x}(t) = c_1\mathbf{x}_1(t) + c_2\mathbf{x}_2(t) + \cdots + c_n\mathbf{x}_n(t)
+      \mathbf{x}(t) = \mathbf{x}_\mathcal{R}+ c_1\mathbf{z}_1(t) + c_2\mathbf{z}_2(t) + \cdots + c_s\mathbf{z}_s(t).
     \end{equation}
-    \item Jika terdapat syarat awal $x_0$, maka subtitusi syarat awal tersebut ke dalam solusi umum yang telah didapatkan.
-    \begin{equation}\label{eq:solusi_umum_syarat_awal}
-      \mathbf{x}(x_0) = c_1\mathbf{x}_1(x_0) + c_2\mathbf{x}_2(x_0) + \cdots + c_n\mathbf{x}_n(x_0)
-    \end{equation}
-    \item Selesaikan persmaan \eqref{eq:solusi_umum_syarat_awal} untuk mencari konstanta $c_1, c_2, \ldots, c_n$. 
   \end{enumerate}
   \end{algoritma}
 
   \begin{catatan}
-    Jikalau kita memilih vektor eigen $\bfxi_{m+2}=\mathbf{u}-i\mathbf{v}$ yang berkoresponden dengan nilai eigen $r_{m+2} = \alpha - i\beta$, maka solusi umumnya menjadi
-    \begin{equation}\label{eq:solusi_vektor_eigen_konjugat}
+    Pada langkah 3, jikalau kita menggunakan vektor eigen $\overline{\bfxi}=\mathbf{u}-i\mathbf{v}$ yang berkoresponden dengan nilai eigen $\overline{\mu} = \alpha - i\beta$, maka penyelesaian umumnya menjadi
+    \begin{equation}\label{eq:penyelesaian_vektor_eigen_konjugat}
       \begin{split}
-        \mathbf{x}_{m+1}(t) &= e^{\alpha t}(\mathbf{u}\cos(-\beta t) - (-\mathbf{v})\sin(-\beta t))\\
+        \mathbf{z}_1(t) &= e^{\alpha t}(\mathbf{u}\cos(-\beta t) - (-\mathbf{v})\sin(-\beta t))\\
         &= e^{\alpha t}(\mathbf{u}\cos(\beta t) - \mathbf{v}\sin(\beta t))\\
-        \mathbf{x}_{m+2}(t) &= e^{\alpha t}(\mathbf{u}\sin(-\beta t) + (-\mathbf{v})\cos(-\beta t))\\
+        \mathbf{z}_2(t) &= e^{\alpha t}(\mathbf{u}\sin(-\beta t) + (-\mathbf{v})\cos(-\beta t))\\
         &= -e^{\alpha t}(\mathbf{u}\sin(\beta t) + \mathbf{v}\cos(\beta t))
       \end{split}
     \end{equation}
-    Dapat dilihat bahwa solusi \eqref{eq:solusi_vektor_eigen} dan \eqref{eq:solusi_vektor_eigen_konjugat} hanya berbeda tanda pada $\mathbf{x}_{m+2}(t)$. Namun karena solusi umum mencakup sebuah sembarang konstanta $c_2$, maka perbedaan tanda tersebut tidak mempengaruhi solusi umumnya.
+    Dapat dilihat bahwa penyelesaian \eqref{eq:penyelesaian_vektor_eigen} dan \eqref{eq:penyelesaian_vektor_eigen_konjugat} hanya berbeda tanda pada $\mathbf{z}_2(t)$. Namun karena penyelesaian umum mencakup sebuah sembarang konstanta $c_2$, maka perbedaan tanda tersebut tidak mempengaruhi penyelesaian umumnya.
+  \end{catatan}
+
+  \begin{catatan}
+    Jika terdapat syarat awal $\mathbf{x}(x_0)$, maka subtitusi syarat awal tersebut ke dalam penyelesaian umum yang telah didapatkan.
+    \begin{equation}\label{eq:penyelesaian_umum_syarat_awal}
+      \mathbf{x}(x_0) = c_1\mathbf{x}_1(x_0) + c_2\mathbf{x}_2(x_0) + \cdots + c_n\mathbf{x}_n(x_0)
+    \end{equation}
+    Kemudian selesaikan persmaan \eqref{eq:penyelesaian_umum_syarat_awal} untuk mencari konstanta $c_1, c_2, \ldots, c_n$. 
   \end{catatan}
   
   \begin{contoh}
-    Tentukan solusi umum dari 
+    Tentukan penyelesaian umum dari 
     \begin{equation}\label{eq:contoh_pd_trench_2}
       \mathbf{y'} = \begin{pmatrix}
         1 & -1 & -2\\
@@ -85,7 +145,7 @@
         1 & -1 & 2
       \end{pmatrix}\mathbf{y}.
     \end{equation}
-    \solusi
+    \penyelesaian
     Polinomial karakteristik dari matriks \eqref{eq:contoh_pd_trench_2} adalah
     \begin{equation}
       \begin{vmatrix}
@@ -94,43 +154,43 @@
         1 & -1 & 2-\lambda
       \end{vmatrix} = -(\lambda-2)((\lambda-2)^2+4).
     \end{equation}
-    Nilai eigen dari $A$ adalah $\lambda_1 = 2, \lambda_2 = 2+2i$ dan $\lambda_3 = 2-2i$. Matriks \textit{augmented} dari $(A-2I)\mathbf{x} = \mathbf{0}$ adalah
-    \begin{equation*}
-      \begin{pmatrix}
-        -1 & -1 & -2 &:& 0\\
-        1 & 1 & 2 &:& 0\\
-        1 & -1 & 0 &:& 0
-      \end{pmatrix} \sim \begin{pmatrix}
-        1 & 0 & 1 &:& 0\\
-        0 & 1 & 1 &:& 0\\
-        0 & 0 & 0 &:& 0
-      \end{pmatrix}.
-    \end{equation*}
-    Diperoleh $x_1 = -x_3$ dan $x_2 = -x_3$. Ambil $x_3 = 1$ sehingga
-    \[\mathbf{x}_1 = \begin{pmatrix}-1\\-1\\1\end{pmatrix}.\]
-    Jadi
-    \[\mathbf{y}_1 = \begin{pmatrix}-1\\-1\\1\end{pmatrix}e^{2t}\]
-    adalah solusi dari \eqref{eq:contoh_pd_trench_2}. 
-    
-    Matriks \textit{augmented} dari $(A-(2+2i)I)\mathbf{x} = \mathbf{0}$ adalah
-    \begin{equation*}
-      \begin{pmatrix}
-        -1-2i & -1 & -2 &:& 0\\
-        1 & 1-2i & 2 &:& 0\\
-        1 & -1 & -2i &:& 0
-      \end{pmatrix} \sim \begin{pmatrix}
-        1 & 0 & -i &:& 0\\
-        0 & 1 & i &:& 0\\
-        0 & 0 & 0 &:& 0
-      \end{pmatrix}.
-    \end{equation*}
-    Sehingga $x_1 = ix_3$ dan $x_2 = -ix_3$. Ambil $x_3 = 1$ maka
-    \[\mathbf{x}_2 = \begin{pmatrix}i\\-i\\1\end{pmatrix}.\]
-    Dengan Algoritma \ref{algoritma} dapat diperoleh
+    Nilai eigen dari $A$ adalah $\lambda_1 = 2, \, \lambda_2 = 2+2i$ dan $\lambda_3 = 2-2i$. Karena terdapat nilai eigen kompleks, maka akan digunakan Algoritma \ref{algoritma} untuk mencari penyelesaiannya
     \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
-      \item Perhatikan bahwa $\alpha=2$ dan $\beta=2$. 
-      \item Pilih vektor eigen $\mathbf{x}_2 = \begin{pmatrix}i\\-i\\1\end{pmatrix}$, maka $\mathbf{u}= \begin{pmatrix}0\\0\\1\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\-1\\0\end{pmatrix}$.
-      \item Dua solusi lainnya adalah
+      \item $\lambda_1 = 2$ adalah nilai eigen real dan $\{\lambda_2, \lambda_3\}$ adalah himpunan nilai eigen kompleks.
+      \item Untuk menentukan penyelesaian dari nilai eigen real, kita cari matriks \textit{augmented} dari $(A-2I)\mathbf{x} = \mathbf{0}$.
+      \begin{equation*}
+        \begin{pmatrix}
+          -1 & -1 & -2 &:& 0\\
+          1 & 1 & 2 &:& 0\\
+          1 & -1 & 0 &:& 0
+        \end{pmatrix} \sim \begin{pmatrix}
+          1 & 0 & 1 &:& 0\\
+          0 & 1 & 1 &:& 0\\
+          0 & 0 & 0 &:& 0
+        \end{pmatrix}.
+      \end{equation*}
+      Diperoleh $x_1 = -x_3$ dan $x_2 = -x_3$. Ambil $x_3 = 1$ sehingga
+      \[\mathbf{x}_1 = \begin{pmatrix}-1\\-1\\1\end{pmatrix}.\]
+      Jadi
+      \[\mathbf{y}_1 = \begin{pmatrix}-1\\-1\\1\end{pmatrix}e^{2t}\]
+      adalah penyelesaian untuk nilai eigen real dari \eqref{eq:contoh_pd_trench_2}. 
+
+      \item Selanjutnya tersisa sepasang nilai eigen kompleks $\lambda_2$ dan $\lambda_3$. Matriks \textit{augmented} dari $(A-\lambda_2I)\mathbf{x} = \mathbf{0}$ adalah
+      \begin{equation*}
+        \begin{pmatrix}
+          -1-2i & -1 & -2 &:& 0\\
+          1 & 1-2i & 2 &:& 0\\
+          1 & -1 & -2i &:& 0
+        \end{pmatrix} \sim \begin{pmatrix}
+          1 & 0 & -i &:& 0\\
+          0 & 1 & i &:& 0\\
+          0 & 0 & 0 &:& 0
+        \end{pmatrix}.
+      \end{equation*}
+      Sehingga $x_1 = ix_3$ dan $x_2 = -ix_3$. Ambil $x_3 = 1$ maka
+      \[\mathbf{x}_2 = \begin{pmatrix}i\\-i\\1\end{pmatrix}.\]
+      \item Perhatikan bahwa $\mathbf{x}_2 = \begin{pmatrix}i\\-i\\1\end{pmatrix}=\begin{pmatrix}0\\0\\1\end{pmatrix}+i\begin{pmatrix}1\\-1\\0\end{pmatrix}$, maka $\mathbf{u}= \begin{pmatrix}0\\0\\1\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\-1\\0\end{pmatrix}$.
+      \item Dua penyelesaian untuk nilai eigen kompleks adalah
       \begin{align*}
         \mathbf{y}_2(t) &= e^{2t}\left(\begin{pmatrix}0\\0\\1\end{pmatrix}\cos(2t) - \begin{pmatrix}1\\-1\\0\end{pmatrix}\sin(2t)\right)=\begin{pmatrix}-\sin(2t)\\\sin(2t)\\\cos(2t)\end{pmatrix}
       \end{align*}
@@ -138,13 +198,13 @@
       \begin{align*}
         \mathbf{y}_3(t) &= e^{2t}\left(\begin{pmatrix}0\\0\\1\end{pmatrix}\sin(2t) + \begin{pmatrix}1\\-1\\0\end{pmatrix}\cos(2t)\right)=\begin{pmatrix}\cos(2t)\\-\cos(2t)\\\sin(2t)\end{pmatrix}
       \end{align*}
-      \item Solusi umumnya adalah
+      \item Sehingga penyelesaian umum untuk \eqref{eq:contoh_pd_trench_2} adalah
       \[\mathbf{y}=c_1\begin{pmatrix}-1\\-1\\1\end{pmatrix}e^{2t} + c_2e^{2t}\begin{pmatrix}-\sin(2t)\\\sin(2t)\\\cos(2t)\end{pmatrix} + c_3e^{2t}\begin{pmatrix}\cos(2t)\\-\cos(2t)\\\sin(2t)\end{pmatrix}.\]
     \end{enumerate}
   \end{contoh}
 
   \begin{contoh}
-    Carilah solusi dari 
+    Carilah penyelesaian dari 
     \begin{equation}\label{eq:contoh_pd_trench_1}
       \mathbf{y'} = \begin{pmatrix}
         -5 & 5 & 4\\
@@ -153,7 +213,7 @@
       \end{pmatrix}\mathbf{y}
     \end{equation}
     Dengan syarat awal $\mathbf{y}(0) = \begin{pmatrix}0&3&1\end{pmatrix}^T$.\\
-    \solusi
+    \penyelesaian
     Polinomial karakteristiknya dari matriks $A$ pada \eqref{eq:contoh_pd_trench_1} adalah
     \begin{equation}
       \begin{vmatrix}
@@ -162,45 +222,42 @@
         1 & 0 & -\lambda
       \end{vmatrix}=-(\lambda-2)(\lambda^2+1).
     \end{equation}
-    Sehingga didapatkan nilai eigen dari $A$ adalah $\lambda_1 = 2, \lambda_2 = i$ dan $ \lambda_3 = -i$. Selanjutnya matriks \textit{augmented} dari $(A-\lambda 2I)\mathbf{x} = \mathbf{0}$ adalah
-    \begin{equation*}
-      \begin{pmatrix}
-        -7 & 5 & 4 &:& 0\\
-        -8 & 5 & 6 &:& 0\\
-        1 & 0 & -2 &:& 0
-      \end{pmatrix} \sim \begin{pmatrix}
-        1 & 0 & -2 &:& 0\\
-        0 & 1 & -2 & :&0\\
-        0 & 0 & 0 & :&0
-      \end{pmatrix}.
-    \end{equation*}
-    diperoleh $x_1 = x_2 = 2x_3$. Ambil saja $x_3 = 1$ akibatnya 
-    \[\mathbf{x}_1 = \begin{pmatrix}2\\2\\1\end{pmatrix}.\]
-    Jadi
-    \[\mathbf{y}_1=\begin{pmatrix}2\\2\\1\end{pmatrix}e^{2t}\]
-    adalah solusi dari \eqref{eq:contoh_pd_trench_1}. 
-    Kemudian, matriks \textit{augmented} dari $(A-iI)\mathbf{x} = \mathbf{0}$ adalah
-    \begin{equation*}
-      \begin{pmatrix}
-        -5-i & 5 & 4 &:& 0\\
-        -8 & 7-i & 6 &:& 0\\
-        1 & 0 & -i &:& 0
-      \end{pmatrix} \sim \begin{pmatrix}
-        1 & 0 & -i &:& 0\\
-        0 & 1 & 1-i & :&0\\
-        0 & 0 & 0 & :&0
-      \end{pmatrix}.
-    \end{equation*}
-    didapatkan $x_1 = ix_3$ dan $x_2 = (1-i)x_3$. Dengan mengambil $x_3 = 1$ diperoleh
-    \[\mathbf{x}_2 = \begin{pmatrix}i\\-1+i\\1\end{pmatrix}.\]
-    Lakukan yang telah dicontohkan pada Algoritma \ref{algoritma} sebagai berikut:
+    Sehingga didapatkan nilai eigen dari $A$ adalah $\lambda_1 = 2, \lambda_2 = i$ dan $ \lambda_3 = -i$. Gunakan Algoritma \ref{algoritma} untuk mencari penyelesaiannya
     \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
-      \item Karena $\lambda_2=0+i$ dan $\lambda_3=0-i$ saling konjugat begitu juga dengan vektor eigen nya yaitu
-      \[\mathbf{x_2}= \begin{pmatrix}i\\-1+i\\1\end{pmatrix} \quad \text{dan} \quad \mathbf{x_3}= \begin{pmatrix}-i\\-1-i\\1\end{pmatrix}.\]
-      \item Pilih salah satu vektor eigen, misalnya $\mathbf{x_2}$ sehingga 
-      \[\mathbf{x_2} = \mathbf{u}+i\mathbf{v}= \begin{pmatrix}0\\-1\\1\end{pmatrix} + i\begin{pmatrix}1\\1\\0\end{pmatrix}.\]
-      didapat $\mathbf{u} = \begin{pmatrix}0\\-1\\1\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\1\\0\end{pmatrix}$.
-      \item Solusi kedua dan ketiga masing-masing adalah
+      \item $\lambda_1$ adalah nilai eigen real dan sisanya adalah nilai eigen kompleks.
+      \item Selanjutnya matriks \textit{augmented} dari $(A-\lambda_1I)\mathbf{x} = \mathbf{0}$ adalah
+      \begin{equation*}
+        \begin{pmatrix}
+          -7 & 5 & 4 &:& 0\\
+          -8 & 5 & 6 &:& 0\\
+          1 & 0 & -2 &:& 0
+        \end{pmatrix} \sim \begin{pmatrix}
+          1 & 0 & -2 &:& 0\\
+          0 & 1 & -2 & :&0\\
+          0 & 0 & 0 & :&0
+        \end{pmatrix}.
+      \end{equation*}
+      diperoleh $x_1 = x_2 = 2x_3$. Ambil saja $x_3 = 1$ akibatnya 
+      \[\mathbf{x}_1 = \begin{pmatrix}2\\2\\1\end{pmatrix}.\]
+      Jadi
+      \[\mathbf{y}_1=\begin{pmatrix}2\\2\\1\end{pmatrix}e^{2t}\]
+      adalah penyelesaian real dari \eqref{eq:contoh_pd_trench_1}. 
+      \item Kemudian untuk nilai eigen kompleks, matriks \textit{augmented} dari $(A-iI)\mathbf{x} = \mathbf{0}$ adalah
+      \begin{equation*}
+        \begin{pmatrix}
+          -5-i & 5 & 4 &:& 0\\
+          -8 & 7-i & 6 &:& 0\\
+          1 & 0 & -i &:& 0
+        \end{pmatrix} \sim \begin{pmatrix}
+          1 & 0 & -i &:& 0\\
+          0 & 1 & 1-i & :&0\\
+          0 & 0 & 0 & :&0
+        \end{pmatrix}.
+      \end{equation*}
+      didapatkan $x_1 = ix_3$ dan $x_2 = (1-i)x_3$. Dengan mengambil $x_3 = 1$ diperoleh
+      \[\mathbf{x_2} = \begin{pmatrix}i\\1-i\\1\end{pmatrix}.\]
+      \item Dapat dilihat bahwa $\mathbf{u}= \begin{pmatrix}0\\1\\1\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\-1\\0\end{pmatrix}$.
+      \item Penyelesaian kedua dan ketiga masing-masing adalah
       \begin{align*}
         \mathbf{y}_2(t) &= e^{0t}\left(\begin{pmatrix}0\\-1\\1\end{pmatrix}\cos(t) - \begin{pmatrix}1\\1\\0\end{pmatrix}\sin(t)\right)=\begin{pmatrix}-\sin(t)\\-\cos(t)-\sin(t)\\\cos(t)\end{pmatrix}
       \end{align*}
@@ -208,36 +265,36 @@
       \begin{align*}
         \mathbf{y}_3(t) &= e^{0t}\left(\begin{pmatrix}0\\-1\\1\end{pmatrix}\sin(t) + \begin{pmatrix}1\\1\\0\end{pmatrix}\cos(t)\right)=\begin{pmatrix}\cos(t)\\-\sin(t)+\cos(t)\\\sin(t)\end{pmatrix}
       \end{align*}
-      \item solusi umumnya adalah
+      \item Didapatkan penyelesaian umumnya adalah
       \[\mathbf{y}=c_1\begin{pmatrix}2\\2\\1\end{pmatrix}e^{2t} + c_2\begin{pmatrix}-\sin(t)\\-\cos(t)-\sin(t)\\\cos(t)\end{pmatrix} + c_3\begin{pmatrix}\cos(t)\\-\sin(t)+\cos(t)\\\sin(t)\end{pmatrix}.\]
-      \item Subtitusi syarat awal $\mathbf{y}(0)$ sehingga didapatkan
-      \begin{align*}
-        \begin{pmatrix}0\\3\\1\end{pmatrix} &= c_1\begin{pmatrix}2\\2\\1\end{pmatrix} + c_2\begin{pmatrix}0\\-1\\1\end{pmatrix} + c_3\begin{pmatrix}1\\1\\0\end{pmatrix}= \begin{pmatrix}2c_1+c_3\\2c_1-c_2+c_3\\c_1+c_2\end{pmatrix}.
-      \end{align*}
-      \item Selesaikan persamaan menggunakan sembarang metode yang telah anda diketahui. Pada contoh ini akan digunakan metode eliminasi Gauss-Jordan. 
-      \begin{align*}
-        \begin{pmatrix}
-          2 & 0 & 1 &:& 0\\
-          2 & -1 & 1 &:& 3\\
-          1 & 1 & 0 &:& 1
-        \end{pmatrix}
-        &\sim \begin{pmatrix}
-          1 & 0 & 0 &:& \frac{4}{3}\\
-          0 & 1 & 0 &:& -\frac{1}{3}\\
-          0 & 0 & 1 &:& -\frac{8}{3}
-        \end{pmatrix}.
-      \end{align*}
-      Didapat $c_1 = \frac{4}{3}, c_2 = -\frac{1}{3}$ dan $c_3 = -\frac{8}{3}$. Jadi solusi dari \eqref{eq:contoh_pd_trench_1} adalah
-      \[\mathbf{y} = \frac{4e^{2t}}{3}\begin{pmatrix}2\\2\\1\end{pmatrix} - \frac{1}{3}\begin{pmatrix}-\sin(t)\\-\cos(t)-\sin(t)\\\cos(t)\end{pmatrix} - \frac{8}{3}\begin{pmatrix}\cos(t)\\-\sin(t)+\cos(t)\\\sin(t)\end{pmatrix}.\]
     \end{enumerate}
+    Langkah terakhir adalah subtitusi syarat awal $\mathbf{y}(0)$ sehingga didapatkan
+    \begin{align*}
+      \begin{pmatrix}0\\3\\1\end{pmatrix} &= c_1\begin{pmatrix}2\\2\\1\end{pmatrix} + c_2\begin{pmatrix}0\\-1\\1\end{pmatrix} + c_3\begin{pmatrix}1\\1\\0\end{pmatrix}= \begin{pmatrix}2c_1+c_3\\2c_1-c_2+c_3\\c_1+c_2\end{pmatrix}
+    \end{align*}
+    kemudian selesaikan persamaan menggunakan sembarang metode yang telah anda diketahui. Pada contoh ini akan digunakan metode eliminasi Gauss-Jordan. 
+    \begin{align*}
+      \begin{pmatrix}
+        2 & 0 & 1 &:& 0\\
+        2 & -1 & 1 &:& 3\\
+        1 & 1 & 0 &:& 1
+      \end{pmatrix}
+      &\sim \begin{pmatrix}
+        1 & 0 & 0 &:& \frac{4}{3}\\
+        0 & 1 & 0 &:& -\frac{1}{3}\\
+        0 & 0 & 1 &:& -\frac{8}{3}
+      \end{pmatrix}.
+    \end{align*}
+    Didapat $c_1 = \frac{4}{3}, c_2 = -\frac{1}{3}$ dan $c_3 = -\frac{8}{3}$. Jadi penyelesaian dari \eqref{eq:contoh_pd_trench_1} adalah
+    \[\mathbf{y} = \frac{4e^{2t}}{3}\begin{pmatrix}2\\2\\1\end{pmatrix} - \frac{1}{3}\begin{pmatrix}-\sin(t)\\-\cos(t)-\sin(t)\\\cos(t)\end{pmatrix} - \frac{8}{3}\begin{pmatrix}\cos(t)\\-\sin(t)+\cos(t)\\\sin(t)\end{pmatrix}.\]
   \end{contoh}
 
   \begin{contoh}
-    Carilah solusi PD linear orde tiga berikut
+    Carilah penyelesaian PD linear orde tiga berikut
     \begin{equation}\label{eq:contoh_pd_3}
       y''' - 4y'' + 6y' - 4y = 0.
     \end{equation}
-    \solusi
+    \penyelesaian
     Persamaan \eqref{eq:contoh_pd_3} dapat diselesaikan menggunakan sistem PD linear homogen dimensi-$3$. Misalkan
     \begin{align*}
       y_1 &= y \implies y_1' = y' = y_2\\
@@ -260,20 +317,24 @@
         y_3
       \end{pmatrix}.
     \end{equation}
-    Dari matriks \eqref{eq:contoh_pd_3_sistem} didapatkan nilai eigen $\lambda_1 = 2, \lambda_2 = 1+i$ dan $\lambda_3 = 1-i$. Untuk vektor eigen yang berkoresponden adalah
-    \[\bfxi_1 = \begin{pmatrix}1\\2\\4\end{pmatrix} \quad \bfxi_1 = \begin{pmatrix}i\\1+i\\2\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}-i\\1-i\\2\end{pmatrix}.\]
+    Dari matriks \eqref{eq:contoh_pd_3_sistem} didapatkan nilai eigen $\lambda_1 = 2, \lambda_2 = 1+i$ dan $\lambda_3 = 1-i$. Sama seperti contoh sebelumnya, gunakan Algoritma \ref{algoritma} 
     \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
-      \item Terlihat bahwa $\bfxi_2$ dan $\bfxi_3$ adalah pasangan konjugat.
-      \item Ambil $\bfxi_2 = \begin{pmatrix}i\\1+i\\2\end{pmatrix}$, didapat $\mathbf{u}= \begin{pmatrix}0\\1\\2\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\1\\0\end{pmatrix}$.
-      \item Solusi untuk nilai eigen $\lambda_2$ dan $\lambda_3$ adalah
+      \item $\lambda_1 = 2$ adalah nilai eigen real dan $\{\lambda_2, \lambda_3\}$ adalah nilai eigen kompleks.
+      \item Untuk nilai eigen real, dapat dicek bahwa 
+      \[\mathbf{y}_1(x) = e^{2x}\begin{pmatrix}1\\2\\4\end{pmatrix}\]
+      adalah penyelesaian dari nilai eigen real.
+      \item Tinjau untuk $\lambda_2 = 1+i$ memiliki eigen vektor
+      \[\bfxi_2 = \begin{pmatrix}i\\1+i\\2\end{pmatrix}=\begin{pmatrix}0\\1\\2\end{pmatrix}+i\begin{pmatrix}1\\1\\0\end{pmatrix}.\]
+      \item Didapat $\mathbf{u}= \begin{pmatrix}0\\1\\2\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\1\\0\end{pmatrix}$.
+      \item Penyelesaian untuk nilai eigen $\lambda_2$ dan $\lambda_3$ adalah
       \begin{align*}
         \mathbf{y}_2(x) &= e^{x}\left(\begin{pmatrix}0\\1\\2\end{pmatrix}\cos(x) - \begin{pmatrix}1\\1\\0\end{pmatrix}\sin(x)\right)=\begin{pmatrix}-\sin(x)\\\cos(x)-\sin(x)\\2\cos(x)\end{pmatrix}e^x\\
         \mathbf{y}_3(x) &= e^{x}\left(\begin{pmatrix}0\\1\\2\end{pmatrix}\sin(x) + \begin{pmatrix}1\\1\\0\end{pmatrix}\cos(x)\right)=\begin{pmatrix}\cos(x)\\\sin(x)+\cos(x)\\2\sin(x)\end{pmatrix}e^x
       \end{align*}
-      \item Solusi umum dari \eqref{eq:contoh_pd_3} adalah
+      \item Penyelesaian umum dari \eqref{eq:contoh_pd_3} adalah
       \[\mathbf{y}(x) = c_1e^{2x}\begin{pmatrix}1\\2\\4\end{pmatrix} + c_2e^x\begin{pmatrix}-\sin(x)\\\cos(x)-\sin(x)\\2\cos(x)\end{pmatrix} + c_3e^x\begin{pmatrix}\cos(x)\\\sin(x)+\cos(x)\\2\sin(x)\end{pmatrix}.\]
     \end{enumerate}
-    Ingat bahwa $\mathbf{y}(x)=\begin{pmatrix}y(x)\\y'(x)\\y''(x)\end{pmatrix}$ artinya solusi PD orde tiga ada pada baris pertama solusi umum. Jadi solusi dari \eqref{eq:contoh_pd_3} adalah
+    Ingat bahwa $\mathbf{y}(x)=\begin{pmatrix}y(x)\\y'(x)\\y''(x)\end{pmatrix}$ artinya penyelesaian PD orde tiga ada pada baris pertama penyelesaian umum. Jadi penyelesaian dari \eqref{eq:contoh_pd_3} adalah
     \[y(x) = c_1e^{2x} + c_2e^x\cos(x) + c_3e^x\sin(x).\] 
   \end{contoh}
 
@@ -283,37 +344,39 @@
       \mathbf{x'}=\begin{pmatrix}
         0 & -1 & 0 & 0\\
         1 & 0 & 0 & 0\\
-        0 & 0 & 0 & 1\\
-        0 & 0 & -1 & 0 
+        0 & 0 & 0 & 2\\
+        0 & 0 & -2 & 0 
       \end{pmatrix}\mathbf{x}
     \end{equation}
-    Tentukan solusi umum dari sistem PD tersebut.\\
-    \solusi
+    Tentukan penyelesaian umum dari sistem PD tersebut.\\
+    \penyelesaian
     Nilai eigen dari matriks \eqref{eq:contoh_pd_4} adalah
-    \[\lambda_{1,2} = i, \quad \lambda_{3,4} = -i\]
-    dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
-    \[\bfxi_1 = \begin{pmatrix}i\\1\\0\\0\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}0\\0\\i\\1\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}-i\\1\\0\\0\end{pmatrix} \quad \bfxi^{(4)} = \begin{pmatrix}0\\0\\-i\\1\end{pmatrix}\]
+    \[\lambda_1 = i, \quad \lambda_2 = -i,\quad \lambda_2 = 2i, \quad \lambda_2 = -2i\]
+    Ternyata terdapat dua pasang nilai eigen kompleks yang saling konjugat. Gunakan Algoritma \ref{algoritma} untuk mencari penyelesaiannya
     \begin{enumerate}[label=Langkah \arabic*: ,leftmargin=*]
-      \item Pilih vektor eigen $\bfxi_1$ dan $\bfxi_3$ sebagai vektor eigen yang saling konjugat.
-      \item Ambil $\bfxi_1 = \begin{pmatrix}i\\1\\0\\0\end{pmatrix}$, maka $\mathbf{u} = \begin{pmatrix}0\\1\\0\\0\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\0\\0\\0\end{pmatrix}$.
-      \item Solusi untuk nilai eigen $\lambda_1$ dan $\lambda_3$ adalah
-      \begin{equation}\label{eq:contoh_pd_4_solusi_1}
+      \item Perhatikan bahwa semua nilai eigen $\lambda_1,...,\lambda_4$ adalah nilai eigen kompleks.
+      \item Karena tidak ada nilai eigen real, maka langkah ini dilewati.
+      \item Ambil sepasang nilai eigen kompleks pertama, yaitu $\lambda_1$ dan $\lambda_2$. Selanjutnya dengan menyelesaikan $(A-iI)\bfxi = \mathbf{0}$, diperoleh
+      $\bfxi_1 = \begin{pmatrix}i\\1\\0\\0\end{pmatrix}$
+      \item Selanjutnya definisikan $\mathbf{u} = \begin{pmatrix}0\\1\\0\\0\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}1\\0\\0\\0\end{pmatrix}$ sebagai bagian real dan imajiner dari $\bfxi_1$.
+      \item Penyelesaian untuk nilai eigen $\lambda_1$ dan $\lambda_2$ adalah
+      \begin{equation}\label{eq:contoh_pd_4_penyelesaian_1}
         \begin{split}
           \mathbf{x}_1(t) &= \left(\begin{pmatrix}0\\1\\0\\0\end{pmatrix}\cos(t) - \begin{pmatrix}1\\0\\0\\0\end{pmatrix}\sin(t)\right) = \begin{pmatrix}-\sin(t)\\ \cos(t)\\0\\0\end{pmatrix}\\
           \mathbf{x}_2(t) &= \left(\begin{pmatrix}0\\1\\0\\0\end{pmatrix}\sin(t) + \begin{pmatrix}1\\0\\0\\0\end{pmatrix}\cos(t)\right) = \begin{pmatrix}\cos(t)\\ \sin(t)\\0\\0\end{pmatrix}
         \end{split}
       \end{equation}
-      \item Karena terdapat vektor kompleks eigen lain, yaitu $\bfxi_2$ dan $\bfxi_4$.
-      \item Ambil $\bfxi_2 = \begin{pmatrix}0\\0\\i\\1\end{pmatrix}$, maka $\mathbf{u} = \begin{pmatrix}0\\0\\1\\0\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}0\\0\\0\\1\end{pmatrix}$.
-      \item Solusi untuk nilai eigen $\lambda_2$ dan $\lambda_4$ adalah
-      \begin{equation}\label{eq:contoh_pd_4_solusi_2}
+      \item Karena terdapat nilai eigen lain, yaitu $\lambda_3$ dan $\lambda_4$. Maka perlu untuk mencari vektor eigen $\bfxi_3$ dengan menyelesaikan $(A-2iI)\bfxi = \mathbf{0}$, sehingga diperoleh $\bfxi_3 = \begin{pmatrix}0\\0\\-i\\1\end{pmatrix}$.
+      \item Diperoleh $\mathbf{u} = \begin{pmatrix}0\\0\\0\\1\end{pmatrix}$ dan $\mathbf{v} = \begin{pmatrix}0\\0\\-1\\0\end{pmatrix}$.
+      \item Penyelesaian untuk nilai eigen $\lambda_3$ dan $\lambda_4$ adalah
+      \begin{equation}\label{eq:contoh_pd_4_penyelesaian_2}
         \begin{split}
-          \mathbf{x}_3(t) &= \left(\begin{pmatrix}0\\0\\1\\0\end{pmatrix}\cos(t) - \begin{pmatrix}0\\0\\0\\1\end{pmatrix}\sin(t)\right) = \begin{pmatrix}0\\0\\-\sin(t)\\ \cos(t)\end{pmatrix}\\
-          \mathbf{x}_4(t) &= \left(\begin{pmatrix}0\\0\\1\\0\end{pmatrix}\sin(t) + \begin{pmatrix}0\\0\\0\\1\end{pmatrix}\cos(t)\right) = \begin{pmatrix}0\\0\\ \cos(t)\\ \sin(t)\end{pmatrix}
+          \mathbf{x}_3(t) &= \left(\begin{pmatrix}0\\0\\0\\1\end{pmatrix}\cos(2t) - \begin{pmatrix}0\\0\\-1\\0\end{pmatrix}\sin(2t)\right) = \begin{pmatrix}0\\0\\\sin(2t)\\ \cos(2t)\end{pmatrix}\\
+          \mathbf{x}_4(t) &= \left(\begin{pmatrix}0\\0\\0\\1\end{pmatrix}\sin(2t) + \begin{pmatrix}0\\0\\-1\\0\end{pmatrix}\cos(2t)\right) = \begin{pmatrix}0\\0\\-\cos(2t)\\ \sin(2t)\end{pmatrix}
         \end{split}
       \end{equation}
-      \item Solusi umum dari \eqref{eq:contoh_pd_4} adalah 
-      \[\mathbf{x}(t) = c_1\begin{pmatrix}-\sin(t)\\ \cos(t)\\0\\0\end{pmatrix} + c_2\begin{pmatrix}\cos(t)\\ \sin(t)\\0\\0\end{pmatrix} + c_3\begin{pmatrix}0\\0\\-\sin(t)\\ \cos(t)\end{pmatrix} + c_4\begin{pmatrix}0\\0\\ \cos(t)\\ \sin(t)\end{pmatrix}.\]
+      \item Penyelesaian umum dari \eqref{eq:contoh_pd_4} adalah kombinasi linear dari \eqref{eq:contoh_pd_4_penyelesaian_1} dan \eqref{eq:contoh_pd_4_penyelesaian_2}, yaitu
+      \[\mathbf{x}(t) = c_1\begin{pmatrix}-\sin(t)\\ \cos(t)\\0\\0\end{pmatrix} + c_2\begin{pmatrix}\cos(t)\\ \sin(t)\\0\\0\end{pmatrix} + c_3\begin{pmatrix}0\\0\\\sin(2t)\\ \cos(2t)\end{pmatrix} + c_4\begin{pmatrix}0\\0\\ -\cos(2t)\\ \sin(2t)\end{pmatrix}.\]
     \end{enumerate}
   \end{contoh}
 
@@ -329,7 +392,7 @@
       \end{pmatrix}\mathbf{x}
     \end{align*}
     Tentukan nilai $k$ agar sistem PD tersebut memiliki nilai eigen kompleks yang bagian imajinernya tak nol.
-    \item Carilah solusi homogen dari PD linear berikut
+    \item Carilah penyelesaian homogen dari PD linear berikut
     \begin{align*}
       \mathbf{x'} = \begin{pmatrix}
         1 & 0 & 0\\
@@ -344,9 +407,9 @@
         \frac{dy}{dt}=x-y,\quad
         \frac{dz}{dt}=-2x-y
     \end{equation*}
-    Tentukan solusi umum dari sistem PD tersebut.
+    Tentukan penyelesaian umum dari sistem PD tersebut.
     
-    \item Carilah solusi umum sistem PD dimensi-$4$ berikut
+    \item Carilah penyelesaian umum sistem PD dimensi-$4$ berikut
     \[\mathbf{y'}=\begin{pmatrix}
       1 & -2 & 1 & -3\\
       0 & 5 & 0 & 0\\
@@ -361,7 +424,7 @@
         m_2\frac{d^2x_2}{dt^2}&=k_2x_1-(k_2+k_3)x_2\\
       \end{split}
     \end{equation*}
-    Jika $m_1=m_2=2,$ dan $k_1=k_2=k_3=6$. Tentukan solusi umum dari sistem PD tersebut.
+    Jika $m_1=m_2=2,$ dan $k_1=k_2=k_3=6$. Tentukan penyelesaian umum dari sistem PD tersebut.
   \end{enumerate}
   \newpage
   \underline{JAWABAN LATIHAN 12.2}
@@ -382,13 +445,13 @@
     \[\lambda_1 = 1, \quad \lambda_2 = 1 -2i, \quad \lambda_3 = 1 + 2i.\]
     dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
     \[\bfxi_1 = \begin{pmatrix}2\\-3\\2\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}0\\-i\\1\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}0\\i\\1\end{pmatrix}.\]
-    Selanjutnya didapatkan masing-masing solusi $\mathbf{x}_1, \mathbf{x}_2$ dan $\mathbf{x}_3$ sebagai berikut
+    Selanjutnya didapatkan masing-masing penyelesaian $\mathbf{x}_1, \mathbf{x}_2$ dan $\mathbf{x}_3$ sebagai berikut
     \begin{align*}
       \mathbf{x}_1(t) &= \begin{pmatrix}2\\-3\\2\end{pmatrix}e^t\\
       \mathbf{x}_2(t) &= e^t \left(\begin{pmatrix}0\\0\\1\end{pmatrix}\cos(2t) - \begin{pmatrix}0\\1\\0\end{pmatrix}\sin(2t)\right)=\begin{pmatrix}0\\-\sin(2t)\\ \cos(2t)\end{pmatrix}e^t\\
       \mathbf{x}_3(t) &= e^t \left(\begin{pmatrix}0\\0\\1\end{pmatrix}\sin(2t) + \begin{pmatrix}0\\1\\0\end{pmatrix}\cos(2t)\right)=\begin{pmatrix}0\\ \cos(2t)\\ \sin(2t)\end{pmatrix}e^t
     \end{align*}
-    Jadi solusi umum dari sistem PD tersebut adalah
+    Jadi penyelesaian umum dari sistem PD tersebut adalah
     \[\mathbf{x}(t) = c_1\begin{pmatrix}2\\-3\\2\end{pmatrix}e^t + c_2\begin{pmatrix}0\\-\sin(2t)\\ \cos(2t)\end{pmatrix}e^t + c_3\begin{pmatrix}0\\ \cos(2t)\\ \sin(2t)\end{pmatrix}e^t.\]
     
     \item Misalkan $\mathbf{y} = \begin{pmatrix}x\\y\\z\end{pmatrix}$, maka sistem PD tersebut dapat dituliskan sebagai
@@ -403,29 +466,29 @@
     \[\lambda_1 = -2, \quad \lambda_2 = -1+\sqrt{2}i, \quad \lambda_3 = -1-\sqrt{2}i\]
     dengan masing-masing vektor eigen
     \[\bfxi_1 = \begin{pmatrix}2\\-2\\1\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}2-\sqrt{2}i\\-1-\sqrt{2}i\\3\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}2+\sqrt{2}i\\-1+\sqrt{2}i\\3\end{pmatrix}.\]
-    Dari vektor eigen $\bfxi_2$ dan $\bfxi_3$ dapat diperoleh solusi kompleks
+    Dari vektor eigen $\bfxi_2$ dan $\bfxi_3$ dapat diperoleh penyelesaian kompleks
     \begin{align*}
       \mathbf{y}_2(t) &= e^{-t}\left(\begin{pmatrix}2\\-1\\3\end{pmatrix}\cos(\sqrt{2}t) - \begin{pmatrix}-\sqrt{2}\\-\sqrt{2}\\0\end{pmatrix}\sin(\sqrt{2}t)\right)=e^{-t}\begin{pmatrix}2\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\-\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}\\
       \mathbf{y}_3(t) &= e^{-t}\left(\begin{pmatrix}2\\-1\\3\end{pmatrix}\sin(\sqrt{2}t) + \begin{pmatrix}-\sqrt{2}\\-\sqrt{2}\\0\end{pmatrix}\cos(\sqrt{2}t)\right)=e^{-t}\begin{pmatrix}2\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\-\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}
     \end{align*} 
-    Sehingga solusi umum dari sistem PD tersebut adalah
+    Sehingga penyelesaian umum dari sistem PD tersebut adalah
     \[\mathbf{y}(t) = c_1\begin{pmatrix}2\\-2\\1\end{pmatrix}e^{-2t} + c_2\begin{pmatrix}2\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\-\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}e^{-t} + c_3\begin{pmatrix}2\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\-\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}e^{-t}.\]
 
     \item Nilai eigen dari matriks adalah
     \[\lambda_1 = 1, \quad \lambda_2 = 5, \quad \lambda_3 = 1 + \sqrt{2}i \quad \lambda_4 = 1 - \sqrt{2}i\]
     dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
     \[\bfxi_1 = \begin{pmatrix}1\\0\\1\\1\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}2\\-9\\-4\\2\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}1-5\sqrt{2}i\\0\\\-1-\sqrt{2}i\\3\end{pmatrix} \quad \bfxi^{(4)} = \begin{pmatrix}1+5\sqrt{2}i\\0\\\-1+\sqrt{2}i\\3\end{pmatrix}.\]
-    Dengan mudah didapatkan solusi untuk $\mathbf{y}_1$ dan $\mathbf{y}_2$ adalah
+    Dengan mudah didapatkan penyelesaian untuk $\mathbf{y}_1$ dan $\mathbf{y}_2$ adalah
     \begin{align*}
       \mathbf{y}_1(t) = \begin{pmatrix}1\\0\\1\\1\end{pmatrix}e^t,\quad
       \mathbf{y}_2(t) = \begin{pmatrix}2\\-9\\-4\\2\end{pmatrix}e^{5t}
     \end{align*}
-    dan untuk $\mathbf{y}_3$ dan $\mathbf{y}_4$ karena bilangan kompleks maka solusinya adalah
+    dan untuk $\mathbf{y}_3$ dan $\mathbf{y}_4$ karena bilangan kompleks maka penyelesaiannya adalah
     \begin{align*}
       \mathbf{y}_3(t) &= e^t\left(\begin{pmatrix}1\\0\\1\\3\end{pmatrix}\cos(\sqrt{2}t) - \begin{pmatrix}-5\sqrt{2}\\0\\-\sqrt{2}\\0\end{pmatrix}\sin(\sqrt{2}t)\right)= e^t\begin{pmatrix}\cos(\sqrt{2}t)+5\sqrt{2}\sin(\sqrt{2}t)\\0\\\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}\\
       \mathbf{y}_4(t) &= e^t\left(\begin{pmatrix}1\\0\\1\\3\end{pmatrix}\sin(\sqrt{2}t) + \begin{pmatrix}-5\sqrt{2}\\0\\-\sqrt{2}\\0\end{pmatrix}\cos(\sqrt{2}t)\right)= e^t\begin{pmatrix}\sin(\sqrt{2}t)-5\sqrt{2}\cos(\sqrt{2}t)\\0\\\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}
     \end{align*}
-    Jadi solusi umum dari sistem PD tersebut adalah
+    Jadi penyelesaian umum dari sistem PD tersebut adalah
     \[\mathbf{y}(t) = c_1\begin{pmatrix}1\\0\\1\\1\end{pmatrix}e^t + c_2\begin{pmatrix}2\\-9\\-4\\2\end{pmatrix}e^{5t} + c_3\begin{pmatrix}\cos(\sqrt{2}t)+5\sqrt{2}\sin(\sqrt{2}t)\\0\\\cos(\sqrt{2}t)+\sqrt{2}\sin(\sqrt{2}t)\\3\cos(\sqrt{2}t)\end{pmatrix}e^t + c_4\begin{pmatrix}\sin(\sqrt{2}t)-5\sqrt{2}\cos(\sqrt{2}t)\\0\\\sin(\sqrt{2}t)-\sqrt{2}\cos(\sqrt{2}t)\\3\sin(\sqrt{2}t)\end{pmatrix}e^t.\]
     
     \item Subtitusi nilai variabel yang diketahui sehingga diperoleh sistem PD
@@ -459,29 +522,37 @@
             y_4
         \end{pmatrix}.
     \end{equation*}
-    sehingga untuk mencari solusinya dapat dilakukan dengan cara yang sama seperti contoh-contoh sebelumnya. Nilai eigen dari matriks tersebut adalah
+    sehingga untuk mencari penyelesaiannya dapat dilakukan dengan cara yang sama seperti contoh-contoh sebelumnya. Nilai eigen dari matriks tersebut adalah
     \[\lambda_1 = 3i, \quad \lambda_2 = -3i, \quad \lambda_3 = \sqrt{3}i, \quad \lambda_4 = -\sqrt{3}i\]
     dan vektor eigen yang berkoresponden dengan nilai eigen tersebut adalah
-    \[\bfxi_1 = \begin{pmatrix}i\\-i\\-3\\3\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}-i\\i\\-3\\3\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}-\sqrt{3}i\\-\sqrt{3}i\\3\\3\end{pmatrix} \quad \bfxi^{(4)} = \begin{pmatrix}\sqrt{3}i\\\sqrt{3}i\\3\\3\end{pmatrix}.\]
-    Untuk masing-masing pasangan vektor eigen dapat dikelompokkan yaitu $\bfxi_1$ dan $\bfxi_2$ serta $\bfxi_3$ dan $\bfxi^{(4)}$. Solusi untuk $\bfxi_1$ dan $\bfxi_2$ adalah
+    \[\bfxi_1 = \begin{pmatrix}i\\-i\\-3\\3\end{pmatrix} \quad \bfxi_2 = \begin{pmatrix}-i\\i\\-3\\3\end{pmatrix} \quad \bfxi_3 = \begin{pmatrix}-\sqrt{3}i\\-\sqrt{3}i\\3\\3\end{pmatrix} \quad \bfxi_4 = \begin{pmatrix}\sqrt{3}i\\\sqrt{3}i\\3\\3\end{pmatrix}.\]
+    Untuk masing-masing pasangan vektor eigen dapat dikelompokkan yaitu $\bfxi_1$ dan $\bfxi_2$ serta $\bfxi_3$ dan $\bfxi_4$. Penyelesaian untuk $\bfxi_1$ dan $\bfxi_2$ adalah
     \begin{align*}
       \mathbf{y}_1(t) &= e^{0}\left(\begin{pmatrix}0\\0\\-3\\3\end{pmatrix}\cos(3t) - \begin{pmatrix}1\\-1\\0\\0\end{pmatrix}\sin(3t)\right)=\begin{pmatrix}-\sin(3t)\\\sin(3t)\\-3\cos(3t)\\3\cos(3t)\end{pmatrix}\\
       \mathbf{y}_2(t) &= e^{0}\left(\begin{pmatrix}0\\0\\-3\\3\end{pmatrix}\sin(3t) + \begin{pmatrix}1\\-1\\0\\0\end{pmatrix}\cos(3t)\right)=\begin{pmatrix}\cos(3t)\\-\cos(3t)\\-3\sin(3t)\\3\sin(3t)\end{pmatrix}
     \end{align*} 
-    dan untuk $\bfxi_3$ dan $\bfxi^{(4)}$ adalah
+    dan untuk $\bfxi_3$ dan $\bfxi_4$ adalah
     \begin{align*}
       \mathbf{y}_3(t) &= e^{0}\left(\begin{pmatrix}0\\0\\3\\3\end{pmatrix}\cos(\sqrt{3}t) - \begin{pmatrix}-\sqrt{3}\\-\sqrt{3}\\0\\0\end{pmatrix}\sin(\sqrt{3}t)\right)=\begin{pmatrix}\sqrt{3}\sin(\sqrt{3}t)\\\sqrt{3}\sin(\sqrt{3}t)\\3\cos(\sqrt{3}t)\\3\cos(\sqrt{3}t)\end{pmatrix}\\
       \mathbf{y}_4(t) &= e^{0}\left(\begin{pmatrix}0\\0\\3\\3\end{pmatrix}\sin(\sqrt{3}t) + \begin{pmatrix}-\sqrt{3}\\-\sqrt{3}\\0\\0\end{pmatrix}\cos(\sqrt{3}t)\right)=\begin{pmatrix}-\sqrt{3}\cos(\sqrt{3}t)\\-\sqrt{3}\cos(\sqrt{3}t)\\3\sin(\sqrt{3}t)\\3\sin(\sqrt{3}t)\end{pmatrix}
     \end{align*}
-    Sehingga solusi umum dari sistem PD tersebut adalah
+    Sehingga penyelesaian umum dari sistem PD tersebut adalah
     \[\mathbf{y}(t) = c_1\begin{pmatrix}-\sin(3t)\\\sin(3t)\\-3\cos(3t)\\3\cos(3t)\end{pmatrix} + c_2\begin{pmatrix}\cos(3t)\\-\cos(3t)\\-3\sin(3t)\\3\sin(3t)\end{pmatrix} + c_3\begin{pmatrix}\sqrt{3}\sin(\sqrt{3}t)\\\sqrt{3}\sin(\sqrt{3}t)\\3\cos(\sqrt{3}t)\\3\cos(\sqrt{3}t)\end{pmatrix} + c_4\begin{pmatrix}-\sqrt{3}\cos(\sqrt{3}t)\\-\sqrt{3}\cos(\sqrt{3}t)\\3\sin(\sqrt{3}t)\\3\sin(\sqrt{3}t)\end{pmatrix}.\]
-    Karena yang diminta adalah solusi untuk $x_1$ dan $x_2$, maka solusi masing-masingnya adalah
+    Karena yang diminta adalah penyelesaian untuk $x_1$ dan $x_2$, maka penyelesaian masing-masingnya adalah
     \begin{align*}
       x_1(t) &= -c_1\sin(3t) + c_2\cos(3t) + c_3\sqrt{3}\sin(\sqrt{3}t) - c_4\sqrt{3}\cos(\sqrt{3}t)\\
       x_2(t) &= c_1\sin(3t) - c_2\cos(3t) + c_3\sqrt{3}\sin(\sqrt{3}t)- c_4\sqrt{3}\cos(\sqrt{3}t)
     \end{align*}
     dengan $c_1, c_2, c_3, c_4$ sebarang konstanta.
   \end{enumerate}
+  \newpage
+  \textbf{RANGKUMAN}
+  \begin{itemize}
+    \item Solusi untuk setiap pasangan nilai eigen kompleks $\lambda$ dan $\overline{\lambda}$ adalah bagian real ($\mathbf{u}$) dan imajiner ($\mathbf{v}$) dari vektor eigennya ($\bfxi=\mathbf{u}+i\mathbf{v}$).
+    \item Penyelesaian umum dari sistem PD linear homogen (12.1) yang memiliki nilai eigen kompleks adalah
+    \[\mathbf{x}(t) = \mathbf{x}_\mathcal{R}+ c_1\mathbf{z}_1(t) + c_2\mathbf{z}_2(t) + \cdots + c_s\mathbf{z}_s(t).\]
+    Dengan $\mathbf{x_\mathcal{R}}$ adalah penyelesaian untuk nilai eigen real dan $\mathbf{z}_1,\mathbf{z}_2,\dots,\mathbf{z}_n$ adalah penyelesaian untuk nilai eigen kompleks.
+  \end{itemize}
   \newpage
   \noindent\textbf{TES FORMATIF}\\
   Pilihlah satu jawaban yang paling tepat!
@@ -492,14 +563,224 @@
       -3 & 3 & 3\\
       1 & -2 & 6
     \end{pmatrix}\mathbf{x}.\]
-    Banyaknya nilai eigen yang bagian imajinernya tak nol adalah
-    \begin{enumerate}
+    Banyaknya nilai eigen yang bagian imajinernya tak nol adalah\dots
+    
+    \begin{enumerate}[label=\Alph*.]
       \item $0$
       \item $1$
       \item $2$
       \item $3$
     \end{enumerate}
 
-    \item 
+    \item Sistem PD berikut
+    \begin{align*}
+      \mathbf{y'} = \begin{pmatrix}
+        1&2&-2\\
+        0&2&-1\\
+        1&0&0
+      \end{pmatrix}\mathbf{y}
+    \end{align*}
+    memiliki salah satu penyelesaian yaitu\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $e^t\begin{pmatrix}1+2\cos t\\1+\cos t\\\cos t+\sin t\end{pmatrix}$
+      \item $e^t\begin{pmatrix}2+2\cos t\\2+\cos t\\2+\cos t+\sin t\end{pmatrix}$
+      \item $e^t\begin{pmatrix}\sin t+\cos t\\\cos t\\\sin t\end{pmatrix}$
+      \item $e^t\begin{pmatrix}2\sin t\\1+\cos t\\\cos t+\sin t\end{pmatrix}$
+    \end{enumerate}
+
+    \item Diberikan sistem PD linear homogen sebagai berikut
+    \begin{align*}
+      \frac{dx}{dt}&=3x-4y-2z\\
+      \frac{dy}{dt}&=-5x+7y-8z\\
+      \frac{dz}{dt}&=-10x+13y-8z
+    \end{align*}
+    Penyelesaian umum dari sistem PD tersebut adalah\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1e^{-2t}\begin{pmatrix}
+        1\\1\\\frac{1}{2}
+      \end{pmatrix}+c_2e^{2t}\begin{pmatrix}
+        \cos 3t+\sin 3t\\\sin 3t\\-\cos 3t
+      \end{pmatrix}+c_3e^{2t}\begin{pmatrix}
+        \cos 3t-\sin 3t\\\cos 3t\\\sin 3t
+      \end{pmatrix}$
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1e^{-2t}\begin{pmatrix}
+        2\\2\\1
+      \end{pmatrix}+c_2e^{t}\begin{pmatrix}
+        \cos 3t+\sin 3t\\\sin 3t\\-\cos 3t
+      \end{pmatrix}+c_3e^{t}\begin{pmatrix}
+        \cos 3t+\sin 3t\\\cos 3t\\\sin 3t
+      \end{pmatrix}$
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1e^{-2t}\begin{pmatrix}
+        2\\2\\1
+      \end{pmatrix}+c_2e^{2t}\begin{pmatrix}
+        \cos t+\sin t\\\sin t\\-\cos t
+      \end{pmatrix}+c_3e^{2t}\begin{pmatrix}
+        \cos t-\sin t\\\cos t\\\sin t
+      \end{pmatrix}$
+      \item $\begin{pmatrix}
+        x\\y\\z
+      \end{pmatrix}=c_1e^{-2t}\begin{pmatrix}
+        1\\1\\\frac{1}{2}
+      \end{pmatrix}+c_2e^{2t}\begin{pmatrix}
+        \cos 3t\\\sin 3t\\-\cos 3t
+      \end{pmatrix}+c_3e^{2t}\begin{pmatrix}
+        \cos 3t\\\cos 3t\\\sin 3t
+      \end{pmatrix}$
+    \end{enumerate}
+    
+    \item Diberikan PD linear orde 3 sebagai berikut
+    \begin{align*}
+      y'''-9y''+25y'-25y=0
+    \end{align*}
+    dengan $y(0)=2, y'(0)=0, y''(0)=0$. Penyelesaian dari PD tersebut adalah\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $y=e^{5x}+2e^{2x}\sin x+e^{2x}\cos x$
+      \item $y=e^{5x}+4e^{2x}\cos x-3e^{2x}\sin x$
+      \item $y=e^{5x}-7e^{2x}\sin x+e^{2x}\cos x$
+      \item $y=e^{5x}+e^{x}\cos x-7e^{x}\sin x$
+    \end{enumerate}
+    
+    \item Perhatikan sistem PD dengan nilai awal berikut
+    \begin{align*}
+      \mathbf{x'}=\begin{pmatrix}
+        1&1&2\\
+        1&0&-1\\
+        -1&-2&-1
+      \end{pmatrix}\mathbf{x},\quad \mathbf{x}(0)=\begin{pmatrix}
+        -1\\2\\2
+      \end{pmatrix}.
+    \end{align*}
+    Penyelesaian sistem PD diatas adalah\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $\mathbf{x}(t)=e^{t}\begin{pmatrix}\sin t - \cos t\\2\cos t -\sin t\\2\cos t + \sin t\end{pmatrix}$
+      \item $\mathbf{x}(t)=e^{-2t}\begin{pmatrix}-1\\1\\1\end{pmatrix}$
+      \item $\mathbf{x}(t)=e^{-2t}\begin{pmatrix}-1\\1\\1\end{pmatrix}+e^t\begin{pmatrix}\sin t\\\sin t+\cos t\\\cos t-\sin t\end{pmatrix}$
+      \item $\mathbf{x}(t)=2e^{-2t}\begin{pmatrix}-1\\1\\1\end{pmatrix}+e^t\begin{pmatrix}\cos t\\\sin t\\-\sin t\end{pmatrix}$
+    \end{enumerate}
+
+    \item Diberikan PD linear orde 3 sebagai berikut
+    \begin{equation*}
+      x'''-7x''+18x'-12x=0
+    \end{equation*}
+    Penyelesaian umum untuk $x''$ adalah\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $x''(t)=c_1+c_2e^{3t}\cos \sqrt{3}t+c_3e^{3t}\sin \sqrt{3}t$
+      \item $x''(t)=c_1e^t+c_2e^{3t}\cos 3t+c_3e^{3t}\sin 3t$
+      \item $x''(t)=c_1e^{2t}+c_2e^{t}\cos \sqrt{3}t+c_3e^{t}\sin \sqrt{3}t$
+      \item $x''(t)=c_1e^t+c_2e^{3t}\cos \sqrt{3}t+c_3e^{3t}\sin \sqrt{3}t$
+    \end{enumerate}
+
+    \item Dibawah ini yang \textbf{bukan} merupakan penyelesaian dari sistem PD linear homogen dimensi-$4$ yang mempunyai nilai eigen kompleks konjugat adalah\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $\begin{pmatrix}
+        2\cos t\\\cos t\\0\\0
+      \end{pmatrix}e^{2t}$
+      \item $\begin{pmatrix}
+        \frac{1}{2}\cos t\\0\\2\cos t\\\sin t
+      \end{pmatrix}e^t$
+      \item $\begin{pmatrix}
+        2\cos t+\sin t\\2\sin t\\2\cos t\\2\sin t
+      \end{pmatrix}e^{-3t}$
+      \item $\begin{pmatrix}
+        2\cos t\\2\sin t\\-2\cos t\\-2\sin t
+      \end{pmatrix}e^t$
+    \end{enumerate}
+    
+    \item Salah satu penyelesaian untuk
+    \begin{equation*}
+      \mathbf{y'}=\begin{pmatrix}
+        5&2&-1&1\\
+        -3&2&2&0\\
+        1&3&2&2\\
+        0&0&0&2
+      \end{pmatrix}\mathbf{y}
+    \end{equation*}
+    \begin{enumerate}[label=\Alph*.]
+      \item $\mathbf{y}=\begin{pmatrix}
+        1\\-1\\2\\0
+      \end{pmatrix}e^t+\begin{pmatrix}
+        2\\-4\\3\\5
+      \end{pmatrix}e^{2t}+e^{4t}\begin{pmatrix}
+        \sin t\\0\\\cos t\\0
+      \end{pmatrix}$
+      \item $\mathbf{y}=\begin{pmatrix}
+        1\\-1\\2\\0
+      \end{pmatrix}e^t+e^{4t}\begin{pmatrix}
+        2\sin t\\2\cos t\\2\sin t+2\cos t\\0
+      \end{pmatrix}$
+      \item $\mathbf{y}=\begin{pmatrix}
+        1\\-1\\2\\0
+      \end{pmatrix}e^t+\begin{pmatrix}
+        2\\-4\\3\\5
+      \end{pmatrix}e^{2t}+e^{t}\begin{pmatrix}
+        2\sin t\\2\cos t\\2\sin t+2\cos t\\0
+      \end{pmatrix}$
+      \item $\mathbf{y}=\begin{pmatrix}
+        1\\-1\\2\\0
+      \end{pmatrix}e^t+\begin{pmatrix}
+        2\\-4\\3\\1
+      \end{pmatrix}e^{2t}$
+    \end{enumerate}
+    \item $\mathbf{y}=\begin{pmatrix}
+      3\\5\\-4\\5
+    \end{pmatrix}\sin(4t)+\begin{pmatrix}
+      1\\5\\7\\0
+    \end{pmatrix}\cos(4t)$ merupakan penyelesaian dari sistem $\mathbf{y'}=A\mathbf{y}$ dengan matriks $A=$...
+    \begin{enumerate}[label=\Alph*.]
+      \item $\begin{pmatrix}
+        0&1&1&-1\\
+        -1&0&3&-1\\
+        -1&-3&0&-2\\
+        1&1&2&0
+      \end{pmatrix}$
+      \item $\begin{pmatrix}
+        0&1&1&-1\\
+        -1&4&3&-1\\
+        -1&-3&1&-2\\
+        1&1&2&0
+      \end{pmatrix}$
+      \item $\begin{pmatrix}
+        0&1&1&1\\
+        1&0&3&1\\
+        1&3&0&2\\
+        1&1&2&0
+      \end{pmatrix}$
+      \item $\begin{pmatrix}
+        1&-2&1&-1\\
+        -1&2&3&-1\\
+        -1&2&0&-2\\
+        1&-2&2&0
+      \end{pmatrix}$
+    \end{enumerate}
+    \item Diberikan PD orde 4 sebagai berikut
+    \begin{equation*}
+      y^{(4)}+7y''+10y=0
+    \end{equation*}
+    Dengan kondisi awal $y(0)=1,\, y'(0)=1,\, y''(0)=1,\, y'''(0)=3$. Penyelesaian untuk $y'''$ adalah\dots
+    \begin{enumerate}[label=\Alph*.]
+      \item $\frac{5\sqrt{5}}{3}\sin\sqrt{5}t-5\cos\sqrt{5}t-\frac{8\sqrt{2}}{3}\sin\sqrt{2}t-4\cos\sqrt{2}t$
+      \item $\frac{5}{2}\sin\sqrt{5}t-2\cos\sqrt{5}t-\frac{8\sqrt{2}}{3}\sin\sqrt{2}t+2\cos\sqrt{2}t$
+      \item $\frac{\sqrt{5}}{3}\sin\sqrt{5}t-4\cos\sqrt{5}t+8\sin\sqrt{2}t-4\cos\sqrt{2}t$
+      \item $5\sin\sqrt{5}t-3\cos\sqrt{5}t-8\sqrt{2}\sin\sqrt{2}t-\cos\sqrt{2}t$
+    \end{enumerate}
+  \end{enumerate}
+  KUNCI JAWABAN:
+  \begin{enumerate}
+    \item C
+    \item B
+    \item A
+    \item C
+    \item D
+    \item D
+    \item A
+    \item B
+    \item A
+    \item A
   \end{enumerate}
 \end{document}
