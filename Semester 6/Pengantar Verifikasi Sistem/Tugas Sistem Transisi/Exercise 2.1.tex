@@ -55,7 +55,7 @@ Perhatikan dua rangkaian perangkat keras berurutan berikut:
 \begin{tikzpicture}[
   box/.style={draw, minimum width=0.6cm, minimum height=0.6cm},
   dot/.style={circle, fill, inner sep=2pt},
-  node distance=1.5cm
+  node distance=1.15cm
   ]
   
   % First circuit on the left
@@ -173,7 +173,7 @@ Pertama kita definisikan $\lambda_{y_1}, \lambda_{y_2}$ sebagai fungsi output da
       %Output
       \node[left=1.7cm of q00]  {$\bm{\{y_1\}}$};
       \node[left=1.7cm of q01]  {$\bm{\{r_1\}}$};
-      \node[right=1.7cm of q10]  {$\bm{\{x_1\}}$};
+      \node[right=2cm of q10]  {$\bm{\{x_1,y_1\}}$};
       \node[right=2.3cm of q11]  {$\bm{\{x_1,r_1,y_1\}}$};
   
     \end{tikzpicture}
@@ -236,9 +236,9 @@ Pertama kita definisikan $\lambda_{y_1}, \lambda_{y_2}$ sebagai fungsi output da
       
       %Output
       \node[left=1.7cm of q00]  {$\bm{\varnothing}$};
-      \node[left=1.7cm of q01]  {$\bm{\{r_1\}}$};
-      \node[right=1.7cm of q10]  {$\bm{\{x_1\}}$};
-      \node[right=2.3cm of q11]  {$\bm{\{x_1,r_1,y_1\}}$};
+      \node[left=1.7cm of q01]  {$\bm{\{r_2\}}$};
+      \node[right=1.7cm of q10]  {$\bm{\{x_2\}}$};
+      \node[right=2.3cm of q11]  {$\bm{\{x_2,r_2,y_2\}}$};
   
     \end{tikzpicture}
   \end{center}
