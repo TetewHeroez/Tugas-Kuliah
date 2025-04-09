@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,geometry,setspace}
+\geometry{a4paper, margin=1in}
+\title{Rangkuman Paper: A New Graph Labeling with Tribonacci, Fibonacci and Triangular Numbers}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\onehalfspacing
+
+\section{Makna Setiap Bagian Judul}
+
+\begin{itemize}
+    \item \textbf{Tribonacci}: urutan bilangan di mana setiap suku merupakan jumlah dari tiga suku sebelumnya, yaitu
+    \[
+    T_n = T_{n-1} + T_{n-2} + T_{n-3}.
+    \]
+
+    \item \textbf{Fibonacci}: urutan bilangan klasik di mana setiap suku merupakan jumlah dari dua suku sebelumnya, yaitu
+    \[
+    F_n = F_{n-1} + F_{n-2}.
+    \]
+
+    \item \textbf{Triangular}: bilangan berbentuk segitiga yang diberikan oleh rumus eksplisit
+    \[
+    \Delta_n = \frac{n(n+1)}{2}.
+    \]
+
+    \item \textbf{Graph labeling}: adalah proses penugasan label numerik (dalam hal ini berasal dari ketiga urutan bilangan di atas) ke simpul (vertices) dan sisi (edges) dari suatu graf dengan mengikuti aturan tertentu.
+\end{itemize}
+Dalam konteks penelitian ini, pelabelan graf yang baru diusulkan memiliki karakteristik unik karena menggabungkan tiga jenis urutan bilangan untuk menghasilkan pola pelabelan yang kompleks namun terstruktur. Graf yang digunakan untuk penerapan metode ini terutama adalah keluarga graf Petersen yang digeneralisasi, yaitu $GP(n,2)$ dan $GP(n,3)$. Selain memberikan formulasi matematis yang mendalam, penelitian ini juga menawarkan aplikasi dunia nyata, seperti dalam pembentukan tim kerja dalam sektor kesehatan dan sistem kompetisi sekolah, serta merancang permainan papan (board game) edukatif berbasis graf TF$\Delta$.
+
+\section{Hasil dan Metodologi}
+Penelitian ini menghasilkan beberapa definisi dan teorema penting yang dirancang untuk mengkarakterisasi TF$\Delta$ labeling. Pertama, didefinisikan urutan bilangan Tribonacci sebagai urutan di mana setiap elemen merupakan jumlah tiga elemen sebelumnya: $t_0 = 0, t_1 = 1, t_2 = 1, t_n = t_{n-1} + t_{n-2} + t_{n-3}$. Urutan Fibonacci, sebagaimana umum dikenal, memiliki rumus rekurens $f_0 = 0, f_1 = 1, f_n = f_{n-1} + f_{n-2}$, sedangkan bilangan segitiga diberikan oleh rumus eksplisit $\Delta_n = \sum_{k=1}^n k = \frac{n(n+1)}{2}$.
+
+Untuk melakukan pelabelan graf, simpul-simpul diberi label angka dari ketiga urutan tersebut. Peneliti menyusun aturan umum (General Rule/GR) untuk pelabelan TF$\Delta$, yaitu penomoran simpul dilakukan searah jarum jam dan label T (Tribonacci), F (Fibonacci), dan $\Delta$ (Triangular) diberikan secara simetris. Sisi-sisi graf kemudian diklasifikasikan berdasarkan jenis simpul yang menghubungkannya: $E_{12}$ untuk sisi antara T dan F, $E_{23}$ antara F dan $\Delta$, $E_{31}$ antara $\Delta$ dan T. Sisi lainnya seperti T--T, F--F, dan $\Delta$--$\Delta$ masing-masing dinotasikan sebagai $E_{11}, E_{22}, E_{33}$.
+
+Graf disebut TF$\Delta$ \\textit{mutually edge strongly bonded} jika selisih nilai dari $|E_{12} - E_{23}|$, $|E_{23} - E_{31}|$, dan $|E_{31} - E_{12}|$ tidak lebih dari satu. Graf juga disebut sebagai \textit{Tribo/Fibo/Triangular strong vertex TF$\Delta$ graph} tergantung pada komponen simpul mana yang memiliki sisi internal terbanyak ($E_{11}$, $E_{22}$, atau $E_{33}$).
+
+Metode ini diterapkan pada graf $GP(n,2)$ dan $GP(n,3)$ dengan pendekatan berbeda tergantung pada nilai $n \mod 3$. Untuk masing-masing, digunakan Rule 1 hingga Rule 4 untuk membentuk pola pelabelan. Ilustrasi diberikan pada graf seperti $GP(8,3)$ (Mobius-Kantor) dan $GP(14,2)$ untuk memverifikasi teorema yang telah dibentuk. Misalnya, Teorema 1 menyatakan bahwa $GP(n,3)$ dengan $n \equiv 1 \pmod{3}$ adalah TF$\Delta$ graf yang mutually edge strongly bonded dan juga merupakan \textit{Tribo strong vertex} serta \textit{Triangular strong vertex} TF$\Delta$ graph. Teorema lainnya menyatakan kondisi serupa atau berbeda untuk nilai $n \equiv 2$ atau $0$ mod 3.
+
+\section{Jenis Hasil Penelitian}
+Hasil penelitian ini sebagian besar merupakan bentuk karakterisasi atau biimplikasi, di mana kondisi pelabelan (dari sisi maupun simpul) memenuhi struktur dan aturan tertentu. Hasil juga berupa perhitungan eksplisit terhadap jumlah sisi dan simpul yang memiliki label tertentu, serta distribusi jumlah sisi yang menghubungkan jenis-jenis simpul tertentu. Dengan menggunakan notasi aritmetika dan barisan, penulis memberikan rumus eksplisit dan strategi generalisasi.
+
+\section{Kajian Pustaka}
+Untuk memahami penelitian ini, pembaca perlu memiliki pengetahuan dasar tentang teori graf, khususnya graf Petersen dan pelabelan graf (graph labeling). Selain itu, pemahaman tentang tiga jenis bilangan yang digunakan (Tribonacci, Fibonacci, dan bilangan segitiga) sangat penting. Beberapa referensi penting yang dikutip termasuk hasil Rosa (1966) tentang $\alpha$-valuation, serta berbagai penelitian tentang pelabelan Fibonacci graceful, Tribonacci cordial, dan pelabelan bilangan prima dari graf siklik dan bintang. Pemahaman tentang struktur urutan aritmetika dan teori kombinatorika juga menjadi landasan penting untuk formulasi teorema dan bukti dalam makalah ini.
+
+\section{Simpulan dan Saran}
+Penelitian ini menyajikan suatu pendekatan baru dalam pelabelan graf yang menggabungkan tiga jenis urutan bilangan untuk menciptakan struktur graf yang lebih kaya dan fleksibel. TF$\Delta$ labeling terbukti dapat diterapkan dengan baik pada keluarga graf Petersen yang digeneralisasi, dan bahkan dapat dimanfaatkan dalam berbagai aplikasi dunia nyata seperti pengelolaan SDM dalam industri kesehatan dan seleksi peserta kompetisi edukatif.
+
+Saran untuk penelitian mendatang adalah menerapkan TF$\Delta$ labeling pada jenis graf lain di luar $GP(n,2)$ dan $GP(n,3)$, serta mengembangkan algoritma komputasional untuk otomatisasi pelabelan ini. Potensi aplikasi di bidang lain seperti perancangan jaringan, sistem distribusi sumber daya, atau pemodelan struktur sosial juga dapat dieksplorasi lebih lanjut.
+
+\subsection*{Referensi}
+Ignatius, F. \& Kaspar, S. (2024). \textit{A new graph labeling with Tribonacci, Fibonacci and Triangular numbers}. Discover Sustainability, 5, 130.
+
+\end{document}
