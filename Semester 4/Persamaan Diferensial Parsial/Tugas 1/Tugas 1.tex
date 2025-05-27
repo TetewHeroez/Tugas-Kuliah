@@ -1,0 +1,131 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+Diberikan persamaan $y^2 u_{xx} - x^2 u_{yy} = 0$ dengan $x, y \ne 0$. Transformasikan PDP tersebut ke bentuk kanoniknya.
+
+\begin{enumerate}
+  \item Dari soal diperoleh $A = y^2$, $B = 0$, $C = -x^2$, dan $D = E = F = G = 0$, sehingga
+  \[
+  B^2 - 4AC = 0 - 4 \cdot y^2 \cdot (-x^2) = 4x^2 y^2 > 0 \rightarrow \text{PDP hiperbolik}
+  \]
+
+  \item Persamaan karakteristiknya adalah
+  \begin{itemize}
+    \item[(a)] Persamaan karakteristik pertama:
+    \begin{align*}
+      \frac{dy}{dx} &= \frac{B + \sqrt{B^2 - 4AC}}{2A} \\
+      \frac{dy}{dx} &= \frac{\sqrt{4x^2 y^2}}{2y^2} \\
+      \frac{dy}{dx} &= \frac{x}{y} \\
+      \int y \, dy &= \int x \, dx \\
+      \frac{y^2}{2} &= \frac{x^2}{2} + c_1 \\
+      \underbrace{\frac{y^2}{2} - \frac{x^2}{2}}_{\phi_1(x,y)} &= c_1
+    \end{align*}
+
+    \item[(b)] Persamaan karakteristik kedua:
+      \begin{align*}
+        \frac{dy}{dx} &= \frac{B - \sqrt{B^2 - 4AC}}{2A} \\
+        \frac{dy}{dx} &= \frac{-\sqrt{4x^2 y^2}}{2y^2} \\
+        \frac{dy}{dx} &= \frac{-x}{y} \\
+        \int y \, dy &= \int -x \, dx \\
+        \frac{y^2}{2} &= -\frac{x^2}{2} + c_2 \\
+        \underbrace{\frac{y^2}{2} + \frac{x^2}{2}}_{\phi_2(x,y)} &= c_2
+      \end{align*}
+  \end{itemize}
+  sehingga diperoleh $\xi(x,y) = \dfrac{y^2}{2} - \dfrac{x^2}{2}, \quad \eta(x,y) = \dfrac{y^2}{2} + \dfrac{x^2}{2}$.
+
+  \item Dapatkan turunan $\xi, \eta$ terhadap $x, y$
+  \begin{align*}
+  \xi_x &= -x & \eta_x &= x  \\
+  \xi_y &= y  & \eta_y &= y  \\
+  \xi_{xx} &= -1 & \eta_{xx} &= 1 \\
+  \xi_{xy} &= 0 & \eta_{xy} &= 0 \\
+  \xi_{yy} &= 1 & \eta_{yy} &= 1
+  \end{align*}
+
+  \item Subtitusi hasil ke persamaan berikut
+  \begin{align*}
+    C^* = A^* &= A\xi_x^2 + B\xi_x \xi_y + C\xi_y^2\\
+    &= 3(-3)^2 + 10(-3)(1) + 3(1)^2= 0 \\
+    B^* &= 2A\xi_x \eta_x + B(\xi_x \eta_y + \xi_y \eta_x) + 2C\xi_y \eta_y \\
+    &= 2(y^2)(-x)(x) + 0 + 2(-x^2)(y)(y) \\
+    &= -4x^2 y^2 = 4(\xi^2 - \eta^2) \\
+D^* &= A\xi_{xx} + B\xi_{xy} + C\xi_{yy} + D\xi_x + E\xi_y \\
+    &= y^2(-1) + 0 + (-x^2) + 0 + 0 \\
+    &= -y^2 - x^2 = -2\eta  \\
+E^* &= A\eta_{xx} + B\eta_{xy} + C\eta_{yy} + D\eta_x + E\eta_y \\
+    &= y^2 + 0 + (-x^2) + 0 + 0 \\
+    &= y^2 - x^2 = 2\xi  \\
+F^* &= F = 0  \\
+G^* &= G = 0 
+  \end{align*}
+  oleh karena itu didapat:
+\begin{align*}
+A^* w_{\xi\xi} + B^* w_{\xi\eta} + C^* w_{\eta\eta} + D^* w_{\xi} + E^* w_{\eta} + F^* w + G^* &= 0 \\
+4(\xi^2 - \eta^2) w_{\xi\eta} - 2\eta w_{\xi} + 2\xi w_{\eta} &= 0 \\
+w_{\xi\eta} &= \frac{\eta w_{\xi} - \xi w_{\eta}}{\xi^2 - \eta^2} 
+\end{align*}
+  
+  \item Solusi dari bentuk kanonik adalah $w = f(\xi) + g(\eta)$, sehingga misalkan 
+  \begin{align*}
+    w_{\xi} &= f'(\xi) \implies w_{\xi\eta} = \frac{\eta f'(\xi) - \xi g'(\eta)}{\xi^2 - \eta^2} \\
+    w_{\eta} &= g'(\eta) \\
+    w_{\xi\eta} &= 0 \implies \frac{f'(\xi)}{\xi}= \frac{g'(\eta)}{\eta} = k
+  \end{align*}
+  Karenanya diperlorek
+  \begin{align*}
+    \frac{f(\xi)}{\xi} &= k \implies f(\xi) = k \frac{\xi^2}{2} + C_1 \\
+    \frac{g(\eta)}{\eta} &= k \implies g(\eta) = k \frac{\eta^2}{2} + C_2 
+  \end{align*}
+  Maka didapatkan solusi 
+  \begin{align*}
+    w &= f(\xi) + g(\eta) \\
+    &= k \frac{\xi^2}{2} + C_1 + k \frac{\eta^2}{2} + C_2 \\
+    &= k \left[ (\frac{y^2}{2} - \frac{x^2}{2})^2 + (\frac{y^2}{2} + \frac{x^2}{2})^2 \right] + C_1 + C_2 \\
+    w(x,y)&= k \left( \frac{x^4 + y^4}{4} \right) + C
+  \end{align*}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,341 @@
+\documentclass{file/KP-ITS}
+%Ridho Nur Rohman Wijaya
+
+\makeatletter
+\def\cleardoublepage{\clearpage%
+	\if@twoside
+	\ifodd\c@page\else
+	\vspace*{\fill}
+	\hfill
+	\begin{center}
+		\emph{ }
+	\end{center}
+	\vspace{\fill}
+	\thispagestyle{empty}
+	\newpage
+	\if@twocolumn\hbox{}\newpage\fi
+	\fi
+	\fi
+}
+\makeatother
+\newtheorem{defn}{Definisi}[section]
+\newtheorem{teo}[defn]{Teorema}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lemma}[defn]{Lemma}
+\newtheorem{lemmas}[thm]{Lemma}
+\newtheorem{cor}[defn]{Akibat}
+\theoremstyle{definition}
+\newtheorem{con}[defn]{Contoh}
+\theoremstyle{definition}
+\theoremstyle{plain}
+\newtheorem{prop}[defn]{Proposisi}
+\renewcommand{\proofname}{Bukti}
+\renewcommand{\thethm}{\arabic{chapter}.\arabic{thm}}
+
+\newcommand{\norm}[1]{\left\|#1\right\|} % Fungsi norm (||x||)
+
+\newcommand\firstPar{0.75cm} % Indentasi 0.75cm pada tiap paragraf (manual untuk hspace)
+\setlength{\parindent}{0.75cm} % Indentasi 0.75cm pada tiap paragraf
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+
+\usepackage[labelsep=quad]{caption}
+% \captionsetup[table]{skip=5pt}
+
+\usepackage{multirow}
+\usepackage{longtable}
+
+
+%%% Pewarnaan code
+\usepackage{color}
+\usepackage{listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeblack}{rgb}{0,0,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codeblack},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+%%% Pewarnaan code
+
+\usepackage{hyperref}
+\hypersetup{ % Merubah warna link
+    colorlinks,
+    linkcolor={black},
+    citecolor={black},
+    urlcolor={black}
+}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning}
+
+% \tolerance=1
+% \emergencystretch = \maxdimen
+% \hyphenpenalty=10000
+% \hbadness=1000
+
+\begin{document}
+
+% input data
+\input{file/KP-data}
+\BagianAwal
+\Cover
+\LembarJudul
+\TitlePage
+\LembarPengesahanDepartemen
+\LembarPengesahanInstansi
+\LembarOrisinalitas
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Kata Pengantar %%%%%%%%%%%%%%%5%%%%%%%%%%
+\restoregeometry
+\KataPengantar
+Puji syukur penulis panjatkan kehadirat Allah SWT, Tuhan Yang Maha Esa, atas segala rahmat dan karunia-Nya sehingga penulis dapat menyelesaikan laporan Kerja Praktik ini dengan baik. Laporan ini disusun sebagai salah satu syarat untuk menyelesaikan mata kuliah Kerja Praktik di Departemen Matematika, Institut Teknologi Sepuluh Nopember (ITS).
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Daftar  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\DaftarIsi
+
+\DaftarGambar
+
+\DaftarTabel
+
+% \DaftarSimbol
+% \begin{flushleft}
+% \begin{tabular}{lrl}
+
+
+% $\oplus$ &:& Operasi \textit{max} dalam aljabar max-plus\\
+
+% \end{tabular}
+% \end{flushleft}
+%%%%%%%%%%%%%%%%%%%%%%%%  Daftar  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\BagianInti
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab I  %%%%%%%%%%%%%%%5%%%%%%%%%%
+\chapter{PENDAHULUAN}
+\section{Latar Belakang}
+Perkembangan teknologi informasi yang semakin pesat telah mendorong perubahan signifikan dalam berbagai aspek kehidupan, termasuk di dunia pendidikan. Dalam menghadapi tantangan tersebut, diperlukan keterlibatan langsung mahasiswa di lapangan untuk memahami bagaimana teknologi dapat dimanfaatkan secara nyata dalam proses pembelajaran. Oleh karena itu, mahasiswa tidak hanya dituntut untuk menguasai teori di bangku kuliah, tetapi juga perlu memiliki pengalaman praktik dalam mengembangkan solusi berbasis teknologi yang aplikatif dan relevan dengan kebutuhan saat ini.
+
+Kerja Praktik merupakan salah satu mata kuliah wajib yang harus ditempuh oleh seluruh mahasiswa Departemen Matematika, Institut Teknologi Sepuluh Nopember (ITS), sebagai bagian dari kurikulum pendidikan sarjana. Mata kuliah ini memberikan kesempatan bagi mahasiswa untuk mengaplikasikan ilmu yang telah diperoleh selama masa perkuliahan ke dalam dunia kerja yang nyata. Selain itu, kerja praktik juga bertujuan untuk melatih kemampuan problem solving, komunikasi, kolaborasi, serta kedisiplinan mahasiswa dalam lingkungan kerja profesional.
+
+Pada kerja praktik ini, penulis mendapatkan kesempatan untuk melaksanakan program kerja di salah satu subdirektorat kampus ITS yang bergerak dalam bidang pengembangan teknologi informasi dan pembelajaran digital. Proyek utama yang diamanahkan kepada penulis adalah merancang dan mengembangkan sebuah \textit{website} pembelajaran interaktif untuk mata kuliah Kalkulus, yang merupakan mata kuliah dasar dan sangat fundamental bagi mahasiswa jurusan sains dan teknik.
+
+Kalkulus sering kali menjadi tantangan tersendiri bagi mahasiswa, terutama dalam memahami konsep abstrak dan penerapan rumus-rumus matematis. Oleh karena itu, dibutuhkan sebuah media pembelajaran alternatif yang menarik, interaktif, dan mudah diakses guna membantu mahasiswa memahami materi dengan lebih efektif. Pemanfaatan teknologi web menjadi solusi yang relevan, mengingat mayoritas aktivitas akademik saat ini telah bergeser ke platform digital.
+
+Melalui kerja praktik ini, penulis tidak hanya berkontribusi dalam pembangunan sistem berbasis web, tetapi juga memperluas wawasan tentang penerapan matematika dalam dunia nyata, terutama dalam bidang pengembangan teknologi pendidikan. Diharapkan proyek ini dapat memberikan manfaat jangka panjang bagi mahasiswa ITS, khususnya dalam meningkatkan kualitas pembelajaran Kalkulus secara mandiri dan fleksibel.
+
+\section{Tujuan Kerja Praktik}
+Dalam penulisan laporan Kerja Praktik ini mempunyai tujuan umum dan tujuan khusus sebagai berikut:
+\subsection{Tujuan Umum}
+Tujuan umum Kerja Praktik adalah sebagai berikut:
+\begin{itemize}
+    \item Memenuhi salah satu mata kuliah wajib di Departemen Matematika ITS untuk tahap sarjana.
+    \item Menerapkan ilmu yang diperoleh di perkuliahan dalam dunia kerja.
+    \item Memperoleh pengalaman bekerja di bawah bimbingan seorang pembimbing di tempat Kerja Praktik.
+\end{itemize}
+
+\subsection{Tujuan Khusus}
+Tujuan khusus Kerja Praktik adalah sebagai berikut:
+\begin{itemize}
+    \item Mengimplementasikan ide \textit{project website} interaktif untuk pembelajaran kalkulus menggunakan \textit{framework} CortexJS.
+    \item Menambah wawasan dan pengalaman dalam dunia \textit{web development}.
+\end{itemize}
+
+\section{Manfaat}
+Berisikan manfaat yang diperoleh dari tujuan umum maupun
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab I  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab II  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\pagebreak
+\chapter{GAMBARAN UMUM SKPB}
+
+\section{Sejarah SKPB}
+Subdirektorat Koordinasi Perkuliahan Bersama (SKPB) adalah unit di bawah Direktorat Pendidikan yang bertanggung jawab untuk mengatur perkuliahan mata kuliah bersama bagi semua mahasiswa di ITS. Direktorat Pendidikan dibentuk berdasarkan Peraturan Rektor ITS No. 24 Tahun 2019 mengenai Organisasi dan Tata Kerja ITS yang diimplementasikan pada tahun 2020. Direktorat Pendidikan merupakan hasil penggabungan dari unit-unit sebelumnya, yaitu Biro Administrasi Pembelajaran dan Kemahasiswaan (BAPKM) serta Direktorat Akademik yang berfungsi dari tahun 2016 sampai 2020. Biro Administrasi Pembelajaran dan Kesejahteraan Mahasiswa mengelola semua tahapan administrasi pendidikan untuk mahasiswa yang dipimpin oleh Kepala Biro. Sementara itu, Direktorat Akademik memiliki tanggung jawab dalam merumuskan kebijakan akademik termasuk kurikulum dan dipimpin oleh seorang Direktur. Pada tahun itu, tidak ada pemisahan antara lembaga pelayanan untuk program sarjana dan pascasarjana. 
+
+Pada tahun sebelumnya, yakni 2014-2016, lembaga administrasi Pendidikan ini dikenal sebagai Biro Akademik, Kemahasiswaan, dan Perencanaan (BAKP), hasil penggabungan dari Badan Akademik yang didirikan antara tahun 2012 hingga 2014 dan dipimpin oleh Kepala Badan. Lebih dulu lagi, lembaga ini sebelumnya dikenal sebagai Biro Administrasi Akademik dan Kemahasiswaan (BAAK)
+\section{Struktur Organisasi}
+SKPB berada di bawah Direktorat Pengembangan Akademik dan Inovasi Pembelajaran (DPAIP) yang berada pada bidang 1 yang dimana berkoordinasi dengan Wakil Rektor 1 Bidang Akademik dan Kemahasiswaan. Berikut adalah struktur organisasi Direktorat Pengembangan Akademik dan Inovasi Pembelajaran (DPAIP) yang mengelola SKPB:
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+    node distance=0.8cm and 0.8cm,
+    dosen/.style={rectangle, rounded corners=2pt, minimum width=2cm, minimum height=1.2cm, align=center, text=white, fill=blue!70!black, font=\bfseries\tiny, text width=2cm},
+    tendik/.style={rectangle, rounded corners=2pt, minimum width=2cm, minimum height=1.2cm, align=center, text=white, fill=orange!80!red, font=\bfseries\tiny, text width=2cm},
+    line/.style={draw, thick,line cap=rect}
+]
+
+% Root
+\node[dosen] (root) {DIREKTUR PENGEMBANGAN AKADEMIK\\DAN INOVASI PEMBELAJARAN};
+\node[draw=none, above=of root, yshift=-0.9cm] (empty) {};
+
+% Level 1
+\node[dosen, below left=of root,] (d1) {KEPALA SUBDIT KOORDINASI\\PERKULIAHAN BERSAMA};
+\node[dosen, below=of root] (d2) {KEPALA SUBDIT\\PENGEMBANGAN AKADEMIK DAN KERJASAMA};
+\node[dosen, below right=of root,] (d3) {KEPALA SUBDIT PENGEMBANGAN\\KURIKULUM DAN INOVASI PEMBELAJARAN};
+
+% Tendik bawah d2
+\node[tendik, below=of d2] (t1) {MANAJER KERJASAMA AKADEMIK};
+
+% Tendik bawah d3
+\node[dosen, below=of d3,xshift=1.4cm] (d4) {KEPALA SEKSI EVALUASI DAN\\PENGEMBANGAN METODE PEMBELAJARAN};
+\node[dosen, below=of d4,yshift=0.5cm] (d5) {KEPALA SEKSI EVALUASI DAN\\PENGEMBANGAN TEKNOLOGI PEMBELAJARAN};
+
+% Draw lines
+\draw[line] (root) |-++(0,-1.2) -| (d1);
+\draw[line] (root) -- (d2);
+\draw[line] (root) |-++(0,-1.2) -| (d3);
+\draw[line] (d2) -- (t1);
+\draw[line] (d3) |- (d4);
+\draw[line] (d3) |- (d5);
+\end{tikzpicture}
+    \caption{Struktur Organisasi DPAIP}
+    \label{fig:struktur-organisasi-dpaip}
+\end{figure}
+
+\section{Kegiatan Perusahaan}
+Berdasarkan Pasal 8 Peraturan Rektor ITS No. 26 Tahun 2019, tugas dan fungsi Subdirektorat Koordinasi Perkuliahan Bersama dapat diuraikan sebagai berikut:
+\begin{enumerate}
+    \item Subdirektorat Koordinasi Perkuliahan Bersama mempunyai tugas membantu Direktorat Pendidikan dalam:
+    \begin{enumerate}
+        \item Membantu merumuskan kebijakan dalam lingkup koordinasi perkuliahan bersama.
+        \item Membina, mengarahkan dan mengembangkan kompetensi dan talenta personil dalam unit kerja.
+        \item Menyelenggarakan program kerja dan kegiatan yang selaras dengan kebijakan dalam lingkup koordinasi perkuliahan bersama.
+        \item Mengevaluasi kinerja hasil program kerja dan kegiatan dalam lingkup koordinasi perkuliahan bersama.
+        \item Menyelenggarakan layanan prima dalam lingkup koordinasi perkuliahan bersama dengan prinsip reformasi birokrasi dan zona integritas.
+    \end{enumerate}
+
+    \item Dalam melaksanakan tugas sebagaimana dimaksud pada poin (1), Subdirektorat Koordinasi Perkuliahan Bersama menyelenggarakan fungsi:
+    \begin{enumerate}
+        \item Pengkajian dan penyelenggaraan mata kuliah wajib nasional dan mata kuliah ITS untuk program sarjana dan vokasi.
+        \item Pengkajian dan pengembangan kuliah bersama untuk program sarjana dan vokasi dengan prinsip kolaborasi dan \textit{sharing} sumber daya.
+        \item Penyelenggaraan kuliah bersama untuk program sarjana dan vokasi.
+        \item Pengawasan dan evaluasi penyelenggaraan mata kuliah wajib nasional, mata kuliah ITS, dan kuliah bersama untuk program sarjana dan vokasi.
+        \item Koordinasi dan fasilitasi penyelenggaraan kuliah lintas perguruan tinggi.
+    \end{enumerate}
+\end{enumerate}
+
+
+% (\ref*{pers1}). % Merujuk persamaan tinggal menuliskan labelnya
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab II  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab III  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\pagebreak
+\chapter{PELAKSANAAN KERJA PRAKTIK}
+
+\section{Pelaksanaan Kerja Praktik}
+Berikut adalah keterangan pelaksanaan kerja praktik yang sudah dilakukan selama sekitar 2 bulan:
+% \vspace*{-0.5cm}
+\begin{flushleft}
+\begin{tabular}{lcp{0.7\textwidth}}
+    Waktu	&:& 16 Desember 2024 - 9 Februari 2025 \\
+    Tempat	&:& Subdirektorat Koordinasi Perkuliahan Bersama (SKPB) ITS
+\end{tabular}
+\end{flushleft}
+\noindent Perihal keterangan rangkaian kerja praktik selengkapnya dilampirkan pada Lampiran.
+
+\section{Metodologi Penyelesaian Tugas Khusus}
+...
+
+
+\section{Urutan pelaksanaan penelitian}
+...
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab III  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\chapter{HASIL KERJA PRAKTIK}
+
+\section{Hasil Penelitian}
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab IV %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\chapter{PENUTUP}
+
+\section{Kesimpulan}
+\section{Saran}
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Bab V %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\pagebreak
+\DaftarPustaka
+%%%%%%%%%%%%%%%%%%%%%%%%  Dapus  %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\pagebreak
+\lampiran{\textit{Logbook} Kegiatan}
+% \begin{longtable}{|c|l|p{8cm}|}
+% \hline
+% \textbf{No} & \textbf{Tanggal} & \textbf{Deskripsi Kegiatan} \\
+% \hline
+% \endfirsthead
+% \hline
+% \textbf{No} & \textbf{Tanggal} & \textbf{Deskripsi Kegiatan} \\
+% \hline
+% \endhead
+% \hline
+% \endfoot
+
+% 1 & 16 Desember 2024 & Mengenal lingkungan kerja \\
+% 2 & 17 Desember 2024 & Diskusi tujuan KP dari masing-masing individu \\
+% % dst
+% \end{longtable}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|p{0.31\linewidth}|p{0.45\linewidth}|}
+        \hline
+        1 & 16 Desember 2024 (08.00 - 16.30 WIB) & Mengenal lingkungan kerja \\
+\hline
+2 & 17 Desember 2024 (11.00 - 16.00 WIB) & Berdiskusi tujuan KP dari masing-masing individu \\
+\hline
+3 & 18 Desember 2024 (12.00 - 16.00 WIB) & Belajar dasar website HTML CSS \\
+\hline
+4 & 19 Desember 2024 (12.00 - 16.00 WIB) & Fiksasi jobdesk masing-masing individu \\
+\hline
+5 & 23 Desember 2024 (10.00 - 16.00 WIB) & Lanjutan belajar web HTML CSS Javascript \\
+\hline
+6 & 6 Januari 2025 (11.00 - 16.00 WIB) & Mulai membuat tampilan awal web \\
+\hline
+7 & 7 Januari 2025 (12.00 - 16.00 WIB) & Menonton dan mengimplementasikan template web dari YouTube \\
+\hline
+8 & 8 Januari 2025 (13.00 - 16.00 WIB) & Membuat sidebar menu \\
+\hline
+9 & 9 Januari 2025 (14.00 - 16.00 WIB) & Mencari referensi tentang \textbf{CoretexJS} sebagai penunjang interaktivitas web \\
+\hline
+10 & 13 Januari 2025 (13.00 - 16.00 WIB) & Mempelajari fitur-fitur CSS Wrapped 2024 \\
+\hline
+11 & 14 Januari 2025 (13.00 - 16.00 WIB) & Mengimplementasikan fitur CSS Wrapped 2024 ke dalam prototype website \\
+\hline
+12 & 16 Januari 2025 (14.00 - 16.00 WIB) & Mulai menginputkan materi sambil membuat template CSS komponen yang lain \\
+\hline
+    \end{tabular}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%  Lampiran %%%%%%%%%%%%%%%5%%%%%%%%%%
+
+\pagebreak
+\Biodata{foto/FotoPenulis.jpg}
+Hai bg hai
+%%%%%%%%%%%%%%%%%%%%%%%%  Bio Penulis  %%%%%%%%%%%%%%%5%%%%%%%%%%
+\end{document}

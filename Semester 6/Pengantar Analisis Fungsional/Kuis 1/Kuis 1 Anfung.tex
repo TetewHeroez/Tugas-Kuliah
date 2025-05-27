@@ -76,11 +76,12 @@
 
 \date{Rabu, 9 April 2025}
 \title[Pengantar Analisis Fungsional]{Pembahasan Kuis 1 Pengantar Analisis Fungsional T.A 2024/2025}
-\author[Teo]{Teosofi Hidayah Agung}
+\author[Teo]{Teosofi Hidayah Agung\\5002221132}
 \institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
 \titlegraphic{\includegraphics[scale=0.15]{logoITS}$\quad$\includegraphics[scale=0.024]{M.png}}
 
 \begin{document}
+
     \begin{frame}
         \titlepage
 \end{frame}
@@ -258,6 +259,68 @@
     &< \varepsilon/2 + \varepsilon/2= \varepsilon
   \end{align*}
   Hal diatas menunjukkan bahwa $(a_n)$ adalah barisan Cauchy di $\R$ terhadap metrik Euclidean. Oleh karena itu, $(a_n)$ konvergen di $\R$.  
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Untuk ilustrasinya misalkan kita bekerja di ruang metrik \((\mathbb{R}, d)\) dengan \(d(x, y) = |x - y|\), dan ambil:
+  \begin{align*}
+    x_n = 1 + \frac{1}{n} \quad \text{dan} \quad y_n = 3 - \frac{1}{n}
+  \end{align*}
+
+Keduanya adalah barisan Cauchy di \(\mathbb{R}\), karena \((x_n) \to 1\) dan \((y_n) \to 3\)
+
+Sekarang lihat:
+\[
+a_n = d(x_n, y_n)
+= |x_n - y_n|
+= \left| \left(1 + \frac{1}{n} \right) - \left(3 - \frac{1}{n} \right) \right|
+= \left| -2 + \frac{2}{n} \right| = 2 - \frac{2}{n} \to 2
+\]
+
+Barisan \(a_n = d(x_n, y_n)\) konvergen ke 2.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{figure}[h!]
+    \begin{tikzpicture}[scale=2]
+      % Garis bilangan
+      \draw[->] (1.5,0) -- (6.5,0) node[right] {$\mathbb{R}$};
+    
+      % Titik batas limit
+      \foreach \x/\label in {2/$\small\lim x_n$, 6/$\small\lim y_n$} {
+        \draw[fill=black] (\x,0) circle (0.03);
+        \draw (\x,0.1) -- (\x,-0.1);
+        \node[below] at (\x,-0.1) {\label};
+      }
+    
+      % Beberapa titik x_n dan y_n (diskalakan)
+      \foreach \n in {1,...,5} {
+        \pgfmathsetmacro\x{(1 + 1/\n)*2} % kalikan dengan 2
+        \pgfmathsetmacro\y{(3 - 1/\n)*2}
+        
+        % Titik x_n
+        \draw[fill=blue] (\x,0) circle (0.03);
+        \node[above, blue] at (\x,0) {\small$x_{\n}$};
+    
+        % Titik y_n
+        \draw[fill=red] (\y,-0) circle (0.03);
+        \node[below, red] at (\y,-0) {\small$y_{\n}$};
+    
+        % Panah jarak a_n
+        \ifnum\n>1
+          \draw[<->, gray, thick] (\x,0.4*\n-0.4) -- (\y,0.4*\n-0.4);
+          \pgfmathsetmacro\a{\y - \x}
+          \node[above, gray] at ({(\x+\y)/2},0.4*\n-0.4) {\small$a_{\n}$};
+        \fi
+      }
+    
+    \end{tikzpicture}
+    \caption{Ilustrasi barisan Cauchy $(x_n)$ dan $(y_n)$ di $\mathbb{R}$, serta jarak $a_n = d(x_n, y_n)$.}
+    \end{figure}
 \end{frame}
 
 \end{document}

@@ -1,0 +1,18 @@
+ MODULE main
+ VAR
+ state : {s1,s2,s3};
+ ASSIGN
+ init(state) := {s1,s3};
+ next(state) := case
+ state=s1 : s2;
+ state=s2 : {s1,s3};
+ state=s3 : s3;
+ esac;
+ DEFINE
+ a := state=s1 | state=s2 | state=s3;
+ b := state=s1 | state=s2;
+ 
+LTLSPEC G a
+LTLSPEC X ( a & b )
+LTLSPEC (!b -> G ( a & !b ) )
+LTLSPEC b U ( a & !b )
