@@ -1,0 +1,128 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\begin{enumerate}
+  \item \[u_{xx} + x^2u_{yy} = 0,\, x\ne 0\]
+  dan bentuk kanonikalnya adalah
+  \begin{equation}
+    \omega_{\xi\xi} + \omega_{\eta\eta} = -\frac{1}{2\eta}\omega_{\eta}\label{eq:1}
+  \end{equation}
+  Bentuk separable 
+  \begin{equation}
+    \omega(\xi,\eta) = X(\xi)Y(\eta)\label{eq:2}
+  \end{equation}
+  Subtitusi \eqref{eq:2} ke \eqref{eq:1} diperoleh
+  \begin{equation}
+    X''(\xi)Y(\eta) + X(\xi)Y''(\eta) = -\frac{1}{2\eta}X(\xi)Y'(\eta)\label{eq:3}
+  \end{equation}
+  Selanjutnya kita bagi \eqref{eq:3} dengan $X(\xi)Y(\eta)$:
+  \begin{equation}
+    \frac{X''(\xi)}{X(\xi)} + \frac{Y''(\eta)}{Y(\eta)} = -\frac{1}{2\eta}\frac{Y'(\eta)}{Y(\eta)}\label{eq:4}
+  \end{equation}
+  dengan pemisahan variabel
+  \begin{equation}
+    \frac{X''(\xi)}{X(\xi)} = -\lambda,\, \frac{Y''(\eta)}{Y(\eta)} + \frac{1}{2\eta}\frac{Y'(\eta)}{Y(\eta)} = \lambda\label{eq:5}
+  \end{equation}
+  \begin{itemize}
+    \item $X''(\xi) + \lambda X(\xi) = 0$\\
+    $X(\xi) = A\cos(\sqrt{\lambda}\xi) + B\sin(\sqrt{\lambda}\xi)$
+    \item $Y''(\eta) + \frac{1}{2\eta}Y'(\eta) + \lambda Y(\eta) = 0 = Y_\eta(\eta)$
+  \end{itemize}
+  \begin{equation}
+    \omega(\xi,\eta) = \sum_{n=1}^{\infty}\left[A\cos(\sqrt{\lambda}\xi) + B\sin(\sqrt{\lambda}\xi)\right]Y_\eta(\eta) \label{eq:6}
+  \end{equation}
+  \begin{equation}
+      \eta = \frac{y+\frac{1}{2}x^2}{2},\quad u = \frac{y-\frac{1}{2}x^2}{2}\label{eq:7}
+  \end{equation}
+  Subtitusi \eqref{eq:7} ke \eqref{eq:6} sehingga solusinya
+  \begin{equation*}
+      \omega(\xi,\eta) = \sum_{n=1}^{\infty}\left[A\cos\left(\sqrt{\lambda}\left(\frac{y+\frac{1}{2}x^2}{2}\right)\right) + B\sin\left(\sqrt{\lambda}\left(\frac{y+\frac{1}{2}x^2}{2}\right)\right)\right]Y_\eta\left(\frac{y-\frac{1}{2}x^2}{2}\right)
+  \end{equation*}
+  \item Bentuk kanonik : $\omega_{\xi\xi} + \omega_{\eta\eta} =  \dfrac{2}{3} \omega_{\eta}-\dfrac{2\sqrt{3}}{3} \omega_{\eta}$\\
+  Asumsikan solusinya berbentuk
+  \begin{equation}
+      \omega(\xi,\eta) = e^{\alpha\xi+\beta\eta}\label{eq:8}
+  \end{equation}
+  Turunkan parsial \eqref{eq:8} terhadap $\xi$ dan $\eta$:
+  \begin{equation*}
+      \omega_\xi = \alpha e^{\alpha\xi+\beta\eta},\quad
+      \omega_{\xi\xi} = \alpha^2 e^{\alpha\xi+\beta\eta},\quad
+      \omega_{\eta} = \beta e^{\alpha\xi+\beta\eta},\quad
+      \omega_{\eta\eta} = \beta^2 e^{\alpha\xi+\beta\eta},\quad
+  \end{equation*}
+  Subtitusi ke dalam persamaan \eqref{eq:8}:
+  \begin{align*}
+      &\alpha^2 e^{\alpha\xi+\beta\eta} + \beta^2 e^{\alpha\xi+\beta\eta} = \frac{2}{3}\alpha e^{\alpha\xi+\beta\eta}-\frac{2\sqrt{3}}{3}\beta e^{\alpha\xi+\beta\eta}\\
+      &\implies \alpha^2 + \beta^2 = \frac{2}{3}\alpha-\frac{2\sqrt{3}}{3}\beta
+  \end{align*}
+  Misalkan $\alpha =  1$ maka $\beta$ diperoleh dari
+  \begin{align*}
+      1 + \beta^2 &= \frac{2}{3}-\frac{2\sqrt{3}}{3}\beta\\
+      \beta^2 + \frac{2\sqrt{3}}{3}\beta + \frac{1}{3} &= 0\\
+      3\beta^2 + 2\sqrt{3}\beta + 1 &= 0\\
+      \beta &= \frac{-2\sqrt{3}\pm\sqrt{(2\sqrt{3})^2-4.3.1}}{2\cdot 3}\\
+      &= \frac{-2\sqrt{3}\pm\sqrt{12-12}}{6}\\
+      &= -\frac{\sqrt{3}}{3}\\
+  \end{align*}
+  Artinya
+  \begin{align*}
+      \omega(\xi,\eta) &= e^{\xi-\frac{\sqrt{3}}{3}\eta}\\
+      \omega(\xi,\eta) &= f(\xi-\frac{\sqrt{3}}{3}\eta)
+  \end{align*}
+  \begin{itemize}
+    \item $\xi = y-\dfrac{1}{2}x$
+    \item $\eta = \dfrac{\sqrt{3}}{3}x$
+  \end{itemize}
+  Oleh karena itu diperoleh
+  \begin{align*}
+    u(x,y) &= f(\eta-\frac{\sqrt{3}}{3}\xi)\\
+    &= f\left(y-\frac{1}{2}x-\frac{\sqrt{3}}{3}\cdot \dfrac{\sqrt{3}}{3}x\right)\\
+    &= f\left(y-\frac{1}{2}x-\frac{1}{2}x\right)\\
+    u(x,y)&= f\left(y-x\right)
+  \end{align*}
+\end{enumerate}
+\end{document}

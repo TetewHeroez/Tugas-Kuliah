@@ -1,0 +1,246 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz, tkz-euclide}
+  \usetikzlibrary{arrows.meta,calc}
+  \newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#1}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[red!60!black,thick] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtcolorbox{solution}[1][]{
+    colback=blue!5!white, 
+    colframe=blue!75!black,
+    fonttitle=\bfseries, 
+    colbacktitle=blue!85!black,
+    title=Solusi,
+    #1
+}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\begin{enumerate}
+  \item Diberikan PDP \( u_x - 2u = x \)
+  \begin{itemize}
+      \item[(a)] Dapatkan penyelesaian umum PDP tersebut.
+      \item[(b)] Jika diberikan syarat batas: \( u(0,y) = y \). Dapatkan penyelesaian partikular PDP tersebut.
+      \item[(c)] Jika diberikan syarat batas: \( u(x,0) = \frac{3}{4} - \frac{x}{2} \). Tunjukkan PDP tersebut tidak mempunyai penyelesaian.
+  \end{itemize}
+
+  \item Dapatkan penyelesaian PDP berikut dengan menggunakan metode Lagrange:
+  \[
+  y \frac{\partial u}{\partial x} + x \frac{\partial u}{\partial y} = xy
+  \]
+
+  \item Dapatkan penyelesaian PDP berikut dengan menggunakan metode karakteristik:
+  \[
+  u_x + u_y = -\frac{1}{2}u
+  \]
+  dengan kondisi awal \( u(x,0) = 1 \).
+
+  \item Dapatkan penyelesaian PDP berikut dengan menggunakan metode pemisahan variabel:
+  \[
+  u_x + 2u_y = 0 \quad \text{jika} \quad u(0,y) = 3e^{-2y} - 4e^y
+  \]
+\end{enumerate}
+\centering\textbf{\underline{SOLUSI}}
+\begin{enumerate}
+  \item \begin{enumerate}
+    \item Kalikan seluruh persamaan dengan faktor integrasi \( e^{-2x} \):
+    \[
+    e^{-2x}u_x - 2e^{-2x}u = xe^{-2x}
+    \quad \Rightarrow \quad
+    \frac{d}{dx}(e^{-2x}u) = xe^{-2x}
+    \]
+    
+    Integralkan kedua ruas:
+    \[
+    e^{-2x}u = \int xe^{-2x} \, dx
+    \]
+    Gunakan integrasi parsial:
+    \[
+    \int xe^{-2x} \, dx = -\frac{1}{2}xe^{-2x} - \frac{1}{4}e^{-2x} + f(y)
+    \]
+    
+    Sehingga:
+    \[
+    e^{-2x}u = -\frac{1}{2}xe^{-2x} - \frac{1}{4}e^{-2x} + f(y)
+    \]
+    Kalikan dengan \( e^{2x} \):
+    \[
+    u(x,y) = f(y)e^{2x} - \frac{1}{2}x - \frac{1}{4}
+    \]
+    \item Substitusi \(x = 0\):
+    \[
+    u(0,y) = f(y) - \frac{1}{4}
+    \]
+    Sehingga:
+    \[
+    f(y) = y + \frac{1}{4}
+    \]
+    Penyelesaian partikular:
+    \[
+    u(x,y) = \left( y + \frac{1}{4} \right) e^{2x} - \frac{1}{2}x - \frac{1}{4}
+    \]
+    \item Substitusi \(y = 0\):
+    \begin{align*}
+      u(x,0) &= f(0)e^{2x} - \frac{1}{2}x - \frac{1}{4}\\
+      \frac{3}{4} - \frac{x}{2} &= f(0)e^{2x} - \frac{1}{2}x - \frac{1}{4}\\
+      f(0) = e^{2x}
+    \end{align*}
+    Hal ini kontradiksi karena fungsi $f$ bergantung pada $y$ saja. Sehingga tidak ada penyelesaian untuk syarat batas ini.
+  \end{enumerate}
+  \item Karakteristik:
+  \[
+  \frac{dx}{y} = \frac{dy}{x} = \frac{du}{xy}
+  \]
+  
+  Dari \(\frac{dx}{y} = \frac{dy}{x}\), diperoleh:
+  \[
+  x\,dx = y\,dy
+  \quad \Rightarrow \quad
+  \frac{1}{2}x^2 = \frac{1}{2}y^2 + C
+  \quad \Rightarrow \quad
+  x^2 - y^2 = k
+  \]
+  
+  Dari \(\frac{dx}{y} = \frac{du}{xy}\), didapatkan:
+  \[
+  du = x\,dx
+  \quad \Rightarrow \quad
+  u = \frac{1}{2}x^2 + f(x^2 - y^2)
+  \]
+  
+  Jadi solusi umum:
+  \[
+  u(x,y) = \frac{1}{2}x^2 + f(x^2 - y^2)
+  \]
+  \item Karakteristik:
+  \[
+  \frac{dx}{1} = \frac{dy}{1} = \frac{du}{-\frac{1}{2}u}
+  \]
+  
+  Dari \(\frac{dx}{1} = \frac{dy}{1}\):
+  \[
+  x - y = k
+  \]
+  
+  Dari \(\frac{du}{-\frac{1}{2}u}\):
+  \[
+  \frac{du}{u} = -\frac{1}{2}ds
+  \quad \Rightarrow \quad
+  \ln u = -\frac{1}{2}s + C
+  \quad \Rightarrow \quad
+  u = A(k)e^{-\frac{1}{2}s}
+  \]
+  
+  Sehingga:
+  \[
+  u(x,y) = f(x-y)e^{-\frac{1}{2}x}
+  \]
+  
+  Gunakan syarat \(u(x,0) = 1\):
+  \[
+  f(x)e^{-\frac{1}{2}x} = 1
+  \quad \Rightarrow \quad
+  f(x) = e^{\frac{1}{2}x}
+  \]
+  
+  Maka:
+  \[
+  u(x,y) = e^{-\frac{1}{2}y}
+  \]
+  \item 
+  
+  Misalkan solusi berbentuk:
+  \[
+  U(x,y) = X(x)Y(y)
+  \]
+  
+  Maka persamaan menjadi:
+  \[
+  X'Y + 2XY' = 0 \Rightarrow \frac{X'}{X} = -2\frac{Y'}{Y}
+  \]
+  
+  Pisahkan variabel:
+  \[
+  \frac{X'}{2X} = -\frac{Y'}{Y} = \lambda
+  \]
+  
+  Maka diperoleh dua persamaan diferensial biasa (PDB):
+  
+  \begin{enumerate}
+      \item $\displaystyle \frac{X'}{X} = 2\lambda \Rightarrow X(x) = C_1 e^{2\lambda x}$
+      \item $\displaystyle \frac{Y'}{Y} = -\lambda \Rightarrow Y(y) = C_2 e^{-\lambda y}$
+  \end{enumerate}
+  
+  Sehingga solusi umum:
+  \[
+  U(x,y) = C_1C_2 e^{2\lambda x} e^{-\lambda y} = A e^{\lambda(2x - y)}
+  \]
+  
+  Dengan $A = C_1C_2$, maka superposisi solusi umum:
+  \[
+  U(x,y) = A_1 e^{\lambda_1(2x - y)} + A_2 e^{\lambda_2(2x - y)}
+  \]
+  
+  Gunakan syarat batas \( u(0,y) = 3e^{-2y} - 4e^y \). Maka:
+  \[
+  U(0,y) = A_1 e^{-\lambda_1 y} + A_2 e^{-\lambda_2 y} = 3e^{-2y} - 4e^{y}
+  \]
+  
+  Dapat dilihat bahwa:
+  \[
+  \lambda_1 = 2, \quad A_1 = 3; \qquad \lambda_2 = -1, \quad A_2 = -4
+  \]
+  
+  Maka solusi partikular:
+  \[
+  U(x,y) = 3e^{2(2x - y)} - 4e^{-1(2x - y)} = 3e^{4x - 2y} - 4e^{-2x + y}
+  \]
+
+\end{enumerate}
+\end{document}

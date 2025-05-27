@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Quiz 1 Aljabar Linier Elementer}
+\end{center}
+\pagenumbering{gobble}
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item Diberikan suatu SPL
+    \begin{align*}
+        x_1 + 3x_2 + x_3 + x_4 &= a \\
+        2x_1 + 5x_2 + 2x_3 + x_4 &= b \\
+        x_1 + 3x_2 + 8x_3 + 9x_4 &= c \\
+        x_1 + 3x_2 + 2x_3 + 2x_4 &= d
+    \end{align*}
+    dengan $abcd$ merupakan 4 digit terakhir NRP anda. Tentukan solusi SPL tersebut dengan menggunakan \textbf{Metode Eliminasi Gauss-Jordan}.
+    
+    \item Diberikan suatu barisan Fibonacci $F_{n+2} = F_{n+1} + F_n$ untuk $n \geq 1$ dengan dua suku awal $F_1 = F_2 = 1$. Sebagai contoh, 5 suku awal dari barisan Fibonacci adalah
+    \[
+    1, 1, 2, 3, 5.
+    \]
+    Selanjutnya didefinisikan matriks
+    \[
+    A = \begin{bmatrix}
+    F_2 & F_1 \\
+    F_1 & 0
+    \end{bmatrix}.
+    \]
+    Buktikan bahwa
+    \[
+    A^n = \begin{bmatrix}
+    F_{n+1} & F_n \\
+    F_n & 0
+    \end{bmatrix}
+    \quad \text{untuk setiap } n \geq 1.
+    \]
+
+    \item Tentukan semua matriks diagonal $A$ dengan ukuran $3 \times 3$ yang memenuhi
+    \[
+    A^2 - 3A - 4I = 0.
+    \]
+
+    \item Diberikan suatu matriks
+    \[
+    A = \begin{bmatrix}
+    a_1 & a_2 & a_3 & a_4 \\
+    1 & a_5 & a_6 & a_7 \\
+    2 & 3 & a_8 & a_9 \\
+    4 & 5 & 6 & a_{10}
+    \end{bmatrix}
+    \]
+    dengan $a_1, a_2, \ldots, a_{10}$ merupakan digit-digit NRP anda dari depan.
+    \begin{itemize}
+        \item Hitung $\det(A)$.
+        \item Apakah $A$ mempunyai invers? Jelaskan jawaban anda.
+    \end{itemize}
+
+    \item Selesaikan SPL pada soal no 1 dengan menggunakan \textbf{Metode Cramer}.
+
+    \item Buktikan bahwa jika $A$ mempunyai invers, maka $\operatorname{adj}(A)$ mempunyai invers dan
+    \[
+    (\operatorname{adj}(A))^{-1} = \frac{A}{\det(A)} = \operatorname{adj}(A^{-1}).
+    \]
+\end{enumerate}
+
+\vspace{1cm}
+
+\noindent\textbf{Catatan:}
+\begin{itemize}
+    \item Kerjakan \textbf{hanya 5 soal}
+    \item Setiap soal berbobot 20
+    \item Kerjakan dengan penuh kejujuran
+\end{itemize}
+\newpage
+
+
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz, tkz-euclide}
+  \usetikzlibrary{arrows.meta,calc}
+  \newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#1}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[red!60!black,thick] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtcolorbox{solution}[1][]{
+    colback=blue!5!white, 
+    colframe=blue!75!black,
+    fonttitle=\bfseries, 
+    colbacktitle=blue!85!black,
+    title=Solusi,
+    #1
+}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+
+\begin{enumerate}
+  \item Jika $T: C_{\mathbb{R}}[0,1] \to \mathbb{R}$ adalah transformasi linier yang didefinisikan oleh:
+  \[
+   T(f) = \int_0^1 f(x) \, dx.
+  \]
+  Tunjukkan bahwa $T$ kontinu.
+  
+  \bigskip
+  
+  \textbf{Penyelesaian:}
+  
+  Ruang $C_{\mathbb{R}}[0,1]$ adalah ruang fungsi kontinu dari $[0,1]$ ke $\mathbb{R}$, dan dilengkapi dengan norma maksimum:
+  \[
+  \|f\|_\infty = \max_{x \in [0,1]} |f(x)|.
+  \]
+  
+  Kita ingin menunjukkan bahwa terdapat konstanta $C > 0$ sehingga:
+  \[
+  |T(f)| = \left| \int_0^1 f(x) \, dx \right| \leq C \|f\|_\infty.
+  \]
+  
+  Untuk semua $f \in C_{\mathbb{R}}[0,1]$, diperoleh:
+  \[
+  \left| T(f) \right| = \left| \int_0^1 f(x) \, dx \right| 
+  \leq \int_0^1 |f(x)| \, dx 
+  \leq \int_0^1 \|f\|_\infty \, dx 
+  = \|f\|_\infty.
+  \]
+  
+  Sehingga:
+  \[
+  |T(f)| \leq \|f\|_\infty.
+  \]
+  
+  Dengan kata lain, terdapat konstanta $C = 1$ sehingga:
+  \[
+  |T(f)| \leq C \|f\|_\infty.
+  \]
+  Hal tersebut menunjukkan bahwa $T$ kontinu di $f(x)=0$ sehingga dapat disimpulkan $T$ kontinu di seluruh ruang $C_{\mathbb{R}}[0,1]$.
+\end{enumerate}
+\end{document}

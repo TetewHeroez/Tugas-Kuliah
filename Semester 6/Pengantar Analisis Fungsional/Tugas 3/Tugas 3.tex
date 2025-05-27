@@ -1,0 +1,166 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz, tkz-euclide}
+  \usetikzlibrary{arrows.meta,calc}
+  \newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#1}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[red!60!black,thick] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtcolorbox{solution}[1][]{
+    colback=blue!5!white, 
+    colframe=blue!75!black,
+    fonttitle=\bfseries, 
+    colbacktitle=blue!85!black,
+    title=Solusi,
+    #1
+}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Jika $X$ dalam soal nomor 2 adalah ruang real, buktikan bahwa, secara konvers, relasi yang diberikan menyiratkan bahwa $x \perp y$. Tunjukkan bahwa hal ini mungkin tidak berlaku jika $X$ adalah kompleks. Berikan contoh.
+  \begin{solution}
+    Misalkan $x,y\in X$ memenuhi $\|x+y\|^2=\|x\|^2+\|y\|^2$, maka berdasarkan definisi norm berlaku
+    \begin{align*}
+      \|x+y\|^2&=\langle x+y, x+y \rangle\\
+      \|x\|^2+\|y\|^2&=\langle x,x \rangle+\langle x, y \rangle+\langle y,x \rangle+\langle y,y \rangle\\
+      \|x\|^2+\|y\|^2&=\|x\|^2+2\langle x,y \rangle+\|y\|^2\\
+      2\langle x,y \rangle&=0\implies \langle x,y \rangle=0
+    \end{align*}
+    Jadi terbukti $x\perp y$.\\
+
+    % Untuk $X=\C$ artinya definisi untuk sifat simetri berubah menjadi
+    % \[
+    % \langle z,w \rangle=\overline{\langle w,z \rangle} \quad \text{untuk } z,w\in \C.
+    % \]
+    % Sehingga untuk $z,w\in \C$ berlaku
+    % \begin{align*}
+    %   \|z+w\|^2&=\langle z+w,z+w \rangle\\
+    %   &=\langle z,z \rangle+\langle z,w \rangle+\langle w,z \rangle+\langle w,w \rangle\\
+    %   &=\|z\|^2+\overline{\langle z,w \rangle}+\langle z,w \rangle+\|w\|^2\\
+    %   &=\|z\|^2+2\operatorname{Re}(\langle z,w \rangle)+\|w\|^2.
+    % \end{align*}
+    Misalkan $z,w\in \C$, kemudian pilih $z=-i$ dan $w=-1$. Jelas bahwa
+    \[
+    \|z+w\|^2=\left[\sqrt{1^2+(-1)^2}\right]^2=2=\|-i\|^2+\|-1\|^2=\|z\|^2+\|w\|^2.
+    \]
+    Namun 
+    \[
+    \langle z,w \rangle=\langle -i,-1 \rangle=-i\cdot(\overline{-1})=i\neq 0.
+    \]
+    Berarti $z\not\perp w$ untuk $z,w\in \C$.
+  \end{solution}
+
+  \item Jika $X$ adalah ruang hasil dalam real, buktikan bahwa kondisi $\|x\| = \|y\|$ berimplikasi $\langle x + y, x - y \rangle = 0$. Apa arti kondisi ini secara geometris jika $X = \mathbb{R}^2$? Apa arti kondisi ini jika $X$ adalah kompleks?
+  \begin{solution}
+    Misalkan $x,y\in X$ adalah ruang hasil dalam real.\\
+    Jika $\|x\|=\|y\|$, maka berlaku
+    \begin{align*}
+      \langle x+y,x-y \rangle&=\langle x,x \rangle+\langle x,y \rangle-\langle y,x \rangle-\langle y,y \rangle\\
+      &=\langle x,x \rangle-\langle y,y \rangle\\
+      &=\|x\|^2-\|y\|^2=0.
+    \end{align*}
+    Jadi $\langle x+y,x-y \rangle=0$.\\
+
+    Secara geometris, jika $X=\mathbb{R}^2$, maka $\mathbf{x}$ dan $\mathbf{y}$ membentuk sudut siku-siku.
+    \begin{center}
+      \begin{tikzpicture}[scale=1.5]
+        \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+        \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+        \coordinate (B) at (1,1)  {};
+        \coordinate (C) at (1,-1) {};
+        \coordinate (0) at (0, 0) {};
+        \draw[red,->,thick] (0,0) -- (1,1) node[above right] {$\mathbf{x+y}$};
+        \draw[red,->,thick] (0,0) -- (1,-1) node[below right] {$\mathbf{x-y}$};
+        \draw[blue,->,thick] (0,0) -- (1,0) node[below right] {$\mathbf{x}$};
+        \draw[blue,->,thick] (0,0) -- (0,1) node[above right] {$\mathbf{y}$};
+        \rightAngle{C}{0}{B}{0.3}
+      \end{tikzpicture}
+    \end{center}
+  \end{solution}
+  
+  \setcounter{enumi}{7}
+
+  \item Tunjukkan bahwa dalam ruang hasil dalam (inner product space), $x \perp y$ jika dan hanya jika $\|x + \alpha y\| \geq \|x\|$ untuk semua skalar $\alpha$.
+  \begin{solution}
+    Misalkan $x,y\in X$ adalah ruang hasil dalam.\\
+    Jika $x\perp y$, maka $\langle x,y \rangle=0$.\\
+    Maka berlaku
+    \begin{align*}
+      \|x+\alpha y\|^2&=\langle x+\alpha y,x+\alpha y \rangle\\
+      &=\langle x,x \rangle+\langle x,\alpha y \rangle+\langle \alpha y,x \rangle+\langle \alpha y,\alpha y \rangle\\
+      &=\|x\|^2+\overline{\alpha}\langle x,y \rangle+\alpha\langle y,x \rangle+\|\alpha y\|^2\\
+      &=\|x\|^2+0+\|\alpha y\|^2\\
+      &\geq \|x\|^2.
+    \end{align*}
+    Sebaliknya, jika $\|x+\alpha y\|\geq \|x\|$, maka berlaku
+    \[
+    0=\|x+\alpha y\|^2-\|x\|^2=\|\alpha y\|^2+\overline{\alpha}\langle x,y\rangle+\alpha\langle y,x\rangle.
+    \]
+    Dengan memilih $\alpha=1$ dan $\overline{\alpha}=-1$ kita mendapatkan $\langle x,y\rangle=0$. Jadi $x\perp y$.
+  \end{solution}
+
+  \item Misalkan $V$ adalah ruang vektor dari semua fungsi kontinu bernilai kompleks pada $J = [a,b]$. Misalkan
+  $\displaystyle
+  X_1 = (V, \|\cdot\|_\infty), \quad \text{dengan} \quad \|x\|_\infty = \max_{\substack{t \in J}} |x(t)|,
+  $
+  dan
+  $
+  X_2 = (V, \|\cdot\|_2),
+  $
+  dengan
+  \[
+  \|x\|_2 = \left\langle x, x \right\rangle^{1/2}, \quad \quad \quad \langle x, y \rangle = \int_a^b x(t)\overline{y(t)} \, dt.
+  \]
+
+  Tunjukkan bahwa pemetaan identitas $x \mapsto x$ dari $X_1$ ke $X_2$ adalah kontinu. (Pemetaan ini bukan homeomorfisme. $X_2$ tidak lengkap.)
+\end{enumerate}
+
+\end{document}
