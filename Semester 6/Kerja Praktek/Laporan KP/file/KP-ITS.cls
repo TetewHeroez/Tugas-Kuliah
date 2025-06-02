@@ -36,7 +36,7 @@
 %
 \ProvidesClass{file/KP-ITS}[21/05/2025 v1.00]
 \NeedsTeXFormat{LaTeX2e}
-\LoadClass[a5paper,11pt,oneside,openright,final]{book}
+\LoadClass[a5paper,11pt,twoside,openright,final]{book}
 \RequirePackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{amssymb,amsmath,amsthm,amsfonts,indentfirst,tabularx,ifthen}
@@ -255,8 +255,25 @@
   % Set page color for the next page
   \afterpage{\pagecolor#1}%
 }
+
+\def\cleardoublepage{\clearpage%
+	\if@twoside
+	\ifodd\c@page\else
+	\vspace*{\fill}
+	\hfill
+	\begin{center}
+		\emph{ }
+	\end{center}
+	\vspace{\fill}
+	\thispagestyle{empty}
+	\newpage
+	\if@twocolumn\hbox{}\newpage\fi
+	\fi
+	\fi
+}
+
 \newcommand\Cover{%
-    \clearpage\thispagestyle{empty}
+    \cleardoublepage\thispagestyle{empty}
     \color{white}
     \begin{flushleft}
     \vspace*{-20mm}
@@ -297,7 +314,7 @@
 }
 
 \newcommand\LembarJudul{%
-    \clearpage\thispagestyle{empty}
+    \cleardoublepage\thispagestyle{empty}
     \begin{flushleft}
     \vspace*{-20mm}
     \hspace{-10mm}
@@ -334,7 +351,7 @@
     % \addcontentsline{toc}{chapter}{HALAMAN JUDUL}
 }
 \newcommand\TitlePage{%
-    \clearpage\thispagestyle{empty}
+    \cleardoublepage\thispagestyle{empty}
     \begin{flushleft}
     \vspace*{-20mm}
     \hspace{-10mm}
@@ -371,7 +388,7 @@
 }
 
 \newcommand\LembarPengesahanDepartemen{%
-\clearpage
+\cleardoublepage
 \newgeometry{bottom=2.5cm}
 \setcounter{page}{1} 
 \begin{center}
@@ -395,7 +412,7 @@ Mengetahui,&Menyetujui,\\
 }
 
 \newcommand\LembarPengesahanInstansi{%
-\clearpage
+\cleardoublepage
 \begin{center}
 {\fontsize{12}{2}\selectfont{\textbf{LEMBAR PENGESAHAN INSTANSI}}}\vspace{0.75cm}\\
 \MakeUppercase{\textbf{laporan KERJA PRAKTIK \@namaperusahaan}}\vspace{0.5cm}\\
@@ -417,7 +434,7 @@ NIP. \@NIPkaunit & NIP. \@NIPpbbmitra
 }
 
 \newcommand\LembarOrisinalitas{
-\clearpage
+\cleardoublepage
     \begin{center}
         {\fontsize{12}{2}\selectfont{\textbf{PERNYATAAN ORISINALITAS}}}
     \end{center}
@@ -446,7 +463,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
 }
 
 \newenvironment*{Abstrak}{%-------------------------------
-  \clearpage
+  \cleardoublepage
   \begin{center}
         {\fontsize{12}{2}\selectfont{\textbf{ABSTRAK}}}\vspace{1.5cm}\\
         \@judul
@@ -467,7 +484,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
   \par}{\normalfont\normalsize
 }
 \newenvironment*{Abstract}{%-------------------------------
-  \clearpage
+  \cleardoublepage
   \begin{center}
         {\fontsize{12}{2}\selectfont{\textbf{ABSTRACT}}}\vspace{1.5cm}\\
         \@juduleng
@@ -488,29 +505,29 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
   \par}{\normalfont\normalsize
 }
 \newcommand{\KataPengantar}{%-----------------
-    \clearpage
+    \cleardoublepage
     \centerline{\large\bfseries KATA PENGANTAR}
     \addcontentsline{toc}{chapter}{KATA PENGANTAR}\vspace{0.5cm}
 }
 \newcommand{\UcapanTerimaKasih}{%-----------------
-	\clearpage
+	\cleardoublepage
 	\centerline{\large\bfseries UCAPAN TERIMA KASIH}
 	\addcontentsline{toc}{chapter}{UCAPAN TERIMA KASIH}\vspace{0.5cm}
 }
 \newcommand{\DaftarIsi}{%---------------------
-    \clearpage
+    \cleardoublepage
     \pagestyle{fancy}
     %\renewcommand\harvardand{dan}
     \addcontentsline{toc}{chapter}{DAFTAR ISI}
     \tableofcontents
 }
 \newcommand{\DaftarGambar}{%----------------------
-    \clearpage
+    \cleardoublepage
     \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
     \listoffigures
 }
 \newcommand{\DaftarTabel}{%----------------------
-    \clearpage
+    \cleardoublepage
     \addcontentsline{toc}{chapter}{DAFTAR TABEL}
     \listoftables
 }
@@ -524,7 +541,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
     \end{center}
 }
 \newcommand{\DaftarLampiran}{%----------------------
-   \clearpage
+   \cleardoublepage
    \addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
    \begin{center}
     {\fontsize{12}{2}\selectfont{\textbf{DAFTAR LAMPIRAN}}}
@@ -535,7 +552,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
     \setcounter{section}{0}
 }
 \newcommand{\DaftarSimbol}{%----------------------
-    \clearpage
+    \cleardoublepage
     \addcontentsline{toc}{chapter}{DAFTAR SIMBOL}
     \begin{center}
     {\fontsize{12}{2}\selectfont{\textbf{DAFTAR SIMBOL}}}\vspace{0.1cm}
@@ -544,7 +561,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
 
 %%%%---------------------------------
 \newcommand{\DaftarPustaka}{%---------------------
-    \clearpage
+    \cleardoublepage
     % \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
     \renewcommand\bibname{DAFTAR PUSTAKA}
     \fancyhead[R]{\footnotesize DAFTAR PUSTAKA}
@@ -553,7 +570,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
     }
 %%%%---------------------------------
 \newcommand\BagianInti{%--------------------
-    \clearpage
+    \cleardoublepage
     \mainmatter
     \pagestyle{fancy}
     \fancyhf{}
@@ -571,7 +588,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
     \setstretch{1}
     \setlength{\parindent}{0.75cm}
 }
-\renewcommand\chapter{\clearpage
+\renewcommand\chapter{\cleardoublepage
                     \thispagestyle{fancy}%
                     \global\@topnum\z@
                     \@afterindentfalse
@@ -687,7 +704,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
        {\hbox{\csname b@\@citeb\endcsname}}}}{#1}}
 %-----------------------------------
 \newcommand\BukaLampiran{%
- \clearpage
+ \cleardoublepage
  \setcounter{chapter}{0}%
   \setcounter{section}{0}%
  \gdef\@chapapp{\appendixname}%
@@ -709,11 +726,12 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
    \@appendixstartedtrue
 \fi
    \refstepcounter{chapter}
-    \clearpage
+    \cleardoublepage
     % \setcounter{chapter}{1}
     % \gdef\thechapter{\@Alph\c@chapter}
     \thispagestyle{fancy}
     \addcontentsline{toc}{chapter}{Lampiran \thechapter. #1}
+    \renewcommand{\thetable}{Tabel \thechapter.\arabic{table}}
     \null
     \fancyhead[R]{\footnotesize LAMPIRAN}
     \begin{center}
@@ -727,7 +745,7 @@ jawab sesuai hukum yang berlaku dan ketentuan di Institut Teknologi Sepuluh Nope
 %-----------------------------------
 \RequirePackage{file/picins}
 \newcommand\Biodata[1]{%-----------
-		\clearpage
+		\cleardoublepage
 		\addcontentsline{toc}{chapter}{BIODATA PENULIS}
         \fancyhead[R]{\footnotesize BIODATA PENULIS}
 		\begin{center}

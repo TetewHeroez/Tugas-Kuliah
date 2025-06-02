@@ -1,23 +1,5 @@
 \documentclass{file/KP-ITS}
-%Ridho Nur Rohman Wijaya
 
-\makeatletter
-\def\cleardoublepage{\clearpage%
-	\if@twoside
-	\ifodd\c@page\else
-	\vspace*{\fill}
-	\hfill
-	\begin{center}
-		\emph{ }
-	\end{center}
-	\vspace{\fill}
-	\thispagestyle{empty}
-	\newpage
-	\if@twocolumn\hbox{}\newpage\fi
-	\fi
-	\fi
-}
-\makeatother
 \newtheorem{defn}{Definisi}[section]
 \newtheorem{teo}[defn]{Teorema}
 \newtheorem{thm}{Teorema}[section]
@@ -53,6 +35,7 @@
 %%% Pewarnaan code
 \usepackage{color}
 \usepackage{listings}
+\usepackage[outline]{contour}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codeblack}{rgb}{0,0,0}
@@ -76,6 +59,10 @@
     showtabs=false,                  
     tabsize=2
 }
+
+\usepackage{minted}
+\setminted[js]{fontsize=\scriptsize,frame=lines,framesep=2mm,linenos=true,breaklines=true,breakanywhere=true,}
+
 %%% Pewarnaan code
 
 \usepackage{hyperref}
@@ -88,10 +75,51 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows.meta, positioning}
 
-% \tolerance=1
-% \emergencystretch = \maxdimen
-% \hyphenpenalty=10000
-% \hbadness=1000
+\definecolor{ioColor}{HTML}{D4E1F5}
+\definecolor{processColor}{HTML}{FFE599}
+\definecolor{decisionColor}{HTML}{FFCE9F}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=2cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=pink]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, 
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=2cm, 
+minimum height=1cm, text centered, 
+draw=black,text centered, 
+text width=2.5cm,fill=ioColor]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=2cm, 
+minimum height=1cm, 
+text centered, 
+text width=2.5cm, 
+draw=black,fill=processColor]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=2cm, 
+minimum height=1cm, 
+text centered, 
+draw=black,fill=decisionColor]
+
+\tikzstyle{arrow} = [text width=2cm,thick, ->, >=stealth]
+
+\tikzstyle{sumjunction} = [draw,
+    circle,
+    minimum size=0.7cm,
+    text centered,
+    path picture={
+      \draw [black] % atau pakai warna lain yang pasti ada
+        (path picture bounding box.135) -- (path picture bounding box.315)
+        (path picture bounding box.45) -- (path picture bounding box.225);
+    }
+]
 
 \begin{document}
 
@@ -134,13 +162,13 @@ Puji syukur penulis panjatkan kehadirat Allah SWT, Tuhan Yang Maha Esa, atas seg
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab I  %%%%%%%%%%%%%%%5%%%%%%%%%%
 \chapter{PENDAHULUAN}
 \section{Latar Belakang}
-Perkembangan teknologi informasi yang semakin pesat telah mendorong perubahan signifikan dalam berbagai aspek kehidupan, termasuk di dunia pendidikan. Dalam menghadapi tantangan tersebut, diperlukan keterlibatan langsung mahasiswa di lapangan untuk memahami bagaimana teknologi dapat dimanfaatkan secara nyata dalam proses pembelajaran. Oleh karena itu, mahasiswa tidak hanya dituntut untuk menguasai teori di bangku kuliah, tetapi juga perlu memiliki pengalaman praktik dalam mengembangkan solusi berbasis teknologi yang aplikatif dan relevan dengan kebutuhan saat ini.
+Perkembangan teknologi informasi yang semakin pesat telah mendorong perubahan signifikan dalam berbagai aspek kehidupan, termasuk di dunia pendidikan. Dalam menghadapi tantangan tersebut, diperlukan keterlibatan langsung mahasiswa di lapangan untuk memahami bagaimana teknologi dapat dimanfaatkan secara nyata dalam proses pembelajaran \cite{suryadi2019}. Oleh karena itu, mahasiswa tidak hanya dituntut untuk menguasai teori di bangku kuliah, tetapi juga perlu memiliki pengalaman praktik dalam mengembangkan solusi berbasis teknologi yang aplikatif dan relevan dengan kebutuhan saat ini.
 
 Kerja Praktik merupakan salah satu mata kuliah wajib yang harus ditempuh oleh seluruh mahasiswa Departemen Matematika, Institut Teknologi Sepuluh Nopember (ITS), sebagai bagian dari kurikulum pendidikan sarjana. Mata kuliah ini memberikan kesempatan bagi mahasiswa untuk mengaplikasikan ilmu yang telah diperoleh selama masa perkuliahan ke dalam dunia kerja yang nyata. Selain itu, kerja praktik juga bertujuan untuk melatih kemampuan problem solving, komunikasi, kolaborasi, serta kedisiplinan mahasiswa dalam lingkungan kerja profesional.
 
 Pada kerja praktik ini, penulis mendapatkan kesempatan untuk melaksanakan program kerja di salah satu subdirektorat kampus ITS yang bergerak dalam bidang pengembangan teknologi informasi dan pembelajaran digital. Proyek utama yang diamanahkan kepada penulis adalah merancang dan mengembangkan sebuah \textit{website} pembelajaran interaktif untuk mata kuliah Kalkulus, yang merupakan mata kuliah dasar dan sangat fundamental bagi mahasiswa jurusan sains dan teknik.
 
-Kalkulus sering kali menjadi tantangan tersendiri bagi mahasiswa, terutama dalam memahami konsep abstrak dan penerapan rumus-rumus matematis. Oleh karena itu, dibutuhkan sebuah media pembelajaran alternatif yang menarik, interaktif, dan mudah diakses guna membantu mahasiswa memahami materi dengan lebih efektif. Pemanfaatan teknologi web menjadi solusi yang relevan, mengingat mayoritas aktivitas akademik saat ini telah bergeser ke platform digital.
+Kalkulus sering kali menjadi tantangan tersendiri bagi mahasiswa, terutama dalam memahami konsep abstrak dan penerapan rumus-rumus matematis. Oleh karena itu, dibutuhkan sebuah media pembelajaran alternatif yang menarik, interaktif, dan mudah diakses guna membantu mahasiswa memahami materi dengan lebih efektif. Pemanfaatan teknologi web menjadi solusi yang relevan, mengingat mayoritas aktivitas akademik saat ini telah bergeser ke platform digital \cite{mustafidah2010,rahmawati2018}.
 
 Melalui kerja praktik ini, penulis tidak hanya berkontribusi dalam pembangunan sistem berbasis web, tetapi juga memperluas wawasan tentang penerapan matematika dalam dunia nyata, terutama dalam bidang pengembangan teknologi pendidikan. Diharapkan proyek ini dapat memberikan manfaat jangka panjang bagi mahasiswa ITS, khususnya dalam meningkatkan kualitas pembelajaran Kalkulus secara mandiri dan fleksibel.
 
@@ -180,26 +208,26 @@ SKPB berada di bawah Direktorat Pengembangan Akademik dan Inovasi Pembelajaran (
     \centering
     \begin{tikzpicture}[
     node distance=0.8cm and 0.8cm,
-    dosen/.style={rectangle, rounded corners=2pt, minimum width=2cm, minimum height=1.2cm, align=center, text=white, fill=blue!70!black, font=\bfseries\tiny, text width=2cm},
-    tendik/.style={rectangle, rounded corners=2pt, minimum width=2cm, minimum height=1.2cm, align=center, text=white, fill=orange!80!red, font=\bfseries\tiny, text width=2cm},
+    dosen/.style={draw=black,rectangle, rounded corners=2pt, minimum width=2cm, minimum height=1.2cm, align=center, text=white, fill=blue!70!black, font=\bfseries\sffamily\tiny, text width=2cm},
+    tendik/.style={draw=black,rectangle, rounded corners=2pt, minimum width=2cm, minimum height=1.2cm, align=center, text=white, fill=orange!80!red, font=\bfseries\sffamily\tiny, text width=2cm},
     line/.style={draw, thick,line cap=rect}
 ]
 
 % Root
-\node[dosen] (root) {DIREKTUR PENGEMBANGAN AKADEMIK\\DAN INOVASI PEMBELAJARAN};
+\node[dosen] (root) {DIREKTUR PENGEMBANGAN AKADEMIK DAN INOVASI PEMBELAJARAN};
 \node[draw=none, above=of root, yshift=-0.9cm] (empty) {};
 
 % Level 1
-\node[dosen, below left=of root,] (d1) {KEPALA SUBDIT KOORDINASI\\PERKULIAHAN BERSAMA};
-\node[dosen, below=of root] (d2) {KEPALA SUBDIT\\PENGEMBANGAN AKADEMIK DAN KERJASAMA};
-\node[dosen, below right=of root,] (d3) {KEPALA SUBDIT PENGEMBANGAN\\KURIKULUM DAN INOVASI PEMBELAJARAN};
+\node[dosen, below left=of root,] (d1) {KEPALA SUBDIT KOORDINASI PERKULIAHAN BERSAMA};
+\node[dosen, below=of root] (d2) {KEPALA SUBDIT PENGEMBANGAN AKADEMIK DAN KERJASAMA};
+\node[dosen, below right=of root,] (d3) {KEPALA SUBDIT PENGEMBANGAN KURIKULUM DAN INOVASI PEMBELAJARAN};
 
 % Tendik bawah d2
 \node[tendik, below=of d2] (t1) {MANAJER KERJASAMA AKADEMIK};
 
 % Tendik bawah d3
-\node[dosen, below=of d3,xshift=1.4cm] (d4) {KEPALA SEKSI EVALUASI DAN\\PENGEMBANGAN METODE PEMBELAJARAN};
-\node[dosen, below=of d4,yshift=0.5cm] (d5) {KEPALA SEKSI EVALUASI DAN\\PENGEMBANGAN TEKNOLOGI PEMBELAJARAN};
+\node[dosen, below=of d3,xshift=1.4cm] (d4) {KEPALA SEKSI EVALUASI DAN PENGEMBANGAN METODE PEMBELAJARAN};
+\node[dosen, below=of d4,yshift=0.5cm] (d5) {KEPALA SEKSI EVALUASI DAN PENGEMBANGAN TEKNOLOGI PEMBELAJARAN};
 
 % Draw lines
 \draw[line] (root) |-++(0,-1.2) -| (d1);
@@ -258,84 +286,260 @@ Berikut adalah keterangan pelaksanaan kerja praktik yang sudah dilakukan selama 
 \noindent Perihal keterangan rangkaian kerja praktik selengkapnya dilampirkan pada Lampiran.
 
 \section{Metodologi Penyelesaian Tugas Khusus}
-...
+Berikut merupakan metodologi penyelesaian dalam bentuk diagram alir:
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[node distance=0.7cm and 0.7cm,font=\scriptsize,scale=0.9,transform shape]
+    % Nodes
+    \node[startstop] (start) {Mulai};
+    \node[process, right=of start] (diskusi) {Diskusi awal dengan Kepala SKPB ITS};
+    \node[process, right=of diskusi] (ruanglingkup) {Menentukan fokus dan ruang lingkup proyek};
+    \node[io, below=of ruanglingkup] (pembagian) {Pembagian tugas dengan rekan kerja praktik};
+    \node[process, below=of pembagian] (pembuatan) {Pembuatan website Kalkulus};
+    \node[io, left=of pembuatan] (bimbingan) {Konsultasi dengan pembimbing};
+    \node[io, below=of bimbingan] (studi) {Membaca dokumentasi dan \textit{trial error}};
+    \node[sumjunction, left=of bimbingan,yshift=-0.9cm] (sum) {};
+    \node[process, below=of sum,text width=1.5cm,xshift=0.5cm,yshift=-1cm] (upload) {\textit{Deploy} website};
+    \node[process, right=of upload] (laporan) {Penyusunan laporan kerja praktik};
+    \node[startstop, right=of laporan] (end) {Selesai};
 
+    % Arrows
+    \draw[arrow] (start) -- (diskusi);
+    \draw[arrow] (diskusi) -- (ruanglingkup);
+    \draw[arrow] (ruanglingkup) -- (pembagian);
+    \draw[arrow] (pembagian) -- (pembuatan);
+    \draw[arrow] (pembuatan) -- (bimbingan);
+    \draw[arrow] (pembuatan) |- (studi);
+    \draw[arrow] (bimbingan) -| (sum);
+    \draw[arrow] (studi) -| (sum);
+    \draw[arrow] (sum) -| ++(-1,0) |- (upload);
+    \draw[arrow] (upload) -- (laporan);
+    \draw[arrow] (laporan) -- (end);
+\end{tikzpicture}
+\caption{Alur Kegiatan Kerja Praktik di SKPB ITS}
+\end{figure}
+\begin{enumerate}
+    \item Melakukan diskusi awal dengan Kepala SKPB ITS untuk memahami permasalahan yang sedang dihadapi dalam mendukung pembelajaran matematika dasar di lingkungan ITS.
+    \item Menentukan fokus permasalahan yang akan diselesaikan melalui kerja praktik serta mendefinisikan ruang lingkup proyek.
+    \item Membagi tugas dan tanggung jawab bersama rekan kerja praktik.
+    \item Merancang dan mengembangkan media pembelajaran berupa website interaktif untuk mata kuliah Kalkulus 1 dan Kalkulus 2.
+    \item Melakukan konsultasi rutin dengan pembimbing lapangan dari SKPB ITS untuk mengevaluasi kemajuan serta mendapatkan masukan.
+    \item Melakukan studi referensi dengan membaca dokumentasi dan menonton tutorial sebagai panduan dalam proses pengembangan website pembelajaran.
+    \item Menyusun laporan kerja praktik berdasarkan proses perencanaan, pelaksanaan, dan hasil yang telah dicapai selama kegiatan.
+    \item Mempresentasikan hasil kerja praktik kepada SKPB ITS dan dosen pembimbing sebagai bentuk pertanggungjawaban dan evaluasi akhir.
+\end{enumerate}
 
-\section{Urutan pelaksanaan penelitian}
-...
+\subsection{Google Form}
+
+Dalam pengembangan website pembelajaran, seperti untuk mata kuliah Kalkulus, penggunaan Google Forms sebagai alat survei dan pengumpulan umpan balik telah terbukti efektif. Google Forms memungkinkan pembuatan kuesioner dengan berbagai jenis pertanyaan, seperti pilihan ganda, skala Likert, dan pertanyaan terbuka, yang memudahkan pengumpulan data kualitatif dan kuantitatif. Keunggulan lainnya adalah kemudahan akses, integrasi dengan Google Drive, serta kemampuan untuk mengolah dan menganalisis data secara real-time. Hal ini menjadikan Google Forms sebagai alat yang efisien dalam mengumpulkan opini dan masukan dari mahasiswa terkait fitur dan konten website pembelajaran yang dikembangkan \cite{mamat2023use}.
+
+Selain itu, Google Forms juga telah digunakan secara luas dalam konteks pendidikan untuk mengevaluasi kepuasan mahasiswa terhadap layanan akademik. Penelitian oleh \citeA{visser2023student} menunjukkan bahwa mayoritas mahasiswa merasa antusias menggunakan kuesioner online melalui Google Forms, dengan tingkat kemudahan akses sebesar 88\% dan efisiensi waktu sebesar 87\%. Fitur-fitur ini memungkinkan pengembang website pembelajaran untuk secara cepat dan efektif mengumpulkan umpan balik dari pengguna, yang dapat digunakan untuk perbaikan dan pengembangan lebih lanjut \cite{visser2023student}.
+
+\subsection{HTML}
+
+HTML (HyperText Markup Language) merupakan bahasa markah yang digunakan untuk membangun struktur dasar halaman web. HTML mendefinisikan elemen-elemen seperti judul, paragraf, tautan, dan tabel, yang kemudian diterjemahkan oleh peramban menjadi tampilan visual halaman web. Elemen-elemen ini diatur dengan tag yang menyatakan struktur logis dari konten web. HTML menjadi dasar penting dalam pengembangan website karena menentukan hierarki dan susunan konten yang akan ditampilkan \cite{sharma2024}.
+
+\subsection{CSS}
+
+CSS (Cascading Style Sheets) adalah bahasa yang digunakan untuk mengatur presentasi dari dokumen yang ditulis dalam HTML. CSS memungkinkan pemisahan antara konten dan desain, sehingga pengembang dapat mengubah tampilan situs web (warna, font, tata letak) tanpa mengubah struktur HTML-nya. Penggunaan CSS yang efektif dapat meningkatkan aksesibilitas dan estetika situs, serta memudahkan pemeliharaan dan pengembangan web secara berkelanjutan \cite{hasan2022}.
+
+\subsection{JavaScript}
+
+JavaScript merupakan bahasa pemrograman yang berperan penting dalam pengembangan website interaktif dan dinamis. Dalam konteks pendidikan, JavaScript memungkinkan pembuatan media pembelajaran yang lebih menarik dan responsif, sehingga dapat meningkatkan keterlibatan mahasiswa dalam proses belajar. Penggunaan JavaScript dalam pengembangan website pembelajaran telah terbukti efektif dalam meningkatkan kualitas interaksi pengguna dan penyampaian materi \cite{insana2021pengembangan}.
+
+\subsection{CortexJS}
+
+CortexJS adalah pustaka JavaScript yang dirancang untuk mempermudah manipulasi dan visualisasi ekspresi matematika di web. Dengan CortexJS, pengembang dapat menyajikan notasi matematika secara interaktif, yang sangat berguna dalam pembuatan konten pembelajaran kalkulus dan mata pelajaran matematika lainnya. Dokumentasi resmi CortexJS menyediakan berbagai fitur yang mendukung pembuatan konten matematika yang dinamis dan user-friendly \cite{cortexjs2025}.
+
+\subsection{Github}
+
+GitHub adalah platform yang menyediakan layanan hosting untuk pengembangan perangkat lunak berbasis Git. Dalam pengembangan website pembelajaran, GitHub memfasilitasi kolaborasi antar tim pengembang, manajemen versi kode, serta integrasi dan pengujian berkelanjutan. Penggunaan GitHub dalam konteks pendidikan juga telah diterapkan sebagai media e-learning yang efektif, memungkinkan siswa untuk belajar langsung melalui proyek nyata dan meningkatkan keterampilan pemrograman mereka \cite{rahmawati2021penerapan}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab III  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 \chapter{HASIL KERJA PRAKTIK}
+\section{Jaring Aspirasi kepada Mahasiswa Baru 2024}
 
-\section{Hasil Penelitian}
+Jaring aspirasi kepada mahasiswa baru 2024 dilakukan melalui survei online yang disebarkan menggunakan Google Forms. Survei ini bertujuan untuk mengumpulkan preferensi, harapan dan masukan mahasiswa terkait pembuatan website pembelajaran interaktif untuk mata kuliah Kalkulus. 
+
+\section{Komponen dalam Website}
+
+Banyaknya komponen dalam website yang dibuat menjadikan tim pengembang harus bekerja sama dan berbagai tugas agar website dapat selesai tepat waktu. Penulis mendapatkan tugas untuk membuat beberapa komponen website, diantaranya sebagai berikut dapat dilihat pada gambar di bawah ini
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{foto/KomponenWeb.png}
+    \caption{Komponen dalam Website Pembelajaran Interaktif}
+\end{figure}\\
+Setiap komponen memiliki fungsi dan tujuan masing-masing sehingga mereka dibungkus (\textit{encapsulated}) dalam \textit{tag} HTML yang sesuai. 
+
+\subsection{\textit{Header}}
+\textit{Header} adalah bagian atas dari halaman web yang berisi tombol untuk menuju Beranda, index materi, dan pengisian feedback bagi pengguna. Selain itu \textit{header} juga terdapat bagian \textit{toggle} untuk mengaktifkan atau menonaktifkan \textit{darkmode} pada website.
+
+\subsection{\textit{Darkmode}}
+\textit{Darkmode} adalah fitur yang memungkinkan pengguna untuk mengubah tema tampilan website menjadi gelap. Fitur ini dirancang untuk mengurangi ketegangan mata saat melihat layar dalam kondisi pencahayaan rendah. Pengguna dapat dengan mudah mengaktifkan atau menonaktifkan \textit{darkmode} melalui tombol yang tersedia di \textit{header}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{foto/LightDarkMode.png}
+    \caption{Perbedaan Tampilan Website Fitur Darkmode}
+\end{figure}
+\subsection{\textit{Sidebar Menu}}
+Sidebar menu adalah komponen penting dalam website yang berfungsi sebagai navigasi utama. Komponen ini memungkinkan pengguna untuk dengan mudah mengakses berbagai bagian dari website, seperti materi pembelajaran dan tombol kembali ke beranda. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{foto/SidebarBuka.png}$\qquad$
+    \includegraphics[width=0.4\textwidth]{foto/SidebarTutup.png}
+    \caption{Tampilan Sidebar Menu saat Terbuka dan Tertutup}
+\end{figure}
+
+\subsection{Latihan \textit{Box}}
+
+\subsection{Jawaban \textit{Container}}
+
+\section{Implementasi \textit{CortexJS} dalam interaktivitas Website}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab IV %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 \chapter{PENUTUP}
-
 \section{Kesimpulan}
+Berdasarkan hasil kerja praktik yang telah dilakukan, dapat disimpulkan bahwa:
+\begin{enumerate}
+    \item 
+\end{enumerate}
 \section{Saran}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab V %%%%%%%%%%%%%%%5%%%%%%%%%%
 
-\pagebreak
+
 \DaftarPustaka
 %%%%%%%%%%%%%%%%%%%%%%%%  Dapus  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
-\pagebreak
+\cleardoublepage
 \lampiran{\textit{Logbook} Kegiatan}
-% \begin{longtable}{|c|l|p{8cm}|}
-% \hline
-% \textbf{No} & \textbf{Tanggal} & \textbf{Deskripsi Kegiatan} \\
-% \hline
-% \endfirsthead
-% \hline
-% \textbf{No} & \textbf{Tanggal} & \textbf{Deskripsi Kegiatan} \\
-% \hline
-% \endhead
-% \hline
-% \endfoot
+\begin{longtable}{|c|>{\centering\arraybackslash}p{0.31\linewidth}|>{\raggedright\arraybackslash}p{0.5\linewidth}|}
+    \caption{Jadwal Kegiatan Kerja Praktik} \\
+    \hline
+    \rowcolor{gray!30}\textbf{No} & \textbf{Tanggal} & \centering\arraybackslash\textbf{Deskripsi Kegiatan} \\
+    \hline
+    \endfirsthead
 
-% 1 & 16 Desember 2024 & Mengenal lingkungan kerja \\
-% 2 & 17 Desember 2024 & Diskusi tujuan KP dari masing-masing individu \\
-% % dst
-% \end{longtable}
+    \multicolumn{3}{c}%
+    {{ \thetable{} -- lanjutan dari halaman sebelumnya}} \\
+    \hline
+    \rowcolor{gray!30}\textbf{No} & \textbf{Tanggal} & \centering\arraybackslash\textbf{Deskripsi Kegiatan} \\
+    \hline
+    \endhead
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|c|p{0.31\linewidth}|p{0.45\linewidth}|}
-        \hline
-        1 & 16 Desember 2024 (08.00 - 16.30 WIB) & Mengenal lingkungan kerja \\
-\hline
-2 & 17 Desember 2024 (11.00 - 16.00 WIB) & Berdiskusi tujuan KP dari masing-masing individu \\
-\hline
-3 & 18 Desember 2024 (12.00 - 16.00 WIB) & Belajar dasar website HTML CSS \\
-\hline
-4 & 19 Desember 2024 (12.00 - 16.00 WIB) & Fiksasi jobdesk masing-masing individu \\
-\hline
-5 & 23 Desember 2024 (10.00 - 16.00 WIB) & Lanjutan belajar web HTML CSS Javascript \\
-\hline
-6 & 6 Januari 2025 (11.00 - 16.00 WIB) & Mulai membuat tampilan awal web \\
-\hline
-7 & 7 Januari 2025 (12.00 - 16.00 WIB) & Menonton dan mengimplementasikan template web dari YouTube \\
-\hline
-8 & 8 Januari 2025 (13.00 - 16.00 WIB) & Membuat sidebar menu \\
-\hline
-9 & 9 Januari 2025 (14.00 - 16.00 WIB) & Mencari referensi tentang \textbf{CoretexJS} sebagai penunjang interaktivitas web \\
-\hline
-10 & 13 Januari 2025 (13.00 - 16.00 WIB) & Mempelajari fitur-fitur CSS Wrapped 2024 \\
-\hline
-11 & 14 Januari 2025 (13.00 - 16.00 WIB) & Mengimplementasikan fitur CSS Wrapped 2024 ke dalam prototype website \\
-\hline
-12 & 16 Januari 2025 (14.00 - 16.00 WIB) & Mulai menginputkan materi sambil membuat template CSS komponen yang lain \\
-\hline
-    \end{tabular}
-\end{table}
+    1 & 16 Desember 2024 (08.00 - 16.30 WIB) & Mengenal lingkungan kerja \\
+    \hline
+    2 & 17 Desember 2024 (11.00 - 16.00 WIB) & Berdiskusi tujuan KP dari masing-masing individu \\
+    \hline
+    3 & 18 Desember 2024 (12.00 - 16.00 WIB) & Belajar dasar website HTML CSS \\
+    \hline
+    4 & 19 Desember 2024 (12.00 - 16.00 WIB) & Fiksasi jobdesk masing-masing individu \\
+    \hline
+    5 & 23 Desember 2024 (10.00 - 16.00 WIB) & Lanjutan belajar web HTML CSS Javascript \\
+    \hline
+    6 & 6 Januari 2025 (11.00 - 16.00 WIB) & Mulai membuat tampilan awal web \\
+    \hline
+    7 & 7 Januari 2025 (12.00 - 16.00 WIB) & Menonton dan mengimplementasikan template web dari YouTube \\
+    \hline
+    8 & 8 Januari 2025 (13.00 - 16.00 WIB) & Membuat sidebar menu \\
+    \hline
+    9 & 9 Januari 2025 (14.00 - 16.00 WIB) & Mencari referensi tentang \textbf{CoretexJS} sebagai penunjang interaktivitas web \\
+    \hline
+    10 & 13 Januari 2025 (13.00 - 16.00 WIB) & Mempelajari fitur-fitur CSS Wrapped 2024 \\
+    \hline
+    11 & 14 Januari 2025 (13.00 - 16.00 WIB) & Mengimplementasikan fitur CSS Wrapped 2024 ke dalam prototype website \\
+    \hline
+    12 & 16 Januari 2025 (14.00 - 16.00 WIB) & Mulai menginputkan materi sambil membuat template CSS komponen yang lain \\
+    \hline
+    13 & 17 Januari 2025 (13:00 - 16:00 WIB) & Menemukan referensi untuk komponen \textit{Definition box} \\
+    \hline
+    14 & 20 Januari 2025 (9:30 - 16:00 WIB) & Mencoba \textbf{CortexJS} ke dalam website \\
+    \hline
+    15 & 21 Januari 2025 (12:00 - 16:00 WIB) & Mengoptimalkan animasi serta responsif \texttt{math-field} \\
+    \hline
+    16 & 23 Januari 2025 (12:00 - 16:00 WIB) & Belajar meng-\textit{convert} gambar tikz menjadi svg menggunakan \texttt{dvisvgm} \\
+    \hline
+    17 & 30 Januari 2025 (11:00 - 16:00 WIB) & Mengoptimalkan CSS \\
+    \hline
+    18 & 3 Februari 2025 (11:00 - 16:00 WIB) & Mengoptimalkan sidebar menu \\
+    \hline
+    19 & 4 Februari 2025 (11:00 - 16:00 WIB) & Mengoptimalkan tabel dalam web \\
+    \hline
+    20 & 5 Februari 2025 (10:00 - 16:00 WIB) & Mempresentasikan hasil ke pembimbing \\
+    \hline
+    21 & 6 Februari 2025 (11:00 - 16:00 WIB) & Membuat \textit{Hint Box} \\
+    \hline
+    22 & 7 Februari 2025 (13:30 - 16:00 WIB) & Melanjutkan menginput materi ke file HTML \\
+    \hline
+\end{longtable}
+
+\cleardoublepage
+\lampiran{Kode Script CortexJS}
+\begin{minted}{js}
+import "//unpkg.com/mathlive?module";
+import "//unpkg.com/@cortex-js/compute-engine";
+
+const ce = MathfieldElement.computeEngine;
+
+const answerButton = document.getElementById("submitAnswer");
+const answerElements = document.querySelectorAll(".answer");
+
+const bgColorAnswer = answerElements[0].style.backgroundColor;
+const borderColorAnswer = answerElements[0].style.borderColor;
+
+const correctAnswers = [
+  ce.parse("\\left\\lbrace x\\le\\frac94\\right\\rbrace"),
+  ce.parse("\\left\\lbrace x>\\frac13\\right\\rbrace"),
+];
+
+answerButton.addEventListener("click", () => {
+  answerElements.forEach((answerElement) => {
+    answerElement.style.backgroundColor = bgColorAnswer;
+    answerElement.style.borderColor = borderColorAnswer;
+  });
+  answerElements.forEach((answerElement, index) => {
+    let studentInput = answerElement.expression;
+    const expectedAnswer = correctAnswers[index];
+  if (
+    index == 0 &&
+    (answerElement.value ===
+      "\\left(-\\infty,\\frac94\\right\\rbrack" ||
+      answerElement.value === "(-\\infty,\\frac94\\rbrack" ||
+      answerElement.value === "\\left(-\\infty,\\9/4\\right\\rbrack" ||
+      answerElement.value === "(-\\infty,\\9/4\\rbrack")
+  ) {
+    studentInput = expectedAnswer;
+  }
+    if (
+      studentInput.isSame(ce.parse("\\left(\\frac13,+\\infty\\right)"))
+    ) {
+      studentInput = expectedAnswer;
+    }
+    const loading = document.getElementById("loading");
+    const feedback = document.querySelectorAll(".jawaban-latihan");
+    loading.classList.remove("hidden");
+  setTimeout(() => {
+    loading.classList.add("hidden");
+    feedback.forEach((el) => {
+      el.classList.remove("hidden");
+    });
+    if (!studentInput.isSame(expectedAnswer)) {
+      answerElement.style.backgroundColor = "rgba(255, 192, 203, 0.5)";
+      answerElement.style.borderColor = "red";
+    } else {
+      answerElement.style.backgroundColor = "rgba(172, 255, 47, 0.5)";
+      answerElement.style.borderColor = "green";
+    }
+  }, 2000);
+ });
+});
+\end{minted}
 %%%%%%%%%%%%%%%%%%%%%%%%  Lampiran %%%%%%%%%%%%%%%5%%%%%%%%%%
 
-\pagebreak
-\Biodata{foto/FotoPenulis.jpg}
+\cleardoublepage
+\Biodata{foto/FotoPenulis}
 Hai bg hai
 %%%%%%%%%%%%%%%%%%%%%%%%  Bio Penulis  %%%%%%%%%%%%%%%5%%%%%%%%%%
 \end{document}

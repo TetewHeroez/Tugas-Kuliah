@@ -7,6 +7,13 @@
 \usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage{color, colortbl}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
 \usepackage{soul}
 \usepackage{cancel}
 \usepackage{geometry}
@@ -103,14 +110,13 @@
         dan deret $\sum M_n$ konvergen, maka deret $\sum f_n$ konvergen seragam pada $A$.
     \end{teorema}
     Perhatikan ketaksamaan $\sin(\alpha)\leq \alpha$ untuk setiap $\alpha\in\R$. Dari hal tersebut 
-    kita modifikasi dengan mensubsitusi $\alpha=\frac{x}{n^2}$, sehingga ketaksamannya menjadi 
-    $\sin\left(\frac{x}{n^2}\right)\leq \frac{x}{n^2}$ untuk $x\in[0,\pi]\subseteq\R$ dan $n\in\N$.
+    kita modifikasi dengan mensubsitusi $\alpha=\dfrac{x}{n^2}$, sehingga ketaksamannya menjadi 
+    $\sin\left(\dfrac{x}{n^2}\right)\leq \dfrac{x}{n^2}$ untuk $x\in[0,\pi]\subseteq\R$ dan $n\in\N$.
 
-    Kita definisikan $f_n(x)=\sin\left(\frac{x}{n^2}\right)$ dan $M_n(x)=\frac{x}{n^2}$, maka
-    \[|f_n(x)|\leq M_n(x)\quad\text{untuk }x\in[0,\pi]\text{ dan }n\in\N.\]
-    Sekarang tinjau deret $\sum M_n=\sum\frac{x}{n^2}$. Dengan menggunakan sifat notasi sigma
-    kita dapatkan $\sum\frac{x}{n^2}=x\sum\frac{1}{n^2}$. Karena deret $\sum\frac{1}{n^2}$ konvergen 
-    dengan nilai konvergennya adalah $\frac{\pi^2}{6}$, maka deret $\sum M_n$ konvergen pada $[0,\pi]$.
+    Kita definisikan $f_n(x)=\sin\left(\dfrac{x}{n^2}\right)$ dan barisan real $M_n=\dfrac{\pi}{n^2}$, maka
+    \[|f_n(x)|\leq M_n\quad\text{untuk } n\in\N.\]
+    Sekarang tinjau deret $\sum M_n=\displaystyle\sum\dfrac{1}{n^2}$ yang dimana deret $\displaystyle\sum\dfrac{1}{n^2}$ konvergen 
+    dengan nilai konvergennya\footnote{Jika tidak tau nilai eksak deretnya cukup gunakan fakta2 lain seperti teorema deret-$p$} adalah $\dfrac{\pi^2}{6}$, maka deret $\sum M_n$ konvergen pada $[0,\pi]$.
 
     Dengan Weierstrass M-Test, kita dapatkan bahwa deret $\sum f_n$ konvergen seragam pada $[0,\pi]$.
 
