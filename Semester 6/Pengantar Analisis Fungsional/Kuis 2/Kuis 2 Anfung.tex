@@ -264,7 +264,7 @@ $\therefore$ Terbukti bahwa $a_nx_n\in\ell^1$
   \framesubtitle{\insertsubsection}
   Dapat dilihat bahwa $f_a$ transformasi linear sebab untuk $\{x_n\}$, $\{y_n\} \in c_0$, dan $\alpha, \beta \in \mathbb{C}$ diperoleh
 $$
-f_a(\alpha \{x_n\} + \beta \{y_n\}) = \sum_{n=1}^\infty a_n (\alpha x_n + \beta y_n) = \alpha \sum a_n x_n + \beta \sum a_n y_n = \alpha f_a(x) + \beta f_a(y)
+f_a(\alpha \{x_n\} + \beta \{y_n\}) = \sum_{n=1}^\infty a_n (\alpha x_n + \beta y_n) = \alpha \sum a_n x_n + \beta \sum a_n y_n = \alpha f_a(\{x_n\}) + \beta f_a(\{y_n\})
 $$
 
 Terakhir untuk $||f_a||$ dapat ditulis
@@ -273,7 +273,7 @@ $$
 $$
 sehingga dari informasi diatas, ambil $x = \{x_n\} \in c_0$ dengan $\|x\|_\infty = \sup_n |x_n| \leq 1$, maka
 $$
-|f_a(x)| = \left| \sum_{n=1}^\infty a_n x_n \right| \leq \sum |a_n x_n| \leq \sum |a_n| \cdot |x_n| \leq \sup |x_n| \cdot \sum |a_n| \leq \sum |a_n| = ||a_n||_1
+|f_a(x)| = \left| \sum_{n=1}^\infty a_n x_n \right| \leq \sum |a_n x_n| = \sum |a_n| \cdot |x_n| \leq \sup |x_n| \cdot \sum |a_n| \leq \sum |a_n| = ||a_n||_1
 $$
 
 $\therefore$ Terbukti bahwa $\|f_a\| \leq \|\{a_n\}\|_1

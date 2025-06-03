@@ -85,16 +85,30 @@
 
     \item Determine the number of ways to place rooks on a $6 \times 6$ chessboard such that no two rooks can attack each other and none are placed on forbidden positions (marked with X):
     
-    \[
-    \begin{array}{cccccc}
-    X & X &   &   &   &   \\
-    X & X &   &   &   &   \\
-    X & X &   &   &   &   \\
-    X & X &   &   &   &   \\
-    X & X &   &   &   &   \\
-      &   & X & X &   &   \\
-    \end{array}
-    \]
+    \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+        \draw[thick] (0,0) grid (6,6);
+
+        % Draw X marks
+        \foreach \i/\j in {
+            0/5, 1/5,
+            0/4, 1/4,
+            0/3, 1/3,
+            0/2, 1/2,
+            0/1, 1/1,
+            2/0, 3/0
+        } {
+            \draw[red, thick] (\i+0.2,\j+0.2) -- (\i+0.8,\j+0.8);
+            \draw[red, thick] (\i+0.8,\j+0.2) -- (\i+0.2,\j+0.8);
+        }
+
+        % Label rows and columns (optional)
+        \foreach \i in {0,...,5} {
+            \node at (\i+0.5,6.3) {\small \i};  % column labels
+            \node at (-0.3,5.5-\i) {\small \i};  % row labels
+        }
+    \end{tikzpicture}
+    \end{center}
     
 \end{enumerate}
 \end{document}
