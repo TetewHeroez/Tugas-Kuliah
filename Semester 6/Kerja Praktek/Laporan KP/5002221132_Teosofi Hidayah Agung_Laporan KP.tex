@@ -63,6 +63,7 @@
 \usepackage{minted}
 \setminted[js]{fontsize=\scriptsize,frame=lines,framesep=2mm,linenos=true,breaklines=true,breakanywhere=true,}
 \setminted[css]{fontsize=\scriptsize,frame=lines,framesep=2mm,linenos=true,breaklines=true,breakanywhere=true,bgcolor=backcolour,}
+\setminted[html]{fontsize=\scriptsize,frame=lines,framesep=2mm,linenos=true,breaklines=true,breakanywhere=true,bgcolor=backcolour,}
 
 %%% Pewarnaan code
 
@@ -145,7 +146,7 @@ Puji syukur penulis panjatkan kehadirat Allah SWT, Tuhan Yang Maha Esa, atas seg
 
 \DaftarGambar
 
-\DaftarTabel
+% \DaftarTabel
 
 % \DaftarSimbol
 % \begin{flushleft}
@@ -191,7 +192,7 @@ Tujuan khusus Kerja Praktik adalah sebagai berikut:
 \end{itemize}
 
 \section{Manfaat}
-Berisikan manfaat yang diperoleh dari tujuan umum maupun
+Manfaat dari Kerja Praktik ini adalah sebagai penambah wawasan dan pengalaman dalam dunia kerja yang relevan dengan Departemen Matematika, khususnya dalam bidang pengembangan teknologi informasi dan pembelajaran digital.
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab I  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab II  %%%%%%%%%%%%%%%5%%%%%%%%%%
@@ -396,20 +397,61 @@ Dalam kode di atas, properti CSS \texttt{position: sticky} digunakan untuk menja
 \end{figure}
 
 \subsection{Latihan \textit{Box}}
+  Sebuah kotak yang berisi soal-soal latihan yang dapat dikerjakan oleh pengguna. Kotak ini dirancang untuk memberikan pengalaman belajar yang interaktif, memungkinkan pengguna untuk berlatih dan menguji pemahaman mereka terhadap materi yang telah dipelajari. Pengguna dapat mengisikan jawaban mereka pada kotak yang telah disediakan, dan ketika \textit{Check Answer} ditekan, jawaban akan diperiksa secara otomatis. Jika jawaban benar, maka kotak jawaban akan berubah warna menjadi hijau, sedangkan jika salah, kotak jawaban akan berubah menjadi merah.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{foto/LatihanBox.png}
+    \caption{Tampilan Latihan Box}
+\end{figure}
+
+  Selain itu pembahasan soal akan bisa ditampilkan setelah pengguna menekan tombol \textit{Lihat Solusi}. Pembahasan ini akan membantu pengguna memahami cara penyelesaian soal dengan lebih baik. Pada beberapa soal mungkin saja tidak terdapat tempat untuk mengisikan jawaban karena soal tersebut bisa saja berupa pilihan ganda, perintah membuat sketsa, atau soal yang memerlukan pembuktian panjang.
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{foto/LihatSolusi.png}
+    \caption{Tampilan Pembahasan Soal}
+  \end{figure}
 
 \subsection{\textit{Math-Field}}
-
+\textit{Math-field} adalah komponen interaktif yang memungkinkan pengguna untuk memasukkan ekspresi matematika secara langsung di dalam website. Dengan menggunakan \textit{math-field}, pengguna dapat mengetikkan rumus atau persamaan matematika dengan mudah, mirip seperti menulis di papan tulis. Fitur ini sangat berguna dalam konteks pembelajaran matematika, karena memungkinkan pengguna untuk berlatih menulis ekspresi matematika secara langsung.
+  \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{foto/IsiJawaban.png}
+    \caption{\textit{Keyboard Math-Field} untuk Mengisi Jawaban}
+  \end{figure}
+  perlu diketahui bahwa \textit{math-field} ini merupakan fitur dari \textit{CortexJS} yang dimana haruslah kita mengimpor pustaka tersebut terlebih dahulu sebelum menggunakannya. \textit{Syntax} dari \textit{math-field} ini mirip dengan \textit{syntax} dari \textit{LaTeX}, sehingga pengguna yang sudah terbiasa dengan \textit{LaTeX} akan lebih mudah memahami cara penulisan ekspresi matematika di dalamnya. Pengguna dapat mengetikkan ekspresi matematika seperti pecahan, akar, dan simbol-simbol matematika lainnya dengan menggunakan notasi yang sesuai.
+  Berikut adalah contoh kode penggunaan \textit{math-field} dalam HTML:
+\begin{minted}{html}
+<math-field>
+  x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+</math-field>
+\end{minted}
 \section{Implementasi CortexJS dalam interaktivitas Website}
+Pada akhir file HTML untuk \textit{website} akan selalu terdapat \textit{script} untuk menjalankan program JavaScript yang mengatur interaktivitas website. Salah satu satunya adalah untuk mengecek kebenaran jawaban yang diinputkan oleh pengguna. Dalam kasusnya beberapa soal latihan bisa memiliki jawaban yang benar lebih dari satu atau mungkin bentuk jawaban yang berbeda namun memiliki arti yang sama. Oleh karena itu, \textit{CoretexJS} menyediakan fitur untuk memeriksa kebenaran jawaban dengan toleransi tertentu. Contoh \textit{script} untuk memeriksa jawaban pengguna akan ditampilkan pada lampiran laporan kerja praktik ini.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{foto/JawabanBenar1.png}
+    \includegraphics[width=0.8\textwidth]{foto/JawabanBenar2.png}
+    \caption{Perbedaan Penulisan Jawaban tidak Mempengaruhi Kebenaran Jawaban}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab IV %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 \chapter{PENUTUP}
 \section{Kesimpulan}
-Berdasarkan hasil kerja praktik yang telah dilakukan, dapat disimpulkan bahwa:
+Berdasarkan hasil kerja praktik yang telah dilakukan di Subdirektorat Koordinasi Perkuliahan Bersama (SKPB) ITS, dapat ditarik beberapa kesimpulan sebagai berikut:
 \begin{enumerate}
-    \item 
+    \item Dalam rangka mendukung pembelajaran Kalkulus 1 dan Kalkulus 2, penulis membangun sebuah website interaktif yang memuat rangkuman materi dan soal-soal latihan berbasis web, sebagai bentuk kontribusi dalam pengembangan media pembelajaran digital di lingkungan ITS.
+    \item Website yang dikembangkan dibangun menggunakan teknologi web seperti HTML, CSS, dan JavaScript, serta dibantu pustaka tambahan seperti CortexJS, sehingga mampu menampilkan konten matematis secara dinamis dan responsif.
+    \item Website ini diharapkan dapat menjadi salah satu alternatif media pembelajaran yang lebih menarik, mudah diakses, dan membantu mahasiswa dalam memahami materi kalkulus secara mandiri.
 \end{enumerate}
 \section{Saran}
+\begin{enumerate}
+    \item Menambahkan fitur evaluasi hasil belajar atau kuis interaktif berbasis skor untuk meningkatkan keterlibatan dan umpan balik bagi pengguna.
+    \item Melakukan uji coba lebih lanjut kepada mahasiswa dalam jumlah lebih besar untuk mendapatkan masukan dan meningkatkan kualitas konten maupun tampilan antarmuka.
+    \item Mengintegrasikan akun pengguna agar mahasiswa dapat menyimpan progres belajar secara personal dan melanjutkan latihan di lain waktu.
+    \item Memastikan tampilan web lebih optimal untuk berbagai perangkat, khususnya smartphone dan tablet, agar aksesibilitas semakin luas.
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab V %%%%%%%%%%%%%%%5%%%%%%%%%%
 
@@ -420,7 +462,7 @@ Berdasarkan hasil kerja praktik yang telah dilakukan, dapat disimpulkan bahwa:
 \cleardoublepage
 \lampiran{\textit{Logbook} Kegiatan}
 \begin{longtable}{|c|>{\centering\arraybackslash}p{0.31\linewidth}|>{\raggedright\arraybackslash}p{0.5\linewidth}|}
-    \caption{Jadwal Kegiatan Kerja Praktik} \\
+    % \caption{Jadwal Kegiatan Kerja Praktik} \\
     \hline
     \rowcolor{gray!30}\textbf{No} & \textbf{Tanggal} & \centering\arraybackslash\textbf{Deskripsi Kegiatan} \\
     \hline
@@ -481,6 +523,7 @@ Berdasarkan hasil kerja praktik yang telah dilakukan, dapat disimpulkan bahwa:
 
 \cleardoublepage
 \lampiran{Kode Script CortexJS}
+Berikut merupakan contoh kode JavaScript yang digunakan untuk mengatur interaktivitas soal latihan pada website pembelajaran.
 \begin{minted}{js}
 import "//unpkg.com/mathlive?module";
 import "//unpkg.com/@cortex-js/compute-engine";
@@ -540,10 +583,17 @@ answerButton.addEventListener("click", () => {
  });
 });
 \end{minted}
+\cleardoublepage
+\lampiran{Source Code Website Pembelajaran Interaktif}
+Dibawah ini merupakan link \textit{GitHub Repository} yang berisi source code dari website pembelajaran interaktif yang telah dikembangkan:
+\begin{itemize}
+    \item \url{https://github.com/KP-SKPB/KP-SKPB.github.io} \\(\textit{GitHub Repository})
+    \item \url{https://kp-skpb.github.io/} \\(\textit{Website Pembelajaran Interaktif})
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%  Lampiran %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 \cleardoublepage
 \Biodata{foto/FotoPenulis}
-\textbf{Teosofi Hidayah Agung}, lahir di Surabaya pada 8 Juni 2025. Penulis merupakan mahasiswa aktif Departemen Matematika, Institut Teknologi Sepuluh Nopember (ITS) Surabaya angkatan 2022. Lahir dari keluarga sederhana beranggotakan ayah, ibu, nenek, dan kakak perempuan bersama-sama tinggal di Kota Pahlawan. Penulis menyelesaikan pendidikan dasar di SDN Iskandar Said Surabaya pada tahun 2017, kemudian melanjutkan pendidikan menengah di SMPN 35 Surabaya hingga tahun 2020, dan melanjutkan pendidikan menengah atas di MAN Surabaya sebagai siswa kelas Akselerasi yang lulus pada tahun 2022. 
+\textbf{Teosofi Hidayah Agung}, lahir di Surabaya pada 8 Juni 2025. Penulis merupakan mahasiswa aktif Departemen Matematika, Institut Teknologi Sepuluh Nopember (ITS) Surabaya angkatan 2022. Lahir dari keluarga sederhana beranggotakan ayah, ibu, nenek, dan kakak perempuan bersama-sama tinggal di Kota Pahlawan. Penulis menyelesaikan pendidikan dasar di SDN Iskandar Said Surabaya pada tahun 2017, kemudian melanjutkan pendidikan menengah di SMPN 35 Surabaya hingga tahun 2020, dan melanjutkan pendidikan menengah atas di MAN Surabaya sebagai siswa kelas Akselerasi yang lulus pada tahun 2022. Penulis diterima melalui jalur SBMPTN di pilihan pertama yaitu Departemen Matematika ITS. Selama menempuh pendidikan di ITS, penulis aktif mengikuti berbagai kegiatan terutama di bidang akademik, seperti menjadi asisten dosen atau laboratorium di beberapa mata kuliah. Selain itu, kecintaannya terhadap Matematika mendorong penulis untuk aktif dalam berbagai berbagai kompetisi/perlombaan Matematika sehingga bisa menjadi finalis ONMIPA Bidang Matematika 2024.
 %%%%%%%%%%%%%%%%%%%%%%%%  Bio Penulis  %%%%%%%%%%%%%%%5%%%%%%%%%%
 \end{document}
