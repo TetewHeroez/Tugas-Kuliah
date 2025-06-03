@@ -62,6 +62,7 @@
 
 \usepackage{minted}
 \setminted[js]{fontsize=\scriptsize,frame=lines,framesep=2mm,linenos=true,breaklines=true,breakanywhere=true,}
+\setminted[css]{fontsize=\scriptsize,frame=lines,framesep=2mm,linenos=true,breaklines=true,breakanywhere=true,bgcolor=backcolour,}
 
 %%% Pewarnaan code
 
@@ -280,7 +281,7 @@ Berikut adalah keterangan pelaksanaan kerja praktik yang sudah dilakukan selama 
 \begin{flushleft}
 \begin{tabular}{lcp{0.7\textwidth}}
     Waktu	&:& 16 Desember 2024 - 9 Februari 2025 \\
-    Tempat	&:& Subdirektorat Koordinasi Perkuliahan Bersama (SKPB) ITS
+    Tempat &:& Subdirektorat Koordinasi Perkuliahan Bersama (SKPB) ITS
 \end{tabular}
 \end{flushleft}
 \noindent Perihal keterangan rangkaian kerja praktik selengkapnya dilampirkan pada Lampiran.
@@ -329,12 +330,6 @@ Berikut merupakan metodologi penyelesaian dalam bentuk diagram alir:
     \item Mempresentasikan hasil kerja praktik kepada SKPB ITS dan dosen pembimbing sebagai bentuk pertanggungjawaban dan evaluasi akhir.
 \end{enumerate}
 
-\subsection{Google Form}
-
-Dalam pengembangan website pembelajaran, seperti untuk mata kuliah Kalkulus, penggunaan Google Forms sebagai alat survei dan pengumpulan umpan balik telah terbukti efektif. Google Forms memungkinkan pembuatan kuesioner dengan berbagai jenis pertanyaan, seperti pilihan ganda, skala Likert, dan pertanyaan terbuka, yang memudahkan pengumpulan data kualitatif dan kuantitatif. Keunggulan lainnya adalah kemudahan akses, integrasi dengan Google Drive, serta kemampuan untuk mengolah dan menganalisis data secara real-time. Hal ini menjadikan Google Forms sebagai alat yang efisien dalam mengumpulkan opini dan masukan dari mahasiswa terkait fitur dan konten website pembelajaran yang dikembangkan \cite{mamat2023use}.
-
-Selain itu, Google Forms juga telah digunakan secara luas dalam konteks pendidikan untuk mengevaluasi kepuasan mahasiswa terhadap layanan akademik. Penelitian oleh \citeA{visser2023student} menunjukkan bahwa mayoritas mahasiswa merasa antusias menggunakan kuesioner online melalui Google Forms, dengan tingkat kemudahan akses sebesar 88\% dan efisiensi waktu sebesar 87\%. Fitur-fitur ini memungkinkan pengembang website pembelajaran untuk secara cepat dan efektif mengumpulkan umpan balik dari pengguna, yang dapat digunakan untuk perbaikan dan pengembangan lebih lanjut \cite{visser2023student}.
-
 \subsection{HTML}
 
 HTML (HyperText Markup Language) merupakan bahasa markah yang digunakan untuk membangun struktur dasar halaman web. HTML mendefinisikan elemen-elemen seperti judul, paragraf, tautan, dan tabel, yang kemudian diterjemahkan oleh peramban menjadi tampilan visual halaman web. Elemen-elemen ini diatur dengan tag yang menyatakan struktur logis dari konten web. HTML menjadi dasar penting dalam pengembangan website karena menentukan hierarki dan susunan konten yang akan ditampilkan \cite{sharma2024}.
@@ -358,10 +353,6 @@ GitHub adalah platform yang menyediakan layanan hosting untuk pengembangan peran
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab III  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 \chapter{HASIL KERJA PRAKTIK}
-\section{Jaring Aspirasi kepada Mahasiswa Baru 2024}
-
-Jaring aspirasi kepada mahasiswa baru 2024 dilakukan melalui survei online yang disebarkan menggunakan Google Forms. Survei ini bertujuan untuk mengumpulkan preferensi, harapan dan masukan mahasiswa terkait pembuatan website pembelajaran interaktif untuk mata kuliah Kalkulus. 
-
 \section{Komponen dalam Website}
 
 Banyaknya komponen dalam website yang dibuat menjadikan tim pengembang harus bekerja sama dan berbagai tugas agar website dapat selesai tepat waktu. Penulis mendapatkan tugas untuk membuat beberapa komponen website, diantaranya sebagai berikut dapat dilihat pada gambar di bawah ini
@@ -379,11 +370,24 @@ Setiap komponen memiliki fungsi dan tujuan masing-masing sehingga mereka dibungk
 \textit{Darkmode} adalah fitur yang memungkinkan pengguna untuk mengubah tema tampilan website menjadi gelap. Fitur ini dirancang untuk mengurangi ketegangan mata saat melihat layar dalam kondisi pencahayaan rendah. Pengguna dapat dengan mudah mengaktifkan atau menonaktifkan \textit{darkmode} melalui tombol yang tersedia di \textit{header}.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.9\textwidth]{foto/LightDarkMode.png}
+    \includegraphics[width=\textwidth]{foto/LightDarkMode.png}
     \caption{Perbedaan Tampilan Website Fitur Darkmode}
 \end{figure}
 \subsection{\textit{Sidebar Menu}}
-Sidebar menu adalah komponen penting dalam website yang berfungsi sebagai navigasi utama. Komponen ini memungkinkan pengguna untuk dengan mudah mengakses berbagai bagian dari website, seperti materi pembelajaran dan tombol kembali ke beranda. 
+Sidebar menu adalah komponen penting dalam website yang berfungsi sebagai navigasi utama. Komponen ini memungkinkan pengguna untuk dengan mudah mengakses berbagai bagian dari website, seperti materi pembelajaran dan tombol kembali ke beranda. Berikut adalah kode CSS yang digunakan untuk mengatur tampilan sidebar menu:
+
+\begin{minted}{css}
+.sidebar{
+  box-sizing: border-box;
+  font-family: HYWenHei;
+  width: fit-content;
+  position: sticky;
+  align-self: start;
+  overflow: hidden;
+  ... /* Properti lainnya */
+}
+\end{minted}
+Dalam kode di atas, properti CSS \texttt{position: sticky} digunakan untuk menjaga posisi sidebar tetap terlihat saat pengguna menggulir halaman. Selain itu, properti \texttt{overflow: hidden} memastikan bahwa konten yang melebihi batas sidebar tidak akan terlihat, sehingga menjaga tampilan tetap rapi.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.4\textwidth]{foto/SidebarBuka.png}$\qquad$
@@ -393,9 +397,9 @@ Sidebar menu adalah komponen penting dalam website yang berfungsi sebagai naviga
 
 \subsection{Latihan \textit{Box}}
 
-\subsection{Jawaban \textit{Container}}
+\subsection{\textit{Math-Field}}
 
-\section{Implementasi \textit{CortexJS} dalam interaktivitas Website}
+\section{Implementasi CortexJS dalam interaktivitas Website}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab IV %%%%%%%%%%%%%%%5%%%%%%%%%%
 
@@ -540,6 +544,6 @@ answerButton.addEventListener("click", () => {
 
 \cleardoublepage
 \Biodata{foto/FotoPenulis}
-Hai bg hai
+\textbf{Teosofi Hidayah Agung}, lahir di Surabaya pada 8 Juni 2025. Penulis merupakan mahasiswa aktif Departemen Matematika, Institut Teknologi Sepuluh Nopember (ITS) Surabaya angkatan 2022. Lahir dari keluarga sederhana beranggotakan ayah, ibu, nenek, dan kakak perempuan bersama-sama tinggal di Kota Pahlawan. Penulis menyelesaikan pendidikan dasar di SDN Iskandar Said Surabaya pada tahun 2017, kemudian melanjutkan pendidikan menengah di SMPN 35 Surabaya hingga tahun 2020, dan melanjutkan pendidikan menengah atas di MAN Surabaya sebagai siswa kelas Akselerasi yang lulus pada tahun 2022. 
 %%%%%%%%%%%%%%%%%%%%%%%%  Bio Penulis  %%%%%%%%%%%%%%%5%%%%%%%%%%
 \end{document}
