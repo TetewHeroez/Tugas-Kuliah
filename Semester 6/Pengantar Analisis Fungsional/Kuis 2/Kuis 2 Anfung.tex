@@ -1,0 +1,346 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{physics}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \pgfplotsset{compat=1.18}
+\usepackage{listings}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+\setbeamercolor{framesubtitle}{fg=HIMAmuda} % Hanya warna teks subtitle
+
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!50]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+% \setbeamercovered{transparent}
+
+
+\theoremstyle{definition}
+% \numberwithin{subsection}{section}
+\newtheorem{definisi}{Definisi}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}{Lema}
+\newtheorem{soal}{Soal}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\AtBeginEnvironment{definisi}{
+    \setbeamercolor{block title}{fg=white,bg=HIMAtua}
+    \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+    \setbeamercolor{item}{fg=HIMAtua}
+}
+\AtBeginEnvironment{teorema}{
+    \setbeamercolor{block title}{bg=darkgray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+    \setbeamercolor{item}{fg=darkgray}
+}
+\AtBeginEnvironment{lema}{
+    \setbeamercolor{block title}{bg=gray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!50!white}
+    \setbeamercolor{item}{fg=gray}
+}
+\AtBeginEnvironment{soal}{%
+  \setbeamercolor{block title}{fg=white,bg=teal} 
+  \setbeamercolor{block body}{parent=normal text,bg=teal!30!white} 
+  \setbeamercolor{item}{fg=teal}
+}
+
+\date{Senin, 2 Juni 2025}
+\title[Pengantar Analisis Fungsional]{Pembahasan Kuis 2 Pengantar Analisis Fungsional T.A 2024/2025}
+\author[Trio Anfung]{By Trio Anfung 6 People}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{\includegraphics[scale=0.15]{logoITS}$\quad$\includegraphics[scale=0.024]{M.png}}
+
+\begin{document}
+
+    \begin{frame}
+        \titlepage
+\end{frame}
+
+\subsection{Nomor 1}
+\section{Pembahasan Soal}
+\begin{frame}
+  \frametitle{\insertsection}
+  \begin{soal}
+    Diberikan $c = \{c_n\} \in \ell^\infty$ dan $T_c \in \mathcal{B}(\ell^\infty)$ dengan $T_c(\{x_n\}) = \{c_n x_n\}$. Jika $\inf\{|c_n| : n \in \mathbb{N}\} > 0$ dan $d_n = \frac{1}{c_n}$, maka tunjukkan bahwa $d = \{d_n\} \in \ell^\infty$ dan $T_c T_d = T_d T_c = I$.
+  \end{soal}
+  % \begin{definisi}
+  %   Ruang \( \ell^\infty \) didefinisikan sebagai himpunan semua barisan bilangan real (atau kompleks) \( x = (x_n)_{n=1}^\infty \) yang \textbf{terbatas}, yaitu:
+
+  %   \[
+  %   \ell^\infty = \left\{ (x_n)_{n=1}^\infty \,\middle|\, \sup_{n \in \mathbb{N}} |x_n| < \infty \right\}.
+  %   \]
+    
+  % \end{definisi}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textbf{Jawaban:}\\
+  Diberikan $c = \{c_n\} \in \ell ^\infty$, artinya $c$ terbatas maka  $\exists M>0$ sehingga sup$|c_n| \leq M , \ \forall n \in \mathbb{N}$. Karena inf$\{|c_n| : n \in \mathbb{N}\}>0$ maka $\exists  m>0$ sedemikian sehingga 
+  \[|c_n| \ge m ,\forall n \in \mathbb{N}\]
+  Diberikan $d_n = \frac{1}{c_n}$, karena $|c_n| \ge m$ akibatnya $\frac{1}{|c_n|} \leq \frac{1}{m}$ dengan demikian 
+  \[|d|  = |d_n|=\frac{1}{|c_n|}\leq \frac{1}{m}\] 
+  artinya sup$|d_n|<\infty$ sehingga $d=\{d_n\}\in \ell^\infty$.\\
+            
+  $\therefore d=\{d_n\}\in \ell^\infty$ 
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Dari hasil sebelumnya diperoleh $T_c,T_d \in B(\ell^\infty)$. Akan ditunjukkan $T_cT_d = T_dT_c = I$. Dengan definisi $T_c(\{x_n\}) = \{c_nx_n\}$.
+  \begin{align*}
+      T_cT_d = T_cT_d(\{{x_n}\})=T_c(\{d_nx_n\})=\{c_nd_nx_n\}=\left\{c_n\cdot\frac{1}{c_n}x_n\right\}=\{x_n\}=I
+      \\
+       T_dT_c = T_dT_c(\{{x_n}\})=T_d(\{c_nx_n\})=\{d_nc_nx_n\}=\left\{\frac{1}{c_n}\cdot c_nx_n\right\}=\{x_n\}=I
+  \end{align*}
+  Diperoleh $T_c$ invertibel dan inversnya adalah $T_d$.
+  
+  $\therefore T_cT_d=T_dT_c=I$ 
+\end{frame}
+
+\subsection{Nomor 2}
+\begin{frame}
+  \frametitle{\insertsection}
+  \begin{soal}
+    Diberikan $T \colon C_R[0,1] \to \mathbb{R}$ transformasi linear terbatas dengan $T(f) = \int_0^1 f(x) \, dx$
+    \begin{enumerate}
+        \item Tunjukkan bahwa $\|T\| \leq 1$.
+        \item Jika $g \in C_R[0,1]$ dengan $g(x) = 1$ untuk semua $x \in [0,1]$, dapatkan $|T(g)|$ dan $\|T\|$.
+    \end{enumerate}
+  \end{soal}
+  \begin{lema}
+    Misalkan \(X\) dan \(Y\) adalah ruang bernorma. Jika \(\norm{\cdot}: B(X,Y) \to \mathbb{R}\) didefinisikan sebagai
+\begin{equation*}
+    \norm{T} = \sup\{\norm{T(x)}:\norm{x} \leq 1\},
+\end{equation*}
+maka \(\norm{\cdot}\) adalah norma pada \(B(X,Y)\). 
+  \end{lema}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textbf{Jawaban:}
+  \begin{enumerate}
+        \item Karena $T$ operator linear terbatas, norma dari $T$ didefinisikan oleh
+        \begin{align*}
+            ||T||&=\sup\{||T(f)||_\R:||f||_{C_\R[0,1]}\leq1\}\\
+            &=\sup\{|T(f)|:\sup_{x\in[0,1]}\{|f(x)|\}\leq1\}\\
+            &=\sup\{|T(f)|:|f(x)|\leq1,\forall x\in[0,1]\}\\
+            &=\sup\{|T(f)|:-1\leq f(x)\leq1,\forall x\in [0,1]\}.
+        \end{align*}
+        Misalkan $f\in C_\R[0,1]$ suatu fungsi sehingga $||f||_{C_\R[0,1]}\leq1$, yang artinya \[-1\leq f(x)\leq1,\forall x\in [0,1]\] 
+      \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Berdasarkan Teorema, berlaku
+  \begin{align*}
+      \int_0^1-1\ dx&\leq\int_0^1f(x)\ dx\leq\int_0^11\ dx\\
+      -1&\leq\int_0^1f(x)\ dx\leq1\\
+      &-1\leq T(f)\leq1\\
+      &\implies|T(f)|\leq1.
+  \end{align*}
+  Akibatnya, $1$ merupakan batas atas dari Himpunan $\{|T(f)|:-1\leq f(x)\leq1,\forall x\in [0,1]\}$. Berdasarkan definisi, berlaku
+  $$||T||=\sup\{|T(f)|:-1\leq f(x)\leq1,\forall x\in [0,1]\}\leq1.$$
+\end{frame}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{enumerate}
+        \setcounter{enumi}{1}
+        \item Kita ketahui bahwa \(g(x) = 1,\,\forall x \in [0,1]\). Dengan menggunakan definisi dari \(T\), kita dapatkan 
+        \begin{equation*}
+            \abs{T(g)} = \int_0^1g(x)\,\dd x = \int_0^1 \dd x = 1. 
+        \end{equation*}
+        Dengan begitu, kita dapatkan \(\abs{T(g)} = \abs{1} = 1\). \\
+        Selanjutnya, perhatikan bahwa norma dari \(g\) adalah 
+        \begin{equation*}
+            \norm{g} = \sup_{x\in [0,1]}\abs{g(x)} = \sup_{x\in [0,1]} \abs{1} = 1. 
+        \end{equation*}
+        Ekspresi di atas dapat dinyatakan kembali sebagai \(\norm{g} \leq 1\). Berdasarkan sifat dari supremum, kita peroleh
+        \begin{equation*}
+            1 = \abs{T(g)} \leq \sup\qty{\abs{T(f)}:\norm{f}\leq 1} = \norm{T}. 
+        \end{equation*}
+        Dari jawaban soal (a) dan pertidaksamaan di atas, kita dapatkan bahwa \(\norm{T} \leq 1\) dan \(\norm{T} \geq 1\). Dengan demikian, kita dapat simpulkan bahwa \(\norm{T} = 1\). 
+    \end{enumerate}
+\end{frame}
+
+\subsection{Nomor 3}
+\begin{frame}
+  \frametitle{\insertsection}
+  \begin{soal}
+    Misalkan $\mathcal{P}$ adalah subspace linear dari $C_c[0,1]$ yang memuat semua fungsi polinomial. Jika $T \colon \mathcal{P} \to \mathbb{C}$ adalah transformasi linear dengan $T(p) = p'(1)$, maka tunjukkan $T$ tidak kontinu.  \end{soal}
+  \begin{lema}
+    $T$ dikatakan tidak terbatas jika $\exists p\in \mathcal{P}$ sehingga $\forall k>0$ berlaku $||T(p)||>k||p||$.
+  \end{lema}
+\end{frame}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textbf{Jawaban:}\\
+  Ambil sembarang $k > 0$. Pilih $p_n(x) = x^n$ untuk $n > k$, $x \in [0,1]$. Maka:
+\[
+p_n'(x) = nx^{n-1}, \quad \|p_n\| = \sup\{|p_n(x)| : x \in [0,1]\} = 1.
+\]
+Selanjutnya:
+\[
+\|T(p_n)\| = |p_n'(1)| = |n(1)^{n-1}| = n > k = k \cdot \|p_n\|.
+\]
+Jadi, $T$ tidak terbatas.\\
+
+Sehingga dengan menggunakan Lema 2 dapat disimpulkan $T$ tidak kontinu
+\end{frame}
+
+\subsection{Nomor 4}
+\begin{frame}
+  \frametitle{\insertsection}
+  \begin{soal}
+    Jika $a = \{a_n\} \in \ell^1$ dan $\{x_n\} \in c_0$, tunjukkan bahwa $\{a_n x_n\} \in \ell^1$ dan transformasi linear $f_a \colon c_0 \to \mathbb{C}$ dengan $f_a(\{x_n\}) = \sum_{n=1}^\infty a_n x_n$ kontinu dengan $\|f_a\| \leq \|\{a_n\}\|_{\ell^1}$.
+  \end{soal}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textbf{Jawaban:}\\
+  Diketahui bahwa $\{a_n\} \in \ell^1$ dan $\{x_n\} \in c_0$ dimana
+    \[c_0:=\left\{(x_n)\,|\,\lim_{n \to \infty} x_n = 0\right\}\]
+    Jelas barisan $a_nx_n$ merupakan barisan kompleks juga, selanjutnya akan ditunjukkan bahwa deret mutlak suku-sukunya akan konvergen. Perhatikan
+    $$
+\sum_{n=1}^\infty |a_n x_n| = \sum_{n=1}^\infty |a_n|\cdot|x_n| \leq ||x_n||\sum_{n=1}^\infty |a_n|=\sup_{n\in\N} |x_n| \cdot \sum_{n=1}^\infty |a_n|
+$$
+
+Karena $\{x_n\} \in c_0 \subset \ell^\infty$ maka $\exists M > 0$ sehingga $|x_n| \leq M$, disisi lain ingat bahwa $\{a_n\} \in \ell^1$ yang mempunyai sifat $\sum |a_n| < \infty$ atau deret $\sum |a_n|$ konvergen.
+
+$\therefore$ Terbukti bahwa $a_nx_n\in\ell^1$
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Dapat dilihat bahwa $f_a$ transformasi linear sebab untuk $\{x_n\}$, $\{y_n\} \in c_0$, dan $\alpha, \beta \in \mathbb{C}$ diperoleh
+$$
+f_a(\alpha \{x_n\} + \beta \{y_n\}) = \sum_{n=1}^\infty a_n (\alpha x_n + \beta y_n) = \alpha \sum a_n x_n + \beta \sum a_n y_n = \alpha f_a(x) + \beta f_a(y)
+$$
+
+Terakhir untuk $||f_a||$ dapat ditulis
+$$
+\|f_a\| = \sup_{\|x\| \leq 1} |f_a(x)|
+$$
+sehingga dari informasi diatas, ambil $x = \{x_n\} \in c_0$ dengan $\|x\|_\infty = \sup_n |x_n| \leq 1$, maka
+$$
+|f_a(x)| = \left| \sum_{n=1}^\infty a_n x_n \right| \leq \sum |a_n x_n| \leq \sum |a_n| \cdot |x_n| \leq \sup |x_n| \cdot \sum |a_n| \leq \sum |a_n| = ||a_n||_1
+$$
+
+$\therefore$ Terbukti bahwa $\|f_a\| \leq \|\{a_n\}\|_1
+$
+\end{frame}
+
+\subsection{Nomor 5}
+\begin{frame}
+  \frametitle{\insertsection}
+  \begin{soal}
+    \begin{enumerate}
+        \item Jika $(x_1, x_2, x_3, \ldots) \in \ell^2$, tunjukkan $(0, 4x_1, x_2, 4x_3, x_4, \ldots) \in \ell^2$.
+        \item Jika $T \colon \ell^2 \to \ell^2$ transformasi linear dengan
+        \[
+        T(x_1, x_2, x_3, \ldots) = (0, 4x_1, x_2, 4x_3, x_4, \ldots),
+        \]
+        Tunjukkan bahwa $T$ kontinu.
+      \end{enumerate}
+  \end{soal}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textbf{Jawaban:}
+  \begin{enumerate}
+      \item Perhatikan bahwa $(x_1,x_2,x_3,\cdots)\in l^2$, yang berakibat
+    \begin{equation*}
+        \sum_{i=1}^\infty|x_i|^2<\infty.
+    \end{equation*}
+    Perhatikan pula bahwa $|x_i|^2\geq0$ untuk setiap $i\in\N$. Akibatnya, berlaku 
+    \begin{equation*}
+        \sum_{i=1}^\infty|x_{2i-1}|^2<\sum_{i=1}^\infty|x_i|^2<\infty\implies\sum_{i=1}^\infty15|x_{2i-1}|^2=15\sum_{i=1}^\infty|x_{2i-1}|^2<\infty.
+    \end{equation*}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Berdasarkan Teorema, berlaku
+    \begin{align*}
+        \sum_{i=1}^\infty|x_i|^2+\sum_{i=1}^\infty15|x_{2i-1}|^2&<\infty\\
+        \sum_{i=1}^\infty|x_i|^2+15|x_{2i-1}|^2&<\infty\\
+        16|x_1|^2+|x_2|^2+16|x_3|^2+|x_4|^2+\cdots&<\infty\\
+        0^2+|4x_1|^2+|x_2|^2+|4x_3|^2+|x_4|^2+\cdots&<\infty.
+    \end{align*}
+    Demikian dari definisi, terbukti bahwa $(0,4x_1,x_2,4x_3,x_4\cdots)\in l^2.$
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textbf{Jawaban:}
+  \begin{enumerate}
+      \setcounter{enumi}{1}
+      \item Untuk membuktikan kontinu, dapat dibuktikan bahwa ada $k \in \mathbb{R}^+$ sehingga $||T(x)||\leq k||x||$ untuk semua $x\in X$. Ambil sebarang $(x_n)\in l^2$, sehingga
+    \begin{align*}
+        ||T(x)||_2^2
+        &=\sqrt{0^2+|4x_1|^2+|x_2|^2+|4x_3|^2+\ldots}^2 \notag \\
+        &=16|x_1|^2+|x_2|^2+16|x_3|^2+\ldots \notag \\
+        &\leq 16|x_1|^2+16|x_2|^2+16|x_3|^2+\ldots \notag \\
+        &=16(|x_1|^2+|x_2|^2+|x_3|^2+\ldots) \notag \\
+        &=16\sum_{n=1}^\infty|x_n|^2 =16||x||_2^2 \iff ||T(x)||_2 \leq 4||x||^2 \notag
+    \end{align*}
+    Karena ada $k=4$ yang memenuhi $||T(x)||_2 \leq k||x||^2$ untuk semua $x \in l^2$. Dengan demikian $T$ kontinu pada $l^2.$
+    \end{enumerate}
+\end{frame}
+
+\end{document}
