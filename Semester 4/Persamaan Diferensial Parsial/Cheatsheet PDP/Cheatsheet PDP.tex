@@ -1,0 +1,276 @@
+\documentclass[a4paper,extrafontsizes, 9pt]{memoir}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\pagestyle{empty}
+
+\setlrmarginsandblock{1cm}{1cm}{*}
+\setulmarginsandblock{1cm}{1cm}{*}
+\checkandfixthelayout
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+
+\let\bf\textbf{}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.5}
+
+\newcommand{\textbetweenrules}[2][.4pt]{%
+  \par\vspace{\topsep}
+  \noindent\makebox[\textwidth]{%
+    \sbox0{#2}%
+    \dimen0=.5\dimexpr\ht0+#1\relax
+    \dimen2=-.5\dimexpr\ht0-#1\relax
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+    \quad #2\quad
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+  }\par\nopagebreak\vspace{\topsep}
+}
+
+\begin{document}
+\footnotesize \textbf{{Cheatsheet -- Persamaan Diferensial Parsial}} \hfill \textit{Teosofi Hidayah Agung/5002221132}
+	\begin{multicols}{3}			
+        \subsection*{\small Klasifikasi PDP}
+            Bentuk umum dari PDP linier order 2 dengan dua variabel adalah
+\begin{equation*}
+Au_{xx} + Bu_{xy} + Cu_{yy} + Du_x + Eu_y + Fu = G
+\end{equation*}
+dengan $A, B, C, \ldots, G$ dan $u$ adalah fungsi $(x, y)$ dan dapat diturunkan 2 kali pada domain $\Omega$.
+
+Klasifikasi PDP linier order 2 dengan dua variabel:
+\begin{enumerate}
+    \item PDP Hiperbolik \hfill $B^2 - 4AC > 0$
+    \item PDP Parabolik \hfill $B^2 - 4AC = 0$
+    \item PDP Eliptik \hfill $B^2 - 4AC < 0$
+\end{enumerate}
+\begin{align*}
+A^* &= A \xi_x^2 + B \xi_x \xi_y + C \xi_y^2 \\
+B^* &= 2A \xi_x \eta_x + B \left( \xi_x \eta_y + \xi_y \eta_x \right) + 2C \xi_y \eta_y \\
+C^* &= A \eta_x^2 + B \eta_x \eta_y + C \eta_y^2 \\
+D^* &= A \xi_{xx} + B \xi_{xy} + C \xi_{yy} + D \xi_x + E \xi_y \\
+E^* &= A \eta_{xx} + B \eta_{xy} + C \eta_{yy} + D \eta_x + E \eta_y \\
+F^* &= F \\
+G^* &= G
+\end{align*}
+            \subsection*{\small Hiperbolik}
+                Bentuk kanonik PDP hiperbolik adalah
+\[
+w_{\xi \eta} = H^*_1(\xi, \eta, w, w_\xi, w_\eta).
+\]
+
+Langkah-langkah mengubah PDP hiperbolik ke bentuk kanoniknya:
+
+\begin{enumerate}
+    \item Tentukan tipe PDP dengan mengecek
+    \[
+    B^2 - 4AC > 0 \rightarrow \text{PDP hiperbolik}
+    \]
+
+    \item Dapatkan persamaan karakteristiknya
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{B + \sqrt{B^2 - 4AC}}{2A} \\\rightarrow& \text{solusinya } \phi_1(x,y) = c_1 \\
+        \frac{dy}{dx} &= \frac{B - \sqrt{B^2 - 4AC}}{2A} \\\rightarrow& \text{solusinya } \phi_2(x,y) = c_2
+    \end{align*}
+    sehingga \( \xi(x,y) = \phi_1(x,y) \) dan \( \eta(x,y) = \phi_2(x,y) \)
+
+    \item Dapatkan turunan \( \xi, \eta \) terhadap \( x, y \) sehingga didapat
+    \[
+    \xi_x, \xi_y, \xi_{xx}, \xi_{xy}, \xi_{yy}, \eta_x, \eta_y, \eta_{xx}, \eta_{xy}, \eta_{yy}
+    \]
+
+    \item Substitusi hasil no (3) ke persamaan (3.15) untuk mendapatkan
+    \[
+    A^*, B^*, C^*, D^*, E^*, F^*, \text{ dan } G^*
+    \]
+
+    \item Selesaikan hasil no (4) sehingga didapat hasil
+    $
+    w(\xi, \eta)
+    $
+
+    \item Transformasi hasil no (5) ke bentuk
+    $
+    u(x, y)
+    $
+\end{enumerate}
+\subsection*{\small Parabolik}
+    Bentuk kanonik PDP parabolik adalah
+\[
+w_{\eta\eta} = H_2^*(\xi, \eta, w, w_\xi, w_\eta)
+\]
+atau
+\[
+w_{\xi\xi} = H_3^*(\xi, \eta, w, w_\xi, w_\eta).
+\]
+
+Langkah-langkah mengubah PDP parabolik ke bentuk kanoniknya:
+
+\begin{enumerate}
+    \item Tentukan tipe PDP dengan mengecek
+    \[
+    B^2 - 4AC = 0 \rightarrow \text{PDP parabolik}
+    \]
+
+    \item Dapatkan persamaan karakteristiknya
+    \[
+    \frac{dy}{dx} = \frac{B}{2A} \rightarrow \text{solusinya } \phi_1(x,y) = c_1
+    \]
+    sehingga \( \xi(x,y) = \phi_1(x,y) \) dan \( \eta(x,y) \) adalah sebarang fungsi \( (x,y) \) dengan catatan
+    \[
+    J = 
+    \begin{vmatrix}
+        \xi_x & \xi_y \\
+        \eta_x & \eta_y
+    \end{vmatrix} \ne 0
+    \]
+
+    \item Dapatkan turunan \( \xi, \eta \) terhadap \( x, y \) sehingga didapat
+    \[
+    \xi_x, \xi_y, \xi_{xx}, \xi_{xy}, \xi_{yy}, \eta_x, \eta_y, \eta_{xx}, \eta_{xy}, \eta_{yy}
+    \]
+
+    \item Substitusi hasil no (3) ke persamaan (3.15) untuk mendapatkan
+    \[
+    A^*, B^*, C^*, D^*, E^*, F^*, \text{ dan } G^*
+    \]
+
+    \item Selesaikan hasil no (4) sehingga didapat hasil
+    $
+    w(\xi, \eta)
+    $
+
+    \item Transformasi hasil no (5) ke bentuk
+    $
+    u(x, y)
+    $
+\end{enumerate}
+\subsection*{\small Eliptik}
+Langkah-langkah mengubah PDP eliptik ke bentuk kanoniknya:
+
+\begin{enumerate}
+    \item Tentukan tipe PDP dengan mengecek
+    \[
+    B^2 - 4AC < 0 \rightarrow \text{PDP eliptik}
+    \]
+
+    \item Dapatkan persamaan karakteristiknya
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{B - i\sqrt{4AC - B^2}}{2A} \\ &\rightarrow \text{solusinya } \alpha(x,y) = c_1 \\
+        \frac{dy}{dx} &= \frac{B + i\sqrt{4AC - B^2}}{2A} \\ &\rightarrow \text{solusinya } \beta(x,y) = c_2
+    \end{align*}
+    sehingga diperoleh 
+    \[
+    \xi(x,y) = \frac{\alpha + \beta}{2} \quad \text{dan} \quad \eta(x,y) = \frac{\alpha - \beta}{2i}
+    \]
+
+    \item Dapatkan turunan \( \xi, \eta \) terhadap \( x, y \) sehingga didapat
+    \[
+    \xi_x, \xi_y, \xi_{xx}, \xi_{xy}, \xi_{yy}, \eta_x, \eta_y, \eta_{xx}, \eta_{xy}, \eta_{yy}
+    \]
+
+    \item Substitusi hasil no (3) ke persamaan (3.15) untuk mendapatkan
+    \[
+    A^*, B^*, C^*, D^*, E^*, F^*, \text{ dan } G^*
+    \]
+
+    \item Selesaikan hasil no (4) sehingga didapat hasil
+    \[
+    w(\xi, \eta)
+    \]
+
+    \item Transformasi hasil no (5) ke bentuk
+    \[
+    u(x, y)
+    \]
+\end{enumerate}
+\section*{\small Metode Pemisahan Variabel}
+Bentuk umum PDP order 2 dengan 2 variabel homogen adalah
+\[
+\resizebox{\linewidth}{!}{$
+A^* u_{x^*x^*} + B^* u_{x^*y^*} + C^* u_{y^*y^*} + D^* u_{x^*} + E^* u_{y^*} + F^* u = 0
+$}
+\]
+
+dan bentuk kanoniknya adalah
+\[
+A u_{xx} + B u_{xy} + C u_{yy} + D u_x + E u_y + F u = 0
+\]
+
+diasumsikan solusi dengan pemisah variabel yaitu
+\[
+u(x,y) = X(x) Y(y) \ne 0
+\]
+
+maka akan diperoleh
+\[
+\begin{aligned}
+u_x &= X' Y \\
+u_y &= X Y' \\
+u_{xx} &= X'' Y \\
+u_{xy} &= X' Y' \\
+u_{yy} &= X Y''
+\end{aligned}
+\]
+
+    \section*{\small Getaran Dawai}
+           Solusi permasalahan getaran dawai 
+\[
+u_{tt} - c^2 u_{xx} = 0, \quad 0 < x < \ell, \ t > 0
+\]
+dengan kondisi awal dan batas
+\[
+\begin{aligned}
+u(x,0) &= f(x), &\quad 0 \leq x \leq \ell \\
+u_t(x,0) &= g(x), &\quad 0 \leq x \leq \ell \\
+u(0,t) &= 0, &\quad t \geq 0 \\
+u(\ell,t) &= 0, &\quad t \geq 0
+\end{aligned}
+\]
+adalah
+\[
+\resizebox{\linewidth}{!}{$
+u(x,t) = \sum_{n=1}^{\infty} \sin\left( \frac{n\pi}{\ell} x \right)
+\left[ a_n \cos\left( \frac{cn\pi}{\ell} t \right) + b_n \sin\left( \frac{cn\pi}{\ell} t \right) \right]
+$}
+\]
+dengan
+\[
+a_n = \frac{2}{\ell} \int_0^{\ell} f(x) \sin\left( \frac{n\pi}{\ell} x \right) dx,
+\]
+\[
+b_n = \frac{2}{n\pi c} \int_0^{\ell} g(x) \sin\left( \frac{n\pi}{\ell} x \right) dx.
+\]
+
+    \section*{\small Konduksi Panas}
+Solusi permasalahan konduksi panas \( u_t = ku_{xx}, \; 0 < x < \ell, \; t > 0 \) dengan kondisi awal dan batas
+\[
+\begin{aligned}
+u(x,0) &= f(x), \quad &&0 \leq x \leq \ell \\
+u(0,t) &= 0, \quad &&t \geq 0 \\
+u(\ell,t) &= 0, \quad &&t \geq 0
+\end{aligned}
+\]
+
+adalah
+
+\[
+u(x,t) = \sum_{n=1}^{\infty} a_n \sin\left( \frac{n\pi}{\ell} x \right) e^{-\left( \frac{n\pi}{\ell} \right)^2 kt}
+\]
+
+dengan
+
+\[
+a_n = \frac{2}{\ell} \int_0^{\ell} f(x) \sin\left( \frac{n\pi}{\ell} x \right) dx.
+\]
+	\end{multicols}
+\end{document}
