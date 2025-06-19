@@ -1,0 +1,212 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\textbf{Contoh 3.8.} Selesaikan masalah getaran dawai
+\[
+u_{tt} - c^2 u_{xx} = 0,\quad 0 < x < \ell,\quad t > 0
+\]
+dengan kondisi awal dan batas
+\begin{align}
+u(x,0) &= f(x), && 0 \leq x \leq \ell, \nonumber\\
+u_t(x,0) &= g(x), && 0 \leq x \leq \ell, \nonumber\\
+u(0,t) &= 0, && t \geq 0 \nonumber\\
+u(\ell,t) &= 0, && t \geq 0. \tag{3.151}
+\end{align}
+
+\textit{Penyelesaian:} \\
+Misal solusinya adalah \( u(x,t) = X(x)T(t) \ne 0 \), maka PDP menjadi
+\[
+XT'' - c^2 X''T = 0 \\
+\Rightarrow c^2 X''T = XT'' \Rightarrow \frac{X''}{X} = \frac{1}{c^2} \frac{T''}{T} = \lambda \tag{3.152}
+\]
+
+sehingga diperoleh 2 PDB yaitu
+\begin{align}
+\frac{X''}{X} &= \lambda \tag{3.153}\\
+\frac{1}{c^2} \frac{T''}{T} &= \lambda \tag{3.154}
+\end{align}
+
+dengan kondisi batas
+\begin{align}
+u(0,t) &= 0, & u(\ell,t) &= 0 \nonumber\\
+X(0)T(t) &= 0, & X(\ell)T(t) &= 0,\quad & T(t) &\ne 0 \nonumber\\
+X(0) &= 0, & X(\ell) &= 0. \tag{3.155}
+\end{align}
+
+Selesaikan persamaan (3.153) dengan \( X(0) = 0 \) dan \( X(\ell) = 0 \), amati kondisi ketika \( \lambda > 0 \), \( \lambda = 0 \), dan \( \lambda < 0 \).
+
+\textbf{a.) Saat \( \lambda > 0 \) maka}
+\[
+X'' - \lambda X = 0 \\
+m^2 - \lambda = 0 \Rightarrow (m + \sqrt{\lambda})(m - \sqrt{\lambda}) = 0 \\
+\Rightarrow m_1 = -\sqrt{\lambda},\quad m_2 = \sqrt{\lambda}
+\]
+
+\[
+\Rightarrow X(x) = Ae^{-\sqrt{\lambda}x} + Be^{\sqrt{\lambda}x} \tag{3.156}
+\]
+
+Untuk kondisi batas \( X(0) = 0 \) diperoleh \( A + B = 0 \) atau \( A = -B \). Untuk kondisi batas \( X(\ell) = 0 \) maka
+\begin{align*}
+Ae^{-\sqrt{\lambda}\ell} + Be^{\sqrt{\lambda}\ell} &= 0 \\
+-Be^{-\sqrt{\lambda}\ell} + Be^{\sqrt{\lambda}\ell} &= 0 \\
+B(e^{\sqrt{\lambda}\ell} - e^{-\sqrt{\lambda}\ell}) &= 0 \tag{3.157}
+\end{align*}
+
+Diperoleh \( B = 0 \) dan \( A = 0 \), sehingga solusi menjadi trivial karena \( X(x) = 0 \).
+
+\textbf{b.) Saat \( \lambda = 0 \) maka}
+\[
+X'' = 0 \Rightarrow X(x) = A + Bx \tag{3.158}
+\]
+
+Untuk kondisi batas \( X(0) = 0 \) diperoleh \( A = 0 \), dan untuk \( X(\ell) = 0 \) maka \( B\ell = 0 \), didapat \( B = 0 \) sebab \( \ell \ne 0 \). Sehingga \( X(x) = 0 \), yang mengakibatkan solusinya menjadi trivial.
+
+\textbf{c.) Saat \( \lambda < 0 \) maka}
+\[
+X'' - \lambda X = 0 \\
+m^2 - \lambda = 0 \Rightarrow m^2 = -(-\lambda) = -\lambda \\
+\Rightarrow m = \pm i\sqrt{-\lambda},\quad \lambda < 0 \text{ atau } -\lambda > 0
+\]
+
+\[
+X(x) = A \cos(\sqrt{-\lambda}x) + B \sin(\sqrt{-\lambda}x) \tag{3.159}
+\]
+
+Untuk kondisi batas \( X(0) = 0 \) diperoleh \( A = 0 \), dan untuk \( X(\ell) = 0 \) maka \( B \sin(\sqrt{-\lambda} \ell) = 0 \). Agar solusinya tak trivial maka \( B \ne 0 \) dan \( \sin(\sqrt{-\lambda} \ell) = 0 \). Perhatikan bahwa
+\[
+\sin(\sqrt{-\lambda} \ell) = 0 \Rightarrow \sqrt{-\lambda} \ell = n\pi, \quad n = 1,2,3,\ldots
+\]
+atau
+\[
+-\lambda_n = \left( \frac{n\pi}{\ell} \right)^2 \tag{3.160}
+\]
+
+Dalam hal ini \( \lambda_n \) adalah \textit{eigen value} dan \( \sin\left( \frac{n\pi}{\ell} x \right) \) dengan \( n = 1,2,3,\ldots \) adalah \textit{eigen function}. Sehingga diperoleh
+\[
+X_n(x) = B_n \sin\left( \frac{n\pi}{\ell} x \right),\quad n = 1,2,3,\ldots \tag{3.161}
+\]
+
+Selesaikan persamaan (3.154) dengan \( \lambda < 0 \), maka
+\[
+T'' - \lambda c^2 T = 0 \Rightarrow m^2 - \lambda c^2 = 0 \Rightarrow m^2 = \lambda c^2 < 0 \Rightarrow m = \pm ic\sqrt{-\lambda}
+\]
+\[
+T(t) = C \cos(c\sqrt{-\lambda}t) + D \sin(c\sqrt{-\lambda}t) \tag{3.162}
+\]
+
+Substitusi \( \sqrt{-\lambda} = \frac{n\pi}{\ell} \) maka diperoleh
+\[
+T_n(t) = C_n \cos\left( \frac{cn\pi}{\ell} t \right) + D_n \sin\left( \frac{cn\pi}{\ell} t \right) \tag{3.163}
+\]
+
+dengan \( C_n, D_n \) adalah konstanta sebarang. Oleh karena itu, solusi PDP-nya adalah:
+\begin{align*}
+u_n(x,t) &= X_n(x) T_n(t) \\
+&= B_n \sin\left( \frac{n\pi}{\ell} x \right) \left[ C_n \cos\left( \frac{cn\pi}{\ell} t \right) + D_n \sin\left( \frac{cn\pi}{\ell} t \right) \right] \\
+&= \sin\left( \frac{n\pi}{\ell} x \right) \left[ a_n \cos\left( \frac{cn\pi}{\ell} t \right) + b_n \sin\left( \frac{cn\pi}{\ell} t \right) \right] \tag{3.164}
+\end{align*}
+
+dimana \( a_n = B_n C_n \), \( b_n = B_n D_n \), dan \( n = 1, 2, 3, \ldots \), sehingga didapat
+\[
+u(x,t) = \sum_{n=1}^{\infty} \sin\left( \frac{n\pi}{\ell}x \right) \left[ a_n \cos\left( \frac{cn\pi}{\ell}t \right) + b_n \sin\left( \frac{cn\pi}{\ell}t \right) \right]. \tag{3.165}
+\]
+
+Masukkan kondisi awal \( u(x,0) = f(x) \) dan \( u_t(x,0) = g(x) \):
+
+\begin{itemize}
+  \item Untuk \( u(x,0) = f(x) \) maka
+  \[
+  \sum_{n=1}^{\infty} a_n \sin\left( \frac{n\pi}{\ell}x \right) = f(x) \quad \rightarrow \text{Deret Fourier Sinus}
+  \]
+  \[
+  a_n = \frac{2}{\ell} \int_0^{\ell} f(x) \sin\left( \frac{n\pi}{\ell}x \right) dx \tag{3.166}
+  \]
+
+  \item Perhatikan bahwa
+  \begin{align*}
+  u &= \sum_{n=1}^{\infty} \sin\left( \frac{n\pi}{\ell}x \right) \left[ a_n \cos\left( \frac{cn\pi}{\ell}t \right) + b_n \sin\left( \frac{cn\pi}{\ell}t \right) \right] \\
+  u_t &= \sum_{n=1}^{\infty} \sin\left( \frac{n\pi}{\ell}x \right) \left[ -a_n \left( \frac{cn\pi}{\ell} \right) \sin\left( \frac{cn\pi}{\ell}t \right) + b_n \left( \frac{cn\pi}{\ell} \right) \cos\left( \frac{cn\pi}{\ell}t \right) \right]
+  \end{align*}
+
+  sehingga untuk \( u_t(x,0) = g(x) \) didapat
+  \[
+  \sum_{n=1}^{\infty} b_n \left( \frac{cn\pi}{\ell} \right) \sin\left( \frac{n\pi}{\ell}x \right) = g(x) \quad \rightarrow \text{Deret Fourier Sinus}
+  \]
+
+  \[
+  b_n \left( \frac{cn\pi}{\ell} \right) = \frac{2}{\ell} \int_0^{\ell} g(x) \sin\left( \frac{n\pi}{\ell}x \right) dx
+  \]
+
+  \[
+  \Rightarrow b_n = \frac{2}{n\pi c} \int_0^{\ell} g(x) \sin\left( \frac{n\pi}{\ell}x \right) dx \tag{3.168}
+  \]
+\end{itemize}
+
+Jadi solusi permasalahan getaran dawai \( u_{tt} - c^2 u_{xx} = 0, \; 0 < x < \ell, \; t > 0 \) dengan kondisi awal dan batas
+\[
+\begin{aligned}
+u(x,0) &= f(x), & 0 \le x \le \ell \\
+u_t(x,0) &= g(x), & 0 \le x \le \ell \\
+u(0,t) &= 0, & t \ge 0 \\
+u(\ell,t) &= 0, & t \ge 0
+\end{aligned}
+\]
+
+adalah
+\[
+u(x,t) = \sum_{n=1}^{\infty} \sin\left( \frac{n\pi}{\ell}x \right) \left[ a_n \cos\left( \frac{cn\pi}{\ell}t \right) + b_n \sin\left( \frac{cn\pi}{\ell}t \right) \right]
+\]
+
+dengan
+\[
+a_n = \frac{2}{\ell} \int_0^{\ell} f(x) \sin\left( \frac{n\pi}{\ell}x \right) dx
+\qquad\text{dan}\qquad
+b_n = \frac{2}{n\pi c} \int_0^{\ell} g(x) \sin\left( \frac{n\pi}{\ell}x \right) dx
+\]
+
+\end{document}
