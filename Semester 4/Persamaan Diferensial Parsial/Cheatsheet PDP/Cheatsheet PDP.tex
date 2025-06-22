@@ -62,6 +62,10 @@ E^* &= A \eta_{xx} + B \eta_{xy} + C \eta_{yy} + D \eta_x + E \eta_y \\
 F^* &= F \\
 G^* &= G
 \end{align*}
+Persamaan (3.15) adalah bentuk kanonik dari PDP linier order 2 dengan dua variabel.
+\begin{align*}
+    A^*w_{\xi\xi} + B^*w_{\xi\eta} + C^*w_{\eta\eta} + D^*w_\xi + E^*w_\eta + F^*w = G^*
+\end{align*}
             \subsection*{\small Hiperbolik}
                 Bentuk kanonik PDP hiperbolik adalah
 \[
@@ -227,11 +231,16 @@ u_{yy} &= X Y''
 \[
 u_{tt} - c^2 u_{xx} = 0, \quad 0 < x < \ell, \ t > 0
 \]
-dengan kondisi awal dan batas
+dengan kondisi awal 
 \[
 \begin{aligned}
 u(x,0) &= f(x), &\quad 0 \leq x \leq \ell \\
 u_t(x,0) &= g(x), &\quad 0 \leq x \leq \ell \\
+\end{aligned}
+\]
+dan batas
+\[
+\begin{aligned}
 u(0,t) &= 0, &\quad t \geq 0 \\
 u(\ell,t) &= 0, &\quad t \geq 0
 \end{aligned}
@@ -272,5 +281,201 @@ dengan
 \[
 a_n = \frac{2}{\ell} \int_0^{\ell} f(x) \sin\left( \frac{n\pi}{\ell} x \right) dx.
 \]
+\subsection*{\small Metode Ekspansi Fungsi Eigen}
+Metode ini dapat digunakan jika permasalahan nonhomogennya berupa \textbf{PDP nonhomogen dengan kondisi batas homogen}.
+
+Langkah-langkah metode eigen function expansion.
+
+\begin{enumerate}
+    \item Dapatkan eigen function dari masalah homogen, misal $\phi_n(x)$ = eigen function, maka solusinya adalah
+    \begin{equation}
+        u(x,t) = \sum_{n=0}^{\infty} C_n(t)\phi_n(x).
+    \end{equation}
+
+    \item Bagian nonhomogen dari PDP ($G(x,t)$) diekspansi dari eigen function
+    \begin{equation}
+        G(x,t) = \sum_{n=0}^{\infty} h_n(t)\phi_n(x).
+    \end{equation}
+
+    \item Substitusi ke PDP nonhomogen diperoleh PDB $C_n(t)$.
+    
+    \item Cari solusi PDB $C_n(t)$.
+
+    \item Masukkan kondisi awal dan diperoleh $C_n(0)$ dan $C_n'(0)$.
+\end{enumerate}
+\subsection*{\small PD Non-hom Kondisi \& Batas Non-hom}
+Misalkan persamaan diferensial parsial nonhomogen:
+\[
+u_{tt} = c^2 u_{xx} + h(x,t)
+\]
+dengan kondisi awal:
+\[
+u(x,0) = f(x), \quad u_t(x,0) = g(x)
+\]
+dan kondisi batas nonhomogen:
+\[
+u(0,t) = p(t), \quad u(\ell,t) = q(t)
+\]
+
+Langkah-langkah penyelesaian:
+
+\begin{enumerate}
+    \item Pemisahan solusi:
+    \[
+    u(x,t) = v(x,t) + U(x,t)
+    \]
+    dengan $v(x,t)$ memenuhi kondisi batas homogen dan $U(x,t)$ mengatasi kondisi batas nonhomogen.
+    
+    \item Tentukan fungsi $U(x,t)$ agar:
+    \[
+    U(0,t) = p(t), \quad U(\ell,t) = q(t)
+    \]
+    Ambil:
+    \[
+    U(x,t) = p(t) + \frac{x}{\ell} \left(q(t) - p(t)\right)
+    \]
+    sehingga kondisi batas homogen diperoleh untuk $v(x,t)$:
+    \[
+    v(0,t) = 0, \quad v(\ell,t) = 0
+    \]
+    
+    \item Substitusi ke persamaan utama:
+    \[
+    v_{tt} - c^2 v_{xx} = h(x,t) - U_{tt}(x,t)
+    \]
+    atau:
+    \[
+    v_{tt} - c^2 v_{xx} = H(x,t)
+    \]
+    
+    \item Tentukan kondisi awal untuk $v$:
+    \begin{align*}
+        v(x,0) &= f(x) - U(x,0) \\
+        v_t(x,0) &= g(x) - U_t(x,0)
+    \end{align*}
+    
+    \item Selesaikan PDP untuk $v(x,t)$ dengan kondisi batas homogen dan sumber baru $H(x,t)$ menggunakan metode \textit{eigen function expansion}.
+    
+    \item Gabungkan solusi:
+    \[
+    u(x,t) = v(x,t) + U(x,t)
+    \]
+\end{enumerate}
+\section*{\small Solusi PDP Linier Tingkat Dua dengan Koefisien Konstan}
+
+Bentuk umum PDP linier tingkat dua adalah:
+\[
+a\,u_{xx} + b\,u_{xy} + c\,u_{yy} + d\,u_x + e\,u_y + f\,u = g
+\]
+dengan \( a, b, c, d, e, f, g \) fungsi-fungsi dari \( x \) dan \( y \), atau konstan.
+
+Untuk kasus koefisien konstan, bentuknya menjadi:
+\[
+a\,u_{xx} + b\,u_{xy} + c\,u_{yy} = g(x, y)
+\]
+dengan \( a, b, c \) konstan.
+
+Definisikan operator:
+\begin{align*}
+    D &= \frac{\partial}{\partial x}\\
+    \mathcal{D} &= \frac{\partial}{\partial y}\\
+    D^2 &= \frac{\partial^2}{\partial x^2}\\
+    D\mathcal{D} &= \frac{\partial^2}{\partial x \partial y}\\
+    \mathcal{D}^2 &= \frac{\partial^2}{\partial y^2}
+\end{align*}
+
+Sehingga operator diferensial:
+\[
+F(D, \mathcal{D}) = a D^2 + b D \mathcal{D} + c \mathcal{D}^2
+\]
+dan bentuk PDP menjadi:
+\[
+F(D, \mathcal{D}) u = g(x, y)
+\]
+
+\textbf{Penyelesaian umum} dari PDP ini adalah:
+\[
+u = u_c + u_p
+\]
+dengan:
+\begin{itemize}
+    \item \( u_c \): \textit{penyelesaian komplementer}, yaitu solusi dari persamaan homogen \( F(D, \mathcal{D}) u = 0 \)
+    \item \( u_p \): \textit{penyelesaian partikular}, yaitu solusi dari persamaan nonhomogen \( F(D, \mathcal{D}) u = g(x, y) \)
+\end{itemize}
+
+Untuk menyelesaikan bagian homogen:
+\[
+a u_{xx} + b u_{xy} + c u_{yy} = 0
+\]
+gunakan substitusi \( u = e^{y + mx} \), maka:
+\begin{align*}
+    u_x &= m e^{y + mx}, \\
+    u_y &= e^{y + mx}, \\
+    u_{xx} &= m^2 e^{y + mx}, \\
+    u_{xy} &= m e^{y + mx}, \\
+    u_{yy} &= e^{y + mx}
+\end{align*}
+
+Substitusi ke PDE menghasilkan persamaan karakteristik:
+\[
+a m^2 + b m + c = 0
+\]
+Dengan solusi \( m_1, m_2 \), bentuk umum solusi \( u_c \) bergantung pada sifat akarnya:
+
+\begin{enumerate}
+    \item Jika \( m_1 \ne m_2 \) (real dan berbeda):
+    \[
+    u_c = f(y + m_1 x) + g(y + m_2 x)
+    \]
+    
+    \item Jika \( m_1 = m_2 = k \) (real dan kembar):
+    \[
+    u_c = f(y + kx) + x\,g(y + kx)
+    \]
+    atau
+    \[
+    u_c = f(y + kx) + y\,g(y + kx)
+    \]
+    
+    \item Jika \( m_1, m_2 = p \pm qi \) (kompleks konjugat):
+    \[
+    u_c = f(y + (p + qi)x) + g(y + (p - qi)x)
+    \]
+\end{enumerate}
+
+Untuk penyelesaian partikularnya:
+\begin{enumerate}
+    \item Jika \( F(D, \mathcal{D})u = e^{ax + by} \), maka:
+    \begin{align*}
+        u_p &= \frac{1}{F(D, \mathcal{D})} e^{ax + by} \\
+            &= \frac{e^{ax + by}}{F(a,b)} \quad \text{dengan } F(a,b) \ne 0
+    \end{align*}
+    
+    \item Jika \( F(D^2, D\mathcal{D}, \mathcal{D}^2) u = \sin(ax + by) \), maka:
+    \begin{align*}
+        u_p &= \frac{1}{F(D^2, D\mathcal{D}, \mathcal{D}^2)} \sin(ax + by) \\
+            &= \frac{\sin(ax + by)}{F(-a^2, -ab, -b^2)}  \\
+            & \text{dengan } F(-a^2, -ab, -b^2) \ne 0
+    \end{align*}
+    
+    \item Jika \( F(D^2, D\mathcal{D}, \mathcal{D}^2) u = \cos(ax + by) \), maka:
+    \begin{align*}
+        u_p &= \frac{1}{F(D^2, D\mathcal{D}, \mathcal{D}^2)} \cos(ax + by) \\
+            &= \frac{\cos(ax + by)}{F(-a^2, -ab, -b^2)}  \\
+            & \text{dengan } F(-a^2, -ab, -b^2) \ne 0
+    \end{align*}
+    
+    \item Jika \( F(D, \mathcal{D}) u = x^p y^q \) dengan \( p, q \) bilangan bulat positif, maka:
+    \begin{align*}
+        u_p &= \frac{1}{F(D, \mathcal{D})} x^p y^q
+    \end{align*}
+    \begin{itemize}
+        \item jika \( q < p \), deretkan dalam \( \frac{\mathcal{D}}{D} \) sampai \( \left( \frac{\mathcal{D}}{D} \right)^q \)
+        \item jika \( p < q \), deretkan dalam \( \frac{D}{\mathcal{D}} \) sampai \( \left( \frac{D}{\mathcal{D}} \right)^p \)
+    \end{itemize}
+
+    \item $\dfrac{1}{D - a\mathcal{D}} f(x,y) = \int f(x, c - ax) \, dx$ dengan $c$ diganti $y + ax$ setelah integrasi
+
+\end{enumerate}
 	\end{multicols}
 \end{document}
