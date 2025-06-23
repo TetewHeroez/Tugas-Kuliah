@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz, tkz-euclide}
+  \usetikzlibrary{arrows.meta,calc}
+  \newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#1}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[red!60!black,thick] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtcolorbox{solution}[1][]{
+    colback=blue!5!white, 
+    colframe=blue!75!black,
+    fonttitle=\bfseries, 
+    colbacktitle=blue!85!black,
+    title=Solusi,
+    #1
+}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\begin{enumerate}
+  \item Dapatkan determinan dari matriks
+  \[
+  A = \begin{bmatrix}
+  2 & 1 & 0 & 0 \\
+  0 & 1 & 1 & 2 \\
+  0 & 1 & -2 & 2 \\
+  2 & 3 & 0 & 9
+  \end{bmatrix}
+  \]
+  
+
+  \item Dengan metode Cramer, selesaikan untuk $y$ untuk sistem persamaan berikut:
+  \[
+  \begin{aligned}
+    2x& - 2y& + z &= 3 \\
+    -x& + 2y& + 3z &= 4 \\
+    3x& - 2y& &= 5
+  \end{aligned}
+  \]
+
+  \item Diberikan $v$ adalah vektor eigen dari matriks persegi $A$ yang bersesuaian dengan nilai eigen $\lambda$.
+  \begin{enumerate}
+    \item Tuliskan persamaan yang menghubungkan $A$, $v$ dan $\lambda$.
+    \item Selidiki apakah $v$ juga vektor eigen dari $A^k$ untuk $k \geq 2$? Jelaskan jawaban Anda.
+  \end{enumerate}
+
+  \item Diberikan matriks
+  \[
+  A = \begin{bmatrix}
+  2 & 3 \\
+  4 & 1
+  \end{bmatrix}
+  \]
+  \begin{enumerate}
+    \item Dapatkan nilai eigen dan vektor eigen dari matriks $A$.
+    \item Dapatkan matriks $P$ sedemikian hingga $D = P^{-1}AP$ dengan $D$ matriks diagonal.
+  \end{enumerate}
+\end{enumerate}
+\end{document}
