@@ -1,0 +1,259 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz, tkz-euclide}
+  \usetikzlibrary{arrows.meta,calc}
+  \newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#1}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[red!60!black,thick] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtcolorbox{solution}[1][]{
+    colback=blue!5!white, 
+    colframe=blue!75!black,
+    fonttitle=\bfseries, 
+    colbacktitle=blue!85!black,
+    title=Solusi,
+    #1
+}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\begin{enumerate}
+  \item Diberikan PDP \( u_{xx} + 3u_{xy} + 2u_{yy} = 0 \)
+
+\begin{enumerate}
+    \item Tunjukkan bahwa \( u(x,y) = f(y - x) + g(y - 2x) \) adalah penyelesaian umum PD.
+    \item Kemudian dari penyelesaian umum (a) tersebut dapatkan penyelesaian khusus yang memenuhi
+    \[
+    u(x,0) = x, \quad u_y(x,0) = 0
+    \]
+\end{enumerate}
+
+\item Pandang persamaan \( u_{xx} + 4u_{xy} + u_x = 0 \). \\
+Dapatkan bentuk kanonik dari persamaan tersebut, carilah solusi umum \( u(x,y) \) dan cek hasilnya dengan kembali mensubtitusike PD-nya.
+
+\item Selesaikan PDP getaran dawai berikut dengan metode pemisahan variabel:
+\[
+u_{tt} = 4 u_{xx} \quad \text{dimana} \quad 0 < x < \pi,\; t > 0
+\]
+dengan kondisi awal dan kondisi batasnya adalah:
+\[
+\begin{aligned}
+& u(x,0) = 0, && 0 \leq x \leq \pi \\
+& u_t(x,0) = x, && 0 \leq x \leq \pi \\
+& u(0,t) = 0, && t \geq 0 \\
+& u(\pi,t) = 0, && t \geq 0
+\end{aligned}
+\]
+
+\end{enumerate}
+\textbf{Solusi:}
+\begin{enumerate}
+  \item \begin{enumerate}
+  \item Perhatikan bahwa
+  \begin{align*}
+    u_x &= -f'(y - x) + g'(y - 2x) \\
+    u_y &= f'(y - x) + g'(y - 2x) \\
+    u_{xx} &= f''(y - x) + 4g''(y - 2x) \\
+    u_{xy} &= -f'(y - x) - 2g'(y - 2x) \\
+    u_{yy} &= f''(y - x) + g''(y - 2x)
+  \end{align*}
+  Substitusikan ke dalam PDP:
+  \begin{align*}
+    u_{xx} + 3u_{xy} + 2u_{yy} &= f''(y - x) + 4g''(y - 2x) - 3f'(y - x) - 6g'(y - 2x) \\
+    &+ 2f''(y - x) + 2g''(y - 2x) \\
+    &= 3f''(y - x) + 6g''(y - 2x) - 3f'(y - x) - 6g'(y - 2x) = 0
+  \end{align*}
+  \item Dari kondisi awal \( u(x,0) = x \) dan \( u_y(x,0) = 0 \), kita dapatkan:
+  \begin{align*}
+    u(x,0) &= f(-x) + g(-2x) = x \implies -f'(-x) -2 g'(-2x) = 1 \\
+    u_y(x,0) &= f'(-x) + g'(-2x) = 0
+  \end{align*}
+  Dari kedua persamaan tersebut, kita dapatkan:
+  \begin{align*}
+    g'(-2x) &= -1 \implies -2g'(-2x) = 2 \implies g(-2x) = 2x + C_1 \implies g(x) = -x + C_1 \\
+    f'(-x) &= 1 \implies -f'(-x) = -1 \implies f(-x) = -x + C_2 \implies f(x) = x + C_2
+  \end{align*}
+  Sehingga penyelesaian khususnya adalah:
+  \begin{align*}
+        u(x,y) = f(y - x) + g(y - 2x) &= (y - x + C_2) + (-y + 2x + C_1) = x + C
+  \end{align*}
+  Namun karena $x=u(x,0)=x+C$, maka $C=0$ sehingga solusi khususnya adalah:
+  \begin{align*}
+    \boxed{u(x,y) = x}
+  \end{align*}
+\end{enumerate}
+
+\item Diketahui $A=1$, $B=4$, $D=1$, dan $C=E=F=G=0$, dengan persamaan karakteristik:
+\begin{align*}
+  \frac{dy}{dx}&=\frac{B +\sqrt{B^2 - 4AC}}{2A} = \frac{4 + \sqrt{16 - 0}}{2} = 4 \implies \xi(x,y) = y-4x \\
+  \frac{dy}{dx}&=\frac{B -\sqrt{B^2 - 4AC}}{2A} = \frac{4 - \sqrt{16 - 0}}{2} = 0 \implies \eta(x,y) = y
+\end{align*}
+Kemudian turunkan $\xi$ dan $\eta$:
+\begin{align*}
+  \xi_x &= -4, \quad  \xi_{xx} = 0 \quad \xi_{yy} = 0 \\
+  \xi_y &= 1, \quad  \xi_{xy} = 0 \quad \eta_{yy} = 0\\
+  \eta_x &= 0, \quad \eta_{xx} = 0 \\
+  \eta_y &= 1 \quad \eta_{xy} = 0
+\end{align*}
+Cari koefisien $A^*$, $B^*$, $C^*$, $D^*$, $E^*$, $F^*$, dan $G^*$:
+\begin{align*}
+A^* &= 1 \cdot (-4)^2 + 4 \cdot (-4) \cdot 1 + 0 \cdot 1^2 = 16 - 16 + 0 = 0 \\
+B^* &= 2 \cdot 1 \cdot (-4) \cdot 0 + 4 \cdot (-4) \cdot 1 + 0 \cdot 1 = -16 \\
+C^* &= 1 \cdot 0^2 + 4 \cdot 0 \cdot 1 + 0 \cdot 1^2 = 0 \\
+D^* &= 1 \cdot 0 + 4 \cdot 0 + 0 \cdot 0 + 1 \cdot (-4) + 0 \cdot 1 = -4 \\
+E^* &= 1 \cdot 0 + 4 \cdot 0 + 0 \cdot 0 + (-4) \cdot 0 + 0 \cdot 1 = 0 \\
+F^* &= 0, \quad G^* = 0 
+\end{align*}
+Substitusikan ke dalam bentuk kanonik:
+\begin{align*}
+  A^* w_{\xi\xi} + B^* w_{\xi\eta} + C^* w_{\eta\eta} + D^* w_\xi + E^* w_\eta + F^* w &= 0 \\
+  -16 w_{\xi\eta} - 4 w_\xi &= 0\\
+\end{align*}
+Misalkan $z=w_\xi$, maka:
+\begin{align*}
+  z_\eta + \frac{1}{4} z = 0 \implies z=f(\xi) e^{-\frac{1}{4} \eta}
+\end{align*}
+Integrasikan untuk mendapatkan $w$:
+\begin{align*}
+  w &= \int z \,d\xi= \int f(\xi) e^{-\frac{1}{4} \eta} d\xi = F(\xi) e^{-\frac{1}{4} \eta} + H(\eta) 
+\end{align*}
+Substitusikan kembali $\xi=y - 4x$ dan $\eta=y$:
+\begin{align*}
+u(x,y) = F(y - 4x) e^{-\frac{1}{4} y} + H(y)
+\end{align*}
+Cek hasilnya dengan mensubtitusike dalam PD:
+\begin{align*}
+  u_x &= -4F'(y - 4x)e^{-\frac{1}{4}y}\\
+  u_{xx} &= 16F''(y - 4x)e^{-\frac{1}{4}y}\\
+  u_{xy} &= -F'(y - 4x)e^{-\frac{1}{4}y} - 4F''(y - 4x)e^{-\frac{1}{4}y} 
+\end{align*}
+Terakhir
+\begin{align*}
+  u_{xx} + 4u_{xy} + u_x &= 16F''(y - 4x)e^{-\frac{1}{4}y} - 4F'(y - 4x)e^{-\frac{1}{4}y} - 16F''(y - 4x)e^{-\frac{1}{4}y} \\
+  &- 4F'(y - 4x)e^{-\frac{1}{4}y} = -4F'(y - 4x)e^{-\frac{1}{4}y} = 0
+\end{align*}
+
+\item Misalkan:
+$
+u(x,t) = X(x)T(t)
+$, kemudian subtitusike PDP:
+\[
+X(x) T''(t) = 4 X''(x) T(t)
+\Rightarrow \frac{T''(t)}{4 T(t)} = \frac{X''(x)}{X(x)} = \lambda
+\]
+Sehingga diperoleh
+\[
+\begin{aligned}
+X(x) &= A_1 e^{\sqrt{\lambda} x} + A_2 e^{-\sqrt{\lambda} x} \\
+T(t) &= B_1 e^{2\sqrt{\lambda} t} + B_2 e^{-2\sqrt{\lambda} t}
+\end{aligned}
+\]
+
+Perhatikan bahwa untuk $\lambda \geq 0$ menghasilkan solusi yang trivial yaitu $u(x,t) = 0$ (Hal ini dapat dilihat dengan mensubtitusike dalam kondisi batas $u(0,t) = 0$ dan $u(\pi,t) = 0$).
+
+Sehingga untuk $\lambda < 0$, diperoleh solusi:
+\[
+X(x) = A_1\cos(\sqrt{-\lambda} x) + A_2\sin(\sqrt{-\lambda} x)
+\]
+Selanjutnya untuk kondisi batas $X(0) = 0$ diperoleh $A_1 = 0$ dan untuk $X(\pi) = 0$ diperoleh:
+\[
+\sin(\sqrt{-\lambda} \pi) = 0 \Rightarrow \sqrt{-\lambda}\pi = n\pi \implies -\lambda_n = n^2 \quad (n = 1, 2, 3, \ldots)
+\]
+Oleh karena itu, kita dapat menuliskan:
+\[
+X_n(x) = C_n \sin(n x) \quad (n = 1, 2, 3, \ldots)
+\]
+
+Solusi umum:
+\[
+u(x,t) = \sum_{n=1}^\infty \sin(n x) \left[ a_n \cos(2n t) + b_n \sin(2n t) \right]
+\]
+
+Selanjutnya untuk variabel $T(t)$ dengan menggunakan asumsi yang sama yaitu $\lambda<0$, kita dapatkan:
+\begin{align*}
+  T(t) &= B_1 \cos(2\sqrt{-\lambda} t) + B_2 \sin(2\sqrt{-\lambda} t) 
+\end{align*}
+Subtitusi $\sqrt{-\lambda} = n$ (dari informasi sebelumnya)
+\begin{align*}
+  T_n(t) &= D_n \cos(2n t) + E_n \sin(2n t)
+\end{align*}
+
+Berarti solusi umum untuk $u(x,t)$ adalah:
+\begin{align*}
+  u_n(x,t) = X_n(x) T_n(t) &= C_n \sin(n x) \left[ D_n \cos(2n t) + E_n \sin(2n t) \right]\\
+  &= \sin(n x) \left[ a_n \cos(2n t) + b_n \sin(2n t) \right]
+\end{align*}
+dengan $a_n = C_n D_n$ dan $b_n = C_n E_n$. Sehingga
+\begin{align*}
+  u(x,t) &= \sum_{n=1}^\infty \sin(n x) \left[ a_n \cos(2n t) + b_n \sin(2n t) \right]
+\end{align*}
+Masukkan kondisi awal $u(x,0) = 0$ dan $u_t(x,0) = x$
+\begin{itemize}
+  \item Untuk $u(x,0) = 0$:
+\begin{align*}
+  \sum_{n=1}^\infty a_n \sin(n x) = 0 \implies a_n = 0 \quad n=1,2,3,\ldots
+\end{align*}
+  \item Untuk $u_t(x,0) = x$:
+\begin{align*}
+  \sum_{n=1}^\infty 2n b_n \sin(n x) = x
+\end{align*}
+Dengan menggunakan ortogonalitas fungsi sinus, kita dapatkan
+\begin{align*}
+  b_n &= \frac{1}{n\pi} \int^\pi_0 x \sin(n x) \,dx\\
+  &= \frac{1}{n\pi} \left[ -x \cos(n x) + \sin(nx)\right]_0^\pi \\
+  &= \frac{1}{n\pi} \left[ -\pi \cos(n \pi) + 1 \right] \\
+  &= \frac{1}{n\pi} \left[ -\pi (-1)^n +1\right] \\
+  &= \frac{(-1)^{n+1}\pi +1}{n}
+\end{align*}
+\end{itemize}
+Sehingga solusi khususnya adalah:
+\begin{align*}
+  u(x,t) = \sum_{n=1}^\infty \frac{(-1)^{n+1}\pi +1}{n}\sin(n x)\sin(2n t)
+\end{align*}
+\end{enumerate}
+
+\end{document}
