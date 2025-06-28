@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz, tkz-euclide}
+  \usetikzlibrary{arrows.meta,calc}
+  \newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#1}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[red!60!black,thick] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtcolorbox{solution}[1][]{
+    colback=blue!5!white, 
+    colframe=blue!75!black,
+    fonttitle=\bfseries, 
+    colbacktitle=blue!85!black,
+    title=Solusi,
+    #1
+}
+
+\begin{document}
+  \fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+  \fancyhead[R]{\textit{5002221132}}
+  \pagestyle{fancy}
+
+  \begin{enumerate}
+    \item Diberikan transformasi linear terbatas \( T : C_R[0,1] \to \mathbb{R} \) dengan 
+    \[
+        T(f) = \int_0^1 (1 - x)f(x)\, dx.
+    \]
+    Tunjukkan bahwa \( \|T\| \leq 1 \). Jika \( g \in C_R[0,1] \) dengan \( g(x) = 1 \), \( \forall x \in [0,1] \), dapatkan \( |T(g)| \) dan \( \|T\| \).
+
+    \item Misalkan \( X \) ruang Banach dan \( \{T_n\} \) barisan operator yang invertibel di \( B(X) \) yang konvergen ke \( T \in B(X) \). Jika \( \|T_n^{-1}\| < 1 \), maka tunjukkan bahwa \( T \) invertibel.
+
+    \item Diberikan \( c = \{c_n\} \in \ell^\infty \) dan \( T_c \in B(\ell^2) \) dengan 
+    \[
+        T_c(\{x_n\}) = \{c_n x_n\}.
+    \]
+    \begin{enumerate}
+        \item Dapatkan operator adjoint \( T^* \).
+        \item Jika \( c_n \in \mathbb{R} \), \( \forall n \in \mathbb{N} \), tunjukkan \( T_c \) self-adjoint.
+        \item Jika \( |c_n| = 1 \), \( \forall n \in \mathbb{N} \), tunjukkan \( T_c \) unitary.
+    \end{enumerate}
+
+    \item Misalkan \( \mathcal{H} \) ruang Hilbert kompleks dan \( U \in B(\mathcal{H}) \) unitary. Tunjukkan transformasi linear 
+    \[
+        f : B(\mathcal{H}) \to B(\mathcal{H}) \quad \text{dengan} \quad f(T) = U^*TU
+    \]
+    adalah isometri.
+\end{enumerate}
+
+\end{document}
