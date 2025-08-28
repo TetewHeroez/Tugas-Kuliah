@@ -1,0 +1,434 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{balance}
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{physics}
+\usepackage{pgfplots}
+\usepackage{xfrac}
+\pgfplotsset{compat = 1.18}
+\usepackage{geometry}
+\geometry{a4paper, total={6in, 8in},top=1in,left=1in, right=1in, bottom=1in}
+
+\newcommand{\e}{\mathbb{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\n}{\operatorname{N}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Lim}{\lim_{n  \to \infty}}
+\newtheorem{theorem}{Teorema}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref
+}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+% Environment tanpa numbering otomatis
+\newtheorem*{definition*}{Definisi}
+
+% Untuk penomoran manual:
+\newcommand{\manualdefinition}[2]{ \textbf{Definisi #1.} #2
+}
+
+% Environment tanpa numbering otomatis
+\newtheorem*{theorem*}{Teorema}
+
+% Untuk penomoran manual:
+\newcommand{\manualtheorem}[2]{
+    \textbf{Teorema #1.} #2
+}
+
+% Environment tanpa numbering otomatis
+\newtheorem*{lemma*}{Lemma}
+
+% Untuk penomoran manual:
+\newcommand{\manuallemma}[2]{
+    \textbf{Lemma #1.} #2
+}
+
+% Environment tanpa numbering otomatis
+\newtheorem*{corollary*}{Corollary}
+
+% Untuk penomoran manual:
+\newcommand{\manualcorollary}[2]{
+    \textbf{Corollary #1.} #2
+}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\textbf{Pengantar Analisis Fungsional}}\\[0.5cm]
+  {\large\textbf{\textit{Cheatsheet}}}
+\end{center}
+\vspace{0.5cm}
+
+\begin{multicols}{2}
+  \subsection*{Normed Spaces}
+  \vspace{-1em}
+  \textbf{Definisi 2.1} Misalkan $X$ ruang vektor atas $\F$. Suatu fungsi $||\cdot||:X\to \R$ dikatakan norm di $X$ jika untuk setiap $x,y\in X$ dan $\alpha\in\F$ berlaku
+  \begin{enumerate}[label=(\roman*)]
+    \item $||x||\geq0$;
+    \item $||x||=0\iff x=0$;
+    \item $||\alpha x||=|\alpha|\cdot||x||$;
+    \item $||x+y||\leq||x||+||y||$.
+  \end{enumerate}
+  \textbf{Definisi 2.12} Misalkan \( X \) adalah ruang vektor dan \( \|\cdot\|_1 \) serta \( \|\cdot\|_2 \) adalah dua norma pada \( X \). Norma \( \|\cdot\|_2 \) \textit{ekuivalen} dengan norma \( \|\cdot\|_1 \) jika terdapat bilangan \( M, m > 0 \) sedemikian sehingga untuk setiap \( x \in X \) berlaku
+  \[
+    m\|x\|_1 \leq \|x\|_2 \leq M\|x\|_1.
+  \]
+  \subsection*{Norm of Some Normed Spaces}
+  \begin{enumerate}
+    \item Norm di $\R^n$ dan $\C^n$ didefinisikan oleh
+          $$||x||=\left(\sum_{j=1}^n|\xi_j|^2\right)^\frac{1}{2}$$
+    \item Norm di Ruang $l^p$ didefinisikan oleh
+          $$||x||=\left(\sum_{j=1}^\infty|\xi_j|^p\right)^\frac{1}{p}$$
+    \item Norm di Ruang $l^\infty$ didefinisikan oleh
+          $$||x||=\sup_j|\xi_j|$$
+    \item Norm di Ruang $C[a,b]$ didefinisikan oleh
+          $$||x||=\max_{t\in J}|x(t)|$$
+  \end{enumerate}
+  \subsection*{Inner Products}
+  \vspace{-1em}
+  \textbf{Definisi 3.3} Misalkan $X$ ruang vektor bernilai kompleks. Suatu fungsi $<\cdot,
+    \cdot>:X\times X\to\C$ dikatakan \textit{inner product} di $X$ jika untuk setiap $x,y,z\in X$ dan $\alpha,\beta\in \C$ berlaku
+  \begin{enumerate}[label=(\roman*)]
+    \item $\langle x,x\rangle\in\R$ dan $\langle x,x\rangle\geq0$;
+    \item $\langle x,x\rangle=0\iff x=0$;
+    \item $\langle\alpha x+\beta y,z\rangle=\alpha\langle x,z\rangle+\beta\langle y,z\rangle$;
+    \item $\langle x,y\rangle=\overline{\langle y,x\rangle}$
+  \end{enumerate}
+  \vspace{-1em}
+  \subsection*{Some Examples of Inner Product}
+  \begin{enumerate}
+    \item \textbf{Inner Product di \( \mathbb{R}^n \)}\\
+          Untuk \( \mathbf{x}, \mathbf{y} \in \mathbb{R}^n \),
+          \[
+            \langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^{n} x_i y_i
+          \]
+
+    \item \textbf{Inner Product di \( \mathbb{C}^n \)}\\
+          Untuk \( \mathbf{x}, \mathbf{y} \in \mathbb{C}^n \),
+          \[
+            \langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^{n} x_i \overline{y_i}
+          \]
+
+    \item \textbf{Inner Product di \( L^2[a, b] \)}\\
+          Untuk fungsi \( f, g \in L^2[a, b] \),
+          \[
+            \langle f, g \rangle = \int_a^b f(x) \overline{g(x)} \, dx
+          \]
+
+    \item \textbf{Inner Product di \( \ell^2 \)}\\
+          Untuk barisan \( x = (x_1, x_2, \dots),\ y = (y_1, y_2, \dots) \in \ell^2 \),
+          \[
+            \langle x, y \rangle = \sum_{i=1}^{\infty} x_i \overline{y_i}
+          \]
+
+    \item \textbf{Norma pada \( \ell^p \) dan \( L^p \) untuk \( p \ne 2 \)}\\
+          Ruang \( \ell^p \) dan \( L^p \) bukan inner product space jika \( p \ne 2 \), namun normanya didefinisikan sebagai:
+          \[
+            \|x\|_p = \left( \sum_{i=1}^{\infty} |x_i|^p \right)^{1/p}, \quad x \in \ell^p
+          \]
+          \[
+            \|f\|_p = \left( \int_a^b |f(x)|^p \, dx \right)^{1/p}, \quad f \in L^p[a,b]
+          \]
+
+    \item \textbf{Inner Product di \( C[a,b] \)}\\
+          Ruang \( C[a,b] \) bukan inner product space secara umum, tetapi dapat dilengkapi dengan inner product seperti di \( L^2[a,b] \):
+          \[
+            \langle f, g \rangle = \int_a^b f(x) \overline{g(x)} \, dx, \quad f, g \in C[a,b]
+          \]
+  \end{enumerate}
+  \subsection*{Orthogonal Complements}
+  \vspace{-1em}
+  \textbf{Definisi 3.31.} Sebuah subset \(A\) dari sebuah ruang vektor \(X\) dikatakan konveks jika untuk sebarang \(x,y \in A\) dan \(\lambda\in [0,1]\), maka \(\lambda x + (1- \lambda)y \in A\).
+
+  \textbf{Teorema 3.32.} Jika \(A\) adalah subset tak kosong, tertutup, dan konveks dari ruang Hilbert \(\mathcal{H}\) dan misalkan \(p \in \mathcal{H}\), maka ada secara tunggal \(q \in A\) sedemikian sehingga
+  \begin{equation*}
+    \norm{p-q} = \inf\qty{\norm{p-a}: a\in A}.
+  \end{equation*}
+
+  \textbf{Teorema 3.34.} Misalkan \(Y\) adalah subruang vektor tertutup dari ruang Hilbert \(\mathcal{H}\). Untuk sebarang \(x \in \mathcal{H}\), ada secara tinggal \(y \in Y\) dan \(z \in Y^\perp\) sedemikian sehingga \(x = y + z\). Selain itu, \(\norm{x}^2 = \norm{y}^2 + \norm{z}^2\).
+  \subsection*{Operator Linear}
+  Suatu operator $T$ dikatakan sebagai \textbf{transformasi linier} jika untuk setiap $x, y \in T$ dan setiap skalar $\alpha$, berlaku:
+  \begin{itemize}
+    \item [(a)] $T(x + y) = T(x) + T(y)$
+    \item [(b)] $T(\alpha x) = \alpha T(x)$
+  \end{itemize}
+  \vspace{-1em}
+  \subsection*{Transformasi Linear Kontinu}
+  \vspace{-1em}
+  \textbf{Lemma 4.1.} Misalkan \(X\) dan \(Y\) adalah ruang linear bernorma dan misalkan \(T:X \to Y\) adalah sebuah transformasi linear. Pernyataan di bawah ini saling ekuivalen.
+  \begin{itemize}
+    \item[(a)] \(T\) kontinu seragam.
+    \item[(b)] T kontinu.
+    \item[(c)] \(T\) kontinu di \(0\).
+    \item[(d)] Ada sebuah bilangan real positif \(k\) sedemikian hingga \(\norm{T(x)} \leq k\) ketika \(x \in X\) dan \(\norm{x} \leq 1\).
+    \item[(e)] Ada sebuah bilangan real positif \(k\) sedemikian hingga \(\norm{T(x)} \leq k\norm{x}\), \(\forall x \in X\).
+  \end{itemize}
+
+  \textbf{Lemma 4.3.} Jika \(\qty{c_n} \in \ell^\infty\) dan \(\qty{x_n} \in \ell^p\), dengan \( 1 \leq p < \infty\), maka \(\qty{c_nx_n} \in \ell^p\) dan
+  \[\sum_{n = 1}^\infty\abs{c_nx_n}^p \leq \abs{\qty{c_n}}_\infty^p \sum _{n=1}^\infty\abs{x_n}^p. \]
+
+  \textbf{Definisi 4.6.} Misalkan \(X\) dan \(Y\) adalah ruang linear bernorma dan misalkan \(T:X\to Y\) adalah transformasi linear. \(T\) dikatakan terbatas jika ada sebuah bialng real positif \(k\) demikia sehingga \(\norm{T(x)} \leq k \norm{x}\), \(\forall x\in X\).
+
+  \textbf{Teorema 4.9.} Jika \(X\) adalah ruang bernorma berdimensi hingga, \(Y\) adalah sebarang ruang bernorma, dan \(T: X\to Y\) adalah transformasi linear, maka \(T\) kontinu. .
+
+  \textbf{Lemma 4.11.} Jika \(X\) dan \(Y\) adalah ruang linear bernorma dan \(T : X\to Y\) adalah transformasi linear kontinu, maka \(\ker(T)\) tertutup.
+
+  \textbf{Definisi 4.12.} Jika \(X\) dan \(Y\) adalah ruang bernorma dan \(T: X\to Y\) adalah transformasi linear, graf dari \(T\) adalah subruang linear \(\mathcal{G}(T)\) dari \(X \times Y\) didefinisikan sbegai \[\mathcal{G}(T) = \qty{(x,Tx):x \in X}. \]
+
+  \textbf{Lemma 4.13.} Jika \(X\) dan \(Y\) adalah ruang bernorma dan \(T:X\to Y \) adalah transformasi linear, maka \(\mathcal{G}(T)\) tertutup.
+
+  \textbf{Lemma 4.14.} Misalkan \(X\) dan \(Y\) adalah ruang linear bernorma dan misalkan \(S,T\in B(X,Y)\) dengan \(\norm{S(x)} \leq k_1\norm{x}\) dan \(\norm{T(x)} \leq k_2\norm{x}\), \(\forall x \in X\). Jika \(\lambda \in \mathbb{F}\), maka
+  \begin{itemize}
+    \item[(a)] \(\norm{(S+T)(x)} \leq (k_1 + k_2)\norm{x}\), \(\forall x\in X\);
+    \item[(b)] \(\norm{(\lambda S)(x)} \leq \abs{\lambda}k_1\norm{x}, \, \forall x \in X\);
+    \item[(c)] \(B(X,Y)\) adalah subruang linear dari \(L(X,Y)\) sehingga \(B(X,Y)\) adalah ruang vektor.
+  \end{itemize}
+  \vspace{-1em}
+  \subsection*{Norma dari Operator Linear Terbatas}
+  \vspace{-1em}
+  \textbf{Lemma 4.15.} Misalkan \(X\) dan \(Y\) adalah ruang bernorma. Jika \(\norm{\cdot}: B(X,Y) \to \mathbb{R}\) didefinisikan sebagai
+  \begin{equation*}
+    \norm{T} = \sup\qty{\norm{T(x)}:\norm{x} \leq 1},
+  \end{equation*}
+  maka \(\norm{\cdot}\) adalah norma pada \(B(X,Y)\).
+
+  \textbf{Definisi 4.16.} Misalkan \(X\) dan \(Y\) adalah ruang linear bernorma dan misalkan \(T \in B(X,Y)\). Norma dari \(T\) didefinisikan sebagai \(\norm{T} = \sup\qty{\norm{T(x)}:\norm{x} \leq 1}\).
+
+  \textbf{Definisi 4.17.} Misalkan \(\mathbb{F}^p\) mempunyai norm standar dan misalkan \(A\) adalah matriks berukuran \(m \times n\) dengan entrinya anggota \(\mathbb{F}\). Jika \(T : \mathbb{F}^n \to \mathbb{F}^m\) adalah transformasi linear terbatas yang didefinisikan sebagai \(T(x) = Ax\), maka norma dari matriks \(A\) didefinisikan sebagai \(\norm{A} = \norm{T}\).
+
+  \textbf{Teorema 4.19.} Misalkan \(X\) adalah ruang linear bernorma dan misalkan \(W\) adalah subruang dari \(X\) yang rapat. Misalkan \(Y\) adalah ruang Banach dan misalkan \(S \in B(W,Y)\).
+  \begin{itemize}
+    \item[(a)] Jika \(x \in X\) dan \(\qty{x_n}\) serta \(\qty{y_n}\) adalah barisan di \(W\) sedemikian sehingga \(\displaystyle \lim_{n  \to \infty} x_n = \Lim y_n\), maka \(\qty{S(x_n)}\) dan \(S(\qty{y_n})\) keduanya konvergen dan \(\displaystyle \Lim S(x_n) = \Lim S(y_n)\).
+    \item[(b)] Ada \(T \in B(X,Y)\) sedemikian sehingga \(\norm{T} = \norm{S}\) dan \(Tx = Sx,\, \forall x\in W\).
+  \end{itemize}
+
+  \textbf{Definisi 4.20.} Misalkan \(X\) dan \(Y\) adalah ruang linear bernorma dan misalkan \(T \in L(X,Y)\). Jika \(\norm{T(x)} = \norm{x},\, \forall x \in X\), maka \(T\) dikatakan \textit{isometry}.
+
+  \textbf{Lemma 4.23.} Misalkan \(X\) dan \(Y\) adalah ruang linear bernorma dan misalkan \(T \in L(X,Y)\). Jika \(T\) adalah \textit{isometry}, maka \(T\) terbatas dan \(\norm{T} = 1\).
+
+  \textbf{Definisi 4.24.} Jika \(X\) dan \(Y\) adalah ruang linear bernorma dan \(T\) adalah \textit{isometry} dari \(X\) pada \(Y\) (fungsi pada), maka \(T\) dikatakan sebagai \textit{isometric isomorphism} dan \(X\) dan \(Y\) dikatakan \textit{isometrically isomorphic}.
+
+  \textbf{Teorema 4.25.} Jika \(\mathcal{H}\) adalah ruang Hilbert berdimensi tak hingga atas lapangan \(\mathbb{F}\) dengan basis orthonormal \(\qty{e_n}\), maka ada sebuah \textit{isometry} \(T: \mathcal{H} \to \ell^2_\mathbb{F}\) sedemikian sehingga \(T(e_n) = \tilde{e}_n\), untuk semua \(n \in \mathbb{N}\).
+  \vspace{-1em}
+  \subsection*{Ruang \(B(X,Y)\) dan Ruang Dual}
+  \vspace{-1em}
+  \textbf{Teorema 4.27.} Jika \(X\) adalah ruang linear bernorma dan \(Y\) adalah ruang Banach, maka ruang bernorma \(B(X,Y)\) adalah ruang Banach.
+
+  \textbf{Definisi 4.28.} Misalkan \(X\) adalah ruang bernorma atas lapangan \(\mathbb{F}\). Ruang \(B(X,\mathbb{F})\) dikatakan sebagai \textit{dual space} (ruang dual) dari \(X\) dan dinotasikan sebagai \(X'\).
+
+  \textbf{Corollary 4.29.} Jika \(X\) adalah ruang vektor bernorma, maka \(X'\) adalah ruang Banach.
+
+  \textbf{Teorema 4.31. (Teorema Riesz-Frechet)} Jika \(\mathcal{H}\) adalah ruang Hilbert dan \(f\in \mathcal{H}'\), maka ada secara tunggal \(y \in \mathcal{H}\) sedemikian sehingga \(f(x) = \langle x,y \rangle\) untuk semua \(x \in \mathcal{H}\). Lebih lanjut, \(\norm{f} = \norm{y}\).
+
+  \textbf{Teorema 4.32.}
+  \begin{itemize}
+    \item[(a)] Jika \(c = \qty{c_n} \in \ell^\infty\) dan \(\qty{x_n}\in \ell^1\), maka \(\qty{c_nx_n} \in \ell^1\). Jika transformasi linear \(f_c: \ell^1\to \mathbb{F}\) yang didefinisikan sebagai \(f_c(\qty{x_n}) = \sum_{n=1}^\infty c_nx_n\), maka \(f_c \in \qty(\ell^1)'\) dengan \[\norm{f_c} \leq \norm{c}_\infty\]
+
+    \item[(b)] Jika \(f \in \qty(\ell^1)'\), maka ada \(c\in \ell^\infty\) sedemikian hingga \(f=f_c\) dan \(\norm{c}_\infty \leq \norm{f}\).
+
+    \item[(c)] Ruang \(\qty(\ell^1)'\) \textit{isometrically isomorphic} terhadap \(\ell^\infty\).
+  \end{itemize}
+
+  \textbf{Lemma 4.33.} Jika \(X, Y\), dan \(Z\) adalah ruang linear bernorma dan \(T \in B(X,Y)\) dan \(S\in B(Y,Z)\), maka \(S\circ T \in B(X,Z)\) dan
+  \[\norm{S \circ T} \leq \norm{S}\norm{T}.\]
+
+  \textbf{Notasi } Jika  $X$ adalah ruang linear bernorma, maka himpunan  $B(X, X)$  dari semua operator linear terbatas dari $X$ ke  $X$ akan dilambangkan dengan $B(X)$.
+
+  \textbf{Definisi 4.34.} Misalkan \(X,Y\), dan \(Z\) adalah ruang linear bernorma dab \(T \in B(X,Y)\) dan \(S \in B(Y,Z)\). Komposisi \(S \circ T\) dari \(S\) dan \(T\) akan dinotasikan sebagai \(ST\) dan dinamakan sebagai \textit{product} dari \(S\) dan \(T\).
+
+  \textbf{Lemma 4.35.} Misalkan \(X\) adalah ruang linear bernorma.
+  \begin{itemize}
+    \item[(a)] \(B(X)\) adalah sebuah aljabar dengan identitas dan juga sebuah ring dengan identitas.
+
+    \item[(b)] Jika \(\qty{T_n}\) dan \(\qty{S_n}\) adalah barisan in \(B(X)\) sedemikian hingga \(\displaystyle \Lim T_n = T\) dan \(\displaystyle\Lim S_n = S\), maka \(\displaystyle\Lim S_nT_n = ST\).
+  \end{itemize}
+
+  \textbf{Notasi} Misalkan \(X\) adalah ruang bernorma dan misalkan \(T \in B(X)\).
+  \begin{itemize}
+    \item[(a)] \(TT\) akan dinotasikan sebagai \(T^2\), \(TTT\) akan dinotasikan sebagai \(T^3\), dan secara umum \textit{product} dari \(T\) dengan dirinya sendiri sebanyak \(n\) kali akan dinotasikan sebagai \(T^n\).
+
+    \item[(b)] Jika \(a_0,\, a_1,\, \dots,\, a_n \in \mathbb{F}\) dan \(p: \mathbb{F} \to \mathbb{F}\) adalah polinomial yang didefinisikan sebagai \(p(x) = a_0 + a_1x + \dots + a_nx^n\), maka \(p(T)\) didefinisikan sebagai \(p(T) = a_0 + a_1T + \dots + a_nT^n\).
+  \end{itemize}
+
+  \textbf{Lemma 4.36.} Misalkan \(X\) adalah ruang linear bernorma dan \(T \in B(X)\). Jika \(p\) dan \(q\) adalah polinomial dan \(\lambda, \mu\in \mathbb{C}\), maka
+  \begin{itemize}
+    \item[(a)] \((\lambda p + \mu q)(T) = \lambda p(T) + \mu q(T)\);
+
+    \item[(b)] \(pq(T) = p(T)q(t).\)
+  \end{itemize}
+  \vspace{-1em}
+  \subsection*{Invers Operator}
+  \vspace{-1em}
+  \textbf{Definisi 4.37} Misalkan $X$ adalah ruang linier bernoma. Sebuah operator $T \in B(X)$ dikatakan \textbf{invertible} jika ada $S \in B(X)$ sehingga $ST=I=TS$.
+
+  \textbf{Notasi} Misalkan $X$ adalah ruang linear bernorma dan $T \in B(X)$ bersifat invertibel.
+  Elemen $S \in B(X)$ yang memenuhi $ST = I = TS$ disebut invers dari $T$ dan dilambangkan dengan $T^{-1}$.
+
+  \textbf{Lemma 4.38} Jika $X$ adalah ruang linear bernorma dan $T_1, T_2$ adalah elemen invertibel dari $B(X)$, maka:
+  \begin{itemize}
+    \item [(a)] $T_1^{-1}$ juga invertibel dengan invers $T_1$;
+    \item [(b)] $T_1 T_2$ invertibel dengan invers $T_2^{-1} T_1^{-1}$.
+  \end{itemize}
+
+  \textbf{Teorema 4.40} Misalkan $X$ adalah ruang Banach. Jika $T \in B(X)$ adalah suatu operator dengan $\|T\| < 1$, maka $I - T$ dapat diinvertkan dan inversnya diberikan oleh $(I - T)^{-1} =\sum_{n=0}^{\infty} T^n$.
+
+  \textbf{Notasi} Derat di Teorema 4.40 kadang disebut Deret \textit{Neumann.}
+
+  \textbf{Akibat 4.42} Misalkan $X$ adalah ruang banach. Himpunan $\mathcal{A}$ yang terdiri dari elemen-elemen yang invertible di dalam $B(X)$ adalah himpunan yang terbuka.
+
+  \textbf{Teorema 4.43 (Teorema Pemetaan Terbuka)}\\
+  Misalkan $X$ dan $Y$ adalah ruang Banach dan $T \in B(X, Y)$ memetakan $X$ ke seluruh $Y$. Misalkan
+  \[
+    L = \{T(x) : x \in X \text{ dan } \|x\| \leq 1\},
+  \]
+  dengan closure $\overline{L}$. Maka:
+  \begin{itemize}
+    \item[(a)] Terdapat $r > 0$ sedemikian sehingga $\{y \in Y : \|y\| \leq r\} \subseteq \overline{L}$;
+    \item[(b)] $\{y \in Y : \|y\| \leq \frac{r}{2}\} \subseteq L$;
+    \item[(c)] Jika, sebagai tambahan, $T$ bersifat satu-ke-satu (one-to-one), maka terdapat $S \in B(Y, X)$ sehingga $S \circ T = I_X$ dan $T \circ S = I_Y$.
+  \end{itemize}
+
+  \textbf{Akibat 4.44 (Teorema Graf Tertutup)}  Jika $X$ dan $Y$ adalah ruang banach dan $T$ adalah transformasi linier dari $X$  ke $Y$ sehingga $\mathcal{G}(T)$, graf dari $T$, tertutup, maka $T$ kontinu.
+
+  \textbf{Akibat 4.45 (Teorema isomorfisma Banach)} Jika $X$ adalah ruang banach dan $T \in B(X)$ adalah satu-satu dan memetakan $X$ ke $X$ maka $T$ invertible.
+
+  \textbf{Lemma 4.46} Jika $X$ adalah ruang linier bernorma dan $T \in B(X)$ invertible, maka untuk semua $x \in X$ berlaku $||T(x)|| \geq ||T^{-1}||^{-1}||x||.$
+
+  \textbf{Lemma 4.47} Jika $X$ adalah ruang banach dan $T \in B(X)$ mempunyai properti bahwa ada $\alpha>0$ sehingga $||T(x)|| \geq \alpha||x||$ untuk semua $x \in X$, maka Im$(T)$ adalah himpunan tertutup.
+
+  \textbf{Teorema 4.48} Misalkan $X$ adalah ruang banach dan misalkan $T \in {B}(X)$. Pernyataan di bawah ini ekivalen:
+  \begin{itemize}
+    \item [(a)] $T$ invertible
+    \item [(b)] Im$(T)$ rapat di $X$ dan ada $\alpha >0$ sehingga $||T(x)|| \geq \alpha||x||$ untuk semua $x \in X$.
+  \end{itemize}
+
+  \textbf{Akibat 4.49} Misalkan $X$ Ruang Banach dan $T\in B(X)$. Operator $T$ tidak \textit{invertible} jika dan hanya jika Im$(T)$ tidak rapat di $X$ atau terdapat barisan $\{x_n\}\in X$ dengan $||x_n||=1,\forall n\in \N$ tetapi $\lim\limits_{n\to\infty}T(x_n)=0$.
+
+  \subsection*{Some Useful Inequality}
+  \subsubsection*{Pertidaksamaan Hölder}
+  Untuk \( p > 1 \), \( q > 1 \), dan \( \frac{1}{p} + \frac{1}{q} = 1 \),
+  \[
+    \sum_{j=1}^{\infty} |\xi_j \eta_j| \le \left( \sum_{k=1}^{\infty} |\xi_k|^p \right)^{1/p} \left( \sum_{m=1}^{\infty} |\eta_m|^q \right)^{1/q}
+  \]
+  \subsubsection*{Pertidaksamaan Cauchy–Schwarz}
+  Kasus khusus dari Hölder ketika \( p = q = 2 \),
+  \[
+    \sum_{j=1}^{\infty} |\xi_j \eta_j| \le \left( \sum_{k=1}^{\infty} |\xi_k|^2 \right)^{1/2} \left( \sum_{m=1}^{\infty} |\eta_m|^2 \right)^{1/2}
+  \]
+  \subsubsection*{Pertidaksamaan Minkowski}
+  Untuk \( p \ge 1 \),
+  \[
+    \left( \sum_{j=1}^{\infty} |\xi_j + \eta_j|^p \right)^{1/p}
+    \le
+    \left( \sum_{k=1}^{\infty} |\xi_k|^p \right)^{1/p}
+    +
+    \left( \sum_{m=1}^{\infty} |\eta_m|^p \right)^{1/p}
+  \]
+
+  \pagebreak
+  \subsection*{The Adjoint of an Operator}
+  \textbf{Teorema 5.1} Misalkan $\mathcal{H}$ dan $\mathcal{K}$ merupakan ruang kompleks Hilbert dan $T \in B(\mathcal{H,K})$. Ada tunggal operator $T^* \in B(\mathcal{H,K})$ sehingga $(Tx,y)=(x,T^*y)$ $\forall x \in \mathcal{H}$ dan $\forall y \in \mathcal{K}.$\\
+
+  \textbf{Definisi 5.2} Jika $\mathcal{H}$ dan $\mathcal{K}$ merupakan ruang kompleks Hilbert dan $T \in B(\mathcal{H,K})$, operator $T^*$ yang dikonstruksi di teorema 5.1 disebut adjoint dari $T$.\\
+
+  \textbf{Definisi 5.4} Jika $A=[a_{i,j}] \in M_{mn}(\mathbb{F})$, maka matriks $[\overline{a_{i,j}}]$ disebut adjoint dari $A$ dan dinotasikan dengan $A^*$.\\
+
+  \textbf{Lemma 5.8} Misalkan $\mathcal{H}$, $\mathcal{K}$ dan $\mathcal{L}$ merupakan ruang kompleks Hilbert. Misalkan $R,S \in B(\mathcal{H,K})$ dan $T \in B(\mathcal{K,L})$, serta $\lambda, \mu\in \mathbb{C}$, maka
+  \begin{enumerate}
+    \item $(\mu R+\lambda S)^*=\overline{\mu}R^*+\overline{\lambda}S^*$;
+    \item $(TR)^*=r^*T^*$
+  \end{enumerate}
+
+  \textbf{Teorema 5.10} Misalkan $\mathcal{H}$ dan $\mathcal{K}$ merupakan ruang kompleks Hilbert dan $T \in B(\mathcal{H,K})$.
+  \begin{enumerate}
+    \item $(T^*)^*=T$
+    \item $||T^*||=||T||$
+    \item Fungsi $f : B(\mathcal{H,K}) \to B(\mathcal{K,H})$ yang didefinisikan sebagai $f(R)=R^*$ kontinu.
+    \item $||T^*T||=||T||^2$
+  \end{enumerate}
+
+  \textbf{Lemma 5.11} Misalkan \(\mathcal{H}\) dan \(\mathcal{K}\) adalah ruang Hilbert kompleks dan misalkan \(T \in B(\mathcal{H}, \mathcal{K})\).
+  \begin{itemize}
+    \item[(a)] \(\operatorname{Ker }T = (\operatorname{Im }T^*)^\perp\);
+    \item[(b)] \(\operatorname{Ker }T^* = (\operatorname{Im }T)^\perp\);
+    \item[(c)] \(\operatorname{Ker }T^* = \qty{0}\) jika dan hanya jika \(\operatorname{Im }T\) rapat dalam \(\mathcal{K}\).
+  \end{itemize}
+
+  \textbf{Akibat 5.12} Misalkan \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(T \in B(\mathcal{H})\). Pernyataan di bawah ini bersifat ekuivalen.
+  \begin{itemize}
+    \item[(a)] \(T\) \textit{invertible}.
+    \item[(b)] \(\operatorname{Ker }T^* = \qty{0}\) dan ada \(\alpha > 0\) sedemikian sehingga \(\norm{T(x)} \geq \alpha\norm{x},\: \forall x \in \mathcal{H}\).
+  \end{itemize}
+
+  \textbf{Lemma 5.14} Jika \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(T \in B(\mathcal{H})\) \textit{invertible}, maka \(T^*\) juga \textit{invertible} dengan \((T^*)^{-1} = \qty(T^{-1})^*\).
+
+  \subsection*{Operator Normal, Self-adjoint, dan Unitary}
+  \textbf{Definisi 5.15}
+  \begin{itemize}
+    \item[(a)] Jika \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(T \in B(\mathcal{H})\), maka \(T\) adalah operator normal jika
+          \[TT^* = T^*T. \]
+    \item[(b)] Matriks persegi \(A\) dikatakan normal jika
+          \[AA^* = A^*A. \]
+  \end{itemize}
+
+  \textbf{Akibat 5.20} Misalkan \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(T\in B(\mathcal{H})\) adalah operator normal. Pernyataan di bawah ini bersifat ekuivalen.
+  \begin{itemize}
+    \item[(a)] \(T\) \textit{invertible}.
+    \item[(b)] Ada \(\alpha > 0\) sedemikian hingga \(\norm{T(x)} \geq \alpha\norm{x},\: \forall x \in \mathcal{H}\).
+  \end{itemize}
+
+  \textbf{Definisi 5.21}
+  \begin{itemize}
+    \item[(a)] Misalkan \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(T \in B(\mathcal{H})\), maka \(T\) dikatakan \textit{self-adjoint} jika \(T = T^*\).
+
+    \item[(b)] Jika \(A\) adalah matriks persegi, maka \(A\) dikatakan \textit{self-adjoint} jika \(A=A^*\).
+  \end{itemize}
+
+  \textbf{Lemma 5.25} Misalkan \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(\mathcal{S}\) adalah himpunan operator \textit{self-adjoint} di \(B(\mathcal{H})\).
+  \begin{itemize}
+    \item[(a)] Jika \(\alpha\) dan \(\beta\) adalah bilangan real dan \(T_1,\, T_2 \in S\), maka \(\alpha T_1 + \beta T_2 \in S\).
+    \item[(b)] \(\mathcal{S}\) adalah subset tertutup dari \(B(\mathcal{H})\).
+  \end{itemize}
+
+  \textbf{Lemma 5.26} Misalkan \(\mathcal{H}\) adalah sebuah ruang Hilbert kompleks dan \(T \in B(\mathcal{H})\).
+  \begin{itemize}
+    \item[(a)] \(TT^*\) dan \(TT^*\) adalah \textit{self-adjoint}.
+    \item[(b)] T= R+iS dengan \(R\) dan \(S\) adalah \textit{self-adjoint}.
+  \end{itemize}
+
+  \textbf{Definisi 5.27}
+  \begin{itemize}
+    \item[(a)] Jika \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(T \in B(\mathcal{H})\), maka \(T\) dikatakan \textit{unitary} jika \(TT^* = T^*T = I\).
+    \item[(b)] Jika \(A\) adalah matriks persegi, maka \(A\) dikatakan sebagai \textit{unitary} jika \(AA^* = A^*A =I\).
+  \end{itemize}
+
+  \textbf{Lemma 5.31} Misalkan \(\mathcal{H}\) adalah ruang Hilbert kompleks dan \(\mathcal{U}\) adalah himpunan operator \textit{unitary} di \(B(\mathcal{H})\).
+  \begin{itemize}
+    \item[(a)] Jika \(U \in \mathcal{U}\), maka \(U^* \in \mathcal{U}\) dan \(\norm{U} = \norm{U^*} = 1\).
+    \item[(b)] Jika \(U_1,\, U_2 \in \mathcal{U}\), maka \(U_1U_2\) dan \(U^{-1}\) juga elemen di \(\mathcal{U}\).
+    \item[(c)] \(\mathcal{U}\) adalah subset tertutup dari \(B(\mathcal{H})\).
+  \end{itemize}
+
+  \textbf{Lemma 5.29} Jika \(X\) adalah ruang hasil kali dalam dan \(S,\,T\in B(X)\) sedemikian hinga \(\langle Sz, z\rangle = \langle Tz, z\rangle,\:\forall z \in X\), maka \(S=T\).
+
+  \textbf{Teorema 5.30} Misalkan \(\mathcal{H}\) adalah ruang Hilbert kompleks dan misalkan \(T,U\in B(\mathcal{H})\).
+  \begin{itemize}
+    \item[(a)] \(T^*T = I\) jika dan hanya jika \(T\) adalah \textit{isometry}.
+    \item[(b)] \(U\) adalah \textit{unitary} jika dan hanya jika \(U\) adalah \textit{isometry} dari \(\mathcal{H}\) ke \(\mathcal{H}\).
+  \end{itemize}
+
+\end{multicols}
+
+
+\end{document}
