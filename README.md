@@ -1,35 +1,39 @@
-# Latex
-Bahasa pemograman yang sering kupake saat mengerjakan tugas-tugas dari dosen. Awal kenalan sama $\LaTeX$ adalah saat menjadi Staff Partner OMITS 16th di divisi QM. Karena aku orangnya males nulis dan tulisanku juga jelek (sering typo juga), jujur saja $\LaTeX$ ini menjadi evolusi pengerjaan tugasku mulai dari semester 3.
+# 🎓 ITS Mathematics Coursework Repository
+<!-- PORTFOLIO-START: detailedDescription -->
+This repository contains various academic assignments and coursework I completed throughout my undergraduate studies in the **Department of Mathematics**, Institut Teknologi Sepuluh Nopember (ITS). Most of the documents are written in **LaTeX** and exported as PDF files.
+<!-- PORTFOLIO-END: detailedDescription -->
+## 🖋 Why LaTeX?
+<!-- PORTFOLIO-START: detailedDescription -->
+I first got introduced to $\LaTeX$ while working as a **Staff Partner for OMITS 16th** in the Quality Management division. As someone who doesn’t enjoy handwriting (and often makes typos too!), LaTeX has become a game-changer in how I handle assignments—especially since my third semester. It offers clean, professional formatting and allows me to focus on content without worrying about layout.
 
-## Tugas Kuliah
-Berisi tugas-tugas kuliah yang kukerjakan dalam bentuk file `.tex` dan diconvert ke bentuk `.pdf`. Akan ku jelaskan deskripsi beberapa mata kuliah yang telah kuambil dan kujalani
+Since then, LaTeX has been my primary tool for writing mathematical reports, papers, and homework assignments.
+<!-- PORTFOLIO-END: detailedDescription -->
+## 📂 What’s Inside?
 
-### [Semester 3](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%203)
-Sayangnya disini hanya ada 2 mata kuliah yang kukerjakan pake `Latex` yaitu Aljabar 1 dan Analisis 1 (Ditambah Metnum yang baru kuambil di semester 5). Mungkin saat itu aku masih awam soal `Latex` yang menurutku lebih cepet ngerjain di kertas daripada ngetik.
+This repository is organized into folders, each representing a different course. Inside each folder, you'll typically find:
+<!-- PORTFOLIO-START: features -->
+- **`.tex` source files**
+- **Final `.pdf` versions**
+- **Supporting figures or code (if applicable)**
+<!-- PORTFOLIO-END: features -->
+Courses include, but are not limited to:
 
-| Mata Kuliah | Deskripsi Singkat |
-| ------ | ------ |
-| [Aljabar 1](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%203/Aljabar%20I) | Mata kuliah abstrak, namun matkul ini lebih digemari kebanyakan mahasiswa karena tidak terlalu banyak definisi|
-| [Analisis 1](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%203/Analisis%20I) | "**Real namun abstrak**" kata yang cocok untuk menggambarkan mata kuliah yang seharusnya menjadi dasar dari kalkulus|
-| [Metode Numerik](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%203/Metode%20Numerik) | Matkul pengingat bahwa tidak semua permaslahan dalam matematika dapat diselesaikan secara eksak (non numerik) |
+- **Calculus**
+- **Linear Algebra**
+- **Real Analysis**
+- **Numerical Methods**
+- **Abstract Algebra**
+- **Probability & Statistics**
+- **Mathematical Modeling**
 
-### [Semester 4](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%204)
-Sudah mulai menggunakan `Latex` dalam mengerjakan tugas perkuliahan sehari-hari
-| Mata Kuliah | Deskripsi Singkat |
-| ------ | ------ |
-| [Aljabar 2](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%204/Aljabar%20II) | Lanjutan Aljabar 1, materi yang mudah dipahami adalah ring polinomial (materi setelah ETS)|
-| [Analisis 2](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%204/Analisis%20II) | Bikin aku melek betapa pentingnya definisi dan teorema, yah tapi kalo dipikir-pikir ujung-ujungnya ya hafalan|
-| [Analisis Vektor](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%204/Analisis%20Vektor) | Kata "Analisis" bikin orang-orang agak takut sama matkul ini, padahal ini hanyalah lanjutan KPB|
-| [Metode Matematika](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%204/Metode%20Matematika) | Belajar shortcut integral, penyelesaian PD, dan beberapa fungsi khusus|
-| [Teori Peluang](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%204/Teori%20Peluang) | Apakah kalian hanya berpikir bahwa peluang bersifat diskrit saja? oh tentu saja tidak, disini lebih banyak menggunakan konsep kalkulus daripada kombinatorika |
+I’ve also included short descriptions or reflections in some folders to help readers understand the focus and learning outcomes of each course.
 
-### [Semester 5](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%205)
-Udah mulai massive, namun masih belum ke tahap **pro** (dalam pov ku) karna masih belum belajar membuat class atau package sendiri😄
-| Mata Kuliah | Deskripsi Singkat |
-| ------ | ------ |
-| [Aljabar Linear](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%205/Aljabar%20Linear) | Lanjutan Aljabar Linear Element namun versi lebih abstrak karena memang mata kuliah prassyaratnya ada Aljabar 1 & 2 |
-| [Matematika Statistika](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%205/Matematika%20Statistika) | Statistika versi Analisis. Banyak teorema yang harus dihafalkan untuk menyelesaikan suatu soal|
-| [Pemodelan Matematika](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%205/Pemodelan%20Matematika) | Matkul bagus sebenernya, tapi karna dosennya gak jelas jadinya gk dapet apa2 disini |
-| [Penulisan Ilmiah Matematika](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%205/Penulisan%20Ilmiah%20Matematika) | Banyak diajari tentang cara penulisan ilmiah mulai dari diksi, kalimat efektif, dan etika |
-| [Teknik Simulasi](https://github.com/TetewHeroez/Tugas-Kuliah/tree/main/Semester%205/Teknik%20Simulasi) | Pengaplikasian statistika dengan menggunakan data real time, sungguh cocok untuk orang yang gk sukah keabstrakan |
+## 📌 Notes
 
+- All files are for educational and archival purposes only.
+- Please don’t copy-paste the work directly. Instead, use it as a reference or inspiration.
+- If you’re a fellow math student, I hope you find something helpful here!
+
+## 📜 License
+
+This repository is open-source and shared under the MIT License. Feel free to explore, learn, and build upon the work here—with credit appreciated.
