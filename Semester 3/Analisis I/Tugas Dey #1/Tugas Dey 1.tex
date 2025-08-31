@@ -1,0 +1,127 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+
+\newtheorem{definisi}{Definisi}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{enumerate}
+  \item Misalkan $A:=\{k:k\in\mathbb{N}, k\leq 20\}, B:=\{3k-1:k\in\mathbb{N}\}$, dan $C:=\{2k+1:k\in\mathbb{N}\}$. Tentukan himpunan:
+        \begin{enumerate}
+          \item $A\cap B\cap C$
+          \item $(A\cap B)\setminus C$
+          \item $(A\cap C)\setminus B$
+        \end{enumerate}
+        \textbf{Jawab:}
+        \begin{itemize}
+          \item $A=\{1, 2, 3, \dots, 20\}$
+          \item $B=\{2, 5, 8, 11, 14, 17, 20, 23, \dots\}$
+          \item $C=\{1, 3, 5, 7, 9, 11, 13, 15, 17, 19, \dots\}$
+        \end{itemize}
+        \begin{enumerate}
+          \item $A\cap B=\{2,5,8,11,14,17,20\}$\\
+                $A\cap B\cap C=\{5,11,17\}$
+        \end{enumerate}
+
+  \item[9.] Misal $A:=B:=\{x\in\R:-1\leq x\leq 1\}$ dan tinjau subhimpunan $C:=\{(x,y):x^2+y^2=1\}$ dari $A\times B$. Apakah himpunan $C$ merupakan fungsi? Jelaskan!\\
+        \textbf{Jawab:}
+        \begin{definisi}
+          Misal $A$ dan $B$ adalah himpunan. Maka sebuah fungsi dari $A$ ke $B$ adalah sebuah relasi $f$ atau pasangan terurut di $A\times B$ sedemikian sehingga {\color{red} setiap elemen di $A$ berpasangan dengan tepat satu elemen di $B$}. Notasi $f:A\to B$ menyatakan bahwa $f$ adalah sebuah fungsi dari $A$ ke $B$. Jika $(a,b)\in f$, maka kita menulis $f(a)=b$.
+        \end{definisi}
+        Perhatikan bahwa jika kita ambil $x=0\in A$, maka terdapat dua pasangan terurut di $C$ yang memiliki elemen pertama $0$, yaitu $(0,1)$ dan $(0,-1)$.
+
+        Jadi himpunan $C$ bukan merupakan fungsi dari $A$ ke $B$.
+
+  \item[16.] Tunjukkan bahwa fungsi $f$ yang didefinisikan sebagai $f(x)=x/\sqrt{x^2+1},x\in\R$, adalah sebuah bijeksi dari $\R$ ke $\{y:-1<y<1\}$.\\
+        \textbf{Jawab:}
+        \begin{definisi}
+          Sebuah fungsi $f:A\to B$ disebut \textit{injektif} (atau satu-satu) jika $f(a_1)=f(a_2)$ berakibat $a_1=a_2$ untuk setiap $a_1,a_2\in A$.
+        \end{definisi}
+        \begin{definisi}
+          Sebuah fungsi $f:A\to B$ disebut \textit{surjektif} (atau onto) jika untuk setiap $b\in B$ terdapat $a\in A$ sedemikian sehingga $f(a)=b$.
+        \end{definisi}
+        \begin{definisi}
+          Sebuah fungsi yang injektif dan surjektif disebut \textit{bijeksi}.
+        \end{definisi}
+        (\textbf{Injektif}) Misal $x_1,x_2\in\R$ dan $f(x_1)=f(x_2)$, maka
+        \begin{align*}
+          \frac{x_1}{\sqrt{x_1^2+1}} & =\frac{x_2}{\sqrt{x_2^2+1}} \\
+          \frac{x_1^2}{x_1^2+1}      & =\frac{x_2^2}{x_2^2+1}      \\
+          x_1^2(x_2^2+1)             & =x_2^2(x_1^2+1)             \\
+          \cancel{x_1^2x_2^2}+x_1^2  & =\cancel{x_1^2x_2^2}+x_2^2  \\
+          x_1^2                      & =x_2^2                      \\
+          x_1^2 +1                   & =x_2^2 +1
+        \end{align*}
+        Berarti kita bisa katakan $\sqrt{x_1^2+1}=\sqrt{x_2^2+1}$ (jelas bukan 0). Sehingga kita peroleh
+        \begin{align*}
+          f(x_1)                              & =f(x_2)                              \\
+          \frac{x_1}{\sqrt{x_1^2+1}}          & =\frac{x_2}{\sqrt{x_2^2+1}}          \\
+          \frac{x_1}{\cancel{\sqrt{x_1^2+1}}} & =\frac{x_2}{\cancel{\sqrt{x_1^2+1}}} \\
+          x_1                                 & =x_2
+        \end{align*}
+
+        (\textbf{Surjektif})
+        \begin{tcolorbox}
+          Ganti atau swap $x$ dengan $y$ pada fungsi $f(x)$, sehingga diperoleh
+          \begin{align*}
+            x               & = \frac{y}{\sqrt{y^2+1}}   \\
+            x^2             & = \frac{y^2}{y^2+1}        \\
+            x^2             & = \frac{(y^2+1)-1}{y^2+1}  \\
+            x^2             & = 1-\frac{1}{y^2+1}        \\
+            \frac{1}{y^2+1} & = 1-x^2                    \\
+            y^2+1           & = \frac{1}{1-x^2}          \\
+            y^2             & = \frac{1}{1-x^2}-1        \\
+            y^2             & = \frac{1-(1-x^2)}{1-x^2}  \\
+            y^2             & = \frac{x^2}{1-x^2}        \\
+            y               & = \frac{|x|}{\sqrt{1-x^2}}
+          \end{align*}
+          Namun disisi lain kita bahwa $x$ dan $y$ harus sama-sama positif atau negatif dari informasi $x= \frac{y}{\sqrt{y^2+1}}$. Oleh karena itu
+          \begin{align*}
+            f^{-1}(x) & = \frac{x}{\sqrt{1-x^2}}
+          \end{align*}
+        \end{tcolorbox}
+
+        Ambil sembarang $y\in(-1,1)$. Definisikan
+
+        $$
+          x=\frac{y}{\sqrt{1-y^2}}.
+        $$
+
+        Periksa bahwa $f(x)=y$. Pertama hitung $x^2$ dan $\sqrt{x^2+1}$:
+
+        $$
+          x^2=\frac{y^2}{1-y^2},\qquad x^2+1=\frac{y^2}{1-y^2}+1=\frac{1}{1-y^2},
+        $$
+
+        sehingga $\sqrt{x^2+1}=\frac{1}{\sqrt{1-y^2}}$. Maka
+
+        $$
+          f(x)=\frac{x}{\sqrt{x^2+1}}=\frac{\frac{y}{\sqrt{1-y^2}}}{\sqrt{\left(\frac{y}{\sqrt{1-y^2}}\right)^2+1}}
+          =\frac{\dfrac{y}{\sqrt{1-y^2}}}{\dfrac{1}{\sqrt{1-y^2}}}=y.
+        $$
+
+        Jadi setiap $y\in(-1,1)$ punya setidaknya satu $x\in\mathbb{R}$ (tepatnya $x=\dfrac{y}{\sqrt{1-y^2}}$) dengan $f(x)=y$. Jadi $f$ surjektif.
+
+        Dengan demikian karena $f$ injektif dan surjektif, maka $f$ adalah bijeksi.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+
+\pagenumbering{gobble}
+Definisi Relasi Ekivalensi:\\
+
+Suatu relasi $\sim$ pada himpunan $A$ disebut relasi ekivalensi jika memenuhi tiga syarat berikut:
+\begin{itemize}
+  \item $a\sim a$ (refleksif)
+  \item $a\sim b \implies b\sim a$ (simetris)
+  \item $a\sim b \land b\sim c \implies a\sim c$ (transitif)
+\end{itemize}
+\begin{enumerate}
+  \item Dalam $\mathbb{R}$, relasi $a \sim b$ bila dan hanya bila $|a| = |b|$.\\
+        \textbf{Jawab:}\\
+        Definisikan sebuah relasi
+        \begin{align*}
+          R:=\{(a,-a) \text{ dengan } a\geq 0\}
+        \end{align*}
+        Selanjutnya perhatikan bahwa $\{a,-a\}\times\{a,-a\} = \{(a,a),(-a,-a),(a,-a),(-a,a)\}$\\
+        Jelas bahwa pasangan terurut ini memenuhi syarat relasi ekivalensi.\\
+        (Buktikan lebih lanjut)\\
+        Jadi kelas ekivalensinya adalah $[a]:=\{a,-a\}$.
+  \item[4.] Dalam $\mathbb{R}$, relasi $a \sim b$ bila dan hanya bila $|a-b| \leq 1$.\\
+        \textbf{Jawab:}\\
+        Misalkan $a=0$, $b=1$ dan $c=2$.\\
+        Maka $|a-b| = |0-1| = 1 \leq 1$ sehingga $a\sim b$.\\
+        Dan $|b-c| = |1-2| = 1 \leq 1$ sehingga $b\sim c$.\\
+        Namun $|a-c| = |0-2| = 2 \not\leq 1$ sehingga $a \not\sim c$.\\
+        Jadi relasi ini tidak memenuhi syarat transitif, sehingga bukan relasi ekivalensi.
+\end{enumerate}
+
+\end{document}
