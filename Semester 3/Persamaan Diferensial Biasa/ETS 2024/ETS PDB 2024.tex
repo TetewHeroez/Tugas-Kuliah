@@ -1,0 +1,98 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 30mm,
+		right = 35mm,
+		top = 35mm,
+        bottom = 30mm,
+        headheight=2cm
+	}
+\renewcommand{\headrulewidth}{0pt}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=1.2cm]{ITS.png}}
+\fancyhead[C]{\textbf{\MakeUppercase{Evaluasi Tengah Semester}\\ 
+                \MakeUppercase{Semester Ganjil 2024/2025}\\ 
+                \MakeUppercase{Departemen Matematika - FSAD ITS}\\ 
+                \MakeUppercase{Program Sarjana}}}
+\fancyhead[R]{\includegraphics[width=1.2cm]{M.png}}
+\begin{document}
+\begin{table}[h!]
+  \begin{tabular}{l l l}
+    Mata kuliah / kode & : & Persamaan Diferensial Biasa (SM234305) \\
+    Hari / tanggal     & : & Selasa, 15 Oktober 2024                \\
+    Sifat / waktu      & : & Tutup buku - 100 menit                 \\
+    Dosen              & : & Drs. I Gusti Ngurah Rai Usadha, M.Si.  \\
+                       &   & Dra. Nur Asiyah, M.Si.                 \\
+                       &   & Dr. Tahiyatul Asfihani, S.Si, M.Si.    \\
+                       &   & Amirul Hakam, S.Si., M.Si.
+  \end{tabular}
+\end{table}
+\begin{center}
+  \textbf{Aturan Pengerjaan:}
+\end{center}
+\begin{itemize}
+  \item Dilarang bekerja sama dalam bentuk apa pun. Segala jenis pelanggaran (mencontek, kerja sama, dll) yang dilakukan saat ETS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.
+  \item Dilarang membuka HP, kalkulator, dan sejenisnya. Bobot Nilai Setiap Soal Sama; Kerjakan yang lebih mudah dahulu menurut Anda.\\
+\end{itemize}
+\begin{enumerate}
+  \item Diberikan persamaan diferensial sebagai berikut:
+        $
+          \dfrac{dy}{dx} = ky - ay^2
+        $
+        dengan $k, a$ adalah konstanta.
+
+        \begin{enumerate}
+          \item Identifikasi jenis persamaan diferensial tersebut.
+          \item Dapatkan penyelesaian umum PD tersebut.
+          \item Jelaskan perilaku penyelesaian jika $x\to \infty$.
+        \end{enumerate}
+
+  \item Populasi tikus pada suatu tempat mengalami pertumbuhan sebesar 60\% per bulan. Di tempat itu juga terdapat kucing yang ada pada daerah tersebut, kucing-kucing tersebut memakan tikus 3 ekor tiap bulan.
+
+        \begin{enumerate}
+          \item Dapatkan model matematika dari perubahan tikus tiap bulan $(dp/dt)$.
+          \item Dapatkan persamaan populasi $(p(t))$, jika diketahui populasi awal tikus atau $p(0)$ sama dengan 100.
+        \end{enumerate}
+
+  \item Dapatkan penyelesaian umum persamaan diferensial berikut:
+        \[
+          y'' + 9y = 9 \sec^2(3x), \quad 0 \le x \le \pi/6
+        \]
+        Petunjuk:
+        $
+          \dfrac{d}{dx}(\ln|\tan x+\sec x|) = \sec x
+        $
+
+  \item Diberikan PD linear tingkat dua dengan koefisien tidak konstan:
+        \[
+          x^2y'' - 3xy' + 4y = x^2-2x
+        \]
+
+        \begin{enumerate}
+          \item Ubahlah PD tersebut menjadi PD dengan koefisien konstan.
+          \item Tentukan penyelesaian umum PD tersebut.
+        \end{enumerate}
+\end{enumerate}
+\end{document}

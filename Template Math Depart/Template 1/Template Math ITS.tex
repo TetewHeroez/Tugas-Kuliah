@@ -1,4 +1,4 @@
-\documentclass[10pt,openany,a4paper]{article}
+\documentclass[11pt,letterpaper]{article}
 \usepackage{graphicx} 
 \usepackage{multirow}
 \usepackage{enumitem}
@@ -7,13 +7,12 @@
 \usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage{geometry}
-	\geometry{
-		total = {160mm, 237mm},
-		left = 25mm,
-		right = 35mm,
-		top = 30mm,
-		bottom = 30mm,
-	}
+  \geometry{
+    left = 25mm,
+    right = 25mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
 \usepackage{fancyhdr}
 \renewcommand{\headrulewidth}{0pt}
 \pagestyle{fancy}
@@ -30,33 +29,39 @@
 \newtheorem*{definisi}{Definisi}
 
 \begin{document}
-\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
-
-\begin{tabular}{r c l}
-    \includegraphics[width=2cm]{ITS.png}
-     &\begin{tabular}{lcll}
-        \multicolumn{4}{c}{\begin{tabular}{c}
-          \MakeUppercase{evaluasi tengah semester gasal 2023/2024}\\
-          \MakeUppercase{departemen matematika fsad its}\\
-          \MakeUppercase{program sarjana}\\
-     \end{tabular}}\\
-     \\
-          Matakuliah&:&\multicolumn{2}{l}{Analisis 1}\\
-          Hari, Tanggal&:&\multicolumn{2}{l}{Kamis, 19 Oktober 2023}\\
-          Waktu / Sifat&:&\multicolumn{2}{l}{100 menit / \textit{Closed Book}}\\
-          Kelas, Dosen&:&A.& \\
-          &&B,F& \\
+\pagenumbering{gobble}
+\begin{table}[h!]
+     \centering
+     \begin{tabular}{r c l}
+          \includegraphics[width=2cm]{ITS.png}
+           & \begin{tabular}{lcll}
+                  \multicolumn{4}{c}{\begin{tabular}{c}
+                                            \MakeUppercase{evaluasi tengah semester gasal 2023/2024} \\
+                                            \MakeUppercase{departemen matematika fsad its}           \\
+                                            \MakeUppercase{program sarjana}                          \\
+                                       \end{tabular}} \\
+                  \\
+                  Matakuliah    & : & \multicolumn{2}{l}{Analisis 1}                          \\
+                  Hari, Tanggal & : & \multicolumn{2}{l}{Kamis, 19 Oktober 2023}              \\
+                  Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Closed Book}}    \\
+                  Kelas, Dosen  & : & A.                                                   &  \\
+                                &   & B,F                                                  &  \\
+             \end{tabular}
+           &
+          \includegraphics[width=2cm]{M.png}
+          \\ \hline
+          \multicolumn{3}{|l|}{\MakeUppercase{harap diperhatikan !!!}}                                                \\
+          \multicolumn{3}{|l|}{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS} \\
+          \multicolumn{3}{|l|}{akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}       \\
+          \hline
      \end{tabular}
-     & 
-     \includegraphics[width=2cm]{M.png}
-     \\ \hline
-\multicolumn{3}{|l|}{\MakeUppercase{harap diperhatikan !!!}}\\
-\multicolumn{3}{|l|}{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}\\
-\multicolumn{3}{|l|}{akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}\\
-\hline
-\end{tabular}
+\end{table}
 
 \begin{enumerate}
-    \item
+     \item soal disini
 \end{enumerate}
+\vspace*{0.5cm}
+\begin{center}
+     \raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}
+\end{center}
 \end{document}
