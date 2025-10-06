@@ -1,0 +1,403 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{geometry}
+  \geometry{
+    left = 25mm,
+    right = 25mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{r c}
+    \includegraphics[width=2cm]{ITS.png}
+     & \begin{tabular}{lcll}
+         \multicolumn{4}{l}{\begin{tabular}{c}
+                             \MakeUppercase{evaluasi tengah semester gasal 2024/2025} \\
+                             \MakeUppercase{departemen matematika fsad its}           \\
+                             \MakeUppercase{program sarjana}                          \\
+                           \end{tabular}}                                                                                               \\
+         \\
+         Matakuliah    & : & \multicolumn{2}{l}{Aljabar Linear}                                                                                                                    \\
+         Hari, Tanggal & : & \multicolumn{2}{l}{Kamis, 17 Oktober 2024}                                                                                                            \\
+         Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Tertutup}}                                                                                                     \\
+         Kelas, Dosen  & : & A.                                                & Prof. Dr. Subiono, M.Sc.                                                                          \\
+                       &   & B.                                                & Dr. Dian Winda Setyawati, S.Si., M.Si.                                                            \\
+                       &   & C.                                                & Soleha, S.Si., M.Si.                                                                              \\
+                       &   & D.                                                & Muhammad Syifaul Mufid, S.Si., M.Si., D.Phil.                                                     \\
+                       &   & Q.                                                & Dr.mont. Kistosil Fahim, S.Si., M.Si.     \multirow{-16}{1cm}{\includegraphics[width=2cm]{M.png}} \\
+       \end{tabular}
+
+    \\ \hline
+    \multicolumn{2}{|l|}{\MakeUppercase{harap diperhatikan !!!}}                                                                                                                      \\
+    \multicolumn{2}{|l|}{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}                                                                       \\
+    \multicolumn{2}{|l|}{akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}                                                                             \\
+    \hline
+  \end{tabular}
+\end{table}
+\vspace*{-0.3cm}
+\begin{center}
+  \large\textbf{Kerjakan 4 dari 5 soal berikut:}
+\end{center}
+
+\begin{enumerate}
+  \item Diberikan bilangan asli $n$ dan ruang vektor $\mathbb{P}_n(\mathbb{R}) = \{ a_0 + a_1x + \dots + a_nx^n \mid a_0, a_1, \dots, a_n \in \mathbb{R} \}$ atas lapangan $\mathbb{R}$. Apakah himpunan $S_k = \{ p(x) \in \mathbb{P}_n(\mathbb{R}) \mid p(k) = 0 \}$ untuk sebarang $k \in \mathbb{R}$ merupakan ruang bagian dari $\mathbb{P}_n(\mathbb{R})$? Jelaskan jawaban anda.
+
+  \item Diberikan $H = \{ v_1, v_2 \} \subseteq \mathbb{R}^3$ dengan $v_1 = [2 \ -1 \ 1]^T$ dan $v_2 = [0 \ 2 \ 0]^T$.
+        \begin{enumerate}
+          \item Tunjukkan bahwa $v_1$ dan $v_2$ bebas linier.
+          \item Jelaskan mengapa $H$ tidak membangun $\mathbb{R}^3$.
+          \item Perluas $H$ sehingga menjadi basis untuk $\mathbb{R}^3$. Jelaskan!
+        \end{enumerate}
+
+  \item Misal $X = \text{Span}\{x, x^3\}$ yang merupakan ruang bagian dari $P_4(\mathbb{R})$. Diketahui transformasi $T : P_3(\mathbb{R}) \to P_4(\mathbb{R})$ yang didefinisikan oleh
+        \[
+          T(b_0 + b_1x + b_2x^2 + b_3x^3) = b_0x + \frac{b_1}{2}x^2 + \frac{b_2}{3}x^3 + \frac{b_3}{4}x^4,
+          \quad \text{untuk } b_0, b_1, b_2, b_3 \in \mathbb{R}.
+        \]
+        \begin{enumerate}
+          \item Tunjukkan bahwa $T$ transformasi linier.
+          \item Tunjukkan bahwa $T^{\gets}(X) := \{ q(x) \in P_3(\mathbb{R}) : T(q(x)) \in X \}$ merupakan ruang bagian dari $P_3(\mathbb{R})$ dan dapatkan dimensinya.
+        \end{enumerate}
+
+  \item Misal transformasi linier $T : P_2(\mathbb{R}) \to P_3(\mathbb{R})$ yang didefinisikan
+        \[
+          T(p(x)) = x p(x) + \frac{d(p(x))}{dx}, \quad \text{untuk setiap } p(x) \in P_2(\mathbb{R}).
+        \]
+        Diberikan $B = \{1, 2+x, x+3x^2\}$ basis untuk $P_2(\mathbb{R})$ dan $B' = \{1, 2+x, 1+x^2, x^3\}$ basis untuk $P_3(\mathbb{R})$.
+        \begin{enumerate}
+          \item Tentukan matriks representasi dari $T$ relatif terhadap basis $B$ dan $B'$.
+          \item Dapatkan $[T(q(x))]_{B'}$ jika $[q(x)]_B =
+                  \begin{bmatrix}
+                    1 \\ 2 \\ 3
+                  \end{bmatrix}$.
+          \item Dari soal (b), dapatkan $T(q(x))$.
+        \end{enumerate}
+  \item Diberikan matriks
+        \[
+          A = \begin{bmatrix}
+            0 & 0 & -2 \\
+            1 & 2 & 1  \\
+            1 & 0 & 3
+          \end{bmatrix}.
+        \]
+        \begin{enumerate}
+          \item Dapatkan semua nilai eigen dan vektor eigen matriks $A$.
+          \item Apakah matriks $A$ bisa didiagonalkan? Jelaskan.
+        \end{enumerate}
+
+\end{enumerate}
+\vspace*{0.05mm}
+\begin{center}
+  \raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}
+\end{center}
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+\begin{enumerate}
+  \item Misal $k$ sebarang bilangan real yang tetap. Ambil sebarang $p(x), q(x) \in S_k$ dan $a,b \in \mathbb{R}$. Akan dibuktikan bahwa $h(x) = ap(x) + bq(x) \in S_k$. Perhatikan bahwa karena $p(x), q(x) \in S_k$ didapat bahwa $p(k), q(k) \in P_n(\mathbb{R})$ dan $p(k) = q(k) = 0$. Oleh karena itu, $ap(x) + bq(x) \in P_n(\mathbb{R})$ dan $h(k) = ap(k) + bq(k) = a(0) + b(0) = 0$. Hal ini menunjukkan bahwa $h(x) \in S_k$. Sehingga $S_k$ merupakan ruang bagian dari $P_n(\mathbb{R})$.
+
+  \item
+        \begin{enumerate}
+          \item Misal $\alpha$ dan $\beta$ adalah solusi dari persamaan
+                \[
+                  \alpha
+                  \begin{bmatrix}
+                    2 \\ -1 \\ 1
+                  \end{bmatrix}
+                  +
+                  \beta
+                  \begin{bmatrix}
+                    0 \\ 2 \\ 0
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    0 \\ 0 \\ 0
+                  \end{bmatrix}.
+                \]
+                Diperoleh
+                \[
+                  \begin{aligned}
+                    2\alpha          & = 0  \\
+                    -\alpha + 2\beta & = 0  \\
+                    \alpha           & = 0.
+                  \end{aligned}
+                \]
+                Dari sistem persamaan di atas, didapat hanya satu solusi yaitu $\alpha = 0$ dan $\beta = 0$. Oleh karena itu $v_1$ dan $v_2$ bebas linier.
+
+          \item Karena terdapat anggota dari $\mathbb{R}^3$ yang tidak bisa dituliskan sebagai kombinasi linier dari anggota-anggota $H$. Misalnya, $[1~0~0]^T$ tidak bisa dituliskan sebagai kombinasi linier dari anggota-anggota $H$, yakni tidak ada solusi untuk persamaan:
+                \[
+                  \alpha
+                  \begin{bmatrix}
+                    2 \\ -1 \\ 1
+                  \end{bmatrix}
+                  +
+                  \beta
+                  \begin{bmatrix}
+                    0 \\ 2 \\ 0
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    1 \\ 0 \\ 0
+                  \end{bmatrix}.
+                \]
+                Hal ini bisa dilihat dari sistem persamaan yang terbentuk yaitu
+                \[
+                  \begin{aligned}
+                    2\alpha          & = 1  \\
+                    -\alpha + 2\beta & = 0  \\
+                    \alpha           & = 1.
+                  \end{aligned}
+                \]
+                Perhatikan persamaan pertama dan ketiga tidak konsisten. Sehingga bisa disimpulkan sistem persamaan tersebut tidak punya solusi.
+
+                (c) Perhatikan bahwa dua vektor di $H$ bebas linier. Amati pula bahwa $\mathbb{R}^3$ berdimensi tiga, sehingga hanya perlu menambahkan satu vektor $v$ pada $H$ agar H merupakan basis dari $\mathbb{R}^3$. Di sini vektor $v$ haruslah bukan kombinasi linier dari $H$. Dari jawaban (b), bisa dipilih $v = [1~0~0]^T \in \mathbb{R}^3$.
+        \end{enumerate}
+
+  \item \begin{enumerate}
+          \item Terlebih dahulu dibuktikan $T$ transformasi linier. Misal $a_1, a_2 \in \mathbb{R}$ dan $p(x) = p_0 + p_1x + p_2x^2 + p_3x^3$, $q(x) = q_0 + q_1x + q_2x^2 + q_3x^3 \in P_3(\mathbb{R})$ dengan $p_i, q_i \in \mathbb{R}$ Untuk $i = 0, 1, 2, 3$. Didapatkan
+                \[
+                  \begin{aligned}
+                    T(\alpha_1 p(x) + \alpha_2 q(x))
+                     & = T(\alpha_1 [p_0 + p_1x + p_2x^2 + p_3x^3] + \alpha_2 [q_0 + q_1x + q_2x^2 + q_3x^3])                                                                            \\
+                     & = T([\alpha_1 p_0 + \alpha_2 q_0] + [\alpha_1 p_1 + \alpha_2 q_1]x + [\alpha_1 p_2 + \alpha_2 q_2]x^2 + [\alpha_1 p_3 + \alpha_2 q_3]x^3)                         \\
+                     & = [\alpha_1 p_0 + \alpha_2 q_0]x + \frac{\alpha_1 p_1 + \alpha_2 q_1}{2}x^2 + \frac{\alpha_1 p_2 + \alpha_2 q_2}{3}x^3 + \frac{\alpha_1 p_3 + \alpha_2 q_3}{4}x^4 \\
+                     & = \alpha_1 \left[p_0x + \frac{p_1}{2}x^2 + \frac{p_2}{3}x^3 + \frac{p_3}{4}x^4 \right]
+                    + \alpha_2 \left[q_0x + \frac{q_1}{2}x^2 + \frac{q_2}{3}x^3 + \frac{q_3}{4}x^4 \right]                                                                               \\
+                     & = \alpha_1 T(p) + \alpha_2 T(q).
+                  \end{aligned}
+                \]
+                (b) Misal $\alpha_1, \alpha_2 \in \mathbb{R}$ dan $p(x), q(x) \in T^{-1}(X)$ yakni $p(x), q(x) \in P_3(\mathbb{R})$ dan $T(p(x)), T(q(x)) \in X$.
+
+                Perhatikan bahwa $\alpha_1 p(x) + \alpha_2 q(x) \in P_3(\mathbb{R})$ dan karena $T$ transformasi linier diperoleh $T(\alpha_1 p(x) + \alpha_2 q(x)) = \alpha_1 T(p(x)) + \alpha_2 T(q(x))$.
+
+                Dengan menggunakan fakta bahwa $T(p(x)), T(q(x)) \in X$ dan $X$ ruang bagian dari $P_4(\mathbb{R})$, didapatkan $T(\alpha_1 p(x) + \alpha_2 q(x)) = \alpha_1 T(p(x)) + \alpha_2 T(q(x)) \in X$ yang artinya $\alpha_1 p(x) + \alpha_2 q(x) \in T^{-1}(X)$. Sekarang diuraikan bahwa
+
+                \[
+                  \begin{aligned}
+                    T^{-1}(X)
+                     & = \{q(x) \in P_3(\mathbb{R}) : T(q(x)) \in X \}                                                                                             \\
+                     & = \{q_0 + q_1x + q_2x^2 + q_3x^3 : q_0, q_1, q_2, q_3 \in \mathbb{R}, T(q_0 + q_1x + q_2x^2 + q_3x^3) \in X\}                               \\
+                     & = \{q_0 + q_1x + q_2x^2 + q_3x^3 : q_0, q_1, q_2, q_3 \in \mathbb{R}, q_0x + \frac{q_1}{2}x^2 + \frac{q_2}{3}x^3 + \frac{q_3}{4}x^4 \in X\} \\
+                     & = \{q_0 + q_2x^2 : q_0, q_2 \in \mathbb{R}\}                                                                                                \\
+                     & = \text{Span}\{1, x^2\}.
+                  \end{aligned}
+                \]
+
+                Karena $1$ dan $x^2$ bebas linier, didapatkan dimensi dari $T^{-1}(X)$ adalah 2.
+        \end{enumerate}
+  \item
+        \begin{enumerate}
+          \item \begin{itemize}
+                  \item Langkah 1: Terapkan transformasi $T$ pada elemen basis $B$.
+
+                        Perlu dihitung transformasi $T$ untuk setiap elemen basis dari $P_2(\mathbb{R})$.
+
+                        \begin{enumerate}
+                          \item $p(x) = 1$:
+                                \[
+                                  T(1) = x \cdot 1 + \frac{d}{dx}(1) = x + 0 = x.
+                                \]
+                                Jadi, $T(1) = x$.
+
+                          \item $p(x) = 2 + x$:
+                                \[
+                                  T(2+x) = x(2+x) + \frac{d}{dx}(2+x) = 2x + x^2 + 1 = 2x + x^2 + 1.
+                                \]
+                                Jadi, $T(2+x) = x^2 + 2x + 1$.
+
+                          \item $p(x) = 3x^2$:
+                                \[
+                                  T(x+3x^2) = x(3x^2) + \frac{d}{dx}(3x^2) = x^3 + 3x^2 + (1 + 3x^2)' = 3x^3 + x^2 + 6x + 1?
+                                \]
+                                (koreksi sesuai konteks: untuk $p(x)=3x^2$, maka
+                                \[
+                                  T(3x^2) = x(3x^2) + \frac{d}{dx}(3x^2) = 3x^3 + 6x.
+                                \]
+                                Jadi, $T(3x^2) = 3x^3 + 6x$.)
+                        \end{enumerate}
+                  \item Langkah 2: Ekspresikan hasil transformasi dalam basis $B'$.
+
+                        Sekarang diekspresikan hasil $T(p(x))$ dalam basis $B'$.
+
+                        \begin{enumerate}
+                          \item $T(1) = x$ dalam basis $B'$:
+                                \[
+                                  T(1) = 0 \cdot 1 + 1 \cdot (2+x) + 0 \cdot (1+x^2) + 0 \cdot x^3.
+                                \]
+                                Didapatkan:
+                                \[
+                                  [T(1)]_{B'} =
+                                  \begin{pmatrix}
+                                    -2 \\ 1 \\ 0 \\ 0
+                                  \end{pmatrix}.
+                                \]
+
+                                2. $T(2+x) = x^2 + 2x + 1$ dalam basis $B'$:
+                                \[
+                                  T(2+x) = -4 \cdot 1 + 2 \cdot (2+x) + 1 \cdot (1+x^2) + 0 \cdot x^3.
+                                \]
+                                Diperoleh:
+                                \[
+                                  [T(2+x)]_{B'} =
+                                  \begin{pmatrix}
+                                    -4 \\ 2 \\ 1 \\ 0
+                                  \end{pmatrix}.
+                                \]
+
+                                3. $T(x+3x^2) = 3x^3 + x^2 + 6x + 1$ dalam basis $B'$:
+                                \[
+                                  T(x+3x^2) = -12 \cdot 1 + 6 \cdot (2+x) + 1 \cdot (1+x^2) + 3 \cdot x^3.
+                                \]
+                                Diperoleh:
+                                \[
+                                  [T(x+3x^2)]_{B'} =
+                                  \begin{pmatrix}
+                                    -12 \\ 6 \\ 1 \\ 3
+                                  \end{pmatrix}.
+                                \]
+
+                        \end{enumerate}
+                  \item Maka matriks representasi dari $T$ relatif terhadap $B$ dan $B'$ adalah:
+                        \[
+                          [T]_{B \to B'} =
+                          \begin{pmatrix}
+                            -2 & -4 & -12 \\
+                            1  & 2  & 6   \\
+                            0  & 1  & 1   \\
+                            0  & 0  & 3
+                          \end{pmatrix}.
+                        \]
+                \end{itemize}
+          \item Sudah didapat matriks representasi $T$. Sekarang, hitung $[T(q(x))]_{B'}$ dengan mengalikan matriks representasi dengan vektor $[q(x)]_B$:
+                \[
+                  [T(q(x))]_{B'} = [T]_{B \to B'}
+                  \begin{pmatrix}
+                    1 \\ 2 \\ 3
+                  \end{pmatrix}.
+                \]
+
+                Hitung perkalian matriks:
+                \[
+                  [T(q(x))]_{B'} =
+                  \begin{pmatrix}
+                    -2 & -4 & -12 \\
+                    1  & 2  & 6   \\
+                    0  & 1  & 1   \\
+                    0  & 0  & 3
+                  \end{pmatrix}
+                  \begin{pmatrix}
+                    1 \\ 2 \\ 3
+                  \end{pmatrix}
+                  =
+                  \begin{pmatrix}
+                    -2 \cdot 1 + (-4) \cdot 2 + (-12) \cdot 3 \\
+                    1 \cdot 1 + 2 \cdot 2 + 6 \cdot 3         \\
+                    0 \cdot 1 + 1 \cdot 2 + 1 \cdot 3         \\
+                    0 \cdot 1 + 0 \cdot 2 + 3 \cdot 3
+                  \end{pmatrix}
+                  =
+                  \begin{pmatrix}
+                    -46 \\ 23 \\ 5 \\ 9
+                  \end{pmatrix}.
+                \]
+
+                Jadi,
+                $
+                  [T(q(x))]_{B'} =
+                  \begin{pmatrix}
+                    -46 \\ 23 \\ 5 \\ 9
+                  \end{pmatrix}.
+                $
+          \item \
+
+                Dari hasil
+                \[
+                  [T(q(x))]_{B'} =
+                  \begin{pmatrix}
+                    -46 \\[4pt]
+                    23  \\[4pt]
+                    5   \\[4pt]
+                    9
+                  \end{pmatrix},
+                \]
+                diketahui bahwa $T(q(x))$ adalah kombinasi linier dari elemen-elemen basis $B'$:
+
+                \[
+                  T(q(x)) = -46 \cdot 1 + 23 \cdot (2 + x) + 5 \cdot (1 + x^2) + 9 \cdot x^3
+                  = 9x^3 + 5x^2 + 23x + 5.
+                \]
+
+                Jadi,
+                \[
+                  T(q(x)) = 9x^3 + 5x^2 + 23x + 5.
+                \]
+
+        \end{enumerate}
+  \item \begin{enumerate}
+          \item Nilai eigen didapatkan dengan menyelesaikan persamaan
+                \[
+                  \det(A - \lambda I) = 0
+                \]
+                dan diperoleh
+                \[
+                  (\lambda - 1)(\lambda - 2)^2 = 0. \tag{1}
+                \]
+
+                Sehingga nilai eigen matriks $A$ adalah $\lambda_1 = 1$ dan $\lambda_2 = 2$.
+                Selanjutnya, dengan menyelesaikan persamaan $A v = \lambda v$ didapatkan vektor eigen dari matriks $A$ terhadap nilai eigen $\lambda_1 = 1$:
+
+                \[
+                  \begin{pmatrix}
+                    -2 \\[4pt]
+                    1  \\[4pt]
+                    1
+                  \end{pmatrix}
+                \]
+
+                dan dengan menyelesaikan persamaan $A v = \lambda v$ didapatkan vektor eigen dari matriks $A$ terhadap nilai eigen $\lambda_2 = 2$:
+
+                \[
+                  \begin{pmatrix}
+                    -1 \\[4pt]
+                    0  \\[4pt]
+                    1
+                  \end{pmatrix}
+                  \quad \text{dan} \quad
+                  \begin{pmatrix}
+                    0 \\[4pt]
+                    1 \\[4pt]
+                    0
+                  \end{pmatrix}.
+                \]
+
+          \item Dari hasil (a) didapatkan multiplikitas aljabar dari nilai eigen $\lambda_1$ dan $\lambda_2$ berturut-turut adalah 1 dan 2.
+                Demikian juga, menghasilkan nilai yang sama untuk multiplikitas geometri.
+                Sehingga matriks $A$ bisa diagonalkan.
+        \end{enumerate}
+\end{enumerate}
+\end{document}

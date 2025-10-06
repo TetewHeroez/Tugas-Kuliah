@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LdP max-plus demo — Alice / Bob / Eve (browser)</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    ></script>
+  </head>
+  <body>
+    <h2>LdP max-plus demo — Alice / Bob / Eve</h2>
+    <p class="small">
+      Demo edukasi: LdP matrices (max-plus). Bisa lihat perhitungan shared
+      matrix, $K_{AB} = A \otimes B$, derive key via HKDF, dan AES-GCM. Ada
+      simulasi MITM (Eve) — tanda tangan mencegah MITM.
+    </p>
+
+    <div class="wrap">
+      <div class="card">
+        <h3>Setup</h3>
+        <div style="margin-bottom: 8px">
+          <table
+            style="
+              border-collapse: separate;
+              border-spacing: 10px 4px;
+              margin: auto;
+            "
+          >
+            <tr>
+              <td style="text-align: center">
+                <span class="math" data-math="n"></span>
+              </td>
+              <td style="text-align: center">
+                <span class="math" data-math="r"></span>
+              </td>
+            </tr>
+            <tr>
+              <td><input id="n" type="number" value="3" min="1" /></td>
+              <td><input id="r" type="number" value="-5" /></td>
+            </tr>
+            <tr>
+              <td style="text-align: center">
+                <span class="math" data-math="K_A"></span>
+              </td>
+              <td style="text-align: center">
+                <span class="math" data-math="K_B"></span>
+              </td>
+            </tr>
+            <tr>
+              <td><input id="kA" type="number" value="10" /></td>
+              <td><input id="kB" type="number" value="12" /></td>
+            </tr>
+          </table>
+        </div>
+        <div style="margin-top: 8px">
+          <button id="btnGenerate">Generate keys & matrices</button>
+          <button id="btnShow">Show matrices</button>
+        </div>
+        <div id="outSetup">Belum digenerate</div>
+      </div>
+
+      <div class="card">
+        <h3>Exchange</h3>
+        <div>
+          <button id="btnExchange">Exchange (signed)</button>
+          <button id="btnExchangeNoSign">
+            Exchange (unsigned, allow Eve MITM)
+          </button>
+          <button id="btnCompute">Compute shared matrices</button>
+        </div>
+        <div id="outExchange">Belum exchange</div>
+      </div>
+
+      <div class="card">
+        <h3>Crypto</h3>
+        <div>
+          <button id="btnDerive">Derive AES key (HKDF)</button>
+          <button id="btnEncrypt">Encrypt message (Alice→Bob)</button>
+          <button id="btnDecrypt">Decrypt (Bob)</button>
+        </div>
+        <label
+          >Message
+          <input
+            id="msg"
+            style="width: 300px"
+            value="Halo Bob, pesan dari Alice"
+        /></label>
+        <div id="outCrypto">Belum ada</div>
+      </div>
+
+      <div class="card">
+        <h3>Demo MITM (Eve)</h3>
+        <div>
+          <button id="btnEveIntercept">Eve: intercept & replace</button>
+          <button id="btnEveRestore">Restore honest exchange</button>
+        </div>
+        <div id="outEve">No MITM yet</div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tweetnacl/1.0.3/nacl.min.js"></script>
+
+    <script src="main.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: "$$", right: "$$", display: true },
+              { left: "$", right: "$", display: false },
+            ],
+          });
+        }
+        // Render math labels after DOM loaded
+        var mathLabels = document.querySelectorAll(".math");
+        mathLabels.forEach(function (el) {
+          if (window.katex)
+            katex.render(el.getAttribute("data-math"), el, {
+              throwOnError: false,
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

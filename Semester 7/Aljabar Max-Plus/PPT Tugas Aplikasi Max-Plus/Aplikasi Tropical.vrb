@@ -1,0 +1,20 @@
+\begin{figure}[h!]
+    \begin{tikzpicture}[>=Stealth, node distance=3cm, every node/.style={font=\small}]
+
+      % Nodes
+      \node (alice) [draw, rounded corners, minimum width=2cm, minimum height=1cm, fill=blue!20] {Alice\\Private key: $a$};
+      \node (bob) [draw, rounded corners, minimum width=2cm, minimum height=1cm, fill=green!20, right=of alice] {Bob\\Private key: $b$};
+
+      % Public parameters
+      \node[above=1.5cm of $(alice)!0.5!(bob)$] (public) {Public parameters: prime $p$, generator $g$};
+
+      % Public key exchange arrows
+      \draw[->] (alice) -- node[above] {$A = g^a \bmod p$} (bob);
+      \draw[->] (bob) -- node[below] {$B = g^b \bmod p$} (alice);
+
+      % Shared secret key
+      \node[below=1.5cm of $(alice)!0.5!(bob)$, draw, rounded corners, fill=yellow!30, minimum width=5cm]
+      (shared) {Shared secret key: $K = g^{ab} \bmod p$};
+
+    \end{tikzpicture}
+  \end{figure}
