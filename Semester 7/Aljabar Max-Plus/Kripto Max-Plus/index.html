@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>LdP max-plus demo — Alice / Bob / Eve (browser)</title>
+    <title>Demo LdlP max-plus — Alice / Bob / Eve (peramban)</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -21,117 +21,342 @@
     ></script>
   </head>
   <body>
-    <h2>LdP max-plus demo — Alice / Bob / Eve</h2>
-    <p class="small">
-      Demo edukasi: LdP matrices (max-plus). Bisa lihat perhitungan shared
-      matrix, $K_{AB} = A \otimes B$, derive key via HKDF, dan AES-GCM. Ada
-      simulasi MITM (Eve) — tanda tangan mencegah MITM.
-    </p>
+    <div class="container">
+      <h2>Protokol Pertukaran Kunci LdlP Max-Plus</h2>
 
-    <div class="wrap">
-      <div class="card">
-        <h3>Setup</h3>
-        <div style="margin-bottom: 8px">
-          <table
-            style="
-              border-collapse: separate;
-              border-spacing: 10px 4px;
-              margin: auto;
-            "
-          >
-            <tr>
-              <td style="text-align: center">
-                <span class="math" data-math="n"></span>
-              </td>
-              <td style="text-align: center">
-                <span class="math" data-math="r"></span>
-              </td>
-            </tr>
-            <tr>
-              <td><input id="n" type="number" value="3" min="1" /></td>
-              <td><input id="r" type="number" value="-5" /></td>
-            </tr>
-            <tr>
-              <td style="text-align: center">
-                <span class="math" data-math="K_A"></span>
-              </td>
-              <td style="text-align: center">
-                <span class="math" data-math="K_B"></span>
-              </td>
-            </tr>
-            <tr>
-              <td><input id="kA" type="number" value="10" /></td>
-              <td><input id="kB" type="number" value="12" /></td>
-            </tr>
-          </table>
-        </div>
-        <div style="margin-top: 8px">
-          <button id="btnGenerate">Generate keys & matrices</button>
-          <button id="btnShow">Show matrices</button>
-        </div>
-        <div id="outSetup">Belum digenerate</div>
+      <div
+        class="info-box"
+        style="
+          background-color: #fef3c7;
+          border-left: 4px solid #f59e0b;
+          margin-bottom: 16px;
+        "
+      >
+        <h4 style="color: #92400e">
+          ⚠️ Demo Educational - Tujuan Pembelajaran
+        </h4>
+        <p style="font-size: 0.9em; color: #92400e; margin: 8px 0">
+          <strong>PENTING:</strong> Demo ini menggunakan parameter kecil yang
+          <em>sengaja tidak aman</em> untuk tujuan pembelajaran.<br />
+          Tujuan utama adalah menunjukkan:<br />
+          • Bagaimana protokol LdlP bekerja<br />
+          • Pentingnya pemilihan parameter yang tepat<br />
+          • Apa yang terjadi jika parameter terlalu kecil (dapat dibobol)<br />
+          • Bagaimana serangan brute force bekerja<br /><br />
+          <strong>Parameter untuk aplikasi produksi:</strong> n≥6, k≥30, range r
+          yang lebih luas
+        </p>
       </div>
 
-      <div class="card">
-        <h3>Exchange</h3>
-        <div>
-          <button id="btnExchange">Exchange (signed)</button>
-          <button id="btnExchangeNoSign">
-            Exchange (unsigned, allow Eve MITM)
-          </button>
-          <button id="btnCompute">Compute shared matrices</button>
-        </div>
-        <div id="outExchange">Belum exchange</div>
+      <p class="small">
+        Demonstrasi protokol pertukaran kunci menggunakan matriks LdlP (Linde-de
+        la Puente) dalam aljabar max-plus. Berdasarkan teorema komutativitas
+        LdlP: jika $A \in [2r,r]_n^{k_1}$ dan $B \in [2s,s]_n^{k_2}$, maka $A
+        \otimes B = B \otimes A$. Protokol ini memungkinkan Alice dan Bob
+        berbagi matriks rahasia tanpa mengungkap matriks privat mereka.
+      </p>
+
+      <div class="info-box">
+        <h4>Langkah-langkah Protokol:</h4>
+        <ol>
+          <li>
+            <strong>Persiapan:</strong> Buat matriks publik W yang diketahui
+            semua pihak
+          </li>
+          <li>
+            <strong>Matriks Privat:</strong> Alice buat $A_1, A_2 \in
+            [2r,r]_n^{k_A}$, Bob buat $B_1, B_2 \in [2r,r]_n^{k_B}$
+          </li>
+          <li>
+            <strong>Kunci Publik:</strong> Alice hitung $V = A_1 \otimes W
+            \otimes A_2$, Bob hitung $U = B_1 \otimes W \otimes B_2$
+          </li>
+          <li>
+            <strong>Pertukaran:</strong> Tukar kunci publik $V$ dan $U$ melalui
+            saluran publik
+          </li>
+          <li>
+            <strong>Rahasia Bersama:</strong> Alice: $K_A = A_1 \otimes U
+            \otimes A_2$, Bob: $K_B = B_1 \otimes V \otimes B_2$
+          </li>
+          <li>
+            <strong>Enkripsi:</strong> Gunakan $K_A = K_B$ untuk menurunkan
+            kunci AES
+          </li>
+        </ol>
       </div>
 
-      <div class="card">
-        <h3>Crypto</h3>
-        <div>
-          <button id="btnDerive">Derive AES key (HKDF)</button>
-          <button id="btnEncrypt">Encrypt message (Alice→Bob)</button>
-          <button id="btnDecrypt">Decrypt (Bob)</button>
+      <div class="cards-container">
+        <div class="card">
+          <h3>Persiapan Matriks Publik</h3>
+          <div style="margin-bottom: 8px">
+            <table
+              style="
+                border-collapse: separate;
+                border-spacing: 10px 4px;
+                margin: auto;
+              "
+            >
+              <tr>
+                <td style="text-align: center">
+                  <span class="math">n</span>
+                </td>
+                <td style="text-align: center">
+                  <span class="math">r</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="n" type="number" value="3" min="2" max="5" />
+                </td>
+                <td><input id="r" type="number" value="-5" /></td>
+              </tr>
+            </table>
+            <p style="font-size: 0.9em; color: #666; margin-top: 8px">
+              <span class="math">n</span> = ukuran matriks,
+              <span class="math">r</span> = parameter untuk matriks LdlP
+            </p>
+          </div>
+          <div style="margin-top: 8px">
+            <button id="btnGenerate">Buat Matriks Publik W</button>
+            <button id="btnShow">Tampilkan Matriks W</button>
+          </div>
+          <div id="outSetup">Belum dibuat</div>
         </div>
-        <label
-          >Message
-          <input
-            id="msg"
-            style="width: 300px"
-            value="Halo Bob, pesan dari Alice"
-        /></label>
-        <div id="outCrypto">Belum ada</div>
-      </div>
 
-      <div class="card">
-        <h3>Demo MITM (Eve)</h3>
-        <div>
-          <button id="btnEveIntercept">Eve: intercept & replace</button>
-          <button id="btnEveRestore">Restore honest exchange</button>
+        <div class="card">
+          <h3>Matriks Privat LdlP</h3>
+          <div style="margin-bottom: 12px">
+            <table
+              style="
+                border-collapse: separate;
+                border-spacing: 10px 4px;
+                margin: auto;
+              "
+            >
+              <tr>
+                <td style="text-align: center">
+                  <span class="math">k_A</span> (k Alice)
+                </td>
+                <td style="text-align: center">
+                  <span class="math">k_B</span> (k Bob)
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    id="privateA"
+                    type="number"
+                    value="10"
+                    min="1"
+                    max="20"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="privateB"
+                    type="number"
+                    value="12"
+                    min="1"
+                    max="20"
+                  />
+                </td>
+              </tr>
+            </table>
+            <p style="font-size: 0.9em; color: #666; margin-top: 8px">
+              Parameter k untuk matriks LdlP: diagonal = k, off-diagonal $\in$
+              [2r, r]
+            </p>
+          </div>
+          <div>
+            <button id="btnComputePublic">
+              Buat Matriks Privat & Kunci Publik
+            </button>
+            <button id="btnShowPublic">Tampilkan Detail Matriks</button>
+          </div>
+          <div id="outKeys">Belum dihitung</div>
         </div>
-        <div id="outEve">No MITM yet</div>
+
+        <div class="card">
+          <h3>Protokol Pertukaran Kunci</h3>
+          <div>
+            <button id="btnExchange">Tukar Kunci Publik</button>
+            <button id="btnComputeShared">Hitung Rahasia Bersama</button>
+          </div>
+          <div style="margin-top: 12px">
+            <p style="font-size: 0.9em; color: #666">
+              <strong>Langkah Protokol:</strong><br />
+              1. Alice mengirim
+              <span class="math">V = A_1 \otimes W \otimes A_2</span> ke Bob<br />
+              2. Bob mengirim
+              <span class="math">U = B_1 \otimes W \otimes B_2</span> ke
+              Alice<br />
+              3. Alice menghitung
+              <span class="math">K_A = A_1 \otimes U \otimes A_2</span><br />
+              4. Bob menghitung
+              <span class="math">K_B = B_1 \otimes V \otimes B_2</span><br />
+              5. Rahasia bersama: <span class="math">K_A = K_B</span> (teorema
+              komutativitas LdlP)
+            </p>
+          </div>
+          <div id="outExchange">Belum melakukan pertukaran</div>
+        </div>
+
+        <div class="card">
+          <h3>Demonstrasi Enkripsi</h3>
+          <div>
+            <button id="btnDerive">
+              Turunkan Kunci AES dari Rahasia Bersama
+            </button>
+            <button id="btnEncrypt">Enkripsi Pesan (Alice→Bob)</button>
+            <button id="btnDecrypt">Dekripsi (Bob)</button>
+          </div>
+          <label
+            >Pesan
+            <input
+              id="msg"
+              style="width: 300px"
+              value="Halo Bob, ini pesan rahasia dari Alice"
+          /></label>
+          <div id="outCrypto">Belum ada</div>
+        </div>
+
+        <div class="card">
+          <h3>Analisis Keamanan</h3>
+          <div>
+            <button id="btnAnalyze">Analisis Keamanan</button>
+            <button id="btnShowComplexity">
+              Tampilkan Kompleksitas Komputasi
+            </button>
+          </div>
+          <div style="margin-top: 12px">
+            <p style="font-size: 0.9em; color: #666">
+              <strong>Keamanan Protokol:</strong><br />
+              $\bullet$ Eve hanya tahu <span class="math">W</span>,
+              <span class="math">V = A_1 \otimes W \otimes A_2</span>, dan
+              <span class="math">U = B_1 \otimes W \otimes B_2</span><br />
+              $\bullet$ Untuk mendapatkan <span class="math">K_A = K_B</span>,
+              Eve perlu mencari matriks <span class="math">A_1, A_2</span> atau
+              <span class="math">B_1, B_2</span><br />
+              $\bullet$ Masalah: uraikan <span class="math">V</span> menjadi
+              <span class="math">A_1 \otimes W \otimes A_2</span> dimana
+              <span class="math">A_1, A_2 \in [2r,r]_n^k</span><br />
+              $\bullet$ Kompleksitas: eksponensial dalam ukuran matriks dan
+              parameter k
+            </p>
+          </div>
+          <div id="outSecurity">Klik analisis untuk detail keamanan</div>
+        </div>
+
+        <div class="card">
+          <h3>Demonstrasi Pelanggaran Keamanan (Serangan Eve)</h3>
+          <div>
+            <button id="btnStartAttack">Mulai Serangan Brute Force</button>
+            <button id="btnStopAttack">Hentikan Serangan</button>
+            <button id="btnResetAttack">Atur Ulang Demo</button>
+          </div>
+          <div style="margin-top: 12px">
+            <table
+              style="
+                border-collapse: separate;
+                border-spacing: 10px 4px;
+                margin: auto;
+              "
+            >
+              <tr>
+                <td style="text-align: center">Maksimal Percobaan:</td>
+                <td style="text-align: center">Strategi Serangan:</td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    id="maxAttempts"
+                    type="number"
+                    value="10000"
+                    min="100"
+                    max="100000"
+                  />
+                </td>
+                <td>
+                  <select id="attackStrategy">
+                    <option value="random">Pencarian Acak</option>
+                    <option value="systematic">Pencarian Sistematis</option>
+                    <option value="smart">
+                      Pencarian Cerdas (dengan pola)
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <p style="font-size: 0.9em; color: #666; margin-top: 8px">
+              <strong>⚠️ TUJUAN DEMO KEAMANAN:</strong><br />
+              Demo ini <em>sengaja menggunakan parameter kecil</em> untuk
+              menunjukkan bahwa protokol kriptografi bisa dibobol jika parameter
+              tidak dipilih dengan tepat!<br />
+              <br />
+              <strong>Skenario Demo:</strong><br />
+              Eve mencoba memecahkan $V = A_1 \otimes W \otimes A_2$ untuk
+              mencari $A_1, A_2 \in [2r,r]_n^k$<br />
+              yang menghasilkan kunci publik Alice yang sama. Jika berhasil, Eve
+              bisa menghitung rahasia bersama!<br />
+              <br />
+              <strong>💡 Tips untuk eksperimen:</strong><br />
+              • Parameter kecil ($n=2$, $k_A=5$, $r=-3$):
+              <span style="color: #dc2626">mudah dibobol</span> - menunjukkan
+              pentingnya parameter yang tepat<br />
+              • Parameter sedang ($n=3$, $k_A=10$, $r=-5$):
+              <span style="color: #f59e0b">cukup aman</span> untuk demo<br />
+              • Parameter besar ($n=4$, $k_A=15$, $r=-8$):
+              <span style="color: #16a34a">sangat aman</span> - serangan
+              kemungkinan gagal
+            </p>
+          </div>
+          <div id="outAttack">Belum ada serangan yang dimulai</div>
+        </div>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tweetnacl/1.0.3/nacl.min.js"></script>
-
     <script src="main.js" defer></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      // Simple math rendering without loops
+      function renderMathOnce() {
         if (window.renderMathInElement) {
-          renderMathInElement(document.body, {
-            delimiters: [
-              { left: "$$", right: "$$", display: true },
-              { left: "$", right: "$", display: false },
-            ],
-          });
-        }
-        // Render math labels after DOM loaded
-        var mathLabels = document.querySelectorAll(".math");
-        mathLabels.forEach(function (el) {
-          if (window.katex)
-            katex.render(el.getAttribute("data-math"), el, {
+          try {
+            renderMathInElement(document.body, {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+              ],
               throwOnError: false,
+              errorColor: "#cc0000",
+              strict: false,
             });
+          } catch (e) {
+            console.log("KaTeX error:", e);
+          }
+        }
+
+        // Render inline math elements safely
+        var mathElements = document.querySelectorAll(".math:not(.rendered)");
+        mathElements.forEach(function (el) {
+          if (window.katex && el.textContent) {
+            try {
+              katex.render(el.textContent, el, {
+                throwOnError: false,
+                displayMode: false,
+              });
+              el.classList.add("rendered");
+            } catch (e) {
+              console.log("KaTeX error:", e);
+            }
+          }
         });
+      }
+
+      // Only render once when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(renderMathOnce, 200);
+        setTimeout(renderMathOnce, 800); // Second attempt after KaTeX loads
       });
     </script>
   </body>
