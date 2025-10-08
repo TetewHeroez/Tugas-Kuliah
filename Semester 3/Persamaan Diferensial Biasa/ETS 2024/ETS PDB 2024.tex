@@ -16,6 +16,15 @@
         bottom = 30mm,
         headheight=2cm
 	}
+  \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 \renewcommand{\headrulewidth}{0pt}
 
 \graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
@@ -93,6 +102,218 @@
         \begin{enumerate}
           \item Ubahlah PD tersebut menjadi PD dengan koefisien konstan.
           \item Tentukan penyelesaian umum PD tersebut.
+        \end{enumerate}
+\end{enumerate}
+\newpage
+\fancyhead{}
+\renewcommand{\headrulewidth}{1pt}
+\fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+\fancyfoot{}
+% \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+\begin{enumerate}
+  \item \begin{enumerate}
+          \item Persamaan Diferensial Bernoulli dengan $n=2$. Sekedar informasi, PD Bernoulli memiliki bentuk umum:
+                \[
+                  \dfrac{dy}{dx} + P(x)y = Q(x)y^n
+                \]
+          \item Misalkan $v = y^{1-2} = y^{-1}$, maka
+                \[
+                  \dfrac{dv}{dx} = -y^{-2}\dfrac{dy}{dx} = -\dfrac{1}{y^2}(ky - ay^2) = -kv + a
+                \]
+                sehingga diperoleh persamaan diferensial linear orde satu:
+                \[
+                  \dfrac{dv}{dx} + kv = a
+                \]
+                Faktor integrasi dari PD tersebut adalah $e^{\int k dx} = e^{kx}$, sehingga
+                \[
+                  e^{kx}v = \int ae^{kx} dx = \dfrac{a}{k}e^{kx} + C
+                \]
+                atau
+                \[
+                  v = \dfrac{a}{k} + Ce^{-kx}
+                \]
+                Kembali ke variabel $y$, diperoleh penyelesaian umumnya:
+                \[
+                  y = \dfrac{1}{\dfrac{a}{k} + Ce^{-kx}} = \dfrac{k e^{kx}}{a e^{kx} + Ck}
+                \]
+          \item Akan dibagi menjadi dua kasus, yaitu $k>0$ dan $k<0$.
+                \begin{itemize}
+                  \item Jika $k>0$, maka $\displaystyle\lim_{x\to\infty} e^{kx} = \infty$. Sehingga
+                        \[
+                          \lim_{x\to\infty} y = \lim_{x\to\infty} \dfrac{k e^{kx}}{a e^{kx} + Ck} = \lim_{x\to\infty} \dfrac{k}{a + Ck e^{-kx}} = \dfrac{k}{a+0} = \dfrac{k}{a}
+                        \]
+                  \item Jika $k<0$, maka $\displaystyle\lim_{x\to\infty} e^{kx} = 0$. Sehingga
+                        \[
+                          \lim_{x\to\infty} y = \lim_{x\to\infty} \dfrac{k e^{kx}}{a e^{kx} + Ck} = 0
+                        \]
+                \end{itemize}
+        \end{enumerate}
+  \item \begin{enumerate}
+          \item Misalkan $p$ adalah populasi tikus pada waktu $t$ (dalam bulan), artinya $dp/dt$ adalah perubahan populasi tikus tiap bulan. Diketahui bahwa pertumbuhan populasi tikus adalah $3/5p$ (60\% per bulan) dan kucing memakan tikus sebanyak 3 ekor tiap bulan, sehingga bisa dituliskan sebagai berikut:
+                \[
+                  \dfrac{dp}{dt} = \frac{3}{5}p - 3
+                \]
+          \item Dapat kita tuliskan ulang persamaan diferensial tersebut menjadi
+                \[
+                  \dfrac{dp}{dt} - \frac{3}{5}p = -3
+                \]
+                Faktor integrasi dari PD tersebut adalah $e^{\int -3/5 dt} = e^{-3t/5}$, sehingga
+                \[
+                  e^{-3t/5}p = \int -3e^{-3t/5} dt = 5e^{-3t/5} + C
+                \]
+                atau
+                \[
+                  p = 5 + Ce^{3t/5}
+                \]
+                Dengan kondisi awal $p(0) = 100$, diperoleh
+                \[
+                  100 = 5 + C \implies C = 95
+                \]
+                sehingga persamaan populasi tikus menjadi
+                \[
+                  p(t) = 5 + 95e^{3t/5}
+                \]
+        \end{enumerate}
+  \item Pertama kita cari penyelesaian homogen dari persamaan diferensial tersebut, yaitu
+        \[
+          y'' + 9y = 0
+        \]
+        dengan karakteristik persamaan $r^2 + 9 = 0$, sehingga diperoleh $r = \pm 3i$. Dengan demikian, penyelesaian homogen dari PD tersebut adalah
+        \[
+          y_h = C_1 \cos 3x + C_2 \sin 3x
+        \]
+        Selanjutnya, kita cari penyelesaian partikular dari PD tersebut. Dari petunjuk yang diberikan, kita gunakan metode variasi parameter. Misalkan
+        \[
+          y_p = L_1(x) \cos 3x + L_2(x) \sin 3x
+        \]
+        dengan syarat
+        \begin{align*}
+          L_1'(x) \cos 3x + L_2'(x) \sin 3x    & = 0            \\
+          -3L_1'(x) \sin 3x + 3L_2'(x) \cos 3x & = 9 \sec^2(3x)
+        \end{align*}
+        persamaan di atas dapat dituliskan dalam bentuk matriks sebagai berikut:
+        \[
+          \begin{bmatrix}
+            \cos 3x   & \sin 3x  \\
+            -3\sin 3x & 3\cos 3x
+          \end{bmatrix}
+          \begin{bmatrix}
+            L_1'(x) \\
+            L_2'(x)
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            0 \\
+            9 \sec^2(3x)
+          \end{bmatrix}
+        \]
+        Dengan menggunakan aturan Cramer, diperoleh
+        \begin{align*}
+          L_1'(x) & = \dfrac{
+            \begin{vmatrix}
+              0           & \sin 3x  \\
+              9\sec^2(3x) & 3\cos 3x
+            \end{vmatrix}
+          }{
+            \begin{vmatrix}
+              \cos 3x   & \sin 3x  \\
+              -3\sin 3x & 3\cos 3x
+            \end{vmatrix}
+          } = \dfrac{-9\sin 3x \sec^2(3x)}{3} = -3\tan 3x \sec 3x \\
+          L_2'(x) & = \dfrac{
+            \begin{vmatrix}
+              \cos 3x   & 0           \\
+              -3\sin 3x & 9\sec^2(3x)
+            \end{vmatrix}
+          }{
+            \begin{vmatrix}
+              \cos 3x   & \sin 3x  \\
+              -3\sin 3x & 3\cos 3x
+            \end{vmatrix}
+          } = \dfrac{9\cos 3x \sec^2(3x)}{3} = 3\sec 3x
+        \end{align*}
+        Selanjutnya, kita integralkan $L_1'(x)$ dan $L_2'(x)$:
+        \begin{align*}
+          L_1(x) & = \int -3\tan 3x \sec 3x dx = -\int \dfrac{d}{dx}(\sec 3x) dx = -\sec 3x \\
+          L_2(x) & = \int 3\sec 3x dx = \ln|\tan 3x + \sec 3x|
+        \end{align*}
+        sehingga penyelesaian partikular dari PD tersebut adalah
+        \[
+          y_p = -\sec 3x \cos 3x + \ln|\tan 3x + \sec 3x| \sin 3x = -1 + \ln|\tan 3x + \sec 3x| \sin 3x
+        \]
+        Dengan demikian, penyelesaian umum dari PD tersebut adalah
+        \[
+          y = C_1 \cos 3x + C_2 \sin 3x + \ln|\tan 3x + \sec 3x| \sin 3x -1
+        \]
+
+  \item \begin{enumerate}
+          \item PD diatas merupakan PD Cauchy-Euler. Misalkan $x = e^t$, sehingga $t = \ln x$. Dengan demikian, diperoleh
+                \[
+                  \dfrac{dy}{dx} = \dfrac{dy}{dt} \cdot \dfrac{dt}{dx} = \dfrac{1}{x} \dfrac{dy}{dt}
+                \]
+                dan
+                \[
+                  \dfrac{d^2y}{dx^2} = \dfrac{d}{dx}\left(\dfrac{1}{x} \dfrac{dy}{dt}\right) = -\dfrac{1}{x^2} \dfrac{dy}{dt} + \dfrac{1}{x} \cdot \dfrac{1}{x} \cdot \dfrac{d^2y}{dt^2} = -\dfrac{1}{x^2} \dfrac{dy}{dt} + \dfrac{1}{x^2} \dfrac{d^2y}{dt^2}
+                \]
+                Substitusi ke dalam PD yang diberikan menghasilkan
+                \[
+                  x^2\left(-\dfrac{1}{x^2} \dfrac{dy}{dt} + \dfrac{1}{x^2} \dfrac{d^2y}{dt^2}\right) - 3x\left(\dfrac{1}{x} \dfrac{dy}{dt}\right) + 4y = x^2 - 2x
+                \]
+                atau
+                \[
+                  -\dfrac{dy}{dt} + \dfrac{d^2y}{dt^2} - 3\dfrac{dy}{dt} + 4y = e^{2t} - 2e^t
+                \]
+                sehingga diperoleh PD dengan koefisien konstan:
+                \[
+                  y'' - 4y' + 4y = e^{2t} - 2e^t
+                \]
+          \item Pertama kita cari penyelesaian homogen dari persamaan diferensial tersebut, yaitu
+                \[
+                  y'' - 4y' + 4y = 0
+                \]
+                dengan karakteristik persamaan $(r-2)^2 = 0$, sehingga diperoleh $r = 2$ (kembar). Dengan demikian, penyelesaian homogen dari PD tersebut adalah
+                \[
+                  y_h = (C_1 + C_2 t)e^{2t}
+                \]
+                Selanjutnya, kita cari penyelesaian partikular dari PD tersebut. Misalkan
+                \[
+                  y_p = Ae^{2t} + Be^t
+                \]
+                sehingga
+                \[
+                  y_p' = 2Ae^{2t} + Be^t
+                \]
+                dan
+                \[
+                  y_p'' = 4Ae^{2t} + Be^t
+                \]
+                Substitusi ke dalam PD menghasilkan
+                \[
+                  (4Ae^{2t} + Be^t) - 4(2Ae^{2t} + Be^t) + 4(Ae^{2t} + Be^t) = e^{2t} - 2e^t
+                \]
+                atau
+                \[
+                  (4A - 8A + 4A)e^{2t} + (B - 4B + 4B)e^t = e^{2t} - 2e^t
+                \]
+                sehingga diperoleh
+                \[
+                  0e^{2t} + Be^t = e^{2t} - 2e^t
+                \]
+                Dari persamaan di atas, diperoleh $B = -2$ dan tidak ada nilai untuk $A$ karena koefisien di depan $e^{2t}$ adalah 0. Oleh karena itu, kita dapat menyimpulkan bahwa
+                \[
+                  y_p = -2e^t
+                \]
+                Dengan demikian, penyelesaian umum dari PD tersebut adalah
+                \[
+                  y = (C_1 + C_2 t)e^{2t} - 2e^t
+                \]
+                Kembali ke variabel $x$, diperoleh
+                \[
+                  y = (C_1 + C_2 \ln x)x^2 - 2x
+                \]
         \end{enumerate}
 \end{enumerate}
 \end{document}

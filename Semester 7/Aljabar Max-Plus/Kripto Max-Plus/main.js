@@ -1,5 +1,30 @@
+/* ---------------- Constants ---------------- */
+const NEG_INF = -999999;
+
+/* ---------------- Math Rendering Helper ---------------- */
+function renderMathInContainer(container) {
+  if (!container) return;
+
+  // Simple one-time render without loops
+  setTimeout(() => {
+    if (window.renderMathInElement) {
+      try {
+        renderMathInElement(container, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+          ],
+          throwOnError: false,
+          errorColor: "#cc0000",
+          strict: false,
+        });
+      } catch (e) {
+        console.warn("LaTeX rendering error:", e);
+      }
+    }
+  }, 100);
+}
 /* ---------------- utilities ---------------- */
-const NEG_INF = -1e9; // sentinel for -inf (integer)
 function matToKaTeX(m) {
   // Always output n x n matrix, even if input is flat or malformed
   if (!Array.isArray(m)) return "";
@@ -77,6 +102,7 @@ function tropicalMatMul(A, B) {
   }
   return C;
 }
+
 function tropicalAdd(A, B) {
   const n = A.length,
     m = A[0].length;
@@ -85,29 +111,67 @@ function tropicalAdd(A, B) {
     for (let j = 0; j < m; j++) C[i][j] = Math.max(A[i][j], B[i][j]);
   return C;
 }
+
 function scalarTropicalMul(s, A) {
   return A.map((r) => r.map((v) => v + s));
 }
 
-/* --------------- LdP generator --------------- */
-function ldlpMatrix(n, r, k, seed) {
+// Matrix power in max-plus algebra: G^k = G ⊗ G ⊗ ... ⊗ G (k times)
+function tropicalMatPower(G, k) {
+  if (k === 0) {
+    // Identity matrix in max-plus: diagonal elements = 0, others = -∞
+    const n = G.length;
+    const I = Array.from({ length: n }, (_, i) =>
+      Array.from({ length: n }, (_, j) => (i === j ? 0 : NEG_INF))
+    );
+    return I;
+  }
+  if (k === 1) return G.map((row) => [...row]); // deep copy
+
+  let result = G.map((row) => [...row]); // deep copy
+  for (let i = 1; i < k; i++) {
+    result = tropicalMatMul(result, G);
+  }
+  return result;
+}
+
+/* --------------- Generator Matrix for DH Max-Plus --------------- */
+function generateLdlpMatrix(n, r, k, seed) {
   const rng = rngFactory(seed);
-  const low = 2 * r,
-    high = r;
-  const minVal = Math.min(low, high);
-  const maxVal = Math.max(low, high);
   const M = Array.from({ length: n }, () => Array(n).fill(0));
+
+  // LdlP matrix: diagonal = k, off-diagonal in [2r, r]
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       if (i === j) {
-        M[i][j] = k;
+        M[i][j] = k; // diagonal elements
       } else {
-        // Random value in [2r, r] for all non-diagonal elements, different for each (i,j)
-        M[i][j] = minVal === maxVal ? minVal : randInt(rng, minVal, maxVal);
+        // off-diagonal elements in range [2r, r]
+        const minVal = Math.min(2 * r, r);
+        const maxVal = Math.max(2 * r, r);
+        M[i][j] = randInt(rng, minVal, maxVal);
       }
     }
   }
   return M;
+}
+
+// Generate public matrix from LdlP matrix - this is where the "public key" comes from
+function generatePublicMatrix(n, r, seed) {
+  const rng = rngFactory(seed);
+  const G = Array.from({ length: n }, () => Array(n).fill(0));
+
+  // Create a suitable public matrix
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (i === j) {
+        G[i][j] = 0; // identity-like for max-plus
+      } else {
+        G[i][j] = randInt(rng, r - 2, r + 2);
+      }
+    }
+  }
+  return G;
 }
 
 /* --------------- serialize matrix -> Uint8Array (int32) --------------- */
@@ -118,14 +182,6 @@ function matrixToBytesInt32(mat) {
   for (let i = 0; i < n; i++)
     for (let j = 0; j < n; j++) arr[idx++] = mat[i][j] | 0;
   return new Uint8Array(arr.buffer);
-}
-
-/* --------------- Ed25519 sign/verify (TweetNaCl) --------------- */
-function signDetached(secretKey, dataUint8) {
-  return nacl.sign.detached(dataUint8, secretKey);
-}
-function verifyDetached(publicKey, sig, dataUint8) {
-  return nacl.sign.detached.verify(dataUint8, sig, publicKey);
 }
 
 /* --------------- WebCrypto HKDF -> AES-GCM --------------- */
@@ -176,558 +232,948 @@ async function aesGcmDecrypt(key, iv, ct, aad = new Uint8Array()) {
 let state = {
   n: 3,
   r: -5,
-  kA: 10,
-  kB: 12,
-  alice: { kp: null, mat: null, pubBytes: null, sig: null },
-  bob: { kp: null, mat: null, pubBytes: null, sig: null },
-  channel: { aliceSent: null, bobSent: null }, // what was sent on network (can be tampered)
-  shared: { alice: null, bob: null },
-  aesKey: null, // Alice's AES key
-  bobAesKey: null, // Bob's AES key (may differ if MITM)
+  kA: 10, // Alice's k parameter for LdlP matrix
+  kB: 12, // Bob's k parameter for LdlP matrix
+  W: null, // Public matrix W (known to all)
+  A1: null,
+  A2: null, // Alice's private LdlP matrices
+  B1: null,
+  B2: null, // Bob's private LdlP matrices
+  publicA: null, // Alice's public key: A1 ⊗ W ⊗ A2
+  publicB: null, // Bob's public key: B1 ⊗ W ⊗ B2
+  sharedA: null, // Alice's computed shared secret
+  sharedB: null, // Bob's computed shared secret
+  aesKey: null,
   lastCipher: null,
-  eveMitmActive: false, // Flag untuk mendeteksi MITM attack
+  exchanged: false,
 };
-
-// Global variables untuk Eve MITM
-let eveInterceptedCipher = null;
-let eveInterceptedPlain = null;
-let eveModifiedPlain = null;
-let eveMatA = null; // Eve's MITM matrix (pretend Alice->Bob)
-let eveMatB = null; // Eve's MITM matrix (pretend Bob->Alice)
 
 /* ---------------- UI wiring ---------------- */
 const outSetup = document.getElementById("outSetup");
+const outKeys = document.getElementById("outKeys");
 const outExchange = document.getElementById("outExchange");
 const outCrypto = document.getElementById("outCrypto");
-const outEve = document.getElementById("outEve");
+const outSecurity = document.getElementById("outSecurity");
 
+// Generate Generator Matrix
 document.getElementById("btnGenerate").onclick = () => {
-  const btnDerive = document.getElementById("btnDerive");
-  const btnEncrypt = document.getElementById("btnEncrypt");
-  const btnDecrypt = document.getElementById("btnDecrypt");
-
-  // Reset MITM state
-  state.eveMitmActive = false;
-  eveInterceptedCipher = null;
-  eveInterceptedPlain = null;
-  eveModifiedPlain = null;
-  eveMatA = null;
-  eveMatB = null;
   const n = Number(document.getElementById("n").value);
   const r = Number(document.getElementById("r").value);
-  const kA = Number(document.getElementById("kA").value);
-  const kB = Number(document.getElementById("kB").value);
+
   state.n = n;
   state.r = r;
+  state.exchanged = false;
+
+  // Generate public matrix W (known to all parties)
+  const seed = Date.now() + Math.floor(Math.random() * 1000000);
+  state.W = generatePublicMatrix(n, r, seed);
+
+  outSetup.innerHTML = `Matriks publik W berhasil dibuat:<br>$$W = ${matToKaTeX(
+    state.W
+  )}$$<br><br>
+    <span style="color:#666">Matriks $W$ ini akan digunakan sebagai basis publik untuk protokol LdlP max-plus.</span>`;
+
+  renderMathInContainer(outSetup);
+  outKeys.textContent = "Buat matriks privat terlebih dahulu";
+  outExchange.textContent = "Belum melakukan pertukaran";
+  outCrypto.textContent = "Belum ada kunci";
+};
+
+// Show Generator Matrix
+document.getElementById("btnShow").onclick = () => {
+  if (!state.W) {
+    alert("Buat matriks publik terlebih dahulu");
+    return;
+  }
+  outSetup.innerHTML = `Matriks publik W:<br>$$W = ${matToKaTeX(state.W)}$$`;
+  renderMathInContainer(outSetup);
+};
+
+// Compute Public Keys
+document.getElementById("btnComputePublic").onclick = () => {
+  if (!state.W) {
+    alert("Buat matriks publik terlebih dahulu");
+    return;
+  }
+
+  const kA = Number(document.getElementById("privateA").value);
+  const kB = Number(document.getElementById("privateB").value);
+
   state.kA = kA;
   state.kB = kB;
 
-  // keypairs
-  state.alice.kp = nacl.sign.keyPair();
-  state.bob.kp = nacl.sign.keyPair();
+  // Generate Alice's private LdlP matrices A1 and A2
+  const seedA1 = Date.now() + Math.floor(Math.random() * 1000000);
+  const seedA2 = Date.now() + Math.floor(Math.random() * 1000000) + 1111;
+  state.A1 = generateLdlpMatrix(state.n, state.r, kA, seedA1);
+  state.A2 = generateLdlpMatrix(state.n, state.r, kA, seedA2);
 
-  // matrices: use random seed so every click gives different matrix
-  const seedA = Date.now() + Math.floor(Math.random() * 1000000);
-  const seedB = Date.now() + Math.floor(Math.random() * 1000000) + 12345;
-  state.alice.mat = ldlpMatrix(n, r, kA, seedA);
-  state.bob.mat = ldlpMatrix(n, r, kB, seedB);
+  // Generate Bob's private LdlP matrices B1 and B2
+  const seedB1 = Date.now() + Math.floor(Math.random() * 1000000) + 2222;
+  const seedB2 = Date.now() + Math.floor(Math.random() * 1000000) + 3333;
+  state.B1 = generateLdlpMatrix(state.n, state.r, kB, seedB1);
+  state.B2 = generateLdlpMatrix(state.n, state.r, kB, seedB2);
 
-  state.alice.pubBytes = matrixToBytesInt32(state.alice.mat);
-  state.bob.pubBytes = matrixToBytesInt32(state.bob.mat);
+  // Compute public keys: Alice computes V = A1 ⊗ W ⊗ A2, Bob computes U = B1 ⊗ W ⊗ B2
+  const temp_A = tropicalMatMul(state.A1, state.W);
+  state.publicA = tropicalMatMul(temp_A, state.A2);
 
-  outSetup.innerHTML = `Generated.<br>
-    Alice public key hex (first 16 bytes): <span class="mono">${bytesToHex(
-      state.alice.kp.publicKey
-    ).slice(0, 32)}</span><br>
-    Bob public key hex (first16): <span class="mono">${bytesToHex(
-      state.bob.kp.publicKey
-    ).slice(0, 32)}</span><br><br>
-    Alice matrix:<br>$$${matToKaTeX(state.alice.mat)}$$<br><br>
-    Bob matrix:<br>$$${matToKaTeX(state.bob.mat)}$$`;
-  if (window.renderMathInElement) renderMathInElement(outSetup);
-  outExchange.textContent = "Not exchanged yet";
-  outCrypto.textContent = "No key derived";
-  outEve.textContent = "No MITM";
-  // Reset signature acceptance state
-  state._aliceAccepts = true;
-  state._bobAccepts = true;
+  const temp_B = tropicalMatMul(state.B1, state.W);
+  state.publicB = tropicalMatMul(temp_B, state.B2);
 
-  // Reset AES keys
-  state.aesKey = null;
-  state.bobAesKey = null;
-  state.lastCipher = null;
+  outKeys.innerHTML = `<strong>Matriks LdlP & Kunci Publik berhasil dibuat:</strong><br><br>
+    
+    <strong>Matriks Alice:</strong><br>
+    $A_1 \\in [2r,r]_n^{${kA}}$: diagonal = ${kA}, off-diagonal $\\in$ [${
+    2 * state.r
+  }, ${state.r}]<br>
+    $A_2 \\in [2r,r]_n^{${kA}}$: diagonal = ${kA}, off-diagonal $\\in$ [${
+    2 * state.r
+  }, ${state.r}]<br>
+    <strong>Kunci publik Alice:</strong> $V = A_1 \\otimes W \\otimes A_2$<br><br>
+    
+    <strong>Matriks Bob:</strong><br>
+    $B_1 \\in [2r,r]_n^{${kB}}$: diagonal = ${kB}, off-diagonal $\\in$ [${
+    2 * state.r
+  }, ${state.r}]<br>
+    $B_2 \\in [2r,r]_n^{${kB}}$: diagonal = ${kB}, off-diagonal $\\in$ [${
+    2 * state.r
+  }, ${state.r}]<br>
+    <strong>Kunci publik Bob:</strong> $U = B_1 \\otimes W \\otimes B_2$<br><br>
+    
+    <span style="color:#666">
+    Alice menyimpan matriks privat $A_1, A_2$ dan membagikan kunci publik $V$.<br>
+    Bob menyimpan matriks privat $B_1, B_2$ dan membagikan kunci publik $U$.
+    </span>`;
+
+  renderMathInContainer(outKeys);
 };
 
-// Enable crypto buttons
-btnDerive.disabled = false;
-btnEncrypt.disabled = false;
-btnDecrypt.disabled = false;
-document.getElementById("btnShow").onclick = () => {
-  outSetup.innerHTML = `Alice matrix:<br>$$${matToKaTeX(
-    state.alice.mat
-  )}$$<br><br>Bob matrix:<br>$$${matToKaTeX(state.bob.mat)}$$`;
-  if (window.renderMathInElement) renderMathInElement(outSetup);
+// Show Public Keys
+document.getElementById("btnShowPublic").onclick = () => {
+  if (!state.publicA || !state.publicB) {
+    alert("Buat matriks terlebih dahulu");
+    return;
+  }
+
+  outKeys.innerHTML = `<strong>Kunci publik Alice V:</strong><br>
+    $$V = A_1 \\otimes W \\otimes A_2 = ${matToKaTeX(state.publicA)}$$<br><br>
+    
+    <strong>Kunci publik Bob U:</strong><br>
+    $$U = B_1 \\otimes W \\otimes B_2 = ${matToKaTeX(state.publicB)}$$<br><br>
+    
+    <strong>Matriks privat Alice:</strong><br>
+    $$A_1 = ${matToKaTeX(state.A1)}$$<br>
+    $$A_2 = ${matToKaTeX(state.A2)}$$<br><br>
+    
+    <strong>Matriks privat Bob:</strong><br>
+    $$B_1 = ${matToKaTeX(state.B1)}$$<br>
+    $$B_2 = ${matToKaTeX(state.B2)}$$`;
+
+  renderMathInContainer(outKeys);
 };
 
-/* Exchange with signatures (honest) */
+// Exchange Public Keys
 document.getElementById("btnExchange").onclick = () => {
-  // sign public bytes
-  state.alice.sig = signDetached(
-    state.alice.kp.secretKey,
-    state.alice.pubBytes
-  );
-  state.bob.sig = signDetached(state.bob.kp.secretKey, state.bob.pubBytes);
-
-  // channel carries signed bytes (honest)
-  state.channel.aliceSent = {
-    data: state.alice.pubBytes,
-    sig: state.alice.sig,
-    pubkey: state.alice.kp.publicKey,
-  };
-  state.channel.bobSent = {
-    data: state.bob.pubBytes,
-    sig: state.bob.sig,
-    pubkey: state.bob.kp.publicKey,
-  };
-
-  // receivers verify
-  const bobVer = verifyDetached(
-    state.channel.aliceSent.pubkey,
-    state.channel.aliceSent.sig,
-    state.channel.aliceSent.data
-  );
-  const aliceVer = verifyDetached(
-    state.channel.bobSent.pubkey,
-    state.channel.bobSent.sig,
-    state.channel.bobSent.data
-  );
-
-  // Enable crypto buttons
-  btnDerive.disabled = false;
-  btnEncrypt.disabled = false;
-  btnDecrypt.disabled = false;
-  outExchange.textContent = `Exchange (signed).\nBob verifies Alice: ${bobVer}\nAlice verifies Bob: ${aliceVer}\n\nAlice sent bytes (first 24 hex): ${bytesToHex(
-    state.channel.aliceSent.data.slice(0, 24)
-  )}...\nBob sent bytes (first 24 hex): ${bytesToHex(
-    state.channel.bobSent.data.slice(0, 24)
-  )}...`;
-  outEve.textContent = "No MITM (honest exchange).";
-};
-
-/* Exchange unsigned (allow Eve to MITM replace) */
-document.getElementById("btnExchangeNoSign").onclick = () => {
-  state.channel.aliceSent = {
-    data: state.alice.pubBytes,
-    sig: null,
-    pubkey: state.alice.kp.publicKey,
-  };
-  state.channel.bobSent = {
-    data: state.bob.pubBytes,
-    sig: null,
-    pubkey: state.bob.kp.publicKey,
-  };
-  // Enable crypto buttons
-  btnDerive.disabled = false;
-  btnEncrypt.disabled = false;
-  btnDecrypt.disabled = false;
-  outExchange.textContent = `Exchange (unsigned).\nData on channel (can be tampered by Eve).\nAlice bytes: ${bytesToHex(
-    state.channel.aliceSent.data.slice(0, 24)
-  )}...\nBob bytes: ${bytesToHex(state.channel.bobSent.data.slice(0, 24))}...`;
-  outEve.textContent = "Unsigned exchange: Eve can replace packets.";
-  // Reset signature acceptance state for unsigned mode
-  state._aliceAccepts = true;
-  state._bobAccepts = true;
-};
-
-/* Eve intercept & replace (MITM) */
-document.getElementById("btnEveIntercept").onclick = () => {
-  // Set MITM flag
-  state.eveMitmActive = true;
-
-  // Eve crafts her own matrices (randomized)
-  const n = state.n;
-  // Use random seeds for Eve's matrices
-  const seedE1 = Date.now() + Math.floor(Math.random() * 1000000) + 22222;
-  const seedE2 = Date.now() + Math.floor(Math.random() * 1000000) + 33333;
-  eveMatA = ldlpMatrix(n, state.r, 5, seedE1); // pretend to be Alice -> Bob
-  eveMatB = ldlpMatrix(n, state.r, 6, seedE2); // pretend to be Bob -> Alice
-  const Eb1 = matrixToBytesInt32(eveMatA);
-  const Eb2 = matrixToBytesInt32(eveMatB);
-
-  // Replace channel packets
-  state.channel.aliceSent = {
-    data: Eb1,
-    sig: null,
-    pubkey: null,
-    note: "Eve replaced Alice->Bob",
-  };
-  state.channel.bobSent = {
-    data: Eb2,
-    sig: null,
-    pubkey: null,
-    note: "Eve replaced Bob->Alice",
-  };
-
-  outEve.innerHTML = `Eve replaced packets on channel.<br>Eve-&gt;Bob (pretend Alice) matrix:<br>$$${matToKaTeX(
-    eveMatA
-  )}$$<br><br>Eve-&gt;Alice (pretend Bob) matrix:<br>$$${matToKaTeX(
-    eveMatB
-  )}$$<br><br>(If signatures not used, Alice & Bob will compute shared matrix with Eve, not each other.)`;
-  if (window.renderMathInElement) renderMathInElement(outEve);
-};
-
-/* restore honest (use channel what's originally generated) */
-document.getElementById("btnEveRestore").onclick = () => {
-  // Reset MITM flag
-  state.eveMitmActive = false;
-
-  state.channel.aliceSent = {
-    data: state.alice.pubBytes,
-    sig: state.alice.sig,
-    pubkey: state.alice.kp.publicKey,
-  };
-  state.channel.bobSent = {
-    data: state.bob.pubBytes,
-    sig: state.bob.sig,
-    pubkey: state.bob.kp.publicKey,
-  };
-  outEve.textContent =
-    "Channel restored to honest signed packets (if signatures present).";
-};
-
-/* Compute shared matrices at each side using what they received on channel */
-document.getElementById("btnCompute").onclick = () => {
-  if (!state.channel.aliceSent || !state.channel.bobSent) {
-    alert("Do exchange first");
-    return;
-  }
-  // If signatures present, verify before using (simulate receiver)
-  let bobAccepts = true,
-    aliceAccepts = true;
-  if (state.channel.aliceSent.sig) {
-    bobAccepts = verifyDetached(
-      state.channel.aliceSent.pubkey,
-      state.channel.aliceSent.sig,
-      state.channel.aliceSent.data
-    );
-  }
-  if (state.channel.bobSent.sig) {
-    aliceAccepts = verifyDetached(
-      state.channel.bobSent.pubkey,
-      state.channel.bobSent.sig,
-      state.channel.bobSent.data
-    );
-  }
-  // Store signature acceptance in state for later crypto checks
-  state._aliceAccepts = aliceAccepts;
-  state._bobAccepts = bobAccepts;
-
-  // Only block key agreement if signatures are present and either party rejects
-  const signedMode = !!(
-    state.channel.aliceSent.sig || state.channel.bobSent.sig
-  );
-  if (signedMode && (!aliceAccepts || !bobAccepts)) {
-    outExchange.innerHTML = `Signature verification failed!<br>Alice accepted Bob packet? ${aliceAccepts}<br>Bob accepted Alice packet? ${bobAccepts}<br><br><span style=\"color:#dc2626;font-weight:bold\">Key agreement aborted. Cannot derive shared key.</span>`;
-    state.shared.alice = null;
-    state.shared.bob = null;
-    state.aesKey = null;
-    state.lastCipher = null;
-    if (window.renderMathInElement) renderMathInElement(outExchange);
+  if (!state.publicA || !state.publicB) {
+    alert("Buat matriks terlebih dahulu");
     return;
   }
 
-  // parse matrices from received bytes
-  function bytesToMat32(u8, n) {
-    // Validasi buffer size harus tepat n*n*4 bytes (int32)
-    const expectedSize = n * n * 4;
-    if (u8.byteLength < expectedSize) {
-      console.error(
-        `Buffer too small: expected ${expectedSize} bytes, got ${u8.byteLength}`
-      );
-      // Pad dengan NEG_INF jika buffer terlalu kecil
-      const paddedBuffer = new ArrayBuffer(expectedSize);
-      const paddedView = new Int32Array(paddedBuffer);
-      paddedView.fill(NEG_INF);
+  state.exchanged = true;
 
-      // Copy data yang tersedia
-      const sourceView = new Int32Array(
-        u8.buffer,
-        u8.byteOffset,
-        Math.floor(u8.byteLength / 4)
-      );
-      paddedView.set(sourceView);
+  outExchange.innerHTML = `<strong>Pertukaran Kunci Publik:</strong><br><br>
+    $\\Rightarrow$ Alice mengirim kunci publik ke Bob: $V = A_1 \\otimes W \\otimes A_2$<br>
+    $\\Rightarrow$ Bob mengirim kunci publik ke Alice: $U = B_1 \\otimes W \\otimes B_2$<br><br>
+    
+    <span style="color:#16a34a;">$\\checkmark$ Kunci publik berhasil dipertukar melalui saluran publik!</span><br><br>
+    
+    <span style="color:#666;">Sekarang Alice dan Bob dapat menghitung kunci rahasia bersama menggunakan matriks privat masing-masing.</span>`;
 
-      const view = paddedView;
-      const arr = [];
-      let idx = 0;
-      for (let i = 0; i < n; i++) {
-        const row = [];
-        for (let j = 0; j < n; j++) row.push(view[idx++]);
-        arr.push(row);
-      }
-      return arr;
-    }
-
-    // Buffer size normal atau lebih besar
-    const view = new Int32Array(u8.buffer, u8.byteOffset, n * n);
-    const arr = [];
-    let idx = 0;
-    for (let i = 0; i < n; i++) {
-      const row = [];
-      for (let j = 0; j < n; j++) row.push(view[idx++]);
-      arr.push(row);
-    }
-    return arr;
-  }
-
-  let A_received = bytesToMat32(state.channel.aliceSent.data, state.n); // what Bob sees as "Alice"
-  let B_received = bytesToMat32(state.channel.bobSent.data, state.n); // what Alice sees as "Bob"
-
-  // Each uses their own private matrix and received public matrix (here we use full matrices as "public")
-  // In our simple model, Alice uses her own mat and B_received, Bob uses A_received and his own mat
-  const K_alice = tropicalMatMul(state.alice.mat, B_received);
-  const K_bob = tropicalMatMul(A_received, state.bob.mat);
-
-  state.shared.alice = K_alice;
-  state.shared.bob = K_bob;
-
-  const isEqual = JSON.stringify(K_alice) === JSON.stringify(K_bob);
-  outExchange.innerHTML = `Compute step:<br> Alice accepted Bob packet? ${aliceAccepts}<br>Bob accepted Alice packet? ${bobAccepts}<br><br>Shared (Alice side):<br>$$${matToKaTeX(
-    K_alice
-  )}$$<br><br>Shared (Bob side):<br>$$${matToKaTeX(
-    K_bob
-  )}$$<br><br>Equal? ${isEqual}`;
-  if (window.renderMathInElement) renderMathInElement(outExchange);
-
-  // Only disable crypto if signed mode and signature fails
-  if (signedMode && (!aliceAccepts || !bobAccepts)) {
-    state.aesKey = null;
-    state.lastCipher = null;
-    btnDerive.disabled = true;
-    btnEncrypt.disabled = true;
-    btnDecrypt.disabled = true;
-  }
+  renderMathInContainer(outExchange);
 };
 
-/* Derive AES key (HKDF) */
+// Compute Shared Secret
+document.getElementById("btnComputeShared").onclick = () => {
+  if (!state.exchanged) {
+    alert("Tukar kunci publik terlebih dahulu");
+    return;
+  }
+
+  // Alice computes shared secret: Ka = A1 ⊗ U ⊗ A2 (using Bob's public key U)
+  const temp_KA = tropicalMatMul(state.A1, state.publicB);
+  state.sharedA = tropicalMatMul(temp_KA, state.A2);
+
+  // Bob computes shared secret: Kb = B1 ⊗ V ⊗ B2 (using Alice's public key V)
+  const temp_KB = tropicalMatMul(state.B1, state.publicA);
+  state.sharedB = tropicalMatMul(temp_KB, state.B2);
+
+  // Check if shared secrets match (they should due to commutativity)
+  const secretsMatch =
+    JSON.stringify(state.sharedA) === JSON.stringify(state.sharedB);
+
+  outExchange.innerHTML = `<strong>Komputasi Kunci Rahasia Bersama:</strong><br><br>
+    
+    <strong>Alice menghitung:</strong><br>
+    $K_A = A_1 \\otimes U \\otimes A_2 = A_1 \\otimes (B_1 \\otimes W \\otimes B_2) \\otimes A_2$<br>
+    $$K_A = ${matToKaTeX(state.sharedA)}$$<br><br>
+    
+    <strong>Bob menghitung:</strong><br>
+    $K_B = B_1 \\otimes V \\otimes B_2 = B_1 \\otimes (A_1 \\otimes W \\otimes A_2) \\otimes B_2$<br>
+    $$K_B = ${matToKaTeX(state.sharedB)}$$<br><br>
+    
+    <strong>Kunci rahasia cocok?</strong> ${
+      secretsMatch
+        ? '<span style="color:#16a34a;">$\\checkmark$ YA</span>'
+        : '<span style="color:#dc2626;">$\\times$ TIDAK</span>'
+    }<br><br>
+    
+    <span style="color:#666;">
+    <strong>Teorema Komutativitas LdlP:</strong><br>
+    Karena $A_1, A_2 \\in [2r,r]_n^{k_A}$ dan $B_1, B_2 \\in [2r,r]_n^{k_B}$, maka:<br>
+    $A_1 \\otimes (B_1 \\otimes W \\otimes B_2) \\otimes A_2 = B_1 \\otimes (A_1 \\otimes W \\otimes A_2) \\otimes B_2$<br>
+    Sehingga kedua pihak mendapatkan kunci rahasia bersama yang sama!
+    </span>`;
+
+  renderMathInContainer(outExchange);
+};
+
+// Derive AES Key from Shared Secret
 document.getElementById("btnDerive").onclick = async () => {
-  if (!state.shared.alice) {
-    alert("Compute shared matrices first");
-    return;
-  }
-  // Only allow if both accepted signature
-  if (!state._aliceAccepts || !state._bobAccepts) {
-    outCrypto.textContent = "Cannot derive key: signature verification failed.";
+  if (!state.sharedA) {
+    alert("Hitung kunci rahasia bersama terlebih dahulu");
     return;
   }
 
-  // Derive key from Alice's shared matrix (Alice's perspective)
-  const keyAlice = await deriveAesKeyFromMatrix(state.shared.alice);
+  // Derive AES key from shared secret matrix
+  const keyAlice = await deriveAesKeyFromMatrix(state.sharedA);
   state.aesKey = keyAlice;
 
-  // Also derive Bob's key for comparison (Bob's perspective)
-  const keyBob = await deriveAesKeyFromMatrix(state.shared.bob);
+  outCrypto.innerHTML = `<strong>Derivasi Kunci AES:</strong><br><br>
+    $\\checkmark$ Kunci enkripsi simetris berhasil diturunkan dari kunci rahasia bersama $K_A = K_B$<br><br>
+    
+    <span style="color:#666;">
+    Menggunakan HKDF (HMAC-based Key Derivation Function) untuk mengkonversi<br>
+    matriks kunci rahasia bersama menjadi kunci enkripsi AES-GCM 256-bit.
+    </span>`;
 
-  // Check if keys match (should only match in honest case)
-  const aliceKeyBytes = await crypto.subtle.exportKey("raw", keyAlice);
-  const bobKeyBytes = await crypto.subtle.exportKey("raw", keyBob);
-  const keysMatch =
-    bytesToHex(new Uint8Array(aliceKeyBytes)) ===
-    bytesToHex(new Uint8Array(bobKeyBytes));
-
-  outCrypto.innerHTML = `Derived AES-GCM key (CryptoKey).<br>
-    <span style="color:#666">Alice & Bob keys match? ${keysMatch}</span>`;
-
-  // Store Bob's key separately for decrypt simulation
-  state.bobAesKey = keyBob;
+  renderMathInContainer(outCrypto);
 };
 
-/* Encrypt and decrypt */
+// Encrypt Message
 document.getElementById("btnEncrypt").onclick = async () => {
   if (!state.aesKey) {
-    alert("Derive key first");
+    alert("Turunkan kunci AES terlebih dahulu");
     return;
   }
-  if (!state._aliceAccepts || !state._bobAccepts) {
-    outCrypto.textContent = "Cannot encrypt: signature verification failed.";
-    return;
-  }
-  const pt = new TextEncoder().encode(document.getElementById("msg").value);
-  const aad = new TextEncoder().encode("ldlp-demo-aad");
+
+  const message = document.getElementById("msg").value;
+  const pt = new TextEncoder().encode(message);
+  const aad = new TextEncoder().encode("dh-maxplus-demo");
+
   const { iv, ct } = await aesGcmEncrypt(state.aesKey, pt, aad);
   state.lastCipher = { iv, ct, aad };
-  // MITM Eve interception (unsigned mode only)
-  if (
-    !state.channel.aliceSent.sig &&
-    !state.channel.bobSent.sig &&
-    eveMatA &&
-    eveMatB
-  ) {
-    // Eve intercepts and can decrypt with Alice's shared key (Eve knows Alice's matrix from MITM)
-    try {
-      // Eve computes Alice's shared key: Alice_matrix × Eve_matrixB (what Alice thinks is Bob's matrix)
-      const aliceSharedWithEve = tropicalMatMul(state.alice.mat, eveMatB);
-      const eveKeyFromAlice = await deriveAesKeyFromMatrix(aliceSharedWithEve);
 
-      // Eve decrypts Alice's message using Alice's compromised shared key
-      const ptEve = await aesGcmDecrypt(eveKeyFromAlice, iv, ct, aad);
-      eveInterceptedCipher = { iv, ct, aad };
-      eveInterceptedPlain = new TextDecoder().decode(ptEve);
-      eveModifiedPlain = eveInterceptedPlain;
+  outCrypto.innerHTML = `<strong>Enkripsi Pesan:</strong><br><br>
+    $\\textbf{Teks Asli:}$ "${message}"<br>
+    $\\textbf{Terenkripsi:}$ ${bytesToHex(ct).substring(0, 32)}...<br>
+    $\\textbf{IV:}$ ${bytesToHex(iv)}<br><br>
+    
+    <span style="color:#16a34a;">$\\checkmark$ Pesan berhasil dienkripsi menggunakan AES-GCM!</span><br><br>
+    
+    <span style="color:#666;">
+    Alice menggunakan kunci rahasia bersama untuk mengenkripsi pesan.<br>
+    Hanya Bob yang memiliki kunci rahasia bersama yang sama dapat mendekripsi.
+    </span>`;
 
-      // Eve UI: modify or inject message
-      outEve.innerHTML = `<span style="color:#dc2626;font-weight:bold">🚨 Eve intercepted and can modify the message!</span><br>
-        <strong>Original message from Alice:</strong> "${eveInterceptedPlain}"<br><br>
-        
-        <strong>Modify existing message:</strong><br>
-        <textarea id="eveMsgBox" rows="2" style="width:98%">${eveInterceptedPlain}</textarea><br>
-        <button id="eveApplyBtn">Apply modification & send to Bob</button>
-        
-        <hr style='margin:8px 0'>
-        
-        <strong>OR inject completely new message:</strong><br>
-        <textarea id="eveInjectBox" rows="2" style="width:98%" placeholder="Type a new fake message from Alice..."></textarea><br>
-        <button id="eveInjectBtn">Send new message as Alice → Bob</button>
-        <br><input type="checkbox" id="demoMode" style="margin:8px 0;"> 
-        <label for="demoMode" style="font-size:0.9em;color:#666;">Demo Mode: Allow Eve's message to reach Bob (unrealistic but educational)</label>
-        
-        <br><br><span style="color:#16a34a">✅ Bob will successfully decrypt modified messages because Eve compromised the shared key!</span>
-      `;
-
-      // Langsung akses elemen yang baru dibuat tanpa setTimeout
-      const eveMsgBox = document.getElementById("eveMsgBox");
-      const eveApplyBtn = document.getElementById("eveApplyBtn");
-      const eveInjectBox = document.getElementById("eveInjectBox");
-      const eveInjectBtn = document.getElementById("eveInjectBtn");
-
-      // Set event handlers langsung setelah innerHTML
-      if (eveApplyBtn) {
-        eveApplyBtn.onclick = async function () {
-          if (!eveMsgBox) return;
-          eveModifiedPlain = eveMsgBox.value;
-          // Eve re-encrypts with the SAME key Alice used (this is the key vulnerability!)
-          // In MITM, Eve knows Alice's key because she replaced Bob's matrix
-          const newPt = new TextEncoder().encode(eveModifiedPlain);
-          const newCipher = await aesGcmEncrypt(state.aesKey, newPt, aad);
-          // Replace ciphertext for Bob
-          state.lastCipher = newCipher;
-          outEve.innerHTML += `<br><span style="color:#dc2626;font-weight:bold">✅ Modified message sent to Bob:</span><br>
-            <span class='mono' style="background:#ffe6e6;padding:4px;border-radius:4px;">"${eveModifiedPlain}"</span><br>
-            <span style="color:#f59e0b;font-size:0.9em;">🚨 Bob will successfully decrypt this modified message!</span>`;
-        };
-      }
-
-      if (eveInjectBtn) {
-        eveInjectBtn.onclick = async function () {
-          if (!eveInjectBox) return;
-          const injectMsg = eveInjectBox.value;
-          if (!injectMsg) return;
-
-          const demoMode = document.getElementById("demoMode").checked;
-
-          if (demoMode) {
-            // Demo mode: Use Alice's actual key so Bob can decrypt (shows how MITM can work)
-            const injectPt = new TextEncoder().encode(injectMsg);
-            const injectCipher = await aesGcmEncrypt(
-              state.aesKey,
-              injectPt,
-              aad
-            );
-            state.lastCipher = injectCipher;
-            outEve.innerHTML += `<br><span style="color:#dc2626;font-weight:bold">🚨 [DEMO MODE] Injected message sent to Bob:</span><br>
-              <span class='mono' style="background:#ffe6e6;padding:4px;border-radius:4px;">"${injectMsg}"</span><br>
-              <span style="color:#16a34a;font-size:0.9em;">✅ Bob will successfully decrypt this (demo mode only)</span>`;
-          } else {
-            // Realistic mode: Use Alice's key (the vulnerability in unsigned key exchange)
-            const injectPt = new TextEncoder().encode(injectMsg);
-            const injectCipher = await aesGcmEncrypt(
-              state.aesKey,
-              injectPt,
-              aad
-            );
-            state.lastCipher = injectCipher;
-            outEve.innerHTML += `<br><span style="color:#dc2626;font-weight:bold">🚨 Injected FAKE message sent to Bob:</span><br>
-              <span class='mono' style="background:#ffe6e6;padding:4px;border-radius:4px;">"${injectMsg}"</span><br>
-              <span style="color:#999;font-size:0.9em;">Bob thinks this message is from Alice! 😈</span><br>
-              <span style="color:#16a34a;font-size:0.85em;">✅ Bob will successfully decrypt this because Eve uses Alice's compromised key!</span>`;
-          }
-        };
-      }
-
-      outCrypto.innerHTML = `Encrypted. iv=${bytesToHex(iv)} ct_len=${
-        ct.length
-      }<br>
-        <span style="color:#f59e0b;font-weight:bold">⚠️ WARNING: MITM ACTIVE!</span><br>
-        <span style="color:#666">Eve can intercept and modify messages!</span>`;
-    } catch (e) {
-      outEve.innerHTML = "Eve failed to intercept or modify the message.";
-      outCrypto.textContent = `Encrypted. iv=${bytesToHex(iv)} ct_len=${
-        ct.length
-      }`;
-    }
-  } else {
-    outCrypto.textContent = `Encrypted. iv=${bytesToHex(iv)} ct_len=${
-      ct.length
-    }`;
-
-    // Jika MITM active, beri peringatan bahwa encrypt berhasil tapi decrypt akan gagal
-    if (state.eveMitmActive && eveMatA && eveMatB) {
-      outCrypto.innerHTML =
-        outCrypto.textContent +
-        `<br><span style="color:#f59e0b;font-weight:bold">⚠️ WARNING:</span> 
-        <span style="color:#666">MITM active - Bob's decryption will fail due to key mismatch!</span>`;
-    }
-  }
+  renderMathInContainer(outCrypto);
 };
 
+// Decrypt Message
 document.getElementById("btnDecrypt").onclick = async () => {
   if (!state.aesKey || !state.lastCipher) {
-    alert("Need key and ciphertext");
-    return;
-  }
-  // If signature verification failed, always show decrypt failed (simulate garbage output)
-  if (!state._aliceAccepts || !state._bobAccepts) {
-    outCrypto.textContent =
-      "[WARNING: Signature verification failed!] Decrypt failed: Plaintext is not valid.";
+    alert("Perlu kunci AES dan pesan terenkripsi");
     return;
   }
 
   try {
-    // Bob uses his own derived key (which may be different from Alice's if MITM)
-    const bobKey = state.bobAesKey || state.aesKey;
+    // Simulate Bob using his derived key (should be the same as Alice's)
+    const bobKey = await deriveAesKeyFromMatrix(state.sharedB);
     const pt = await aesGcmDecrypt(
       bobKey,
       state.lastCipher.iv,
       state.lastCipher.ct,
       state.lastCipher.aad
     );
-    outCrypto.textContent =
-      "Decrypted plaintext: " + new TextDecoder().decode(pt);
+    const decryptedMessage = new TextDecoder().decode(pt);
+
+    outCrypto.innerHTML = `<strong>Dekripsi Pesan:</strong><br><br>
+      $\\textbf{Pesan terdekripsi:}$ "${decryptedMessage}"<br><br>
+      
+      <span style="color:#16a34a;">$\\checkmark$ Bob berhasil mendekripsi pesan dari Alice!</span><br><br>
+      
+      <span style="color:#666;">
+      Bob menggunakan kunci rahasia bersama yang sama ($K_A = K_B$) untuk mendekripsi.<br>
+      Protokol LdlP max-plus berhasil memungkinkan komunikasi terenkripsi!
+      </span>`;
   } catch (e) {
-    // Normal error handling - should rarely happen now in unsigned MITM mode
-    // Dalam unsigned mode, Bob tidak tahu ada MITM - hanya tahu decrypt gagal
-    if (!state.channel.aliceSent.sig && !state.channel.bobSent.sig) {
-      // Unsigned mode: Bob tidak tahu ada MITM, hanya tahu ada error
-      outCrypto.innerHTML = `<span style="color:#dc2626;font-weight:bold">Decrypt failed!</span><br>
-        <span style="color:#666">Authentication tag verification failed.</span><br>
-        <span style="color:#999">Possible causes: corrupted data, wrong key, or network interference.</span><br>
-        <span style="color:#999">Technical error: ${String(e).substring(
-          0,
-          60
-        )}...</span>`;
-    } else {
-      // Signed mode: Bob bisa detect MITM karena ada signature verification
-      if (state.eveMitmActive && eveMatA && eveMatB) {
-        outCrypto.innerHTML = `<span style="color:#dc2626;font-weight:bold">🚨 MITM ATTACK DETECTED!</span><br>
-          Decrypt failed: Key mismatch due to Eve's interference.<br>
-          <span style="color:#666">Bob's key ≠ Alice's encrypted key (Eve modified the channel)</span><br>
-          <span style="color:#999">Technical error: ${String(e).substring(
-            0,
-            80
-          )}...</span>`;
-      } else {
-        outCrypto.textContent = "Decrypt failed: " + String(e);
+    outCrypto.innerHTML = `<span style="color:#dc2626;">$\\times$ Dekripsi gagal!</span><br>
+      Error: ${String(e)}<br><br>
+      <span style="color:#666;">
+      Kemungkinan penyebab: kunci rahasia bersama tidak cocok atau data rusak.
+      </span>`;
+  }
+
+  renderMathInContainer(outCrypto);
+};
+
+// Security Analysis
+document.getElementById("btnAnalyze").onclick = () => {
+  if (!state.W) {
+    alert("Generate public matrix terlebih dahulu");
+    return;
+  }
+
+  outSecurity.innerHTML = `<strong>Analisis Keamanan Protocol LdlP:</strong><br><br>
+    
+    <strong>$\\triangleright$ Apa yang diketahui Eve (penyerang)?</strong><br>
+    $\\bullet$ Public matrix $W$ (diketahui semua pihak)<br>
+    $\\bullet$ Alice's public key $V = A_1 \\otimes W \\otimes A_2$ (dikirim melalui channel)<br>
+    $\\bullet$ Bob's public key $U = B_1 \\otimes W \\otimes B_2$ (dikirim melalui channel)<br><br>
+    
+    <strong>$\\triangleright$ Apa yang ingin dicari Eve?</strong><br>
+    $\\bullet$ Shared secret $K_A = K_B$<br>
+    $\\bullet$ Atau private matrices $A_1, A_2$ atau $B_1, B_2$<br><br>
+    
+    <strong>$\\triangleright$ Masalah matematis yang harus dipecahkan Eve:</strong><br>
+    $\\bullet$ <strong>LdlP Matrix Decomposition Problem:</strong><br>
+    $\\quad$ Diberikan $V$ dan $W$, cari $A_1, A_2 \\in [2r,r]_n^{${
+      state.kA
+    }}$ sehingga $V = A_1 \\otimes W \\otimes A_2$<br>
+    $\\quad$ Atau diberikan $U$ dan $W$, cari $B_1, B_2 \\in [2r,r]_n^{${
+      state.kB
+    }}$ sehingga $U = B_1 \\otimes W \\otimes B_2$<br><br>
+    
+    <strong>$\\triangleright$ Mengapa sulit?</strong><br>
+    $\\bullet$ Constraint LdlP: matriks harus memiliki struktur khusus (diagonal = k, off-diagonal $\\in$ [2r,r])<br>
+    $\\bullet$ Banyak kemungkinan decomposition, tapi hanya satu yang valid untuk struktur LdlP<br>
+    $\\bullet$ Operasi max-plus matrix multiplication bersifat irreversible<br>
+    $\\bullet$ Kompleksitas meningkat eksponensial dengan ukuran matrix<br><br>
+    
+    <strong>$\\triangleright$ Parameter Keamanan Saat Ini:</strong><br>
+    $\\bullet$ Matrix size: ${state.n} $\\times$ ${state.n}<br>
+    $\\bullet$ Alice LdlP parameter: $k_A = ${state.kA}$<br>
+    $\\bullet$ Bob LdlP parameter: $k_B = ${state.kB}$<br>
+    $\\bullet$ Range constraint: off-diagonal $\\in$ [${2 * state.r}, ${
+    state.r
+  }]<br><br>
+    
+    <span style="color:#16a34a;">
+    $\\checkmark$ Protocol ini secure selama LdlP matrix decomposition problem tetap sulit dipecahkan!
+    </span>`;
+
+  renderMathInContainer(outSecurity);
+};
+
+// Show Computational Complexity
+document.getElementById("btnShowComplexity").onclick = () => {
+  if (!state.W) {
+    alert("Generate public matrix terlebih dahulu");
+    return;
+  }
+
+  const n = state.n;
+  const maxK = Math.max(state.kA, state.kB);
+  const rangeSize = Math.abs(state.r - 2 * state.r) + 1;
+
+  outSecurity.innerHTML = `<strong>Kompleksitas Komputasi LdlP:</strong><br><br>
+    
+    <strong>$\\uparrow$ Legitimate Users (Alice & Bob):</strong><br>
+    $\\bullet$ Computing $A_1 \\otimes W \\otimes A_2$: $O(2n^3)$ operations<br>
+    $\\bullet$ Computing $B_1 \\otimes W \\otimes B_2$: $O(2n^3)$ operations<br>
+    $\\bullet$ Computing shared secret: $O(2n^3)$ operations<br>
+    $\\bullet$ Total legitimate cost: $O(n^3)$ per party<br><br>
+    
+    <strong>$\\downarrow$ Penyerang (Eve) - Pencarian Brute Force:</strong><br>
+    $\\bullet$ Search space untuk $A_1$: $(k_A \\times ${rangeSize}^{n^2-n})$ kemungkinan<br>
+    $\\bullet$ Search space untuk $A_2$: $(k_A \\times ${rangeSize}^{n^2-n})$ kemungkinan<br>
+    $\\bullet$ Total combinations: $\\approx (${maxK} \\times ${rangeSize}^{${
+    n * n - n
+  }})^2 = ${Math.pow(maxK * Math.pow(rangeSize, n * n - n), 2).toExponential(
+    2
+  )}$<br>
+    $\\bullet$ Matrix multiplication per attempt: $O(n^3)$<br><br>
+    
+    <strong>$\\triangleright$ Analisis Serangan Saat Ini:</strong><br>
+    $\\bullet$ Matriks ${n} $\\times$ ${n}, parameter $k_A=${state.kA}$, $k_B=${
+    state.kB
+  }$<br>
+    $\\bullet$ Range off-diagonal: [${2 * state.r}, ${
+    state.r
+  }] = ${rangeSize} kemungkinan per elemen<br>
+    $\\bullet$ Ruang pencarian per matriks: $${rangeSize}^{${
+    n * n - n
+  }} = ${Math.pow(rangeSize, n * n - n).toLocaleString()}$<br>
+    $\\bullet$ Total kombinasi (A₁ & A₂): $(${rangeSize}^{${
+    n * n - n
+  }})^2 = ${Math.pow(rangeSize, n * n - n).toExponential(2)}$<br>
+    $\\bullet$ Probabilitas sukses per percobaan: $\\approx \\frac{1}{${Math.pow(
+      rangeSize,
+      n * n - n
+    ).toExponential(2)}}$<br>
+    $\\bullet$ Ekspektasi percobaan untuk sukses: $\\approx ${Math.pow(
+      rangeSize,
+      n * n - n
+    ).toExponential(0)}$<br><br>
+    
+    <strong>$\\triangleright$ Perbandingan Kompleksitas:</strong><br>
+    $\\bullet$ Alice computation: $\\sim$${2 * n * n * n} operasi<br>
+    $\\bullet$ Bob computation: $\\sim$${2 * n * n * n} operasi<br>
+    $\\bullet$ Eve brute force: $\\sim$${Math.pow(
+      maxK * Math.pow(rangeSize, n * n - n),
+      2
+    ).toExponential(2)} operasi<br>
+    $\\bullet$ <strong>Rasio keamanan:</strong> ${(
+      Math.pow(maxK * Math.pow(rangeSize, n * n - n), 2) /
+      (4 * n * n * n)
+    ).toExponential(2)}:1<br><br>
+    
+    <strong>$\\triangleright$ Rekomendasi untuk Dunia Nyata:</strong><br>
+    $\\bullet$ Matrix size: minimal $6 \\times 6$ hingga $10 \\times 10$<br>
+    $\\bullet$ k parameters: $20-50$<br>
+    $\\bullet$ Wider range constraint: misalnya $[-20, -10]$<br>
+    $\\bullet$ Estimated brute force: $\\sim 10^{12} - 10^{20}$ operasi<br><br>
+    
+    <span style="color:#dc2626;">
+    <strong>⚠️ PERINGATAN KEAMANAN:</strong><br>
+    Parameter demo saat ini (n=${n}, k_A=${state.kA}, r=${
+    state.r
+  }) <strong>TIDAK AMAN</strong> untuk aplikasi nyata!<br>
+    Rasio keamanan hanya ${(
+      Math.pow(maxK * Math.pow(rangeSize, n * n - n), 2) /
+      (4 * n * n * n)
+    ).toExponential(2)}:1 - mudah dipecahkan dengan brute force.
+    </span><br><br>
+    
+    <span style="color:#f59e0b;">
+    $\\triangle$ <strong>Tujuan Demo:</strong> Menunjukkan bahwa parameter kriptografi harus dipilih dengan hati-hati.<br>
+    Demo ini sengaja menggunakan parameter kecil untuk demonstrasi educational.<br>
+    Implementasi nyata membutuhkan parameter yang jauh lebih besar!
+    </span>`;
+
+  renderMathInContainer(outSecurity);
+};
+
+/* ----------------- Security Breach Demo (Eve's Attack) ----------------- */
+let attackState = {
+  isRunning: false,
+  attempts: 0,
+  maxAttempts: 10000,
+  strategy: "random",
+  startTime: null,
+  found: false,
+  foundA1: null,
+  foundA2: null,
+  intervalId: null,
+};
+
+const outAttack = document.getElementById("outAttack");
+
+// Helper function to check if two matrices are equal
+function matricesEqual(A, B) {
+  if (!A || !B || A.length !== B.length) return false;
+  for (let i = 0; i < A.length; i++) {
+    if (A[i].length !== B[i].length) return false;
+    for (let j = 0; j < A[i].length; j++) {
+      if (Math.abs(A[i][j] - B[i][j]) > 0.001) return false;
+    }
+  }
+  return true;
+}
+
+// Check if matrices are "close" but not exactly equal (for near miss detection)
+function isNearMatch(A, B, threshold = 2) {
+  if (!A || !B || A.length !== B.length) return false;
+  let differences = 0;
+  let totalElements = 0;
+
+  for (let i = 0; i < A.length; i++) {
+    if (A[i].length !== B[i].length) return false;
+    for (let j = 0; j < A[i].length; j++) {
+      totalElements++;
+      if (Math.abs(A[i][j] - B[i][j]) > 0.001) {
+        differences++;
       }
     }
   }
+
+  // Consider it a "near miss" if only 1-2 elements are different
+  return (
+    differences > 0 && differences <= threshold && differences < totalElements
+  );
+}
+
+// Generate random LdlP matrix for attack
+function generateRandomLdlpMatrix(n, r, k, strategy, attempt) {
+  const M = Array.from({ length: n }, () => Array(n).fill(0));
+
+  // Different strategies for generating candidate matrices
+  if (strategy === "systematic") {
+    // Systematic search - enumerate more slowly to avoid immediate success
+    const seed = 12345 + Math.floor(attempt / 10); // Slower progression
+    const rng = rngFactory(seed);
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (i === j) {
+          M[i][j] = k;
+        } else {
+          const minVal = Math.min(2 * r, r);
+          const maxVal = Math.max(2 * r, r);
+          M[i][j] = randInt(rng, minVal, maxVal);
+        }
+      }
+    }
+  } else if (strategy === "smart") {
+    // Smart search with adaptive behavior and more randomness
+    const baseAttempt = Math.floor(attempt / 50); // Faster base progression
+    const variation = Math.floor(Math.random() * 100); // Add more randomness
+    const seed = baseAttempt * 1000 + variation + attempt;
+    const rng = rngFactory(seed);
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (i === j) {
+          M[i][j] = k;
+        } else {
+          const minVal = Math.min(2 * r, r);
+          const maxVal = Math.max(2 * r, r);
+
+          // Variable bias that changes over time to simulate learning
+          const adaptiveBias = 0.1 + (Math.sin(attempt / 50) + 1) * 0.2; // 0.1 to 0.5, varies with time
+          const bias = (i + j) % 2 === 0 ? minVal : maxVal;
+          M[i][j] =
+            Math.random() < adaptiveBias ? bias : randInt(rng, minVal, maxVal);
+        }
+      }
+    }
+  } else {
+    // Truly random search with high entropy
+    const highEntropySeeds = [
+      Date.now() + attempt * 1337 + Math.floor(Math.random() * 1000000),
+      performance.now() * attempt + Math.random() * 999999,
+      (attempt * 7919) % 982451653, // Large prime for better distribution
+      Math.floor(Math.random() * Number.MAX_SAFE_INTEGER),
+    ];
+    const seed = highEntropySeeds[attempt % 4];
+    const rng = rngFactory(seed);
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (i === j) {
+          M[i][j] = k;
+        } else {
+          const minVal = Math.min(2 * r, r);
+          const maxVal = Math.max(2 * r, r);
+          M[i][j] = randInt(rng, minVal, maxVal);
+        }
+      }
+    }
+  }
+
+  return M;
+}
+
+// Perform one attack iteration
+function performAttackIteration() {
+  if (!attackState.isRunning || !state.publicA || !state.W) return;
+
+  attackState.attempts++;
+
+  // Generate candidate matrices A1 and A2
+  const candidateA1 = generateRandomLdlpMatrix(
+    state.n,
+    state.r,
+    state.kA,
+    attackState.strategy,
+    attackState.attempts
+  );
+  const candidateA2 = generateRandomLdlpMatrix(
+    state.n,
+    state.r,
+    state.kA,
+    attackState.strategy,
+    attackState.attempts + 7777
+  );
+
+  // Compute candidate public key: V_candidate = A1_candidate ⊗ W ⊗ A2_candidate
+  const temp = tropicalMatMul(candidateA1, state.W);
+  const candidatePublicKey = tropicalMatMul(temp, candidateA2);
+
+  // Check if this matches Alice's actual public key
+  // Use realistic probability-based success rather than fixed minimum attempts
+  const minVal = Math.min(2 * state.r, state.r);
+  const maxVal = Math.max(2 * state.r, state.r);
+  const searchSpaceSize = Math.pow(
+    maxVal - minVal + 1,
+    state.n * state.n - state.n
+  );
+
+  // Calculate realistic success probability based on search space
+  const baseSuccessProbability = 1 / searchSpaceSize;
+
+  // Add some variability and strategy-based modifiers
+  let actualSuccessProbability = baseSuccessProbability;
+
+  if (attackState.strategy === "systematic") {
+    // Systematic search gradually improves but with fluctuations
+    const improvement = Math.min(2.0, 1 + attackState.attempts / 500);
+    const noise = 0.8 + Math.random() * 0.4; // Random factor 0.8-1.2
+    actualSuccessProbability *= improvement * noise;
+  } else if (attackState.strategy === "smart") {
+    // Smart search has variable effectiveness - sometimes good, sometimes poor
+    const effectiveness = Math.random();
+    if (effectiveness < 0.3) {
+      // 30% chance of poor performance
+      actualSuccessProbability *= 0.2 + Math.random() * 0.3; // 0.2-0.5x
+    } else if (effectiveness < 0.7) {
+      // 40% chance of average performance
+      actualSuccessProbability *= 0.8 + Math.random() * 0.4; // 0.8-1.2x
+    } else {
+      // 30% chance of good performance
+      actualSuccessProbability *= 1.5 + Math.random() * 1.0; // 1.5-2.5x
+    }
+  } else {
+    // Random search - pure probability with small variance
+    actualSuccessProbability *= 0.9 + Math.random() * 0.2; // Random multiplier 0.9-1.1x
+  }
+
+  // Don't allow success too early but use variable minimum based on parameters
+  const difficultyFactor = Math.log2(searchSpaceSize);
+  const minAttempts = Math.max(
+    3,
+    Math.floor(difficultyFactor * (0.5 + Math.random() * 0.5))
+  ); // Variable minimum
+  const canSucceed = attackState.attempts >= minAttempts;
+
+  // Random success based on probability with demo-friendly scaling
+  // Scale probability for demonstration purposes but keep randomness
+  const demoScaling = Math.min(50000, Math.max(100, searchSpaceSize / 100)); // Adaptive scaling
+  const randomSuccessCheck =
+    Math.random() < actualSuccessProbability * demoScaling;
+
+  const shouldSucceed =
+    matricesEqual(candidatePublicKey, state.publicA) &&
+    canSucceed &&
+    randomSuccessCheck;
+
+  // Check for near miss (makes demo more engaging)
+  const isNear = isNearMatch(candidatePublicKey, state.publicA);
+  const showNearMiss =
+    isNear && Math.random() < 0.15 && attackState.attempts >= 2; // 15% chance to show near miss
+
+  if (shouldSucceed) {
+    // SUCCESS! Eve found a valid decomposition
+    attackState.found = true;
+    attackState.foundA1 = candidateA1;
+    attackState.foundA2 = candidateA2;
+    attackState.isRunning = false;
+    clearInterval(attackState.intervalId);
+
+    // Compute the shared secret using found matrices
+    const tempKE = tropicalMatMul(candidateA1, state.publicB);
+    const eveSharedSecret = tropicalMatMul(tempKE, candidateA2);
+
+    const elapsedTime = ((Date.now() - attackState.startTime) / 1000).toFixed(
+      2
+    );
+
+    outAttack.innerHTML = `<strong style="color:#dc2626;">🚨 PELANGGARAN KEAMANAN! 🚨</strong><br><br>
+      
+      <strong>Eve berhasil membobol protokol!</strong><br><br>
+      
+      <strong>📊 Statistik Serangan:</strong><br>
+      $\\bullet$ Strategi: ${attackState.strategy}<br>
+      $\\bullet$ Percobaan: ${attackState.attempts.toLocaleString()}<br>
+      $\\bullet$ Waktu berlalu: ${elapsedTime} detik<br>
+      $\\bullet$ Tingkat keberhasilan: ${(
+        (1 / attackState.attempts) *
+        100
+      ).toExponential(2)}%<br><br>
+      
+      <strong>🔍 Matriks yang Ditemukan Eve:</strong><br>
+      $$\\text{Eve's } A_1 = ${matToKaTeX(candidateA1)}$$<br>
+      $$\\text{Eve's } A_2 = ${matToKaTeX(candidateA2)}$$<br><br>
+      
+      <strong>🆚 Perbandingan dengan Alice:</strong><br>
+      Matriks Eve sama dengan Alice? ${
+        matricesEqual(candidateA1, state.A1) &&
+        matricesEqual(candidateA2, state.A2)
+          ? '<span style="color:#f59e0b;">YA - kebetulan sama!</span>'
+          : '<span style="color:#dc2626;">TIDAK - Eve menemukan matriks berbeda yang menghasilkan kunci publik sama!</span>'
+      }<br><br>
+      
+      <strong>✅ Verifikasi:</strong><br>
+      $$V_{\\text{Eve}} = A_1 \\otimes W \\otimes A_2 = ${matToKaTeX(
+        candidatePublicKey
+      )}$$<br>
+      $$V_{\\text{Alice}} = ${matToKaTeX(state.publicA)}$$<br>
+      Kunci publik cocok: ${
+        matricesEqual(candidatePublicKey, state.publicA)
+          ? '<span style="color:#dc2626;">YA - Eve dapat menghitung kunci rahasia!</span>'
+          : '<span style="color:#16a34a;">TIDAK</span>'
+      }<br><br>
+      
+      <strong>💀 Kunci Rahasia yang Dihitung Eve:</strong><br>
+      $$K_{\\text{Eve}} = A_1 \\otimes U \\otimes A_2 = ${matToKaTeX(
+        eveSharedSecret
+      )}$$<br><br>
+      
+      <span style="color:#dc2626;">
+      <strong>⚠️ PROTOKOL TELAH DIBOBOL!</strong><br>
+      Eve sekarang dapat mendekripsi semua komunikasi Alice-Bob.<br><br>
+      <strong>🎓 Pelajaran:</strong> Parameter demo ini terlalu kecil untuk keamanan nyata!<br>
+      Untuk aplikasi dunia nyata, gunakan n≥6, k≥30, dan range r yang lebih luas.
+      </span>`;
+  } else if (attackState.attempts >= attackState.maxAttempts) {
+    // Max attempts reached without success
+    attackState.isRunning = false;
+    clearInterval(attackState.intervalId);
+
+    const elapsedTime = ((Date.now() - attackState.startTime) / 1000).toFixed(
+      2
+    );
+
+    outAttack.innerHTML = `<strong style="color:#16a34a;">🛡️ PROTOKOL AMAN! 🛡️</strong><br><br>
+      
+      <strong>Eve gagal membobol protokol dalam ${attackState.maxAttempts.toLocaleString()} percobaan</strong><br><br>
+      
+      <strong>📊 Statistik Serangan:</strong><br>
+      $\\bullet$ Strategi: ${attackState.strategy}<br>
+      $\\bullet$ Total percobaan: ${attackState.attempts.toLocaleString()}<br>
+      $\\bullet$ Waktu berlalu: ${elapsedTime} detik<br>
+      $\\bullet$ Tingkat keberhasilan: 0% (tidak berhasil)<br><br>
+      
+      <strong>🔒 Kesimpulan:</strong><br>
+      Dengan parameter saat ini ($n=${state.n}$, $k_A=${state.kA}$, $r=${
+      state.r
+    }$), 
+      protokol cukup aman terhadap serangan brute force sampai ${attackState.maxAttempts.toLocaleString()} percobaan.<br><br>
+      
+      <span style="color:#16a34a;">
+      <strong>🎓 Pelajaran:</strong> Parameter yang tepat membuat protokol sangat sulit dipecahkan!<br>
+      Ini menunjukkan pentingnya pemilihan parameter kriptografi yang tepat.<br>
+      Untuk keamanan produksi yang sesungguhnya, gunakan parameter yang jauh lebih besar!
+      </span>`;
+  } else {
+    // Update progress and show near misses or regular status
+    if (showNearMiss) {
+      const elapsedTime = ((Date.now() - attackState.startTime) / 1000).toFixed(
+        1
+      );
+
+      outAttack.innerHTML = `<strong>🔍 SERANGAN SEDANG BERLANGSUNG...</strong><br><br>
+        
+        <strong>⚠️ HAMPIR BERHASIL!</strong><br>
+        <span style="color:#f59e0b;">Eve menemukan matriks yang hampir cocok pada percobaan ke-${
+          attackState.attempts
+        }!</span><br><br>
+        
+        <strong>📊 Status Saat Ini:</strong><br>
+        $\\bullet$ Strategi: ${attackState.strategy}<br>
+        $\\bullet$ Percobaan: ${attackState.attempts.toLocaleString()}<br>
+        $\\bullet$ Waktu berlalu: ${elapsedTime}s<br>
+        $\\bullet$ Status: Hampir menemukan kunci yang tepat...<br><br>
+        
+        <span style="color:#f59e0b;"><strong>🎯 Eve sedang mendekat ke solusi!</strong></span>`;
+    } else if (attackState.attempts % 100 === 0) {
+      const elapsedTime = ((Date.now() - attackState.startTime) / 1000).toFixed(
+        1
+      );
+      const progress = (
+        (attackState.attempts / attackState.maxAttempts) *
+        100
+      ).toFixed(1);
+      const rate = (
+        (attackState.attempts / (Date.now() - attackState.startTime)) *
+        1000
+      ).toFixed(0);
+
+      outAttack.innerHTML = `<strong>🔍 SERANGAN SEDANG BERLANGSUNG...</strong><br><br>
+        
+        <strong>📊 Status Saat Ini:</strong><br>
+        $\\bullet$ Strategi: ${attackState.strategy}<br>
+        $\\bullet$ Kemajuan: ${attackState.attempts.toLocaleString()} / ${attackState.maxAttempts.toLocaleString()} (${progress}%)<br>
+        $\\bullet$ Waktu berlalu: ${elapsedTime}s<br>
+        $\\bullet$ Tingkat serangan: ${rate} percobaan/detik<br>
+        $\\bullet$ Perkiraan total waktu untuk ruang penuh: ${
+          rate > 0
+            ? Math.round(
+                Math.pow(
+                  Math.abs(2 * state.r - state.r) + 1,
+                  state.n * state.n - state.n
+                ) /
+                  rate /
+                  3600
+              )
+            : "∞"
+        } jam<br><br>
+        
+        <div style="background: #f3f4f6; border-radius: 8px; height: 20px; overflow: hidden;">
+          <div style="background: linear-gradient(90deg, #ef4444, #f97316); height: 100%; width: ${progress}%; transition: width 0.3s;"></div>
+        </div><br>
+        
+        <strong>🎯 Target:</strong> Mencari matriks $A_1, A_2 \\in [2r,r]_n^{${
+          state.kA
+        }}$ 
+        sehingga $A_1 \\otimes W \\otimes A_2 = V_{\\text{Alice}}$<br><br>
+        
+        <strong>📈 Ruang Pencarian:</strong><br>
+        $\\bullet$ Kombinasi per matriks: ${Math.pow(
+          Math.abs(2 * state.r - state.r) + 1,
+          state.n * state.n - state.n
+        ).toLocaleString()}<br>
+        $\\bullet$ Total ruang pencarian: ${Math.pow(
+          Math.abs(2 * state.r - state.r) + 1,
+          state.n * state.n - state.n
+        ).toExponential(2)}² kombinasi<br>
+        $\\bullet$ Progress pencarian: ${(
+          (attackState.attempts /
+            Math.pow(
+              Math.abs(2 * state.r - state.r) + 1,
+              state.n * state.n - state.n
+            )) *
+          100
+        ).toFixed(6)}% dari ruang total<br><br>
+        
+        <span style="color:#f59e0b;">
+        Eve sedang mencoba berbagai kombinasi matriks LdlP secara ${
+          attackState.strategy
+        }...
+        </span>`;
+    }
+  }
+
+  renderMathInContainer(outAttack);
+}
+
+// Start Brute Force Attack
+document.getElementById("btnStartAttack").onclick = () => {
+  if (!state.publicA || !state.W) {
+    alert("Generate public keys terlebih dahulu untuk memulai attack");
+    return;
+  }
+
+  if (attackState.isRunning) {
+    alert("Attack sudah berjalan");
+    return;
+  }
+
+  attackState.maxAttempts = Number(
+    document.getElementById("maxAttempts").value
+  );
+  attackState.strategy = document.getElementById("attackStrategy").value;
+  attackState.isRunning = true;
+  attackState.attempts = 0;
+  attackState.found = false;
+  attackState.startTime = Date.now();
+
+  outAttack.innerHTML = `<strong>🚀 MEMULAI SERANGAN BRUTE FORCE...</strong><br><br>
+    
+    <strong>🎯 Target Serangan:</strong><br>
+    $\\bullet$ Kunci publik Alice: $V = A_1 \\otimes W \\otimes A_2$<br>
+    $\\bullet$ Tujuan: Temukan $A_1, A_2 \\in [2r,r]_n^{${
+      state.kA
+    }}$ yang menghasilkan $V$ yang sama<br><br>
+    
+    <strong>⚙️ Konfigurasi Serangan:</strong><br>
+    $\\bullet$ Percobaan maksimal: ${attackState.maxAttempts.toLocaleString()}<br>
+    $\\bullet$ Strategi: ${attackState.strategy}<br>
+    $\\bullet$ Ruang pencarian: $\\approx ${Math.pow(
+      state.kA *
+        Math.pow(
+          Math.abs(state.r - 2 * state.r) + 1,
+          state.n * state.n - state.n
+        ),
+      2
+    ).toExponential(2)}$ combinations<br><br>
+    
+    <span style="color:#ef4444;">
+    Attack dimulai! Eve mencoba memecahkan protokol LdlP...
+    </span>`;
+
+  renderMathInContainer(outAttack);
+
+  // Start attack with more realistic interval
+  attackState.intervalId = setInterval(performAttackIteration, 50); // 50ms per iteration (slower, more realistic)
 };
+
+// Stop Attack
+document.getElementById("btnStopAttack").onclick = () => {
+  if (!attackState.isRunning) {
+    alert("Tidak ada attack yang sedang berjalan");
+    return;
+  }
+
+  attackState.isRunning = false;
+  clearInterval(attackState.intervalId);
+
+  const elapsedTime = ((Date.now() - attackState.startTime) / 1000).toFixed(2);
+
+  outAttack.innerHTML = `<strong>⏹️ ATTACK STOPPED</strong><br><br>
+    
+    Attack dihentikan oleh user.<br><br>
+    
+    <strong>📊 Final Statistics:</strong><br>
+    $\\bullet$ Attempts made: ${attackState.attempts.toLocaleString()}<br>
+    $\\bullet$ Time elapsed: ${elapsedTime} seconds<br>
+    $\\bullet$ Status: ${
+      attackState.found
+        ? "SUCCESS - Protocol breached!"
+        : "FAILED - Protocol secure"
+    }<br><br>
+    
+    ${
+      attackState.found
+        ? '<span style="color:#dc2626;">Eve berhasil membobol protokol!</span>'
+        : '<span style="color:#16a34a;">Protokol masih aman.</span>'
+    }`;
+
+  renderMathInContainer(outAttack);
+};
+
+// Reset Attack Demo
+document.getElementById("btnResetAttack").onclick = () => {
+  attackState.isRunning = false;
+  clearInterval(attackState.intervalId);
+  attackState.attempts = 0;
+  attackState.found = false;
+  attackState.foundA1 = null;
+  attackState.foundA2 = null;
+
+  outAttack.innerHTML = `Demo attack telah direset.<br><br>
+    
+    <strong>📝 Cara menggunakan Security Breach Demo:</strong><br>
+    1. Pastikan sudah generate public matrices (Alice & Bob)<br>
+    2. Pilih max attempts dan strategy<br>
+    3. Klik "Mulai Serangan Brute Force"<br>
+    4. Tunggu hingga selesai atau stop manual<br><br>
+    
+    <strong>💡 Tips:</strong><br>
+    $\\bullet$ Parameter kecil ($n=2$, $k=5$) lebih mudah dibobol<br>
+    $\\bullet$ Parameter besar ($n=4$, $k=15$) lebih sulit dibobol<br>
+    $\\bullet$ Strategy "smart" biasanya lebih efektif daripada "random"<br><br>
+    
+    <span style="color:#666;">
+    Ready untuk memulai attack simulation!
+    </span>`;
+
+  renderMathInContainer(outAttack);
+};
+
+// Initialize attack demo on page load
+setTimeout(() => {
+  if (document.getElementById("btnResetAttack")) {
+    document.getElementById("btnResetAttack").click();
+  }
+}, 500);
