@@ -38,13 +38,15 @@
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\slideentry {4}{0}{6}{14/14}{}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@sectionpages {9}{14}}
-\headcommand {\beamer@subsectionpages {9}{14}}
-\headcommand {\sectionentry {5}{Pustaka}{15}{Pustaka}{0}}
-\headcommand {\slideentry {5}{0}{0}{15/15}{}{0}}
+\headcommand {\slideentry {4}{0}{7}{15/15}{}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\beamer@partpages {1}{15}}
-\headcommand {\beamer@subsectionpages {9}{15}}
 \headcommand {\beamer@sectionpages {9}{15}}
-\headcommand {\beamer@documentpages {15}}
-\headcommand {\gdef \inserttotalframenumber {15}}
+\headcommand {\beamer@subsectionpages {9}{15}}
+\headcommand {\sectionentry {5}{Pustaka}{16}{Pustaka}{0}}
+\headcommand {\slideentry {5}{0}{0}{16/16}{}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\beamer@partpages {1}{16}}
+\headcommand {\beamer@subsectionpages {9}{16}}
+\headcommand {\beamer@sectionpages {9}{16}}
+\headcommand {\beamer@documentpages {16}}
+\headcommand {\gdef \inserttotalframenumber {16}}
