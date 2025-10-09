@@ -35,11 +35,11 @@ I’ve also included short descriptions or reflections in some folders to help r
 - If you’re a fellow math student, I hope you find something helpful here!
 
 <p align="center">
+  <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/48ea5864-651c-4476-951d-02987535363e" />
   <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/b924f133-112e-42d5-9188-9b869b04fb7d" />
   <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/4279e09a-6fcb-4180-b7ee-e9449488eb7a" />
-  <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/71d604df-34e9-4a99-a46d-292762e695ec" />
-  <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/48ea5864-651c-4476-951d-02987535363e" />
   <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/08d63419-f7bb-4042-9c89-c6ac337fc123" />
+  <img width="400" style="margin: 5px;" src="https://github.com/user-attachments/assets/71d604df-34e9-4a99-a46d-292762e695ec" />
 </p>
 
 
