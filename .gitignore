@@ -1,0 +1,26 @@
+# Ignore VS Code settings
+.vscode/
+
+# Ignore LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.err
+*.fdb_latexmk
+*.fls
+*.log
+*.lot
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*_minted
+_minted-*/
+*.listing
+*.gnuplot
+*.pyg
+*.bcf
+*.run.xml
+Modul Alpro
