@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 
 % PACKAGES
-\usepackage[indonesian]{babel}
+\usepackage[bahasa]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
@@ -36,7 +36,7 @@
 
 % DOCUMENT INFO
 \title{\textbf{Aplikasi Deret Fourier: Transformasi Kosinus Diskrit (DCT) dalam Kompresi Citra Digital JPEG}}
-\author{Tim Penulis Jurnal Ilmiah}
+\author{Teosofi Hidayah Agung\\5002221132}
 \date{\today}
 
 \begin{document}
@@ -47,7 +47,7 @@
   Makalah ini menyajikan telaah mendalam mengenai aplikasi Deret Fourier, khususnya Transformasi Kosinus Diskrit (DCT), sebagai landasan matematis dari standar kompresi citra JPEG. Pembahasan dimulai dari evolusi konsep analisis frekuensi, mulai dari Deret Fourier untuk sinyal periodik, Transformasi Fourier untuk sinyal non-periodik, hingga adaptasi digital melalui Transformasi Fourier Diskrit (DFT). Analisis difokuskan pada keunggulan fundamental DCT, yaitu properti pemadatan energi (\textit{energy compaction}) yang superior, yang memungkinkannya mengkonsentrasikan informasi visual penting ke dalam sejumlah kecil koefisien. Selanjutnya, makalah ini membedah anatomi lengkap alur kerja kompresi JPEG, mulai dari pra-pemrosesan, kuantisasi, hingga pengkodean entropi. Analisis kinerja juga disajikan, menguraikan hubungan antara tingkat kompresi dan munculnya artefak visual seperti \textit{blocking} dan \textit{ringing}. Terakhir, JPEG ditempatkan dalam konteks evolusi teknologi dengan membandingkannya dengan standar yang lebih modern seperti JPEG 2000, WebP, dan AVIF untuk memberikan gambaran masa depan kompresi citra.
 \end{abstract}
 
-\keywords{Deret Fourier, Transformasi Kosinus Diskrit, JPEG, Kompresi Citra, Pemadatan Energi, Artefak Kompresi.}
+% \keywords{Deret Fourier, Transformasi Kosinus Diskrit, JPEG, Kompresi Citra, Pemadatan Energi, Artefak Kompresi.}
 
 \section{Pendahuluan}
 Analisis Fourier merupakan pilar fundamental dalam pemrosesan sinyal dan citra digital, memungkinkan representasi sinyal kompleks dalam domain waktu atau spasial sebagai jumlahan komponen frekuensi sederhana \cite{oppenheim1996signals}. Pergeseran paradigma ke domain frekuensi ini membuka jalan bagi teknik analisis dan manipulasi data yang kuat, termasuk kompresi data.
@@ -103,8 +103,50 @@ Standar kompresi JPEG adalah proses multi-tahap yang dirancang untuk mengurangi 
 \subsection{Pra-pemrosesan}
 Langkah pertama untuk citra berwarna adalah transformasi ruang warna dari RGB ke YCbCr, yang memisahkan komponen kecerahan (Y) dari komponen warna (Cb, Cr). Karena mata manusia kurang sensitif terhadap perubahan warna, resolusi spasial komponen Cb dan Cr dikurangi melalui teknik \textit{chroma subsampling}, yang merupakan langkah kompresi pertama yang sangat efisien \cite{wallace1991jpeg}.
 
+Transformasi dari ruang warna RGB ke ruang Y'CbCr pada standar terbaru, yaitu \textit{ITU-R BT.2020},
+didefinisikan dengan mempertimbangkan sifat non-linear dari sistem tampilan modern \cite{itu2020}.
+Pada standar ini, komponen warna yang digunakan adalah $R'$, $G'$, dan $B'$,
+yakni hasil dari penerapan fungsi \textit{gamma correction} terhadap nilai RGB linear.
+Fungsi non-linear tersebut diberikan oleh:
+\begin{equation}
+  f(x) =
+  \begin{cases}
+    4.5x,                  & x < 0.018,   \\[4pt]
+    1.099x^{0.45} - 0.099, & x \ge 0.018,
+  \end{cases}
+\end{equation}
+sehingga diperoleh $R' = f(R)$, $G' = f(G)$, dan $B' = f(B)$.
+
+Selanjutnya, komponen luminansi ($Y'$) serta dua komponen krominansi ($Cb$, $Cr$) dihitung menggunakan kombinasi linier dari $R'$, $G'$, dan $B'$ sebagai berikut:
+\begin{equation}
+  \begin{bmatrix}
+    Y' \\[4pt]
+    Cb \\[4pt]
+    Cr
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0.2627   & 0.6780   & 0.0593   \\[4pt]
+    -0.13963 & -0.36037 & 0.50000  \\[4pt]
+    0.50000  & -0.45979 & -0.04021
+  \end{bmatrix}
+  \begin{bmatrix}
+    R' \\[4pt]
+    G' \\[4pt]
+    B'
+  \end{bmatrix}.
+\end{equation}
+
+Koefisien pada matriks di atas diturunkan dari nilai konstanta primaries standar BT.2020, yaitu
+$K_R = 0.2627$, $K_B = 0.0593$, dan $K_G = 1 - K_R - K_B = 0.6780$.
+Pendekatan ini memungkinkan representasi luminansi ($Y'$) yang konsisten dengan persepsi visual manusia,
+serta menghasilkan rentang warna (\textit{color gamut}) yang lebih luas pada sistem tampilan berdefinisi tinggi.
+
+
+
+
 \subsection{Partisi Blok dan Aplikasi DCT}
-Setiap kanal (Y, Cb, Cr) dibagi menjadi blok-blok 8x8 piksel. Nilai piksel dalam setiap blok digeser levelnya menjadi rentang [-128, 127], kemudian 2D-DCT diterapkan pada setiap blok, mengubah 64 nilai piksel spasial menjadi 64 koefisien frekuensi.
+Setiap kanal (Y, Cb, Cr) dibagi menjadi blok-blok $8 \times 8$ piksel. Nilai piksel dalam setiap blok digeser levelnya menjadi rentang [-128, 127], kemudian 2D-DCT diterapkan pada setiap blok, mengubah 64 nilai piksel spasial menjadi 64 koefisien frekuensi.
 
 \subsection{Kuantisasi: Jantung Kompresi \textit{Lossy}}
 Kuantisasi adalah satu-satunya tahap di mana informasi hilang secara permanen. Prosesnya melibatkan pembagian setiap koefisien DCT dengan nilai dari matriks kuantisasi, lalu hasilnya dibulatkan ke bilangan bulat terdekat.
