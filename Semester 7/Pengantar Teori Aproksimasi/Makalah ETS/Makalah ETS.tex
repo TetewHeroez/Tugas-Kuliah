@@ -1,0 +1,201 @@
+\documentclass[a4paper]{article}
+
+% PACKAGES
+\usepackage[bahasa]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sorting=none
+]{biblatex}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=cyan,
+}
+\usepackage{geometry}
+\usepackage{abstract}
+\setlength{\absleftindent}{0pt}
+\setlength{\absrightindent}{0pt}
+
+% BIBLIOGRAPHY
+\addbibresource{references.bib}
+
+% KEYWORDS ENVIRONMENT
+\newcommand{\keywords}[1]{%
+  \begin{center}
+  \textbf{\textit{Kata Kunci---}}#1
+  \end{center}
+}
+
+% DOCUMENT INFO
+\title{\textbf{Aplikasi Deret Fourier: Transformasi Kosinus Diskrit (DCT) dalam Kompresi Citra Digital JPEG}}
+\author{Teosofi Hidayah Agung\\5002221132}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Makalah ini menyajikan telaah mendalam mengenai aplikasi Deret Fourier, khususnya Transformasi Kosinus Diskrit (DCT), sebagai landasan matematis dari standar kompresi citra JPEG. Pembahasan dimulai dari evolusi konsep analisis frekuensi, mulai dari Deret Fourier untuk sinyal periodik, Transformasi Fourier untuk sinyal non-periodik, hingga adaptasi digital melalui Transformasi Fourier Diskrit (DFT). Analisis difokuskan pada keunggulan fundamental DCT, yaitu properti pemadatan energi (\textit{energy compaction}) yang superior, yang memungkinkannya mengkonsentrasikan informasi visual penting ke dalam sejumlah kecil koefisien. Selanjutnya, makalah ini membedah anatomi lengkap alur kerja kompresi JPEG, mulai dari pra-pemrosesan, kuantisasi, hingga pengkodean entropi. Analisis kinerja juga disajikan, menguraikan hubungan antara tingkat kompresi dan munculnya artefak visual seperti \textit{blocking} dan \textit{ringing}. Terakhir, JPEG ditempatkan dalam konteks evolusi teknologi dengan membandingkannya dengan standar yang lebih modern seperti JPEG 2000, WebP, dan AVIF untuk memberikan gambaran masa depan kompresi citra.
+\end{abstract}
+
+% \keywords{Deret Fourier, Transformasi Kosinus Diskrit, JPEG, Kompresi Citra, Pemadatan Energi, Artefak Kompresi.}
+
+\section{Pendahuluan}
+Analisis Fourier merupakan pilar fundamental dalam pemrosesan sinyal dan citra digital, memungkinkan representasi sinyal kompleks dalam domain waktu atau spasial sebagai jumlahan komponen frekuensi sederhana \cite{oppenheim1996signals}. Pergeseran paradigma ke domain frekuensi ini membuka jalan bagi teknik analisis dan manipulasi data yang kuat, termasuk kompresi data.
+
+Bab ini menelusuri evolusi matematis dari Deret Fourier untuk sinyal periodik, perluasannya menjadi Transformasi Fourier untuk sinyal non-periodik, hingga adaptasinya untuk dunia digital melalui Transformasi Fourier Diskrit (DFT). Pemahaman terhadap setiap tahapan ini menjadi landasan esensial untuk memahami mengapa Transformasi Kosinus Diskrit (DCT) pada akhirnya dipilih sebagai inti dari standar kompresi citra JPEG \cite{wallace1991jpeg}.
+
+\subsection{Esensi Deret Fourier}
+Setiap fungsi periodik dapat diuraikan sebagai deret tak hingga dari jumlahan fungsi sinus dan kosinus dengan berbagai frekuensi dan amplitudo \cite{bracewell1999fourier}. Deret Fourier untuk fungsi periodik $f(t)$ dengan periode $2L$ dinyatakan sebagai:
+\begin{equation} \label{eq:fourier_series}
+  f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos\left(\frac{n\pi t}{L}\right) + b_n \sin\left(\frac{n\pi t}{L}\right) \right)
+\end{equation}
+di mana koefisien $a_0$, $a_n$, dan $b_n$ dihitung menggunakan integral berikut \cite{oppenheim1996signals}:
+\begin{gather}
+  a_0 = \frac{1}{L} \int_{-L}^{L} f(t) \,dt \label{eq:a0} \\
+  a_n = \frac{1}{L} \int_{-L}^{L} f(t) \cos\left(\frac{n\pi t}{L}\right) \,dt \label{eq:an} \\
+  b_n = \frac{1}{L} \int_{-L}^{L} f(t) \sin\left(\frac{n\pi t}{L}\right) \,dt \label{eq:bn}
+\end{gather}
+Dekomposisi ini adalah transformasi dari domain waktu ke domain frekuensi. Sifat simetri fungsi asli berdampak langsung pada koefisiennya; fungsi genap hanya menghasilkan suku kosinus, sedangkan fungsi ganjil hanya menghasilkan suku sinus \cite{bracewell1999fourier}.
+
+\subsection{Transformasi Fourier untuk Sinyal Non-Periodik}
+Untuk sinyal non-periodik, konsep Deret Fourier diperluas dengan memperlakukan sinyal sebagai periodik dengan periode mendekati tak hingga ($T \to \infty$) \cite{bracewell1999fourier}. Dalam limit ini, spektrum frekuensi menjadi kontinu dan jumlahan berubah menjadi integral, melahirkan pasangan Transformasi Fourier:
+\begin{gather}
+  F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t} \,dt \label{eq:ft_forward} \\
+  f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{j\omega t} \,d\omega \label{eq:ft_inverse}
+\end{gather}
+Untuk citra 2D, digunakan Transformasi Fourier 2D kontinu. Namun, bentuk ini tidak dapat dihitung secara langsung oleh komputer karena melibatkan operasi integral pada fungsi kontinu \cite{oppenheim1996signals}.
+
+\subsection{Transformasi Fourier Diskrit (DFT)}
+Untuk aplikasi digital, Transformasi Fourier Diskrit (DFT) dikembangkan. DFT diterapkan pada sinyal yang telah diambil sampelnya (diskrit) dan menghasilkan spektrum frekuensi yang juga diskrit. Untuk sekuens data 1D $f[n]$ dengan $N$ sampel, DFT didefinisikan sebagai \cite{oppenheim1996signals}:
+\begin{equation} \label{eq:dft_1d}
+  F[k] = \sum_{n=0}^{N-1} f[n] e^{-j\frac{2\pi kn}{N}}, \quad k = 0, \dots, N-1
+\end{equation}
+Meskipun dapat diimplementasikan secara komputasi, DFT memiliki dua kelemahan fundamental untuk kompresi citra: (1) menghasilkan output bilangan kompleks, yang tidak efisien untuk disimpan, dan (2) asumsi periodisitas implisit yang menciptakan diskontinuitas artifisial pada batas blok citra, menghasilkan banyak koefisien frekuensi tinggi yang tidak perlu \cite{ucsd_dct_notes}.
+
+\section{Transformasi Kosinus Diskrit (DCT)}
+DCT muncul sebagai solusi yang dirancang untuk mengatasi kelemahan DFT. DCT tidak hanya menghasilkan koefisien riil, tetapi juga memiliki properti "pemadatan energi" yang jauh lebih unggul, yang menjadi kunci keberhasilan standar kompresi JPEG \cite{wallace1991jpeg}.
+
+\subsection{Definisi Matematis}
+DCT pertama kali diperkenalkan oleh Ahmed, Natarajan, dan Rao pada tahun 1974 \cite{ahmed1974dct}. Berbeda dengan DFT, DCT hanya menggunakan basis fungsi kosinus, sehingga input riil (nilai piksel) akan selalu menghasilkan output riil \cite{ucsd_dct_notes}. Varian yang paling umum digunakan dalam kompresi citra adalah DCT-II, yang untuk sekuens 1D $f[n]$ didefinisikan sebagai:
+\begin{equation} \label{eq:dct_1d}
+  F[k] = c[k] \sum_{n=0}^{N-1} f[n] \cos\left(\frac{(2n+1)k\pi}{2N}\right)
+\end{equation}
+di mana $c[k]$ adalah faktor normalisasi. Untuk aplikasi citra 2D pada blok $N \times N$, digunakan formula 2D-DCT yang dapat dipisahkan (\textit{separable}). Secara konseptual, menerapkan DCT-II pada $N$ titik setara dengan mengambil DFT dari sekuens yang telah diperpanjang secara simetris menjadi $2N$ titik, yang secara efektif menghilangkan diskontinuitas pada batas blok \cite{ucsd_dct_notes}.
+
+\subsection{Konsep Kritis: Pemadatan Energi}
+Pemadatan energi (\textit{energy compaction}) adalah kemampuan transformasi untuk mengkonsentrasikan sebagian besar informasi sinyal ke dalam sejumlah kecil koefisien \cite{saab_transform_arxiv}. DCT memiliki properti pemadatan energi yang sangat baik untuk citra natural karena perpanjangan simetris implisitnya menghilangkan diskontinuitas artifisial di batas blok, sehingga energi tidak "terbuang" untuk merepresentasikan transisi artifisial tersebut \cite{ucsd_dct_notes, samsung2018heecn}.
+
+Kecemerlangan DCT juga terletak pada keselarasan dengan sistem persepsi visual manusia. DCT memisahkan komponen frekuensi rendah (kecerahan) dan frekuensi tinggi (detail). Mata manusia sangat sensitif terhadap perubahan frekuensi rendah tetapi kurang sensitif terhadap variasi frekuensi tinggi \cite{wallace1991jpeg}. Dengan demikian, DCT melakukan "pemilahan perseptual" terhadap data, memprioritaskan apa yang paling penting bagi mata kita.
+
+\section{Anatomi Standar Kompresi JPEG}
+Standar kompresi JPEG adalah proses multi-tahap yang dirancang untuk mengurangi ukuran file citra secara signifikan, di mana setiap langkah bekerja secara sinergis \cite{wallace1991jpeg}.
+
+\subsection{Pra-pemrosesan}
+Langkah pertama untuk citra berwarna adalah transformasi ruang warna dari RGB ke YCbCr, yang memisahkan komponen kecerahan (Y) dari komponen warna (Cb, Cr). Karena mata manusia kurang sensitif terhadap perubahan warna, resolusi spasial komponen Cb dan Cr dikurangi melalui teknik \textit{chroma subsampling}, yang merupakan langkah kompresi pertama yang sangat efisien \cite{wallace1991jpeg}.
+
+Transformasi dari ruang warna RGB ke ruang Y'CbCr pada standar terbaru, yaitu \textit{ITU-R BT.2020},
+didefinisikan dengan mempertimbangkan sifat non-linear dari sistem tampilan modern \cite{itu2020}.
+Pada standar ini, komponen warna yang digunakan adalah $R'$, $G'$, dan $B'$,
+yakni hasil dari penerapan fungsi \textit{gamma correction} terhadap nilai RGB linear.
+Fungsi non-linear tersebut diberikan oleh:
+\begin{equation}
+  f(x) =
+  \begin{cases}
+    4.5x,                  & x < 0.018,   \\[4pt]
+    1.099x^{0.45} - 0.099, & x \ge 0.018,
+  \end{cases}
+\end{equation}
+sehingga diperoleh $R' = f(R)$, $G' = f(G)$, dan $B' = f(B)$.
+
+Selanjutnya, komponen luminansi ($Y'$) serta dua komponen krominansi ($Cb$, $Cr$) dihitung menggunakan kombinasi linier dari $R'$, $G'$, dan $B'$ sebagai berikut:
+\begin{equation}
+  \begin{bmatrix}
+    Y' \\[4pt]
+    Cb \\[4pt]
+    Cr
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0.2627   & 0.6780   & 0.0593   \\[4pt]
+    -0.13963 & -0.36037 & 0.50000  \\[4pt]
+    0.50000  & -0.45979 & -0.04021
+  \end{bmatrix}
+  \begin{bmatrix}
+    R' \\[4pt]
+    G' \\[4pt]
+    B'
+  \end{bmatrix}.
+\end{equation}
+
+Koefisien pada matriks di atas diturunkan dari nilai konstanta primaries standar BT.2020, yaitu
+$K_R = 0.2627$, $K_B = 0.0593$, dan $K_G = 1 - K_R - K_B = 0.6780$.
+Pendekatan ini memungkinkan representasi luminansi ($Y'$) yang konsisten dengan persepsi visual manusia,
+serta menghasilkan rentang warna (\textit{color gamut}) yang lebih luas pada sistem tampilan berdefinisi tinggi.
+
+
+
+
+\subsection{Partisi Blok dan Aplikasi DCT}
+Setiap kanal (Y, Cb, Cr) dibagi menjadi blok-blok $8 \times 8$ piksel. Nilai piksel dalam setiap blok digeser levelnya menjadi rentang [-128, 127], kemudian 2D-DCT diterapkan pada setiap blok, mengubah 64 nilai piksel spasial menjadi 64 koefisien frekuensi.
+
+\subsection{Kuantisasi: Jantung Kompresi \textit{Lossy}}
+Kuantisasi adalah satu-satunya tahap di mana informasi hilang secara permanen. Prosesnya melibatkan pembagian setiap koefisien DCT dengan nilai dari matriks kuantisasi, lalu hasilnya dibulatkan ke bilangan bulat terdekat.
+\begin{equation} \label{eq:quantization}
+  F_Q[u, v] = \text{round}\left(\frac{F[u, v]}{Q[u, v]}\right)
+\end{equation}
+Matriks kuantisasi $Q[u,v]$ dirancang berdasarkan sensitivitas visual manusia, dengan nilai kecil untuk frekuensi rendah dan besar untuk frekuensi tinggi. Ini berarti koefisien frekuensi tinggi yang kurang penting secara perseptual akan dikurangi secara drastis, sering kali menjadi nol \cite{wallace1991jpeg}.
+
+\subsection{Serialisasi dan Pengkodean Entropi}
+Setelah kuantisasi, matriks 8x8 yang "jarang" diubah menjadi vektor 1D menggunakan pemindaian zig-zag. Pola ini mengelompokkan koefisien non-nol di awal vektor dan menciptakan barisan panjang nilai nol di akhir. Vektor ini kemudian dikodekan secara \textit{lossless} menggunakan DPCM untuk koefisien DC dan RLE untuk koefisien AC, diikuti oleh pengkodean Huffman untuk merepresentasikan data akhir seefisien mungkin \cite{wallace1991jpeg}.
+
+\subsection{Proses Dekompresi}
+Untuk merekonstruksi citra, seluruh proses dilakukan secara terbalik: Dekode Entropi, De-serialisasi, De-kuantisasi, dan Transformasi Kosinus Diskrit Terbalik (IDCT).
+
+\section{Analisis Kinerja dan Artefak Visual}
+Efektivitas JPEG diukur dari rasio kompresi dan kualitas visual, yang merupakan sebuah pertukaran (\textit{trade-off}).
+
+\subsection{Keunggulan dan Kelemahan}
+Keunggulan utama JPEG adalah rasio kompresi yang sangat tinggi pada citra fotografi dengan degradasi perseptual minimal pada kualitas tinggi \cite{wallace1991jpeg}. Namun, sifatnya yang \textit{lossy} berarti kualitas citra menurun setiap kali disimpan ulang. Pada kompresi tinggi, artefak visual menjadi jelas terlihat.
+
+\subsection{Artefak Visual Kompresi}
+\begin{itemize}
+  \item \textbf{Artefak Pemblokiran (\textit{Blocking Artifacts}):} Muncul sebagai pola kisi-kisi 8x8, terutama di area gradasi halus. Ini disebabkan oleh pemrosesan independen pada setiap blok dan kuantisasi kasar yang menciptakan batas artifisial antar blok \cite{singh2012blocking, chou1998smoothing}.
+  \item \textbf{\textit{Ringing} dan \textit{Blurring}:} \textit{Blurring} terjadi ketika koefisien frekuensi tinggi (detail halus) dihilangkan. \textit{Ringing} muncul sebagai "gema" di sekitar tepi kontras tinggi, sebuah manifestasi dari Fenomena Gibbs akibat pembuangan komponen frekuensi tinggi yang diperlukan untuk merekonstruksi tepi yang tajam \cite{gottlieb1996gibbs, marziliano2004perceptual}.
+\end{itemize}
+
+\begin{table}[h!]
+  \centering
+  \caption{Perbandingan Kualitas vs. Tingkat Kompresi JPEG}
+  \label{tab:kualitas_jpeg}
+  \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{@{}lll@{}}
+      \toprule
+      \textbf{Kualitas (\%)} & \textbf{Rasio Kompresi} & \textbf{Deskripsi Artefak Visual}                     \\ \midrule
+      95-100                 & 2:1 - 5:1               & Artefak hampir tidak terlihat.                        \\
+      85-94                  & 5:1 - 15:1              & Kualitas sangat baik untuk sebagian besar penggunaan. \\
+      75-84                  & 15:1 - 25:1             & Keseimbangan baik, artefak mulai terlihat.            \\
+      50-74                  & 25:1 - 40:1             & Artefak jelas, detail mulai hilang.                   \\
+      <50                    & > 40:1                  & Degradasi citra sangat parah.                         \\ \bottomrule
+    \end{tabular}%
+  }
+\end{table}
+
+\section{Contoh Penerapan dan Perhitungan Kompresi JPEG}
+
+
+\section{KESIMPULAN}
+Standar JPEG berbasis DCT merupakan tonggak sejarah dalam teknologi digital. Kombinasi antara kinerja yang "cukup baik", kesederhanaan implementasi, dan status bebas royalti memungkinkannya menjadi standar universal yang mendorong pertumbuhan internet visual. Warisan abadi dari DCT adalah demonstrasi kuat tentang bagaimana analisis domain frekuensi, ketika digabungkan secara cerdas dengan model persepsi manusia, dapat menjadi alat yang sangat efektif untuk kompresi data. Masa depan kompresi citra jelas mengarah pada format turunan codec video seperti AVIF, yang tidak hanya menawarkan efisiensi superior tetapi juga mendukung fitur-fitur penting seperti HDR dan gamut warna yang luas.
+
+\printbibliography
+
+\end{document}
