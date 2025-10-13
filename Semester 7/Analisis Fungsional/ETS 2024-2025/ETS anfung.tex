@@ -1,0 +1,191 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{geometry}
+  \geometry{
+    left = 20mm,
+    right = 20mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{
+  \begin{center}
+    \textbf{SOLUSI}
+  \end{center}
+}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{r c}
+    \includegraphics[width=2cm]{ITS.png}
+     & \begin{tabular}{lcll}
+         \multicolumn{4}{l}{\begin{tabular}{c}
+                             \MakeUppercase{evaluasi tengah semester gasal 2024/2025} \\
+                             \MakeUppercase{departemen matematika fsad its}           \\
+                             \MakeUppercase{program sarjana}                          \\
+                           \end{tabular}}                   \\
+         \\
+         Matakuliah    & : & \multicolumn{2}{l}{Aljabar Linear}                                        \\
+         Hari, Tanggal & : & \multicolumn{2}{l}{Kamis, 17 Oktober 2024}                                \\
+         Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Tertutup}}                         \\
+         Dosen         & : & \multicolumn{2}{l}{Dr. Mahmud Yunus, M.Si. dan Dr. Sunarsini, S.Si, M.Si} \\
+                       &   & \hspace{8cm} \multirow{-12}{0cm}{\includegraphics[width=2cm]{M.png}}
+       \end{tabular}
+
+    \\ \hline
+    \multicolumn{2}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}                                                \\
+    \multicolumn{2}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS} \\
+    \multicolumn{2}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}       \\
+    \hline
+  \end{tabular}
+\end{table}
+\renewcommand{\arraystretch}{1.5}
+\begin{enumerate}
+  \item Diketahui $(X,d)$ ruang metrik dan $Y$ himpunan tertutup di $X$. Jika $(X,d)$ ruang metrik lengkap, tunjukkan bahwa $(Y,d)$ juga ruang metrik lengkap.
+        \bigskip
+  \item Misalkan $V$ suatu ruang vektor bernorma dan $\{v_1, v_2, \dots, v_n\}$ himpunan vektor di $V$ untuk suatu $n \in \mathbb{N}$. Jika terdapat konstanta $A > 0$ sehingga ketaksamaan
+        \[
+          A \sum_{k=1}^{n} |c_k|^2 \leq \left\| \sum_{k=1}^{n} c_k v_k \right\|^2
+        \]
+        berlaku untuk semua koefisien skalar $c_1, \dots, c_n$. Tunjukkan bahwa vektor-vektor $\{v_1, v_2, \dots, v_n\}$ adalah bebas linear.
+        \bigskip
+  \item Pandang ruang vektor bernorma $(C[a,b], \|\cdot\|)$ dengan
+        $
+          \|f\| := \sup\{|f(x)| : x \in [a,b]\}
+        $ untuk $f \in C[a,b]$.
+        Didefinisikan operator $T: C[a,b] \to C[a,b]$ dengan
+        \[
+          (Tf)(x) := \int_a^x f(t) \, dt.
+        \]
+        \begin{enumerate}
+          \item Tunjukkan bahwa $T$ adalah operator linear.
+          \item Tunjukkan bahwa $T$ injektif tetapi tidak surjektif.
+          \item Apakah $T$ isometri? Berikan penjelasan.
+        \end{enumerate}
+        \bigskip
+  \item Pandang $V = \{ \{x_k\}_{k=1}^{\infty} : x_k \in \mathbb{C}, \forall k \in \mathbb{N}, \text{dan hanya berhingga } x_k \text{ tak-nol} \}$. Tunjukkan bahwa
+        \begin{enumerate}
+          \item $V$ merupakan sub-ruang dari $\ell^1(\mathbb{N})$,
+          \item $V$ padat di $\ell^1(\mathbb{N})$,
+          \item $V$ bukan himpunan tertutup dari $\ell^1(\mathbb{N})$.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+\fancyfoot[C]{}
+\fancyfoot[R]{\color{blue}\textit{Teosofi Hidayah Agung - 5002221132}}
+\jawab
+\begin{enumerate}
+  \item Misalkan $\{y_n\}$ adalah barisan Cauchy di $Y$. Karena $Y \subset X$, maka setiap suku barisan $y_n$ adalah elemen di $X$. Karena $(X,d)$ lengkap, maka pasti terdapat $x \in X$ sehingga $y_n \to x$ di $X$. Karena $Y$ tertutup, maka haruslah $Y$ memuat semua titik limitnya. Karena $y_n$ konvergen ke $x$, maka haruslah $x \in Y$. Jadi, setiap barisan Cauchy di $Y$ konvergen ke elemen di $Y$, sehingga $(Y,d)$ lengkap.
+        \bigskip
+  \item Himpunan vektor $\{v_1, v_2, \dots, v_n\}$ dikatakan bebas linear jika hanya solusi trivial yang memenuhi persamaan
+        \[
+          c_1 v_1 + c_2 v_2 + \dots + c_n v_n = 0.
+        \]
+        Misalkan terdapat koefisien skalar $c_1, c_2, \dots, c_n$ sedemikian sehingga
+        \[
+          c_1 v_1 + c_2 v_2 + \dots + c_n v_n = 0.
+        \]
+        Dengan menggunakan ketaksamaan yang diberikan, diperoleh
+        \[
+          A \sum_{k=1}^{n} |c_k|^2 \leq \left\| \sum_{k=1}^{n} c_k v_k \right\|^2 = \|0\|^2 = 0.
+        \]
+        Karena $A > 0$, maka haruslah $\sum_{k=1}^{n} |c_k|^2 = 0$. Hal ini hanya mungkin terjadi jika setiap $c_k = 0$ untuk semua $k = 1, 2, \dots, n$. Jadi, hanya solusi trivial yang ada, sehingga himpunan vektor $\{v_1, v_2, \dots, v_n\}$ adalah bebas linear.
+        \bigskip
+  \item \begin{enumerate}
+          \item Untuk setiap $f, g \in C[a,b]$ dan skalar $\alpha, \beta \in \mathbb{R}$, kita punya
+                \[
+                  T(\alpha f + \beta g)(x) = \int_a^x (\alpha f(t) + \beta g(t)) \, dt = \alpha \int_a^x f(t) \, dt + \beta \int_a^x g(t) \, dt = \alpha (Tf)(x) + \beta (Tg)(x).
+                \]
+                Jadi, $T$ adalah operator linear.
+                \bigskip
+          \item Untuk menunjukkan bahwa $T$ injektif, misalkan $Tf = Tg$ untuk $f, g \in C[a,b]$. Maka untuk setiap $x \in [a,b]$, kita punya
+                \[
+                  \int_a^x f(t) \, dt = \int_a^x g(t) \, dt.
+                \]
+                Menggunakan Teorema Fundamental Kalkulus, kita dapat menurunkan kedua sisi terhadap $x$ untuk mendapatkan
+                \begin{align*}
+                  \frac{d}{dx} \left( \int_a^x f(t) \, dt \right) & = \frac{d}{dx} \left( \int_a^x g(t) \, dt \right) \\
+                  f(x)                                            & = g(x).
+                \end{align*}
+                Karena ini berlaku untuk semua $x \in [a,b]$, maka $f = g$. Jadi, $T$ adalah injektif.
+
+                Untuk menunjukkan bahwa $T$ tidak surjektif, kita perlu menemukan fungsi di $C[a,b]$ yang bukan image dari $T$. Misalkan kita ambil fungsi konstan $h(x) = 1$ untuk setiap $x \in [a,b]$. Jika ada $f \in C[a,b]$ sehingga $Tf = h$, maka kita harus memiliki
+                \[
+                  (Tf)(x) = \int_a^x f(t) \, dt = 1.
+                \]
+                Namun, ini tidak mungkin karena integral dari fungsi kontinu tidak bisa menjadi konstan kecuali fungsi tersebut adalah nol hampir di mana-mana. Jadi, $T$ tidak surjektif.
+          \item $T$ dikatakan isometri jika untuk setiap $f \in C[a,b]$, berlaku
+                \[
+                  \|Tf\| = \|f\|.
+                \]
+                Namun, kita punya
+                \[
+                  \|Tf\| = \sup_{x \in [a,b]} |(Tf)(x)| = \sup_{x \in [a,b]} \left| \int_a^x f(t) \, dt \right|.
+                \]
+                Dengan menggunakan ketaksamaan segitiga untuk integral, kita dapat memperkirakan
+                \[
+                  \left| \int_a^x f(t) \, dt \right| \leq \int_a^x |f(t)| \, dt \leq (b-a) \|f\|.
+                \]
+                Jadi,
+                \[
+                  \|Tf\| = \sup_{x \in [a,b]} |(Tf)(x)| \leq (b-a) \|f\|.
+                \]
+                Ini menunjukkan bahwa $T$ tidak mempertahankan norma secara tepat, sehingga $T$ bukan isometri.
+        \end{enumerate}
+  \item \begin{enumerate}
+          \item Misalkan $\{x_k\}, \{y_k\} \in V$ dan $\alpha\in\mathbb{C}$. Selanjutnya kita tahu bahwa hanya berhingga $x_k$ dan $y_k$ yang tak-nol, katakanlah sebanyak $M$ dan $N$ berturut-turut ($M, N < \infty$). Maka, untuk penjumlahan, kita punya
+                \[
+                  \{x_k\} + \{y_k\} = \{x_k + y_k\},
+                \]
+                yang juga hanya memiliki paling banyak $M + N$ suku tak-nol, sehingga $\{x_k + y_k\} \in V$. Untuk perkalian skalar, kita punya
+                \[
+                  \alpha \{x_k\} = \{\alpha x_k\},
+                \]
+                yang juga hanya memiliki paling banyak $M$ suku tak-nol, sehingga $\{\alpha x_k\} \in V$. Oleh karena itu, $V$ adalah sub-ruang dari $\ell^1(\mathbb{N})$.
+          \item Misalkan $\{y_k\} \in \ell^1(\mathbb{N})$. Kita ingin menunjukkan bahwa untuk setiap $\epsilon > 0$, terdapat $\{x_k\} \in V$ sedemikian sehingga
+                \[
+                  \|\{y_k\} - \{x_k\}\|_1 < \epsilon.
+                \]
+                Karena $\{y_k\} \in \ell^1(\mathbb{N})$ yang dimana elemen tak nol nya berhingga, maka jumlahan atau deret $\sum_{k=1}^{\infty} |y_k|$ konvergen. Oleh karena itu, terdapat $N \in \mathbb{N}$ sedemikian sehingga
+                \[
+                  \sum_{k=N+1}^{\infty} |y_k| < \epsilon.
+                \]
+                Sekarang, kita definisikan $\{x_k\} \in V$ sebagai
+                \[
+                  x_k = \begin{cases}
+                    y_k, & \text{jika } k \leq N, \\
+                    0,   & \text{jika } k > N.
+                  \end{cases}
+                \]
+                Dimana $\{x_k\}$ hanya memiliki paling banyak $N$ suku tak-nol, sehingga $\{x_k\} \in V$. Selanjutnya, kita hitung norma dari selisihnya:
+                \[
+                  \|\{y_k\} - \{x_k\}\|_1 = \sum_{k=1}^{\infty} |y_k - x_k| = \sum_{k=N+1}^{\infty} |y_k| < \epsilon.
+                \]
+                Jadi, untuk setiap $\epsilon > 0$, kita dapat menemukan $\{x_k\} \in V$ sedemikian sehingga $\|\{y_k\} - \{x_k\}\|_1 < \epsilon$. Oleh karena itu, $V$ padat di $\ell^1(\mathbb{N})$.
+          \item Akan kita tunjukkan dengan kontradiksi. Misalkan $V$ adalah himpunan tertutup di $\ell^1(\mathbb{N})$. Karena $V$ padat di $\ell^1(\mathbb{N})$, maka \textit{closure} dari $V$ adalah $\ell^1(\mathbb{N})$ itu sendiri, yaitu $\overline{V} = \ell^1(\mathbb{N})$. Jika $V$ tertutup, maka $V = \overline{V} = \ell^1(\mathbb{N})$. Namun, ini bertentangan dengan definisi $V$ yang hanya berisi deret dengan elemen tak nol berhingga, sedangkan $\ell^1(\mathbb{N})$ berisi semua deret yang konvergen secara absolut, termasuk yang memiliki elemen tak nol tak berhingga. Oleh karena itu, asumsi bahwa $V$ adalah himpunan tertutup di $\ell^1(\mathbb{N})$ adalah salah. Jadi, $V$ bukan himpunan tertutup dari $\ell^1(\mathbb{N})$.
+        \end{enumerate}
+\end{enumerate}
+\end{document}
