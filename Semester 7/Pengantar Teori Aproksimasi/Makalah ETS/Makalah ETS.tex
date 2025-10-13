@@ -23,6 +23,8 @@
 \usepackage{abstract}
 \setlength{\absleftindent}{0pt}
 \setlength{\absrightindent}{0pt}
+% Ubah judul lingkungan abstract ke Bahasa Indonesia
+\renewcommand{\abstractname}{Abstrak}
 
 % BIBLIOGRAPHY
 \addbibresource{references.bib}
@@ -50,10 +52,13 @@
 % \keywords{Deret Fourier, Transformasi Kosinus Diskrit, JPEG, Kompresi Citra, Pemadatan Energi, Artefak Kompresi.}
 
 \section{Pendahuluan}
-Analisis Fourier merupakan pilar fundamental dalam pemrosesan sinyal dan citra digital, memungkinkan representasi sinyal kompleks dalam domain waktu atau spasial sebagai jumlahan komponen frekuensi sederhana \cite{oppenheim1996signals}. Pergeseran paradigma ke domain frekuensi ini membuka jalan bagi teknik analisis dan manipulasi data yang kuat, termasuk kompresi data.
+Analisis Fourier adalah fondasi yang memungkinkan representasi sinyal dan citra dalam domain frekuensi; konsep ini menjelaskan mengapa transformasi seperti DCT mampu memusatkan energi dan mengurangi redundansi visual secara efektif. Sebagai pengantar singkat, pemahaman mengenai dekomposisi sinyal ke komponen frekuensi membantu menjelaskan perilaku \textit{transform-domain compression}.
 
-Bab ini menelusuri evolusi matematis dari Deret Fourier untuk sinyal periodik, perluasannya menjadi Transformasi Fourier untuk sinyal non-periodik, hingga adaptasinya untuk dunia digital melalui Transformasi Fourier Diskrit (DFT). Pemahaman terhadap setiap tahapan ini menjadi landasan esensial untuk memahami mengapa Transformasi Kosinus Diskrit (DCT) pada akhirnya dipilih sebagai inti dari standar kompresi citra JPEG \cite{wallace1991jpeg}.
+Standar JPEG, yang berlandaskan pada DCT, telah lama menjadi solusi praktis untuk kompresi citra \textit{lossy} karena kombinasi efisiensi komputasi, pemadatan energi yang baik, dan dukungan perangkat keras/ekosistem yang luas.
 
+Studi terhadap JPEG relevan secara praktis karena desainnya merepresentasikan trade-off nyata antara efisiensi dan kualitas visual: penggunaan blok $8\times 8$ dan kuantisasi memberikan pengurangan bit-rate yang signifikan namun juga menimbulkan artefak seperti \textit{blocking} dan \textit{ringing} pada tingkat kompresi tinggi. Dengan menganalisis bagaimana DCT memusatkan energi, bagaimana kuantisasi memengaruhi distribusi koefisien frekuensi, serta bagaimana pilihan parameter (mis. ukuran blok, matriks kuantisasi, dan strategi kuantisasi) berdampak pada persepsi visual, kita memperoleh landasan untuk menilai dan menyesuaikan algoritme kompresi pada situasi nyata — dari penyimpanan hingga transmisi dan pemrosesan citra. Oleh karena itu, memahami aspek-aspek praktis ini membantu jembatani teori transformasi frekuensi dengan keputusan implementasi yang menentukan kualitas akhir citra.
+
+\section{Formulasi Deret Fourier dan Transformasi Fourier}
 \subsection{Esensi Deret Fourier}
 Setiap fungsi periodik dapat diuraikan sebagai deret tak hingga dari jumlahan fungsi sinus dan kosinus dengan berbagai frekuensi dan amplitudo \cite{bracewell1999fourier}. Deret Fourier untuk fungsi periodik $f(t)$ dengan periode $2L$ dinyatakan sebagai:
 \begin{equation} \label{eq:fourier_series}
