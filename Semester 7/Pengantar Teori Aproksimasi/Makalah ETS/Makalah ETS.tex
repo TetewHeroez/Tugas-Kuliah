@@ -88,7 +88,34 @@ Untuk aplikasi digital, Transformasi Fourier Diskrit (DFT) dikembangkan. DFT dit
 \begin{equation} \label{eq:dft_1d}
   F[k] = \sum_{n=0}^{N-1} f[n] e^{-j\frac{2\pi kn}{N}}, \quad k = 0, \dots, N-1
 \end{equation}
-Meskipun dapat diimplementasikan secara komputasi, DFT memiliki dua kelemahan fundamental untuk kompresi citra: (1) menghasilkan output bilangan kompleks, yang tidak efisien untuk disimpan, dan (2) asumsi periodisitas implisit yang menciptakan diskontinuitas artifisial pada batas blok citra, menghasilkan banyak koefisien frekuensi tinggi yang tidak perlu \cite{ucsd_dct_notes}.
+Meskipun dapat diimplementasikan secara komputasi, DFT memiliki dua kelemahan fundamental untuk kompresi citra:
+\begin{itemize}
+  \item Menghasilkan output bilangan kompleks, yang tidak efisien untuk disimpan.
+  \item Asumsi periodisitas implisit menciptakan diskontinuitas artifisial pada batas blok citra, menghasilkan banyak koefisien frekuensi tinggi yang tidak perlu \cite{ucsd_dct_notes}.
+\end{itemize}
+
+\subsection{Hubungan DFT, DCT, dan DST}
+
+Dengan memisahkan komponen real dan imajiner dari \eqref{eq:dft_1d}, diperoleh:
+\begin{equation}
+  F[k] = \sum_{n=0}^{N-1} x[n] \left[ \cos\left( \frac{2\pi kn}{N} \right) - j \sin\left( \frac{2\pi kn}{N} \right) \right].
+\end{equation}
+
+Jika sinyal diperluas secara \textit{even symmetric}, maka komponen sinus akan hilang dan tersisa hanya kosinus. Hasilnya adalah:
+\begin{equation}
+  F_c[k] = \sum_{n=0}^{N-1} x[n] \cos \left[ \frac{\pi}{N} \left( n + \frac{1}{2} \right) k \right],
+  \quad k = 0, 1, \ldots, N-1
+\end{equation}
+yang dikenal sebagai \textbf{DCT-II}.
+
+Jika sinyal diperluas secara \textit{odd symmetric}, maka komponen kosinus akan hilang dan tersisa hanya sinus:
+\begin{equation}
+  F_s[k] = \sum_{n=0}^{N-1} x[n] \sin \left[ \frac{\pi}{N+1} (n + 1)(k + 1) \right],
+  \quad k = 0, 1, \ldots, N-1.
+\end{equation}
+
+Dengan demikian, baik DCT maupun DST dapat dianggap sebagai versi \textit{real-valued} dari DFT yang didesain untuk memenuhi kondisi batas tertentu.
+
 
 \section{Transformasi Kosinus Diskrit (DCT)}
 DCT muncul sebagai solusi yang dirancang untuk mengatasi kelemahan DFT. DCT tidak hanya menghasilkan koefisien riil, tetapi juga memiliki properti "pemadatan energi" yang jauh lebih unggul, yang menjadi kunci keberhasilan standar kompresi JPEG \cite{wallace1991jpeg}.
@@ -188,6 +215,27 @@ serta menghasilkan rentang warna (\textit{color gamut}) yang lebih luas pada sis
 \subsection{Partisi Blok}
 Setiap kanal (Y, Cb, Cr) dibagi menjadi blok-blok $8 \times 8$ piksel. Nilai piksel dalam setiap blok digeser levelnya menjadi rentang [-128, 127] dari yang semula [0, 255], kemudian 2D-DCT diterapkan pada setiap blok, mengubah 64 nilai piksel spasial menjadi 64 koefisien frekuensi.
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.3\textwidth]{img/partition1.png}\qquad\includegraphics[width=0.2\textwidth]{img/partition2.png}\qquad\includegraphics[width=0.2\textwidth]{img/partition3.png}
+  \caption{Partisi blok $64 \times 64$ dilanjutkan dengan $8\times 8$ pada citra luminansi.}
+  \label{fig:block_partition}
+\end{figure}
+
+Selanjutnya, blok-blok ini dapat diproses dalam ukuran yang lebih besar, seperti $16 \times 16$ atau $32 \times 32$, untuk mengurangi overhead pemrosesan. Namun, ukuran blok yang lebih besar cenderung menghasilkan artefak visual yang lebih jelas, terutama pada tingkat kompresi tinggi. Oleh karena itu, standar JPEG memilih ukuran blok $8 \times 8$ sebagai kompromi optimal antara efisiensi kompresi dan kualitas visual \cite{wallace1991jpeg}. Sebagai tambahan informasi, pada gambar \ref{fig:block_partition} bisa diperoleh matriks $8 \times 8$ dari blok yang dipilih sebagai berikut:
+\[
+  \begin{bmatrix}
+    114 & 113 & 111 & 110 & 109 & 108 & 107 & 106 \\
+    113 & 112 & 111 & 110 & 109 & 108 & 107 & 105 \\
+    113 & 112 & 111 & 110 & 109 & 108 & 106 & 105 \\
+    113 & 112 & 111 & 110 & 108 & 107 & 106 & 105 \\
+    112 & 111 & 110 & 109 & 108 & 107 & 106 & 105 \\
+    112 & 111 & 110 & 109 & 108 & 107 & 106 & 104 \\
+    111 & 110 & 109 & 108 & 107 & 106 & 105 & 104 \\
+    111 & 110 & 109 & 108 & 107 & 106 & 105 & 104
+  \end{bmatrix}
+\]
+
 \subsection{Aplikasi DCT}
 Pertama jika kita tinjau salah satu baris piksel dari citra \textit{grayscale} (Y), misalnya baris ke-100 dari citra $6660 \times 4898$ piksel Gambar \ref{fig:rgb_to_ycbcr}.
 \begin{figure}[h!]
@@ -203,8 +251,8 @@ Pertama jika kita tinjau salah satu baris piksel dari citra \textit{grayscale} (
     \node[] (rgb) {\includegraphics[width=6cm]{img/Y100.png}};
 
     % === Komponen Hasil ===
-    \node[right=of rgb.east, yshift=2cm] (strip) {\includegraphics[width=7cm]{img/strip.png}};
-    \node[right=of rgb.east, yshift=0cm] (graph) {\includegraphics[width=7cm]{img/graph.png}};
+    \node[right=of rgb.east, yshift=2cm] (strip) {\includegraphics[width=7.2cm]{img/strip.png}};
+    \node[right=of rgb.east, yshift=0cm] (graph) {\includegraphics[width=7.2cm]{img/graph.png}};
 
     % === Panah Hubungan ===
     \draw[arrow] (rgb.32) -- (strip.west);
@@ -245,17 +293,15 @@ Keunggulan utama JPEG adalah rasio kompresi yang sangat tinggi pada citra fotogr
   \centering
   \caption{Perbandingan Kualitas vs. Tingkat Kompresi JPEG}
   \label{tab:kualitas_jpeg}
-  \resizebox{\columnwidth}{!}{%
-    \begin{tabular}{@{}lll@{}}
-      \toprule
-      \textbf{Kualitas (\%)} & \textbf{Rasio Kompresi} & \textbf{Deskripsi Artefak Visual}                     \\ \midrule
-      95-100                 & 2:1 - 5:1               & Artefak hampir tidak terlihat.                        \\
-      85-94                  & 5:1 - 15:1              & Kualitas sangat baik untuk sebagian besar penggunaan. \\
-      75-84                  & 15:1 - 25:1             & Keseimbangan baik, artefak mulai terlihat.            \\
-      50-74                  & 25:1 - 40:1             & Artefak jelas, detail mulai hilang.                   \\
-      <50                    & > 40:1                  & Degradasi citra sangat parah.                         \\ \bottomrule
-    \end{tabular}%
-  }
+  \begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lll@{}}
+    \toprule
+    \textbf{Kualitas (\%)} & \textbf{Rasio Kompresi} & \textbf{Deskripsi Artefak Visual}                     \\ \midrule
+    95-100                 & 2:1 - 5:1               & Artefak hampir tidak terlihat.                        \\
+    85-94                  & 5:1 - 15:1              & Kualitas sangat baik untuk sebagian besar penggunaan. \\
+    75-84                  & 15:1 - 25:1             & Keseimbangan baik, artefak mulai terlihat.            \\
+    50-74                  & 25:1 - 40:1             & Artefak jelas, detail mulai hilang.                   \\
+    <50                    & > 40:1                  & Degradasi citra sangat parah.                         \\ \bottomrule
+  \end{tabular*}
 \end{table}
 
 \section{Contoh Penerapan dan Perhitungan Kompresi JPEG}
