@@ -8,7 +8,8 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
+  \pgfplotsset{compat=1.18}
+  \pgfplotsset{colormap={cm}{color(0)=(cyan) color(1)=(cyan!90) color(3)=(cyan!80) color(4)=(cyan!70) color(5)=(cyan!10)}}
 \usepackage{geometry}
 	\geometry{
 		total = {160mm, 237mm},
@@ -31,7 +32,7 @@
 \renewcommand{\arraystretch}{1.1}
 \pagestyle{fancy}
 
-\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -41,6 +42,7 @@
 
 \newtheorem*{teorema}{Teorema}
 \newtheorem*{definisi}{Definisi}
+
 
 \begin{document}
 \fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
@@ -151,7 +153,7 @@
                       \addplot [dashed, red, domain=-8:8] {-x};
 
                       % Label hiperbola (opsional)
-                      \node[blue,right] at (axis cs:6,4.2) {$x^2-y^2=16$};
+                      \node[blue,right] at (axis cs:5,3) {$x^2-y^2=16$};
                       \node[red,right] at (axis cs:1.5,5) {$y=\pm x$};
                     \end{axis}
                   \end{tikzpicture}
@@ -196,7 +198,7 @@
                       \addplot [dashed, red, domain=-8:8] {-x};
 
                       % Label hiperbola (opsional)
-                      \node[blue,right] at (axis cs:6,4.2) {$x^2-z^2=16$};
+                      \node[blue,right] at (axis cs:5,3) {$x^2-z^2=16$};
                       \node[red,right] at (axis cs:1.5,5) {$z=\pm x$};
                     \end{axis}
                   \end{tikzpicture}
@@ -240,42 +242,62 @@
         \begin{center}
           \begin{tikzpicture}
             \begin{axis}[
-                axis lines=center,
-                xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
-                xlabel style={right},
-                ylabel style={above},
-                zlabel style={above},
-                xmin=-9, xmax=9, ymin=-9, ymax=9, zmin=-7, zmax=7,
-                xtick={-8,-6,-4,-2,0,2,4,6,8},
-                ytick={-8,-6,-4,-2,0,2,4,6,8},
-                ztick={-6,-4,-2,0,2,4,6},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!20},
-                major grid style={line width=.2pt,draw=gray!30},
-                samples=50,
-                domain=-8:8,
-                restrict y to domain=-100:100,
-                width=12cm,height=10cm,
-                clip=true
+                legend pos=outer north east,
+                axis lines = middle,
+                xticklabel style = {font=\tiny},
+                yticklabel style = {font=\tiny},
+                zticklabel style = {font=\tiny},
+                xlabel = $x$,
+                ylabel = $y$,
+                zlabel = $z$,
+                legend style={cells={align=left}},
+                legend cell align={left},
+                view={125}{25},
+                clip=false,
+                point meta={z-abs(0.2*x+y)}
               ]
+              % lower back part
+              \addplot3[
+                surf,
+                shader=interp,
+                opacity=0.7,
+                samples=50,
+                domain=4:8,
+                y domain=0:360,
+                variable=\u,
+                variable y=\v,
+              ]
+              ({u}, {sqrt(u^2-16)*cos(v)}, {sqrt(u^2-16)*sin(v)});
+              \addplot3[
+                surf,
+                shader=interp,
+                opacity=0.7,
+                samples=50,
+                domain=-8:-4,
+                y domain=0:360,
+                variable=\u,
+                variable y=\v,
+              ]
+              ({u}, {sqrt(u^2-16)*cos(v)}, {sqrt(u^2-16)*sin(v)});
 
-              % Permukaan hiperboloid
-              \addplot3 [very thick, blue, domain=-8:8, y domain=-8:8] ({x}, {y}, {sqrt(x^2 - y^2 - 16)});
-              \addplot3 [very thick, blue, domain=-8:8, y domain=-8:8] ({x}, {y}, {-sqrt(x^2 - y^2 - 16)});
+              % x^2-z^2=16 di y=0
+              \addplot3[thick, blue, domain=4:8, samples=30] (x, 0, {sqrt(x^2-16)});
+              \addplot3[thick, blue, domain=4:8, samples=30] (x, 0, {-sqrt(x^2-16)});
+              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, 0, {sqrt(x^2-16)});
+              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, 0, {-sqrt(x^2-16)});
 
-              % Asimtot pada bidang xy
-              \addplot3 [dashed, red, domain=-8:8] ({x}, {x}, {0});
-              \addplot3 [dashed, red, domain=-8:8] ({x}, {-x}, {0});
+              % x^2-y^2=16 di z=0
+              \addplot3[thick, blue, domain=4:8, samples=30] (x, {sqrt(x^2-16)}, 0);
+              \addplot3[thick, blue, domain=4:8, samples=30] (x, {-sqrt(x^2-16)}, 0);
+              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, {sqrt(x^2-16)}, 0);
+              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, {-sqrt(x^2-16)}, 0);
 
-              % Asimtot pada bidang xz
-              \addplot3 [dashed, red, domain=-8:8] ({x}, {0}, {x});
-              \addplot3 [dashed, red, domain=-8:8] ({x}, {0}, {-x});
-
-              % Label permukaan (opsional)
-              \node[blue,right] at (axis cs:6,0,4) {$x^2-y^2-z^2=16$};
+              % y^2+z^2=9 di x=5
+              \addplot3[thick, blue, domain=0:360, samples=30] (5, {3*cos(x)}, {3*sin(x)});
+              % y^2+z^2=9 di x=-5
+              \addplot3[thick, blue, domain=0:360, samples=30] (-5, {3*cos(x)}, {3*sin(x)});
             \end{axis}
           \end{tikzpicture}
         \end{center}
-
 \end{enumerate}
 \end{document}
