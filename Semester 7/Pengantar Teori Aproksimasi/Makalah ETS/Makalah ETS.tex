@@ -5,6 +5,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning, arrows.meta}
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage[
@@ -49,7 +52,7 @@
   Makalah ini menyajikan telaah mendalam mengenai aplikasi Deret Fourier, khususnya Transformasi Kosinus Diskrit (DCT), sebagai landasan matematis dari standar kompresi citra JPEG. Pembahasan dimulai dari evolusi konsep analisis frekuensi, mulai dari Deret Fourier untuk sinyal periodik, Transformasi Fourier untuk sinyal non-periodik, hingga adaptasi digital melalui Transformasi Fourier Diskrit (DFT). Analisis difokuskan pada keunggulan fundamental DCT, yaitu properti pemadatan energi (\textit{energy compaction}) yang superior, yang memungkinkannya mengkonsentrasikan informasi visual penting ke dalam sejumlah kecil koefisien. Selanjutnya, makalah ini membedah anatomi lengkap alur kerja kompresi JPEG, mulai dari pra-pemrosesan, kuantisasi, hingga pengkodean entropi. Analisis kinerja juga disajikan, menguraikan hubungan antara tingkat kompresi dan munculnya artefak visual seperti \textit{blocking} dan \textit{ringing}. Terakhir, JPEG ditempatkan dalam konteks evolusi teknologi dengan membandingkannya dengan standar yang lebih modern seperti JPEG 2000, WebP, dan AVIF untuk memberikan gambaran masa depan kompresi citra.
 \end{abstract}
 
-% \keywords{Deret Fourier, Transformasi Kosinus Diskrit, JPEG, Kompresi Citra, Pemadatan Energi, Artefak Kompresi.}
+\keywords{Deret Fourier, Transformasi Kosinus Diskrit, JPEG, Kompresi Citra, Artefak Kompresi.}
 
 \section{Pendahuluan}
 Analisis Fourier adalah fondasi yang memungkinkan representasi sinyal dan citra dalam domain frekuensi; konsep ini menjelaskan mengapa transformasi seperti DCT mampu memusatkan energi dan mengurangi redundansi visual secara efektif. Sebagai pengantar singkat, pemahaman mengenai dekomposisi sinyal ke komponen frekuensi membantu menjelaskan perilaku \textit{transform-domain compression}.
@@ -97,10 +100,19 @@ DCT pertama kali diperkenalkan oleh Ahmed, Natarajan, dan Rao pada tahun 1974 \c
 \end{equation}
 di mana $c[k]$ adalah faktor normalisasi. Untuk aplikasi citra 2D pada blok $N \times N$, digunakan formula 2D-DCT yang dapat dipisahkan (\textit{separable}). Secara konseptual, menerapkan DCT-II pada $N$ titik setara dengan mengambil DFT dari sekuens yang telah diperpanjang secara simetris menjadi $2N$ titik, yang secara efektif menghilangkan diskontinuitas pada batas blok \cite{ucsd_dct_notes}.
 
-\subsection{Konsep Kritis: Pemadatan Energi}
-Pemadatan energi (\textit{energy compaction}) adalah kemampuan transformasi untuk mengkonsentrasikan sebagian besar informasi sinyal ke dalam sejumlah kecil koefisien \cite{saab_transform_arxiv}. DCT memiliki properti pemadatan energi yang sangat baik untuk citra natural karena perpanjangan simetris implisitnya menghilangkan diskontinuitas artifisial di batas blok, sehingga energi tidak "terbuang" untuk merepresentasikan transisi artifisial tersebut \cite{ucsd_dct_notes, samsung2018heecn}.
-
-Kecemerlangan DCT juga terletak pada keselarasan dengan sistem persepsi visual manusia. DCT memisahkan komponen frekuensi rendah (kecerahan) dan frekuensi tinggi (detail). Mata manusia sangat sensitif terhadap perubahan frekuensi rendah tetapi kurang sensitif terhadap variasi frekuensi tinggi \cite{wallace1991jpeg}. Dengan demikian, DCT melakukan "pemilahan perseptual" terhadap data, memprioritaskan apa yang paling penting bagi mata kita.
+\subsection{DCT pada 2-Dimensi}
+DCT pada 2-dimensi diterapkan pada blok citra $N \times N$ dengan cara yang dapat dipisahkan. Ini berarti bahwa DCT dapat diterapkan secara terpisah pada setiap baris dan kolom blok citra. Secara matematis, DCT 2D untuk blok citra $f[x,y]$ didefinisikan sebagai:
+\begin{equation} \label{eq:dct_2d}
+  F[u,v] = \frac{1}{4} c[u] c[v] \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} f[x,y] \cos\left(\frac{(2x+1)u\pi}{2N}\right) \cos\left(\frac{(2y+1)v\pi}{2N}\right)
+\end{equation}
+di mana $c[u]$ dan $c[v]$ adalah faktor normalisasi yang didefinisikan sebagai:
+\begin{equation}
+  c[k] =
+  \begin{cases}
+    \frac{1}{\sqrt{N}},  & k = 0,   \\[4pt]
+    \frac{1}{\sqrt{2N}}, & k \ge 1.
+  \end{cases}
+\end{equation}
 
 \section{Anatomi Standar Kompresi JPEG}
 Standar kompresi JPEG adalah proses multi-tahap yang dirancang untuk mengurangi ukuran file citra secara signifikan, di mana setiap langkah bekerja secara sinergis \cite{wallace1991jpeg}.
@@ -146,12 +158,63 @@ Koefisien pada matriks di atas diturunkan dari nilai konstanta primaries standar
 $K_R = 0.2627$, $K_B = 0.0593$, dan $K_G = 1 - K_R - K_B = 0.6780$.
 Pendekatan ini memungkinkan representasi luminansi ($Y'$) yang konsisten dengan persepsi visual manusia,
 serta menghasilkan rentang warna (\textit{color gamut}) yang lebih luas pada sistem tampilan berdefinisi tinggi.
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[
+      node distance=0.5cm and 4cm,
+      every node/.style={align=center, font=\small},
+      box/.style={rectangle, draw, rounded corners, thick, fill=gray!10},
+      arrow/.style={->, thick, >=stealth}
+    ]
 
+    % === Gambar Asli ===
+    \node[box] (rgb) {\includegraphics[width=7cm]{img/100.jpg} \\ \textbf{Gambar RGB Asli}};
 
+    % === Komponen Hasil ===
+    \node[box, below left=of rgb.south east, xshift=-3.2cm, yshift=-0.3cm] (Y) {\includegraphics[width=3cm]{img/Y_100.jpg} \\ \textbf{Komponen Y}};
+    \node[box, below=of rgb.south, yshift=-0.3cm] (Cb) {\includegraphics[width=3cm]{img/Cb_100.jpg} \\ \textbf{Komponen Cb}};
+    \node[box, below right=of rgb.south west, xshift=3.2cm, yshift=-0.3cm] (Cr) {\includegraphics[width=3cm]{img/Cr_100.jpg} \\ \textbf{Komponen Cr}};
 
+    % === Panah Hubungan ===
+    \draw[arrow] (rgb.south) -- ++(0,-0.2) -| (Y.north);
+    \draw[arrow] (rgb.south) -- (Cb.north);
+    \draw[arrow] (rgb.south) -- ++(0,-0.2) -| (Cr.north);
 
-\subsection{Partisi Blok dan Aplikasi DCT}
-Setiap kanal (Y, Cb, Cr) dibagi menjadi blok-blok $8 \times 8$ piksel. Nilai piksel dalam setiap blok digeser levelnya menjadi rentang [-128, 127], kemudian 2D-DCT diterapkan pada setiap blok, mengubah 64 nilai piksel spasial menjadi 64 koefisien frekuensi.
+  \end{tikzpicture}
+  \caption{Gambar RGB dipecah menjadi tiga komponen: Y, Cb, dan Cr.}
+  \label{fig:rgb_to_ycbcr}
+\end{figure}
+
+\subsection{Partisi Blok}
+Setiap kanal (Y, Cb, Cr) dibagi menjadi blok-blok $8 \times 8$ piksel. Nilai piksel dalam setiap blok digeser levelnya menjadi rentang [-128, 127] dari yang semula [0, 255], kemudian 2D-DCT diterapkan pada setiap blok, mengubah 64 nilai piksel spasial menjadi 64 koefisien frekuensi.
+
+\subsection{Aplikasi DCT}
+Pertama jika kita tinjau salah satu baris piksel dari citra \textit{grayscale} (Y), misalnya baris ke-100 dari citra $6660 \times 4898$ piksel Gambar \ref{fig:rgb_to_ycbcr}.
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[
+      node distance=1.5cm and 0.5cm,
+      every node/.style={align=center, font=\small},
+      box/.style={rectangle, draw, rounded corners, thick, fill=gray!10},
+      arrow/.style={->, thick, >=stealth}
+    ]
+
+    % === Gambar Asli ===
+    \node[] (rgb) {\includegraphics[width=6cm]{img/Y100.png}};
+
+    % === Komponen Hasil ===
+    \node[right=of rgb.east, yshift=2cm] (strip) {\includegraphics[width=7cm]{img/strip.png}};
+    \node[right=of rgb.east, yshift=0cm] (graph) {\includegraphics[width=7cm]{img/graph.png}};
+
+    % === Panah Hubungan ===
+    \draw[arrow] (rgb.32) -- (strip.west);
+    \draw[arrow] (rgb.32) -- (graph.west);
+
+  \end{tikzpicture}
+  \caption{Visualisasi baris piksel sebagai strip horizontal dan grafik intensitasnya.}
+  \label{fig:line_pixel_visualization}
+\end{figure}
+Perhatikan pada Gambar \ref{fig:line_pixel_visualization} bahwa perbaris piksel dari komponen Y (\textit{luminance}) dapat kita pandang sebagai grafik intensitas piksel terhadap posisi horizontalnya. Grafik ini dapat kita anggap sebagai sinyal 1D yang diskrit dan terhingga, sehingga kita dapat menerapkan DCT 1D (\ref{eq:dct_1d}) untuk menganalisis komponen frekuensinya.
 
 \subsection{Kuantisasi: Jantung Kompresi \textit{Lossy}}
 Kuantisasi adalah satu-satunya tahap di mana informasi hilang secara permanen. Prosesnya melibatkan pembagian setiap koefisien DCT dengan nilai dari matriks kuantisasi, lalu hasilnya dibulatkan ke bilangan bulat terdekat.
@@ -161,7 +224,7 @@ Kuantisasi adalah satu-satunya tahap di mana informasi hilang secara permanen. P
 Matriks kuantisasi $Q[u,v]$ dirancang berdasarkan sensitivitas visual manusia, dengan nilai kecil untuk frekuensi rendah dan besar untuk frekuensi tinggi. Ini berarti koefisien frekuensi tinggi yang kurang penting secara perseptual akan dikurangi secara drastis, sering kali menjadi nol \cite{wallace1991jpeg}.
 
 \subsection{Serialisasi dan Pengkodean Entropi}
-Setelah kuantisasi, matriks 8x8 yang "jarang" diubah menjadi vektor 1D menggunakan pemindaian zig-zag. Pola ini mengelompokkan koefisien non-nol di awal vektor dan menciptakan barisan panjang nilai nol di akhir. Vektor ini kemudian dikodekan secara \textit{lossless} menggunakan DPCM untuk koefisien DC dan RLE untuk koefisien AC, diikuti oleh pengkodean Huffman untuk merepresentasikan data akhir seefisien mungkin \cite{wallace1991jpeg}.
+Setelah kuantisasi, matriks $8 \times 8$ yang "jarang" diubah menjadi vektor 1D menggunakan pemindaian zig-zag. Pola ini mengelompokkan koefisien non-nol di awal vektor dan menciptakan barisan panjang nilai nol di akhir. Vektor ini kemudian dikodekan secara \textit{lossless} menggunakan DPCM untuk koefisien DC dan RLE untuk koefisien AC, diikuti oleh pengkodean Huffman untuk merepresentasikan data akhir seefisien mungkin \cite{wallace1991jpeg}.
 
 \subsection{Proses Dekompresi}
 Untuk merekonstruksi citra, seluruh proses dilakukan secara terbalik: Dekode Entropi, De-serialisasi, De-kuantisasi, dan Transformasi Kosinus Diskrit Terbalik (IDCT).
@@ -196,10 +259,75 @@ Keunggulan utama JPEG adalah rasio kompresi yang sangat tinggi pada citra fotogr
 \end{table}
 
 \section{Contoh Penerapan dan Perhitungan Kompresi JPEG}
+Untuk blok berukuran $8\times8$, transformasi DCT didefinisikan sebagai:
+
+\begin{equation}
+  C(u,v) = \frac{1}{4} \, \alpha(u)\,\alpha(v)
+  \sum_{x=0}^{7}\sum_{y=0}^{7}
+  f(x,y)\,
+  \cos\!\left[\frac{(2x+1)u\pi}{16}\right]
+  \cos\!\left[\frac{(2y+1)v\pi}{16}\right],
+\end{equation}
+
+dengan faktor normalisasi
+\[
+  \alpha(k) =
+  \begin{cases}
+    \frac{1}{\sqrt{2}}, & k = 0, \\[6pt]
+    1,                  & k > 0.
+  \end{cases}
+\]
+Fungsi $f(x,y)$ menyatakan nilai intensitas piksel pada posisi $(x,y)$ setelah dikurangi dengan 128 untuk menormalkan rentang nilai menjadi sekitar nol.
+
+Sebagai contoh, misalkan blok luminansi (komponen Y) dari citra berukuran $8\times8$ diberikan oleh:
+
+\[
+  f(x,y) =
+  \begin{bmatrix}
+    52 & 55 & 61 & 66  & 70  & 61  & 64 & 73 \\
+    63 & 59 & 55 & 90  & 109 & 85  & 69 & 72 \\
+    62 & 59 & 68 & 113 & 144 & 104 & 66 & 73 \\
+    63 & 58 & 71 & 122 & 154 & 106 & 70 & 69 \\
+    67 & 61 & 68 & 104 & 126 & 88  & 68 & 70 \\
+    79 & 65 & 60 & 70  & 77  & 68  & 58 & 75 \\
+    85 & 71 & 64 & 59  & 55  & 61  & 65 & 83 \\
+    87 & 79 & 69 & 68  & 65  & 76  & 78 & 94
+  \end{bmatrix}.
+\]
+
+Setelah dinormalisasi dengan mengurangkan 128 dari setiap elemen, diperoleh matriks $f'(x,y) = f(x,y) - 128$.
+
+Koefisien pertama $C(0,0)$, disebut \textit{DC coefficient}, mewakili energi rata-rata dari blok dan dihitung dengan:
+
+\[
+  C(0,0) = \frac{1}{8} \sum_{x=0}^{7}\sum_{y=0}^{7} f'(x,y).
+\]
+
+Sementara itu, koefisien lainnya $C(u,v)$ untuk $u,v>0$ disebut \textit{AC coefficients}, yang masing-masing menggambarkan variasi frekuensi spasial citra.
+
+Hasil perhitungan DCT dari blok di atas (secara numerik) adalah:
+
+\[
+  C(u,v) =
+  \begin{bmatrix}
+    -415.38 & -30.19 & -61.20 & 27.24  & 56.12  & -20.10 & -2.39 & 0.46  \\
+    4.47    & -21.86 & -60.76 & 10.25  & 13.15  & -7.09  & -8.54 & 4.88  \\
+    -46.83  & 7.37   & 77.13  & -24.56 & -28.91 & 9.93   & 5.42  & -5.65 \\
+    -48.53  & 12.07  & 34.10  & -14.76 & -10.24 & 6.30   & 1.83  & 1.95  \\
+    12.12   & -6.55  & -13.20 & -3.95  & -1.87  & 1.75   & 2.79  & -3.14 \\
+    -7.73   & 2.91   & 2.38   & -5.94  & -2.38  & 0.94   & 4.30  & 1.85  \\
+    -1.03   & 0.18   & 0.42   & -2.42  & -0.88  & -3.02  & 4.12  & -0.66 \\
+    -0.17   & 0.14   & -1.07  & -4.19  & -1.17  & -0.10  & 0.50  & 1.68
+  \end{bmatrix}.
+\]
+
+Koefisien di kiri atas menyimpan komponen frekuensi rendah (rata-rata dan struktur kasar), sedangkan koefisien di kanan bawah menyimpan frekuensi tinggi (tepi dan detail halus). Pada proses kompresi JPEG, nilai-nilai frekuensi tinggi ini akan dikurangi presisinya melalui proses \textit{kuantisasi} untuk menghemat ruang penyimpanan tanpa mengorbankan kualitas visual secara signifikan.
 
 
-\section{KESIMPULAN}
-Standar JPEG berbasis DCT merupakan tonggak sejarah dalam teknologi digital. Kombinasi antara kinerja yang "cukup baik", kesederhanaan implementasi, dan status bebas royalti memungkinkannya menjadi standar universal yang mendorong pertumbuhan internet visual. Warisan abadi dari DCT adalah demonstrasi kuat tentang bagaimana analisis domain frekuensi, ketika digabungkan secara cerdas dengan model persepsi manusia, dapat menjadi alat yang sangat efektif untuk kompresi data. Masa depan kompresi citra jelas mengarah pada format turunan codec video seperti AVIF, yang tidak hanya menawarkan efisiensi superior tetapi juga mendukung fitur-fitur penting seperti HDR dan gamut warna yang luas.
+\section{Kesimpulan}
+Analisis mendalam terhadap alur kerja JPEG menunjukkan bagaimana DCT, dikombinasikan dengan kuantisasi yang mengeksploitasi keterbatasan persepsi visual manusia, menjadi inti dari kompresi \textit{lossy}. Proses ini secara efektif mengurangi redundansi data, meskipun menimbulkan artefak seperti \textit{blocking} dan \textit{ringing} pada tingkat kompresi tinggi. Dengan demikian, JPEG merepresentasikan sebuah kompromi cerdas antara efisiensi penyimpanan dan kualitas visual.
+Sebagai kesimpulan, keberhasilan JPEG membuktikan kekuatan penerapan teori transformasi frekuensi dalam rekayasa praktis. Meskipun standar yang lebih modern seperti AVIF kini menawarkan efisiensi yang lebih tinggi, pemahaman terhadap prinsip kerja JPEG dan DCT tetap relevan sebagai fondasi untuk memahami evolusi teknologi kompresi citra.
+
 
 \printbibliography
 
