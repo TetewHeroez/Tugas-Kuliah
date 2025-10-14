@@ -8,8 +8,38 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{pgfplots}
-  \pgfplotsset{compat=1.18}
+  \pgfplotsset{
+        every non boxed x axis/.style={
+            xtick align=center,
+            tick style={line width=0.5pt, color=black},
+            x axis line style={-{Latex[width=1.5mm]},black,line width=0.5pt},
+            xlabel style={at={(ticklabel* cs:1.05)}, anchor=mid},
+            xlabel=$x$
+        },
+         every non boxed y axis/.style={
+            ytick align=center,
+            tick style={line width=0.7pt, color=black},
+            y axis line style={-{Latex[width=1.5mm]},black,line width=0.5pt},
+            ylabel style={at={(ticklabel* cs:1.08)}, anchor=mid},
+            ylabel=$y$
+        },
+        every non boxed z axis/.style={
+            ztick align=center,
+            tick style={line width=0.5pt, color=black},
+            z axis line style={-{Latex[width=1.5mm]},black,line width=0.5pt},
+            zlabel style={at={(ticklabel* cs:1.06)}, anchor=mid},
+            zlabel=$z$
+        },
+        tick label style={
+            font=\tiny,
+        },
+        compat=1.18
+    }
+
+  \usepgfplotslibrary{colormaps,patchplots}
+  \usepgfplotslibrary{fillbetween}
   \pgfplotsset{colormap={cm}{color(0)=(cyan) color(1)=(cyan!90) color(3)=(cyan!80) color(4)=(cyan!70) color(5)=(cyan!10)}}
+  \usetikzlibrary{arrows.meta}
 \usepackage{geometry}
 	\geometry{
 		total = {160mm, 237mm},
@@ -244,17 +274,28 @@
             \begin{axis}[
                 legend pos=outer north east,
                 axis lines = middle,
+                xlabel style={left},
+                ylabel style={right},
+                zlabel style={above},
+                xmin=-10, xmax=10,
+                ymin=-10, ymax=10,
+                zmin=-10, zmax=10,
+                xtick={-8,-4,0,4,8},
+                ytick={-8,-4,0,4,8},
+                ztick={-8,-4,0,4,8},
                 xticklabel style = {font=\tiny},
                 yticklabel style = {font=\tiny},
                 zticklabel style = {font=\tiny},
-                xlabel = $x$,
-                ylabel = $y$,
-                zlabel = $z$,
+                xlabel = {\tiny $x$},
+                ylabel = {\tiny $y$},
+                zlabel = {\tiny $z$},
                 legend style={cells={align=left}},
                 legend cell align={left},
                 view={125}{25},
                 clip=false,
-                point meta={z-abs(0.2*x+y)}
+                point meta={z-abs(0.2*x+y)},
+                unbounded coords=jump,
+                width=11cm,height=11cm,
               ]
               % lower back part
               \addplot3[
@@ -281,23 +322,74 @@
               ({u}, {sqrt(u^2-16)*cos(v)}, {sqrt(u^2-16)*sin(v)});
 
               % x^2-z^2=16 di y=0
-              \addplot3[thick, blue, domain=4:8, samples=30] (x, 0, {sqrt(x^2-16)});
-              \addplot3[thick, blue, domain=4:8, samples=30] (x, 0, {-sqrt(x^2-16)});
-              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, 0, {sqrt(x^2-16)});
-              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, 0, {-sqrt(x^2-16)});
+              \addplot3[thick,color=blue,samples y=1, domain=4:8, samples=30] (x, 0, {sqrt(x^2-16)});
+              \addplot3[thick,color=blue,samples y=1, domain=4:8, samples=30] (x, 0, {-sqrt(x^2-16)});
+              \addplot3[thick,color=blue,samples y=1, domain=-8:-4, samples=30] (x, 0, {sqrt(x^2-16)});
+              \addplot3[thick,color=blue,samples y=1, domain=-8:-4, samples=30] (x, 0, {-sqrt(x^2-16)});
 
               % x^2-y^2=16 di z=0
-              \addplot3[thick, blue, domain=4:8, samples=30] (x, {sqrt(x^2-16)}, 0);
-              \addplot3[thick, blue, domain=4:8, samples=30] (x, {-sqrt(x^2-16)}, 0);
-              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, {sqrt(x^2-16)}, 0);
-              \addplot3[thick, blue, domain=-8:-4, samples=30] (x, {-sqrt(x^2-16)}, 0);
+              \addplot3[thick,color=blue,samples y=1, domain=4:8, samples=30] (x, {sqrt(x^2-16)}, 0);
+              \addplot3[thick,color=blue,samples y=1, domain=4:8, samples=30] (x, {-sqrt(x^2-16)}, 0);
+              \addplot3[thick,color=blue,samples y=1, domain=-8:-4, samples=30] (x, {sqrt(x^2-16)}, 0);
+              \addplot3[thick,color=blue,samples y=1, domain=-8:-4, samples=30] (x, {-sqrt(x^2-16)}, 0);
+
 
               % y^2+z^2=9 di x=5
               \addplot3[thick, blue, domain=0:360, samples=30] (5, {3*cos(x)}, {3*sin(x)});
               % y^2+z^2=9 di x=-5
               \addplot3[thick, blue, domain=0:360, samples=30] (-5, {3*cos(x)}, {3*sin(x)});
+
+              \draw[-{Latex[width=3pt]},black] (4,0,0) -- (10,0,0);
+              \draw[-{Latex[width=3pt]},black] (0,0,0) -- (0,10,0);
+              \draw[-{Latex[width=3pt]},black] (0,0,0) -- (0,0,10);
+              \draw[black] (0,0,0) -- (-4,0,0);
+
+              \node[anchor=east,, xshift=-2pt] at (axis cs:0,0,4) {{\tiny$4$}};
+              \node[anchor=north, xshift=-2pt,yshift=0.5pt] at (axis cs:0,4,0) {{\tiny$4$}};
+              \node[anchor=north, xshift=-2pt,yshift=0.5pt] at (axis cs:0,8,0) {{\tiny$8$}};
+              \node[anchor=north, xshift=2.5pt] at (axis cs:4,0,0) {{\tiny$4$}};
+              \node[anchor=north, xshift=2.5pt] at (axis cs:8,0,0) {{\tiny$8$}};
             \end{axis}
           \end{tikzpicture}
         \end{center}
+  \item Diketahui $z^2=x^2 + y^2 - 4$ atau bisa kta tulis $z = \sqrt{x^2 + y^2 - 4}$. Agar lebih mudah, cukup kita turunkan secara implisit untuk persamaan $z^2=x^2 + y^2 - 4$.
+
+        Ketika diturunkan secara implisit terhadap $x$, diperoleh
+        \begin{align*}
+          \frac{\partial}{\partial x}(z^2) & = \frac{\partial}{\partial x}(x^2 + y^2 - 4)  \\
+          2z \frac{\partial z}{\partial x} & = 2x + 0 - 0                                  \\
+          z_x                              & = \frac{x}{z}=\frac{x}{\sqrt{x^2 + y^2 - 4}}.
+        \end{align*}
+        Ketika diturunkan secara implisit terhadap $y$, diperoleh
+        \begin{align*}
+          \frac{\partial}{\partial y}(z^2) & = \frac{\partial}{\partial y}(x^2 + y^2 - 4)  \\
+          2z \frac{\partial z}{\partial y} & = 0 + 2y - 0                                  \\
+          z_y                              & = \frac{y}{z}=\frac{y}{\sqrt{x^2 + y^2 - 4}}.
+        \end{align*}
+        Kemudian, kita turunkan $z_x$ terhadap $x$ untuk mendapatkan $z_{xx}$.
+        \begin{align*}
+          z_{xx} & = \frac{\partial}{\partial x}\left(\frac{x}{z}\right)                            \\
+                 & = \frac{z \cdot 1 - x \cdot z_x}{z^2}                                            \\
+                 & = \frac{\sqrt{x^2 + y^2 - 4}  - x \frac{x}{\sqrt{x^2 + y^2 - 4}}}{x^2 + y^2 - 4} \\
+                 & = \frac{(x^2 + y^2 - 4) - x^2}{(x^2 + y^2 - 4)^{3/2}}                            \\
+                 & = \frac{y^2 - 4}{(x^2 + y^2 - 4)^{3/2}}
+        \end{align*}
+        Selanjutnya, kita turunkan $z_y$ terhadap $y$ untuk mendapatkan $z_{yy}$.
+        \begin{align*}
+          z_{yy} & = \frac{\partial}{\partial y}\left(\frac{y}{z}\right)                            \\
+                 & = \frac{z \cdot 1 - y \cdot z_y}{z^2}                                            \\
+                 & = \frac{\sqrt{x^2 + y^2 - 4}  - y \frac{y}{\sqrt{x^2 + y^2 - 4}}}{x^2 + y^2 - 4} \\
+                 & = \frac{(x^2 + y^2 - 4) - y^2}{(x^2 + y^2 - 4)^{3/2}}                            \\
+                 & = \frac{x^2 - 4}{(x^2 + y^2 - 4)^{3/2}}
+        \end{align*}
+        Terakhir, kita turunkan $z_x$ terhadap $y$ atau $z_y$ terhadap $x$ untuk mendapatkan $z_{xy}$.
+        \begin{align*}
+          z_{xy} & = \frac{\partial}{\partial y}\left(\frac{x}{z}\right)      \\
+                 & = \frac{z \cdot 0 - x \cdot z_y}{z^2}                      \\
+                 & = \frac{- x \frac{y}{\sqrt{x^2 + y^2 - 4}}}{x^2 + y^2 - 4} \\
+                 & = \frac{-xy}{(x^2 + y^2 - 4)^{3/2}}
+        \end{align*}
+
+  \item Diketahui tinggi kerucut $h = 30\,\text{cm}$ dan jari-jari lingkaran alasnya $r = 10\,\text{cm}$. Kemudian diketahui pula kesalahan pengukuran tinggi kerucut $\Delta h = \pm 0.01h = \pm 0.3\,\text{cm}$ dan kesalahan pengukuran jari-jari lingkaran alasnya $\Delta r = \pm 0.005r = \pm 0.05\,\text{cm}$.
 \end{enumerate}
 \end{document}
