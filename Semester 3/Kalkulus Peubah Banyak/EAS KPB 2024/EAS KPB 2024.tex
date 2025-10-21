@@ -1,0 +1,119 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+  \pgfplotsset{
+        every non boxed x axis/.style={
+            xtick align=center,
+            tick style={line width=0.5pt, color=black},
+            x axis line style={-{Latex[width=1.5mm]},black,line width=0.5pt},
+            xlabel style={at={(ticklabel* cs:1.05)}, anchor=mid},
+            xlabel=$x$
+        },
+         every non boxed y axis/.style={
+            ytick align=center,
+            tick style={line width=0.7pt, color=black},
+            y axis line style={-{Latex[width=1.5mm]},black,line width=0.5pt},
+            ylabel style={at={(ticklabel* cs:1.08)}, anchor=mid},
+            ylabel=$y$
+        },
+        every non boxed z axis/.style={
+            ztick align=center,
+            tick style={line width=0.5pt, color=black},
+            z axis line style={-{Latex[width=1.5mm]},black,line width=0.5pt},
+            zlabel style={at={(ticklabel* cs:1.06)}, anchor=mid},
+            zlabel=$z$
+        },
+        tick label style={
+            font=\tiny,
+        },
+        compat=1.18
+    }
+
+  \usepgfplotslibrary{colormaps,patchplots}
+  \usepgfplotslibrary{fillbetween}
+  \pgfplotsset{colormap={cm}{color(0)=(cyan) color(1)=(cyan!90) color(3)=(cyan!80) color(4)=(cyan!70) color(5)=(cyan!10)}}
+  \usetikzlibrary{arrows.meta}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 20mm,
+		right = 20mm,
+		top = 20mm,
+		bottom = 20mm,
+	}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\arraystretch}{1.1}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+
+\begin{document}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|r c|}
+    \hline
+    \multicolumn{2}{|c|}{\MakeUppercase{\large\bfseries evaluasi tengah semester gasal 2024/2025}}                         \\
+     &                                                                                                                     \\
+    \begin{tabular}{c}
+      \includegraphics[width=2cm]{ITS.png}
+      \includegraphics[width=2cm]{M.png}      \\
+      {\large\bfseries Departemen Matematika} \\
+      {\large\bfseries FSAD}
+    \end{tabular}
+     & \begin{tabular}{lcll}
+         Matakuliah    & : & \multicolumn{2}{l}{Kalkulus Peubah Banyak}                                              \\
+         Hari, Tanggal & : & \multicolumn{2}{l}{Selasa, 10 Desember 2024}                                            \\
+         Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Tertutup}}                                       \\
+         Kelas, Dosen  & : & A.                                                & Dra. Nur Asiyah, M.Si.              \\
+                       &   & B.                                                & Drs. Suhud Wahyudi, M.Si.           \\
+                       &   & C.                                                & Drs. Lukman Hanafi, M.Si.           \\
+                       &   & D.                                                & Dr. Didik Khusnul Arif S.Si., M.Si. \\
+       \end{tabular}
+
+    \\
+    \hline
+    \multicolumn{2}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}                                                \\
+    \multicolumn{2}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS} \\
+    \multicolumn{2}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}       \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{enumerate}
+  \item Hitung integral berikut ini $\iiint_R dx\,dy\,dz$, dengan $R$ adalah daerah integrasi yang dibatasi oleh bidang-bidang $z=\frac{1}{2}x,\, z=0,\, y=x,\, x+y=2,$ dan $y=0$. Sketsa batas integrasi $R$.
+  \item Dapatkan Volume benda yang dibatasi $z=y$, $y=x^2$, dan $x=y^2$ yang berada dalam oktan pertama. Sketsalah batas permukaan benda tersebut.
+  \item Gambarkan keping datar homogen yang dibatasi oleh kurva-kurva $x(1-y)=1$, $x(1-y)=2$, $xy=1$, dan $xy=3$. Hitung pula momen inersia terhadap sumbu $y$. (Petunjuk: transformasi ke koordinat baru $(u,v)$)
+  \item Dapatkan pusat massa permukaan benda $2z=8-x^2-y^2$, jika densitinya konstan, yang berada dalam silinder $x^2+y^2=3$. Sertai dengan sketsa permukaan benda.
+\end{enumerate}
+\vspace*{1cm}
+\begin{center}
+  \textbf{Selamat Mengerjakan Semoga Sukses}
+\end{center}
+\end{document}

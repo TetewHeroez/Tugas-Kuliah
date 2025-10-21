@@ -130,11 +130,11 @@ di mana $c[k]$ adalah faktor normalisasi. Untuk aplikasi citra 2D pada blok $N \
 \subsection{DCT pada 2-Dimensi}
 DCT pada 2-dimensi diterapkan pada blok citra $N \times N$ dengan cara yang dapat dipisahkan. Ini berarti bahwa DCT dapat diterapkan secara terpisah pada setiap baris dan kolom blok citra. Secara matematis, DCT 2D untuk blok citra $f[x,y]$ didefinisikan sebagai:
 \begin{equation} \label{eq:dct_2d}
-  F[u,v] = \frac{1}{4} c[u] c[v] \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} f[x,y] \cos\left(\frac{(2x+1)u\pi}{2N}\right) \cos\left(\frac{(2y+1)v\pi}{2N}\right)
+  F_{[u,v]}(x,y) = \frac{1}{4} \alpha[u] \alpha[v] \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} f(x,y) \cos\left(\frac{(2x+1)u\pi}{2N}\right) \cos\left(\frac{(2y+1)v\pi}{2N}\right)
 \end{equation}
-di mana $c[u]$ dan $c[v]$ adalah faktor normalisasi yang didefinisikan sebagai:
+di mana $\alpha[u]$ dan $\alpha[v]$ adalah faktor normalisasi yang didefinisikan sebagai:
 \begin{equation}
-  c[k] =
+  \alpha[k] =
   \begin{cases}
     \frac{1}{\sqrt{N}},  & k = 0,   \\[4pt]
     \frac{1}{\sqrt{2N}}, & k \ge 1.
@@ -264,7 +264,46 @@ Pertama jika kita tinjau salah satu baris piksel dari citra \textit{grayscale} (
 \end{figure}
 Perhatikan pada Gambar \ref{fig:line_pixel_visualization} bahwa perbaris piksel dari komponen Y (\textit{luminance}) dapat kita pandang sebagai grafik intensitas piksel terhadap posisi horizontalnya. Grafik ini dapat kita anggap sebagai sinyal 1D yang diskrit dan terhingga, sehingga kita dapat menerapkan DCT 1D (\ref{eq:dct_1d}) untuk menganalisis komponen frekuensinya.
 
-\subsection{Kuantisasi: Jantung Kompresi \textit{Lossy}}
+Pada kasus kompresi JPEG, DCT 2D diterapkan pada total $64$ blok. Dengan menggunakan pengetahuan tentang Aljabar Linear, kita dapat mengekspresikan blok $8 \times 8$ sebagai kombinasi linier dari basis DCT 2D. Basis ini diambil dari persamaan (\ref{eq:dct_2d}) dengan memasukkan nilai $f(x,y)=1$. Sehingga disajikan dalam bentuk fungsi dua variabel $B_{[u,v]}(x,y)$ sebagai berikut:
+\begin{equation}
+  B_{[u,v]}(x,y) = \frac{1}{4} \alpha[u] \alpha[v] \cos\left(\frac{(2x+1)u\pi}{16}\right) \cos\left(\frac{(2y+1)v\pi}{16}\right)
+\end{equation}
+dengan $u,v,x,y = 0,1,\ldots,7$ dan
+\begin{align}
+  \alpha[k] =
+  \begin{cases}
+    \frac{1}{\sqrt{8}}, & k = 0, \\
+    \frac{1}{2},        & k > 0.
+  \end{cases}
+\end{align}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{img/DCTbasis.png}
+  \begin{tikzpicture}[scale=0.7, every node/.style={font=\scriptsize, align=center}]
+    % Ukuran kotak
+    \def\s{1.0}
+
+    % grid 8x8
+    \foreach \u in {0,...,7}{
+        \foreach \v in {0,...,7}{
+            \pgfmathsetmacro{\x}{\v*\s}
+            \pgfmathsetmacro{\y}{-1*\u*\s}
+            % gambar kotak
+            \draw[thick] (\x,\y) rectangle ++(\s,-\s);
+            % label di tengah
+            \node at (\x+0.5*\s,\y-0.5*\s)
+            {$B_{{[\u,\v]}}$};
+          }
+      }
+  \end{tikzpicture}
+  \caption{Basis DCT 2D untuk blok $8 \times 8$.}
+  \label{fig:dct_basis}
+\end{figure}
+
+Gambar \ref{fig:dct_basis} menampilkan 64 basis DCT 2D yang digunakan untuk merepresentasikan blok $8 \times 8$. Basis ini diurutkan berdasarkan frekuensi spasialnya, dari frekuensi rendah di kiri atas hingga frekuensi tinggi di kanan bawah. Setiap basis dapat dianggap sebagai pola gelombang kosinus dengan frekuensi tertentu dalam arah horizontal dan vertikal.
+
+\subsection{Kuantisasi: Kompresi \textit{Lossy}}
 Kuantisasi adalah satu-satunya tahap di mana informasi hilang secara permanen. Prosesnya melibatkan pembagian setiap koefisien DCT dengan nilai dari matriks kuantisasi, lalu hasilnya dibulatkan ke bilangan bulat terdekat.
 \begin{equation} \label{eq:quantization}
   F_Q[u, v] = \text{round}\left(\frac{F[u, v]}{Q[u, v]}\right)
@@ -275,17 +314,26 @@ Matriks kuantisasi $Q[u,v]$ dirancang berdasarkan sensitivitas visual manusia, d
 Setelah kuantisasi, matriks $8 \times 8$ yang "jarang" diubah menjadi vektor 1D menggunakan pemindaian zig-zag. Pola ini mengelompokkan koefisien non-nol di awal vektor dan menciptakan barisan panjang nilai nol di akhir. Vektor ini kemudian dikodekan secara \textit{lossless} menggunakan DPCM untuk koefisien DC dan RLE untuk koefisien AC, diikuti oleh pengkodean Huffman untuk merepresentasikan data akhir seefisien mungkin \cite{wallace1991jpeg}.
 
 \subsection{Proses Dekompresi}
-Untuk merekonstruksi citra, seluruh proses dilakukan secara terbalik: Dekode Entropi, De-serialisasi, De-kuantisasi, dan Transformasi Kosinus Diskrit Terbalik (IDCT).
+Untuk merekonstruksi citra, seluruh proses dilakukan secara terbalik: Dekode Entropi, De-serialisasi, De-kuantisasi, dan Transformasi Kosinus Diskrit Terbalik (IDCT). Pada IDCT, koefisien frekuensi dikonversi kembali ke domain spasial menggunakan sifat dari keorthonormalan basis DCT \cite{wallace1991jpeg}.
+\begin{equation}
+  f(x,y) = \frac{1}{4} \sum_{u=0}^{7} \sum_{v=0}^{7} \alpha[u] \alpha[v] F_{[u,v]}(x,y) \cos\left(\frac{(2x+1)u\pi}{16}\right) \cos\left(\frac{(2y+1)v\pi}{16}\right)
+\end{equation}
 
 \section{Analisis Kinerja dan Artefak Visual}
 Efektivitas JPEG diukur dari rasio kompresi dan kualitas visual, yang merupakan sebuah pertukaran (\textit{trade-off}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{img/nijika1.jpg}\qquad\includegraphics[width=0.3\textwidth]{img/nijika2.jpg}\qquad\includegraphics[width=0.3\textwidth]{img/nijika3.jpg}
+  \caption{Artefak visual pada citra JPEG berbanding lurus dengan tingkat kompresi}
+\end{figure}
 
 \subsection{Keunggulan dan Kelemahan}
 Keunggulan utama JPEG adalah rasio kompresi yang sangat tinggi pada citra fotografi dengan degradasi perseptual minimal pada kualitas tinggi \cite{wallace1991jpeg}. Namun, sifatnya yang \textit{lossy} berarti kualitas citra menurun setiap kali disimpan ulang. Pada kompresi tinggi, artefak visual menjadi jelas terlihat.
 
 \subsection{Artefak Visual Kompresi}
 \begin{itemize}
-  \item \textbf{Artefak Pemblokiran (\textit{Blocking Artifacts}):} Muncul sebagai pola kisi-kisi 8x8, terutama di area gradasi halus. Ini disebabkan oleh pemrosesan independen pada setiap blok dan kuantisasi kasar yang menciptakan batas artifisial antar blok \cite{singh2012blocking, chou1998smoothing}.
+  \item \textbf{Artefak Pemblokiran (\textit{Blocking Artifacts}):} Muncul sebagai pola kisi-kisi $8\times 8$, terutama di area gradasi halus. Ini disebabkan oleh pemrosesan independen pada setiap blok dan kuantisasi kasar yang menciptakan batas artifisial antar blok \cite{singh2012blocking, chou1998smoothing}.
   \item \textbf{\textit{Ringing} dan \textit{Blurring}:} \textit{Blurring} terjadi ketika koefisien frekuensi tinggi (detail halus) dihilangkan. \textit{Ringing} muncul sebagai "gema" di sekitar tepi kontras tinggi, sebuah manifestasi dari Fenomena Gibbs akibat pembuangan komponen frekuensi tinggi yang diperlukan untuk merekonstruksi tepi yang tajam \cite{gottlieb1996gibbs, marziliano2004perceptual}.
 \end{itemize}
 
@@ -308,7 +356,7 @@ Keunggulan utama JPEG adalah rasio kompresi yang sangat tinggi pada citra fotogr
 Untuk blok berukuran $8\times8$, transformasi DCT didefinisikan sebagai:
 
 \begin{equation}
-  C(u,v) = \frac{1}{4} \, \alpha(u)\,\alpha(v)
+  F_{[u,v]}(x,y) = \frac{1}{4} \, \alpha[u]\,\alpha[v]
   \sum_{x=0}^{7}\sum_{y=0}^{7}
   f(x,y)\,
   \cos\!\left[\frac{(2x+1)u\pi}{16}\right]
@@ -317,7 +365,7 @@ Untuk blok berukuran $8\times8$, transformasi DCT didefinisikan sebagai:
 
 dengan faktor normalisasi
 \[
-  \alpha(k) =
+  \alpha[k] =
   \begin{cases}
     \frac{1}{\sqrt{2}}, & k = 0, \\[6pt]
     1,                  & k > 0.
@@ -343,13 +391,13 @@ Sebagai contoh, misalkan blok luminansi (komponen Y) dari citra berukuran $8\tim
 
 Setelah dinormalisasi dengan mengurangkan 128 dari setiap elemen, diperoleh matriks $f'(x,y) = f(x,y) - 128$.
 
-Koefisien pertama $C(0,0)$, disebut \textit{DC coefficient}, mewakili energi rata-rata dari blok dan dihitung dengan:
+Koefisien pertama $F_{[0,0]}$, disebut \textit{DC coefficient}, mewakili energi rata-rata dari blok dan dihitung dengan:
 
 \[
-  C(0,0) = \frac{1}{8} \sum_{x=0}^{7}\sum_{y=0}^{7} f'(x,y).
+  F_{[0,0]} = \frac{1}{8} \sum_{x=0}^{7}\sum_{y=0}^{7} f'(x,y).
 \]
 
-Sementara itu, koefisien lainnya $C(u,v)$ untuk $u,v>0$ disebut \textit{AC coefficients}, yang masing-masing menggambarkan variasi frekuensi spasial citra.
+Sementara itu, koefisien lainnya $F_{[u,v]}$ untuk $u,v>0$ disebut \textit{AC coefficients}, yang masing-masing menggambarkan variasi frekuensi spasial citra.
 
 Hasil perhitungan DCT dari blok di atas (secara numerik) adalah:
 
@@ -369,6 +417,41 @@ Hasil perhitungan DCT dari blok di atas (secara numerik) adalah:
 
 Koefisien di kiri atas menyimpan komponen frekuensi rendah (rata-rata dan struktur kasar), sedangkan koefisien di kanan bawah menyimpan frekuensi tinggi (tepi dan detail halus). Pada proses kompresi JPEG, nilai-nilai frekuensi tinggi ini akan dikurangi presisinya melalui proses \textit{kuantisasi} untuk menghemat ruang penyimpanan tanpa mengorbankan kualitas visual secara signifikan.
 
+Langkah selanjutnya adalah kuantisasi, di mana setiap elemen dari matriks DCT dibagi dengan elemen yang bersesuaian dari matriks kuantisasi standar, kemudian dibulatkan ke bilangan bulat terdekat. Proses ini adalah inti dari kompresi \textit{lossy} pada JPEG. Matriks kuantisasi standar untuk komponen luminansi (kualitas sekitar 50\%) adalah:
+\[
+  Q[u,v] =
+  \begin{bmatrix}
+    16 & 11 & 10 & 16 & 24  & 40  & 51  & 61  \\
+    12 & 12 & 14 & 19 & 26  & 58  & 60  & 55  \\
+    14 & 13 & 16 & 24 & 40  & 57  & 69  & 56  \\
+    14 & 17 & 22 & 29 & 51  & 87  & 80  & 62  \\
+    18 & 22 & 37 & 56 & 68  & 109 & 103 & 77  \\
+    24 & 35 & 55 & 64 & 81  & 104 & 113 & 92  \\
+    49 & 64 & 78 & 87 & 103 & 121 & 120 & 101 \\
+    72 & 92 & 95 & 98 & 112 & 100 & 103 & 99
+  \end{bmatrix}.
+\]
+Dengan menerapkan rumus kuantisasi $F_Q[u,v] = \text{round}(F[u,v] / Q[u,v])$, matriks koefisien DCT yang telah dikuantisasi menjadi:
+\[
+  F_Q[u,v] =
+  \begin{bmatrix}
+    -26 & -3 & -6 & 2  & 2  & -1 & 0 & 0 \\
+    0   & -2 & -4 & 1  & 1  & 0  & 0 & 0 \\
+    -3  & 1  & 5  & -1 & -1 & 0  & 0 & 0 \\
+    -3  & 1  & 2  & -1 & 0  & 0  & 0 & 0 \\
+    1   & 0  & 0  & 0  & 0  & 0  & 0 & 0 \\
+    0   & 0  & 0  & 0  & 0  & 0  & 0 & 0 \\
+    0   & 0  & 0  & 0  & 0  & 0  & 0 & 0 \\
+    0   & 0  & 0  & 0  & 0  & 0  & 0 & 0
+  \end{bmatrix}.
+\]
+Terlihat jelas bahwa sebagian besar koefisien frekuensi tinggi (di bagian kanan bawah) menjadi nol. Ini adalah sumber utama penghematan data.
+
+Matriks yang telah dikuantisasi kemudian diubah menjadi urutan 1D menggunakan pemindaian zig-zag. Pola ini mengelompokkan koefisien nol di akhir urutan, yang sangat efisien untuk kompresi.
+\[
+  \text{Urutan Zig-Zag} = [-26, -3, 0, -3, -2, -6, 2, -3, 1, 1, 1, 2, -4, \dots, 0, 0, 0].
+\]
+Urutan ini kemudian dikodekan secara \textit{lossless}. Koefisien DC (-26) dikodekan menggunakan DPCM (Differential Pulse Code Modulation), sedangkan koefisien AC (sisanya) dikodekan menggunakan RLE (Run-Length Encoding) untuk merepresentasikan urutan nol yang panjang, diikuti oleh pengkodean Huffman atau Aritmetika untuk menghasilkan aliran bit akhir yang terkompresi.
 
 \section{Kesimpulan}
 Analisis mendalam terhadap alur kerja JPEG menunjukkan bagaimana DCT, dikombinasikan dengan kuantisasi yang mengeksploitasi keterbatasan persepsi visual manusia, menjadi inti dari kompresi \textit{lossy}. Proses ini secara efektif mengurangi redundansi data, meskipun menimbulkan artefak seperti \textit{blocking} dan \textit{ringing} pada tingkat kompresi tinggi. Dengan demikian, JPEG merepresentasikan sebuah kompromi cerdas antara efisiensi penyimpanan dan kualitas visual.
