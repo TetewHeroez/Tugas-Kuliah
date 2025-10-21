@@ -1,0 +1,127 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 25mm,
+		top = 35mm,
+        bottom = 30mm,
+        headheight=2cm
+	}
+  \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\renewcommand{\headrulewidth}{0pt}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=2cm]{ITS.png}}
+\fancyhead[C]{\textbf{\MakeUppercase{Evaluasi Akhir Semester Gasal 2024/2025}\\~\\
+                \MakeUppercase{Departemen Matematika}\\ 
+                \MakeUppercase{Fakultas Sains dan Analitika Data}\\
+                \MakeUppercase{Institut Teknologi Sepuluh Nopember}\\
+                \MakeUppercase{Program Sarjana}}}
+\fancyhead[R]{\includegraphics[width=2cm]{M.png}}
+\begin{document}
+\hrule
+\hrule
+\begin{table}[h!]
+  \centering
+  \underline{\MakeUppercase{Evaluasi Akhir Semester Gasal 2024/2025}}
+  \begin{tabular}{l l l}
+    Mata kuliah  & : & Persamaan Diferensial Biasa           \\
+    Hari/tanggal & : & Rabu, 11 Desember 2024                \\
+    Semester     & : & III                                   \\
+    Waktu        & : & 100 Menit (09.00 - 10.40 WIB)         \\
+    Sifat        & : & Opened Note (1 lembar folio)          \\
+    Penguji      & : & Drs. I Gusti Ngurah Rai Usadha, M.Si. \\
+                 &   & Dra. Nur Asiyah, M.Si.                \\
+                 &   & Dr. Tahiyatul Asfihani, S.Si, M.Si.   \\
+                 &   & Amirul Hakam, S.Si., M.Si.
+  \end{tabular}
+\end{table}
+\hrule
+\hrule
+\fbox{%
+  \begin{minipage}{0.95\textwidth}
+    \textbf{HARAP DIPERHATIKAN !!!}
+
+    Segala jenis pelanggaran (\textit{mencontek, kerjasama, dsb}) yang dilakukan saat EAS akan dikenakan sanksi pembatalan semua mata kuliah yang sedang berjalan.
+  \end{minipage}
+}
+\begin{enumerate}
+  \item Dapatkan penyelesaian masalah nilai awal berikut ini dengan menggunakan transformasi Laplace:
+        \[
+          y'' + 2y' + y = 4e^{-t}, \quad y(0) = 2, \quad y'(0) = -2
+        \]
+
+  \item Diberikan Persamaan Diferensial Biasa:
+        $
+          y''' - 5y'' + 8y' - 4y = 0, \quad \text{dimana } \; y' = \frac{dy}{dt}.
+        $
+        \begin{enumerate}
+          \item Nyatakan PD Biasa tersebut dalam bentuk sistem PD
+                \(\dot{X} = A X\), dan dapatkan nilai Eigen dari matriks \(A\).
+          \item Berdasarkan poin (a) tersebut di atas, dapatkan penyelesaian sistem
+                \(\dot{X} = A X\) dan matriks Fundamentelnya.
+        \end{enumerate}
+
+  \item Diberikan sistem persamaan diferensial biasa linier non-homogen (SPDBL-NH) sebagai berikut:
+        \[
+          x' =
+          \begin{bmatrix}
+            -2 & 1  \\
+            1  & -2
+          \end{bmatrix}x
+          +
+          \begin{bmatrix}
+            2e^{-t} \\
+            3t
+          \end{bmatrix}
+        \]
+        \begin{enumerate}
+          \item Hitung nilai dan vektor eigennya serta penyelesaian homogen-nya.
+          \item Dapatkan penyelesaian partikularnya.
+          \item Tentukan penyelesaian umum dari SPDBL-NH ini.
+        \end{enumerate}
+
+  \item Diberikan sistem autonomous:
+        \[
+          \begin{cases}
+            \dfrac{dx}{dt} = -x + 2y, \\[6pt]
+            \dfrac{dy}{dt} = 2x - y
+          \end{cases}
+        \]
+        \begin{enumerate}
+          \item Tentukan titik setimbang dan jenisnya.\\
+          \item Tentukan kestabilan sistem tersebut.\\
+          \item Gambarkan portrait phasanya.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
