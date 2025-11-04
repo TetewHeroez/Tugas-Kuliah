@@ -1,46 +1,55 @@
 \pagebreak
 \chapter{METODOLOGI}
 
-Pada bab ini akan dijelaskan langkah-langkah pelaksanaan penelitian tugas akhir yang dilengkapi dengan alur proses serta jadwal kegiatan yang disusun selama penelitian.
-% \section{Studi Literatur}
-% Pada tahap ini dilakukan pengumpulan referensi yang relevan dengan penelitian tugas akhir ini. Sumber referensi yang digunakan adalah buku, tugas akhir, tesis, paper, serta artikel yang mendukung topik penelitian. Referensi yang terkait dengan penelitian ini adalah mengenai kendali rudal menggunakan metode NMPC dengan pendekatan fungsi laguerre.
+Pada bab ini dijelaskan langkah-langkah pelaksanaan penelitian tugas akhir beserta alur proses dan jadwal kegiatan.
 
-\section{Pengkajian Model Matematika Rudal}
+\section{Desain Penelitian}
+Penelitian bersifat teoretis-konstruktif yang dilengkapi verifikasi komputasional. Targetnya adalah perumusan definisi, penurunan kondisi eksistensi, serta konstruksi eksplisit untuk persegi Latin komutatif atas aljabar max-plus pada himpunan simbol hingga.
 
-\section{Pendiskritan Model}
+\section{Perumusan Masalah dan Model}
+\begin{enumerate}
+  \item Ditetapkan himpunan simbol hingga $S=\{a_0,\dots,a_{n-1}\}\subset \mathbb{Z}$ atau $\mathbb{R}$.
+  \item Didefinisikan operasi dasar max-plus $\oplus,\otimes$ pada $S$ dan skema normalisasi $\varphi: S\times S\to S$ sehingga operasi efektif $\star$ pada $S$ diberikan oleh $(x\star y):=\varphi(x\otimes y)$ atau varian yang relevan.
+  \item Kriteria Latin: untuk tabel $L$ berindeks $0,\dots,n-1$, setiap baris/kolom memuat tiap simbol tepat sekali. Kriteria komutatif: $L(i,j)=L(j,i)$.
+\end{enumerate}
 
-\section{Pembentukan Kendali Rudal Menggunakan Laguerre-NMPC}
+\section{Metode Konstruksi}
+\begin{enumerate}
+  \item \textbf{Skema parametris}: tentukan parameter (mis. vektor offset, fungsi pengurutan, atau kelas residu) yang menginduksi $\varphi$ agar tabel memenuhi sifat Latin.
+  \item \textbf{Algoritme generatif}: bangun $L$ baris demi baris berdasarkan $\star$ dan cek keunikan baris/kolom; gunakan pencarian mundur (backtracking) bila perlu.
+  \item \textbf{Komutativitas}: paksa kesimetrian $L(i,j)=L(j,i)$ selama konstruksi untuk memangkas ruang pencarian.
+\end{enumerate}
 
-\section{Simulasi dan Analisis Hasil Simulasi}
+\section{Verifikasi dan Analisis}
+\begin{enumerate}
+  \item \textbf{Verifikasi Latin}: uji programatik bahwa tiap baris/kolom memuat semua simbol tanpa pengulangan.
+  \item \textbf{Sifat aljabar}: telaah identitas (jika ada), idempoten, dan hubungan isotopi/autotopi.
+  \item \textbf{Studi kasus}: enumerasi untuk orde kecil–menengah; bandingkan pola dan kelas kesetaraan.
+\end{enumerate}
 
-\section{Penarikan Kesimpulan dan Saran}
+\section{Hasil yang Diharapkan}
+Definisi formal, kondisi eksistensi (perlu/cukup bila memungkinkan), prosedur konstruksi, contoh dan klasifikasi awal, serta diskusi implikasi pada penjadwalan tropis dan desain kombinatorial. Referensi pada praktik tropis di domain lain memberikan konteks metodologis dan justifikasi verifikasi komputasional \cite{tropicalStickelSecurity,stickelImpl}.
 
-\section{Penulisan Laporan Tugas Akhir}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{foto/Diagram Alir Penelitian Blue.png}
-    \caption{Diagram Alir Penelitian}
-    \label{fig:diagram penelitian}
-\end{figure}
+\section{Penulisan Laporan}
+Penyusunan laporan mengikuti format yang ditetapkan, meliputi Bab I–III pada proposal dan pengembangan lebih lanjut pada naskah akhir.
 
 \pagebreak
 \chapter*{JADWAL PENELITIAN}
 Berikut jadwal pelaksanaan tahap-tahap penelitian tugas akhir yang akan dilakukan selama 3 bulan sesuai dengan metode penelitian. \vspace{0.5cm}
 \begin{table}[htbp]
-\centering
-\caption{Jadwal Pelaksanaan Penelitian Tugas Akhir}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{|C{0.6cm}|L{6.5cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}	\hline
-	&&\multicolumn{12}{c|}{\textbf{BULAN}}\\\cline{3-14}
-	\multicolumn{1}{|c|}{\textbf{NO}}&\multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}&\multicolumn{4}{c|}{1}&\multicolumn{4}{c|}{2}&\multicolumn{4}{c|}{3}\\\cline{3-14}
-	&&1&2&3&4&1&2&3&4&1&2&3&4\\\cline{1-14}
-	1&Pengkajian model matematika rudal &\cellcolor{blue!}&\cellcolor{blue!}&&&&&&&&&&\\\hline
-	2&Pendiskritan model&&\cellcolor{blue!}&\cellcolor{blue!}&&&&&&&&&\\\hline
-	3&Pembentukan kendali rudal menggunakan Laguerre-NMPC &&&\cellcolor{blue!}&\cellcolor{blue!}&&&&&&&&\\\hline
-	4&Pembuatan program menggunakan software MATLAB R2024b &&&&\cellcolor{blue!}&\cellcolor{blue!}&\cellcolor{blue!}&\cellcolor{blue!}&&&&&\\\hline
-	5&Simulasi dan analisis hasil simulasi&&&&&&&\cellcolor{blue!}&\cellcolor{blue!}&\cellcolor{blue!}&&&\\\hline
-	6&Penarikan kesimpulan dan saran&&&&&&&&&\cellcolor{blue!}&\cellcolor{blue!}&&\\\hline
-	7&Penulisan laporan tugas akhir&&&&&&&&&&\cellcolor{blue!}&\cellcolor{blue!}&\cellcolor{blue!}\\\hline
-\end{tabular}
+  \centering
+  \caption{Jadwal Pelaksanaan Penelitian Tugas Akhir}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|C{0.6cm}|L{6.5cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}	\hline
+                                      &                                                  & \multicolumn{12}{c|}{\textbf{BULAN}}                                                                                                                                                                                                                                       \\\cline{3-14}
+    \multicolumn{1}{|c|}{\textbf{NO}} & \multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}      & \multicolumn{4}{c|}{1}               & \multicolumn{4}{c|}{2} & \multicolumn{4}{c|}{3}                                                                                                                                                                                     \\\cline{3-14}
+                                      &                                                  & 1                                    & 2                      & 3                      & 4                 & 1                 & 2                 & 3                 & 4                 & 1                 & 2                 & 3                 & 4                 \\\cline{1-14}
+    1                                 & Studi literatur dan perumusan masalah            & \cellcolor{blue!}                    & \cellcolor{blue!}      &                        &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
+    2                                 & Perancangan skema normalisasi dan model operasi  &                                      & \cellcolor{blue!}      & \cellcolor{blue!}      &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
+    3                                 & Pengembangan algoritme konstruksi dan verifikasi &                                      &                        & \cellcolor{blue!}      & \cellcolor{blue!} &                   & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   \\\hline
+    4                                 & Eksperimen dan enumerasi orde kecil--menengah    &                                      &                        &                        & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   \\\hline
+    5                                 & Analisis hasil dan karakterisasi aljabar         &                                      &                        &                        &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   \\\hline
+    6                                 & Penyusunan kesimpulan dan saran                  &                                      &                        &                        &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   \\\hline
+    7                                 & Penulisan laporan proposal/TA                    &                                      &                        &                        &                   &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} \\\hline
+  \end{tabular}
 \end{table}
