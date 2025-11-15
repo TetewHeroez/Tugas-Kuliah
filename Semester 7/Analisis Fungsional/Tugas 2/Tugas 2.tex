@@ -1,0 +1,120 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\noindent
+\textbf{Soal 3.15}
+Misalkan $p \in [1, \infty)$ dan tinjau pemetaan
+\[
+  T : \ell^p(\mathbb{N}) \to \ell^p(\mathbb{N}), \qquad
+  T\{x_k\}_{k=1}^\infty := \{x_k + x_{k+1}\}_{k=1}^\infty.
+\]
+\begin{enumerate}
+  \item[(i)] Tunjukkan bahwa $T$ benar-benar memetakan $\ell^p(\mathbb{N})$ ke $\ell^p(\mathbb{N})$.
+  \item[(ii)] Tunjukkan bahwa $T$ bersifat linear dan terbatas.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Penyelesaian:}
+
+\medskip
+
+\begin{enumerate}[label=(\roman*)]
+  \item Definisikan operator \textit{shift} $S : \ell^p(\mathbb{N}) \to \ell^p(\mathbb{N})$ sebagai
+        \[
+          S(x_1, x_2, x_3, \dots) = (x_2, x_3, x_4, \dots).
+        \]
+        Jelas bahwa jika $x = (x_k) \in \ell^p(\mathbb{N})$, maka
+        \[
+          \|Sx\|_p^p = \sum_{k=1}^\infty |x_{k+1}|^p = \sum_{k=2}^\infty |x_k|^p \le \sum_{k=1}^\infty |x_k|^p = \|x\|_p^p.
+        \]
+        Dengan demikian $Sx \in \ell^p(\mathbb{N})$.
+
+        Selanjutnya, karena $T(x) = x + Sx$, dengan menggunakan \textbf{ketaksamaan Minkowski} diperoleh
+        \[
+          \|T(x)\|_p = \|x + Sx\|_p \le \|x\|_p + \|Sx\|_p \le 2\|x\|_p < \infty.
+        \]
+        Maka $T(x) \in \ell^p(\mathbb{N})$, sehingga $T$ memang memetakan $\ell^p(\mathbb{N})$ ke dalam $\ell^p(\mathbb{N})$.
+
+  \item Ambil $x = (x_k)$ dan $y = (y_k)$ di $\ell^p(\mathbb{N})$, serta $\alpha, \beta \in \mathbb{R}$ (atau $\mathbb{C}$). Maka
+        \begin{align*}
+          T(\alpha x + \beta y) & = \{(\alpha x_k + \alpha x_{k+1} + \beta y_k + \beta y_{k+1})\}_{k=1}^\infty       \\
+                                & = \{\alpha (x_k + x_{k+1}) + \beta (y_k + y_{k+1})\}_{k=1}^\infty                  \\
+                                & = \alpha \{(x_k + x_{k+1})\}_{k=1}^\infty + \beta \{(y_k + y_{k+1})\}_{k=1}^\infty \\
+                                & = \alpha T(x) + \beta T(y).
+        \end{align*}
+        Dengan demikian, $T$ adalah operator linear.
+
+        \medskip
+
+        Kemudian untuk setiap $x \in \ell^p(\mathbb{N})$, berlaku
+        \[
+          \|T(x)\|_p \le \|x\|_p + \|Sx\|_p.
+        \]
+        Selanjutnya,
+        \[
+          \|Sx\|_p^p = \sum_{k=1}^\infty |x_{k+1}|^p = \sum_{k=2}^\infty |x_k|^p \le \sum_{k=1}^\infty |x_k|^p = \|x\|_p^p.
+        \]
+        Dengan demikian, $\|Sx\|_p \le \|x\|_p$, dan memenuhi $\|S\| = 1$.
+
+        Maka
+        \[
+          \|T(x)\|_p \le \|x\|_p + \|Sx\|_p \le 2\|x\|_p,
+        \]
+        sehingga $T$ adalah operator terbatas dengan
+        \[
+          \|T\| \le 2.
+        \]
+        Jadi, operator $T$ bersifat linear dan terbatas pada ruang $\ell^p(\mathbb{N})$.
+
+        \hfill$\blacksquare$
+\end{enumerate}
+
+
+
+\end{document}
