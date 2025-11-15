@@ -1,0 +1,609 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+    \addbibresource{reference.bib}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage{csquotes}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{array}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \pgfplotsset{compat=1.18}
+\usepackage{listings}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!50]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% \setbeamercovered{transparent}
+
+
+\theoremstyle{definition}
+% \numberwithin{subsection}{section}
+\newtheorem{definisi}{Definisi}
+\numberwithin{definisi}{section}
+\newtheorem{teorema}[definisi]{Teorema}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\AtBeginEnvironment{definisi}{
+    \setbeamercolor{block title}{fg=white,bg=HIMAtua}
+    \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+    \setbeamercolor{item}{fg=HIMAtua}
+}
+\AtBeginEnvironment{teorema}{
+    \setbeamercolor{block title}{bg=darkgray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+    \setbeamercolor{item}{fg=darkgray}
+}
+\AtBeginEnvironment{lema}{
+    \setbeamercolor{block title}{bg=gray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!50!white}
+    \setbeamercolor{item}{fg=gray}
+}
+\AtBeginEnvironment{soal}{%
+  \setbeamercolor{block title}{fg=white,bg=teal} 
+  \setbeamercolor{block body}{parent=normal text,bg=teal!30!white} 
+  \setbeamercolor{item}{fg=teal}
+}
+
+
+\date{Senin, 2 Juni 2025}
+\title[Aljabar Max-Plus]{Model \textit{Learnable} Petri Net dalam struktur Neural Network berbasis Aljabar Max-Plus}
+\author[Tetew]{Teosofi Hidayah Agung -- 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{\includegraphics[scale=0.15]{logoITS}$\quad$\includegraphics[scale=0.024]{M.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Daftar Isi}
+  \tableofcontents
+\end{frame}
+
+\section{Pendahuluan}
+
+\begin{frame}{Latar Belakang}
+  \begin{itemize}
+    \item \textbf{Petri Net}: Model formal untuk sistem diskrit yang interpretable
+    \item \textbf{Masalah}: Petri net tidak dirancang untuk pembelajaran adaptif
+    \item \textbf{Solusi}: Menghubungkan Petri net dengan neural network melalui \textit{max-plus algebra}
+  \end{itemize}
+
+  \vspace{0.5cm}
+
+  \begin{block}{Tujuan}
+    Membuat representasi Petri net yang dapat dipelajari menggunakan algoritma pembelajaran mesin standar, sambil mempertahankan interpretabilitas model.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Motivasi}
+  \textbf{Kenapa penting?}
+  \begin{enumerate}
+    \item Production scheduling dengan waktu proses dinamis
+    \item Sistem manufaktur dengan ketidakpastian timing
+    \item Perlu model yang:
+          \begin{itemize}
+            \item Interpretable (dapat dijelaskan)
+            \item Learnable (dapat dipelajari dari data)
+            \item Scalable (dapat ditingkatkan)
+          \end{itemize}
+  \end{enumerate}
+
+  % \vspace{0.3cm}
+
+  % \begin{center}
+  %   \includegraphics[width=0.7\textwidth]{foto/petri_net_example.png}
+  % \end{center}
+\end{frame}
+
+\section{Dasar Teori}
+
+\begin{frame}{Petri Net}
+  \begin{definisi}[Petri Net]
+    Petri net adalah pasangan $(\mathcal{G}, \mu_0)$ di mana:
+    \begin{itemize}
+      \item $\mathcal{G} = (P, T, A)$: graf bipartit terarah
+      \item $P = \{p_1, \ldots, p_m\}$: himpunan \textit{places}
+      \item $T = \{t_1, \ldots, t_n\}$: himpunan \textit{transitions}
+      \item $A \subseteq (P \times T) \cup (T \times P)$: himpunan \textit{arcs}
+      \item $\mu_0 : P \to \mathbb{N}$: \textit{marking} awal
+    \end{itemize}
+  \end{definisi}
+
+  \textbf{Firing rule}: Transisi $t$ enabled jika semua input places memiliki token, dan firing mengupdate marking:
+  $$\tilde{\mu}(p) = \begin{cases}
+      \mu(p) - 1 & \text{jika } p \in \pi(t)    \\
+      \mu(p) + 1 & \text{jika } p \in \sigma(t) \\
+      \mu(p)     & \text{lainnya}
+    \end{cases}$$
+\end{frame}
+
+\begin{frame}{Coloured Petri Net (CPN)}
+  \textbf{Extension}: Token memiliki \textbf{warna} (data values)
+
+  \begin{columns}
+    \column{0.5\textwidth}
+    \textbf{Basic Petri Net:}
+    \begin{itemize}
+      \item Token homogen
+      \item Hanya menghitung jumlah
+    \end{itemize}
+
+    \column{0.5\textwidth}
+    \textbf{Coloured Petri Net:}
+    \begin{itemize}
+      \item Token membawa data
+      \item Warna = job type, machine ID, dll
+    \end{itemize}
+  \end{columns}
+
+  \vspace{0.5cm}
+
+  \begin{definisi}[CPN]
+    CPN = $(\mathcal{P}, \mathcal{T}, \mathcal{A}, \Sigma, C, N, E, G, I)$ dengan:
+    \begin{itemize}
+      \item $\Sigma$: himpunan colour sets
+      \item $C: \mathcal{P} \cup \mathcal{T} \to \Phi(\Sigma)$: colour function
+      \item $E, G, I$: arc expressions, guards, initial marking
+    \end{itemize}
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{Timed Event Graph (TEG)}
+  \textbf{TEG}: Subkelas Petri net dengan:
+  \begin{itemize}
+    \item Setiap place: 1 upstream + 1 downstream transition
+    \item Cocok untuk sistem produksi sekuensial
+    \item Dapat dimodelkan dengan \textit{max-plus algebra}
+  \end{itemize}
+
+  \vspace{0.3cm}
+
+  \textbf{Timing parameters:}
+  \begin{itemize}
+    \item $\beta_j$: \textbf{firing time} (waktu proses)
+    \item $\alpha_i$: \textbf{holding time} (waktu tunggu minimum)
+    \item $w_i$: \textbf{lag time} (delay awal)
+  \end{itemize}
+
+  \begin{block}{Keunggulan}
+    TEG dapat diubah menjadi \textit{choice-free net} melalui \textit{unfolding}, yang memungkinkan representasi dalam max-plus algebra.
+  \end{block}
+\end{frame}
+
+\section{Max-Plus Algebra}
+
+\begin{frame}{Definisi Max-Plus Algebra}
+  \begin{definisi}[Max-Plus Algebra]
+    Max-plus algebra adalah semiring $(\mathbb{R} \cup \{-\infty\}, \oplus, \otimes)$ dengan:
+    \begin{align*}
+      a \oplus b  & = \max(a, b) \\
+      a \otimes b & = a + b
+    \end{align*}
+  \end{definisi}
+
+  \textbf{Elemen identitas:}
+  \begin{itemize}
+    \item $\varepsilon = -\infty$ untuk $\oplus$
+    \item $e = 0$ untuk $\otimes$
+  \end{itemize}
+
+  \vspace{0.3cm}
+
+  \textbf{Contoh}:
+  \begin{align*}
+    3 \oplus 5  & = \max(3, 5) = 5 \\
+    3 \otimes 5 & = 3 + 5 = 8
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Perkalian Matriks Max-Plus}
+  \textbf{Perkalian matriks} dalam max-plus algebra:
+  $$(A \otimes B)_{ij} = \bigoplus_{k=1}^{n} (a_{ik} \otimes b_{kj}) = \max_{k} (a_{ik} + b_{kj})$$
+
+  \vspace{0.3cm}
+
+  \textbf{Contoh}:
+  $$A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$$
+
+  $$(A \otimes B)_{11} = \max(1+5, 2+7) = \max(6, 9) = 9$$
+
+  \begin{alertblock}{Penting!}
+    Operasi max memodelkan \textbf{sinkronisasi} (event hanya terjadi setelah semua prerequisite selesai), dan operasi plus memodelkan \textbf{delay}.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{TEG dalam Max-Plus Algebra}
+  \textbf{Dater representation} TEG:
+  $$x^d(k+1) = A \otimes x^d(k) \oplus B \otimes u^d(k)$$
+
+  Di mana:
+  \begin{itemize}
+    \item $x^d(k) \in \mathbb{R}_{\max}^{|Q|}$: state vector (firing times)
+    \item $u^d(k) \in \mathbb{R}_{\max}^{|\mathcal{U}|}$: input vector
+    \item $A \in \mathbb{R}_{\max}^{|Q| \times |Q|}$: state matrix
+    \item $B \in \mathbb{R}_{\max}^{|Q| \times |\mathcal{U}|}$: input matrix
+  \end{itemize}
+
+  \vspace{0.3cm}
+
+  \textbf{Extended form}:
+  $$\tilde{x}^d(k+1) = \tilde{A}(k) \tilde{x}^d(k) \oplus \tilde{B}(k) \tilde{u}^d(k)$$
+  dengan memory $M$ untuk menangani delay.
+\end{frame}
+
+\section{Neural Network dalam Tropical Algebra}
+
+\begin{frame}{Hubungan Petri Net dan Neural Network}
+  \begin{teorema}
+    State equation TEG dalam dater representation ekuivalen dengan \textit{two-layer maxout network}.
+  \end{teorema}
+
+  \textbf{Bukti (sketch)}:
+  \begin{enumerate}
+    \item Maxout network: $h_i(x) = \max_{j \in [0,|Q|]} z_{ij}$ dengan $z_{ij} = W_{ij}v_j + s_{ij}$
+    \item Set weights $W = 1$ → $z_{ij} = v_j + s_{ij}$
+    \item Dalam max-plus: $h_i(v) = \bigoplus_{j=0}^{|Q|} (s_{ij} \otimes v_j)$
+    \item Apply ke state dan input: $H = S \otimes v$
+    \item Substitusi $S \to A$ dan $v \to x$ atau $S \to B$ dan $v \to u$
+    \item Element-wise max pooling → final output
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Arsitektur Tropical Neural Network}
+  % \begin{center}
+  %   \includegraphics[width=0.9\textwidth]{foto/neural_network_architecture.png}
+  % \end{center}
+
+  \textbf{Komponen:}
+  \begin{itemize}
+    \item \textbf{State Network}: memproses current state $x(k)$
+    \item \textbf{Input Network}: memproses control input $u(k)$
+    \item \textbf{Hard-max unit}: element-wise max pooling
+    \item \textbf{Output}: next state $x(k+1)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Activation Function}
+  \textbf{Hard-max unit} (bukan softmax!):
+  $$h_i(x) = \max_{j \in [0,|Q|]} z_{ij}$$
+
+  \textbf{Kenapa hard-max?}
+  \begin{itemize}
+    \item Hanya satu weight yang berkontribusi per output
+    \item Dapat melacak \textit{path} untuk backpropagation
+    \item Interpretable: menunjukkan bottleneck/critical path
+  \end{itemize}
+
+  \begin{block}{Catatan}
+    Gumbel-Softmax distribution dapat digunakan sebagai alternatif, namun tidak memberikan improvement signifikan (disebutkan di paper).
+  \end{block}
+\end{frame}
+
+\section{Learning Algorithm}
+
+\begin{frame}{Problem Statement}
+  \textbf{Given:}
+  \begin{itemize}
+    \item TEG structure (jumlah places dan transitions)
+    \item Dataset: $\mathcal{D} = \{(x^v(k), u^v(k), x^v(k+1))\}_{v=1}^{N}$
+  \end{itemize}
+
+  \textbf{Goal:}
+  Pelajari matriks $A$ dan $B$ dengan meminimalkan loss:
+  $$\min_{A,B} \mathcal{L}_1 = \min_{A,B} \sum_{v=1}^{N} |\hat{x}(k+1) - x_i(k+1)|$$
+
+  \vspace{0.3cm}
+
+  \textbf{Challenge:}
+  \begin{itemize}
+    \item Non-differentiable max operation
+    \item Perlu modifikasi backpropagation
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Algorithm 1: Supervised Learning}
+  \begin{algorithm}[H]
+    \small
+    \caption{Petri net supervised learning}
+    \textbf{Require:} Dataset $\mathcal{D} = \{(X, u, X')\}$ \\
+    \textbf{Ensure:} State matrix $A$, Input matrix $B$
+    \begin{algorithmic}[1]
+      \State $A \leftarrow -\mathbf{1}^{|Q| \times |Q|}$, $B \leftarrow -\mathbf{1}^{|Q| \times |\mathcal{U}|}$
+      \For{epoch = 1 to $N$}
+      \For{each $(X, u, X')$ in $\mathcal{D}$}
+      \State $X' \leftarrow$ \textsc{ForwardPass}$(X, u)$
+      \State error $\leftarrow \mathcal{L}_1(X', X')$
+      \State \textsc{BackPropagation}$(A, B, \text{error})$
+      \EndFor
+      \EndFor
+      \State \Return $A, B$
+    \end{algorithmic}
+  \end{algorithm}
+\end{frame}
+
+\begin{frame}[fragile]{Algorithm 2: Forward Pass}
+  \begin{algorithm}[H]
+    \footnotesize
+    \caption{Forward propagation in max-plus algebra}
+    \textbf{Require:} Input $X$, control input $u$ \\
+    \textbf{Ensure:} Prediction vector $Y$
+    \begin{algorithmic}[1]
+      \For{each perceptron $p_i^s$ in $\mathcal{N}_A$}
+      \State activation $\leftarrow \max_{1 \leq j \leq n} (A_{ij} + X_j)$
+      \State $y_i^a \leftarrow f(\text{activation})$
+      \State Store activation path
+      \EndFor
+      \For{each perceptron $p_j^b$ in $\mathcal{N}_B$}
+      \State activation $\leftarrow \max_{1 \leq j \leq u} (B_{ij} + u_j)$
+      \State $y_i^b \leftarrow f(\text{activation})$
+      \State Store activation path
+      \EndFor
+      \For{each index $i$ in output $Y$}
+      \State $Y_i \leftarrow \max(y_i^a, y_i^b)$
+      \State Store activation path
+      \EndFor
+      \State \Return $Y$
+    \end{algorithmic}
+  \end{algorithm}
+\end{frame}
+
+\begin{frame}[fragile]{Algorithm 3: Back-Propagation}
+  \begin{algorithm}[H]
+    \small
+    \caption{Back-propagation in max-plus algebra}
+    \textbf{Require:} Weight matrices $A, B$; error; stored activation paths \\
+    \textbf{Ensure:} Updated matrices $A, B$
+    \begin{algorithmic}[1]
+      \For{each index $i$ in error}
+      \If{activation path $i$ belongs to $\mathcal{N}_A$}
+      \State $A[\text{path}_i] \leftarrow A[\text{path}_i] - \eta \cdot \text{error}_i$
+      \Else
+      \State $B[\text{path}_i] \leftarrow B[\text{path}_i] - \eta \cdot \text{error}_i$
+      \EndIf
+      \EndFor
+      \State \Return $A, B$
+    \end{algorithmic}
+  \end{algorithm}
+
+  \textbf{Key insight}: Karena hard-max, hanya satu weight per output yang di-update (yang menghasilkan max value).
+\end{frame}
+
+\section{Implementasi dan Hasil}
+
+\begin{frame}{Robot Manufacturing Cell}
+  \textbf{Case study}: Robot manufacturing cell dengan:
+  \begin{itemize}
+    \item 2 workpiece types (WP$_1$, WP$_2$)
+    \item 3 processing stations (S$_1$, S$_2$, S$_3$)
+    \item 2 input buffers (IB$_1$, IB$_2$)
+    \item 1 output buffer (OB)
+  \end{itemize}
+
+  \vspace{0.3cm}
+
+  \textbf{Routing:}
+  \begin{itemize}
+    \item WP$_1$: IB$_1 \to$ S$_1 \to$ S$_2 \to$ S$_3 \to$ OB
+    \item WP$_2$: IB$_2 \to$ S$_2 \to$ S$_3 \to$ S$_1 \to$ OB
+  \end{itemize}
+
+  % \begin{center}
+  %   \includegraphics[width=0.6\textwidth]{foto/robot_cell.png}
+  % \end{center}
+\end{frame}
+
+\begin{frame}{Processing Times}
+  \begin{table}
+    \centering
+    \caption{Processing times (detik) untuk setiap workpiece di setiap station}
+    \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      \textbf{Station} & \textbf{WP$_1$} & \textbf{WP$_2$} \\
+      \hline
+      IB$_1$           & 0               & -               \\
+      IB$_2$           & -               & 0               \\
+      S$_1$            & 10              & 30              \\
+      S$_2$            & 20              & 10              \\
+      S$_3$            & 30              & 20              \\
+      OB               & 0               & 0               \\
+      \hline
+    \end{tabular}
+  \end{table}
+
+  \textbf{Transport time matrix} $T$ (detik):
+  $$T = \begin{bmatrix}
+      0 & 2 & 4 \\
+      2 & 0 & 3 \\
+      4 & 3 & 0
+    \end{bmatrix}$$
+\end{frame}
+
+\begin{frame}{Dataset Generation}
+  \textbf{Procedure:}
+  \begin{enumerate}
+    \item Generate random reference matrices $A_{\text{ref}}$ dan $B_{\text{ref}}$
+    \item Freeze matrices
+    \item Generate random input sequences $u(k)$
+    \item Compute trajectories: $x(k+1) = A_{\text{ref}} \otimes x(k) \oplus B_{\text{ref}} \otimes u(k)$
+    \item Collect dataset: $\mathcal{D} = \{(x(k), u(k), x(k+1))\}$
+  \end{enumerate}
+
+  \vspace{0.3cm}
+
+  \textbf{Dataset size:} 1000 training samples, 100 test samples
+
+  \begin{block}{Catatan}
+    Initial state $x_0$ harus finite values (bukan $-\infty$) agar gradient dapat flow.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Training Results}
+  % \begin{center}
+  %   \includegraphics[width=0.8\textwidth]{foto/training_loss.png}
+  % \end{center}
+
+  \textbf{Observations:}
+  \begin{itemize}
+    \item Loss converges setelah $\sim$1000 samples
+    \item Learning rate $\alpha \in \{10^{-1}, 10^{-2}, 10^{-3}\}$ tested
+    \item Best: $\alpha = 10^{-2}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Matrix Reconstruction}
+  % \begin{center}
+  %   \includegraphics[width=0.9\textwidth]{foto/matrix_comparison.png}
+  % \end{center}
+
+  \textbf{Minkowski distance} ($p=2$):
+  \begin{itemize}
+    \item $D(A_{\text{learned}}, A_{\text{ref}}) = 2.05$
+    \item $D(B_{\text{learned}}, B_{\text{ref}}) = 0.82$
+  \end{itemize}
+
+  Matrix $B$ converges lebih cepat karena struktural properties (lebih sederhana).
+\end{frame}
+
+\begin{frame}{Prediction vs Ground Truth}
+  % \begin{center}
+  %   \includegraphics[width=0.95\textwidth]{foto/prediction_comparison.png}
+  % \end{center}
+
+  \textbf{Mean Absolute Error (MAE):}
+  \begin{itemize}
+    \item State $x_1$: 0.15
+    \item State $x_2$: 0.22
+    \item State $x_3$: 0.18
+    \item Overall MAE: 0.18
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Robustness to Noise}
+  \textbf{Test:} Tambahkan Gaussian noise $\mathcal{N}(0, \sigma^2)$ ke labels
+
+  \begin{table}
+    \centering
+    \caption{Minkowski distances untuk varying noise levels}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Noise Level} & \textbf{Matrix Distance} & \textbf{State Distance} \\
+      \hline
+      $\sigma = 1\%$       & 2.05                     & 2.82                    \\
+      $\sigma = 5\%$       & 9.07                     & 9.59                    \\
+      $\sigma = 10\%$      & 12.98                    & 29.78                   \\
+      \hline
+    \end{tabular}
+  \end{table}
+
+  \textbf{Observation:} Model robust terhadap noise kecil ($<5\%$), degradasi untuk noise besar.
+\end{frame}
+
+\begin{frame}{Dynamic Adaptation}
+  \textbf{Test:} Ubah $A$ matrix di tengah training (50\% mark)
+
+  % \begin{center}
+  %   \includegraphics[width=0.7\textwidth]{foto/dynamic_adaptation.png}
+  % \end{center}
+
+  \textbf{Result:}
+  \begin{itemize}
+    \item Dynamic case: model beradaptasi ke target baru
+    \item Static case: stuck pada trajectory lama
+    \item Menunjukkan kemampuan online learning
+  \end{itemize}
+\end{frame}
+
+\section{Kesimpulan}
+
+\begin{frame}{Kontribusi}
+  \textbf{Paper contributions:}
+  \begin{enumerate}
+    \item Hubungan formal antara Petri net, max-plus algebra, dan neural network
+    \item Learnable Petri net representation dalam tropical domain
+    \item Forward-backward propagation algorithm untuk max-plus algebra
+    \item Parameter-sharing antara dater dan counter representations
+    \item Aplikasi pada production scheduling dengan hasil promising
+  \end{enumerate}
+
+  \vspace{0.3cm}
+
+  \begin{block}{Key Insight}
+    TEG state equation = tropical neural network dengan hard-max units
+  \end{block}
+\end{frame}
+
+\begin{frame}{Keunggulan}
+  \textbf{Advantages:}
+  \begin{itemize}
+    \item \textbf{Interpretable}: Matrix $A$, $B$ memiliki makna fisik (processing \& transport times)
+    \item \textbf{Learnable}: Dapat dipelajari dari data observasi
+    \item \textbf{Modular}: Hierarki job $\to$ operation $\to$ system
+    \item \textbf{Scalable}: Extend matriks $A$, $B$ untuk multiple jobs
+    \item \textbf{Adaptive}: Dapat beradaptasi dengan dynamic changes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Limitasi dan Future Work}
+  \textbf{Limitations:}
+  \begin{itemize}
+    \item Hanya untuk TEG (choice-free nets)
+    \item Initial state harus finite (tidak boleh $-\infty$)
+    \item Convergence speed bergantung pada learning rate
+  \end{itemize}
+
+  \vspace{0.3cm}
+
+  \textbf{Future work:}
+  \begin{itemize}
+    \item Integrasi dengan reinforcement learning (RL agent)
+    \item Extend ke stochastic Petri nets
+    \item Temperature gradient method untuk speed up
+    \item Real-world deployment pada smart manufacturing
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
