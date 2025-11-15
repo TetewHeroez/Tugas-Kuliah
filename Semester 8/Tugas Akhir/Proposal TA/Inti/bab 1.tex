@@ -1,31 +1,47 @@
 \pagebreak
 \chapter{PENDAHULUAN}
 \section{Latar Belakang}
-Perkembangan teknologi militer di era modern merupakan faktor penting untuk menjaga keamanan negara. Salah satu bentuk perkembangan teknologi pertahanan adalah sistem persenjataan jarak jauh yang mampu menghancurkan target dengan akurasi tinggi. 
+Persegi Latin (Latin square) berordo $n$ adalah sebuah matriks berukuran $n\times n$ yang diisi oleh $n$ simbol sedemikian sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom. Struktur kombinatorial ini memainkan peranan penting dalam berbagai bidang, seperti desain eksperimen, teori kode, kriptografi, penjadwalan, dan teori graf. Dari sudut pandang aljabar, setiap persegi Latin berkaitan erat dengan konsep kuasigrup, yakni himpunan beroperasi biner yang tabel Cayley-nya merupakan persegi Latin. Sifat komutatif pada persegi Latin merefleksikan komutativitas operasi yang melandasinya, dan membawa konsekuensi struktural yang khas terhadap simetri dan isotopi.
+
+Di sisi lain, aljabar tropis—khususnya aljabar max-plus—telah menjadi medan kajian yang berkembang pesat. Aljabar max-plus adalah semiring idempoten pada $\mathbb{R}\cup\{-\infty\}$ dengan operasi $a\oplus b = \max\{a,b\}$ dan $a\otimes b = a+b$. Kerangka ini telah terbukti efektif untuk memodelkan sistem kejadian diskret, penjadwalan, optimisasi, dan analisis jaringan karena sifat idempotensi dan keteraturan parsial yang kuat. Selain itu, studi pada kerangka tropis juga muncul dalam konteks kriptografi dan protokol kunci publik, yang menyoroti aspek keamanan dan implementasi dalam semiring idempoten \cite{tropicalStickelSecurity,stickelImpl}. Meskipun demikian, interaksi antara objek kombinatorial klasik seperti persegi Latin dengan struktur aljabar max-plus relatif belum banyak dieksplorasi, khususnya ketika kita membatasi perhatian pada persegi Latin komutatif.
+
+Penelitian ini memfokuskan diri pada
+``Latin Square Komutatif atas Aljabar Max-Plus'': merumuskan dan mengkaji cara-cara membangun, mengarakterisasi, serta memverifikasi persegi Latin komutatif yang diturunkan dari operasi max-plus pada himpunan hingga. Secara khusus, kami meninjau skema pelabelan/normalisasi agar hasil operasi max-plus pada pasangan elemen kembali ke himpunan simbol yang terbatas sehingga memenuhi sifat Latin. Kajian ini diharapkan membuka jembatan antara aljabar tropis dan desain kombinatorial, sekaligus menyediakan metode konstruksi baru dengan potensi aplikasi pada penjadwalan berbasis tropis dan pemodelan sistem diskret.
 
 \section{Rumusan Masalah}
 Rumusan masalah yang diangkat pada penelitian ini adalah sebagai berikut:
-\begin{enumerate} 
-    \item 
-    \item 
+\begin{enumerate}
+  \item Bagaimana merumuskan definisi yang ketat tentang ``persegi Latin (komutatif) atas aljabar max-plus'' pada himpunan simbol hingga, termasuk mekanisme pelabelan/normalisasi hasil operasi agar tetap berada dalam himpunan tersebut?
+  \item Kondisi apa yang diperlukan dan/atau cukup bagi eksistensi persegi Latin komutatif berordo $n$ yang dibangun dari struktur max-plus tertentu (misalnya pada $S=\{a_0,\dots,a_{n-1}\}\subset \mathbb{Z}$ atau $\mathbb{R}$)?
+  \item Bagaimana prosedur konstruksi eksplisit (berbasis parameter) untuk menghasilkan keluarga persegi Latin komutatif berordo $n$ dalam kerangka max-plus, dan bagaimana kompleksitas verifikasinya?
+  \item Sifat-sifat aljabar apa (misalnya identitas netral, idempoten, isotopi/autotopi) yang tetap, berubah, atau muncul khas ketika persegi Latin dibangun melalui operasi max-plus dan normalisasi terkait?
+  \item Untuk orde kecil hingga menengah, seperti apa hasil enumerasi dan klasifikasi (hingga isotopi/isosimetri) persegi Latin komutatif di bawah skema konstruksi yang diusulkan?
 \end{enumerate}
 
 \section{Batasan Masalah}
 Batasan masalah dalam penelitian ini adalah sebagai berikut :
 \begin{enumerate}
-    \item  
-    \item 
+  \item Himpunan simbol $S$ yang dipertimbangkan adalah himpunan hingga $S=\{a_0,\dots,a_{n-1}\}\subset \mathbb{Z}$ atau $\mathbb{R}$, dengan operasi max-plus $\oplus$ dan $\otimes$ dibatasi melalui suatu pemetaan normalisasi $\varphi: S\times S\to S$ yang dipilih agar sifat Latin terpenuhi.
+  \item Fokus pada persegi Latin komutatif, yaitu tabel yang simetris terhadap diagonal utama ($L(i,j)=L(j,i)$) dan merefleksikan komutativitas operasi yang melandasinya.
+  \item Analisis teoretis dilengkapi studi kasus dan verifikasi komputasional untuk orde kecil hingga menengah; penetapan batas orde mengikuti kebutuhan bukti/komputasi dan ketersediaan waktu.
+  \item Pembahasan diarahkan pada aspek struktur dan konstruksi; aplikasi praktis (misal implementasi industri skala besar) tidak menjadi fokus utama, kecuali disinggung sebagai motivasi.
+  \item Tidak semua varian aljabar tropis ditinjau; perhatian utama pada semiring max-plus idempoten.
 \end{enumerate}
- 
+
 \section{Tujuan}
 \begin{enumerate}
-    \item 
-    \item 
+  \item Merumuskan definisi formal persegi Latin komutatif atas aljabar max-plus pada himpunan hingga beserta skema normalisasi yang konsisten.
+  \item Menurunkan kondisi perlu/cukup (ketika memungkinkan) bagi eksistensi dan komutativitas persegi Latin yang dibangun dari struktur max-plus.
+  \item Mengembangkan metode konstruksi eksplisit dan prosedur verifikasi komputasional untuk menghasilkan dan menguji persegi Latin komutatif berordo $n$.
+  \item Melakukan studi kasus, contoh, serta (bila dimungkinkan) klasifikasi untuk orde kecil hingga menengah, berikut analisis sifat-sifat aljabarnya.
+  \item Mendiskusikan implikasi dan potensi aplikasi hasil kajian pada penjadwalan tropis dan desain kombinatorial.
 \end{enumerate}
 
 \section{Manfaat}
 \begin{enumerate}
- \item 
- \item  
- \item 
+  \item Kontribusi teoretis pada persilangan antara desain kombinatorial (persegi Latin/kuasigrup) dan aljabar tropis (max-plus), berupa definisi, konstruksi, dan karakterisasi baru.
+  \item Menyediakan pendekatan konstruktif yang dapat direplikasi untuk membangun persegi Latin komutatif di domain yang tidak konvensional (tropis/idempoten).
+  \item Bahan awal untuk pengembangan alat verifikasi komputasional persegi Latin dalam kerangka max-plus, berguna untuk eksplorasi orde yang lebih besar.
+  \item Menambah alternatif model dan inspirasi aplikasi pada penjadwalan, optimisasi diskret, dan desain eksperimen dalam perspektif tropis.
+  \item Menjadi referensi dan bahan ajar untuk topik terkait aljabar max-plus, kombinatorika, dan struktur aljabar non-klasik.
 \end{enumerate}
