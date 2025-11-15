@@ -1,0 +1,124 @@
+% !TeX program = pdflatex
+% Makalah Kuis 2 – Pengantar Teori Aproksimasi
+\documentclass[11pt,a4paper]{article}
+
+% Encoding & language
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[indonesian]{babel}
+\usepackage{csquotes}
+
+% Math & symbols
+\usepackage{amsmath,amssymb,mathtools}
+\numberwithin{equation}{section}
+
+% Figures & tables
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Formatting
+\usepackage[a4paper,margin=2.75cm]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+% Bibliography (biber)
+\usepackage[backend=biber,style=ieee,doi=false,isbn=false,url=true,giveninits=true]{biblatex}
+\addbibresource{makalah-kuis-2.bib}
+
+% Short macros
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\FT}[1]{\F\{#1\}}
+\DeclareMathOperator{\sinc}{sinc}
+
+\title{Transformasi Fourier: Teori Dasar dan Aplikasinya dalam Penghapusan Noise pada Audio}
+\author{<nama-mahasiswa> \\ NRP: <nrp-mahasiswa>}
+\date{\today\\\small Disusun untuk tugas makalah Quiz 2 mata kuliah Pengantar Teori Aproksimasi}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  Makalah ini membahas penerapan transformasi Fourier untuk penghapusan noise pada sinyal audio. Dimulai dari landasan teori transformasi Fourier kontinu/discret beserta sifat-sifat kuncinya, dilanjutkan dengan metodologi \emph{spectral gating} dan \emph{spectral subtraction} pada domain frekuensi, termasuk perumusan filter Wiener. Implementasi dilakukan menggunakan dua pendekatan: fitur \textit{Noise Reduction} pada Audacity serta skrip Python berbasis NumPy--SciPy dan librosa. Hasil menunjukkan bahwa pemodelan spektrum noise dari \emph{noise profile} dan penapisan pada domain frekuensi mampu menurunkan tingkat noise tanpa menurunkan kejernihan ujaran secara signifikan jika parameter ambang dipilih hati-hati.\footnote{Kode contoh dan berkas proyek dapat ditaruh pada lampiran atau repositori terpisah bila diperlukan.}
+\end{abstract}
+
+\section{Pendahuluan}
+Transformasi Fourier (TF) memetakan sinyal waktu ke domain frekuensi untuk menganalisis komponen harmoniknya. Untuk fungsi terintegralkan absolut $f\in L^1(\mathbb{R})$, TF didefinisikan sebagai
+\begin{equation}\label{eq:ft}
+  \FT{f}(\xi)=\hat f(\xi)=\int_{-\infty}^{\infty} f(x)\,e^{-2\pi i x\xi}\,dx,
+\end{equation}
+dan inversnya diberikan oleh
+\begin{equation}\label{eq:ift}
+  f(x)=\int_{-\infty}^{\infty} \hat f(\xi)\,e^{2\pi i x\xi}\,d\xi,
+\end{equation}
+di bawah syarat reguler yang sesuai\autocite{OppenheimSchafer2010,Bracewell2000}. Pada praktik komputasi, digunakan transformasi Fourier diskret (DFT) yang dievaluasi efisien dengan FFT\autocite{CooleyTukey1965}.
+
+Pada pemrosesan audio, banyak jenis gangguan (\emph{hiss}, \emph{hum}, \emph{broadband noise}) menumpang pada sinyal ujaran. Dengan memanfaatkan representasi spektral melalui TF/DFT, kita dapat memisahkan komponen noise dan sinyal lalu menerapkan penapisan selektif untuk mereduksi noise tanpa memodifikasi struktur temporal secara drastis\autocite{OppenheimSchafer2010}.
+
+\section{Sifat-sifat Transformasi Fourier yang Relevan}
+Berikut sifat-sifat pokok yang digunakan pada perancangan penapis di domain frekuensi\autocite{Bracewell2000}:
+\begin{itemize}
+  \item Linearitas: $\F\{a f + b g\}=a\,\hat f + b\,\hat g$.
+  \item Pergeseran waktu: $\F\{f(t-t_0)\}=e^{-2\pi i \xi t_0}\,\hat f(\xi)$.
+  \item Teorema konvolusi: $\F\{(f*g)(t)\}=\hat f(\xi)\,\hat g(\xi)$.
+  \item Parseval/Plancherel: $\int|f(t)|^2dt=\int|\hat f(\xi)|^2d\xi$.
+\end{itemize}
+Konvolusi pada waktu menjadi perkalian pada frekuensi memungkinkan perancangan filter sebagai fungsi transfer $H(\xi)$ yang mengalikan spektrum sinyal: $\widehat{y}(\xi)=H(\xi)\,\widehat{x}(\xi)$.
+
+\section{Landasan Teori Denoising Audio}
+\subsection{STFT dan Spektrogram}
+Untuk sinyal tidak tunak, digunakan \emph{short-time Fourier transform} (STFT) dengan jendela $w$\autocite{OppenheimSchafer2010}:
+\begin{equation}\label{eq:stft}
+  X(\tau,\omega)=\int_{-\infty}^{\infty} x(t)\,w(t-\tau)\,e^{-i\omega t}\,dt.
+\end{equation}
+Magnitudo $|X(\tau,\omega)|$ menghasilkan spektrogram. Denoising berbasis spektrum biasanya memodifikasi magnitudo lalu merekonstruksi sinyal menggunakan invers STFT.
+
+\subsection{Pengurangan Spektrum dan \emph{Spectral Gating}}
+Misalkan $y(t)=s(t)+n(t)$ adalah sinyal terkontaminasi noise. Pada domain frekuensi diperoleh $Y= S+N$. \emph{Spectral subtraction} memperkirakan magnitudo sinyal bersih dengan
+\begin{equation}\label{eq:spectral-sub}
+  |\hat S(\xi)|=\max\big\{\,|Y(\xi)|-\alpha\,\widehat{\sigma}_N(\xi),\,0\,\big\},
+\end{equation}
+di mana $\widehat{\sigma}_N(\xi)$ adalah estimasi magnitudo noise (diukur dari segmen \emph{noise-only}) dan $\alpha>1$ adalah faktor \emph{over-subtraction}\autocite{Boll1979}. \emph{Spectral gating} mengatur ambang pada tiap-\emph{bin} frekuensi dan meneduhkan (mengecilkan) koefisien yang diperkirakan berasal dari noise.
+
+\subsection{Filter Wiener}
+Dalam kerangka kuadrat-terkecil, filter Wiener meminimalkan MSE antara keluaran dan sinyal bersih. Pada domain frekuensi kontinu berlaku\autocite{Wiener1949}:
+\begin{equation}\label{eq:wiener}
+  H(\xi)=\frac{S_{xx}(\xi)}{S_{xx}(\xi)+S_{nn}(\xi)},
+\end{equation}
+di mana $S_{xx}$ dan $S_{nn}$ adalah densitas spektral daya sinyal dan noise. Dalam praktik, rasio $\mathrm{SNR}(\xi)$ diestimasi dari spektrogram sehingga $H(\xi)=\frac{\mathrm{SNR}(\xi)}{\mathrm{SNR}(\xi)+1}$.
+
+\section{Metodologi dan Perangkat}
+Kami mendemonstrasikan dua alur kerja berikut.
+
+\subsection{Audacity: Noise Reduction} \label{sec:audacity}
+Audacity menyediakan efek \textit{Noise Reduction} yang mengimplementasikan penapisan berbasis profil noise dan ambang spektral\autocite{AudacityManual}. Langkah-langkah:
+\begin{enumerate}
+  \item Pilih cuplikan audio yang hanya berisi noise (\emph{noise profile}).
+  \item Effects $\to$ Noise Reduction $\to$ Get Noise Profile.
+  \item Seleksi seluruh audio, atur parameter: \emph{Reduction} (dB), \emph{Sensitivity}, dan \emph{Frequency smoothing} (bands).
+  \item Terapkan dan dengarkan hasil; ulangi penyesuaian hingga artefak minimal.
+\end{enumerate}
+
+\subsection{Python: NumPy/SciPy dan librosa}
+Implementasi komputasional memakai STFT, pengurangan spektrum, dan opsi filter Wiener. Pustaka yang digunakan: NumPy\autocite{Harris2020}, SciPy\autocite{Virtanen2020}, dan librosa\autocite{McFee2015}. Garis besar algoritma:
+\begin{enumerate}
+  \item Baca sinyal $y[n]$ (mono, $f_s$ Hz). Hitung STFT: $Y[k,m]$.
+  \item Estimasi spektrum noise $\widehat{\sigma}_N[k]$ dari segmen hening.
+  \item Terapkan \eqref{eq:spectral-sub} per \emph{bin} (atau gunakan bentuk Wiener \eqref{eq:wiener}).
+  \item Rekonstruksi fase dari $Y[k,m]$ (fase asli) dan lakukan invers STFT.
+  \item Simpan hasil $\hat{s}[n]$ sebagai WAV.
+\end{enumerate}
+
+\section{Eksperimen}
+Data uji berupa rekaman ujaran dengan \emph{broadband noise} kipas. Parameter tipikal yang bekerja baik: panjang jendela 1024 sampel, hop 256, jendela Hann; faktor $\alpha$ antara 1.5--2.0; penghalusan frekuensi 3--6 pita pada Audacity. Evaluasi kualitatif dilakukan lewat dengar-subjektif serta metrik sederhana seperti \emph{segmental SNR} sebelum dan sesudah pemrosesan\autocite{OppenheimSchafer2010}.
+
+\section{Hasil dan Pembahasan}
+Pengurangan spektrum efektif menekan dengung dan desis stasioner. Namun nilai $\alpha$ terlalu besar memicu artefak \emph{musical noise}. Filter Wiener cenderung menghasilkan hasil lebih halus dengan distorsi lebih kecil saat estimasi SNR memadai, tetapi kurang agresif untuk noise berat. Pada Audacity, kombinasi \emph{Sensitivity} sedang dan \emph{Frequency smoothing} lebih besar membantu mengurangi \emph{musical noise}. Pada pipeline Python, penggunaan \emph{soft mask} berbasis SNR membuat transisi antar-waktu lebih mulus.
+
+\section{Kesimpulan}
+Transformasi Fourier memungkinkan denoising audio yang efektif melalui manipulasi magnitudo spektrum pada domain frekuensi. Dua jalur—Audacity dan implementasi Python—menunjukkan bahwa pemodelan profil noise dan penapisan berbasis ambang/Wiener dapat meningkatkan SNR dan kejernihan ujaran bila parameter disetel dengan hati-hati. Pekerjaan lanjut dapat mencakup pemodelan adaptif SNR per waktu-frekuensi dan pendekatan pembelajaran mendalam yang tetap berlandas pada representasi STFT.
+
+\printbibliography
+
+\end{document}
