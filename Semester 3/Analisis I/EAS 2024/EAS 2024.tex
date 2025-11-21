@@ -1,0 +1,182 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{animate}
+\usepackage{ragged2e}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 25mm,
+		right = 35mm,
+		top = 30mm,
+		bottom = 30mm,
+	}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\begin{tabular}{r c l}
+  \includegraphics[width=2cm]{ITS.png}
+   & \begin{tabular}{lcll}
+       \multicolumn{4}{c}{\begin{tabular}{c}
+                           \MakeUppercase{evaluasi akhir semester gasal 2024/2025} \\
+                           \MakeUppercase{departemen matematika fsad its}          \\
+                           \MakeUppercase{program sarjana}                         \\
+                         \end{tabular}}                         \\
+       \\
+       Matakuliah    & : & \multicolumn{2}{l}{Analisis 1}                                                 \\
+       Hari, Tanggal & : & \multicolumn{2}{l}{Kamis, 12 Desember 2024}                                    \\
+       Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Closed Book}}                           \\
+       Kelas, Dosen  & : & A.                                                   & Dr. Mahmud Yunus, M.Si. \\
+                     &   & B.                                                   & Drs. Sadjidon, M.Si.    \\
+                     &   & C.                                                   & Dr. Sunarsini, M.Si.    \\
+                     &   & D.                                                   & Dr. Rinurwati, M.Si.    \\
+     \end{tabular}
+   &
+  \includegraphics[width=2cm]{M.png}
+  \\ \hline
+  \multicolumn{3}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}                                                \\
+  \multicolumn{3}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS} \\
+  \multicolumn{3}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}       \\
+  \hline
+\end{tabular}
+
+\begin{enumerate}
+
+  \item Dengan menggunakan definisi barisan Cauchy, buktikan bahwa $(x_n) = \left(1 + \frac{1}{2!} + \dots + \frac{1}{n!}\right)$ adalah barisan Cauchy. (Petunjuk: $2^n \le (n+1)!$, $\forall n \in \mathbb{N}$).\\
+
+  \item Didefinisikan fungsi $g$ dengan
+        \[
+          g(x) =
+          \begin{cases}
+            0, & \text{jika } x \text{ rasional},   \\
+            1, & \text{jika } x \text{ irrasional}.
+          \end{cases}
+        \]
+        Tunjukkan bahwa $\displaystyle \lim_{x\to a} g(x)$ tidak ada untuk semua $a \in \mathbb{R}$.\\
+
+  \item Jika $f:[0,1] \to \mathbb{R}$ suatu fungsi kontinu yang hanya bernilai rasional, tunjukkan bahwa $f$ adalah fungsi konstan.\\
+
+  \item Diberikan $f:[0,1] \to \mathbb{R}$ dan $g:[0,1]\to\mathbb{R}$ dua fungsi kontinu pada interval $[0,1]$. Tunjukkan bahwa himpunan
+        $
+          E := \{x \in [0,1] : f(x) = g(x)\}
+        $
+        mempunyai sifat bahwa jika $(x_n)\subseteq E$ dan $x_n \to x_0$ maka $x_0 \in E$.\\
+
+  \item Diberikan $A = [3,\infty)$ dan fungsi $f:A \to \mathbb{R}$ dengan $f(x)=\frac{1}{2x}$. Buktikan bahwa $f$ kontinu seragam pada $A$.\\
+
+\end{enumerate}
+
+\newpage
+\fancyfoot[C]{}
+\fancyfoot[R]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+\jawab
+\begin{enumerate}
+  \item Misalkan $\epsilon > 0$ dan $m,n\in\N$. Tanpa mengurangi keumuman misalkan $n>m$. Perhatikan bahwa
+        \[
+          |x_n - x_m| = \left|\frac{1}{(m+1)!} + \frac{1}{(m+2)!} + \dots + \frac{1}{n!}\right|=\left|\sum_{k=m+1}^{n} \frac{1}{k!}\right|.
+        \]
+        Gunakan petunjuk di soal yaitu
+        \[
+          2^{k-1}\leq k! \iff \frac{1}{k!}\leq\frac{1}{2^{k-1}}
+        \]
+        sehingga
+        \[
+          \left|\sum_{k=m+1}^{n} \frac{1}{k!}\right|=\sum_{k=m+1}^{n} \frac{1}{k!}\leq \sum_{k=m+1}^{n} \frac{1}{2^{k-1}}
+        \]
+        Agar lebih mudah dihitung, dapat kita tinjau jumlahan diatas menjadi jumlahan tak hingga
+        \[
+          \sum_{k=m+1}^{n} \frac{1}{2^{k-1}}\leq \sum_{k=m+1}^{\infty} \frac{1}{2^{k-1}}=\sum_{k=m}^{\infty} \frac{1}{2^{k}}=\frac{1}{2^{m-1}}
+        \]
+        Selanjutnya kita tahu bahwa $m\leq 2^{m-1}$ untuk setiap $m\in\N$, sehingga
+        \[
+          |x_n - x_m| \leq \frac{1}{2^{m-1}} \leq \frac{1}{m}.
+        \]
+        Jadi menggunakan sifat Archimedes, pasti $N\in\N$ ada sehingga $1/N<\epsilon$. Jadi dengan mengambil $m>N$ berlaku
+        \[
+          |x_n - x_m| \leq \frac{1}{m} < \frac{1}{N} < \epsilon.
+        \]
+        Dengan demikian, barisan $(x_n)$ adalah barisan Cauchy.
+  \item Misalkan $a\in\R$ dan asumsikan bahwa $\lim_{x\to a} g(x)=L$ untuk suatu $L\in\R$. Kita akan tunjukkan bahwa asumsi ini mengarah pada kontradiksi. Perhatikan bahwa untuk setiap $\epsilon>0$, terdapat $\delta>0$ sehingga untuk setiap $x\in\R$ dengan $0<|x-a|<\delta$ berlaku
+        \[
+          |g(x)-L|<\epsilon.
+        \]
+        Sekarang, karena himpunan bilangan rasional dan irrasional keduanya padat di $\R$, maka terdapat $x_1,x_2\in\R$ dengan $0<|x_1-a|<\delta$ dan $0<|x_2-a|<\delta$ sehingga $x_1$ rasional dan $x_2$ irrasional. Oleh karena itu, kita memiliki
+        \[
+          |g(x_1)-L| = |0 - L| = |L| < \epsilon,
+        \]
+        dan
+        \[
+          |g(x_2)-L| = |1 - L| < \epsilon.
+        \]
+        Dari dua ketidaksetaraan di atas, kita dapat menuliskan
+        \[
+          |L| < \epsilon \quad \text{dan} \quad |1 - L| < \epsilon.
+        \]
+        Dengan memilih $\epsilon < \frac{1}{2}$, kita mendapatkan kontradiksi karena tidak mungkin ada nilai $L$ yang memenuhi kedua ketidaksetaraan tersebut secara bersamaan. Oleh karena itu, asumsi awal kita salah, dan kita menyimpulkan bahwa $\lim_{x\to a} g(x)$ tidak ada untuk semua $a\in\R$.
+
+  \item Menggunakan kontradiksi, misalkan $f$ tidak konstan. Maka terdapat $x_1,x_2\in[0,1]$ dengan $x_1<x_2$ sehingga $f(x_1)\neq f(x_2)$. Tanpa mengurangi keumuman, misalkan $f(x_1)<f(x_2)$. Karena $f$ kontinu pada $[0,1]$, maka berdasarkan Teorema Nilai Antara, untuk setiap $y$ antara $f(x_1)$ dan $f(x_2)$ terdapat $c\in(x_1,x_2)$ sehingga $f(c)=y$. Namun, karena himpunan bilangan irrasional padat di $\R$, kita dapat memilih $y$ sebagai bilangan irrasional antara $f(x_1)$ dan $f(x_2)$. Ini bertentangan dengan asumsi bahwa $f$ hanya bernilai rasional. Oleh karena itu, asumsi awal kita salah, dan kita menyimpulkan bahwa $f$ adalah fungsi konstan.
+  \item Perhatikan bahwa himpunan $E$ adalah himpunan titik di mana fungsi $f$ dan $g$ memiliki nilai yang sama. Misalkan $(x_n)$ adalah barisan dalam $E$ yang konvergen ke $x_0$. Karena $f$ dan $g$ kontinu pada $[0,1]$, kita punya sifat
+        \[
+          \lim_{n\to\infty} f(x_n) = f(x_0)
+        \]
+        dan
+        \[
+          \lim_{n\to\infty} g(x_n) = g(x_0).
+        \]
+        Namun, karena setiap $x_n \in E$, maka $f(x_n) = g(x_n)$ untuk setiap $n$. Oleh karena itu,
+        \[
+          \lim_{n\to\infty} f(x_n) = \lim_{n\to\infty} g(x_n).
+        \]
+        Dengan menggabungkan hasil-hasil di atas, kita mendapatkan
+        \[
+          f(x_0) = g(x_0).
+        \]
+        Ini menunjukkan bahwa $x_0 \in E$. Dengan demikian, himpunan $E$ memiliki sifat bahwa jika $(x_n)\subseteq E$ dan $x_n \to x_0$, maka $x_0 \in E$.
+  \item Misalkan $\epsilon > 0$. Untuk setiap $x,y \in A$, kita punya
+        \[
+          |f(x) - f(y)| = \left|\frac{1}{2x} - \frac{1}{2y}\right| = \left|\frac{y - x}{2xy}\right|.
+        \]
+        Karena $x,y \geq 3$, maka $xy \geq 9$. Oleh karena itu,
+        \[
+          |f(x) - f(y)| \leq \frac{|y - x|}{18}.
+        \]
+        Untuk memastikan bahwa $|f(x) - f(y)| < \epsilon$, kita dapat memilih $\delta = 18\epsilon$. Maka, jika $|x - y| < \delta$, kita memiliki
+        \[
+          |f(x) - f(y)| \leq \frac{|y - x|}{18} < \frac{18\epsilon}{18} = \epsilon.
+        \]
+        Dengan demikian, $f$ adalah kontinu seragam pada $A$.
+\end{enumerate}
+
+\end{document}
