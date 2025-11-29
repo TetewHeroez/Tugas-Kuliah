@@ -24,5 +24,7 @@ _minted-*/
 *.bcf
 *.run.xml
 *.xdv
+*.synctex(busy)
+*.bbl-SAVE-ERROR
 
 Modul Alpro
