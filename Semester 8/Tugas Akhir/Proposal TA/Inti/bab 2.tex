@@ -2,17 +2,161 @@
 \chapter{TINJAUAN PUSTAKA}
 \section{Hasil Penelitian Terdahulu}
 
-
-\section{Latin Squares}
-
-
 \section{Aljabar Max-Plus}
-Aljabar max-plus didefinisikan pada $\mathbb{R}\cup\{-\infty\}$ dengan $a\oplus b=\max\{a,b\}$ dan $a\otimes b=a+b$. Struktur ini merupakan semiring idempoten dan banyak digunakan pada penjadwalan, optimisasi, dan sistem kejadian diskret. Sejumlah kajian dalam kerangka tropis juga muncul di bidang kriptografi dan keamanan protokol, yang memperlihatkan relevansi struktur idempoten dalam konteks komputasi dan implementasi \cite{stickelImpl,tropicalStickelSecurity}.
+Aljabar max-plus salah satu cabang dari aljabar tropikal yang menggunakan operasi maksimum dan penjumlahan sebagai operasi dasar.
+\begin{definisi}[\cite{subiono2015minmaxplus}]
+  Aljabar max-plus adalah himpunan $\mathbb{R}_{\max} = \mathbb{R} \cup \{-\infty\}$ yang dilengkapi dengan dua operasi biner yaitu:
+  \begin{align*}
+    a \oplus b  & = \max\{a, b\}, \quad \forall a, b \in \mathbb{R}_{\max} \\
+    a \otimes b & = a + b, \quad \forall a, b \in \mathbb{R}_{\max}
+  \end{align*}
+  dengan elemen identitasnya adalah $\varepsilon=-\infty$ untuk operasi $\oplus$ dan $0$ untuk operasi $\otimes$.
+\end{definisi}
 
-\section{Celah Riset dan Arah Penelitian}
-Keterhubungan langsung antara persegi Latin (terutama yang komutatif) dengan konstruksi berbasis aljabar max-plus relatif belum dieksplorasi luas. Tantangan utama ialah memastikan hasil operasi biner kembali ke himpunan simbol hingga. Untuk itu, diperlukan skema normalisasi $\varphi: S\times S\to S$ yang menjaga sifat Latin (keunikan tiap baris/kolom) sekaligus komutativitas. Pendekatan ini, disertai verifikasi berbantuan komputer dan perbandingan dengan praktik di ranah tropis lainnya \cite{tropicalStickelSecurity}, menjadi dasar arah penelitian ini, dengan acuan penulisan dari karya-karya terkait \cite{zulfikarTA}.
+Selanjutnya $(\mathbb{R}_{\max}, \oplus, \otimes)$ disebut sebagai semiring max-plus, yaitu suatu struktur aljabar yang memenuhi sifat seperti ring biasa, kecuali tidak memiliki elemen invers untuk operasi $\oplus$.
 
-\section{Ringkasan}
-Tinjauan menunjukkan peluang kontribusi pada definisi, konstruksi, dan karakterisasi persegi Latin komutatif di lingkungan max-plus, serta potensi aplikasi pada penjadwalan tropis dan desain kombinatorial.
+\subsection{Matriks Aljabar Max-Plus}
+Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan operasi penjumlahan dan perkalian pada aljabar max-plus. Sebuah matriks bisa dianggap sebagai representasi dari suatu sistem diskrit atau graf berarah berbobot, sehingga dapat digunakan untuk memodelkan berbagai permasalahan matematika \parencite{subiono2015minmaxplus}.
+\begin{definisi}[\cite{Baccelli1994maxplus}]
+  Misalkan $A = (a_{ij})$ adalah matriks berukuran $m \times n$ dan $B = (b_{ij})$ adalah matriks berukuran $n \times p$ dengan elemen-elemen dari $\mathbb{R}_{\max}$. Operasi penjumlahan dan perkalian matriks pada aljabar max-plus didefinisikan sebagai berikut:
+  \begin{align*}
+    (A \oplus B)_{ij}  & = a_{ij} \oplus b_{ij} = \max\{a_{ij}, b_{ij}\}                                          \\
+    (A \otimes B)_{ij} & = \bigoplus_{k=1}^{n} a_{ik} \otimes b_{kj} = \max_{1 \leq k \leq n} \{a_{ik} + b_{kj}\}
+  \end{align*}
+\end{definisi}
 
+\begin{contoh}
+  Misalkan diberikan matriks $A$ dan $B$ sebagai berikut:
+  \[
+    A = \begin{pmatrix}
+      2 & 3 \\
+      5 & 1
+    \end{pmatrix}, \quad
+    B = \begin{pmatrix}
+      4 & 0 \\
+      2 & 6
+    \end{pmatrix}
+  \]
+  Maka, penjumlahan dan perkalian matriks $A$ dan $B$ pada aljabar max-plus adalah:
+  \begin{align*}
+    A \oplus B  & = \begin{pmatrix}
+                      \max\{2, 4\} & \max\{3, 0\} \\
+                      \max\{5, 2\} & \max\{1, 6\}
+                    \end{pmatrix} = \begin{pmatrix}
+                                      4 & 3 \\
+                                      5 & 6
+                                    \end{pmatrix}              \\
+    A \otimes B & = \begin{pmatrix}
+                      \max\{2 + 4, 3 + 2\} & \max\{2 + 0, 3 + 6\} \\
+                      \max\{5 + 4, 1 + 2\} & \max\{5 + 0, 1 + 6\}
+                    \end{pmatrix} = \begin{pmatrix}
+                                      6 & 9 \\
+                                      9 & 7
+                                    \end{pmatrix}
+  \end{align*}
+\end{contoh}
+
+\subsection{Nilai Eigen dan Vektor Eigen Aljabar Max-Plus}
+
+\subsection{Matriks Linde-de la Puente}
+\section{Permutasi}
+Dalam aljabar, permutasi ialah suatu fungsi bijektif dari himpunan ke dirinya sendiri. Sebuah permutasi dari himpunan $X = \{1, 2, \ldots, n\}$ biasanya disimbolkan dengan $\sigma: X \to X$, dengan $\sigma$ bersifat satu-satu dan pada. Himpunan semua permutasi dari $X$ membentuk suatu grup terhadap operasi komposisi fungsi, yang disebut grup simetris pada $n$ elemen yang disimbolkan dengan $S_n$ \parencite{subiono2022aljabar}.
+\begin{contoh}
+  Misalkan diberikan himpunan $X = \{1, 2, 3\}$. Salah satu permutasi dari himpunan $X$ adalah fungsi $\sigma$ yang didefinisikan sebagai berikut:
+  \[
+    \sigma(1) = 2, \quad \sigma(2) = 3, \quad \sigma(3) = 1
+  \]
+  atau dapat dituliskan dalam bentuk sebuah matriks berikut
+  \[
+    \sigma = \begin{pmatrix}
+      1 & 2 & 3 \\
+      2 & 3 & 1
+    \end{pmatrix}
+  \]
+\end{contoh}
+\subsection{Sikel}
+Misalkan $\tau$ adalah permutasi pada himpunan $X = \{1,2,\ldots,n\}$.
+Untuk suatu elemen $i_1 \in X$, perhatikan barisan
+$
+  (i_1,\ \tau(i_1),\ \tau^2(i_1),\ \ldots).
+$
+Karena himpunan $X$ berhingga, terdapat bilangan $k \ge 1$ sehingga
+$
+  \tau^{k}(i_1) = i_1.
+$
+Himpunan
+\[
+  \mathcal{O}_{\tau}(i_1)
+  =
+  \{\, i_1,\ \tau(i_1),\ \tau^{2}(i_1),\ \ldots,\ \tau^{k-1}(i_1)\,\}
+\]
+disebut \emph{orbit} dari $\tau$ yang melalui $i_1$.
+Orbit menggambarkan lintasan elemen $i_1$ di bawah penerapan berulang dari permutasi $\tau$ \parencite{artin1991algebra}.
+
+\begin{definisi}
+  Jika orbit $\mathcal{O}_{\tau}(i_1)$ memuat lebih dari satu elemen, maka orbit tersebut disebut
+  \emph{sikel} dari permutasi $\tau$. Dalam notasi siklus, sikel tersebut dituliskan sebagai
+  \[
+    (i_1\ i_2\ \ldots\ i_k),
+  \]
+  yang menyatakan bahwa
+  \[
+    \tau(i_j) = i_{j+1} \quad \text{untuk } 1 \le j < k,
+    \qquad
+    \tau(i_k) = i_1.
+  \]
+\end{definisi}
+
+\begin{teorema}[\cite{subiono2022aljabar}]
+  Setiap permutasi $\tau\in S_n$ dapat dituliskan sebagai hasil komposisi dari sikel-sikel yang saling asing.
+\end{teorema}
+
+Dengan menggunakan notasi sikel, permutasi akan lebih ringkas untuk dituliskan dan dipahami.
+
+\begin{contoh}
+  Misalkan diberikan permutasi $\tau\in S_9$ yang didefinisikan
+  \begin{align}
+    \tau=\begin{pmatrix}
+           1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+           3 & 1 & 2 & 5 & 4 & 6 & 8 & 7 & 9
+         \end{pmatrix}.
+  \end{align}
+  Dengan menggunakan notasi sikel, permutasi $\tau$ dapat dituliskan sebagai
+  \[
+    \tau = (1\ 3\ 2)(4\ 5)(6)(7\ 8)(9).
+  \]
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1]
+      \node[circle, draw] (1) at (0, 0) {1};
+      \node[circle, draw] (2) at (2, 0) {2};
+      \node[circle, draw] (3) at (1, 1.732) {3};
+      \node[circle, draw] (4) at (4, 0) {4};
+      \node[circle, draw] (5) at (6, 0) {5};
+      \node[circle, draw] (6) at (8, 0) {6};
+      \node[circle, draw] (7) at (4, 1.732) {7};
+      \node[circle, draw] (8) at (6, 1.732) {8};
+      \node[circle, draw] (9) at (8, 1.732) {9};
+
+      \draw[->] (1) to[bend left] node[above] {} (3);
+      \draw[->] (3) to[bend left] node[above] {} (2);
+      \draw[->] (2) to[bend left] node[above] {} (1);
+
+      \draw[->] (4) to[bend left] node[above] {} (5);
+      \draw[->] (5) to[bend left] node[above] {} (4);
+
+      \path (6) edge[->, loop right] ();
+
+      \draw[->] (7) to[bend left] node[above] {} (8);
+      \draw[->] (8) to[bend left] node[above] {} (7);
+
+      \path (9) edge[->, loop right] ();
+    \end{tikzpicture}
+    \caption{Diagram sikel dari permutasi $\tau$}
+    \label{fig:sikel}
+  \end{figure}
+\end{contoh}
+
+\section{\textit{Latin Square}}
+\textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom.
 
