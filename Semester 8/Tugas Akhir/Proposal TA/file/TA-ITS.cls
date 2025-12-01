@@ -40,9 +40,37 @@
 \RequirePackage{setspace}
 \RequirePackage{afterpage}
 \RequirePackage{xcolor}
-\RequirePackage[nosectionbib]{apacite}
+\RequirePackage{caption}
+\RequirePackage{tikz}
+% \RequirePackage[nosectionbib]{apacite}
 \RequirePackage{lmodern}
-%\RequirePackage[authoryear]{natbib}
+% \RequirePackage[authoryear]{natbib}
+\RequirePackage[backend=biber,
+    style=apa,
+    maxcitenames=2,
+    hyperref=true,        
+    backref=true,
+    ]{biblatex}
+
+\DefineBibliographyStrings{english}{
+  andothers = {dkk.,},
+}
+
+\RequirePackage{xpatch}
+
+\xpatchbibmacro{cite}{%
+      \printnames{labelname}%
+    }{%
+      \printtext[bibhyperref]{\printnames{labelname}}%
+    }{}{}
+
+    \xpatchbibdriver{apa}{%
+      \printnames{labelname}%
+    }{%
+      \printtext[bibhyperref]{\printnames{labelname}}%
+    }{}{}
+
+
 \RequirePackage[euler]{textgreek}
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -647,13 +675,19 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
 }
 
 %%%%---------------------------------
-\newcommand{\DaftarPustaka}{%---------------------
+% \newcommand{\DaftarPustaka}{%---------------------
+%     \cleardoublepage
+%     % \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+%     \renewcommand\bibname{DAFTAR PUSTAKA}
+%     \bibliographystyle{apacite}
+%     \bibliography{file/daftarPustaka}
+%     }
+\addbibresource{file/daftarPustaka.bib}
+    \newcommand{\DaftarPustaka}{%
     \cleardoublepage
-    % \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
-    \renewcommand\bibname{DAFTAR PUSTAKA}
-    \bibliographystyle{apacite}
-    \bibliography{file/daftarPustaka}
-    }
+    \printbibliography[title={DAFTAR PUSTAKA}]
+}
+
 %%%%---------------------------------
 \newcommand\BagianInti{%--------------------
     \cleardoublepage
@@ -825,7 +859,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
 \renewcommand\contentsname{DAFTAR ISI}
 \renewcommand\listfigurename{DAFTAR GAMBAR}
 \renewcommand\listtablename{DAFTAR TABEL}
-\renewcommand\bibname{DAFTAR PUSTAKA}
+% \renewcommand\bibname{DAFTAR PUSTAKA}
 \renewcommand\indexname{INDEKS}
 \renewcommand\figurename{Gambar}
 \renewcommand\tablename{Tabel}

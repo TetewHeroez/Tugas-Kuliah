@@ -3,36 +3,6 @@
 
 Pada bab ini dijelaskan langkah-langkah pelaksanaan penelitian tugas akhir beserta alur proses dan jadwal kegiatan.
 
-\section{Desain Penelitian}
-Penelitian bersifat teoretis-konstruktif yang dilengkapi verifikasi komputasional. Targetnya adalah perumusan definisi, penurunan kondisi eksistensi, serta konstruksi eksplisit untuk persegi Latin komutatif atas aljabar max-plus pada himpunan simbol hingga.
-
-\section{Perumusan Masalah dan Model}
-\begin{enumerate}
-  \item Ditetapkan himpunan simbol hingga $S=\{a_0,\dots,a_{n-1}\}\subset \mathbb{Z}$ atau $\mathbb{R}$.
-  \item Didefinisikan operasi dasar max-plus $\oplus,\otimes$ pada $S$ dan skema normalisasi $\varphi: S\times S\to S$ sehingga operasi efektif $\star$ pada $S$ diberikan oleh $(x\star y):=\varphi(x\otimes y)$ atau varian yang relevan.
-  \item Kriteria Latin: untuk tabel $L$ berindeks $0,\dots,n-1$, setiap baris/kolom memuat tiap simbol tepat sekali. Kriteria komutatif: $L(i,j)=L(j,i)$.
-\end{enumerate}
-
-\section{Metode Konstruksi}
-\begin{enumerate}
-  \item \textbf{Skema parametris}: tentukan parameter (mis. vektor offset, fungsi pengurutan, atau kelas residu) yang menginduksi $\varphi$ agar tabel memenuhi sifat Latin.
-  \item \textbf{Algoritme generatif}: bangun $L$ baris demi baris berdasarkan $\star$ dan cek keunikan baris/kolom; gunakan pencarian mundur (backtracking) bila perlu.
-  \item \textbf{Komutativitas}: paksa kesimetrian $L(i,j)=L(j,i)$ selama konstruksi untuk memangkas ruang pencarian.
-\end{enumerate}
-
-\section{Verifikasi dan Analisis}
-\begin{enumerate}
-  \item \textbf{Verifikasi Latin}: uji programatik bahwa tiap baris/kolom memuat semua simbol tanpa pengulangan.
-  \item \textbf{Sifat aljabar}: telaah identitas (jika ada), idempoten, dan hubungan isotopi/autotopi.
-  \item \textbf{Studi kasus}: enumerasi untuk orde kecil–menengah; bandingkan pola dan kelas kesetaraan.
-\end{enumerate}
-
-\section{Hasil yang Diharapkan}
-Definisi formal, kondisi eksistensi (perlu/cukup bila memungkinkan), prosedur konstruksi, contoh dan klasifikasi awal, serta diskusi implikasi pada penjadwalan tropis dan desain kombinatorial. Referensi pada praktik tropis di domain lain memberikan konteks metodologis dan justifikasi verifikasi komputasional \cite{tropicalStickelSecurity,stickelImpl}.
-
-\section{Penulisan Laporan}
-Penyusunan laporan mengikuti format yang ditetapkan, meliputi Bab I–III pada proposal dan pengembangan lebih lanjut pada naskah akhir.
-
 \pagebreak
 \chapter*{JADWAL PENELITIAN}
 Berikut jadwal pelaksanaan tahap-tahap penelitian tugas akhir yang akan dilakukan selama 3 bulan sesuai dengan metode penelitian. \vspace{0.5cm}

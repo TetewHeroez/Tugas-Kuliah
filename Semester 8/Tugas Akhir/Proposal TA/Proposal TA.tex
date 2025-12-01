@@ -18,19 +18,15 @@
 	\fi
 }
 \makeatother
-\newtheorem{defn}{Definisi}[section]
-\newtheorem{teo}[defn]{Teorema}
-\newtheorem{thm}{Teorema}[section]
-\newtheorem{lemma}[defn]{Lemma}
-\newtheorem{lemmas}[thm]{Lemma}
-\newtheorem{cor}[defn]{Akibat}
 \theoremstyle{definition}
-\newtheorem{con}[defn]{Contoh}
-\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}[section]
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{akibat}{Akibat}
+\newtheorem{contoh}{Contoh}
 \theoremstyle{plain}
-\newtheorem{prop}[defn]{Proposisi}
+\newtheorem{prop}{Proposisi}
 \renewcommand{\proofname}{Bukti}
-\renewcommand{\thethm}{\arabic{chapter}.\arabic{thm}}
 
 \newcommand{\norm}[1]{\left\|#1\right\|} % Fungsi norm (||x||)
 
@@ -62,11 +58,7 @@
 \newcommand{\gray}{\cellcolor{gray!75}}
 \newcommand{\cyan}{\cellcolor{cyan!100}}
 \usepackage{longtable} % Pembuatan tabel
-\usepackage[table,xcdraw]{xcolor} % Pewarnaan tabel
-% Inisiasi lebar kolom tabel
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage[table]{xcolor} % Pewarnaan tabel
 
 %%% Pewarnaan code
 \usepackage{xcolor}
@@ -149,8 +141,6 @@
 \input{Inti/bab 1}
 \input{Inti/bab 2}
 \input{Inti/bab 3}
-%\input{Inti/bab 4}
-%\input{Inti/bab 5}
 %%%%%%%%%%%%%%%%%%%%%%%%  Dapus  %%%%%%%%%%%%%%%5%%%%%%%%%%akan
 
 \pagebreak
