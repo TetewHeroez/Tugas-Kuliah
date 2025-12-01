@@ -1,0 +1,725 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{geometry}
+  \geometry{
+    left = 25mm,
+    right = 25mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{r c}
+    \includegraphics[width=2cm]{ITS.png}
+     & \begin{tabular}{lcll}
+         \multicolumn{4}{l}{\begin{tabular}{c}
+                             \MakeUppercase{evaluasi tengah semester gasal 2024/2025} \\
+                             \MakeUppercase{departemen matematika fsad its}           \\
+                             \MakeUppercase{program sarjana}                          \\
+                           \end{tabular}}                                                                                               \\
+         \\
+         Matakuliah    & : & \multicolumn{2}{l}{Aljabar Linear}                                                                                                                    \\
+         Hari, Tanggal & : & \multicolumn{2}{l}{Kamis, 5 Desember 2024}                                                                                                            \\
+         Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Tertutup}}                                                                                                     \\
+         Kelas, Dosen  & : & A.                                                & Prof. Dr. Subiono, M.Sc.                                                                          \\
+                       &   & B.                                                & Dr. Dian Winda Setyawati, S.Si., M.Si.                                                            \\
+                       &   & C.                                                & Soleha, S.Si., M.Si.                                                                              \\
+                       &   & D.                                                & Muhammad Syifaul Mufid, S.Si., M.Si., D.Phil.                                                     \\
+                       &   & Q.                                                & Dr.mont. Kistosil Fahim, S.Si., M.Si.     \multirow{-16}{1cm}{\includegraphics[width=2cm]{M.png}} \\
+       \end{tabular}
+
+    \\ \hline
+    \multicolumn{2}{|l|}{\MakeUppercase{harap diperhatikan !!!}}                                                                                                                       \\
+    \multicolumn{2}{|l|}{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}                                                                        \\
+    \multicolumn{2}{|l|}{akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}                                                                              \\
+    \hline
+  \end{tabular}
+\end{table}
+\vspace*{-0.3cm}
+\begin{center}
+  \large\textbf{Kerjakan 4 dari 5 soal berikut:}
+\end{center}
+
+\begin{enumerate}
+  \item Bila $V$ adalah ruang vektor dari himpunan polinomial-polinomial dengan derajat kurang atau sama dengan $2$ dan “hasil kali dalam’’ diberikan oleh
+        $
+          \langle p, q \rangle = \int_{-1}^{1} p(x) q(x)\, dx
+        $
+        untuk $p, q \in V$. Dapatkan basis orthonormal ruang vektor $V$ menggunakan orthogonalisasi Gram-Schmidt terhadap basis baku $\{1, x, x^2\}$.
+
+  \item Diberikan matriks
+        $
+          A = \begin{bmatrix}
+            1  & -1 \\
+            2  & 2  \\
+            -1 & 1
+          \end{bmatrix}.
+        $
+        Dapatkan dekomposisi nilai singular dari matriks $A$. Jelaskan!
+
+  \item Tentukan solusi pendekatan dari sistem persamaan linier (SPL) berikut menggunakan metode \textit{pseudo-inverse}:
+        \begin{align*}
+          x_1 - 2x_2  & = 5,  \\
+          2x_1 + 2x_2 & = 12, \\
+          2x_1 - x_2  & = 24.
+        \end{align*}
+
+
+  \item Diberikan matriks
+        $
+          A = \begin{bmatrix}
+            1 & 1 \\
+            0 & 2
+          \end{bmatrix}.
+        $
+        \begin{enumerate}
+          \item Dapatkan matriks persegi $X$ berukuran $2 \times 2$ dengan entri-entrinya bernilai riil yang memenuhi $AX = XA$.
+          \item Dapatkan matriks persegi $Y$ berukuran $2 \times 2$ dengan entri-entrinya bernilai riil yang memenuhi
+                $
+                  (A \otimes I_2 - I_2 \otimes A^T) \operatorname{vec}(Y) = \operatorname{vec}(\mathbf{0}_2)
+                $
+                dengan $I_2$ dan $\mathbf{0}_2$ masing-masing berturut-turut adalah matriks identitas dan matriks nol berukuran $2 \times 2$.
+          \item Bandingkan hasil yang didapat pada (a) dan (b). Jelaskan mengapa itu terjadi.
+        \end{enumerate}
+
+  \item Misalkan operator linier $U$ memenuhi pemetaan berikut:
+        \[
+          U|0\rangle = \frac{1}{\sqrt{2}}|0\rangle - \frac{i}{\sqrt{2}}|1\rangle,\qquad
+          U|1\rangle = -\frac{i}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle.
+        \]
+        \begin{enumerate}
+          \item Tuliskan $U$ sebagai matriks.
+          \item Dapatkan $U\begin{bmatrix}\alpha \\ \beta\end{bmatrix}$.
+          \item Dari (b), apakah $U$ merupakan gerbang kuantum yang valid? Jelaskan.
+        \end{enumerate}
+\end{enumerate}
+\vspace*{0.05mm}
+\begin{center}
+  \raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}
+\end{center}
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+\begin{enumerate}
+  \item Diketahui ruang vektor $V$ adalah himpunan polinomial-polinomial dengan derajat kurang atau sama dengan $2$. Basis baku dari $V$ adalah $\{1, x, x^2\}$. Kita akan menggunakan proses Gram-Schmidt untuk mendapatkan basis orthonormal dari $V$.
+
+        \begin{enumerate}[label=(\roman*)]
+          \item Tentukan vektor pertama
+                \[
+                  u_1 = 1.
+                \]
+                Hitung normanya:
+                \[
+                  \|u_1\| = \sqrt{\langle u_1, u_1 \rangle} = \sqrt{\int_{-1}^{1} 1 \cdot 1\, dx} = \sqrt{2}.
+                \]
+                Maka, vektor orthonormal pertama adalah:
+                \[
+                  e_1 = \frac{u_1}{\|u_1\|} = \frac{1}{\sqrt{2}}.
+                \]
+          \item Tentukan vektor kedua
+                \[
+                  u_2 = x - \langle x, e_1 \rangle e_1.
+                \]
+                Hitung $\langle x, e_1 \rangle$:
+                \[
+                  \langle x, e_1 \rangle = \int_{-1}^{1} x \cdot \frac{1}{\sqrt{2}}\, dx = 0.
+                \]
+                Jadi,
+                $
+                  u_2 = x.
+                $
+                Hitung normanya:
+                \[
+                  \|u_2\| = \sqrt{\langle u_2, u_2 \rangle} = \sqrt{\int_{-1}^{1} x^2\, dx} = \sqrt{\frac{2}{3}}.
+                \]
+                Maka, vektor orthonormal kedua adalah:
+                \[
+                  e_2 = \frac{u_2}{\|u_2\|} = x\sqrt{\frac{3}{2}}.
+                \]
+          \item Tentukan vektor ketiga
+                \[
+                  u_3 = x^2 - \langle x^2, e_1 \rangle e_1 - \langle x^2, e_2 \rangle e_2.
+                \]
+                Hitung $\langle x^2, e_1 \rangle$ dan $\langle x^2, e_2 \rangle$:
+                \[
+                  \langle x^2, e_1 \rangle = \int_{-1}^{1} x^2 \cdot \frac{1}{\sqrt{2}}\, dx = \frac{\sqrt{2}}{3},
+                \]
+                \[
+                  \langle x^2, e_2 \rangle = \int_{-1}^{1} x^2 \cdot x\sqrt{\frac{3}{2}}\, dx = 0.
+                \]
+                Jadi,
+                \[
+                  u_3 = x^2 - \frac{\sqrt{2}}{3} \cdot \frac{1}{\sqrt{2}} = x^2 - \frac{1}{3}.
+                \]
+                Hitung normanya:
+                \[
+                  \|u_3\| = \sqrt{\langle u_3, u_3 \rangle} = \sqrt{\int_{-1}^{1} \left(x^2 - \frac{1}{3}\right)^2\, dx} = \sqrt{\frac{8}{45}}
+                \]
+                Maka, vektor orthonormal ketiga adalah:
+                \[
+                  e_3 = \frac{u_3}{\|u_3\|} = \left(x^2 - \frac{1}{3}\right)\sqrt{\frac{45}{8}}.
+                \]
+        \end{enumerate}
+        Jadi, basis orthonormal dari ruang vektor $V$ adalah:
+        \[
+          B'=\left\{ \frac{1}{\sqrt{2}},\ x\sqrt{\frac{3}{2}},\ \left(x^2 - \frac{1}{3}\right)\sqrt{\frac{45}{8}} \right\}.
+        \]
+  \item Secara umum dekomposisi nilai singular (SVD) dari suatu matriks $A \in R^{m\times n}$ diberikan oleh $A = U_{m\times m} \Sigma_{m\times n} V_{n\times n}^T$, di mana $U$ dan $V$ adalah matriks ortogonal, dan $\Sigma$ adalah matriks diagonal dengan entri-entri non-negatif yang disebut nilai singular dari $A$.
+
+        Dalam kasus di soal, dimensi matriks $A$ adalah $3 \times 2$. Sehingga kita perlu mencari matriks $U$ berukuran $3 \times 3$, matriks $\Sigma$ berukuran $3 \times 2$, dan matriks $V$ berukuran $2 \times 2$.
+        Langkah-langkah untuk mendapatkan SVD dari $A$ adalah sebagai berikut:
+
+        \begin{enumerate}[label=(\roman*)]
+          \item Hitung $A^T A$:
+                \[
+                  A^T A = \begin{bmatrix}
+                    1  & 2 & -1 \\
+                    -1 & 2 & 1
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    1  & -1 \\
+                    2  & 2  \\
+                    -1 & 1
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    1+4+1  & -1+4-1 \\
+                    -1+4-1 & 1+4+1
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    6 & 2 \\
+                    2 & 6
+                  \end{bmatrix}.
+                \]
+          \item Cari nilai eigen $A^TA$:
+                \[
+                  \det(A^T A - \lambda I) = \det\begin{bmatrix}
+                    6 - \lambda & 2           \\
+                    2           & 6 - \lambda
+                  \end{bmatrix} = (6 - \lambda)^2 - 4 = 0 \implies \lambda= 6 \pm 2.
+                \]
+                Jadi, nilai eigen dari $A^T A$ adalah $\lambda_1 = 8$ dan $\lambda_2 = 4$.
+
+          \item Hitung vektor-vektor eigen dari $A^T A$ untuk mendapatkan matriks $V$:
+                \begin{itemize}
+                  \item Untuk $\lambda_1 = 8$:
+                        \[
+                          (A^T A - 8I)v = 0 \implies \begin{bmatrix}
+                            -2 & 2  \\
+                            2  & -2
+                          \end{bmatrix} \begin{bmatrix}
+                            v_1 \\
+                            v_2
+                          \end{bmatrix} = 0.
+                        \]
+                        Dari persamaan ini, kita dapatkan $v_1 = v_2$. Maka, vektor eigen yang bersesuaian adalah $v_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$. Normalisasi vektor ini:
+                        \[
+                          \|v_1\| = \sqrt{1^2 + 1^2} = \sqrt{2} \implies v_1 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}.
+                        \]
+                  \item Untuk $\lambda_2 = 4$:
+                        \[
+                          (A^T A - 4I)v = 0 \implies \begin{bmatrix}
+                            2 & 2 \\
+                            2 & 2
+                          \end{bmatrix} \begin{bmatrix}
+                            v_1 \\
+                            v_2
+                          \end{bmatrix} = 0.
+                        \]
+                        Dari persamaan ini, kita dapatkan $v_1 = -v_2$. Maka, vektor eigen yang bersesuaian adalah $v_2 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$. Normalisasi vektor ini:
+                        \[
+                          \|v_2\| = \sqrt{1^2 + (-1)^2} = \sqrt{2} \implies v_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1 \end{bmatrix}.
+                        \]
+                \end{itemize}
+
+          \item Hitung matriks $U$:
+                Tanda singular $\sigma_i$ didapat dari akar kuadrat nilai eigen $A^TA$, yakni $\sigma_1 = \sqrt{8}=2\sqrt{2}$ dan $\sigma_2 = \sqrt{4}=2$, sehingga
+                \[
+                  u_1 = \frac{1}{2\sqrt{2}}A \left(\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}\right) = \frac{1}{2\sqrt{2}}\cdot \frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 4 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix},
+                \]
+                \[
+                  u_2 = \frac{1}{2}A \left(\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1 \end{bmatrix}\right) = \frac{1}{2}\cdot \frac{1}{\sqrt{2}}\begin{bmatrix} 2 \\ 0 \\ -2 \end{bmatrix} = \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ -\frac{1}{\sqrt{2}} \end{bmatrix}.
+                \]
+                Lengkapi matriks ortogonal $U$ dengan vektor ketiga ortonormal yang tegak lurus terhadap $u_1$ dan $u_2$, misalnya
+                \[
+                  u_3 = \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix}.
+                \]
+                Maka,
+                \[
+                  U = \begin{bmatrix}
+                    0 & \frac{1}{\sqrt{2}}  & \frac{1}{\sqrt{2}} \\
+                    1 & 0                   & 0                  \\
+                    0 & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+                  \end{bmatrix}.
+                \]
+          \item Bentuk matriks $\Sigma$:
+                \[
+                  \Sigma = \begin{bmatrix}
+                    2\sqrt{2} & 0 \\
+                    0         & 2 \\
+                    0         & 0
+                  \end{bmatrix}.
+                \]
+        \end{enumerate}
+        Jadi, dekomposisi nilai singular dari matriks $A$ adalah:
+        \[
+          A = U \Sigma V^T= \begin{bmatrix}
+            0 & \frac{1}{\sqrt{2}}  & \frac{1}{\sqrt{2}} \\
+            1 & 0                   & 0                  \\
+            0 & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+          \end{bmatrix}
+          \begin{bmatrix}
+            2\sqrt{2} & 0 \\
+            0         & 2 \\
+            0         & 0
+          \end{bmatrix}
+          \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+          \end{bmatrix}^T.
+        \]
+  \item Perhatikan bahwa sistem persamaan linier (SPL) yang diberikan jika kita tulis dalam bentuk matriks akan menjadi sebagai berikut:
+        \begin{align*}
+          \begin{bmatrix}
+            1 & -2 \\
+            2 & 2  \\
+            2 & -1
+          \end{bmatrix}
+          \begin{bmatrix}
+            x_1 \\
+            x_2
+          \end{bmatrix}
+           & =
+          \begin{bmatrix}
+            5  \\
+            12 \\
+            24
+          \end{bmatrix} \\
+        \end{align*}
+        Solusi pendekatan dari SPL di atas dapat diperoleh menggunakan metode \textit{pseudo-inverse} yang biasanya dirumuskan dalam bentuk
+        \[
+          x^* = A^+ b,
+        \]
+        dimana $A^+$ dapat dirumuskan bergantung pada sifat matriks $A_{m\times n}$.
+        \begin{itemize}
+          \item Jika $m>n$ dan $\operatorname{rank}(A) = n$, maka
+                \[
+                  A^+ = (A^T A)^{-1} A^T.
+                \]
+          \item Jika $m<n$ dan $\operatorname{rank}(A) = m$, maka
+                \[
+                  A^+ = A^T (A A^T)^{-1}.
+                \]
+          \item Jika tidak memenuhi kedua kondisi di atas, maka dapat digunakan SVD dimana
+                \[
+                  A^+ = V \Sigma^+ U^T,
+                \]
+                dengan $\Sigma^+$ adalah matriks yang diperoleh dengan menukar baris dan kolom dari $\Sigma$ dan mengganti setiap entri non-nol $\sigma_i$ dengan $\frac{1}{\sigma_i}$ (kecuali entri nol tetap nol).
+        \end{itemize}
+        Secara umum, kita menggunakan metode SVD untuk mendapatkan $A^+$. Namun pada soal ini, karena $A$ memiliki $m>n$ dan $\operatorname{rank}(A) = 2$ (dapat diperiksa sendiri) maka kita dapat menggunakan rumus untuk $A^+$ pada kasus $m>n$.
+        \begin{enumerate}[label=(\roman*)]
+          \item Hitung $A^T A$:
+                \[
+                  A^T A = \begin{bmatrix}
+                    1  & 2 & 2  \\
+                    -2 & 2 & -1
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    1 & -2 \\
+                    2 & 2  \\
+                    2 & -1
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    1+4+4  & -2+4-2 \\
+                    -2+4-2 & 4+4+1
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    9 & 0 \\
+                    0 & 9
+                  \end{bmatrix}.
+                \]
+          \item Hitung $(A^T A)^{-1}$:
+                \[
+                  (A^T A)^{-1} = \frac{1}{9}\begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                  \end{bmatrix}.
+                \]
+          \item Hitung $A^+$:
+                \[
+                  A^+ = (A^T A)^{-1} A^T = \begin{bmatrix}
+                    \frac{1}{9} & 0           \\
+                    0           & \frac{1}{9}
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    1  & 2 & 2  \\
+                    -2 & 2 & -1
+                  \end{bmatrix} =\frac{1}{9}
+                  \begin{bmatrix}
+                    1  & 2 & 2  \\
+                    -2 & 2 & -1
+                  \end{bmatrix}.
+                \]
+          \item Hitung solusi pendekatan $x^* = A^+ b$:
+                \[
+                  x^* = A^+ b = \frac{1}{9}
+                  \begin{bmatrix}
+                    1  & 2 & 2  \\
+                    -2 & 2 & -1
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    5  \\
+                    12 \\
+                    24
+                  \end{bmatrix} = \frac{1}{9}
+                  \begin{bmatrix}
+                    1\cdot 5 + 2\cdot 12 + 2\cdot 24 \\
+                    -2\cdot 5 + 2\cdot 12 - 1\cdot 24
+                  \end{bmatrix}
+                  =\frac{1}{9}
+                  \begin{bmatrix}
+                    77 \\
+                    -10
+                  \end{bmatrix}.
+                \]
+        \end{enumerate}
+        Jadi, solusi pendekatan dari sistem persamaan linier yang diberikan adalah $x_1^* = \dfrac{77}{9}$ dan $x_2^* = -\dfrac{10}{9}$.
+  \item \begin{enumerate}
+          \item Diketahui matriks
+                $
+                  A = \begin{bmatrix}
+                    1 & 1 \\
+                    0 & 2
+                  \end{bmatrix}.
+                $
+                Misalkan matriks $X$ berukuran $2 \times 2$ dengan entri-entri bernilai riil adalah
+                $
+                  X = \begin{bmatrix}
+                    x_{11} & x_{12} \\
+                    x_{21} & x_{22}
+                  \end{bmatrix}.
+                $
+                Kita ingin mencari matriks $X$ yang memenuhi persamaan $AX = XA$. Hitung $AX$ dan $XA$:
+                \[
+                  AX = \begin{bmatrix}
+                    1 & 1 \\
+                    0 & 2
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    x_{11} & x_{12} \\
+                    x_{21} & x_{22}
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    x_{11} + x_{21} & x_{12} + x_{22} \\
+                    2x_{21}         & 2x_{22}
+                  \end{bmatrix},
+                \]
+                \[
+                  XA = \begin{bmatrix}
+                    x_{11} & x_{12} \\
+                    x_{21} & x_{22}
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    1 & 1 \\
+                    0 & 2
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    x_{11} & x_{11} + 2x_{12} \\
+                    x_{21} & x_{21} + 2x_{22}
+                  \end{bmatrix}.
+                \]
+                Dari persamaan $AX = XA$, kita dapatkan sistem persamaan berikut:
+                \begin{align*}
+                  x_{11} + x_{21} & = x_{11},           \\
+                  x_{12} + x_{22} & = x_{11} + 2x_{12}, \\
+                  2x_{21}         & = x_{21},           \\
+                  2x_{22}         & = x_{21} + 2x_{22}
+                \end{align*}
+                Dari persamaan pertama dan ketiga, kita dapatkan $x_{21} = 0$. Substitusi $x_{21} = 0$ ke persamaan kedua dan keempat menghasilkan $x_{22} = x_{11} + x_{12}$ dan $x_{22} = x_{22}$ (yang selalu benar). Jadi, matriks $X$ yang memenuhi $AX = XA$ adalah
+                \[
+                  X = \begin{bmatrix}
+                    x_{11} & x_{12}          \\
+                    0      & x_{11} + x_{12}
+                  \end{bmatrix},
+                \]
+                di mana $x_{11}$ dan $x_{12}$ adalah bilangan riil sembarang.
+          \item Misalkan matriks $Y = \begin{bmatrix}
+                    y_{11} & y_{12} \\
+                    y_{21} & y_{22}
+                  \end{bmatrix}$, maka
+                $\operatorname{vec}(Y) = \begin{bmatrix}  y_{11} &  y_{12} &  y_{21} &  y_{22}\end{bmatrix}^T$. Selanjutnya hitung Kronecker product $A \otimes I_2$ dan $I_2 \otimes A^T$:
+                \[
+                  A \otimes I_2 = \begin{bmatrix}
+                    1 & 1 \\
+                    0 & 2
+                  \end{bmatrix} \otimes \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                  \end{bmatrix} = \begin{bmatrix}
+                    1 \begin{bmatrix}
+                        1 & 0 \\
+                        0 & 1
+                      \end{bmatrix} & 1 \begin{bmatrix}
+                                          1 & 0 \\
+                                          0 & 1
+                                        \end{bmatrix} \\[10pt]
+                    0 \begin{bmatrix}
+                        1 & 0 \\
+                        0 & 1
+                      \end{bmatrix} & 2 \begin{bmatrix}
+                                          1 & 0 \\
+                                          0 & 1
+                                        \end{bmatrix}
+                  \end{bmatrix}= \left[
+                    \begin{array}{c|c}
+                      \begin{matrix}
+                        1 & 0 \\
+                        0 & 1
+                      \end{matrix}
+                       &
+                      \begin{matrix}
+                        1 & 0 \\
+                        0 & 1
+                      \end{matrix}
+                      \\ \hline
+                      \begin{matrix}
+                        0 & 0 \\
+                        0 & 0
+                      \end{matrix}
+                       &
+                      \begin{matrix}
+                        2 & 0 \\
+                        0 & 2
+                      \end{matrix}
+                    \end{array}
+                    \right]
+                \]
+                \[
+                  I_2 \otimes A^T = \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                  \end{bmatrix} \otimes \begin{bmatrix}
+                    1 & 0 \\
+                    1 & 2
+                  \end{bmatrix} = \begin{bmatrix}
+                    1 \begin{bmatrix}
+                        1 & 0 \\
+                        1 & 2
+                      \end{bmatrix} & 0 \begin{bmatrix}
+                                          1 & 0 \\
+                                          1 & 2
+                                        \end{bmatrix} \\[10pt]
+                    0 \begin{bmatrix}
+                        1 & 0 \\
+                        1 & 2
+                      \end{bmatrix} & 1 \begin{bmatrix}
+                                          1 & 0 \\
+                                          1 & 2
+                                        \end{bmatrix}
+                  \end{bmatrix}= \left[
+                    \begin{array}{c|c}
+                      \begin{matrix}
+                        1 & 0 \\
+                        1 & 2
+                      \end{matrix}
+                       &
+                      \begin{matrix}
+                        0 & 0 \\
+                        0 & 0
+                      \end{matrix}
+                      \\ \hline
+                      \begin{matrix}
+                        0 & 0 \\
+                        0 & 0
+                      \end{matrix}
+                       &
+                      \begin{matrix}
+                        1 & 0 \\
+                        1 & 2
+                      \end{matrix}
+                    \end{array}
+                    \right]
+                \]
+                Sehingga dapat dihitung
+                \[
+                  (A \otimes I_2 - I_2 \otimes A^T) \operatorname{vec}(Y) = \begin{bmatrix}
+                    0  & 0  & 1  & 0 \\
+                    -1 & -1 & 0  & 1 \\
+                    0  & 0  & -1 & 0 \\
+                    0  & 0  & -1 & 0
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    y_{11} \\
+                    y_{12} \\
+                    y_{21} \\
+                    y_{22}
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    y_{21}                    \\
+                    -y_{11} - y_{12} + y_{22} \\
+                    -y_{21}                   \\
+                    -y_{21}
+                  \end{bmatrix}
+                  = \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    0 \\
+                    0
+                  \end{bmatrix}.
+                \]
+                dari persamaan di atas, bisa diperoleh hasil bahwa $y_{21} = 0$ dan $y_{22} = y_{11} + y_{12}$. Jadi, matriks $Y$ yang memenuhi persamaan adalah
+                \[
+                  Y = \begin{bmatrix}
+                    y_{11} & y_{12}          \\
+                    0      & y_{11} + y_{12}
+                  \end{bmatrix},
+                \]
+          \item Dari hasil (a) dan (b), kita mendapatkan bentuk matriks $X$ dan $Y$ yang sama, yaitu
+                \[
+                  \begin{bmatrix}
+                    a & b     \\
+                    0 & a + b
+                  \end{bmatrix},
+                \]
+                di mana $a$ dan $b$ adalah bilangan riil sembarang. Hal ini terjadi karena kedua persamaan tersebut pada dasarnya menyatakan kondisi yang sama, yaitu komutasi antara matriks $A$ dengan matriks lain ($X$ atau $Y$). Oleh karena itu, solusi untuk kedua persamaan tersebut menghasilkan bentuk matriks yang identik.
+
+                Hal ini didasari dengan sifat hubungan antara Kronecker product dan vektorisasi yaitu
+                \[
+                  \operatorname{vec}(ABC) = (A\otimes C^T) \operatorname{vec}(B),
+                \]
+                Pertama kita ambil $A = I_2$, $B = Y$, dan $C = A$, maka
+                \[
+                  \operatorname{vec}(A Y) = (I_2 \otimes A^T) \operatorname{vec}(Y).
+                \]
+                kedua kita ambil $B = Y$, $A = I_2$, dan $C = A$, maka
+                \[
+                  \operatorname{vec}(Y A) = (A \otimes I_2) \operatorname{vec}(Y).
+                \]
+                Dari kedua persamaan di atas, kita dapatkan
+                \begin{align*}
+                  \operatorname{vec}(A Y) - \operatorname{vec}(Y A) = (A \otimes I_2 - I_2 \otimes A^T) \operatorname{vec}(Y). \\
+                  \operatorname{vec}(A Y - Y A) = (A \otimes I_2 - I_2 \otimes A^T) \operatorname{vec}(Y).
+                \end{align*}
+                Jadi diperoleh hubungan bahwa $AY=YA$ jika dan hanya jika $(A \otimes I_2 - I_2 \otimes A^T) \operatorname{vec}(Y) = \operatorname{vec}(\mathbf{0}_2)$.\footnote{Semua yang telah dijawab pada soal ini menggunakan vektorisasi baris yang jika kalian lihat di referensi lain mungkin kebanyakan akan menggunakan vektorisasi kolom. Hal ini cukup membingungkan karna cukup banyak sekali perbedaan rumus yang didapati jika memakai dua vektorisasi yang berbeda}
+        \end{enumerate}
+  \item \begin{enumerate}
+          \item Pertama kita tentukan dulu basis standar $\{|0\rangle, |1\rangle\}$ dalam bentuk vektor kolom:
+                \[
+                  |0\rangle = \begin{bmatrix}
+                    1 \\
+                    0
+                  \end{bmatrix},\qquad
+                  |1\rangle = \begin{bmatrix}
+                    0 \\
+                    1
+                  \end{bmatrix}.
+                \]
+                Berdasarkan pemetaan yang diberikan, kita dapat menuliskan aksi dari operator linier $U$ pada basis standar sebagai berikut:
+                \[
+                  U|0\rangle = \frac{1}{\sqrt{2}}|0\rangle - \frac{i}{\sqrt{2}}|1\rangle = \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    1 \\
+                    0
+                  \end{bmatrix} - \frac{i}{\sqrt{2}}\begin{bmatrix}
+                    0 \\
+                    1
+                  \end{bmatrix} = \begin{bmatrix}
+                    \frac{1}{\sqrt{2}} \\
+                    -\frac{i}{\sqrt{2}}
+                  \end{bmatrix},
+                \]
+                \[
+                  U|1\rangle = -\frac{i}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle = -\frac{i}{\sqrt{2}}\begin{bmatrix}
+                    1 \\
+                    0
+                  \end{bmatrix} + \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    0 \\
+                    1
+                  \end{bmatrix} = \begin{bmatrix}
+                    -\frac{i}{\sqrt{2}} \\
+                    \frac{1}{\sqrt{2}}
+                  \end{bmatrix}.
+                \]
+                Dari hasil di atas, kita dapat menyusun matriks $U$ dengan kolom pertama adalah $U|0\rangle$ dan kolom kedua adalah $U|1\rangle$ yang merepresentasikan aksi dari $U$ pada basis standar:
+                \[
+                  U = \begin{bmatrix}
+                    \frac{1}{\sqrt{2}}  & -\frac{i}{\sqrt{2}} \\
+                    -\frac{i}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+                  \end{bmatrix}.
+                \]
+          \item Misalkan vektor keadaan kuantum adalah $\begin{bmatrix}\alpha \\ \beta\end{bmatrix}$, maka kita dapat menghitung $U\begin{bmatrix}\alpha \\ \beta\end{bmatrix}$ sebagai berikut:
+                \[
+                  U\begin{bmatrix}\alpha \\ \beta\end{bmatrix} = \begin{bmatrix}
+                    \frac{1}{\sqrt{2}}  & -\frac{i}{\sqrt{2}} \\
+                    -\frac{i}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    \alpha \\
+                    \beta
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    \frac{\alpha}{\sqrt{2}} - \frac{i\beta}{\sqrt{2}} \\
+                    -\frac{i\alpha}{\sqrt{2}} + \frac{\beta}{\sqrt{2}}
+                  \end{bmatrix} =
+                  \frac{1}{\sqrt{2}}
+                  \begin{bmatrix}
+                    \alpha - i\beta \\
+                    -i\alpha + \beta
+                  \end{bmatrix}.
+                \]
+          \item Untuk menentukan apakah $U$ merupakan gerbang kuantum yang valid, kita perlu memeriksa apakah $U$ adalah matriks uniter. Sebuah matriks $U$ dikatakan uniter jika memenuhi kondisi berikut:
+                \[
+                  U^\dagger U = U U^\dagger = I,
+                \]
+                dimana $U^\dagger$ adalah konjugat transpos dari $U$ dan $I$ adalah matriks identitas.
+
+                Hitung $U^\dagger$:
+                \[
+                  U^\dagger = \begin{bmatrix}
+                    \frac{1}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\
+                    \frac{i}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+                  \end{bmatrix}.
+                \]
+                Selanjutnya, hitung $U^\dagger U$:
+                \[
+                  U^\dagger U = \begin{bmatrix}
+                    \frac{1}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\
+                    \frac{i}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+                  \end{bmatrix}
+                  \begin{bmatrix}
+                    \frac{1}{\sqrt{2}}  & -\frac{i}{\sqrt{2}} \\
+                    -\frac{i}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+                  \end{bmatrix} =
+                  \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                  \end{bmatrix} = I.
+                \]
+                Karena $U^\dagger U = I$, maka matriks $U$ adalah uniter. Oleh karena itu, $U$ merupakan gerbang kuantum yang valid.
+        \end{enumerate}
+\end{enumerate}
+\end{document}
