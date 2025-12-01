@@ -1,4 +1,3 @@
-\pagebreak
 \chapter{TINJAUAN PUSTAKA}
 \section{Hasil Penelitian Terdahulu}
 
@@ -56,9 +55,26 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
   \end{align*}
 \end{contoh}
 
-\subsection{Nilai Eigen dan Vektor Eigen Aljabar Max-Plus}
+\subsection{Polinomial dalam Aljabar Max-Plus}
+Polinomial adalah suatu ekspresi matematika yang terdiri dari variabel dan koefisien, yang dioperasikan dengan penjumlahan, pengurangan, dan perkalian. Dalam aljabar max-plus, polinomial juga dapat didefinisikan dengan menggunakan operasi maksimum dan penjumlahan pada aljabar max-plus \parencite{burden2010numerical}.
 
 \subsection{Matriks Linde-de la Puente}
+Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, diperoleh bahwa kekomutatifan antara dua matriks tropikal cukup bergantung pada diagonal utama matriks tersebut. Dalam perkembangan selanjutnya, \textcite{alhussaini2024securityinitialtropical} memperkenalkan juga sebuah protokol kriptografi yang terinspirasi dari pertukaran kunci Diffie-Hellman, yang basisnya adalah grup siklik $(\Z_p^*\ ,\ \times)$ untuk suatu bilangan prima $p$.
+\begin{definisi}[Matriks Ldlp]
+  Untuk setiap bilangan real $r \leq 0$ dan bilangan real $k \geq 0$, kita definisikan
+  $
+    [2r, r]_{n}^{k}
+  $
+  sebagai himpunan matriks $A_{n\times n}$ sedemikian sehingga $a_{ii} = k$ untuk semua $i$ dan $a_{ij} \in [2r, r]$ untuk $i \neq j$.
+\end{definisi}
+dari definisi di atas diperoleh sebuah teorema penting mengenai kekomutatifan matriks tropikal.
+\begin{teorema}
+  Misalkan $A \in [2r, r]_{n}^{k_{1}}, \, B \in [2s, s]_{n}^{k_{2}}$ untuk setiap $r, s \leq 0$ dan $a_{ii} = k_{1} \geq 0, \, b_{ii} = k_{2} \geq 0$. Maka
+  \[
+    A \otimes B = B \otimes A = k_{2} \otimes A \oplus k_{1} \otimes B.
+  \]
+\end{teorema}
+
 \section{Permutasi}
 Dalam aljabar, permutasi ialah suatu fungsi bijektif dari himpunan ke dirinya sendiri. Sebuah permutasi dari himpunan $X = \{1, 2, \ldots, n\}$ biasanya disimbolkan dengan $\sigma: X \to X$, dengan $\sigma$ bersifat satu-satu dan pada. Himpunan semua permutasi dari $X$ membentuk suatu grup terhadap operasi komposisi fungsi, yang disebut grup simetris pada $n$ elemen yang disimbolkan dengan $S_n$ \parencite{subiono2022aljabar}.
 \begin{contoh}
@@ -157,6 +173,53 @@ Dengan menggunakan notasi sikel, permutasi akan lebih ringkas untuk dituliskan d
   \end{figure}
 \end{contoh}
 
+\subsection{Matriks Permutasi}
+Setiap permutasi $\sigma \in S_n$ dapat kita representasikan dalam bentuk matriks permutasi $P_{\sigma}\in\R^{n \times n}$ yang elemen-elemennya hanya terdiri dari $0$ dan $1$, dengan aturan sebagai berikut:
+\[
+  (P_{\sigma})_{ij} =
+  \begin{cases}
+    1, & \text{jika } i = \sigma(j), \\
+    0, & \text{lainnya}.
+  \end{cases} \quad \forall i, j = 1, 2, \ldots, n.
+\]
+Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan dengan cara yang serupa, di mana elemen-elemen matriks hanya terdiri dari $-\infty$ dan $0$ yang merepresentasikan identitas dan elemen nol dalam aljabar max-plus.
+\begin{definisi}[\cite{Farlow2009}]
+  Misalkan $\sigma : \{1,2,\dots,n\} \to \{1,2,\dots,n\}$
+  adalah suatu permutasi, maka matriks permutasi max-plus
+  $P_{\sigma} = [p_{ij}]$ didefinisikan sebagai
+  \[
+    p_{ij} =
+    \begin{cases}
+      0,       & \text{jika } i = \sigma(j), \\[4pt]
+      -\infty, & \text{lainnya}.
+    \end{cases}
+  \]
+\end{definisi}
+
+\begin{contoh}
+  Misalkan diberikan permutasi $\sigma=(1\ 3\ 2)\in S_3$. Maka, matriks permutasi max-plus $P_{\sigma}$ adalah
+  \[
+    P_{\sigma} =
+    \begin{pmatrix}
+      -\infty & -\infty & 0       \\
+      0       & -\infty & -\infty \\
+      -\infty & 0       & -\infty
+    \end{pmatrix}.
+  \]
+\end{contoh}
+
+\begin{teorema}[\cite{Farlow2009}]
+  Sebuah matriks $A \in \mathbb{R}_{\max}^{n \times n}$ memiliki invers kanan
+  jika dan hanya jika terdapat suatu permutasi $\sigma$ serta nilai-nilai
+  $\lambda_i > \varepsilon$, $i \in \{1,2,\dots,n\}$, sehingga
+  \[
+    A = P_{\sigma} \otimes D(\lambda).
+  \]
+\end{teorema}
+
+
 \section{\textit{Latin Square}}
 \textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom.
+Pertama kali diperkenalkan oleh Leonhard Euler pada abad ke-18 dalam konteks teka-teki matematika tentang ``\textit{36 military officers}'' \parencite{george2017introductioncombinatorics}.
+
 

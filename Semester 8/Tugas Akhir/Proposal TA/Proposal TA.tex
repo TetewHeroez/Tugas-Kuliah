@@ -1,31 +1,12 @@
 \documentclass{file/TA-ITS}
-%Ridho Nur Rohman Wijaya
 
-\makeatletter
-\def\cleardoublepage{\clearpage%
-	\if@twoside
-	\ifodd\c@page\else
-	\vspace*{\fill}
-	\hfill
-	\begin{center}
-		\emph{ }
-	\end{center}
-	\vspace{\fill}
-	\thispagestyle{empty}
-	\newpage
-	\if@twocolumn\hbox{}\newpage\fi
-	\fi
-	\fi
-}
-\makeatother
 \theoremstyle{definition}
 \newtheorem{definisi}{Definisi}[section]
 \newtheorem{teorema}{Teorema}[section]
-\newtheorem{lemma}{Lemma}
-\newtheorem{akibat}{Akibat}
-\newtheorem{contoh}{Contoh}
-\theoremstyle{plain}
-\newtheorem{prop}{Proposisi}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{akibat}{Akibat}[section]
+\newtheorem{contoh}{Contoh}[section]
+\newtheorem{proposisi}{Proposisi}[section]
 \renewcommand{\proofname}{Bukti}
 
 \newcommand{\norm}[1]{\left\|#1\right\|} % Fungsi norm (||x||)
@@ -88,18 +69,64 @@
     tabsize=2
 }
 %%% Pewarnaan code
+\usetikzlibrary{shapes, arrows.meta, positioning}
 
-\hypersetup{ % Merubah warna link
-    colorlinks,
-    linkcolor={black},
-    citecolor={black},
-    urlcolor={black}
-}
+\definecolor{ioColor}{HTML}{D4E1F5}
+\definecolor{processColor}{HTML}{FFE599}
+\definecolor{decisionColor}{HTML}{FFCE9F}
 
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=2cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=pink]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, 
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=2cm, 
+minimum height=1cm, text centered, 
+draw=black,text centered, 
+text width=2.5cm,fill=ioColor]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=2cm, 
+minimum height=1cm, 
+text centered, 
+text width=2.5cm, 
+draw=black,fill=processColor]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=2cm, 
+minimum height=1cm, 
+text centered, 
+draw=black,fill=decisionColor]
+
+\tikzstyle{arrow} = [text width=2cm,thick, ->, >=stealth]
+
+\tikzstyle{sumjunction} = [draw,
+    circle,
+    minimum size=0.7cm,
+    text centered,
+    path picture={
+      \draw [black] % atau pakai warna lain yang pasti ada
+        (path picture bounding box.135) -- (path picture bounding box.315)
+        (path picture bounding box.45) -- (path picture bounding box.225);
+    }
+]
 % \tolerance=1
 % \emergencystretch = \maxdimen
 % \hyphenpenalty=10000
 % \hbadness=1000
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
 
 \begin{document}
 
@@ -114,7 +141,6 @@
 \LembarPengesahanProposal
 \LembarAbstrak
 \LembarAbstract
-
 %%%%%%%%%%%%%%%%%%%%%%%%  Abstrak  %%%%%%%%%%%%%%%5%%%%%%%%%%
 %\input{Inti/abstrak}
 

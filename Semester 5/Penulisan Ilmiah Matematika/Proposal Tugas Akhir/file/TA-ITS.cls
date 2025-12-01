@@ -33,7 +33,7 @@
 \RequirePackage[hmargin={3cm,2cm},vmargin={3cm,2.5cm}]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{amssymb,amsmath,amsthm,amsfonts,indentfirst,
-                tabularx,ifthen,arabtex}
+                tabularx,ifthen}
 %\RequirePackage{nohyperref}
 \RequirePackage{hyperref}
 \RequirePackage{float}

@@ -20,10 +20,15 @@
 %%% <alvinelbarca08@gmail.com>
 %%% Revisi: Format A4 (2022)
 %%%
-%%% Revisi terahir oleh: Ridho Nur Rohman Wijaya
+%%% Revisi oleh: Ridho Nur Rohman Wijaya
 %%% Matematika ITS 2018
 %%% <ridhonurrohmanwijaya@gmail.com>
 %%% Revisi: Generalisasi dan penyempurnaan Format A4 (2022)
+%%%
+%%% Revisi oleh: Teosofi Hidayah Agung
+%%% Matematika ITS 2022
+%%% <teosofihidayahagung@gmail.com>
+%%% Revisi: Pembaruan bibliografi menggunakan biblatex (2025)
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -36,6 +41,12 @@
                 tabularx,ifthen}
 %\RequirePackage{nohyperref}
 \RequirePackage{hyperref}
+\hypersetup{ % Merubah warna link
+    colorlinks,
+    linkcolor={black},
+    citecolor={black},
+    urlcolor={black}
+}
 \RequirePackage{float}
 \RequirePackage{setspace}
 \RequirePackage{afterpage}
@@ -54,6 +65,7 @@
 
 \DefineBibliographyStrings{english}{
   andothers = {dkk.,},
+  and = {dan},
 }
 
 \RequirePackage{xpatch}
@@ -64,11 +76,29 @@
       \printtext[bibhyperref]{\printnames{labelname}}%
     }{}{}
 
+\xpatchbibmacro{textcite}{%
+      \printnames{labelname}%
+    }{%
+      \printtext[bibhyperref]{\printnames{labelname}}%
+    }{}{}
+  
+  \xpatchbibmacro{parencite}{%
+      \printnames{labelname}%
+    }{%
+      \printtext[bibhyperref]{\printnames{labelname}}%
+    }{}{}
+
     \xpatchbibdriver{apa}{%
       \printnames{labelname}%
     }{%
       \printtext[bibhyperref]{\printnames{labelname}}%
     }{}{}
+
+    \xpatchcmd{\textcite}
+  {\usebibmacro{textcite}}
+  {\bibhyperref{\usebibmacro{textcite}}}
+  {}{}
+
 
 
 \RequirePackage[euler]{textgreek}
@@ -240,6 +270,23 @@
   % Set page color for the next page
   \afterpage{\pagecolor#1}%
 }
+
+\def\cleardoublepage{\clearpage%
+	\if@twoside
+	\ifodd\c@page\else
+	\vspace*{\fill}
+	\hfill
+	\begin{center}
+		\emph{ }
+	\end{center}
+	\vspace{\fill}
+	\thispagestyle{empty}
+	\newpage
+	\if@twocolumn\hbox{}\newpage\fi
+	\fi
+	\fi
+}
+
 \newcommand\Cover{%
     \cleardoublepage\thispagestyle{empty}
     \color{white}
@@ -699,7 +746,12 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
     % \fancyfoot[L]{\ifthenelse{\isodd{\value{page}}}{}{\thepage}}
 
 }
-\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+% \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+%                     \thispagestyle{fancy}%
+%                     \global\@topnum\z@
+%                     \@afterindentfalse
+%                     \secdef\@chapter\@schapter}
+\renewcommand\chapter{\cleardoublepage
                     \thispagestyle{fancy}%
                     \global\@topnum\z@
                     \@afterindentfalse

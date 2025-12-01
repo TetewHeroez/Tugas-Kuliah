@@ -106,15 +106,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%  Abstrak  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 \begin{Abstrak}
-Transportasi publik merupakan salah satu komponen penting dalam mendukung mobilitas masyarakat perkotaan. Terminal Purabaya memiliki peran strategis dalam sistem transportasi di Surabaya, namun pengelolaan jadwal bus yang kurang optimal dapat menyebabkan ketidakefisienan waktu tunggu penumpang dan pengoperasian bus. Penelitian ini bertujuan mengoptimalkan jadwal jaringan bus di Terminal Purabaya menggunakan pendekatan aljabar max-plus. Pendekatan ini memodelkan jadwal sebagai sistem linier max-plus yang mempertimbangkan waktu siklus (\textit{cyclicity}) dan waktu transient untuk memastikan efisiensi. Hasil simulasi diharapkan dapat meningkatkan akurasi dan efisiensi operasional bus.
+    Transportasi publik merupakan salah satu komponen penting dalam mendukung mobilitas masyarakat perkotaan. Terminal Purabaya memiliki peran strategis dalam sistem transportasi di Surabaya, namun pengelolaan jadwal bus yang kurang optimal dapat menyebabkan ketidakefisienan waktu tunggu penumpang dan pengoperasian bus. Penelitian ini bertujuan mengoptimalkan jadwal jaringan bus di Terminal Purabaya menggunakan pendekatan aljabar max-plus. Pendekatan ini memodelkan jadwal sebagai sistem linier max-plus yang mempertimbangkan waktu siklus (\textit{cyclicity}) dan waktu transient untuk memastikan efisiensi. Hasil simulasi diharapkan dapat meningkatkan akurasi dan efisiensi operasional bus.
 
-\katakunci{Optimasi jadwal, aljabar max-plus, jaringan bus, efisiensi transportasi.}
+    \katakunci{Optimasi jadwal, aljabar max-plus, jaringan bus, efisiensi transportasi.}
 \end{Abstrak}
 
 \begin{Abstract}
-Public transportation is a critical component supporting urban mobility. Purabaya Terminal plays a strategic role in Surabaya's transport system; however, suboptimal bus schedule management leads to inefficiencies in passenger waiting times and bus operations. This study aims to optimize the bus network schedule at Purabaya Terminal using the max-plus algebra approach. This approach models the schedule as a max-plus linear system, considering cyclicity and transient times to ensure efficiency. The simulation results are expected to enhance the accuracy and operational efficiency of bus services.
+    Public transportation is a critical component supporting urban mobility. Purabaya Terminal plays a strategic role in Surabaya's transport system; however, suboptimal bus schedule management leads to inefficiencies in passenger waiting times and bus operations. This study aims to optimize the bus network schedule at Purabaya Terminal using the max-plus algebra approach. This approach models the schedule as a max-plus linear system, considering cyclicity and transient times to ensure efficiency. The simulation results are expected to enhance the accuracy and operational efficiency of bus services.
 
-\keywords{Schedule optimization, max-plus algebra, bus network, transport efficiency.}
+    \keywords{Schedule optimization, max-plus algebra, bus network, transport efficiency.}
 \end{Abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Abstrak  %%%%%%%%%%%%%%%5%%%%%%%%%%
@@ -129,27 +129,26 @@ Public transportation is a critical component supporting urban mobility. Purabay
 
 \DaftarSimbol
 \begin{flushleft}
-\begin{tabular}{lrl}
+    \begin{tabular}{lrl}
 
-$\oplus$ &:& Operasi \textit{max} dalam aljabar max-plus \\
+        $\oplus$                        & : & Operasi \textit{max} dalam aljabar max-plus                                      \\
 
-$\otimes$ &:& Operasi \textit{plus} dalam aljabar max-plus \\
+        $\otimes$                       & : & Operasi \textit{plus} dalam aljabar max-plus                                     \\
 
-$\varepsilon$ &:& Elemen netral untuk operasi $\oplus$, yaitu $-\infty$ \\
+        $\varepsilon$                   & : & Elemen netral untuk operasi $\oplus$, yaitu $-\infty$                            \\
 
-$e$ &:& Elemen satuan untuk operasi $\otimes$, yaitu $0$ \\
+        $e$                             & : & Elemen satuan untuk operasi $\otimes$, yaitu $0$                                 \\
 
-$\mathbf{A} \otimes \mathbf{x}$ &:& Hasil kali matriks $\mathbf{A}$ dengan vektor $\mathbf{x}$ pada aljabar max-plus \\
+        $\mathbf{A} \otimes \mathbf{x}$ & : & Hasil kali matriks $\mathbf{A}$ dengan vektor $\mathbf{x}$ pada aljabar max-plus \\
 
-$\lambda$ &:& Nilai eigen dalam aljabar max-plus \\
+        $\lambda$                       & : & Nilai eigen dalam aljabar max-plus                                               \\
 
-$\mathbb{R}_{\max}$ &:& Himpunan bilangan real diperluas dengan $-\infty$ dalam aljabar max-plus \\
+        $\mathbb{R}_{\max}$             & : & Himpunan bilangan real diperluas dengan $-\infty$ dalam aljabar max-plus         \\
 
-$\mathbb{R}_{\max}^n$ &:& Ruang vektor berdimensi $n$ dalam aljabar max-plus \\
+        $\mathbb{R}_{\max}^n$           & : & Ruang vektor berdimensi $n$ dalam aljabar max-plus                               \\
 
-$[\mathbf{A}^k]_{ij}$ &:& Elemen $(i,j)$ dari matriks $\mathbf{A}$ pangkat $k$ \\
-
-\end{tabular}
+        $[\mathbf{A}^k]_{ij}$           & : & Elemen $(i,j)$ dari matriks $\mathbf{A}$ pangkat $k$                             \\
+    \end{tabular}
 \end{flushleft}
 %%%%%%%%%%%%%%%%%%%%%%%%  Daftar  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
@@ -211,8 +210,8 @@ Penelitian ini diharapkan memberikan beberapa manfaat, baik secara teoritis maup
 \begin{definisi}
     Diberikan himpunan $\Real_{\varepsilon} = \Real \cup \{\varepsilon\}$ dengan $\Real$ adalah himpunan bilangan real dan $\varepsilon\defeq-\infty$. Pada $\Real_{\varepsilon}$, didefinisikan dua operasi biner sebagai berikut:
     \begin{flalign}
-        a \oplus b &\defeq \max\{a, b\} , \quad \forall a, b \in \Real_{\varepsilon} \label{eq:oplus} \\
-        a \otimes b &\defeq a + b , \quad \forall a, b \in \Real_{\varepsilon} \label{eq:otimes}
+        a \oplus b  & \defeq \max\{a, b\} , \quad \forall a, b \in \Real_{\varepsilon} \label{eq:oplus} \\
+        a \otimes b & \defeq a + b , \quad \forall a, b \in \Real_{\varepsilon} \label{eq:otimes}
     \end{flalign}
 \end{definisi}
 \noindent\cite{baccelli}
@@ -234,37 +233,37 @@ Notasi $\left(\Real_\varepsilon,\oplus,\otimes\right)$ bisa ditulis sebagai $\Re
 Misalkan \( \mathbf{x} \) adalah vektor dalam aljabar max-plus dengan komponen \( x_1, x_2, \dots, x_n \). Vektor ini didefinisikan sebagai:
 
 \[
-\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}
+    \mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}
 \]
 
 Jika kita ingin melakukan operasi penjumlahan dua vektor \( \mathbf{x} \) dan \( \mathbf{y} \), di mana \( \mathbf{y} = (y_1, y_2, \dots, y_n)^T \), maka penjumlahan max-plus didefinisikan sebagai berikut \cite{cassandras}:
 
 \[
-\mathbf{x} \oplus \mathbf{y} = \begin{pmatrix} \max(x_1, y_1) \\ \max(x_2, y_2) \\ \vdots \\ \max(x_n, y_n) \end{pmatrix}
+    \mathbf{x} \oplus \mathbf{y} = \begin{pmatrix} \max(x_1, y_1) \\ \max(x_2, y_2) \\ \vdots \\ \max(x_n, y_n) \end{pmatrix}
 \]
 
 Untuk operasi perkalian skalar max-plus antara skalar \( \lambda \) dan vektor \( \mathbf{x} \), hasilnya adalah:
 
 \[
-\lambda \otimes \mathbf{x} = \begin{pmatrix} \lambda + x_1 \\ \lambda + x_2 \\ \vdots \\ \lambda + x_n \end{pmatrix}
+    \lambda \otimes \mathbf{x} = \begin{pmatrix} \lambda + x_1 \\ \lambda + x_2 \\ \vdots \\ \lambda + x_n \end{pmatrix}
 \]
 
 Matriks dalam aljabar max-plus juga mengikuti aturan operasi yang sama. Misalkan \( A \) adalah matriks \( m \times n \) dengan entri \( a_{ij} \). Matriks ini didefinisikan sebagai:
 
 \[
-A = \begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{pmatrix}
+    A = \begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{pmatrix}
 \]
 
 Penjumlahan dua matriks \( A \) dan \( B \), di mana \( B = (b_{ij}) \), didefinisikan sebagai operasi maksimum elemen demi elemen:
 
 \[
-A \oplus B = \begin{pmatrix} \max(a_{11}, b_{11}) & \dots & \max(a_{1n}, b_{1n}) \\ \vdots & \ddots & \vdots \\ \max(a_{m1}, b_{m1}) & \dots & \max(a_{mn}, b_{mn}) \end{pmatrix}
+    A \oplus B = \begin{pmatrix} \max(a_{11}, b_{11}) & \dots & \max(a_{1n}, b_{1n}) \\ \vdots & \ddots & \vdots \\ \max(a_{m1}, b_{m1}) & \dots & \max(a_{mn}, b_{mn}) \end{pmatrix}
 \]
 
 Perkalian matriks max-plus \( A \) dengan vektor \( \mathbf{x} \) didefinisikan menggunakan operasi maksimum dan penjumlahan biasa (dalam konteks aljabar max-plus):
 
 \[
-(A \otimes \mathbf{x})_i = \bigoplus_{j=1}^n (a_{ij} \otimes x_j) = \max_{j=1}^n (a_{ij} + x_j)
+    (A \otimes \mathbf{x})_i = \bigoplus_{j=1}^n (a_{ij} \otimes x_j) = \max_{j=1}^n (a_{ij} + x_j)
 \]
 
 Artinya, setiap elemen hasil perkalian matriks-vektor dalam aljabar max-plus diperoleh dengan menjumlahkan entri matriks dan vektor secara biasa, kemudian mengambil nilai maksimum \cite{subionopower}.
@@ -272,7 +271,7 @@ Artinya, setiap elemen hasil perkalian matriks-vektor dalam aljabar max-plus dip
 Perkalian dua matriks \( A \) dan \( B \) (dengan ukuran yang sesuai) didefinisikan sebagai:
 
 \[
-(A \otimes B)_{ik} = \bigoplus_{j=1}^n (a_{ij} \otimes b_{jk}) = \max_{j=1}^n (a_{ij} + b_{jk})
+    (A \otimes B)_{ik} = \bigoplus_{j=1}^n (a_{ij} \otimes b_{jk}) = \max_{j=1}^n (a_{ij} + b_{jk})
 \]
 
 Operasi ini mirip dengan perkalian matriks biasa, tetapi menggunakan operasi maksimum untuk penjumlahan elemen dan operasi penjumlahan biasa untuk perkalian elemen \cite{butkovic2010maxplus}.
@@ -280,20 +279,20 @@ Operasi ini mirip dengan perkalian matriks biasa, tetapi menggunakan operasi mak
 Misalkan kita punya dua matriks \( A \) dan \( B \) berikut dalam aljabar max-plus:
 
 \[
-A = \begin{pmatrix} 1 & 2 \\ 3 & -\infty \end{pmatrix}, \quad B = \begin{pmatrix} -\infty & 4 \\ 0 & 1 \end{pmatrix}
+    A = \begin{pmatrix} 1 & 2 \\ 3 & -\infty \end{pmatrix}, \quad B = \begin{pmatrix} -\infty & 4 \\ 0 & 1 \end{pmatrix}
 \]
 
 Perkalian matriks \( A \otimes B \) dalam aljabar max-plus adalah:
 
 \[
-A \otimes B = \begin{pmatrix} \max(1 + (-\infty), 2 + 0) & \max(1 + 4, 2 + 1) \\ \max(3 + (-\infty), -\infty + 0) & \max(3 + 4, -\infty + 1) \end{pmatrix}
+    A \otimes B = \begin{pmatrix} \max(1 + (-\infty), 2 + 0) & \max(1 + 4, 2 + 1) \\ \max(3 + (-\infty), -\infty + 0) & \max(3 + 4, -\infty + 1) \end{pmatrix}
 \]
 
 Menghitung elemen-elemen:
 
 \[
-A \otimes B = \begin{pmatrix} \max(-\infty, 2) & \max(5, 3) \\ \max(-\infty, 3) & \max(7, -\infty) \end{pmatrix}
-= \begin{pmatrix} 2 & 5 \\ 3 & 7 \end{pmatrix}
+    A \otimes B = \begin{pmatrix} \max(-\infty, 2) & \max(5, 3) \\ \max(-\infty, 3) & \max(7, -\infty) \end{pmatrix}
+    = \begin{pmatrix} 2 & 5 \\ 3 & 7 \end{pmatrix}
 \]
 
 \section{Graf Berarah dan Berbobot}
@@ -325,10 +324,10 @@ Dalam graf berarah berbobot, matriks adjacency digunakan untuk merepresentasikan
 
 Pada \ref{contohgraf}, matriks adjacency dari graf tersebut adalah:
 \[
-\begin{pmatrix}
-    -\infty & 3 \\
-    5 & 1
-\end{pmatrix}
+    \begin{pmatrix}
+        -\infty & 3 \\
+        5       & 1
+    \end{pmatrix}
 \]
 
 \section{Nilai Eigen dan Vektor Eigen pada Aljabar Max-Plus}
@@ -336,11 +335,11 @@ Pada \ref{contohgraf}, matriks adjacency dari graf tersebut adalah:
 Nilai eigen dan vektor eigen dalam aljabar max-plus merupakan konsep penting untuk menganalisis sistem linier dalam konteks aljabar ini. Definisi nilai eigen dan vektor eigen untuk suatu matriks \( A \in R_{\max}^{n \times n} \) diberikan sebagai berikut \cite{andro2020}:
 
 \begin{definisi}
-Diberikan \( A \in \Real_{\max}^{n \times n} \). Jika terdapat \( \lambda \in \Real_{\max} \) dan \( v \in R_{\max}^n \) dengan \( v \neq \epsilon \) sedemikian sehingga:
-\[
-A \otimes v = \lambda \otimes v,
-\]
-maka \( \lambda \) disebut nilai eigen matriks \( A \), dan \( v \) disebut vektor eigen yang bersesuaian dengan \( \lambda \).
+    Diberikan \( A \in \Real_{\max}^{n \times n} \). Jika terdapat \( \lambda \in \Real_{\max} \) dan \( v \in R_{\max}^n \) dengan \( v \neq \epsilon \) sedemikian sehingga:
+    \[
+        A \otimes v = \lambda \otimes v,
+    \]
+    maka \( \lambda \) disebut nilai eigen matriks \( A \), dan \( v \) disebut vektor eigen yang bersesuaian dengan \( \lambda \).
 \end{definisi}
 
 \section{Sistem Persamaan Linear Max-Plus}
@@ -348,62 +347,62 @@ maka \( \lambda \) disebut nilai eigen matriks \( A \), dan \( v \) disebut vekt
 Sistem persamaan linear max-plus adalah model matematika untuk sistem peristiwa diskrit yang dapat dianalisis menggunakan operasi max-plus. Pendekatan ini memanfaatkan operasi maksimum (\(\oplus\)) dan penjumlahan biasa (\(\otimes\)) untuk menggantikan operasi penjumlahan dan perkalian pada aljabar klasik \cite{baccelli, heidergott}.
 
 \begin{definisi}[Sistem Persamaan Linear Max-Plus]
-Sistem persamaan linear max-plus adalah sistem yang dapat direpresentasikan dalam bentuk:
-\[
-x(k) = \bigoplus_{m=0}^M A_m \otimes x(k-m) \oplus B \otimes u(k)
-\]
-di mana \(x(k) \in \Real^{n \times 1}\) adalah vektor keadaan, \(u(k) \in \Real^{r \times 1}\) adalah vektor masukan, \(A_m \in \Real^{n \times n}\) adalah matriks keadaan, dan \(B \in \Real^{n \times r}\) adalah matriks input \cite{baccelli}.
+    Sistem persamaan linear max-plus adalah sistem yang dapat direpresentasikan dalam bentuk:
+    \[
+        x(k) = \bigoplus_{m=0}^M A_m \otimes x(k-m) \oplus B \otimes u(k)
+    \]
+    di mana \(x(k) \in \Real^{n \times 1}\) adalah vektor keadaan, \(u(k) \in \Real^{r \times 1}\) adalah vektor masukan, \(A_m \in \Real^{n \times n}\) adalah matriks keadaan, dan \(B \in \Real^{n \times r}\) adalah matriks input \cite{baccelli}.
 \end{definisi}
 
 \begin{definisi}[Matriks Kleene]
-Untuk setiap matriks \(A \in \Real^{n \times n}\), matriks Kleene \(A^*\) didefinisikan sebagai:
-\[
-A^* = \bigoplus_{k=0}^\infty A^{\otimes k}
-\]
-dengan \(A^{\otimes k}\) menyatakan hasil perkalian matriks \(A\) sebanyak \(k\) kali dalam aljabar max-plus. Matriks ini digunakan untuk menyelesaikan sistem persamaan \((A \otimes x) \oplus b = x\) ketika graf \(G(A)\) memiliki bobot siklus rata-rata tidak positif \cite{subiono2015minmaxplus}.
+    Untuk setiap matriks \(A \in \Real^{n \times n}\), matriks Kleene \(A^*\) didefinisikan sebagai:
+    \[
+        A^* = \bigoplus_{k=0}^\infty A^{\otimes k}
+    \]
+    dengan \(A^{\otimes k}\) menyatakan hasil perkalian matriks \(A\) sebanyak \(k\) kali dalam aljabar max-plus. Matriks ini digunakan untuk menyelesaikan sistem persamaan \((A \otimes x) \oplus b = x\) ketika graf \(G(A)\) memiliki bobot siklus rata-rata tidak positif \cite{subiono2015minmaxplus}.
 \end{definisi}
 
 \begin{teorema}[Penyelesaian Sistem Linear Max-Plus]
-Jika \(A \in \Real^{n \times n}\) adalah matriks dengan bobot siklus rata-rata tidak positif, maka sistem:
-\[
-(A \otimes x) \oplus b = x
-\]
-memiliki solusi unik yang diberikan oleh:
-\[
-x = A^* \otimes b
-\]
-di mana \(A^*\) adalah matriks Kleene dari \(A\) \cite{baccelli}.
+    Jika \(A \in \Real^{n \times n}\) adalah matriks dengan bobot siklus rata-rata tidak positif, maka sistem:
+    \[
+        (A \otimes x) \oplus b = x
+    \]
+    memiliki solusi unik yang diberikan oleh:
+    \[
+        x = A^* \otimes b
+    \]
+    di mana \(A^*\) adalah matriks Kleene dari \(A\) \cite{baccelli}.
 \end{teorema}
 
 Sistem persamaan linear max-plus dapat direduksi menjadi bentuk rekursif sederhana:
 \[
-x(k+1) = A \otimes x(k)
+    x(k+1) = A \otimes x(k)
 \]
 dengan \(A\) sebagai matriks transisi. Bentuk ini mempermudah analisis sistem seperti perhitungan nilai eigen dan vektor eigen yang menentukan sinkronisasi \cite{andro2020}.
 
 \begin{teorema}[Nilai Eigen dan Vektor Eigen]
-Untuk sebuah matriks \(A \in \Real^{n \times n}\), nilai eigen (\(\lambda\)) dan vektor eigen (\(v\)) memenuhi hubungan:
-\[
-A \otimes v = \lambda \otimes v
-\]
-di mana \(\lambda\) merepresentasikan periode sinkronisasi dan \(v\) menunjukkan pola stabil keadaan sistem \cite{baccelli}.
+    Untuk sebuah matriks \(A \in \Real^{n \times n}\), nilai eigen (\(\lambda\)) dan vektor eigen (\(v\)) memenuhi hubungan:
+    \[
+        A \otimes v = \lambda \otimes v
+    \]
+    di mana \(\lambda\) merepresentasikan periode sinkronisasi dan \(v\) menunjukkan pola stabil keadaan sistem \cite{baccelli}.
 \end{teorema}
 
 \section{Algoritma Power}
 Menurut \citeauthor{andro2020}, setiap matriks \( A \) dalam aljabar max-plus memiliki setidaknya satu nilai eigen. Penentuan nilai eigen dan vektor eigen dapat dilakukan menggunakan algoritma \textit{Power}, yang dirumuskan dalam bentuk rekursi:
 \[
-x(k+1) = A \otimes x(k), \quad k = 0, 1, 2, \dots
+    x(k+1) = A \otimes x(k), \quad k = 0, 1, 2, \dots
 \]
 
 Algoritma ini terdiri dari langkah-langkah berikut:
 \begin{enumerate}
-     \item Berikan nilai awal \( x(0) \neq (\varepsilon, \varepsilon, \dots, \varepsilon)^T \).
-        \item Iterasikan persamaan rekursif hingga terjadi perilaku periodik \( x(p) = c \otimes x(q) \), dengan \( p > q \geq 0 \).
-        \item Hitung nilai eigen \( \lambda = c^{1/(p-q)} \).
-        \item Tentukan vektor eigen menggunakan:
-        \[
-        v = \bigoplus_{i=1}^{p-q} \left( \lambda^{p-q-i} \otimes x(q+i-1) \right).
-        \]
+    \item Berikan nilai awal \( x(0) \neq (\varepsilon, \varepsilon, \dots, \varepsilon)^T \).
+    \item Iterasikan persamaan rekursif hingga terjadi perilaku periodik \( x(p) = c \otimes x(q) \), dengan \( p > q \geq 0 \).
+    \item Hitung nilai eigen \( \lambda = c^{1/(p-q)} \).
+    \item Tentukan vektor eigen menggunakan:
+          \[
+              v = \bigoplus_{i=1}^{p-q} \left( \lambda^{p-q-i} \otimes x(q+i-1) \right).
+          \]
 \end{enumerate}
 
 Sistem persamaan linear max-plus memungkinkan analisis sistem diskrit dengan alat aljabar yang unik. Dengan pemanfaatan matriks Kleene, nilai eigen, dan algoritma iteratif, sistem ini sangat aplikatif dalam transportasi publik, produksi, dan jaringan telekomunikasi \cite{andro2020, subiono2015minmaxplus}.
@@ -412,10 +411,10 @@ Sistem persamaan linear max-plus memungkinkan analisis sistem diskrit dengan ala
 \chapter{METODOLOGI}
 Pada bab ini akan dijelaskan secara umum mengenai urutan pelaksanaan Tugas Akhir dengan langkah-langkah yang dilakukan ditunjukkan pada diagram alir \ref{diagramalir}.
 \begin{figure}[H]
-	\centering
-	\includegraphics[trim={0 2cm 0 2cm},clip,scale=0.7]{foto/Diagram alir max plus.jpg}
-	\caption{Diagram Alir Metodologi.}
-	\label{diagramalir}
+    \centering
+    \includegraphics[trim={0 2cm 0 2cm},clip,scale=0.7]{foto/Diagram alir max plus.jpg}
+    \caption{Diagram Alir Metodologi.}
+    \label{diagramalir}
 \end{figure}
 
 \section{Identifikasi Data Awal}
@@ -447,24 +446,23 @@ Berikut ini disajikan tabel jadwal kegiatan yang akan dilakukan selama 3 bulan d
 
 % Membuat tabel
 \begin{table}[H]
-\caption{Jadwal Kegiatan}
-\centering
-\begin{tabular}{|C{0.6cm}|L{5.7cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}
-\hline
-&&\multicolumn{12}{c|}{\textbf{BULAN}}\\\cline{3-14}
-\multicolumn{1}{|c|}{\textbf{NO}}&\multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}&\multicolumn{4}{c|}{1}&\multicolumn{4}{c|}{2}&\multicolumn{4}{c|}{3}\\\cline{3-14}
-&&1&2&3&4&1&2&3&4&1&2&3&4\\\cline{1-14}
+    \caption{Jadwal Kegiatan}
+    \centering
+    \begin{tabular}{|C{0.6cm}|L{5.7cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}
+        \hline
+                                          &                                             & \multicolumn{12}{c|}{\textbf{BULAN}}                                                                                                                                                                                                                                                \\\cline{3-14}
+        \multicolumn{1}{|c|}{\textbf{NO}} & \multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}} & \multicolumn{4}{c|}{1}               & \multicolumn{4}{c|}{2} & \multicolumn{4}{c|}{3}                                                                                                                                                                                              \\\cline{3-14}
+                                          &                                             & 1                                    & 2                      & 3                      & 4                  & 1                  & 2                  & 3                  & 4                  & 1                  & 2                  & 3                  & 4                  \\\cline{1-14}
 
-1&Identifikasi Data Awal&\cellcolor{black!}&\cellcolor{black!}&&&&&&&&&&\\\hline
-2&Formulasi Sistem dalam Aljabar Max-Plus&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&&&&&&\\\hline
-3&Modeling Dinamika Jadwal&&&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&&&&\\\hline
-4&Analisis Validitas Model&&&&&&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&\\\hline
-5&Optimasi Jadwal&&&&&&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&&\\\hline
-6&Implementasi dan Simulasi&&&&&&&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\\\hline
-7&Kesimpulan dan Dokumentasi&&&&&&&&&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}&\cellcolor{black!}\\\hline
-
-\end{tabular}
-\label{TabelJadwalKegiatan}
+        1                                 & Identifikasi Data Awal                      & \cellcolor{black!}                   & \cellcolor{black!}     &                        &                    &                    &                    &                    &                    &                    &                    &                    &                    \\\hline
+        2                                 & Formulasi Sistem dalam Aljabar Max-Plus     &                                      &                        & \cellcolor{black!}     & \cellcolor{black!} & \cellcolor{black!} &                    &                    &                    &                    &                    &                    &                    \\\hline
+        3                                 & Modeling Dinamika Jadwal                    &                                      &                        &                        &                    & \cellcolor{black!} & \cellcolor{black!} & \cellcolor{black!} &                    &                    &                    &                    &                    \\\hline
+        4                                 & Analisis Validitas Model                    &                                      &                        &                        &                    &                    &                    &                    & \cellcolor{black!} & \cellcolor{black!} & \cellcolor{black!} &                    &                    \\\hline
+        5                                 & Optimasi Jadwal                             &                                      &                        &                        &                    &                    &                    &                    & \cellcolor{black!} & \cellcolor{black!} & \cellcolor{black!} &                    &                    \\\hline
+        6                                 & Implementasi dan Simulasi                   &                                      &                        &                        &                    &                    &                    &                    &                    & \cellcolor{black!} & \cellcolor{black!} & \cellcolor{black!} &                    \\\hline
+        7                                 & Kesimpulan dan Dokumentasi                  &                                      &                        &                        &                    &                    &                    &                    &                    & \cellcolor{black!} & \cellcolor{black!} & \cellcolor{black!} & \cellcolor{black!} \\\hline
+    \end{tabular}
+    \label{TabelJadwalKegiatan}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%  Bab III  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
@@ -474,5 +472,5 @@ Berikut ini disajikan tabel jadwal kegiatan yang akan dilakukan selama 3 bulan d
 \pagebreak
 \DaftarPustaka
 %%%%%%%%%%%%%%%%%%%%%%%%  Dapus  %%%%%%%%%%%%%%%5%%%%%%%%%%
-	
+
 \end{document}
