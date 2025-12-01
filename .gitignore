@@ -24,6 +24,7 @@ _minted-*/
 *.bcf
 *.run.xml
 *.xdv
+*.lof
 *.synctex(busy)
 *.bbl-SAVE-ERROR
 

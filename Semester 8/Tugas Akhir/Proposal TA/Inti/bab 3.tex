@@ -1,9 +1,39 @@
-\pagebreak
 \chapter{METODOLOGI}
 
 Pada bab ini dijelaskan langkah-langkah pelaksanaan penelitian tugas akhir beserta alur proses dan jadwal kegiatan.
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[node distance=0.7cm and 0.7cm,font=\scriptsize,scale=1,transform shape]
+    % Nodes
+    \node[startstop] (start) {Mulai};
+    \node[process, right=of start] (diskusi) {Diskusi awal dengan Kepala SKPB ITS};
+    \node[process, right=of diskusi] (ruanglingkup) {Menentukan fokus dan ruang lingkup proyek};
+    \node[io, below=of ruanglingkup] (pembagian) {Pembagian tugas dengan rekan kerja praktik};
+    \node[process, below=of pembagian] (pembuatan) {Pembuatan website Kalkulus};
+    \node[io, left=of pembuatan] (bimbingan) {Konsultasi dengan pembimbing};
+    \node[io, below=of bimbingan] (studi) {Membaca dokumentasi dan \textit{trial error}};
+    \node[sumjunction, left=of bimbingan,yshift=-0.9cm] (sum) {};
+    \node[process, below=of sum,text width=1.5cm,xshift=0.5cm,yshift=-1cm] (upload) {\textit{Deploy} website};
+    \node[process, right=of upload] (laporan) {Penyusunan laporan kerja praktik};
+    \node[startstop, right=of laporan] (end) {Selesai};
 
-\pagebreak
+    % Arrows
+    \draw[arrow] (start) -- (diskusi);
+    \draw[arrow] (diskusi) -- (ruanglingkup);
+    \draw[arrow] (ruanglingkup) -- (pembagian);
+    \draw[arrow] (pembagian) -- (pembuatan);
+    \draw[arrow] (pembuatan) -- (bimbingan);
+    \draw[arrow] (pembuatan) |- (studi);
+    \draw[arrow] (bimbingan) -| (sum);
+    \draw[arrow] (studi) -| (sum);
+    \draw[arrow] (sum) -| ++(-1,0) |- (upload);
+    \draw[arrow] (upload) -- (laporan);
+    \draw[arrow] (laporan) -- (end);
+  \end{tikzpicture}
+  \caption{Alur Proses Penelitian Tugas Akhir}
+  \label{fig:metodologi}
+\end{figure}
+
 \chapter*{JADWAL PENELITIAN}
 Berikut jadwal pelaksanaan tahap-tahap penelitian tugas akhir yang akan dilakukan selama 3 bulan sesuai dengan metode penelitian. \vspace{0.5cm}
 \begin{table}[htbp]
