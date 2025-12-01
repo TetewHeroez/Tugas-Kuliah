@@ -7,6 +7,7 @@
 \usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
 \usepackage{pgfplots}
   \pgfplotsset{
         every non boxed x axis/.style={
@@ -116,4 +117,77 @@
 \begin{center}
   \textbf{Selamat Mengerjakan Semoga Sukses}
 \end{center}
+\newpage
+\fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+\fancyfoot[C]{}
+{\centering
+  \textbf{SOLUSI}
+  \par
+}
+\begin{enumerate}
+  \item Pertama-tama agar lebih mudah dalam mengilustrasikan batas-batas bidang, dapat kita gambar sketsa batas integrasi $R$ di bidang $xy$ terlebih dahulu. Dibawah ini adalah sketsa untuk batas-batas $y=0$, $y=x$, dan $x+y=2$.
+        \begin{center}
+          \begin{tikzpicture}[scale=1.2]
+            \draw[-Latex,thick] (-1,0) -- (3,0) node[right] {$x$};
+            \draw[-Latex,thick] (0,-1) -- (0,3) node[above] {$y$};
+            \draw[blue,domain=-0.5:2.5] plot (\x, {2 - \x}) node[right] {\small$x+y=2$};
+            \draw[red,domain=-0.5:2.5] plot (\x, {\x}) node[above] {\small$y=x$};
+            \fill[cyan!30, opacity=0.5] (0,0) -- (1,1) -- (2,0) -- cycle;
+            \draw[thin] (2,0.1) -- (2,-0.1) node[below] {\small$2$};
+            \draw[thin] (0.1,2) -- (-0.1,2) node[left] {\small$2$};
+          \end{tikzpicture}
+        \end{center}
+
+        Selanjutnya ketika kita buat , berikut adalah sketsa batas integrasi $R$.
+        \begin{center}
+          \tdplotsetmaincoords{70}{120}
+
+          \begin{tikzpicture}[tdplot_main_coords, scale=2]
+
+            % Sumbu koordinat
+            \draw[-Latex] (0,0,0) -- (2.5,0,0) node[anchor=north east] {$x$};
+            \draw[-Latex] (0,0,0) -- (0,2,0) node[anchor=west] {$y$};
+            \draw[-Latex] (0,0,0) -- (0,0,1) node[anchor=south] {$z$};
+
+            % Titik-titik pada bidang z=0 (proyeksi di bidang xy)
+            % A = (0,0), B = (2,0), C = (1,1)
+            \coordinate (A) at (0,0,0);
+            \coordinate (B) at (2,0,0);
+            \coordinate (C) at (1,1,0);
+
+            % Segitiga dasar di bidang z=0
+            \draw[thick] (A) --  (B);
+            \draw[thick] (A) --  (C);
+            \draw[thick] (B) --  (C);
+
+            % Titik-titik pada bidang z = x/2
+            % z = x/2: Btop = (2,0,1), Ctop = (1,1,0.5)
+            \coordinate (Btop) at (2,0,1);
+            \coordinate (Ctop) at (1,1,0.5);
+
+            % Garis vertikal (sejajar sumbu z) dari dasar ke bidang z = x/2
+            \draw[dashed] (B) -- (Btop);
+            \draw[dashed] (C) -- (Ctop);
+
+            % Garis-garis pada bidang z = x/2
+            \draw[thick] (A) -- (Btop);
+            \draw[thick] (A) -- (Ctop);
+            \draw[thick] (Btop) -- (Ctop);
+
+            % (Opsional) Arsiran volume R
+            \fill[cyan,opacity=0.10] (A) -- (B) -- (C) -- cycle;          % dasar
+            \fill[cyan,opacity=0.10] (A) -- (Btop) -- (Ctop) -- cycle;    % sisi miring atas
+            \fill[cyan,opacity=0.05] (B) -- (C) -- (Ctop) -- (Btop) -- cycle; % sisi samping
+
+            % Label daerah R
+            \node[blue!30!cyan] at (1,0.4,0) {$R$};
+
+            % \draw[cyan,domain=0:3] plot (\x, 0, {\x/2}) node[left] {\small$z=\frac{1}{2}x$};
+            % \foreach \y in {0,0.1,...,2} {
+            %     \draw[cyan,domain=0:3] plot (\x, \y, {\x/2});
+            %   }
+          \end{tikzpicture}
+        \end{center}
+  \item
+\end{enumerate}
 \end{document}
