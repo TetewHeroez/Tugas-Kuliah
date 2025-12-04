@@ -1,0 +1,67 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.run.xml
+
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+*.ps
+*.eps
+*.pdfsync
+
+## Generated if empty images folder:
+*.tjx
+
+## Bibliography:
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-run.xml
+
+## Synctex:
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+
+## Latexmk:
+*.fdb_latexmk
+*.synctex.gz(busy)
+*.aux.bak
+*.fls
+*.listing
+
+## Build tools:
+*.makefile
+*.makefile.bak
+
+## Texpad:
+*.texpadtmp
+
+## Mac/Linux:
+*.DS_Store
+
+## Temporary:
+*~
+*.tmp
+*.temp
+*.bak
+
+## VSCode:
+.vscode
+
+## PDF files:
+Proposal TA/Proposal TA.pdf
+Referensi/

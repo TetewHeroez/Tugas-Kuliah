@@ -57,10 +57,16 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
 
 \subsection{Polinomial dalam Aljabar Max-Plus}
 Polinomial adalah suatu ekspresi matematika yang terdiri dari variabel dan koefisien, yang dioperasikan dengan penjumlahan, pengurangan, dan perkalian. Dalam aljabar max-plus, polinomial juga dapat didefinisikan dengan menggunakan operasi maksimum dan penjumlahan pada aljabar max-plus \parencite{burden2010numerical}.
-
+\begin{definisi}[\cite{muanalifah2020modifyingtropical}]
+  Polinomial max-plus atau tropikal adalah sebuah fungsi $x\mapsto p(x)$ yang didefinisikan sebagai
+  \[
+    p(x) = \bigoplus_{k=0}^{n} a_{k} \otimes x^{\otimes k} = \max_{0 \leq k \leq n} \{a_{k} + kx\},
+  \]
+  dengan $a_k \in \mathbb{R}_{\max}$ untuk setiap $k = 0, 1, \ldots, n$.
+\end{definisi}
 \subsection{Matriks Linde-de la Puente}
-Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, diperoleh bahwa kekomutatifan antara dua matriks tropikal cukup bergantung pada diagonal utama matriks tersebut. Dalam perkembangan selanjutnya, \textcite{alhussaini2024securityinitialtropical} memperkenalkan juga sebuah protokol kriptografi yang terinspirasi dari pertukaran kunci Diffie-Hellman, yang basisnya adalah grup siklik $(\Z_p^*\ ,\ \times)$ untuk suatu bilangan prima $p$.
-\begin{definisi}[Matriks Ldlp]
+Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, diperoleh bahwa kekomutatifan antara dua matriks tropikal sangat bergantung pada diagonal utama matriks tersebut. Dalam perkembangan selanjutnya, \textcite{alhussaini2024securityinitialtropical} memperkenalkan juga sebuah protokol kriptografi yang terinspirasi dari pertukaran kunci Diffie-Hellman, yang basisnya adalah grup siklik $(\Z_p^*\ ,\ \times)$ untuk suatu bilangan prima $p$.
+\begin{definisi}[\cite{alhussaini2024implementationstickel}]
   Untuk setiap bilangan real $r \leq 0$ dan bilangan real $k \geq 0$, kita definisikan
   $
     [2r, r]_{n}^{k}
@@ -68,11 +74,45 @@ Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, d
   sebagai himpunan matriks $A_{n\times n}$ sedemikian sehingga $a_{ii} = k$ untuk semua $i$ dan $a_{ij} \in [2r, r]$ untuk $i \neq j$.
 \end{definisi}
 dari definisi di atas diperoleh sebuah teorema penting mengenai kekomutatifan matriks tropikal.
-\begin{teorema}
+\begin{teorema}[\cite{alhussaini2024securityinitialtropical}]
   Misalkan $A \in [2r, r]_{n}^{k_{1}}, \, B \in [2s, s]_{n}^{k_{2}}$ untuk setiap $r, s \leq 0$ dan $a_{ii} = k_{1} \geq 0, \, b_{ii} = k_{2} \geq 0$. Maka
   \[
     A \otimes B = B \otimes A = k_{2} \otimes A \oplus k_{1} \otimes B.
   \]
+  \begin{contoh}
+    Misalkan diberikan matriks $A\in [-4, -2]_{2}^{3}$ dan $B\in [-3, -1]_{2}^{2}$ sebagai berikut:
+    \[
+      A =
+      \begin{pmatrix}
+        3  & -2 & -4 \\
+        -3 & 3  & -2 \\
+        -2 & -4 & 3
+      \end{pmatrix},
+      \quad
+      B =
+      \begin{pmatrix}
+        2  & -1 & -3 \\
+        -3 & 2  & -1 \\
+        -1 & -3 & 2
+      \end{pmatrix}.
+    \]
+    Dengan menggunakan operasi pada aljabar max-plus, diperoleh
+    \begin{align*}
+      A \otimes B & =
+      \begin{pmatrix}
+        5 & 2 & 0 \\
+        0 & 5 & 2 \\
+        2 & 0 & 5
+      \end{pmatrix},  \quad
+      B \otimes A  =
+      \begin{pmatrix}
+        5 & 2 & 0 \\
+        0 & 5 & 2 \\
+        2 & 0 & 5
+      \end{pmatrix}.
+    \end{align*}
+    Sehingga, $A$ dan $B$ komutatif terhadap operasi $\otimes$.
+  \end{contoh}
 \end{teorema}
 
 \section{Permutasi}
@@ -107,7 +147,7 @@ Himpunan
   \{\, i_1,\ \tau(i_1),\ \tau^{2}(i_1),\ \ldots,\ \tau^{k-1}(i_1)\,\}
 \]
 disebut \emph{orbit} dari $\tau$ yang melalui $i_1$.
-Orbit menggambarkan lintasan elemen $i_1$ di bawah penerapan berulang dari permutasi $\tau$ \parencite{artin1991algebra}.
+Orbit menggambarkan lintasan elemen $i_1$ di bawah penerapan berulang dari permutasi $\tau$ \parencite{subiono2022aljabar}.
 
 \begin{definisi}
   Jika orbit $\mathcal{O}_{\tau}(i_1)$ memuat lebih dari satu elemen, maka orbit tersebut disebut
@@ -213,13 +253,15 @@ Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan denga
   jika dan hanya jika terdapat suatu permutasi $\sigma$ serta nilai-nilai
   $\lambda_i > \varepsilon$, $i \in \{1,2,\dots,n\}$, sehingga
   \[
-    A = P_{\sigma} \otimes D(\lambda).
+    A = P_{\sigma} \otimes D(\lambda),
   \]
+  dengan $D(\lambda)$ adalah matriks diagonal max-plus dengan entri diagonal
+  $\lambda_1, \lambda_2, \ldots, \lambda_n$
 \end{teorema}
 
 
 \section{\textit{Latin Square}}
 \textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom.
-Pertama kali diperkenalkan oleh Leonhard Euler pada abad ke-18 dalam konteks teka-teki matematika tentang ``\textit{36 military officers}'' \parencite{george2017introductioncombinatorics}.
+
 
 
