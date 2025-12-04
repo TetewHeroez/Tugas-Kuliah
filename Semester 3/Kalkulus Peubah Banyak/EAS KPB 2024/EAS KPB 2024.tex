@@ -135,10 +135,13 @@
             \fill[cyan!30, opacity=0.5] (0,0) -- (1,1) -- (2,0) -- cycle;
             \draw[thin] (2,0.1) -- (2,-0.1) node[below] {\small$2$};
             \draw[thin] (0.1,2) -- (-0.1,2) node[left] {\small$2$};
+            \draw[thin,dashed,black!50] (1,1) -- (1,0) node[below] {\small$1$};
+            \draw[thin,dashed,black!50] (1,1) -- (0,1) node[left] {\small$1$};
           \end{tikzpicture}
         \end{center}
+        Jadi untuk bidang-$xy$, batas-batasnya (dipilih yang termudah untuk diintegralkan) adalah $y \leq x \leq 2-y$ dan $0 \leq y \leq 1$.
 
-        Selanjutnya ketika kita buat , berikut adalah sketsa batas integrasi $R$.
+        Selanjutnya ketika kita buat bangun ruang nya yang berpotongan dengan bidang $z=\frac{1}{2}z$, berikut adalah sketsa batas integrasi $R$.
         \begin{center}
           \tdplotsetmaincoords{70}{120}
 
@@ -186,6 +189,57 @@
             % \foreach \y in {0,0.1,...,2} {
             %     \draw[cyan,domain=0:3] plot (\x, \y, {\x/2});
             %   }
+          \end{tikzpicture}
+        \end{center}
+        Sehingga integral yang diminta dapat dituliskan sebagai berikut.
+        \begin{align*}
+          \iiint_R dx\,dy\,dz & = \int_{0}^{1}\int_{y}^{2-y}\int_0^{\frac{1}{2}x} dz\,dx\,dy              = \int_{0}^{1}\int_{y}^{2-y} \left[ z \right]_0^{\frac{1}{2}x} dx\,dy    = \int_{0}^{1} \left[ \frac{1}{4}x^2 \right]_{x=y}^{x=2-y} dy                                                                                                                                                                                                                                              \\
+                              & = \int_{0}^{1} \left( \frac{1}{4}(2-y)^2 - \frac{1}{4}y^2 \right) dy                                                                                                                                              = \int_{0}^{1} \left( \frac{1}{4}(4 - 4y + y^2 - y^2) \right) dy                                                                                                                                                  = \int_{0}^{1} (1 - y) dy \\
+                              & = \left[ y - \frac{1}{2}y^2 \right]_0^1 = 1 - \frac{1}{2} = \frac{1}{2}.
+        \end{align*}
+  \item Batas permukaan di bidang-$xy$ dibatasi oleh $y=x^2$ dan $x=y^2$ di oktan pertama.
+        \begin{center}
+          \begin{tikzpicture}[scale=2]
+            \draw[-Latex,thick] (0,0) -- (1.5,0) node[right] {$x$};
+            \draw[-Latex,thick] (0,0) -- (0,1.5) node[above] {$y$};
+            \fill[cyan!30,opacity=0.5,domain=0:1,smooth,thick] plot (\x, {\x^2}) -- cycle;
+            \fill[cyan!30,opacity=0.5,domain=0:1,smooth,thick] plot ({\x*\x}, {\x}) -- cycle;
+            \draw[blue,domain=0:1.2,smooth,thick] plot (\x, {\x^2}) node[above] {\small$y=x^2$};
+            \draw[blue,domain=0:1.2,smooth,thick] plot ({\x*\x}, {\x}) node[right] {\small$x=y^2$};
+            \draw[thin,dashed,black!50] (1,1) -- (1,0) node[below] {\small$1$};
+            \draw[thin,dashed,black!50] (1,1) -- (0,1) node[left] {\small$1$};
+          \end{tikzpicture}
+        \end{center}
+        Dari gambar di atas dapat kita lihat bahwa batas-batasnya adalah $x^2 \leq y \leq \sqrt{x}$ dan $0 \leq x \leq 1$.
+
+        Untuk batas permukaan atasnya adalah $0 \leq z \leq y$. Maka volume benda yang diminta adalah
+        \begin{align*}
+          V & = \int_{0}^{1} \int_{x^2}^{\sqrt{x}} \int_0^y dz\,dy\,dx = \int_{0}^{1} \int_{x^2}^{\sqrt{x}} \left[ z \right]_0^y dy\,dx = \int_{0}^{1} \int_{x^2}^{\sqrt{x}} y\,dy\,dx = \int_{0}^{1} \left[ \frac{1}{2}y^2 \right]_{y=x^2}^{y=\sqrt{x}} dx \\
+            & = \int_{0}^{1} \left( \frac{1}{2}x - \frac{1}{2}x^4 \right) dx = \left[ \frac{1}{4}x^2 - \frac{1}{10}x^5 \right]_0^1 = \frac{1}{4} - \frac{1}{10} = \frac{3}{20}.
+        \end{align*}
+
+  \item Agar lebih mudah dalam memahami persamaan kurva, dapat kita ubah persamaan kurva tersebut menjadi bentuk $y=f(x)$. Sehingga diperoleh
+        \begin{itemize}
+          \item $x(1-y)=1\implies y=1-\dfrac{1}{x}$
+          \item $x(1-y)=2\implies y=1-\dfrac{2}{x}$
+          \item $xy=1\implies y=\dfrac{1}{x}$
+          \item $xy=3\implies y=\dfrac{3}{x}$
+        \end{itemize}
+        Berikut adalah sketsa daerah yang dibatasi oleh keempat kurva tersebut.
+        \begin{center}
+          \begin{tikzpicture}[xscale=1.5,yscale=3]
+            \draw[-Latex,thick] (0,0) -- (7,0) node[right] {$x$};
+            \draw[-Latex,thick] (0,0) -- (0,2) node[above] {$y$};
+            \draw[blue,domain=1.5:7,smooth,thick] plot (\x, {1/\x}) node[right] {\footnotesize$xy=1$};
+            \draw[blue,domain=1.5:7,smooth,thick] plot (\x, {3/\x}) node[right] {\footnotesize$xy=3$};
+            \draw[red,domain=1.5:7,smooth,thick] plot (\x, {1-(1/\x)}) node[right] {\footnotesize$x(1-y)=1$};
+            \draw[red,domain=1.5:7,smooth,thick] plot (\x, {1-(2/\x)}) node[right] {\footnotesize$x(1-y)=2$};
+            \fill[cyan!30,opacity=0.5,domain=2:6,smooth,thick] plot (\x, {1/\x}) -- plot (\x, {1-(2/\x)}) -- cycle;
+            \fill[cyan!30,opacity=0.5,domain=2:6,smooth,thick] plot (\x, {1-(1/\x)}) -- plot (\x, {3/\x}) -- cycle;
+            \draw[thin,dashed,black!50] (2,0) node[below] {\small$2$} -- (2,0.5) -- (0,0.5) node[left] {\footnotesize$1/2$};
+            \draw[thin,dashed,black!50] (4,0) node[below] {\small$4$} -- (4,0.75) -- (0,0.75) node[left] {\footnotesize$3/4$};
+            \draw[thin,dashed,black!50] (3,0) node[below] {\small$3$} -- (3,0.333) -- (0,0.333) node[left] {\footnotesize$1/3$};
+            \draw[thin,dashed,black!50] (5,0) node[below] {\small$6$} -- (5,0.6) -- (0,0.6) node[left] {\footnotesize$3/5$};
           \end{tikzpicture}
         \end{center}
   \item
