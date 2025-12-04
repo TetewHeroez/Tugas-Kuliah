@@ -1,0 +1,149 @@
+\documentclass[a4paper]{article}
+
+% PACKAGES
+\usepackage[bahasa]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning, arrows.meta}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sorting=none
+]{biblatex}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=cyan,
+}
+\usepackage{geometry}
+\usepackage{abstract}
+\setlength{\absleftindent}{0pt}
+\setlength{\absrightindent}{0pt}
+% Ubah judul lingkungan abstract ke Bahasa Indonesia
+\renewcommand{\abstractname}{Abstrak}
+
+% BIBLIOGRAPHY
+\addbibresource{references.bib}
+
+% KEYWORDS ENVIRONMENT
+\newcommand{\keywords}[1]{%
+  \begin{center}
+  \textbf{\textit{Kata Kunci---}}#1
+  \end{center}
+}
+
+% DOCUMENT INFO
+\title{\textbf{Analisis Matematis dan Evaluasi Kinerja Transformasi Wavelet CDF 5/3 dan CDF 9/7 pada Standar Kompresi Citra JPEG2000}}
+\author{Teosofi Hidayah Agung\\5002221132}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Makalah ini membahas secara matematis dan komputasional peran transformasi wavelet Cohen--Daubechies--Feauveau (CDF) 5/3 dan CDF 9/7 sebagai inti skema kompresi citra pada standar JPEG2000. Dimulai dari tinjauan singkat terhadap kekurangan DCT blok $8\times 8$ pada JPEG klasik, dibahas bagaimana representasi multiresolusi dan sifat lokal dari wavelet memungkinkan reduksi artefak \textit{blocking} dan peningkatan \textit{rate--distortion}. Secara khusus, dipaparkan konstruksi filter analisis dan sintesis CDF 5/3 (integer, \textit{reversible}) dan CDF 9/7 (real, \textit{irreversible}), termasuk formulasi skema \textit{lifting} yang efisien secara komputasi. Selanjutnya dianalisis perbandingan kinerja keduanya pada berbagai skenario kompresi lossless dan lossy menggunakan metrik seperti MSE, PSNR, dan SSIM, untuk menunjukkan trade-off antara kompleksitas komputasi, kemampuan kompresi, dan kualitas visual.
+\end{abstract}
+
+\keywords{Wavelet, CDF 5/3, CDF 9/7, JPEG2000, Kompresi Citra, Transformasi Multiresolusi.}
+
+\section{Pendahuluan}
+Standar JPEG2000 dikembangkan sebagai penerus JPEG klasik untuk menyediakan kompresi citra yang lebih efisien sekaligus fleksibel terhadap berbagai kebutuhan aplikasi, mulai dari penyimpanan arsip medis hingga distribusi gambar di internet. Berbeda dengan JPEG yang beroperasi pada blok-blok lokal berukuran $8\times 8$ menggunakan DCT, JPEG2000 memanfaatkan transformasi wavelet diskrit (DWT) pada seluruh citra atau pada \textit{tile} berukuran besar sehingga mengurangi artefak pemblokiran dan menghasilkan representasi multiresolusi yang lebih halus.
+
+Di dalam kerangka JPEG2000, keluarga wavelet Cohen--Daubechies--Feauveau (CDF) 5/3 dan CDF 9/7 memainkan peran sentral sebagai pasangan filter analisis dan sintesis biortogonal. Wavelet CDF 5/3 dirancang sebagai transformasi \textit{integer-to-integer} yang \textit{reversible}, sehingga cocok untuk kompresi \textit{lossless}, sedangkan wavelet CDF 9/7 menggunakan koefisien real yang dioptimalkan untuk pemadatan energi dan kinerja \textit{rate--distortion} pada kompresi \textit{lossy}.
+
+Makalah ini menitikberatkan pada analisis matematis struktur filter CDF 5/3 dan CDF 9/7, formulasi transformasi wavelet dalam kerangka \textit{subband coding} dan analisis multiresolusi, serta evaluasi kinerja numerik dan visual keduanya pada skenario kompresi citra lossless maupun lossy. Dengan menempatkan CDF 5/3 dan 9/7 dalam konteks teori wavelet yang lebih umum, diharapkan pembaca memperoleh pemahaman yang lebih sistematis mengenai alasan pemilihan kedua transformasi ini dalam standar JPEG2000.
+
+\section{Dasar-Dasar Wavelet dan Analisis Multiresolusi (MRA)}
+\subsection{Fungsi Skala dan Fungsi Wavelet}
+Secara umum, suatu sistem wavelet dibangun dari sepasang fungsi dasar: fungsi skala (\textit{scaling function}) $\varphi(t)$ dan fungsi wavelet $\psi(t)$. Fungsi skala menghasilkan ruang pendekatan (\textit{approximation space}) yang memuat komponen frekuensi rendah dari sinyal, sedangkan fungsi wavelet menghasilkan ruang detil (\textit{detail space}) yang memuat komponen frekuensi tinggi.
+
+Fungsi skala didefinisikan melalui persamaan rekursif dilatasi--translasi
+\begin{equation}
+  \varphi(t) = \sum_{k\in\mathbb{Z}} h_k\,\varphi(2t-k),
+\end{equation}
+di mana $h_k$ adalah koefisien filter \textit{low-pass}. Fungsi wavelet terkait diberikan oleh
+\begin{equation}
+  \psi(t) = \sum_{k\in\mathbb{Z}} g_k\,\varphi(2t-k),
+\end{equation}
+di mana $g_k$ adalah koefisien filter \textit{high-pass}. Pasangan $\{h_k\}$ dan $\{g_k\}$ menentukan sifat-sifat penting wavelet seperti \textit{compact support}, regularitas, dan jumlah momen yang hilang.
+
+\subsection{Dilatasi dan Translasi Wavelet}
+Keluarga fungsi wavelet dibentuk melalui operasi dilatasi dan translasi terhadap $\psi(t)$, yakni
+\begin{equation}
+  \psi_{j,k}(t) = 2^{\frac{j}{2}}\,\psi\bigl(2^{j}t-k\bigr), \quad j,k\in\mathbb{Z},
+\end{equation}
+di mana indeks skala $j$ mengatur resolusi (frekuensi) dan indeks translasi $k$ mengatur posisi spasial atau temporal. Untuk pilihan wavelet tertentu, himpunan $\{\psi_{j,k}\}_{j,k\in\mathbb{Z}}$ dapat membentuk basis ortonormal atau biortogonal bagi ruang fungsi $L^2(\mathbb{R})$. Sifat lokalisasi baik di domain waktu dan frekuensi inilah yang menjadikan wavelet unggul dibandingkan transformasi global seperti DFT atau DCT untuk sinyal non-stasioner.
+
+\subsection{Analisis Multiresolusi dan Ruang $V_j$, $W_j$}
+Kerangka \textit{multiresolution analysis} (MRA) memperkenalkan deret ruang pendekatan $\{V_j\}_{j\in\mathbb{Z}}$ yang tersusun secara bertingkat
+\begin{equation}
+  \cdots \subset V_{1} \subset V_{0} \subset V_{-1} \subset \cdots \subset L^2(\mathbb{R}),
+\end{equation}
+di mana setiap $V_j$ mewakili aproksimasi sinyal pada resolusi skala $2^{-j}$. Fungsi skala $\varphi(t)$ membentuk basis terurut bagi $V_0$, dan basis untuk $V_j$ diperoleh melalui dilatasi dan translasi
+\begin{equation}
+  \varphi_{j,k}(t) = 2^{\frac{j}{2}}\,\varphi\bigl(2^{j}t-k\bigr).
+\end{equation}
+
+Ruang detil $W_j$ didefinisikan sebagai komplemen ortogonal atau biortogonal dari $V_{j+1}$ di dalam $V_j$, sehingga berlaku dekomposisi langsung
+\begin{equation}
+  V_j = V_{j+1} \oplus W_{j+1}.
+\end{equation}
+Secara intuitif, $V_{j+1}$ memuat informasi skala kasar, sedangkan $W_{j+1}$ memuat detil frekuensi yang hilang ketika berpindah dari resolusi $j$ ke $j+1$. Dengan menerapkan hubungan ini berulang kali, setiap sinyal $f(t)\in L^2(\mathbb{R})$ dapat diekspresikan sebagai kombinasi koefisien aproksimasi pada skala terkasar dan koefisien detil pada berbagai skala yang lebih halus.
+
+\subsection{Transformasi Wavelet Diskrit (DWT) 1D dan 2D}
+Transformasi wavelet diskrit (DWT) merealisasikan kerangka MRA secara komputasi melalui operasi \textit{filter bank} berjenjang. Untuk sinyal diskrit 1D $x[n]$, satu tingkat dekomposisi wavelet menghasilkan koefisien aproksimasi $a_1[n]$ dan detil $d_1[n]$ dengan memfilter $x[n]$ menggunakan filter low-pass $h[k]$ dan high-pass $g[k]$ diikuti operasi \textit{downsampling} dua kali:
+\begin{align}
+  a_1[n] & = \sum_{k} h[k-2n]\,x[k], \\
+  d_1[n] & = \sum_{k} g[k-2n]\,x[k].
+\end{align}
+Proses ini kemudian dapat diulang pada koefisien aproksimasi $a_1[n]$ untuk memperoleh level yang lebih tinggi ($a_2[n], d_2[n], \dots$). Struktur ini identik dengan dekomposisi ruang $V_j$ dan $W_j$ pada kerangka MRA.
+
+Untuk citra 2D, DWT biasanya diterapkan secara terpisah pada baris dan kolom (transformasi separabel). Satu tingkat dekomposisi menghasilkan empat \textit{subband}: $LL$ (low--low), $LH$ (low--high), $HL$ (high--low), dan $HH$ (high--high), yang masing-masing merepresentasikan komponen energi frekuensi rendah maupun detil horisontal, vertikal, dan diagonal. Dekomposisi multilevel diperoleh dengan menerapkan DWT kembali pada subband $LL$, sehingga menghasilkan representasi multiresolusi yang sangat sesuai untuk kompresi citra.
+
+Kerangka inilah yang kemudian diinstansiasikan secara spesifik pada JPEG2000 melalui pemilihan pasangan filter biortogonal CDF 5/3 dan CDF 9/7 sebagai generator ruang $V_j$ dan $W_j$. Analisis pada bagian berikutnya akan memfokuskan diri pada struktur matematis kedua keluarga filter tersebut dan implikasinya terhadap kinerja kompresi.
+
+\section{Konstruksi Wavelet CDF 5/3 dan CDF 9/7}
+\subsection{Filter Analisis dan Sintesis}
+[Berikan koefisien filter low-pass dan high-pass untuk CDF 5/3 dan CDF 9/7, serta sifat-sifat penting (regularitas, simetri, jumlah momen hilang).]
+
+\subsection{Formulasi Skema Lifting}
+[Jelaskan bagaimana kedua filter dapat direalisasikan melalui \textit{lifting scheme}, lengkap dengan langkah \textit{predict} dan \textit{update} serta keuntungan komputasinya.]
+
+\section{Anatomi Skema Kompresi JPEG2000}
+\subsection{Pra-pemrosesan dan Partisi Tile}
+[Ringkas alur: transformasi warna (mis. ke YCbCr), pembagian citra menjadi \textit{tile}, dan normalisasi sampel.]
+
+\subsection{Dekomposisi Wavelet Multilevel}
+[Jelaskan aplikasi DWT 2D bertingkat dengan CDF 5/3 atau 9/7 untuk menghasilkan piramida subband.]
+
+\subsection{Kuantisasi dan Pengkodean Entropi}
+[Uraikan kuantisasi skalar/trellis untuk mode lossy, pengkodean bit-plane (EBCOT), dan \textit{context adaptive arithmetic coding}.]
+
+\section{Analisis Matematis Kinerja Transformasi}
+\subsection{Pemadatan Energi dan Sifat Frekuensi}
+[Bandingkan \textit{energy compaction} CDF 5/3 dan 9/7 serta hubungannya dengan metrik MSE/PSNR.]
+
+\subsection{Properti Reversibilitas dan Sensitivitas Kuantisasi}
+[Tekankan perbedaan integer-to-integer (5/3) dan real-valued (9/7), serta implikasinya pada kesalahan pembulatan.]
+
+\section{Evaluasi Numerik dan Visual}
+\subsection{Desain Eksperimen}
+[Deskripsikan skenario uji: himpunan citra uji, tingkat bit-rate, dan metrik evaluasi (MSE, PSNR, SSIM).]
+
+\subsection{Perbandingan Hasil Kompresi}
+[Sajikan rencana tabel/grafik PSNR vs. bit-rate untuk CDF 5/3 vs. 9/7, dan deskripsi artefak visual.]
+
+\section{Kesimpulan}
+ [Ringkas hasil analisis: kapan CDF 5/3 lebih unggul (lossless, implementasi sederhana) dan kapan CDF 9/7 memberikan kualitas lebih baik pada bit-rate rendah, serta kaitannya dengan desain JPEG2000 dibanding JPEG berbasis DCT.]
+
+\printbibliography
+
+\end{document}
