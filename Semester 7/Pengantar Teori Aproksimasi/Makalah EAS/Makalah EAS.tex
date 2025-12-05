@@ -61,7 +61,7 @@ Di dalam kerangka JPEG2000, keluarga wavelet Cohen--Daubechies--Feauveau (CDF) 5
 
 Makalah ini menitikberatkan pada analisis matematis struktur filter CDF 5/3 dan CDF 9/7, formulasi transformasi wavelet dalam kerangka \textit{subband coding} dan analisis multiresolusi, serta evaluasi kinerja numerik dan visual keduanya pada skenario kompresi citra lossless maupun lossy. Dengan menempatkan CDF 5/3 dan 9/7 dalam konteks teori wavelet yang lebih umum, diharapkan pembaca memperoleh pemahaman yang lebih sistematis mengenai alasan pemilihan kedua transformasi ini dalam standar JPEG2000.
 
-\section{Dasar-Dasar Wavelet dan Analisis Multiresolusi (MRA)}
+\section{Dasar-Dasar Wavelet}
 \subsection{Fungsi Skala dan Fungsi Wavelet}
 Secara umum, suatu sistem wavelet dibangun dari sepasang fungsi dasar: fungsi skala (\textit{scaling function}) $\varphi(t)$ dan fungsi wavelet $\psi(t)$. Fungsi skala menghasilkan ruang pendekatan (\textit{approximation space}) yang memuat komponen frekuensi rendah dari sinyal, sedangkan fungsi wavelet menghasilkan ruang detil (\textit{detail space}) yang memuat komponen frekuensi tinggi.
 
@@ -110,7 +110,7 @@ Untuk citra 2D, DWT biasanya diterapkan secara terpisah pada baris dan kolom (tr
 
 Kerangka inilah yang kemudian diinstansiasikan secara spesifik pada JPEG2000 melalui pemilihan pasangan filter biortogonal CDF 5/3 dan CDF 9/7 sebagai generator ruang $V_j$ dan $W_j$. Analisis pada bagian berikutnya akan memfokuskan diri pada struktur matematis kedua keluarga filter tersebut dan implikasinya terhadap kinerja kompresi.
 
-\section{Konstruksi Wavelet CDF 5/3 dan CDF 9/7}
+\section{Wavelet Cohen-Daubechies-Feauveau}
 \subsection{Filter Analisis dan Sintesis}
 [Berikan koefisien filter low-pass dan high-pass untuk CDF 5/3 dan CDF 9/7, serta sifat-sifat penting (regularitas, simetri, jumlah momen hilang).]
 
