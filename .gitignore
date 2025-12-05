@@ -28,4 +28,7 @@ _minted-*/
 *.synctex(busy)
 *.bbl-SAVE-ERROR
 
+# Ignore data files
+starjob130k.json
+
 Modul Alpro
