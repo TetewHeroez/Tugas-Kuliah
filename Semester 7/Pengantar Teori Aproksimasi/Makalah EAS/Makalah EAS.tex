@@ -9,6 +9,7 @@
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{positioning, arrows.meta}
 \usepackage{booktabs}
+\usepackage{float}
 \usepackage{caption}
 \usepackage[
     backend=biber,
@@ -119,13 +120,44 @@ Kerangka inilah yang kemudian diinstansiasikan secara spesifik pada JPEG2000 mel
 
 \section{Anatomi Skema Kompresi JPEG2000}
 \subsection{Pra-pemrosesan dan Partisi Tile}
-[Ringkas alur: transformasi warna (mis. ke YCbCr), pembagian citra menjadi \textit{tile}, dan normalisasi sampel.]
+\subsection{Transformasi Warna (RCT/ICT)}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[
+      node distance=0.5cm and 4cm,
+      every node/.style={align=center, font=\small},
+      box/.style={rectangle, draw, rounded corners, thick, fill=gray!10},
+      arrow/.style={->, thick, >=stealth}
+    ]
 
+    % === Gambar Asli ===
+    \node[box] (rgb) {\includegraphics[width=7cm]{img/mybini.png} \\ \textbf{Gambar RGB Asli}};
+
+    % === Komponen Hasil ===
+    \node[box, below left=of rgb.south east, xshift=-3.2cm, yshift=-0.3cm] (Y) {\includegraphics[width=3cm]{img/Y.png} \\ \textbf{Komponen Y}};
+    \node[box, below=of rgb.south, yshift=-0.3cm] (Cb) {\includegraphics[width=3cm]{img/Co.png} \\ \textbf{Komponen Co}};
+    \node[box, below right=of rgb.south west, xshift=3.2cm, yshift=-0.3cm] (Cr) {\includegraphics[width=3cm]{img/Cg.png} \\ \textbf{Komponen Cg}};
+
+    % === Panah Hubungan ===
+    \draw[arrow] (rgb.south) -- ++(0,-0.2) -| (Y.north);
+    \draw[arrow] (rgb.south) -- (Cb.north);
+    \draw[arrow] (rgb.south) -- ++(0,-0.2) -| (Cr.north);
+
+  \end{tikzpicture}
+  \caption{Gambar RGB dipecah menjadi tiga komponen: Y, Co, dan Cg.}
+  \label{fig:rgb_to_ycocg}
+\end{figure}
 \subsection{Dekomposisi Wavelet Multilevel}
 [Jelaskan aplikasi DWT 2D bertingkat dengan CDF 5/3 atau 9/7 untuk menghasilkan piramida subband.]
 
-\subsection{Kuantisasi dan Pengkodean Entropi}
-[Uraikan kuantisasi skalar/trellis untuk mode lossy, pengkodean bit-plane (EBCOT), dan \textit{context adaptive arithmetic coding}.]
+\subsection{Pembentukan Subband dan Code-block Partitioning}
+
+\subsection{Kuantisasi Koefisien Wavelet}
+
+\subsection{Pengkodean Tier-1: Bit-plane Coding dan MQ-Coder}
+
+\subsection{Pengkodean Tier-2: Packet Formation dan Rate-Distortion Optimization}
+
 
 \section{Analisis Matematis Kinerja Transformasi}
 \subsection{Pemadatan Energi dan Sifat Frekuensi}
