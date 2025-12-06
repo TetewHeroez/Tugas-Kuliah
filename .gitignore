@@ -27,8 +27,7 @@ _minted-*/
 *.lof
 *.synctex(busy)
 *.bbl-SAVE-ERROR
+*.mkv
 
 # Ignore data files
-starjob130k.json
-
 Modul Alpro
