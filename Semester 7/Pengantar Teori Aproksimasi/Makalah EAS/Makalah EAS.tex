@@ -208,6 +208,8 @@ Di sini $P(\cdot)$ dan $U(\cdot)$ merupakan operator linear lokal yang ditentuka
 Formulasi lifting memberikan representasi yang lebih efisien dan stabil dibandingkan implementasi berbasis konvolusi langsung. Selain itu, struktur lifting memungkinkan transformasi integer-to-integer, yang merupakan fitur penting dalam kompresi lossless seperti JPEG2000.
 
 \section{Anatomi Skema Kompresi JPEG2000}
+Bab ini membahas struktur dan tahapan utama yang membentuk proses kompresi JPEG2000 secara lengkap, mulai dari pra-pemrosesan citra hingga pembentukan bitstream akhir. Setiap tahap dijelaskan dari sudut pandang matematis dan operasional untuk memberikan pemahaman menyeluruh mengenai bagaimana transformasi wavelet, kuantisasi, dan pengodean entropi bekerja secara terpadu di dalam standar JPEG2000.
+
 \subsection{Pra-pemrosesan dan Partisi Tile}
 Dalam kerangka matematis JPEG2000, sebuah citra digital dimodelkan sebagai fungsi diskrit dua dimensi:
 \begin{equation}
@@ -396,16 +398,16 @@ sehingga menghindari artefak blok dan sekaligus menghasilkan representasi
 multiresolusi. Pada JPEG~2000, digunakan dua jenis filter biortogonal, yaitu
 \textit{CDF 5/3} untuk kompresi lossless dan \textit{CDF 9/7} untuk kompresi
 lossy. Kedua pasangan filter ini direalisasikan melalui \textit{lifting scheme}.
-
-\par
+\begin{figure}[H]
+  \includegraphics[width=0.5\textwidth]{img/CDF 5_3 (bior2.2).png}
+  \includegraphics[width=0.5\textwidth]{img/CDF 9_7 (bior4.4).png}
+  \caption{Struktur filter CDF 5/3 (kiri) dan CDF 9/7 (kanan)}
+  \label{fig:cdf_filters}
+\end{figure}
 Pada dekomposisi wavelet 2D, citra terlebih dahulu difilter secara
 satu dimensi (1D-DWT) pada arah baris untuk memperoleh sinyal \textit{low-pass}
 (L) dan \textit{high-pass} (H). Kemudian proses yang sama diterapkan pada arah
 kolom sehingga terbentuk empat subband, yaitu:
-
-\[
-  \text{LL} \quad \text{LH} \quad \text{HL} \quad \text{HH}.
-\]
 
 \begin{itemize}
   \item \textbf{LL} : aproksimasi beresolusi rendah,
@@ -417,50 +419,7 @@ kolom sehingga terbentuk empat subband, yaitu:
 \noindent
 Subband LL selanjutnya dapat kembali didekomposisi sehingga menghasilkan struktur
 piramida multilevel. Misalnya pada dekomposisi tiga level, hubungan subband yang
-terbentuk dapat dituliskan sebagai berikut:
-
-\[
-  LL_1 \rightarrow LL_2 \rightarrow LL_3.
-\]
-
-\par
-Masing-masing level memberikan representasi pada resolusi yang berbeda.
-Subband LL pada level tertinggi (misalnya $LL_3$) menyimpan struktur global citra,
-sedangkan subband pada level lebih rendah (misalnya $LH_1$, $HL_1$, $HH_1$)
-menyimpan informasi detil berfrekuensi tinggi.
-Pendekatan multiresolusi ini memungkinkan algoritma JPEG~2000 melakukan
-\textit{progressive decoding}, \textit{region of interest coding}, dan
-\textit{scalable bitstream}.
-
-\subsection{Pembentukan Subband dan Code-block Partitioning}
-
-Hasil dekomposisi wavelet multilevel menghasilkan sekumpulan subband
-$\{LL_i, LH_i, HL_i, HH_i\}$ untuk $i = 1,2,3,\dots$. JPEG~2000 tidak
-mengkodekan seluruh subband sebagai satu unit besar, melainkan membaginya
-menjadi blok-blok kecil yang disebut \textit{code-block}. Setiap code-block
-dikodekan secara independen menggunakan algoritma EBCOT (Embedded Block Coding
-with Optimal Truncation).
-
-\par
-Untuk kompresi lossy, semua koefisien subband direpresentasikan dalam domain
-floating-point dan kemudian dikuantisasi. Setelah kuantisasi, setiap subband
-dipecah menjadi code-block berukuran tipikal $32 \times 32$ atau $64 \times 64$.
-Tujuan pembentukan code-block adalah:
-
-\begin{enumerate}
-  \item memungkinkan pengkodean bertahap berdasarkan bit-plane,
-  \item meningkatkan efisiensi kompresi,
-  \item mendukung \textit{region of interest} (ROI) dengan prioritas tertentu,
-  \item memungkinkan pembuatan bitstream yang skalabel terhadap kualitas maupun resolusi.
-\end{enumerate}
-
-\par
-Gambar berikut memperlihatkan contoh struktur subband untuk dekomposisi
-wavelet 2D bertingkat tiga level. Subband level tertinggi ($LL_3, LH_3, HL_3, HH_3$)
-berada pada pojok kiri atas, kemudian disusul oleh level kedua ($LL_2, LH_2, HL_2, HH_2$)
-dan level pertama ($LL_1, LH_1, HL_1, HH_1$) yang membentuk struktur
-piramida multiresolusi.
-
+terbentuk dapat diilustrasikan sebagai berikut:
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[scale=0.6,every node/.style={font=\footnotesize}]
@@ -547,41 +506,189 @@ piramida multiresolusi.
     \node at (1.5,6.5) {\tiny 3HH};
 
   \end{tikzpicture}
-  \caption{Dekomposisi wavelet 2D bertingkat tiga level}
+  \caption{Dekomposisi wavelet 2D bertingkat level tiga}
   \label{fig:wavelet_decomposition}
 \end{figure}
 
+\par
+Masing-masing level memberikan representasi pada resolusi yang berbeda.
+Subband LL pada level tertinggi (misalnya $LL_3$) menyimpan struktur global citra,
+sedangkan subband pada level lebih rendah (misalnya $LH_1$, $HL_1$, $HH_1$)
+menyimpan informasi detil berfrekuensi tinggi.
+Pendekatan multiresolusi ini memungkinkan algoritma JPEG~2000 melakukan
+\textit{progressive decoding}, \textit{region of interest coding}, dan
+\textit{scalable bitstream}.
+
+\subsection{Pembentukan Subband dan Code-block Partitioning}
+
+Hasil dekomposisi wavelet multilevel menghasilkan sekumpulan subband
+$\{LL_i, LH_i, HL_i, HH_i\}$ untuk $i = 1,2,3,\dots$. JPEG~2000 tidak
+mengkodekan seluruh subband sebagai satu unit besar, melainkan membaginya
+menjadi blok-blok kecil yang disebut \textit{code-block}. Setiap code-block
+dikodekan secara independen menggunakan algoritma EBCOT (Embedded Block Coding
+with Optimal Truncation).
+
+\par
+Untuk kompresi lossy, semua koefisien subband direpresentasikan dalam domain
+floating-point dan kemudian dikuantisasi. Setelah kuantisasi, setiap subband
+dipecah menjadi code-block berukuran tipikal $32 \times 32$ atau $64 \times 64$.
+Tujuan pembentukan code-block adalah:
+
+\begin{enumerate}
+  \item memungkinkan pengkodean bertahap berdasarkan bit-plane,
+  \item meningkatkan efisiensi kompresi,
+  \item mendukung \textit{region of interest} (ROI) dengan prioritas tertentu,
+  \item memungkinkan pembuatan bitstream yang skalabel terhadap kualitas maupun resolusi.
+\end{enumerate}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
+
+    % ==== NODE GAMBAR ====
+    \node (img0) at (0,0) {\includegraphics[width=0.2\textwidth]{img/kita_shine.png}};
+    \node (lv1)  at (4,0) {\includegraphics[width=0.25\textwidth]{img/Wavelet Pyramid Level 1.png}};
+    \node (lv2)  at (8,0) {\includegraphics[width=0.25\textwidth]{img/Wavelet Pyramid Level 2.png}};
+    \node (lv3)  at (12,0) {\includegraphics[width=0.25\textwidth]{img/Wavelet Pyramid Level 3.png}};
+
+  \end{tikzpicture}
+  \caption{Contoh struktur subband dekomposisi wavelet 2D bertingkat tiga level}
+  \label{fig:wavelet_pyramid}
+\end{figure}
+
+Gambar (\ref{fig:wavelet_pyramid}) memperlihatkan contoh struktur subband untuk dekomposisi
+wavelet 2D bertingkat tiga level. Subband level tertinggi ($LL_3, LH_3, HL_3, HH_3$)
+berada pada pojok kiri atas, kemudian disusul oleh level kedua ($LL_2, LH_2, HL_2, HH_2$)
+dan level pertama ($LL_1, LH_1, HL_1, HH_1$) yang membentuk struktur
+piramida multiresolusi.
+
 \subsection{Kuantisasi Koefisien Wavelet}
 
-\textbf{Koefisien Aproksimasi:}
+Pada domain wavelet, citra pada setiap tile direpresentasikan melalui koefisien
+aproksimasi skala rendah serta koefisien detil pada berbagai orientasi dan tingkat
+resolusi. Untuk tile ke-$(p,q)$, koefisien aproksimasi pada level resolusi terkasar
+$j_0$ diberikan oleh
 \begin{equation}
-  W_{\Phi}^{(p,q)}(j_0,m,n)=\sum_{(x,y)\in\Omega_{p,q}^{\text{ext}}}f_{p,q}^{\text{ext}}(x,y)\,\Phi_{j_0,m,n}(x,y),
+  W^{(p,q)}_{\Phi}(j_0,m,n)
+  = \sum_{(x,y)\in\Omega^{\mathrm{ext}}_{p,q}}
+  f^{\mathrm{ext}}_{p,q}(x,y)\,\Phi_{j_0,m,n}(x,y),
+  \label{eq:approx_coeff}
 \end{equation}
-di mana $\Phi_{j_0,m,n}(x,y)$ adalah fungsi skala 2D pada level resolusi terkasar $j_0$. Koefisien ini merepresentasikan versi low-frequency dari tile, memuat informasi struktur kasar citra.
+di mana $\Phi_{j_0,m,n}(x,y)$ adalah fungsi penskalaan dua dimensi pada level
+$j_0$. Koefisien aproksimasi ini merepresentasikan komponen frekuensi-rendah dari
+tile dan memuat struktur global citra.
 
-\textbf{Koefisien Detil:}
+Koefisien detil pada level resolusi $j_0 \le j < J$ serta orientasi
+$i\in\{H,V,D\}$ (horizontal, vertikal, diagonal) diberikan oleh
 \begin{equation}
-  W_{\Psi^{i}}^{(p,q)}(j,m,n)=\sum_{(x,y)\in\Omega_{p,q}^{\text{ext}}}f_{p,q}^{\text{ext}}(x,y)\,\Psi^{i}_{j,m,n}(x,y),
+  W^{(p,q)}_{\Psi^i}(j,m,n)
+  = \sum_{(x,y)\in\Omega^{\mathrm{ext}}_{p,q}}
+  f^{\mathrm{ext}}_{p,q}(x,y)\,\Psi^i_{j,m,n}(x,y),
+  \label{eq:detail_coeff}
 \end{equation}
-untuk $i\in\{H,V,D\}$ (detil horisontal, vertikal, dan diagonal) dan level resolusi $j_0 \le j < J$. Koefisien ini menangkap informasi high-frequency seperti tepi, tekstur, dan detail halus pada berbagai skala.
+yang menangkap informasi frekuensi-tinggi seperti tepi, tekstur, dan detail halus
+pada multiskala. Proses kuantisasi selanjutnya akan memanfaatkan struktur spasial
+dan statistik dari koefisien-koefisien ini.
 
+\subsection{Pengodean Tier--1}
 
-\subsection{Pengkodean Tier-1: Bit-plane Coding dan MQ-Coder}
+Setiap blok koefisien $B = \{w_{m,n}\}$ dinormalisasi melalui skala
+\[
+  b_{\max} = \left\lfloor \log_2 \max_{m,n} |w_{m,n}| \right\rfloor,
+\]
+sehingga representasi bit-plane dituliskan sebagai
+\[
+  w_{m,n} = \sum_{b=0}^{b_{\max}}
+  \beta^{(b)}_{m,n} 2^b,
+  \qquad
+  \beta^{(b)}_{m,n} \in \{0,1\}.
+\]
 
-\subsection{Pengkodean Tier-2: Packet Formation dan Rate-Distortion Optimization}
+Tier--1 mengodekan setiap bit $\beta^{(b)}_{m,n}$ melalui tiga pass:
+\begin{enumerate}
+  \item \textbf{Significance-Propagation Pass}:
+        untuk piksel yang belum signifikan tetapi memiliki tetangga signifikan,
+        bit signifikan didefinisikan sebagai
+        \[
+          s^{(b)}_{m,n} = 1
+          \quad\Longleftrightarrow\quad
+          |w_{m,n}| \ge 2^b.
+        \]
+
+  \item \textbf{Magnitude-Refinement Pass}:
+        untuk piksel yang sudah signifikan sejak bit-plane sebelumnya,
+        bit magnitude dikodekan sebagai refinemen dari representasi sebelumnya.
+
+  \item \textbf{Cleanup Pass}:
+        mengode bit yang tidak tercakup oleh dua pass pertama.
+\end{enumerate}
+
+Setiap bit dikirimkan ke MQ-coder, yaitu pemodel probabilistik biner adaptif
+yang menggunakan konteks $C$ sehingga entropi dikurangi melalui estimasi
+\[
+  P(\beta^{(b)}_{m,n} = 1 \mid C).
+\]
+MQ-coder menghasilkan rangkaian kompresi optimal secara entropi untuk setiap
+code-block secara independen.
+
+\subsection{Pengodean Tier--2}
+Tier--1 menghasilkan serangkaian \emph{coding passes} yang masing-masing memiliki
+kontribusi pengurangan distorsi $\Delta D$ dan peningkatan jumlah bit $\Delta R$.
+Untuk setiap pass $k$, didefinisikan slope Lagrangian
+\[
+  \lambda_k = \frac{\Delta D_k}{\Delta R_k}.
+\]
+
+Tujuan Tier--2 adalah memilih subset pass
+$
+  \mathcal{S} \subseteq \{1,\dots,K\}
+$
+yang memaksimalkan penurunan distorsi total
+\[
+  \Delta D(\mathcal{S}) = \sum_{k\in\mathcal{S}} \Delta D_k
+\]
+di bawah batasan bitrate
+\[
+  \sum_{k\in\mathcal{S}} \Delta R_k \le R_{\text{target}}.
+\]
+
+Pemilihan dilakukan dengan mengurutkan pass berdasarkan $\lambda_k$
+secara menurun, kemudian memasukkan pass hingga batas bitrate tercapai.
+Struktur paket akhir dibentuk secara hierarkis berdasarkan
+(resolusi $\rightarrow$ precinct $\rightarrow$ code-block $\rightarrow$ pass),
+sehingga bitstream dapat mendukung progresivitas kualitas maupun resolusi.
+
 
 \subsection{Invers DWT dan Rekonstruksi Citra}
-Sebagai konsekuensi dari lokalitas transformasi wavelet per-tile, proses rekonstruksi citra juga bersifat lokal:
+
+Sifat lokalisasi dari transformasi wavelet per-tile memungkinkan proses rekonstruksi
+citra dilakukan secara lokal. Rekonstruksi tile ke-$(p,q)$ pada domain spasial
+diperoleh dari koefisien aproksimasi dan detil sebagai berikut:
 \begin{equation}
-  \widehat{f}_{p,q}(x,y) = W_{\Phi}^{(p,q)}(j_0,\cdot,\cdot) + \sum_{j=j_0}^{J-1}\sum_{i\in\{H,V,D\}} W_{\Psi^{i}}^{(p,q)}(j,\cdot,\cdot),
+  \hat{f}_{p,q}(x,y)
+  = W^{(p,q)}_{\Phi}(j_0,\cdot,\cdot)\,
+  \Phi_{j_0}(x,y)
+  + \sum_{j=j_0}^{J-1} \;
+  \sum_{i\in\{H,V,D\}}
+  W^{(p,q)}_{\Psi^i}(j,\cdot,\cdot)\,
+  \Psi^i_j(x,y),
+  \label{eq:tile_recon}
 \end{equation}
-dan seluruh citra direkonstruksi sebagai:
+dengan $\Phi_{j_0}$ dan $\Psi^i_j$ merupakan fungsi penskalaan dan wavelet pada
+level $j$. Proses ini bersifat linear dan mendukung rekonstruksi sempurna pada
+konstruksi biortogonal.
+
+Setelah seluruh tile direkonstruksi, citra global diperoleh dengan menyusun kembali
+semua tile sesuai posisi spasialnya:
 \begin{equation}
-  \widehat{f}(x,y)=\widehat{f}_{p,q}(x,y), \quad \forall (x,y)\in\Omega_{p,q}.
+  \hat{f}(x,y) = \hat{f}_{p,q}(x,y),
+  \qquad (x,y)\in\Omega_{p,q}.
+  \label{eq:full_image_recon}
 \end{equation}
 
-Dengan demikian, setiap tile dapat di-encode dan di-decode secara independen, memberikan fleksibilitas tinggi dalam manajemen memori dan akses data.
-
+Dengan demikian, setiap tile dapat diproses, dikodekan, dan didekodekan secara
+independen. Pendekatan ini tidak hanya memberikan fleksibilitas tinggi dalam
+pengaturan memori dan akses data, tetapi juga memungkinkan pemrosesan citra
+berskala besar secara efisien pada sistem kompresi berbasis wavelet.
 
 \section{Perbandingan JPEG dan JPEG2000 Berdasarkan MSE, PSNR, dan SSIM}
 Pada bagian ini dilakukan evaluasi kuantitatif terhadap performa JPEG dan JPEG2000
@@ -604,9 +711,15 @@ Metrik MSE mengukur rata-rata kuadrat selisih antara citra asli dan citra terkom
   \sum_{y=0}^{W-1}
   \left(I(x,y) - \hat{I}(x,y)\right)^2.
 \end{equation}
-
+Berikut adalah hasil pengamatan dari grafik MSE terhadap bitrate:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{img/MSE vs Rate.png}
+  \caption{Grafik MSE terhadap Bitrate untuk JPEG dan JPEG2000}
+  \label{fig:mse_rate_comparison}
+\end{figure}
 \noindent
-Dari grafik MSE diperoleh beberapa observasi penting:
+Dari grafik (\ref{fig:mse_rate_comparison}) diperoleh beberapa observasi penting:
 \begin{itemize}
   \item Kurva JPEG menurun secara perlahan.
         Pada bitrate rendah ($\approx 0.10$--$0.25$ bpp),
@@ -629,7 +742,6 @@ informasi penting pada bitrate rendah karena sifat transformasi berbasis blok,
 sedangkan JPEG2000 lebih efisien berkat dekomposisi multiresolusi pada DWT.
 
 \subsection{Analisis PSNR terhadap Bitrate}
-
 PSNR adalah fungsi logaritmik dari MSE dan didefinisikan sebagai:
 \begin{equation}
   \mathrm{PSNR}
@@ -639,9 +751,15 @@ PSNR adalah fungsi logaritmik dari MSE dan didefinisikan sebagai:
   \frac{255^2}{\mathrm{MSE}}
   \right).
 \end{equation}
-
+Berikut adalah hasil pengamatan dari grafik PSNR terhadap bitrate:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/PSNR vs Rate.png}
+  \caption{Grafik PSNR terhadap Bitrate untuk JPEG dan JPEG2000}
+  \label{fig:psnr_rate_comparison}
+\end{figure}
 \noindent
-Hasil pengamatan dari grafik PSNR dapat dirangkum sebagai berikut:
+Hasil pengamatan dari grafik (\ref{fig:psnr_rate_comparison}) dapat dirangkum sebagai berikut:
 \begin{itemize}
   \item JPEG hanya mencapai kisaran 36--55 dB.
         PSNR meningkat seiring bitrate, tetapi peningkatannya terbatas
@@ -671,9 +789,15 @@ SSIM didefinisikan oleh:
   {(\mu_I^2 + \mu_{\hat{I}}^2 + C_1)
     (\sigma_I^2 + \sigma_{\hat{I}}^2 + C_2)}.
 \end{equation}
-
+Berikut adalah hasil pengamatan dari grafik SSIM terhadap bitrate:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{img/SSIM vs Rate.png}
+  \caption{Grafik SSIM terhadap Bitrate untuk JPEG dan JPEG2000}
+  \label{fig:ssim_rate_comparison}
+\end{figure}
 \noindent
-Hasil yang diperoleh menunjukkan:
+Hasil (\ref{fig:ssim_rate_comparison}) yang diperoleh menunjukkan:
 \begin{itemize}
   \item SSIM JPEG berada pada rentang 0.998--1.000.
         Nilai ini tinggi, tetapi masih dipengaruhi oleh \textit{blocking artifact}.
@@ -694,7 +818,7 @@ menunjukkan kemampuan mempertahankan struktur, tepi,
 dan tekstur citra yang lebih baik.
 
 \section{Kesimpulan}
- [Ringkas hasil analisis: kapan CDF 5/3 lebih unggul (lossless, implementasi sederhana) dan kapan CDF 9/7 memberikan kualitas lebih baik pada bit-rate rendah, serta kaitannya dengan desain JPEG2000 dibanding JPEG berbasis DCT.]
+Transformasi wavelet biortogonal, khususnya keluarga Cohen--Daubechies--Feauveau, memberikan dasar matematis yang efektif untuk kompresi citra modern seperti JPEG2000. CDF~5/3 terbukti optimal untuk kompresi \emph{lossless} karena mendukung transformasi berbasis bilangan bulat dan memiliki kompleksitas komputasi yang rendah. Sebaliknya, CDF~9/7 menawarkan performa \emph{lossy} terbaik pada bit-rate rendah berkat regularitasnya yang tinggi dan kemampuan pemadatan energi yang superior. Dibandingkan JPEG berbasis DCT, penggunaan wavelet pada JPEG2000 menghasilkan representasi multiresolusi tanpa artefak blok dan mendukung fleksibilitas penyandian yang lebih luas. Dengan demikian, pemilihan antara CDF~5/3 dan CDF~9/7 bergantung pada kebutuhan aplikasi: akurasi rekonstruksi untuk \emph{lossless} atau efisiensi kompresi untuk \emph{lossy}.
 
 \printbibliography
 
