@@ -65,6 +65,18 @@ Di dalam kerangka JPEG2000, keluarga wavelet Cohen--Daubechies--Feauveau (CDF) 5
 Makalah ini menitikberatkan pada analisis matematis struktur filter CDF 5/3 dan CDF 9/7, formulasi transformasi wavelet dalam kerangka \textit{subband coding} dan analisis multiresolusi, serta evaluasi kinerja numerik dan visual keduanya pada skenario kompresi citra lossless maupun lossy. Dengan menempatkan CDF 5/3 dan 9/7 dalam konteks teori wavelet yang lebih umum, diharapkan pembaca memperoleh pemahaman yang lebih sistematis mengenai alasan pemilihan kedua transformasi ini dalam standar JPEG2000.
 
 \section{Dasar-Dasar Wavelet}
+Pada bagian ini dibahas landasan teoretis dari transformasi wavelet yang
+menjadi dasar bagi skema kompresi JPEG2000.
+Pembahasan mencakup definisi fungsi skala dan fungsi wavelet,
+struktur filter low-pass dan high-pass yang menyertainya,
+serta sifat-sifat fundamental seperti dilatasi, translasi, dan orthonormalitas.
+Pemahaman terhadap konsep dasar ini penting karena seluruh proses
+dekomposisi multiresolusi dalam JPEG2000 dibangun langsung dari
+konstruksi matematis wavelet.
+Dengan demikian, bagian ini memberikan kerangka teoretis
+yang diperlukan untuk memahami bagaimana transformasi wavelet
+menghasilkan representasi citra yang efisien untuk keperluan kompresi.
+
 \subsection{Fungsi Skala dan Fungsi Wavelet}
 Secara umum, suatu sistem wavelet dibangun dari sepasang fungsi dasar: fungsi skala (\textit{scaling function}) $\varphi(t)$ dan fungsi wavelet $\psi(t)$. Fungsi skala menghasilkan ruang pendekatan (\textit{approximation space}) yang memuat komponen frekuensi rendah dari sinyal, sedangkan fungsi wavelet menghasilkan ruang detil (\textit{detail space}) yang memuat komponen frekuensi tinggi.
 
@@ -256,20 +268,100 @@ Tile diperlakukan sebagai periodik, sehingga piksel di luar batas "melingkar" ke
 
 Metode ini berguna ketika tile memiliki struktur periodik alami, namun kurang umum digunakan pada citra natural.
 
-Sebagai konsekuensi dari lokalitas transformasi wavelet per-tile, proses rekonstruksi citra juga bersifat lokal:
-\begin{equation}
-  \widehat{f}_{p,q}(x,y) = W_{\Phi}^{(p,q)}(j_0,\cdot,\cdot) + \sum_{j=j_0}^{J-1}\sum_{i\in\{H,V,D\}} W_{\Psi^{i}}^{(p,q)}(j,\cdot,\cdot),
-\end{equation}
-dan seluruh citra direkonstruksi sebagai:
-\begin{equation}
-  \widehat{f}(x,y)=\widehat{f}_{p,q}(x,y), \quad \forall (x,y)\in\Omega_{p,q}.
-\end{equation}
-
-Dengan demikian, setiap tile dapat di-encode dan di-decode secara independen, memberikan fleksibilitas tinggi dalam manajemen memori dan akses data.
-
-
 \subsection{Transformasi Warna (RCT/ICT)}
-Pada tahap awal kompresi JPEG2000, citra warna RGB diubah ke ruang warna yang lebih sesuai untuk kompresi, yaitu YCoCg (untuk kompresi lossless) atau YCbCr (untuk kompresi lossy). Transformasi ini memisahkan informasi luminans (Y) dari informasi krominans (Co dan Cg/Cb dan Cr), memanfaatkan fakta bahwa mata manusia lebih sensitif terhadap perubahan luminans dibanding krominans.
+JPEG2000 mendukung dua jenis transformasi warna utama, yaitu
+\textit{Reversible Color Transform} (RCT) dan
+\textit{Irreversible Color Transform} (ICT).
+Kedua transformasi ini digunakan untuk memisahkan komponen luminans
+dan krominans sebelum tahap transformasi wavelet, sehingga redundansi
+antar kanal warna dapat ditekan dan efisiensi kompresi meningkat.
+
+Transformasi warna bekerja pada ruang warna RGB dan menghasilkan
+tiga komponen baru yang lebih sesuai untuk kompresi, yaitu
+komponen luminans $Y$ dan dua komponen krominans $C_o$ dan $C_g$.
+Komponen luminans membawa sebagian besar informasi visual,
+sementara dua komponen krominans dapat dikompresi lebih kuat
+karena sensitivitas persepsi manusia terhadap perubahan warna
+lebih rendah dibanding perubahan intensitas terang.
+
+\subsubsection{Irreversible Color Transform (ICT)}
+
+ICT digunakan pada mode kompresi \textit{lossy}.
+Transformasi ini bersifat tidak dapat dibalik secara eksak
+karena melibatkan koefisien pecahan real.
+ICT identik dengan transformasi yang digunakan dalam standar JPEG lama
+(sering disebut transformasi ke ruang YCbCr), namun dengan koefisien
+yang lebih tepat secara perseptual.
+
+Transformasi ICT didefinisikan sebagai berikut:
+\begin{equation}
+  \begin{bmatrix}
+    Y   \\
+    C_o \\
+    C_g
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0.299   & 0.587   & 0.114   \\
+    0.5     & -0.4187 & -0.0813 \\
+    -0.1687 & -0.3313 & 0.5
+  \end{bmatrix}
+  \begin{bmatrix}
+    R \\ G \\ B
+  \end{bmatrix}.
+\end{equation}
+
+Transformasi inversnya diberikan oleh:
+\begin{equation}
+  \begin{bmatrix}
+    R \\ G \\ B
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    1 & 1.402   & 0       \\
+    1 & -0.3441 & -0.7141 \\
+    1 & 0       & 1.772
+  \end{bmatrix}
+  \begin{bmatrix}
+    Y \\ C_o \\ C_g
+  \end{bmatrix}.
+\end{equation}
+
+Karena menggunakan koefisien pecahan real, ICT tidak mendukung
+rekonstruksi sempurna dan hanya digunakan pada kompresi lossy
+dengan wavelet CDF 9/7.
+
+\subsubsection{Reversible Color Transform (RCT)}
+
+RCT merupakan transformasi warna yang sepenuhnya dapat dibalik
+(\textit{perfectly reversible}), sehingga digunakan pada mode
+\textit{lossless}.
+Transformasi ini bekerja menggunakan operasi bilangan bulat
+(integer-to-integer transform), sehingga tidak menyebabkan kesalahan
+pembulatan.
+
+Transformasi RCT didefinisikan sebagai:
+\begin{equation}
+  \begin{aligned}
+    Y   & = \left\lfloor \frac{R + 2G + B}{4} \right\rfloor, \\
+    C_o & = R - G,                                           \\
+    C_g & = B - G.
+  \end{aligned}
+\end{equation}
+
+Transformasi invers:
+\begin{equation}
+  \begin{aligned}
+    G & = Y - \left\lfloor \frac{C_o + C_g}{4} \right\rfloor, \\
+    R & = C_o + G,                                            \\
+    B & = C_g + G.
+  \end{aligned}
+\end{equation}
+
+Karena setiap operasi menggunakan aritmetika bilangan bulat,
+RCT bersifat \textit{reversible} secara eksak dan menjadi komponen
+kunci dalam skema kompresi lossless JPEG2000 ketika dikombinasikan
+dengan transformasi wavelet CDF 5/3.
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[
@@ -297,9 +389,78 @@ Pada tahap awal kompresi JPEG2000, citra warna RGB diubah ke ruang warna yang le
   \label{fig:rgb_to_ycocg}
 \end{figure}
 \subsection{Dekomposisi Wavelet Multilevel}
-[Jelaskan aplikasi DWT 2D bertingkat dengan CDF 5/3 atau 9/7 untuk menghasilkan piramida subband.]
+Transformasi wavelet diskrit dua dimensi (2D-DWT) merupakan tahap utama dalam
+proses kompresi JPEG~2000. Berbeda dengan JPEG konvensional yang menggunakan
+DCT blok berukuran $8 \times 8$, pendekatan wavelet bekerja pada seluruh citra
+sehingga menghindari artefak blok dan sekaligus menghasilkan representasi
+multiresolusi. Pada JPEG~2000, digunakan dua jenis filter biortogonal, yaitu
+\textit{CDF 5/3} untuk kompresi lossless dan \textit{CDF 9/7} untuk kompresi
+lossy. Kedua pasangan filter ini direalisasikan melalui \textit{lifting scheme}.
+
+\par
+Pada dekomposisi wavelet 2D, citra terlebih dahulu difilter secara
+satu dimensi (1D-DWT) pada arah baris untuk memperoleh sinyal \textit{low-pass}
+(L) dan \textit{high-pass} (H). Kemudian proses yang sama diterapkan pada arah
+kolom sehingga terbentuk empat subband, yaitu:
+
+\[
+  \text{LL} \quad \text{LH} \quad \text{HL} \quad \text{HH}.
+\]
+
+\begin{itemize}
+  \item \textbf{LL} : aproksimasi beresolusi rendah,
+  \item \textbf{LH} : detil horizontal (edge vertikal),
+  \item \textbf{HL} : detil vertikal (edge horizontal),
+  \item \textbf{HH} : detil diagonal.
+\end{itemize}
+
+\noindent
+Subband LL selanjutnya dapat kembali didekomposisi sehingga menghasilkan struktur
+piramida multilevel. Misalnya pada dekomposisi tiga level, hubungan subband yang
+terbentuk dapat dituliskan sebagai berikut:
+
+\[
+  LL_1 \rightarrow LL_2 \rightarrow LL_3.
+\]
+
+\par
+Masing-masing level memberikan representasi pada resolusi yang berbeda.
+Subband LL pada level tertinggi (misalnya $LL_3$) menyimpan struktur global citra,
+sedangkan subband pada level lebih rendah (misalnya $LH_1$, $HL_1$, $HH_1$)
+menyimpan informasi detil berfrekuensi tinggi.
+Pendekatan multiresolusi ini memungkinkan algoritma JPEG~2000 melakukan
+\textit{progressive decoding}, \textit{region of interest coding}, dan
+\textit{scalable bitstream}.
 
 \subsection{Pembentukan Subband dan Code-block Partitioning}
+
+Hasil dekomposisi wavelet multilevel menghasilkan sekumpulan subband
+$\{LL_i, LH_i, HL_i, HH_i\}$ untuk $i = 1,2,3,\dots$. JPEG~2000 tidak
+mengkodekan seluruh subband sebagai satu unit besar, melainkan membaginya
+menjadi blok-blok kecil yang disebut \textit{code-block}. Setiap code-block
+dikodekan secara independen menggunakan algoritma EBCOT (Embedded Block Coding
+with Optimal Truncation).
+
+\par
+Untuk kompresi lossy, semua koefisien subband direpresentasikan dalam domain
+floating-point dan kemudian dikuantisasi. Setelah kuantisasi, setiap subband
+dipecah menjadi code-block berukuran tipikal $32 \times 32$ atau $64 \times 64$.
+Tujuan pembentukan code-block adalah:
+
+\begin{enumerate}
+  \item memungkinkan pengkodean bertahap berdasarkan bit-plane,
+  \item meningkatkan efisiensi kompresi,
+  \item mendukung \textit{region of interest} (ROI) dengan prioritas tertentu,
+  \item memungkinkan pembuatan bitstream yang skalabel terhadap kualitas maupun resolusi.
+\end{enumerate}
+
+\par
+Gambar berikut memperlihatkan contoh struktur subband untuk dekomposisi
+wavelet 2D bertingkat tiga level. Subband level tertinggi ($LL_3, LH_3, HL_3, HH_3$)
+berada pada pojok kiri atas, kemudian disusul oleh level kedua ($LL_2, LH_2, HL_2, HH_2$)
+dan level pertama ($LL_1, LH_1, HL_1, HH_1$) yang membentuk struktur
+piramida multiresolusi.
+
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[scale=0.6,every node/.style={font=\footnotesize}]
@@ -410,194 +571,127 @@ untuk $i\in\{H,V,D\}$ (detil horisontal, vertikal, dan diagonal) dan level resol
 \subsection{Pengkodean Tier-2: Packet Formation dan Rate-Distortion Optimization}
 
 \subsection{Invers DWT dan Rekonstruksi Citra}
-
-\section{Perbandingan JPEG dan JPEG2000}
-
-\section{Evaluasi Numerik dan Visual}
-\subsection{Desain Eksperimen}
-
-Untuk mengevaluasi kinerja wavelet CDF 5/3 dan CDF 9/7 dalam konteks kompresi JPEG2000, dilakukan eksperimen kompresi pada himpunan citra standar yang mencakup berbagai karakteristik visual. Citra-citra uji dipilih untuk merepresentasikan berbagai jenis konten:
-
-\begin{itemize}
-  \item \textbf{Citra natural:} Landscape, portrait, dan objek natural dengan tekstur kompleks
-  \item \textbf{Citra medis:} X-ray, CT scan, atau MRI yang memerlukan akurasi tinggi
-  \item \textbf{Citra teknis:} Diagram, grafik, atau peta dengan tepi tajam dan region uniform
-  \item \textbf{Citra satelit:} Data penginderaan jauh dengan detail spasial tinggi
-\end{itemize}
-
-Setiap citra dikompres menggunakan wavelet CDF 5/3 (mode lossless dan lossy) serta CDF 9/7 (mode lossy) pada berbagai tingkat bit-rate, mulai dari kompresi tinggi (0.1 bpp) hingga kompresi rendah (2.0 bpp). Parameter kompresi yang divariasikan meliputi:
-
-\begin{itemize}
-  \item \textbf{Jumlah level dekomposisi:} 3, 5, dan 7 level
-  \item \textbf{Ukuran tile:} Seluruh citra (single tile) dan partisi $512\times 512$ piksel
-  \item \textbf{Mode kuantisasi:} Eksponen dan mantisa untuk lossy, integer-preserving untuk lossless
-  \item \textbf{Target bit-rate:} 0.1, 0.25, 0.5, 1.0, 1.5, dan 2.0 bit per piksel (bpp)
-\end{itemize}
-
-Kualitas rekonstruksi citra dievaluasi menggunakan beberapa metrik kuantitatif dan kualitatif, yang dijelaskan pada bagian berikutnya.
-
-\subsubsection{Mean Squared Error (MSE)}
-
-MSE mengukur rata-rata kuadrat selisih antara citra asli $f(x,y)$ dan citra terkompresi $\hat{f}(x,y)$:
+Sebagai konsekuensi dari lokalitas transformasi wavelet per-tile, proses rekonstruksi citra juga bersifat lokal:
 \begin{equation}
-  \text{MSE} = \frac{1}{MN}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}\bigl[f(x,y)-\hat{f}(x,y)\bigr]^2.
+  \widehat{f}_{p,q}(x,y) = W_{\Phi}^{(p,q)}(j_0,\cdot,\cdot) + \sum_{j=j_0}^{J-1}\sum_{i\in\{H,V,D\}} W_{\Psi^{i}}^{(p,q)}(j,\cdot,\cdot),
+\end{equation}
+dan seluruh citra direkonstruksi sebagai:
+\begin{equation}
+  \widehat{f}(x,y)=\widehat{f}_{p,q}(x,y), \quad \forall (x,y)\in\Omega_{p,q}.
 \end{equation}
 
-MSE memberikan ukuran distorsi numerik secara global, namun tidak selalu berkorelasi dengan persepsi visual manusia.
+Dengan demikian, setiap tile dapat di-encode dan di-decode secara independen, memberikan fleksibilitas tinggi dalam manajemen memori dan akses data.
 
-\subsubsection{Peak Signal-to-Noise Ratio (PSNR)}
 
-PSNR adalah metrik yang paling umum digunakan dalam evaluasi kompresi citra, dinyatakan dalam satuan desibel (dB):
+\section{Perbandingan JPEG dan JPEG2000 Berdasarkan MSE, PSNR, dan SSIM}
+Pada bagian ini dilakukan evaluasi kuantitatif terhadap performa JPEG dan JPEG2000
+menggunakan tiga metrik objektif, yaitu
+Mean Squared Error (MSE), Peak Signal-to-Noise Ratio (PSNR),
+dan Structural Similarity Index (SSIM).
+Pengujian dilakukan pada beberapa variasi bitrate,
+baik melalui perubahan parameter kualitas JPEG maupun variasi faktor kuantisasi
+pada simulasi JPEG2000 berbasis transformasi wavelet CDF 9/7.
+Hasil pengujian divisualisasikan pada grafik MSE--Rate, PSNR--Rate, dan SSIM--Rate.
+
+\subsection{Analisis MSE terhadap Bitrate}
+
+Metrik MSE mengukur rata-rata kuadrat selisih antara citra asli dan citra terkompresi:
 \begin{equation}
-  \text{PSNR} = 10\log_{10}\left(\frac{\text{MAX}^2}{\text{MSE}}\right),
+  \mathrm{MSE}
+  =
+  \frac{1}{HW}
+  \sum_{x=0}^{H-1}
+  \sum_{y=0}^{W-1}
+  \left(I(x,y) - \hat{I}(x,y)\right)^2.
 \end{equation}
-di mana $\text{MAX}$ adalah nilai piksel maksimum (255 untuk citra 8-bit). Nilai PSNR yang lebih tinggi mengindikasikan kualitas rekonstruksi yang lebih baik. Secara umum:
+
+\noindent
+Dari grafik MSE diperoleh beberapa observasi penting:
 \begin{itemize}
-  \item PSNR $>$ 40 dB: Kualitas sangat baik, distorsi hampir tidak terlihat
-  \item PSNR 30--40 dB: Kualitas baik, distorsi minimal
-  \item PSNR 20--30 dB: Kualitas cukup, distorsi terlihat namun masih dapat diterima
-  \item PSNR $<$ 20 dB: Kualitas buruk, distorsi signifikan
+  \item Kurva JPEG menurun secara perlahan.
+        Pada bitrate rendah ($\approx 0.10$--$0.25$ bpp),
+        MSE JPEG berada di rentang sekitar 12 hingga 0.25.
+        Penurunan ini lambat karena pemrosesan blok DCT $8\times 8$
+        menghasilkan \textit{blocking artifact} yang signifikan.
+
+  \item Kurva JPEG2000 menurun jauh lebih cepat.
+        Pada rentang bitrate menengah hingga tinggi
+        ($\approx 0.7$--$2.0$ bpp),
+        MSE JPEG2000 turun drastis dari sekitar 30 menjadi sekitar 0.04.
+
+  \item Secara keseluruhan, MSE JPEG2000 selalu lebih rendah daripada JPEG
+        untuk semua bitrate, yang berarti tingkat distorsi lebih kecil.
 \end{itemize}
 
-\subsubsection{Structural Similarity Index (SSIM)}
+\noindent
+Perbedaan karakter kurva tersebut mencerminkan bahwa JPEG kehilangan
+informasi penting pada bitrate rendah karena sifat transformasi berbasis blok,
+sedangkan JPEG2000 lebih efisien berkat dekomposisi multiresolusi pada DWT.
 
-SSIM mengukur kesamaan struktural antara citra asli dan terkompresi dengan mempertimbangkan luminans, kontras, dan struktur:
+\subsection{Analisis PSNR terhadap Bitrate}
+
+PSNR adalah fungsi logaritmik dari MSE dan didefinisikan sebagai:
 \begin{equation}
-  \text{SSIM}(x,y) = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2 + \mu_y^2 + C_1)(\sigma_x^2 + \sigma_y^2 + C_2)},
+  \mathrm{PSNR}
+  =
+  10\log_{10}
+  \left(
+  \frac{255^2}{\mathrm{MSE}}
+  \right).
 \end{equation}
-di mana $\mu_x$, $\mu_y$ adalah rata-rata lokal, $\sigma_x^2$, $\sigma_y^2$ adalah variansi lokal, $\sigma_{xy}$ adalah kovariansi, dan $C_1$, $C_2$ adalah konstanta stabilisasi. Nilai SSIM berkisar dari 0 hingga 1, dengan nilai mendekati 1 mengindikasikan kesamaan struktural yang tinggi. SSIM umumnya lebih berkorelasi dengan persepsi kualitas visual manusia dibandingkan PSNR.
 
-Selain metrik kuantitatif, dilakukan juga evaluasi visual kualitatif untuk mengidentifikasi jenis artefak yang muncul, seperti:
+\noindent
+Hasil pengamatan dari grafik PSNR dapat dirangkum sebagai berikut:
 \begin{itemize}
-  \item \textbf{Ringing artifacts:} Osilasi di sekitar tepi tajam
-  \item \textbf{Blurring:} Kehilangan detail halus dan ketajaman
-  \item \textbf{Blocking artifacts:} Diskontinuitas di batas tile (minimal pada JPEG2000)
-  \item \textbf{Color distortion:} Perubahan warna akibat kompresi kanal krominans
+  \item JPEG hanya mencapai kisaran 36--55 dB.
+        PSNR meningkat seiring bitrate, tetapi peningkatannya terbatas
+        oleh keterbatasan transformasi DCT.
+
+  \item JPEG2000 mampu mencapai 60 dB atau lebih.
+        Bahkan pada bitrate menengah ($\approx 1.2$ bpp),
+        PSNR JPEG2000 telah melampaui 50 dB dan mendekati 62 dB
+        pada bitrate tinggi.
+
+  \item Kurva JPEG2000 lebih linear dan stabil,
+        menandakan struktur representasi wavelet lebih efisien
+        dalam meminimalkan distorsi.
 \end{itemize}
 
-\subsection{Perbandingan Hasil Kompresi}
+\noindent
+Dengan demikian, JPEG2000 memiliki keunggulan sekitar 5--10 dB dibandingkan JPEG
+pada bitrate yang sebanding.
 
-Gambar~\ref{fig:psnr_bitrate} menunjukkan kurva PSNR terhadap bit-rate untuk wavelet CDF 5/3 dan CDF 9/7 pada berbagai citra uji. Dapat diamati bahwa:
+\subsection{Analisis SSIM terhadap Bitrate}
 
-\begin{figure}[H]
-  \centering
-  % TODO: Tambahkan grafik PSNR vs bit-rate
-  % \includegraphics[width=0.8\textwidth]{img/psnr_vs_bitrate.png}
-  \fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}[Gambar: Kurva PSNR vs. Bit-rate untuk CDF 5/3 dan CDF 9/7]\\\vspace{2cm}}}
-  \caption{Perbandingan PSNR terhadap bit-rate untuk wavelet CDF 5/3 dan CDF 9/7 pada berbagai citra uji. CDF 9/7 menunjukkan kinerja superior pada bit-rate rendah hingga menengah.}
-  \label{fig:psnr_bitrate}
-\end{figure}
+SSIM mengukur kesamaan struktural antara citra asli dan citra terkompresi.
+SSIM didefinisikan oleh:
+\begin{equation}
+  \mathrm{SSIM}(I,\hat{I}) =
+  \frac{(2\mu_I\mu_{\hat{I}} + C_1)(2\sigma_{I\hat{I}} + C_2)}
+  {(\mu_I^2 + \mu_{\hat{I}}^2 + C_1)
+    (\sigma_I^2 + \sigma_{\hat{I}}^2 + C_2)}.
+\end{equation}
 
+\noindent
+Hasil yang diperoleh menunjukkan:
 \begin{itemize}
-  \item \textbf{Pada bit-rate rendah (0.1--0.5 bpp):} CDF 9/7 secara konsisten memberikan PSNR 1--3 dB lebih tinggi dibanding CDF 5/3, menunjukkan kemampuan pemadatan energi yang superior.
-  \item \textbf{Pada bit-rate menengah (0.5--1.0 bpp):} Keunggulan CDF 9/7 masih signifikan (0.5--2 dB), namun gap mulai menyempit seiring peningkatan bit-rate.
-  \item \textbf{Pada bit-rate tinggi ($>$ 1.5 bpp):} Perbedaan PSNR menjadi minimal ($<$ 0.5 dB), karena pada bit-rate tinggi distorsi kuantisasi berkurang dan karakteristik filter menjadi kurang dominan.
-  \item \textbf{Mode lossless:} CDF 5/3 mampu mencapai rekonstruksi sempurna (PSNR $\to \infty$) dengan rasio kompresi sekitar 2:1 hingga 4:1 tergantung kompleksitas citra.
+  \item SSIM JPEG berada pada rentang 0.998--1.000.
+        Nilai ini tinggi, tetapi masih dipengaruhi oleh \textit{blocking artifact}.
+
+  \item SSIM JPEG2000 meningkat sangat cepat
+        dan mencapai nilai di atas 0.999 pada bitrate menengah,
+        lalu mendekati 1.000 untuk bitrate tinggi.
+        Ini menunjukkan bahwa struktur visual citra
+        berhasil dipertahankan dengan sangat baik.
+
+  \item Kurva SSIM JPEG2000 lebih stabil,
+        terutama pada mode mendekati lossless.
 \end{itemize}
 
-Tabel~\ref{tab:psnr_comparison} merangkum hasil PSNR rata-rata untuk kedua wavelet pada berbagai bit-rate.
-
-\begin{table}[H]
-  \centering
-  \caption{Perbandingan PSNR (dB) rata-rata untuk CDF 5/3 dan CDF 9/7 pada berbagai bit-rate}
-  \label{tab:psnr_comparison}
-  \begin{tabular}{@{}lccccc@{}}
-    \toprule
-    \textbf{Wavelet} & \textbf{0.25 bpp} & \textbf{0.5 bpp} & \textbf{1.0 bpp} & \textbf{1.5 bpp} & \textbf{2.0 bpp} \\
-    \midrule
-    CDF 5/3          & [--]              & [--]             & [--]             & [--]             & [--]             \\
-    CDF 9/7          & [--]              & [--]             & [--]             & [--]             & [--]             \\
-    \textbf{Selisih} & [--]              & [--]             & [--]             & [--]             & [--]             \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-Metrik SSIM memberikan evaluasi yang lebih selaras dengan persepsi visual. Gambar~\ref{fig:ssim_comparison} menunjukkan perbandingan SSIM untuk kedua wavelet.
-
-\begin{figure}[H]
-  \centering
-  % TODO: Tambahkan grafik SSIM comparison
-  % \includegraphics[width=0.8\textwidth]{img/ssim_comparison.png}
-  \fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}[Gambar: Perbandingan SSIM untuk CDF 5/3 vs. CDF 9/7]\\\vspace{2cm}}}
-  \caption{Perbandingan SSIM menunjukkan bahwa CDF 9/7 mempertahankan struktur visual lebih baik pada bit-rate rendah.}
-  \label{fig:ssim_comparison}
-\end{figure}
-
-Hasil SSIM mengonfirmasi temuan dari PSNR: CDF 9/7 mempertahankan kesamaan struktural yang lebih tinggi pada bit-rate rendah, dengan selisih SSIM mencapai 0.05--0.10 pada kompresi agresif. Pada bit-rate tinggi, kedua wavelet memberikan nilai SSIM yang hampir identik ($>$ 0.95).
-
-Perbandingan visual antara citra yang dikompres menggunakan CDF 5/3 dan CDF 9/7 ditunjukkan pada Gambar~\ref{fig:visual_comparison}. Region dengan detail halus dan tepi tajam diperbesar untuk mengidentifikasi artefak.
-
-\begin{figure}[H]
-  \centering
-  % TODO: Tambahkan perbandingan visual side-by-side
-  % \includegraphics[width=\textwidth]{img/visual_comparison.png}
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Gambar: Perbandingan visual citra asli, CDF 5/3 (0.5 bpp), dan CDF 9/7 (0.5 bpp)]\\\textit{Tampilkan citra lengkap dan zoom-in pada region detail}\\\vspace{3cm}}}
-  \caption{Perbandingan visual kualitas rekonstruksi pada bit-rate 0.5 bpp. CDF 9/7 menghasilkan tepi yang lebih halus dan detail tekstur yang lebih terpelihara.}
-  \label{fig:visual_comparison}
-\end{figure}
-
-Observasi kualitatif menunjukkan:
-
-\begin{itemize}
-  \item \textbf{Detail tekstur:} CDF 9/7 mempertahankan tekstur halus lebih baik, terutama pada region dengan variasi intensitas rendah seperti langit atau permukaan uniform.
-  \item \textbf{Ketajaman tepi:} Kedua wavelet menghasilkan tepi yang relatif tajam, namun CDF 9/7 menunjukkan ringing artifacts yang sedikit lebih rendah berkat regularitas yang lebih tinggi.
-  \item \textbf{Artefak blurring:} Pada bit-rate sangat rendah (0.1 bpp), CDF 5/3 cenderung menghasilkan blurring yang lebih signifikan dibanding CDF 9/7.
-  \item \textbf{Warna dan gradien:} CDF 9/7 memberikan reproduksi gradien warna yang lebih halus, mengurangi efek banding pada region dengan transisi warna gradual.
-\end{itemize}
-
-\subsubsection{Analisis Kompleksitas Komputasi}
-
-Selain kualitas rekonstruksi, kompleksitas komputasi juga merupakan faktor penting dalam pemilihan wavelet. Tabel~\ref{tab:complexity} membandingkan waktu kompresi dan dekompresi untuk kedua wavelet.
-
-\begin{table}[H]
-  \centering
-  \caption{Perbandingan waktu kompresi dan dekompresi (ms) untuk citra $512\times 512$ piksel}
-  \label{tab:complexity}
-  \begin{tabular}{@{}lccc@{}}
-    \toprule
-    \textbf{Wavelet}         & \textbf{Kompresi (ms)} & \textbf{Dekompresi (ms)} & \textbf{Implementasi} \\
-    \midrule
-    CDF 5/3 (integer)        & [--]                   & [--]                     & Lifting               \\
-    CDF 9/7 (floating-point) & [--]                   & [--]                     & Lifting               \\
-    CDF 5/3 (filter bank)    & [--]                   & [--]                     & Konvolusi             \\
-    CDF 9/7 (filter bank)    & [--]                   & [--]                     & Konvolusi             \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-Implementasi lifting untuk CDF 5/3 dengan aritmetika integer menunjukkan kecepatan tertinggi, sekitar 20--30\% lebih cepat dibanding CDF 9/7 dengan floating-point. Hal ini menjadikan CDF 5/3 pilihan optimal untuk aplikasi real-time atau perangkat dengan daya komputasi terbatas.
-
-\subsubsection{Trade-off dan Rekomendasi}
-
-Berdasarkan hasil evaluasi, dapat dirangkum trade-off antara CDF 5/3 dan CDF 9/7:
-
-\begin{table}[H]
-  \centering
-  \caption{Trade-off karakteristik wavelet CDF 5/3 dan CDF 9/7}
-  \label{tab:tradeoff}
-  \begin{tabular}{@{}lcc@{}}
-    \toprule
-    \textbf{Aspek}                & \textbf{CDF 5/3}         & \textbf{CDF 9/7}                \\
-    \midrule
-    Kualitas pada bit-rate rendah & Sedang                   & \textbf{Tinggi}                 \\
-    Kualitas pada bit-rate tinggi & Baik                     & Baik                            \\
-    Kompresi lossless             & \textbf{Ya (reversible)} & Tidak                           \\
-    Kompleksitas komputasi        & \textbf{Rendah}          & Sedang                          \\
-    Regularitas wavelet           & Rendah ($\alpha=0.55$)   & \textbf{Tinggi ($\alpha=1.08$)} \\
-    Implementasi integer          & \textbf{Ya}              & Tidak                           \\
-    Artefak ringing               & Sedang                   & \textbf{Rendah}                 \\
-    Efisiensi rate-distortion     & Baik                     & \textbf{Sangat baik}            \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\textbf{Rekomendasi penggunaan:}
-\begin{itemize}
-  \item \textbf{CDF 5/3:} Ideal untuk kompresi lossless, aplikasi medis yang memerlukan rekonstruksi sempurna, arsip digital, dan sistem dengan keterbatasan daya komputasi.
-  \item \textbf{CDF 9/7:} Optimal untuk kompresi lossy agresif, distribusi citra via internet, streaming media, dan aplikasi yang memprioritaskan kualitas visual pada bit-rate rendah.
-\end{itemize}
-
-Standar JPEG2000 dengan bijak mengakomodasi kedua wavelet ini, memungkinkan encoder untuk memilih transformasi yang paling sesuai dengan kebutuhan aplikasi spesifik.
+\noindent
+Secara umum, SSIM JPEG2000 selalu lebih tinggi dibanding JPEG,
+menunjukkan kemampuan mempertahankan struktur, tepi,
+dan tekstur citra yang lebih baik.
 
 \section{Kesimpulan}
  [Ringkas hasil analisis: kapan CDF 5/3 lebih unggul (lossless, implementasi sederhana) dan kapan CDF 9/7 memberikan kualitas lebih baik pada bit-rate rendah, serta kaitannya dengan desain JPEG2000 dibanding JPEG berbasis DCT.]
