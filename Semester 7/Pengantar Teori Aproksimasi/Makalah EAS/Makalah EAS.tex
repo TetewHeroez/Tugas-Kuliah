@@ -52,7 +52,7 @@
 \maketitle
 
 \begin{abstract}
-  Makalah ini membahas secara matematis dan komputasional peran transformasi wavelet Cohen--Daubechies--Feauveau (CDF) 5/3 dan CDF 9/7 sebagai inti skema kompresi citra pada standar JPEG2000. Dimulai dari tinjauan singkat terhadap kekurangan DCT blok $8\times 8$ pada JPEG klasik, dibahas bagaimana representasi multiresolusi dan sifat lokal dari wavelet memungkinkan reduksi artefak \textit{blocking} dan peningkatan \textit{rate--distortion}. Secara khusus, dipaparkan konstruksi filter analisis dan sintesis CDF 5/3 (integer, \textit{reversible}) dan CDF 9/7 (real, \textit{irreversible}), termasuk formulasi skema \textit{lifting} yang efisien secara komputasi. Selanjutnya dianalisis perbandingan kinerja keduanya pada berbagai skenario kompresi lossless dan lossy menggunakan metrik seperti MSE, PSNR, dan SSIM, untuk menunjukkan trade-off antara kompleksitas komputasi, kemampuan kompresi, dan kualitas visual.
+  Makalah ini membahas secara matematis dan komputasional peran transformasi wavelet Cohen--Daubechies--Feauveau (CDF) 5/3 dan CDF 9/7 sebagai inti skema kompresi citra pada standar JPEG2000. Dimulai dari tinjauan singkat terhadap kekurangan DCT blok $8\times 8$ pada JPEG klasik, dibahas bagaimana representasi multiresolusi dan sifat lokal dari wavelet memungkinkan reduksi artefak \textit{blocking} dan peningkatan \textit{rate--distortion}. Secara khusus, dipaparkan konstruksi filter analisis dan sintesis CDF 5/3 (integer, \textit{reversible}) dan CDF 9/7 (real, \textit{irreversible}), termasuk formulasi skema \textit{lifting} yang efisien secara komputasi. Selanjutnya dianalisis perbandingan kinerja keduanya pada berbagai skenario kompresi lossless dan lossy menggunakan metrik seperti MSE dan SSIM, untuk menunjukkan trade-off antara kompleksitas komputasi, kemampuan kompresi, dan kualitas visual.
 \end{abstract}
 
 \keywords{Wavelet, CDF 5/3, CDF 9/7, JPEG2000, Kompresi Citra, Transformasi Multiresolusi.}
@@ -690,15 +690,15 @@ independen. Pendekatan ini tidak hanya memberikan fleksibilitas tinggi dalam
 pengaturan memori dan akses data, tetapi juga memungkinkan pemrosesan citra
 berskala besar secara efisien pada sistem kompresi berbasis wavelet.
 
-\section{Perbandingan JPEG dan JPEG2000 Berdasarkan MSE, PSNR, dan SSIM}
+\section{Perbandingan JPEG dan JPEG2000 Berdasarkan MSE dan SSIM}
 Pada bagian ini dilakukan evaluasi kuantitatif terhadap performa JPEG dan JPEG2000
-menggunakan tiga metrik objektif, yaitu
-Mean Squared Error (MSE), Peak Signal-to-Noise Ratio (PSNR),
+menggunakan dua metrik objektif, yaitu
+Mean Squared Error (MSE)
 dan Structural Similarity Index (SSIM).
 Pengujian dilakukan pada beberapa variasi bitrate,
 baik melalui perubahan parameter kualitas JPEG maupun variasi faktor kuantisasi
 pada simulasi JPEG2000 berbasis transformasi wavelet CDF 9/7.
-Hasil pengujian divisualisasikan pada grafik MSE--Rate, PSNR--Rate, dan SSIM--Rate.
+Hasil pengujian divisualisasikan pada grafik MSE--Rate dan SSIM--Rate.
 
 \subsection{Analisis MSE terhadap Bitrate}
 
@@ -740,44 +740,6 @@ Dari grafik (\ref{fig:mse_rate_comparison}) diperoleh beberapa observasi penting
 Perbedaan karakter kurva tersebut mencerminkan bahwa JPEG kehilangan
 informasi penting pada bitrate rendah karena sifat transformasi berbasis blok,
 sedangkan JPEG2000 lebih efisien berkat dekomposisi multiresolusi pada DWT.
-
-\subsection{Analisis PSNR terhadap Bitrate}
-PSNR adalah fungsi logaritmik dari MSE dan didefinisikan sebagai:
-\begin{equation}
-  \mathrm{PSNR}
-  =
-  10\log_{10}
-  \left(
-  \frac{255^2}{\mathrm{MSE}}
-  \right).
-\end{equation}
-Berikut adalah hasil pengamatan dari grafik PSNR terhadap bitrate:
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.6\textwidth]{img/PSNR vs Rate.png}
-  \caption{Grafik PSNR terhadap Bitrate untuk JPEG dan JPEG2000}
-  \label{fig:psnr_rate_comparison}
-\end{figure}
-\noindent
-Hasil pengamatan dari grafik (\ref{fig:psnr_rate_comparison}) dapat dirangkum sebagai berikut:
-\begin{itemize}
-  \item JPEG hanya mencapai kisaran 36--55 dB.
-        PSNR meningkat seiring bitrate, tetapi peningkatannya terbatas
-        oleh keterbatasan transformasi DCT.
-
-  \item JPEG2000 mampu mencapai 60 dB atau lebih.
-        Bahkan pada bitrate menengah ($\approx 1.2$ bpp),
-        PSNR JPEG2000 telah melampaui 50 dB dan mendekati 62 dB
-        pada bitrate tinggi.
-
-  \item Kurva JPEG2000 lebih linear dan stabil,
-        menandakan struktur representasi wavelet lebih efisien
-        dalam meminimalkan distorsi.
-\end{itemize}
-
-\noindent
-Dengan demikian, JPEG2000 memiliki keunggulan sekitar 5--10 dB dibandingkan JPEG
-pada bitrate yang sebanding.
 
 \subsection{Analisis SSIM terhadap Bitrate}
 
