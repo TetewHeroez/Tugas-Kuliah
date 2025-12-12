@@ -2,9 +2,15 @@
 
 \section{Latar Belakang}
 Aljabar \textit{max-plus} adalah suatu struktur aljabar yang terdiri dari himpunan bilangan real yang diperluas dengan elemen $-\infty$, dilengkapi dengan dua operasi biner yaitu penjumlahan $\oplus$ dan perkalian $\otimes$.
+Semiring ini merupakan cabang dari aljabar tropikal yang dikembangkan oleh Imre Simon pada tahun 1988.
+Dalam aljabar \textit{max-plus}, operasi penjumlahan $\oplus$ didefinisikan sebagai operasi maksimum, sedangkan operasi perkalian $\otimes$ didefinisikan sebagai operasi penjumlahan biasa \parencite{subiono2015minmaxplus}.
 
 \textit{Latin square} merupakan suatu susunan $n\times n$ yang diisi dengan $n$ simbol berbeda sedemikian rupa sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom.
-Pertama kali diperkenalkan oleh Leonhard Euler pada abad ke-18 dalam konteks teka-teki matematika tentang ``\textit{36 military officers}'' \parencite{george2017introductioncombinatorics}.
+Pertama kali diperkenalkan oleh Leonhard Euler pada abad ke-18 dalam konteks teka-teki matematika tentang ``\textit{36 military officers}''.
+Namun teka-teki ini baru terpecahkan pada tahun 1901 oleh Gaston Tarry untuk kasus $n=6$ \parencite{george2017introductioncombinatorics}.
+
+Akhir-akhir ini penelitian mengenai sifat komutatif matriks dalam aljabar \textit{max-plus} semakin berkembang, terutama dalam perkembangan protokol sistem keamanan kunci privat \parencite{alhussaini2024securityinitialtropical,muanalifah2020modifyingtropical}.
+
 
 \section{Rumusan Masalah}
 Rumusan masalah dalam penelitian ini adalah sebagai berikut:
@@ -15,10 +21,23 @@ Rumusan masalah dalam penelitian ini adalah sebagai berikut:
 \end{enumerate}
 
 \section{Batasan Masalah}
-
+\begin{enumerate}
+  \item Penelitian ini hanya membahas \textit{latin square} berukuran $n\times n$ dengan setiap baris dan kolomnya merupakan permutasi dari himpunan $\underline{n}=\{1,2,\ldots,n\}$.
+\end{enumerate}
 
 \section{Tujuan Penelitian}
+\begin{enumerate}
+  \item Menentukan syarat perlu bagi dua buah \textit{latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$.
+  \item Membangun pasangan \textit{latin square} komutatif dari $L_S(n)$.
+        % \item Menghitung banyaknya pasangan \textit{latin square} komutatif yang mungkin dibentuk dari $L_S(n)$.
+\end{enumerate}
 
 
 \section{Manfaat Penelitian}
+Manfaat yang diharapkan dari penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+  \item Secara teoritis, penelitian ini diharapkan dapat menambah khasanah ilmu pengetahuan khususnya dalam bidang aljabar \textit{max-plus} dan teori \textit{latin square}.
+  \item Secara praktis, hasil penelitian ini diharapkan dapat memberikan kontribusi dalam pengembangan protokol sistem keamanan kunci privat berbasis aljabar tropikal.
+  \item Sebagai bahan referensi untuk penelitian selanjutnya yang berkaitan dengan aljabar \textit{max-plus} dan \textit{latin square}.
+\end{enumerate}
 
