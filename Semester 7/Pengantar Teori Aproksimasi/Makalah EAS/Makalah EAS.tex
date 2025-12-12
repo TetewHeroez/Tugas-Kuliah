@@ -43,7 +43,7 @@
 }
 
 % DOCUMENT INFO
-\title{\textbf{Analisa Matematis Transformasi Wavelet CDF 5/3 dan CDF 9/7 pada Standar Kompresi Citra JPEG2000}}
+\title{\textbf{Aplikasi Transformasi Wavelet CDF 5/3 dan CDF 9/7 pada Standar Kompresi Citra JPEG2000}}
 \author{Teosofi Hidayah Agung\\5002221132}
 \date{\today}
 
@@ -397,7 +397,7 @@ DCT blok berukuran $8 \times 8$, pendekatan wavelet bekerja pada seluruh citra
 sehingga menghindari artefak blok dan sekaligus menghasilkan representasi
 multiresolusi. Pada JPEG~2000, digunakan dua jenis filter biortogonal, yaitu
 \textit{CDF 5/3} untuk kompresi lossless dan \textit{CDF 9/7} untuk kompresi
-lossy. Kedua pasangan filter ini direalisasikan melalui \textit{lifting scheme}.
+lossy. Kedua pasangan filter ini direalisasikan melalui \textit{lifting scheme} \cite{unser2003mathpropertieswavelet}.
 \begin{figure}[H]
   \includegraphics[width=0.5\textwidth]{img/CDF 5_3 (bior2.2).png}
   \includegraphics[width=0.5\textwidth]{img/CDF 9_7 (bior4.4).png}
@@ -517,7 +517,7 @@ sedangkan subband pada level lebih rendah (misalnya $LH_1$, $HL_1$, $HH_1$)
 menyimpan informasi detil berfrekuensi tinggi.
 Pendekatan multiresolusi ini memungkinkan algoritma JPEG~2000 melakukan
 \textit{progressive decoding}, \textit{region of interest coding}, dan
-\textit{scalable bitstream}.
+\textit{scalable bitstream} \cite{Attluri2006OptimizedRA}.
 
 \subsection{Pembentukan Subband dan Code-block Partitioning}
 
@@ -721,8 +721,7 @@ Berikut adalah hasil pengamatan dari grafik MSE terhadap bitrate:
 \noindent
 Dari grafik (\ref{fig:mse_rate_comparison}) diperoleh beberapa observasi penting:
 \begin{itemize}
-  \item Kurva JPEG menurun secara perlahan.
-        Pada bitrate rendah ($\approx 0.10$--$0.25$ bpp),
+  \item Kurva JPEG menurun secara perlahan. Pada bitrate rendah ($\approx 0.10$--$0.25$ bpp),
         MSE JPEG berada di rentang sekitar 12 hingga 0.25.
         Penurunan ini lambat karena pemrosesan blok DCT $8\times 8$
         menghasilkan \textit{blocking artifact} yang signifikan.
