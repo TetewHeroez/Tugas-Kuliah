@@ -61,7 +61,30 @@
     maxcitenames=2,
     hyperref=true,        
     backref=true,
+    giveninits=true, uniquename=init, 
+  natbib
     ]{biblatex}
+
+
+\newrobustcmd*{\nextcitefullname}{%
+  \AtNextCite{%
+    \DeclareNameAlias{labelname}{given-family}%
+    \togglefalse{abx@bool@giveninits}}}
+
+\newcommand\citeauthorfullname{%
+  \nextcitefullname\citeauthor}
+  
+\newcommand\Citeauthorfullname{%
+  \nextcitefullname
+  \Citeauthor}
+  
+\newcommand\textcitefullname{%
+  \nextcitefullname
+  \textcite}
+  
+\newcommand\Textcitefullname{%
+  \nextcitefullname
+  \textcite}
 
 \DefineBibliographyStrings{english}{
   andothers = {dkk.,},
@@ -87,6 +110,11 @@
     }{%
       \printtext[bibhyperref]{\printnames{labelname}}%
     }{}{}
+  
+\xpatchbibmacro{citeauthor}
+  {\printnames{labelname}}
+  {\printtext[bibhyperref]{\printnames{labelname}}}
+  {}{}
 
     \xpatchbibdriver{apa}{%
       \printnames{labelname}%
@@ -98,7 +126,6 @@
   {\usebibmacro{textcite}}
   {\bibhyperref{\usebibmacro{textcite}}}
   {}{}
-
 
 
 \RequirePackage[euler]{textgreek}

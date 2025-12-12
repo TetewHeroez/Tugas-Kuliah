@@ -3,53 +3,60 @@
 Pada bab ini dijelaskan langkah-langkah pelaksanaan penelitian tugas akhir beserta alur proses dan jadwal kegiatan.
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[node distance=0.7cm and 0.7cm,font=\scriptsize,scale=1,transform shape]
+  \begin{tikzpicture}[node distance=1cm and 1cm,font=\scriptsize,scale=1,transform shape]
+
     % Nodes
     \node[startstop] (start) {Mulai};
-    \node[process, right=of start] (diskusi) {Diskusi awal dengan Kepala SKPB ITS};
-    \node[process, right=of diskusi] (ruanglingkup) {Menentukan fokus dan ruang lingkup proyek};
-    \node[io, below=of ruanglingkup] (pembagian) {Pembagian tugas dengan rekan kerja praktik};
-    \node[process, below=of pembagian] (pembuatan) {Pembuatan website Kalkulus};
-    \node[io, left=of pembuatan] (bimbingan) {Konsultasi dengan pembimbing};
-    \node[io, below=of bimbingan] (studi) {Membaca dokumentasi dan \textit{trial error}};
-    \node[sumjunction, left=of bimbingan,yshift=-0.9cm] (sum) {};
-    \node[process, below=of sum,text width=1.5cm,xshift=0.5cm,yshift=-1cm] (upload) {\textit{Deploy} website};
-    \node[process, right=of upload] (laporan) {Penyusunan laporan kerja praktik};
-    \node[startstop, right=of laporan] (end) {Selesai};
+    \node[process, right=of start] (studi) {Studi literatur};
+    \node[process, right=of studi] (identifikasi) {Identifikasi ...};
+    \node[process, right=of identifikasi] (investigasi) {Investigasi ...};
+    \node[process, below=of investigasi] (kesimpulan) {Penarikan kesimpulan};
+    \node[process, left=of kesimpulan] (penulisan) {Penulisan tugas akhir};
+    \node[startstop, left=of penulisan] (end) {Selesai};
 
     % Arrows
-    \draw[arrow] (start) -- (diskusi);
-    \draw[arrow] (diskusi) -- (ruanglingkup);
-    \draw[arrow] (ruanglingkup) -- (pembagian);
-    \draw[arrow] (pembagian) -- (pembuatan);
-    \draw[arrow] (pembuatan) -- (bimbingan);
-    \draw[arrow] (pembuatan) |- (studi);
-    \draw[arrow] (bimbingan) -| (sum);
-    \draw[arrow] (studi) -| (sum);
-    \draw[arrow] (sum) -| ++(-1,0) |- (upload);
-    \draw[arrow] (upload) -- (laporan);
-    \draw[arrow] (laporan) -- (end);
+    \draw[arrow] (start) -- (studi);
+    \draw[arrow] (studi) -- (identifikasi);
+    \draw[arrow] (identifikasi) -- (investigasi);
+    \draw[arrow] (investigasi) -- (kesimpulan);
+    \draw[arrow] (kesimpulan) -- (penulisan);
+    \draw[arrow] (penulisan) -- (end);
+
   \end{tikzpicture}
   \caption{Alur Proses Penelitian Tugas Akhir}
   \label{fig:metodologi}
 \end{figure}
 
-\chapter*{JADWAL PENELITIAN}
-Berikut jadwal pelaksanaan tahap-tahap penelitian tugas akhir yang akan dilakukan selama 3 bulan sesuai dengan metode penelitian. \vspace{0.5cm}
-\begin{table}[htbp]
-  \centering
-  \caption{Jadwal Pelaksanaan Penelitian Tugas Akhir}
-  \renewcommand{\arraystretch}{1.5}
-  \begin{tabular}{|C{0.6cm}|L{6.5cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}	\hline
-                                      &                                                  & \multicolumn{12}{c|}{\textbf{BULAN}}                                                                                                                                                                                                                                       \\\cline{3-14}
-    \multicolumn{1}{|c|}{\textbf{NO}} & \multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}      & \multicolumn{4}{c|}{1}               & \multicolumn{4}{c|}{2} & \multicolumn{4}{c|}{3}                                                                                                                                                                                     \\\cline{3-14}
-                                      &                                                  & 1                                    & 2                      & 3                      & 4                 & 1                 & 2                 & 3                 & 4                 & 1                 & 2                 & 3                 & 4                 \\\cline{1-14}
-    1                                 & Studi literatur dan perumusan masalah            & \cellcolor{blue!}                    & \cellcolor{blue!}      &                        &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
-    2                                 & Perancangan skema normalisasi dan model operasi  &                                      & \cellcolor{blue!}      & \cellcolor{blue!}      &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
-    3                                 & Pengembangan algoritme konstruksi dan verifikasi &                                      &                        & \cellcolor{blue!}      & \cellcolor{blue!} &                   & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   \\\hline
-    4                                 & Eksperimen dan enumerasi orde kecil--menengah    &                                      &                        &                        & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   \\\hline
-    5                                 & Analisis hasil dan karakterisasi aljabar         &                                      &                        &                        &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   \\\hline
-    6                                 & Penyusunan kesimpulan dan saran                  &                                      &                        &                        &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   \\\hline
-    7                                 & Penulisan laporan proposal/TA                    &                                      &                        &                        &                   &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} \\\hline
-  \end{tabular}
-\end{table}
+\section{Studi Literatur}
+Tahap ini dilakukan dengan mempelajari berbagai literatur yang berkaitan dengan aljabar \textit{max-plus} dan \textit{latin square}, baik berupa buku, jurnal, artikel, maupun sumber-sumber terpercaya lainnya.
+Tujuannya adalah untuk memahami konsep dasar, teori-teori yang relevan, serta penelitian-
+
+\section{Identifikasi...}
+Pada tinjauan pustaka telah dijelaskan mengenai definisi dan teorema yang berkaitan dengan matriks aljabar max-plus. Selanjutnya,
+
+\section{Investigasi...}
+
+\section{Penarikan Kesimpulan}
+Bagian 3.2 dan 3.3 telah menjawab rumusan masalah yang telah diajukan pada bab 1, sehingga pada tahap ini dilakukan penarikan kesimpulan dari hasil investigasi yang telah dilakukan.
+
+\section{Penulisan Tugas Akhir}
+Tahap akhir dari penelitian ini adalah menyusun laporan tugas akhir berdasarkan hasil penelitian yang telah dilakukan pada tahap-tahap sebelumnya.
+% \chapter*{JADWAL PENELITIAN}
+% Berikut jadwal pelaksanaan tahap-tahap penelitian tugas akhir yang akan dilakukan selama 3 bulan sesuai dengan metode penelitian. \vspace{0.5cm}
+% \begin{table}[htbp]
+%   \centering
+%   \caption{Jadwal Pelaksanaan Penelitian Tugas Akhir}
+%   \renewcommand{\arraystretch}{1.5}
+%   \begin{tabular}{|C{0.6cm}|L{6.5cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}	\hline
+%                                       &                                                  & \multicolumn{12}{c|}{\textbf{BULAN}}                                                                                                                                                                                                                                       \\\cline{3-14}
+%     \multicolumn{1}{|c|}{\textbf{NO}} & \multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}      & \multicolumn{4}{c|}{1}               & \multicolumn{4}{c|}{2} & \multicolumn{4}{c|}{3}                                                                                                                                                                                     \\\cline{3-14}
+%                                       &                                                  & 1                                    & 2                      & 3                      & 4                 & 1                 & 2                 & 3                 & 4                 & 1                 & 2                 & 3                 & 4                 \\\cline{1-14}
+%     1                                 & Studi literatur dan perumusan masalah            & \cellcolor{blue!}                    & \cellcolor{blue!}      &                        &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
+%     2                                 & Perancangan skema normalisasi dan model operasi  &                                      & \cellcolor{blue!}      & \cellcolor{blue!}      &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
+%     3                                 & Pengembangan algoritme konstruksi dan verifikasi &                                      &                        & \cellcolor{blue!}      & \cellcolor{blue!} &                   & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   \\\hline
+%     4                                 & Eksperimen dan enumerasi orde kecil--menengah    &                                      &                        &                        & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   \\\hline
+%     5                                 & Analisis hasil dan karakterisasi aljabar         &                                      &                        &                        &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   \\\hline
+%     6                                 & Penyusunan kesimpulan dan saran                  &                                      &                        &                        &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   \\\hline
+%     7                                 & Penulisan laporan proposal/TA                    &                                      &                        &                        &                   &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} \\\hline
+%   \end{tabular}
+% \end{table}
