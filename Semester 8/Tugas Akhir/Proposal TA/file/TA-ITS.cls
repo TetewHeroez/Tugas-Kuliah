@@ -53,6 +53,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{caption}
 \RequirePackage{tikz}
+\RequirePackage{etoolbox}
 % \RequirePackage[nosectionbib]{apacite}
 \RequirePackage{lmodern}
 % \RequirePackage[authoryear]{natbib}
@@ -194,8 +195,8 @@
    \renewcommand\@fac{#1}
 }
 \newcommand\@pbbsatu{Nama Pembimbing Pertama}
-\newcommand\@pbbdua{Nama Pembimbing Ke-dua}
-\newcommand\@pbbtiga{}
+\newcommand\@pbbdua{Nama Pembimbing Kedua}
+\newcommand\@pbbtiga{Nama Pembimbing Ketiga}
 \DeclareRobustCommand\Pembimbing[3]{%
    \renewcommand{\@pbbsatu}{#1}%
    \renewcommand{\@pbbdua}{#2}%
@@ -517,14 +518,20 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
 \end{tabular}
         }
         {
+          \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth}>{\centering\arraybackslash}p{0.5\textwidth}}
+Menyetujui,&Menyetujui,\\
+Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
+    \underline{\@pbbsatu} & \underline{\@pbbdua} \\
+    NIP. \@NIPpbbsatu & NIP. \@NIPpbbdua
+\end{tabular}
         }\\
     \begin{center}
     \begin{tabular}{c}
     Mengetahui,                        \\
     Kepala Program Studi Sarjana       \\
     Departemen Matematika FSAD-ITS  \vspace{2.5cm}\\
-    \underline{\@pbbsatu}                   \\
-    NIP. \@NIPpbbsatu                     
+    \underline{\@kadep}                   \\
+    NIP. \@NIPkadep                     
     \end{tabular} \vspace{1cm}\\
     Surabaya, \\ \@bulan~\@thn\\
     \end{center}
@@ -614,7 +621,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
               {Dosen Pembimbing &:& \@pbbsatu\\}
               {Dosen Pembimbing &:& 1.~ \@pbbsatu\\&& 2.~ \@pbbdua\\}
           }
-          {\textbf{Dosen Pembimbing} &:& 1.~\@pbbsatu\\&& 2.~\@pbbsatu\\&& 3.~\@pbbsatu}
+          {Dosen Pembimbing &:& 1.~\@pbbsatu\\&& 2.~\@pbbdua\\&& 3.~\@pbbtiga}
     \end{tabular}\vspace{1cm}\\
   \addcontentsline{toc}{chapter}{ABSTRAK}
   \textbf{Abstrak}
@@ -638,7 +645,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
               {Supervisor &:& \@pbbsatu\\}
               {Advisor &:& 1.~ \@pbbsatu\\&& 2.~ \@pbbdua\\}
           }
-          {\textbf{Advisor} &:& 1.~\@pbbsatu\\&& 2.~\@pbbsatu\\&& 3.~\@pbbsatu}
+          {Advisor &:& 1.~\@pbbsatu\\&& 2.~\@pbbdua\\&& 3.~\@pbbtiga}
     \end{tabular}\vspace{1cm}\\
   \addcontentsline{toc}{chapter}{ABSTRACT}
   \textbf{Abstract}

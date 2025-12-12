@@ -15,7 +15,7 @@
 \section{Aljabar Max-Plus}
 Aljabar max-plus salah satu cabang dari aljabar tropikal yang menggunakan operasi maksimum dan penjumlahan sebagai operasi dasar.
 \begin{definisi}[\cite{subiono2015minmaxplus}]
-  Aljabar max-plus adalah himpunan $\mathbb{R}_{\max} = \mathbb{R} \cup \{-\infty\}$ yang dilengkapi dengan dua operasi biner yaitu:
+  Aljabar max-plus adalah himpunan $\mathbb{R}_{\max} = \mathbb{R} \cup \{\varepsilon\}$ yang dilengkapi dengan dua operasi biner yaitu:
   \begin{align*}
     a \oplus b  & = \max\{a, b\}, \quad \forall a, b \in \mathbb{R}_{\max} \\
     a \otimes b & = a + b, \quad \forall a, b \in \mathbb{R}_{\max}
@@ -64,6 +64,17 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
                                       9 & 7
                                     \end{pmatrix}
   \end{align*}
+  Dari hasil di atas, dapat didefinisikan matriks identitas terhadap operasi $\otimes$ yaitu
+  \[
+    I_n =
+    \begin{pmatrix}
+      0           & \varepsilon & \cdots & \varepsilon \\
+      \varepsilon & 0           & \cdots & \varepsilon \\
+      \vdots      & \vdots      & \ddots & \vdots      \\
+      \varepsilon & \varepsilon & \cdots & 0
+    \end{pmatrix}
+  \]
+  dengan $n$ adalah ordo matriks identitas tersebut. Oleh karena itu, setiap matriks $A\in \mathbb{R}_{\max}^{n \times n}$ akan memenuhi $A \otimes I_n = I_n \otimes A = A$.
 \end{contoh}
 
 \subsection{Polinomial dalam Aljabar Max-Plus}
@@ -233,7 +244,7 @@ Setiap permutasi $\sigma \in S_n$ dapat kita representasikan dalam bentuk matrik
     0, & \text{lainnya}.
   \end{cases} \quad \forall i, j = 1, 2, \ldots, n.
 \]
-Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan dengan cara yang serupa, di mana elemen-elemen matriks hanya terdiri dari $-\infty$ dan $0$ yang merepresentasikan identitas dan elemen nol dalam aljabar max-plus.
+Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan dengan cara yang serupa, di mana elemen-elemen matriks hanya terdiri dari $\varepsilon$ dan $0$ yang merepresentasikan identitas dan elemen nol dalam aljabar max-plus.
 \begin{definisi}[\cite{Farlow2009}]
   Misalkan $\sigma : \{1,2,\dots,n\} \to \{1,2,\dots,n\}$
   adalah suatu permutasi, maka matriks permutasi max-plus
@@ -241,8 +252,8 @@ Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan denga
   \[
     p_{ij} =
     \begin{cases}
-      0,       & \text{jika } i = \sigma(j), \\[4pt]
-      -\infty, & \text{lainnya}.
+      0,           & \text{jika } i = \sigma(j), \\[4pt]
+      \varepsilon, & \text{lainnya}.
     \end{cases}
   \]
 \end{definisi}
@@ -252,9 +263,9 @@ Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan denga
   \[
     P_{\sigma} =
     \begin{pmatrix}
-      -\infty & -\infty & 0       \\
-      0       & -\infty & -\infty \\
-      -\infty & 0       & -\infty
+      \varepsilon & \varepsilon & 0           \\
+      0           & \varepsilon & \varepsilon \\
+      \varepsilon & 0           & \varepsilon
     \end{pmatrix}.
   \]
 \end{contoh}
@@ -270,6 +281,104 @@ Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan denga
   $\lambda_1, \lambda_2, \ldots, \lambda_n$
 \end{teorema}
 
+\section{Matriks Sirkulan}
+
+Matriks sirkulan adalah matriks persegi di mana setiap barisnya merupakan pergeseran siklik dari baris sebelumnya. Sebuah matriks sirkulan berukuran $n \times n$ dapat dituliskan dalam bentuk umum
+\begin{align}
+  C =
+  \begin{pmatrix}
+    c_0     & c_{n-1} & c_{n-2} & \cdots & c_1    \\
+    c_1     & c_0     & c_{n-1} & \cdots & c_2    \\
+    c_2     & c_1     & c_0     & \cdots & c_3    \\
+    \vdots  & \vdots  & \vdots  & \ddots & \vdots \\
+    c_{n-1} & c_{n-2} & c_{n-3} & \cdots & c_0
+  \end{pmatrix}.
+\end{align}
+Secara umum, setiap matriks sirkulan dapat direpresentasikan sebagai kombinasi linear dari matriks permutasi. Hal ini membuat matriks sirkulan dapat
+dituliskan dalam bentuk polinomial dari matriks permutasi yaitu
+\begin{align}
+  C = c_0 I_n \oplus c_1 P_{\sigma} \oplus c_2 P_{\sigma}^{2} \oplus \cdots \oplus c_{n-1} P_{\sigma}^{n-1},
+\end{align}
+dengan $\sigma = (1\ 2\ \ldots\ n)$ adalah permutasi siklik pada $n$ elemen. Jika dituliskan, maka matriks $P_{\sigma}$ adalah
+\[
+  P_{\sigma} =
+  \begin{pmatrix}
+    0           & \varepsilon & \varepsilon & \cdots & \varepsilon \\
+    \varepsilon & 0           & \varepsilon & \cdots & \varepsilon \\
+    \varepsilon & \varepsilon & 0           & \cdots & \varepsilon \\
+    \vdots      & \vdots      & \vdots      & \ddots & \vdots      \\
+    \varepsilon & \varepsilon & \varepsilon & \cdots & 0
+  \end{pmatrix}.
+\]
+Karena bentuk matriks sirkulan-$t$ yang dapat direpresentasikan sebagai polinomial, maka muncul sebuah teorema penting mengenai kekomutatifan antara dua matriks sirkulan-$t$.
+\begin{teorema}[\cite{huang2024newsemiring}]
+  Misalkan $A$ dan $B$ adalah dua matriks sirkulan, maka $A$ dan $B$ komutatif terhadap operasi $\otimes$, yaitu
+  \[
+    A \otimes B = B \otimes A.
+  \]
+\end{teorema}
+
+Selain matriks sirkulan biasa, terdapat juga variasi matriks sirkulan yang dikenal sebagai matriks sirkulan-$t$.
+\begin{definisi}[\cite{buchinskiy2024analysisfour}]
+  Misalkan $t$ adalah bilangan bulat, didefinisikan \textit{matriks sirkulan-$t$ bawah} berorde $n$ sebagai
+  \begin{align}
+    C_{(t)} =
+    \begin{pmatrix}
+      c_0               & c_{n-1}           & c_{n-2}           & \cdots & c_1    \\
+      c_1 \otimes t     & c_0               & c_{n-1}           & \cdots & c_2    \\
+      c_2 \otimes t     & c_1 \otimes t     & c_0               & \cdots & c_3    \\
+      \vdots            & \vdots            & \vdots            & \ddots & \vdots \\
+      c_{n-1} \otimes t & c_{n-2} \otimes t & c_{n-3} \otimes t & \cdots & c_0
+    \end{pmatrix}
+  \end{align}
+  dan \textit{matriks sirkulan-$t$ atas} berorde $n$ sebagai
+  \begin{align}
+    C^{(t)} =
+    \begin{pmatrix}
+      c_0     & c_{n-1} \otimes t & c_{n-2} \otimes t & \cdots & c_1 \otimes t \\
+      c_1     & c_0               & c_{n-1} \otimes t & \cdots & c_2           \\
+      c_2     & c_1               & c_0               & \cdots & c_3           \\
+      \vdots  & \vdots            & \vdots            & \ddots & \vdots        \\
+      c_{n-1} & c_{n-2}           & c_{n-3}           & \cdots & c_0
+    \end{pmatrix}.
+  \end{align}
+\end{definisi}
+
+Selanjutnya, diperoleh juga sebuah proposisi penting mengenai representasi matriks sirkulan-$t$ dalam bentuk polinomial dari matriks permutasi.
+
+\begin{proposisi}[\cite{buchinskiy2024analysisfour}]
+  Setiap matriks sirkulan-$t$ bawah $C_{(t)}$ dan matriks sirkulan-$t$ atas $C^{(t)}$ dapat direpresentasikan sebagai polinomial dari matriks $P$, yaitu
+  \begin{align*}
+    C^{(t)} & = c_0 I_n \oplus c_1 (P^{(t)}) \oplus c_2 (P^{(t)})^{2} \oplus \cdots \oplus c_{n-1} (P^{(t)})^{n-1}, \\
+    C_{(t)} & = c_0 I_n \oplus c_1 (P_{(t)}) \oplus c_2 (P_{(t)})^{2} \oplus \cdots \oplus c_{n-1} (P_{(t)})^{n-1}.
+  \end{align*}
+  dengan
+  \begin{align*}
+    P_{(t)} & =
+    \begin{pmatrix}
+      \varepsilon & 0           & \varepsilon & \cdots & \varepsilon & \varepsilon \\
+      \varepsilon & \varepsilon & 0           & \cdots & \varepsilon & \varepsilon \\
+      \varepsilon & \varepsilon & \varepsilon & \cdots & \varepsilon & \varepsilon \\
+      \vdots      & \vdots      & \vdots      & \ddots & \vdots      & \vdots      \\
+      t           & \varepsilon & \varepsilon & \cdots & \varepsilon & \varepsilon \\
+    \end{pmatrix}, \quad
+    P^{(t)}  =
+    \begin{pmatrix}
+      \varepsilon & \varepsilon & \varepsilon & \cdots & \varepsilon & t           \\
+      0           & \varepsilon & \varepsilon & \cdots & \varepsilon & \varepsilon \\
+      \varepsilon & 0           & \varepsilon & \cdots & \varepsilon & \varepsilon \\
+      \vdots      & \vdots      & \vdots      & \ddots & \vdots      & \vdots      \\
+      \varepsilon & \varepsilon & \varepsilon & \cdots & 0           & \varepsilon \\
+    \end{pmatrix}.
+  \end{align*}
+\end{proposisi}
+Sehingga, dari proposisi di atas diperoleh juga teorema mengenai kekomutatifan antara dua matriks sirkulan-$t$.
+\begin{teorema}[\cite{buchinskiy2024analysisfour}]
+  Misalkan $A$ dan $B$ adalah dua matriks sirkulan-$t$ (bawah atau atas keduanya), maka $A$ dan $B$ komutatif terhadap operasi $\otimes$, yaitu
+  \[
+    A \otimes B = B \otimes A.
+  \]
+\end{teorema}
 
 \section{\textit{Latin Square}}
 \textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom. Setiap \textit{Latin square} dapat direpresentasikan sebagai matriks berukuran $n \times n$ dengan kolom-kolom yang dibangun dari permutasi pada himpunan simbolnya \parencite{mufid2014eigenvalues}.

@@ -1,16 +1,27 @@
 \chapter{PENDAHULUAN}
 
 \section{Latar Belakang}
-Aljabar \textit{max-plus} adalah suatu struktur aljabar yang terdiri dari himpunan bilangan real yang diperluas dengan elemen $-\infty$, dilengkapi dengan dua operasi biner yaitu penjumlahan $\oplus$ dan perkalian $\otimes$.
+Aljabar max-plus adalah suatu struktur aljabar yang terdiri dari himpunan bilangan real yang diperluas dengan elemen $-\infty$, dilengkapi dengan dua operasi biner yaitu penjumlahan $\oplus$ dan perkalian $\otimes$.
 Semiring ini merupakan cabang dari aljabar tropikal yang dikembangkan oleh Imre Simon pada tahun 1988.
-Dalam aljabar \textit{max-plus}, operasi penjumlahan $\oplus$ didefinisikan sebagai operasi maksimum, sedangkan operasi perkalian $\otimes$ didefinisikan sebagai operasi penjumlahan biasa \parencite{subiono2015minmaxplus}.
+Dalam aljabar max-plus, operasi penjumlahan $\oplus$ didefinisikan sebagai operasi maksimum, sedangkan operasi perkalian $\otimes$ didefinisikan sebagai operasi penjumlahan biasa \parencite{subiono2015minmaxplus}.
 
 \textit{Latin square} merupakan suatu susunan $n\times n$ yang diisi dengan $n$ simbol berbeda sedemikian rupa sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom.
 Pertama kali diperkenalkan oleh Leonhard Euler pada abad ke-18 dalam konteks teka-teki matematika tentang ``\textit{36 military officers}''.
 Namun teka-teki ini baru terpecahkan pada tahun 1901 oleh Gaston Tarry untuk kasus $n=6$ \parencite{george2017introductioncombinatorics}.
 
-Akhir-akhir ini penelitian mengenai sifat komutatif matriks dalam aljabar \textit{max-plus} semakin berkembang, terutama dalam perkembangan protokol sistem keamanan kunci privat \parencite{alhussaini2024securityinitialtropical,muanalifah2020modifyingtropical}.
+Kriptografi merupakan salah satu bidang yang sangat penting dalam keamanan informasi.
+Skema kriptografi biasanya bergantung pada kesulitan suatu masalah matematika. Jika suatu masalah termasuk kategori NP-complete atau NP-hard (artinya sangat sulit diselesaikan oleh komputer), maka sistem kriptografi yang menggunakan masalah tersebut dianggap aman terhadap serangan komputer kuantum
+\parencite{huang2024newsemiring}.
+Hubungan aljabar max-plus dengan kriptografi terletak pada sifat idempoten dan non-liniernya yang dapat meningkatkan keamanan sistem kriptografi
+terutama dalam pembuatan fungsi hash dan algoritma enkripsi \parencite{durcheva2025cryptographyidempotent}. Hal tersebut melahirkan banyaknya jenis protokol kriptografi berbasis aljabar tropikal yang diusulkan oleh para peneliti, sehingga menimbulkan kebutuhan untuk mempelajari sifat-sifat matriks dalam aljabar \textit{max-plus}, salah satunya adalah sifat komutatif matriks.
 
+Akhir-akhir ini penelitian mengenai sifat komutatif matriks dalam aljabar max-plus semakin berkembang, terutama dalam perkembangan protokol sistem keamanan kunci privat.
+Pertukaran kunci Diffie-Hellman yang dikembangkan pada tahun 1976 oleh Whitfield Diffie dan Martin Hellman merupakan salah satu metode populer dalam pertukaran kunci privat.
+Beberapap penelitian seperti protokol kunci privat berbasis aljabar tropikal telah diusulkan oleh beberapa peneliti, salah satu contoh protokol tersebut adalah protokol Stickel \parencite{alhussaini2024securityinitialtropical,muanalifah2020modifyingtropical,alhussaini2024tropicaltwosided}.
+Selain itu, pada penelitian \textcite{buchinskiy2024analysisfour} juga dibahas mengenai penggunaan 4 protokol berbeda berbasis matriks sirkulant tropikal. Ide dasar dari protokol-protokol tersebut adalah penggunaan matriks komutatif untuk menghasilkan kunci privat bersama antara dua pihak yang berkomunikasi.
+
+Oleh karena itu, dalam penelitian ini penulis berharap dapat mengkaji sifat komutatif matriks dalam aljabar karena memiliki potensi aplikasi yang luas dalam berbagai bidang, terutama dalam pengembangan kriptografi menggunakan aljabar tropikal.
+Dengan menentukan syarat perlu bagi dua buah \textit{latin square} agar komutatif akan memberikan gambaran yang lebih jelas mengenai pengkonstruksian duah buah \textit{latin square} komutatif yang dapat digunakan dalam protokol kriptografi berbasis aljabar tropikal.
 
 \section{Rumusan Masalah}
 Rumusan masalah dalam penelitian ini adalah sebagai berikut:
