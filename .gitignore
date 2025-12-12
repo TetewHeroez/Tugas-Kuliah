@@ -29,9 +29,4 @@ _minted-*/
 *.bbl-SAVE-ERROR
 *.mkv
 
-# UNIGNORE spesifik path
-!/Semester 8/Tugas Akhir/Proposal TA.pdf
-!/Semester 8/Tugas Akhir/Referensi/
-!/Semester 8/Tugas Akhir/Eksperimen/
-
 
