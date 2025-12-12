@@ -75,6 +75,10 @@ Polinomial adalah suatu ekspresi matematika yang terdiri dari variabel dan koefi
   \]
   dengan $a_k \in \mathbb{R}_{\max}$ untuk setiap $k = 0, 1, \ldots, n$.
 \end{definisi}
+Dengan cara serupa, jika $A$ adalah matriks berukuran $n \times n$ dengan elemen-elemen dari $\mathbb{R}_{\max}$, maka polinomial matriks max-plus didefinisikan sebagai
+\[
+  p(A) = \bigoplus_{k=0}^{n} a_{k} \otimes A^{\otimes k} = \max_{0 \leq k \leq n} \{a_{k} + A^{\otimes k}\}.
+\]
 \subsection{Matriks Linde-de la Puente}
 Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, diperoleh bahwa kekomutatifan antara dua matriks tropikal sangat bergantung pada diagonal utama matriks tersebut. Dalam perkembangan selanjutnya, \textcite{alhussaini2024securityinitialtropical} memperkenalkan juga sebuah protokol kriptografi yang terinspirasi dari pertukaran kunci Diffie-Hellman, yang basisnya adalah grup siklik $(\Z_p^*\ ,\ \times)$ untuk suatu bilangan prima $p$.
 \begin{definisi}[\cite{alhussaini2024implementationstickel}]
@@ -270,6 +274,8 @@ Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan denga
   $\lambda_1, \lambda_2, \ldots, \lambda_n$
 \end{teorema}
 
+\section{Matriks Sirkulan}
+Matriks sirkulan adalah matriks persegi di mana setiap barisnya merupakan pergeseran siklik dari baris sebelumnya.
 
 \section{\textit{Latin Square}}
 \textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom. Setiap \textit{Latin square} dapat direpresentasikan sebagai matriks berukuran $n \times n$ dengan kolom-kolom yang dibangun dari permutasi pada himpunan simbolnya \parencite{mufid2014eigenvalues}.

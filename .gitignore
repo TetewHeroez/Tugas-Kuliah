@@ -29,5 +29,9 @@ _minted-*/
 *.bbl-SAVE-ERROR
 *.mkv
 
-# Ignore data files
-Modul Alpro
+# UNIGNORE spesifik path
+!/Semester 8/Tugas Akhir/Proposal TA.pdf
+!/Semester 8/Tugas Akhir/Referensi/
+!/Semester 8/Tugas Akhir/Eksperimen/
+
+
