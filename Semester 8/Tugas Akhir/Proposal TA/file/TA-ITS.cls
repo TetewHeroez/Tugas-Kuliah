@@ -715,16 +715,22 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
     \addcontentsline{toc}{chapter}{DAFTAR ISI}
     \tableofcontents
 }
-\newcommand{\DaftarGambar}{%----------------------
-    \cleardoublepage
-    \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
-    \listoffigures
+\newcommand{\DaftarGambar}{%
+    \ifnum\value{figure}>0
+        \cleardoublepage
+        \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}%
+        \listoffigures
+    \fi
 }
-\newcommand{\DaftarTabel}{%----------------------
-    \cleardoublepage
-    \addcontentsline{toc}{chapter}{DAFTAR TABEL}
-    \listoftables
+
+\newcommand{\DaftarTabel}{%
+    \ifnum\value{table}>0
+        \cleardoublepage
+        \addcontentsline{toc}{chapter}{DAFTAR TABEL}%
+        \listoftables
+    \fi
 }
+
 
 \newcommand\Lampiran[1]{%
     \refstepcounter{section}
