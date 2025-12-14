@@ -156,7 +156,7 @@
                   \item Jika $x > 0$, maka pilih $N=\lceil \frac{1}{x} \rceil$. Maka untuk setiap $n \ge N$, $x > \frac{1}{n}$. Oleh karena itu, untuk semua $n \ge N$, $f_n(x) = 1 = f(x)$.
                 \end{itemize}
                 Dengan demikian, terbukati bahwa untuk $n\to \infty$, $f_n(x) \to f(x)$ untuk setiap $x \in [-1,1]$.
-          \item Ruang $(X, \| \cdot \|_{\infty})$ bukan merupakan ruang Banach karena terdapat barisan $(f_n)$ di $X$ yang konvergen ke fungsi $f$ yang tidak kontinu pada $x=0$, sehingga $f \notin X$. Oleh karena itu, $X$ tidak lengkap terhadap norma $\| \cdot \|_{\infty}$.
+          \item Ruang $(X, \| \cdot \|_{\infty})$ merupakan ruang Banach. Hal ini didasarkan pada teorema yang menyatakan bahwa ruang fungsi $C[a,b]$ dengan norma supremum adalah ruang Banach. Karena $[-1,1]$ adalah interval tertutup dan terbatas, maka $C[-1,1]$ lengkap terhadap norma supremum.
         \end{enumerate}
 
   \item Pertama-tama definsikan deret parsial
@@ -182,21 +182,41 @@
           \left\langle f, \sum_{k=1}^{\infty} \alpha_k f_k \right\rangle = \lim_{N \to \infty} \left\langle f, S_N \right\rangle = \lim_{N \to \infty} \sum_{k=1}^{N} \alpha_k \langle f, f_k \rangle = \sum_{k=1}^{\infty} \alpha_k \langle f, f_k \rangle .
         \]
 
-  \item Untuk setiap $v \in \mathcal{H}$, kita perlu menunjukkan bahwa $Pv$ adalah proyeksi ortogonal dari $v$ pada $G$. Pertama-tama, perhatikan bahwa $Pv \in G$ karena merupakan kombinasi linear dari elemen basis ortonormal $\{ e_k \}_{k=1}^{\infty}$.
+  \item Karena $G$ adalah ruang bagian tertutup dari ruang Hilbert $\mathcal{H}$, maka setiap elemen $v \in \mathcal{H}$ dapat direpresentasikan sebagai
+        \[
+          v = Pv + (v - Pv) ,
+        \]
+        di mana $Pv \in G$ dan $v - Pv \in G^{\perp}$ (ortogonal komplemen dari $G$). Selanjutnya, untuk setiap $u \in G$, kita periksa apakah $P$ memenuhi sifat proyeksi ortogonal, yaitu
+        \[
+          \langle v - Pv, u \rangle = 0 .
+        \]
+        Karena $\{ e_k \}_{k=1}^{\infty}$ adalah basis ortonormal untuk $G$, maka setiap $u \in G$ dapat dituliskan sebagai
+        \[
+          u = \sum_{j=1}^{\infty} \langle u, e_j \rangle e_j .
+        \]
+        Maka,
+        \[
+          \langle v - Pv, u \rangle = \left\langle v - \sum_{k=1}^{\infty} \langle v, e_k \rangle e_k, \sum_{j=1}^{\infty} \langle u, e_j \rangle e_j \right\rangle .
+        \]
+        Dengan menggunakan linearitas dan ortonormalitas basis, diperoleh
+        \[
+          \langle v - Pv, u \rangle = \sum_{j=1}^{\infty} \langle u, e_j \rangle \left( \langle v, e_j \rangle - \langle v, e_j \rangle \right) = 0 .
+        \]
+        Dengan demikian, $P$ adalah proyeksi ortogonal dari $\mathcal{H}$ pada $G$.
 
-        Selanjutnya, kita perlu menunjukkan bahwa $v - Pv$ ortogonal terhadap setiap elemen di $G$. Untuk setiap $g \in G$, dapat dituliskan sebagai
+  \item Misalkan $f \in L^2(\mathbb{R})$ mempunyai tumpuan kompak, yaitu terdapat himpunan kompak $K \subset \mathbb{R}$ sehingga $f(x) = 0$ untuk semua $x \notin K$. Karena $K$ kompak di $\mathbb{R}$, maka terdapat bilangan real $a,b$ dengan $a < b$ sehingga $K \subset [a,b]$. Oleh karena itu, kita dapat menuliskan
         \[
-          g = \sum_{j=1}^{\infty} \beta_j e_j ,
+          \int_{\mathbb{R}} |f(x)| \, dx = \int_{K} |f(x)| \, dx = \int_{a}^{b} |f(x)| \, dx .
         \]
-        untuk beberapa koefisien $\beta_j \in \R$. Maka,
+        Karena $f \in L^2(\mathbb{R})$, maka
         \[
-          \langle v - Pv, g \rangle = \left\langle v - \sum_{k=1}^{\infty} \langle v, e_k \rangle e_k, \sum_{j=1}^{\infty} \beta_j e_j \right\rangle .
+          \int_{a}^{b} |f(x)|^2 \, dx=\int_{\mathbb{R}} |f(x)|^2 \, dx < \infty .
         \]
-        Menggunakan linearitas dan ortonormalitas basis, diperoleh
+        Selanjutnya, dengan menggunakan Ketaksamaan Cauchy-Schwarz untuk integral, kita peroleh
         \[
-          \langle v - Pv, g \rangle = \langle v, g \rangle - \sum_{k=1}^{\infty} \langle v, e_k \rangle \beta_k = 0 .
+          \int_{a}^{b} |f(x)| \, dx \le \left(\int_{a}^{b} 1^2 \, dx \right)^{1/2} \left(\int_{a}^{b} |f(x)|^2 \, dx \right)^{1/2} = \sqrt{b - a} \left(\int_{a}^{b} |f(x)|^2 \, dx \right)^{1/2} < \infty .
         \]
-        Dengan demikian, $v - Pv$ ortogonal terhadap setiap elemen di $G$, sehingga $Pv$ adalah proyeksi ortogonal dari $\mathcal{H}$ pada $G$.
+        Dengan demikian, $f \in L^1(\mathbb{R})$.
 \end{enumerate}
 
 \end{document}
