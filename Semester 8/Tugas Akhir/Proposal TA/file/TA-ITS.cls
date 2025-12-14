@@ -731,7 +731,6 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
     \fi
 }
 
-
 \newcommand\Lampiran[1]{%
     \refstepcounter{section}
     \addcontentsline{toc}{section}{\thesection~~ #1}
