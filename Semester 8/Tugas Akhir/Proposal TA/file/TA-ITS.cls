@@ -602,7 +602,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
 \addcontentsline{toc}{chapter}{PERNYATAAN ORISINALITAS}
 }
 
-\newcommand\LembarAbstrak{
+\newcommand\LembarAbstrak[1]{
 \cleardoublepage
 \setcounter{page}{2}
     \pagestyle{fancy}
@@ -626,7 +626,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
   \addcontentsline{toc}{chapter}{ABSTRAK}
   \textbf{Abstrak}
   
-  \input{Inti/abstrakind}
+  \input{#1}
   \setstretch{1}
   \par}{\normalfont\normalsize
   }

@@ -5,10 +5,10 @@
   \begin{tabular}{|c|m{4cm}|c|m{8cm}|}
     \hline
     \textbf{No} & \textbf{Peneliti}                                          & \textbf{Tahun}                                   & \textbf{Hasil Penelitian}                                                                                             \\ \hline
-    1           & \citeauthorfullname{mufid2014eigenvalues}                  & \citeyear{mufid2014eigenvalues}                  & Menyelesaikan permasalahan nilai eigen dan vektor eigen dari latin square pada aljabar max-plus.                      \\ \hline
+    1           & \citeauthorfullname{mufid2014eigenvalues}                  & \citeyear{mufid2014eigenvalues}                  & Menyelesaikan permasalahan nilai eigen dan vektor eigen dari Latin square pada aljabar max-plus.                      \\ \hline
     2           & \citeauthorfullname{linde2014matricescommutinggivennormal} & \citeyear{linde2014matricescommutinggivennormal} & Menyatakan syarat perlu dan cukup bagi dua matriks tropikal agar komutatif berdasarkan nilai diagonal utama.          \\ \hline
     3           & \citeauthorfullname{trivialeigenvectorsym14061101}         & \citeyear{trivialeigenvectorsym14061101}         & Mengkaji sifat-sifat vektor eigen trivial pada aljabar max-plus.                                                      \\ \hline
-    4           & \citeauthorfullname{zufar2023konstruksigrup}               & \citeyear{zufar2023konstruksigrup}               & Mengkonstruksi grup latin square pada aljabar max-plus dengan operasi perkalian matriks tropikal.                     \\ \hline
+    4           & \citeauthorfullname{zufar2023konstruksigrup}               & \citeyear{zufar2023konstruksigrup}               & Mengkonstruksi grup Latin square pada aljabar max-plus dengan operasi perkalian matriks tropikal.                     \\ \hline
     5           & \citeauthorfullname{alhussaini2024securityinitialtropical} & \citeyear{alhussaini2024securityinitialtropical} & Memperkenalkan protokol kriptografi berbasis aljabar tropikal yang terinspirasi dari pertukaran kunci Diffie-Hellman. \\ \hline
   \end{tabular}
 \end{table}
@@ -380,9 +380,41 @@ Sehingga, dari proposisi di atas diperoleh juga teorema mengenai kekomutatifan a
   \]
 \end{teorema}
 
+\section{\textit{Derangement}}
+Titik tetap dari fungsi $f: X\to X$ adalah sebuah $x\in X$ yang memenuhi $f(x)=x$. Dalam konteks sebuah permutasi
+$\sigma\in S_n$, dapat dikatakan permutasi tersebut mumpunyai titik tetap jika untuk sebuah indeks $i$ yang dipetakan
+ke dirinya sendiri, dinotasikan sebagai $\sigma(i)=i$. Titik tetap dalam sebuah permutasi dapat dilihat dari panjang
+sikel-sikelnya yang saling asing. Jika terdapat sebuah sikel yang panjangnya tepat satu, maka elemen pada sikel itu
+merupakan titik tetap dari permutasi tersebut.
+\begin{contoh}
+  Dalam himpunan $S_3$ permutasi $(1), (1\ 2)(3), (1)(2\ 3), (1\ 3)(2)$ mempunyai setidaknya satu titik tetap (terdapat sikel yang panjangnya satu elemen), sedangkan
+  permutasi $(1\ 2\ 3), (1\ 3\ 2)$ tidak mempunyai titik tetap.
+\end{contoh}
+\textit{Derangement} atau bisa disebut ``Permutasi tanpa titik tetap'' merupakan cara mengurutkan sebuah objek sedemikian
+sehingga setiap objek tidak berada pada posisi aslinya. Dinotasikan $D_n$ untuk menyatakan banyaknya \textit{derangement}
+dari $n$ buah objek berbeda \parencite{george2017introductioncombinatorics}.
+\begin{figure}[H]
+  \centering
+  \permrow{1}{2}{3}{4}\quad\permrow{2}{1}{3}{4}\quad\permrow{3}{1}{2}{4}\quad\permrow{4}{1}{2}{3}\\
+  \permrow{1}{2}{4}{3}\quad\permrow{2}{1}{4}{3}\quad\permrow{3}{1}{4}{2}\quad\permrow{4}{1}{3}{2}\\
+  \permrow{1}{3}{2}{4}\quad\permrow{2}{3}{1}{4}\quad\permrow{3}{2}{1}{4}\quad\permrow{4}{2}{1}{3}\\
+  \permrow{1}{3}{4}{2}\quad\permrow{2}{3}{4}{1}\quad\permrow{3}{2}{4}{1}\quad\permrow{4}{2}{3}{1}\\
+  \permrow{1}{4}{2}{3}\quad\permrow{2}{4}{1}{3}\quad\permrow{3}{4}{1}{2}\quad\permrow{4}{3}{1}{2}\\
+  \permrow{1}{2}{4}{3}\quad\permrow{2}{4}{3}{1}\quad\permrow{3}{4}{2}{1}\quad\permrow{4}{3}{2}{1}\\
+  \caption{Total ada 9 \emph{derangement} dari himpunan $S_4$}
+  \label{fig:derangement_s4}
+\end{figure}
+Karakteristik pengurutan yang cukup unik ini dapat memunculkan adanya lema dan teorema
+yang cukup berguna untuk kedepannya
+\begin{lema}[\cite{Burness2025derangements}]
+  Misalkan himpunan $S_n$ dengan $n\geq 4$, maka untuk setiap $\sigma\in S_n$ terdapat $n$-sikel $\tau$ sedemikian sehingga $\sigma\tau$ tidak memiliki titik tetap pada $\{1,\dots,n\}$.
+\end{lema}
+\begin{teorema}
+
+\end{teorema}
 \section{\textit{Latin Square}}
 \textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom. Setiap \textit{Latin square} dapat direpresentasikan sebagai matriks berukuran $n \times n$ dengan kolom-kolom yang dibangun dari permutasi pada himpunan simbolnya \parencite{mufid2014eigenvalues}.
-Pada penelitian yang dilakukan oleh \textcite{trivialeigenvectorsym14061101}, didefinisikan dua buah \textit{latin square} yang dibangun dari himpunan $\underline{n}=\{1,2,\ldots,n\}$ dan $\underline{n_\varepsilon}=\{1,2,\ldots,n-1,\varepsilon\}$.
+Pada penelitian yang dilakukan oleh \textcite{trivialeigenvectorsym14061101}, didefinisikan dua buah \textit{Latin square} yang dibangun dari himpunan $\underline{n}=\{1,2,\ldots,n\}$ dan $\underline{n_\varepsilon}=\{1,2,\ldots,n-1,\varepsilon\}$.
 Selain itu, dinotasikan $L = [l_{ij}]$ adalah Latin square ordo $n$. Untuk setiap baris $i$, kita dapat mendefinisikan sebuah simbol permutasi $\tau_i$ sehingga $\tau_i(j)=k$ bila $l_{ij}=p_k$. Dengan cara ini, setiap baris Latin square menghasilkan sebuah permutasi lengkap yang dapat ditulis dalam notasi siklik.
 
 \begin{contoh}

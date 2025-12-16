@@ -3,7 +3,7 @@
 \theoremstyle{definition}
 \newtheorem{definisi}{Definisi}[section]
 \newtheorem{teorema}{Teorema}[section]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{lema}{Lemma}[section]
 \newtheorem{akibat}{Akibat}[section]
 \newtheorem{contoh}{Contoh}[section]
 \newtheorem{proposisi}{Proposisi}[section]
@@ -116,6 +116,57 @@ draw=black,fill=decisionColor]
         (path picture bounding box.45) -- (path picture bounding box.225);
     }
 ]
+
+\definecolor{cOne}{RGB}{255,255,255}   % 1 putih
+\definecolor{cTwo}{RGB}{255,215,0}     % 2 kuning
+\definecolor{cThree}{RGB}{255,160,160} % 3 merah muda
+\definecolor{cFour}{RGB}{120,200,120}  % 4 hijau
+
+\newcommand{\numcolor}[1]{%
+  \ifnum#1=1 cOne\fi
+  \ifnum#1=2 cTwo\fi
+  \ifnum#1=3 cThree\fi
+  \ifnum#1=4 cFour\fi
+}
+
+
+\newcommand{\permcell}[3]{%
+  % #1 = x-shift
+  % #2 = nilai sigma(i)
+  % #3 = indeks i
+
+  % kotak
+  \draw[thick, fill=\numcolor{#3}]
+    (#1,0) rectangle ++(1,1);
+
+  % lingkaran
+  \draw[thick, fill=\numcolor{#2}]
+    (#1+0.5,0.5) circle (0.3);
+
+  % angka
+  \node at (#1+0.5,0.5) {\small #2};
+
+  % fixed point
+  \ifnum#2=#3
+    \draw[red!60, very thick] (#1,0) -- (#1+1,1);
+    \draw[red!60, very thick] (#1,1) -- (#1+1,0);
+  \fi
+}
+
+
+\newcommand{\permrow}[4]{%
+  \begin{tikzpicture}[baseline,scale=0.8]
+    \permcell{0}{#1}{1}
+    \permcell{1}{#2}{2}
+    \permcell{2}{#3}{3}
+    \permcell{3}{#4}{4}
+  \end{tikzpicture}
+}
+
+
+
+
+
 % \tolerance=1
 % \emergencystretch = \maxdimen
 % \hyphenpenalty=10000
@@ -139,10 +190,9 @@ draw=black,fill=decisionColor]
 %\LembarPengesahan
 %\LembarOrisinalitas
 \LembarPengesahanProposal
-\LembarAbstrak
-\LembarAbstract
+
 %%%%%%%%%%%%%%%%%%%%%%%%  Abstrak  %%%%%%%%%%%%%%%5%%%%%%%%%%
-%\input{Inti/abstrak}
+\LembarAbstrak{Inti/abstrak}
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Abstrak  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
