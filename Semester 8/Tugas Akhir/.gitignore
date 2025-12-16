@@ -58,6 +58,7 @@
 *.tmp
 *.temp
 *.bak
+*desktop.ini
 
 ## VSCode:
 .vscode
