@@ -137,6 +137,26 @@ dari definisi di atas diperoleh sebuah teorema penting mengenai kekomutatifan ma
   \end{contoh}
 \end{teorema}
 
+\section{Grup}
+Dalam aljabar abstrak, grup adalah himpunan yang dilengkapi dengan suatu operasi biner yang memenuhi empat aksioma dasar \parencite{subiono2022aljabar}. Misalkan $G$ adalah himpunan dan $*$ adalah operasi biner pada $G$, maka $(G, *)$ disebut grup jika memenuhi sifat-sifat berikut:
+\begin{itemize}
+  \item \textbf{Tertutup}: Untuk setiap elemen $a, b$ dalam himpunan $G$, hasil operasi $a * b$ juga merupakan elemen dari $G$.
+  \item \textbf{Asosiatif}: Untuk setiap elemen $a, b, c$ dalam himpunan $G$, berlaku $(a * b) * c = a * (b * c)$.
+  \item \textbf{Identitas}: Terdapat elemen identitas $e$ dalam himpunan $G$ sehingga untuk setiap elemen $a$ dalam $G$, berlaku $e * a = a * e = a$.
+  \item \textbf{Invers}: Untuk setiap elemen $a$ dalam himpunan $G$, terdapat elemen invers $a^{-1}$ dalam $G$ sehingga $a * a^{-1} = a^{-1} * a = e$.
+\end{itemize}
+\begin{contoh}[\cite{subiono2022aljabar}]
+  Grup yang akan dibahas dalam penelitian ini adalah grup permutasi $S_n$, yaitu himpunan semua permutasi dari himpunan $\{1, 2, \ldots, n\}$ dengan operasi komposisi fungsi. Grup dari himpunan $S_n$ terhadap operasi perkalian permutasi (komposisi fungsi) dinamakan
+  grup simetri berderajad $n$.
+\end{contoh}
+
+\subsection{Homomorfisma dan Isomorfirsma Grup}
+Homomorfisma grup adalah suatu pemetaan antara dua grup yang mempertahankan struktur grup tersebut. Misalkan $(G, *)$ dan $(H, \cdot)$ adalah dua grup, maka suatu fungsi $f: G \to H$ disebut homomorfisma grup jika untuk setiap elemen $a, b$ dalam $G$, berlaku
+\[
+  f(a * b) = f(a) \cdot f(b).
+\]
+Jika homomorfisma $f$ bersifat bijektif (satu-satu dan pada), maka $f$ disebut isomorfisma grup. Dua grup misalkan $G$ dan $H$ dikatakan isomorfik jika terdapat isomorfisma antara keduanya dan dinotasikan sebagai $G\cong H$. Isomorfik menunjukkan bahwa kedua grup tersebut memiliki struktur yang sama meskipun elemen-elemennya berbeda \parencite{subiono2022aljabar}.
+
 \section{Permutasi}
 Dalam aljabar, permutasi ialah suatu fungsi bijektif dari himpunan ke dirinya sendiri. Sebuah permutasi dari himpunan $X = \{1, 2, \ldots, n\}$ biasanya disimbolkan dengan $\sigma: X \to X$, dengan $\sigma$ bersifat satu-satu dan pada. Himpunan semua permutasi dari $X$ membentuk suatu grup terhadap operasi komposisi fungsi, yang disebut grup simetris pada $n$ elemen yang disimbolkan dengan $S_n$ \parencite{subiono2022aljabar}.
 \begin{contoh}
