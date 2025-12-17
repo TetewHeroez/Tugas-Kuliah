@@ -29,4 +29,8 @@ _minted-*/
 *.bbl-SAVE-ERROR
 *.mkv
 
+#Ignore folder
+Template Math Depart/
+
+
 
