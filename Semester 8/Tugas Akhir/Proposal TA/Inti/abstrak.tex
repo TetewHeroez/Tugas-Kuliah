@@ -1,2 +1,24 @@
-Aljabar max-plus menyediakan struktur idempoten yang relevan untuk membangun skema kriptografi berbasis masalah komputasi sulit. Salah satu komponen kuncinya adalah pasangan matriks yang komutatif terhadap operasi $\otimes$, khususnya matriks yang berasal dari \textit{Latin square}. Penelitian ini bertujuan (1) menurunkan syarat perlu agar dua \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ komutatif, dan (2) menyusun prosedur konstruksi pasangan \textit{Latin square} komutatif dari $L_S(n)$ yang dapat dipakai sebagai blok dasar protokol kunci privat tropikal. Metodologi yang ditempuh meliputi studi literatur aljabar max-plus, matriks sirkulan-$t$, serta karakterisasi diagonal utama (Linde--de la Puente); identifikasi bentuk \textit{Latin square} melalui representasi matriks permutasi dan orbit siklus (termasuk derangement); analisis teoretis terhadap relasi komutasi berbasis struktur permutasi dan batas entri diagonal; serta verifikasi eksperimental pada \textit{Latin square} berordo kecil–menengah untuk menguji kekomutatifan dan pola konstruksi yang diusulkan. Hasil yang diharapkan adalah kriteria komutasi yang eksplisit beserta algoritme konstruktif yang memperkaya kajian \textit{Latin square} pada aljabar max-plus dan mendukung perancangan protokol kriptografi tropikal yang aman.
-\katakunci{aljabar max-plus, Latin square, matriks komutatif, matriks sirkulan, permutasi, kriptografi tropikal}
+Aljabar max-plus, yang dinotasikan dengan $(\mathbb{R}_{\max}, \oplus, \otimes)$ dengan $a \oplus b = \max\{a,b\}$ dan $a \otimes b = a + b$, merupakan salah satu struktur aljabar idempoten yang banyak digunakan dalam pemodelan sistem diskrit serta mulai
+dikaji dalam pengembangan skema kriptografi non-konvensional. Dalam konteks ini,
+keberadaan pasangan matriks $A,B \in \mathbb{R}_{\max}^{n \times n}$ yang memenuhi
+$A \otimes B = B \otimes A$ menjadi aspek penting. Salah satu kelas matriks yang
+menarik untuk dikaji adalah matriks \textit{Latin square}, karena memiliki struktur
+kombinatorial yang teratur dan keterkaitan erat dengan teori permutasi.
+
+Penelitian ini membahas sifat kekomutatifan matriks Latin square pada aljabar
+max-plus. Fokus utama penelitian adalah mengkaji kondisi-kondisi yang menyebabkan dua
+Latin square $A,B \in LS(n)$ bersifat komutatif, serta menganalisis struktur internal
+Latin square melalui representasinya sebagai kombinasi matriks permutasi
+$\{P_{\pi}\}_{\pi \in S_n}$. Kajian dilakukan dengan memanfaatkan konsep-konsep dasar
+aljabar max-plus, matriks sirkulan dan sirkulan-tergeser, serta karakterisasi
+kekomutatifan matriks berdasarkan pola diagonal dan relasi komutatif pada grup
+permutasi $S_n$.
+
+Luaran yang diharapkan dari penelitian ini adalah diperolehnya kriteria komutatif yang
+jelas untuk matriks Latin square dalam aljabar max-plus, beserta prosedur konstruktif
+untuk membangun pasangan Latin square komutatif dengan memanfaatkan struktur matriks
+permutasi sirkulan. Hasil kajian ini diharapkan dapat memberikan kontribusi pada
+pengembangan teori Latin square dalam aljabar tropikal serta menjadi dasar bagi kajian
+lanjutan pada skema kriptografi berbasis aljabar max-plus.
+
+\katakunci{aljabar max-plus, Latin square, matriks komutatif, matriks sirkulan, permutasi, semiring tropikal}

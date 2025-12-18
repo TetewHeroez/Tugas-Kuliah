@@ -29,6 +29,14 @@ _minted-*/
 *.bbl-SAVE-ERROR
 *.mkv
 
+# Ignore Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.$py.class
+
+# Ignore Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
 #Ignore folder
 Template Math Depart/
 

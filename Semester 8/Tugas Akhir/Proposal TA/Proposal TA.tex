@@ -3,7 +3,7 @@
 \theoremstyle{definition}
 \newtheorem{definisi}{Definisi}[section]
 \newtheorem{teorema}{Teorema}[section]
-\newtheorem{lema}{Lemma}[section]
+\newtheorem{lema}{Lema}[section]
 \newtheorem{akibat}{Akibat}[section]
 \newtheorem{contoh}{Contoh}[section]
 \newtheorem{proposisi}{Proposisi}[section]
@@ -117,10 +117,10 @@ draw=black,fill=decisionColor]
     }
 ]
 
-\definecolor{cOne}{RGB}{255,255,255}   % 1 putih
-\definecolor{cTwo}{RGB}{255,215,0}     % 2 kuning
-\definecolor{cThree}{RGB}{255,160,160} % 3 merah muda
-\definecolor{cFour}{RGB}{120,200,120}  % 4 hijau
+\colorlet{cOne}{white}     % 1 putih
+\colorlet{cTwo}{yellow}   % 2 kuning
+\colorlet{cThree}{cyan}   % 3 merah muda
+\colorlet{cFour}{green}   % 4 hijau
 
 \newcommand{\numcolor}[1]{%
   \ifnum#1=1 cOne\fi
@@ -162,9 +162,6 @@ draw=black,fill=decisionColor]
     \permcell{3}{#4}{4}
   \end{tikzpicture}
 }
-
-
-
 
 
 % \tolerance=1

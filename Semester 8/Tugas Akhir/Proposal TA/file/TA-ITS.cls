@@ -528,8 +528,7 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
     \begin{center}
     \begin{tabular}{c}
     Mengetahui,                        \\
-    Kepala Program Studi Sarjana       \\
-    Departemen Matematika FSAD-ITS  \vspace{2.5cm}\\
+    Kepala Departemen Matematika FSAD-ITS  \vspace{2.5cm}\\
     \underline{\@kadep}                   \\
     NIP. \@NIPkadep                     
     \end{tabular} \vspace{1cm}\\

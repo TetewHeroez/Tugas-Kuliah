@@ -30,6 +30,7 @@
 *.blg
 *-blx.aux
 *-run.xml
+*.bbl-SAVE-ERROR
 
 ## Synctex:
 *.synctex
