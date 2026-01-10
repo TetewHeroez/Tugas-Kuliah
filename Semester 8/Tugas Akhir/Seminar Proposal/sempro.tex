@@ -1,0 +1,608 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+    \addbibresource{reference.bib}
+\usepackage{csquotes}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[bahasa]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \pgfplotsset{compat=1.18}
+\usepackage{listings}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!50]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\colorlet{cOne}{white}     % 1 putih
+\colorlet{cTwo}{yellow}   % 2 kuning
+\colorlet{cThree}{cyan}   % 3 merah muda
+\colorlet{cFour}{green}   % 4 hijau
+
+\newcommand{\numcolor}[1]{%
+  \ifnum#1=1 cOne\fi
+  \ifnum#1=2 cTwo\fi
+  \ifnum#1=3 cThree\fi
+  \ifnum#1=4 cFour\fi
+}
+
+
+\newcommand{\permcell}[3]{%
+  % #1 = x-shift
+  % #2 = nilai sigma(i)
+  % #3 = indeks i
+
+  % kotak
+  \draw[thick, fill=\numcolor{#3}]
+    (#1,0) rectangle ++(1,1);
+
+  % lingkaran
+  \draw[thick, fill=\numcolor{#2}]
+    (#1+0.5,0.5) circle (0.3);
+
+  % angka
+  \node at (#1+0.5,0.5) {\small #2};
+
+  % fixed point
+  \ifnum#2=#3
+    \draw[red!60, very thick] (#1,0) -- (#1+1,1);
+    \draw[red!60, very thick] (#1,1) -- (#1+1,0);
+  \fi
+}
+
+
+\newcommand{\permrow}[4]{%
+  \begin{tikzpicture}[baseline,scale=0.8]
+    \permcell{0}{#1}{1}
+    \permcell{1}{#2}{2}
+    \permcell{2}{#3}{3}
+    \permcell{3}{#4}{4}
+  \end{tikzpicture}
+}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% \setbeamercovered{transparent}
+
+
+\theoremstyle{definition}
+% \numberwithin{subsection}{section}
+\newtheorem{definisi}{Definisi}
+\numberwithin{definisi}{subsection}
+\newtheorem{teorema}[definisi]{Teorema}
+\newtheorem{lema}[definisi]{Lema}
+\newtheorem{proposisi}[definisi]{Proposisi}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+
+\AtBeginEnvironment{contoh}{%
+  \setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
+  \setbeamercolor{block body}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+}
+\AtBeginEnvironment{definisi}{
+    \setbeamercolor{block title}{fg=white,bg=HIMAtua}
+    \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+}
+
+\date{Desember 2025}
+\title[Proposal TA]{Latin Square Komutatif atas Aljabar Max-Plus}
+\author[Teosofi]{Teosofi Hidayah Agung}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{\includegraphics[width=2cm]{logoITS}$\quad$\includegraphics[width=2cm]{M.png}}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}{Daftar isi}
+    \tableofcontents[currentsection,hidesubsections]
+  \end{frame}
+}
+
+\section{Pendahuluan}
+\subsection{Latar Belakang}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+    \item Aljabar max-plus adalah struktur aljabar yang terdiri dari himpunan bilangan real yang diperluas dengan elemen $-\infty$, dilengkapi dengan dua operasi biner yaitu:
+          \begin{align*}
+            a \oplus b  & = \max\{a,b\} \\
+            a \otimes b & = a + b
+          \end{align*}
+    \item Merupakan cabang dari aljabar tropikal yang dikembangkan oleh Imre Simon pada tahun 1988.
+    \item Memiliki sifat idempoten dan non-linier yang sangat berguna untuk berbagai aplikasi.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \textit{Latin square} adalah susunan $n\times n$ yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom.
+  \begin{itemize}
+    \item Pertama kali diperkenalkan oleh Leonhard Euler pada abad ke-18.
+    \item Memiliki hubungan erat dengan representasi matriks permutasi.
+    \item Setiap \textit{Latin square} dapat direpresentasikan sebagai matriks berukuran $n \times n$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Hubungan antara aljabar max-plus dan kriptografi:
+  \begin{itemize}
+    \item Sifat idempoten dan non-linier aljabar max-plus dapat meningkatkan keamanan sistem kriptografi.
+    \item Banyak protokol kriptografi berbasis aljabar tropikal yang telah diusulkan.
+    \item Contohnya adalah Protokol Stickel yang diajukan Eberhard Stickel pada tahun 2005.
+    \item Protokol Stickel awalnya menggunakan grup matriks biasa, namun pada perkembangan selanjutnya diadaptasi menggunakan semiring tropikal.
+  \end{itemize}
+\end{frame}
+
+\subsection{Rumusan Masalah}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{enumerate}
+    \item \onslide<2->{Apa saja syarat perlu untuk dua buah \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$?}
+    \item \onslide<3->{Apa saja syarat cukup untuk dua buah \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$?}
+    \item \onslide<4->{Bagaimana cara membangun pasangan \textit{Latin square} komutatif dari $L_S(n)$?}
+  \end{enumerate}
+\end{frame}
+
+\subsection{Batasan Masalah}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+    \item \onslide<2->{Penelitian ini hanya membahas \textit{Latin square} berukuran $n\times n$ dengan setiap baris dan kolomnya merupakan permutasi dari himpunan $\underline{n}=\{1,2,\ldots,n\}$.}
+    \item \onslide<3->{Penelitian ini membatasi ordo \textit{Latin square} hanya pada $n \leq 5$.}
+  \end{itemize}
+\end{frame}
+
+\subsection{Tujuan}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{enumerate}
+    \item \onslide<2->{Menentukan syarat perlu bagi dua buah \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$.}
+    \item \onslide<3->{Menentukan syarat cukup bagi dua buah \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$.}
+    \item \onslide<4->{Membangun pasangan \textit{Latin square} komutatif dari $L_S(n)$.}
+  \end{enumerate}
+\end{frame}
+
+\subsection{Manfaat}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+    \item \onslide<2->{\textbf{Manfaat Teoritis}: Menambah khasanah ilmu pengetahuan khususnya dalam bidang aljabar max-plus dan teori \textit{Latin square}.}
+    \item \onslide<3->{\textbf{Manfaat Praktis}: Memberikan kontribusi dalam pengembangan protokol sistem keamanan kunci privat berbasis aljabar tropikal.}
+    \item \onslide<4->{\textbf{Referensi Penelitian}: Menjadi bahan referensi untuk penelitian selanjutnya yang berkaitan dengan aljabar max-plus dan \textit{Latin square}.}
+  \end{itemize}
+\end{frame}
+
+\section{Tinjauan Pustaka}
+\subsection{Hasil Penelitian Terdahulu}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|m{3cm}|c|m{8cm}|}
+      \hline
+      \small
+      \textbf{No} & \textbf{Peneliti}                                  & \textbf{Tahun}                                   & \textbf{Hasil Penelitian}                                                                                             \\ \hline
+      1           & \citeauthor{mufid2014eigenvalues}                  & \citeyear{mufid2014eigenvalues}                  & Menyelesaikan permasalahan nilai eigen dan vektor eigen dari Latin square pada aljabar max-plus.                      \\ \hline
+      2           & \citeauthor{linde2014matricescommutinggivennormal} & \citeyear{linde2014matricescommutinggivennormal} & Menyatakan syarat perlu dan cukup bagi dua matriks tropikal agar komutatif berdasarkan nilai diagonal utama.          \\ \hline
+      3           & \citeauthor{trivialeigenvectorsym14061101}         & \citeyear{trivialeigenvectorsym14061101}         & Mengkaji sifat-sifat vektor eigen trivial pada aljabar max-plus.                                                      \\ \hline
+      4           & \citeauthor{zufar2023konstruksigrup}               & \citeyear{zufar2023konstruksigrup}               & Mengkonstruksi grup Latin square pada aljabar max-plus dengan operasi perkalian matriks tropikal.                     \\ \hline
+      5           & \citeauthor{alhussaini2024securityinitialtropical} & \citeyear{alhussaini2024securityinitialtropical} & Memperkenalkan protokol kriptografi berbasis aljabar tropikal yang terinspirasi dari pertukaran kunci Diffie-Hellman. \\ \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\subsection{Aljabar Max-Plus}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{definisi}[\cite{subiono2015minmaxplus}]
+    Aljabar max-plus adalah himpunan $\mathbb{R}_{\max} = \mathbb{R} \cup \{\varepsilon\}$ yang dilengkapi dengan dua operasi biner yaitu:
+    \begin{align*}
+      a \oplus b  & = \max\{a,b\}, \quad \forall a, b \in \mathbb{R}_{\max} \\
+      a \otimes b & = a + b, \quad \forall a, b \in \mathbb{R}_{\max}
+    \end{align*}
+    dengan elemen identitas $\varepsilon=-\infty$ untuk $\oplus$ dan $0$ untuk $\otimes$.
+  \end{definisi}
+  $(\mathbb{R}_{\max}, \oplus, \otimes)$ disebut semiring max-plus.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Matriks Aljabar Max-Plus}
+  \begin{definisi}[\cite{Baccelli1994maxplus}]
+    Misalkan $A = (a_{ij})$ matriks $m \times n$ dan $B = (b_{ij})$ matriks $n \times p$ dengan elemen dari $\mathbb{R}_{\max}$. Operasi matriks:
+    \begin{align*}
+      (A \oplus B)_{ij}  & = a_{ij} \oplus b_{ij} = \max\{a_{ij}, b_{ij}\}                                          \\
+      (A \otimes B)_{ij} & = \bigoplus_{k=1}^{n} a_{ik} \otimes b_{kj} = \max_{1 \leq k \leq n} \{a_{ik} + b_{kj}\}
+    \end{align*}
+  \end{definisi}
+  Matriks identitas $I_n$ memiliki diagonal $0$ dan elemen lain $\varepsilon$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Contoh Operasi Matriks Max-Plus}
+  Misalkan $A = \begin{pmatrix} 2 & 3 \\ 5 & 1 \end{pmatrix}$ dan $B = \begin{pmatrix} 4 & 0 \\ 2 & 6 \end{pmatrix}$
+  \begin{align*}
+    A \oplus B  & = \begin{pmatrix} \max\{2,4\} & \max\{3,0\} \\ \max\{5,2\} & \max\{1,6\} \end{pmatrix} = \begin{pmatrix} 4 & 3 \\ 5 & 6 \end{pmatrix} \\
+    A \otimes B & = \begin{pmatrix} \max\{6,5\} & \max\{2,9\} \\ \max\{9,3\} & \max\{5,7\} \end{pmatrix} = \begin{pmatrix} 6 & 9 \\ 9 & 7 \end{pmatrix}
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Polinomial dalam Aljabar Max-Plus}
+  \begin{definisi}[\cite{muanalifah2020modifyingtropical}]
+    Polinomial max-plus atau tropikal adalah fungsi $x\mapsto p(x)$:
+    \[
+      p(x) = \bigoplus_{k=0}^{n} a_{k} \otimes x^{\otimes k} = \max_{0 \leq k \leq n} \{a_{k} + kx\}
+    \]
+    dengan $a_k \in \mathbb{R}_{\max}$ untuk setiap $k = 0, 1, \ldots, n$.
+  \end{definisi}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Matriks Linde-de la Puente}
+  \begin{definisi}[\cite{alhussaini2024implementationstickel}]
+    Untuk $r \leq 0$ dan $k \geq 0$, $[2r, r]_{n}^{k}$ adalah himpunan matriks $A_{n\times n}$ dengan $a_{ii} = k$ untuk semua $i$ dan $a_{ij} \in [2r, r]$ untuk $i \neq j$.
+  \end{definisi}
+  \begin{teorema}[\cite{alhussaini2024securityinitialtropical}]
+    Jika $A \in [2r, r]_{n}^{k_{1}}, \, B \in [2s, s]_{n}^{k_{2}}$ untuk $r, s \leq 0$, $k_1, k_2 \geq 0$, maka
+    \[
+      A \otimes B = B \otimes A = k_{2} \otimes A \oplus k_{1} \otimes B
+    \]
+  \end{teorema}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Contoh Matriks Linde-de la Puente}
+  Misalkan $A\in [-4, -2]_{3}^{3}$ dan $B\in [-3, -1]_{3}^{2}$:
+  \[
+    A = \begin{pmatrix} 3 & -2 & -4 \\ -3 & 3 & -2 \\ -2 & -4 & 3 \end{pmatrix}, \quad
+    B = \begin{pmatrix} 2 & -1 & -3 \\ -3 & 2 & -1 \\ -1 & -3 & 2 \end{pmatrix}
+  \]
+  Maka $A \otimes B = B \otimes A = \begin{pmatrix} 5 & 2 & 0 \\ 0 & 5 & 2 \\ 2 & 0 & 5 \end{pmatrix}$ (komutatif)
+\end{frame}
+
+\subsection{Grup}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Grup adalah himpunan $G$ dengan operasi $*$ yang memenuhi:
+  \begin{itemize}
+    \item \textbf{Tertutup}: $a * b \in G$ untuk setiap $a, b \in G$
+    \item \textbf{Asosiatif}: $(a * b) * c = a * (b * c)$
+    \item \textbf{Identitas}: $\exists e \in G$ sehingga $e * a = a * e = a$
+    \item \textbf{Invers}: Untuk setiap $a \in G$, $\exists a^{-1}$ sehingga $a * a^{-1} = e$
+  \end{itemize}
+  \textbf{Contoh}: Grup permutasi $S_n$ dengan operasi komposisi fungsi.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Homomorfisma dan Isomorfisma Grup}
+  \begin{itemize}
+    \item \textbf{Homomorfisma}: Pemetaan $f: G \to H$ yang mempertahankan struktur grup, yaitu $f(a * b) = f(a) \cdot f(b)$
+    \item \textbf{Isomorfisma}: Homomorfisma yang bijektif (satu-satu dan pada)
+    \item Dua grup $G$ dan $H$ disebut \textbf{isomorfik} ($G\cong H$) jika terdapat isomorfisma antara keduanya
+    \item Isomorfik menunjukkan kedua grup memiliki struktur yang sama
+  \end{itemize}
+\end{frame}
+
+\subsection{Permutasi}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  Permutasi adalah fungsi bijektif dari himpunan ke dirinya sendiri:
+  \begin{itemize}
+    \item $\sigma: X \to X$ dengan $X = \{1, 2, \ldots, n\}$, bersifat satu-satu dan pada
+    \item Himpunan semua permutasi dari $X$ membentuk grup simetris $S_n$ terhadap komposisi fungsi
+  \end{itemize}
+  \textbf{Contoh}: Untuk $X = \{1, 2, 3\}$, permutasi $\sigma(1) = 2, \sigma(2) = 3, \sigma(3) = 1$ dapat dituliskan:
+  \[
+    \sigma = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Sikel}
+  \begin{definisi}
+    Orbit $\mathcal{O}_{\tau}(i_1) = \{\, i_1,\ \tau(i_1),\ \tau^{2}(i_1),\ \ldots,\ \tau^{k-1}(i_1)\,\}$ yang memuat lebih dari satu elemen disebut \textbf{sikel}, dituliskan $(i_1\ i_2\ \ldots\ i_k)$.
+  \end{definisi}
+  \begin{teorema}[\cite{subiono2022aljabar}]
+    Setiap permutasi $\tau\in S_n$ dapat dituliskan sebagai hasil komposisi dari sikel-sikel yang saling asing.
+  \end{teorema}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Contoh Notasi Sikel}
+  Untuk $\tau = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 3 & 1 & 2 & 5 & 4 & 6 & 8 & 7 & 9 \end{pmatrix} \in S_9$
+
+  Dapat dituliskan: $\tau = (1\ 3\ 2)(4\ 5)(6)(7\ 8)(9)$
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Sikel $(1\ 3\ 2)$: $1 \to 3 \to 2 \to 1$
+        \item Sikel $(4\ 5)$: $4 \to 5 \to 4$
+        \item Titik tetap: $(6)$ dan $(9)$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.5]
+        \node[circle, draw, fill=blue!20] (1) at (0, 0) {1};
+        \node[circle, draw, fill=blue!20] (2) at (2.5, 0) {2};
+        \node[circle, draw, fill=blue!20] (3) at (1.25, 2.165) {3};
+        \node[circle, draw, fill=green!20] (4) at (4.5, 0) {4};
+        \node[circle, draw, fill=green!20] (5) at (6.5, 0) {5};
+        \node[circle, draw, fill=red!20] (6) at (8.5, 0) {6};
+        \node[circle, draw, fill=orange!20] (7) at (4.5, 2.165) {7};
+        \node[circle, draw, fill=orange!20] (8) at (6.5, 2.165) {8};
+        \node[circle, draw, fill=red!20] (9) at (8.5, 2.165) {9};
+
+        \draw[->, thick, blue] (1) to[bend left=20] (3);
+        \draw[->, thick, blue] (3) to[bend left=20] (2);
+        \draw[->, thick, blue] (2) to[bend left=20] (1);
+
+        \draw[->, thick, green] (4) to[bend left=30] (5);
+        \draw[->, thick, green] (5) to[bend left=30] (4);
+
+        \path[red] (6) edge[->, loop right, thick] ();
+
+        \draw[->, thick, orange] (7) to[bend left=30] (8);
+        \draw[->, thick, orange] (8) to[bend left=30] (7);
+
+        \path[red] (9) edge[->, loop right, thick] ();
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Matriks Permutasi}
+  \begin{definisi}
+    Untuk permutasi $\sigma : \{1,2,\dots,n\} \to \{1,2,\dots,n\}$, matriks permutasi max-plus $P_{\sigma} = [p_{ij}]$ didefinisikan:
+    \[
+      p_{ij} = \begin{cases} 0, & \text{jika } i = \sigma(j) \\ \varepsilon, & \text{lainnya} \end{cases}
+    \]
+  \end{definisi}
+  \textbf{Contoh}: Untuk $\sigma=(1\ 3\ 2)\in S_3$, maka
+  \[
+    P_{\sigma} = \begin{pmatrix} \varepsilon & \varepsilon & 0 \\ 0 & \varepsilon & \varepsilon \\ \varepsilon & 0 & \varepsilon \end{pmatrix}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Teorema Matriks Permutasi}
+  \begin{teorema}[\cite{Farlow2009}]
+    Matriks $A \in \mathbb{R}_{\max}^{n \times n}$ memiliki invers kanan jika dan hanya jika terdapat suatu permutasi $\sigma$ serta nilai-nilai $\lambda_i > \varepsilon$, $i \in \{1,2,\dots,n\}$, sehingga
+    \[
+      A = P_{\sigma} \otimes D(\lambda)
+    \]
+    dengan $D(\lambda)$ adalah matriks diagonal max-plus dengan entri diagonal $\lambda_1, \lambda_2, \ldots, \lambda_n$.
+  \end{teorema}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Matriks Sirkulan}
+  Matriks sirkulan adalah matriks persegi di mana setiap baris adalah pergeseran siklik dari baris sebelumnya.
+
+  Representasi polinomial:
+  \[
+    C = \bigoplus_{i=0}^{n-1} c_i P_{\sigma}^{i}
+  \]
+  dengan $\sigma = (1\ 2\ \ldots\ n)$ siklik.
+  \begin{teorema}[\cite{huang2024newsemiring}]
+    Dua matriks sirkulan $A, B$ komutatif: $A \otimes B = B \otimes A$.
+  \end{teorema}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Matriks Sirkulan-$t$}
+  \begin{definisi}[\cite{buchinskiy2024analysisfour}]
+    Matriks sirkulan-$t$ adalah variasi matriks sirkulan dengan parameter $t$, yang dapat direpresentasikan:
+    \begin{align*}
+      C^{(t)} & = c_0 I_n \oplus c_1 (P^{(t)}) \oplus \cdots \oplus c_{n-1} (P^{(t)})^{n-1} \\
+      C_{(t)} & = c_0 I_n \oplus c_1 (P_{(t)}) \oplus \cdots \oplus c_{n-1} (P_{(t)})^{n-1}
+    \end{align*}
+  \end{definisi}
+  \begin{teorema}[\cite{buchinskiy2024analysisfour}]
+    Dua matriks sirkulan-$t$ (bawah atau atas keduanya) komutatif terhadap $\otimes$.
+  \end{teorema}
+\end{frame}
+
+\subsection{Derangement}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{itemize}
+    \item \textbf{Titik tetap}: elemen $i$ yang memenuhi $\sigma(i)=i$
+    \item \textbf{Derangement}: permutasi tanpa titik tetap (setiap objek tidak pada posisi aslinya)
+    \item Dinotasikan $D_n$ untuk banyaknya derangement dari $n$ objek berbeda
+  \end{itemize}
+  \textbf{Contoh}: Dalam $S_3$, permutasi $(1), (1\ 2)(3), (1)(2\ 3), (1\ 3)(2)$ memiliki titik tetap, sedangkan $(1\ 2\ 3), (1\ 3\ 2)$ adalah derangement.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Contoh Derangement $S_4$}
+  \begin{figure}[H]
+    \centering
+    \permrow{1}{2}{3}{4}\quad\permrow{2}{1}{3}{4}\quad\permrow{3}{1}{2}{4}\quad\permrow{4}{1}{2}{3}\\
+    \permrow{1}{2}{4}{3}\quad\permrow{2}{1}{4}{3}\quad\permrow{3}{1}{4}{2}\quad\permrow{4}{1}{3}{2}\\
+    \permrow{1}{3}{2}{4}\quad\permrow{2}{3}{1}{4}\quad\permrow{3}{2}{1}{4}\quad\permrow{4}{2}{1}{3}\\
+    \permrow{1}{3}{4}{2}\quad\permrow{2}{3}{4}{1}\quad\permrow{3}{2}{4}{1}\quad\permrow{4}{2}{3}{1}\\
+    \permrow{1}{4}{2}{3}\quad\permrow{2}{4}{1}{3}\quad\permrow{3}{4}{1}{2}\quad\permrow{4}{3}{1}{2}\\
+    \permrow{1}{2}{4}{3}\quad\permrow{2}{4}{3}{1}\quad\permrow{3}{4}{2}{1}\quad\permrow{4}{3}{2}{1}\\
+    \caption{\emph{derangement} dari himpunan $S_4$}
+    \label{fig:derangement_s4}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{Representasi Latin Square}
+  \begin{teorema}
+    Misalkan $A \in L_S(n)$ dengan simbol $\{a_1, a_2, \ldots, a_n\}$. Untuk setiap $i$, definisikan $\tau_i \in S_n$ dengan $\tau_i(r) = c \iff [A]_{r c} = a_i$. Maka
+    \[
+      A = \bigoplus_{i=1}^{n} a_i P_{\tau_i}
+    \]
+    dengan $P_{\tau_i}$ adalah matriks permutasi max-plus yang bersesuaian dengan $\tau_i$.
+  \end{teorema}
+\end{frame}
+
+\section{Metodologi}
+\subsection{Alur Penelitian}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{center}
+    \begin{tikzpicture}[node distance=1.5cm and 0.8cm, font=\small, scale=0.95, transform shape]
+      % Nodes
+      \node[startstop] (start) {Mulai};
+      \node[process, right=of start] (studi) {Studi literatur};
+      \node[process, right=of studi] (identifikasi) {\parbox{2.2cm}{\centering Identifikasi \emph{Latin square} komutatif}};
+      \node[process, below=of identifikasi] (investigasi) {\parbox{2.2cm}{\centering Investigasi sifat \emph{Latin square} komutatif}};
+      \node[process, left=of investigasi] (kesimpulan) {\parbox{2cm}{\centering Penarikan kesimpulan}};
+      \node[process, left=of kesimpulan] (penulisan) {\parbox{2cm}{\centering Penulisan tugas akhir}};
+      \node[startstop, below=of penulisan] (end) {Selesai};
+
+      % Arrows
+      \draw[arrow] (start) -- (studi);
+      \draw[arrow] (studi) -- (identifikasi);
+      \draw[arrow] (identifikasi) -- (investigasi);
+      \draw[arrow] (investigasi) -- (kesimpulan);
+      \draw[arrow] (kesimpulan) -- (penulisan);
+      \draw[arrow] (penulisan) -- (end);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\subsection{Tahapan Penelitian}
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+  \begin{enumerate}
+    \item \textbf{Studi Literatur dan Perumusan Masalah}: Mempelajari literatur yang berkaitan dengan aljabar max-plus dan \textit{Latin square}, memahami konsep dasar dan teori-teori yang relevan.
+    \item \textbf{Perancangan Skema Normalisasi dan Model Operasi}: Merancang skema normalisasi dan model operasi untuk \textit{Latin square} komutatif.
+    \item \textbf{Pengembangan Algoritme Konstruksi dan Verifikasi}: Mengembangkan algoritme untuk konstruksi dan verifikasi \textit{Latin square} komutatif.
+    \item \textbf{Eksperimen dan Enumerasi Orde Kecil-Menengah}: Melakukan eksperimen dan enumerasi terhadap \textit{Latin square} berordo kecil hingga menengah.
+    \item \textbf{Analisis Hasil dan Karakterisasi Aljabar}: Menganalisis hasil investigasi dan karakterisasi aljabar dari \textit{Latin square} komutatif.
+    \item \textbf{Penyusunan Kesimpulan dan Saran}: Menyimpulkan hasil investigasi syarat perlu, syarat cukup, dan konstruksi \textit{Latin square} komutatif.
+    \item \textbf{Penulisan Laporan Tugas Akhir}: Menyusun laporan tugas akhir dan dokumentasi lengkap dari seluruh proses penelitian.
+  \end{enumerate}
+\end{frame}
+% \begin{frame}
+%     \begin{tikzpicture}[node distance=3cm, font=\scriptsize]
+
+%         % Nodes
+%         \node (start) [startstop] {Mulai};
+%         \node (data) [process, right of=start] {\parbox{1.5cm}{Identifikasi Data Awal}};
+%         \node (formulasi) [process, right of=data] {\parbox{2.5cm}{Formulasi Sistem dalam Aljabar Max-Plus}};
+%         \node (dinamika) [process, right of=formulasi] {\parbox{1.5cm}{Modeling Dinamika Jadwal}};
+%         \node (validasi) [process, right of=dinamika] {\parbox{1.5cm}{Analisis Validitas Model}};
+%         \node (optimasi) [process, below of=validasi] {Optimasi Jadwal};
+%         \node (evaluasi) [decision, left of=optimasi] {\parbox{1.5cm}{Evaluasi dan Validasi}};
+%         \node (implementasi) [process, left of=evaluasi] {\parbox{2cm}{Implementasi dan Simulasi}};
+%         \node (kesimpulan) [process, left of=implementasi] {\parbox{2cm}{Kesimpulan dan Dokumentasi}};
+%         \node (end) [startstop, left of=kesimpulan] {Selesai};
+
+%         % Arrows
+%         \draw [arrow] (start) -- (data);
+%         \draw [arrow] (data) -- (formulasi);
+%         \draw [arrow] (formulasi) -- (dinamika);
+%         \draw [arrow] (dinamika) -- (validasi);
+%         \draw [arrow] (validasi) -- (optimasi);
+%         \draw [arrow] (optimasi) -- (evaluasi);
+%         \draw [arrow,red] (evaluasi) -- node[midway,above left]{no} ++(0,1.5) -| (formulasi);
+%         \draw [arrow,green] (evaluasi) --node[midway,above]{yes} (implementasi);
+%         \draw [arrow] (implementasi) -- (kesimpulan);
+%         \draw [arrow] (kesimpulan) -- (end);
+%     \end{tikzpicture}
+% \end{frame}
+
+% \begin{frame}
+%     \begin{table}
+%         \caption{Jadwal Kegiatan}
+%         \centering
+%         \begin{tabular}{|C{0.6cm}|L{5.7cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}
+%         \hline
+%         &&\multicolumn{12}{c|}{\textbf{BULAN}}\\\cline{3-14}
+%         \multicolumn{1}{|c|}{\textbf{NO}}&\multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}&\multicolumn{4}{c|}{1}&\multicolumn{4}{c|}{2}&\multicolumn{4}{c|}{3}\\\cline{3-14}
+%         &&1&2&3&4&1&2&3&4&1&2&3&4\\\cline{1-14}
+
+%         1&Identifikasi Data Awal&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&&&&&&&&&&\\\hline
+%         2&Formulasi Sistem dalam Aljabar Max-Plus&&&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&&&&&&&\\\hline
+%         3&Modeling Dinamika Jadwal&&&&&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&&&&&\\\hline
+%         4&Analisis Validitas Model&&&&&&&&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&&\\\hline
+%         5&Optimasi Jadwal&&&&&&&&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&&\\\hline
+%         6&Implementasi dan Simulasi&&&&&&&&&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\\\hline
+%         7&Kesimpulan dan Dokumentasi&&&&&&&&&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}&\cellcolor{HIMAtua}\\\hline
+
+%         \end{tabular}
+%         \label{TabelJadwalKegiatan}
+%     \end{table}
+% \end{frame}
+
+\section{Referensi}
+\begin{frame}[allowframebreaks]
+  \printbibliography
+\end{frame}
+\end{document}

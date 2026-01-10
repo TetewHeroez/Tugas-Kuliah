@@ -45,5 +45,10 @@ __pycache__/
 #Ignore folder
 Template Math Depart/
 
+## Manim cache:
+*__pycache__/
+*media/
+*slides/
+
 
 
