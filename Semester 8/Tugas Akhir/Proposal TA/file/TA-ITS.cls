@@ -61,8 +61,8 @@
     style=apa,
     maxcitenames=2,
     hyperref=true,        
-    backref=true,
-    giveninits=true, uniquename=init, 
+    giveninits=true, 
+    uniquename=init, 
   natbib
     ]{biblatex}
 
