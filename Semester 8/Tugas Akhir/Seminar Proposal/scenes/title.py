@@ -7,10 +7,12 @@ def title(scene):
     subtitle_color = GRAY_D
     
     # --- 1. Buat Semua Elemen Dulu (Jangan diposisikan ke layar dulu) ---
+    logo_its= SVGMobject("assets/ITS.svg",height=1).to_corner(UL, buff=0.3)
+    logo_matematika = SVGMobject("assets/M.svg",height=1).next_to(logo_its, RIGHT, buff=0.2)
     
     # Judul (Paragraph)
     t_obj = Paragraph(
-        "Latin Square Komutatif atas\nAljabar Max-Plus", # Gunakan \n manual biar potongannya pas
+        "Latin Square Komutatif atas\nAljabar Max-Plus", 
         alignment="center",
         font_size=48,
         weight=BOLD
@@ -27,7 +29,7 @@ def title(scene):
     subtitle.set_color(subtitle_color)
     
     # Dospem
-    dospem = Text("Dosen Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.", font_size=24)
+    dospem = Text("Calon Dosen Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.", font_size=24)
     dospem.set_color(subtitle_color)
 
     # --- 2. Atur Posisi Relatif (Susun dari atas ke bawah) ---
@@ -43,6 +45,11 @@ def title(scene):
     # Taruh grup ini BENAR-BENAR di tengah layar
     all_group.center()
 
+    # logo_its.generate_target()
+    # logo_its.target.to_corner(DL, buff=0.3).scale(0.5)
+    # logo_matematika.generate_target()
+    # logo_matematika.target.next_to(logo_its.target, RIGHT).scale(0.5)
+
     # --- 4. Animasi ---
     # Karena sudah di-group, posisinya sudah pas di tengah. Tinggal mainkan.
     
@@ -55,12 +62,18 @@ def title(scene):
     scene.play(
         FadeIn(subtitle, shift=UP),
         FadeIn(dospem, shift=UP),
+        Write(logo_its),
+        Write(logo_matematika),
         run_time=1
     )
+    
+    scene.wait(1)
 
-    scene.next_slide()
+    scene.next_slide(auto_next=True)
 
     scene.play(
         FadeOut(all_group), # FadeOut satu grup sekaligus biar simpel
+        Unwrite(logo_its),
+        Unwrite(logo_matematika),
         run_time=1
     )
