@@ -1,6 +1,11 @@
 # Ignore VS Code settings
 .vscode/
 
+# Ignore python and node
+*node_modules/
+*media/
+*slides/
+
 # Ignore LaTeX auxiliary files
 *.aux
 *.bbl
@@ -39,6 +44,11 @@ __pycache__/
 
 #Ignore folder
 Template Math Depart/
+
+## Manim cache:
+*__pycache__/
+*media/
+*slides/
 
 
 
