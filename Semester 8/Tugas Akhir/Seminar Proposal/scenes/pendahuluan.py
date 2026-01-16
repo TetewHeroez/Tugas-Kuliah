@@ -1,9 +1,112 @@
 from manim import *
 from scenes.content import *
+from lib.slide_tracker import *
 
 def pendahuluan(s):
-#   diffie_hellman(s)
-  stickel_protocol(s)
+    diffie_hellman(s)
+    next_slide_count(s)
+    stickel_protocol(s)
+    next_slide_count(s)
+    tujuan_manfaat(s)
+
+def tujuan_manfaat(s):
+    my_template = TexTemplate()
+    my_template.add_to_preamble(r"\usepackage{xcolor}")
+    
+    kw_hex_map = {
+        "Latin square": "FFFF00", 
+        "syarat perlu": "00FF00",
+        "syarat cukup": "00FF00",
+        "aljabar tropikal": "FFA500",
+        "aljabar max-plus": "FFA500"
+    }
+    
+    box_color = GRAY_E
+    font_size_judul = 36
+    font_size_isi = 28
+    
+    content_width = config.frame_width + 1.4
+    text_width = content_width
+    top_margin = 0.5
+    def clean_text_color(text, mapping):
+        for term, hex_code in mapping.items():
+            latex_color = f"\\textcolor[HTML]{{{hex_code}}}{{{term}}}"
+            text = text.replace(term, latex_color)
+        return text
+    def buat_section(judul_text, isi_list):
+        judul = Tex(
+            r"\textbf{" + judul_text + r"}", 
+            color=BLACK, 
+            font_size=font_size_judul,
+            tex_template=my_template
+        )
+        judul.to_edge(LEFT, buff=0)
+        items = VGroup()
+        for teks_raw in isi_list:
+            teks_colored = clean_text_color(teks_raw, kw_hex_map)
+            
+            item = Tex(
+                r"\parbox{" + str(text_width) + r"cm}{" + teks_colored + r"}",
+                color=WHITE,
+                font_size=font_size_isi,
+                tex_template=my_template
+            )
+            items.add(item)
+        
+        items.arrange(DOWN, aligned_edge=LEFT, buff=0.15)
+        
+        kotak = SurroundingRectangle(
+            items,
+            color=box_color,
+            fill_color=box_color,
+            fill_opacity=0.9,
+            corner_radius=0.2,
+            buff=0.3
+        )
+        
+        konten_box = VGroup(kotak, items)
+        
+        section = VGroup(judul, konten_box).arrange(DOWN, aligned_edge=LEFT, buff=0.2)
+        return section
+    list_rumusan = [
+        r"1. Apa saja syarat perlu untuk dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$?",
+        r"2. Apa saja syarat cukup untuk dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$?",
+        r"3. Bagaimana cara membangun pasangan Latin square komutatif dari $L_S(n)$?"
+    ]
+    list_tujuan = [
+        r"1. Menentukan syarat perlu bagi dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$.",
+        r"2. Menentukan syarat cukup bagi dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$.",
+        r"3. Membangun pasangan Latin square komutatif dari $L_S(n)$."
+    ]
+    
+    section_rumusan = buat_section("Rumusan Masalah", list_rumusan)
+    section_tujuan = buat_section("Tujuan Penelitian", list_tujuan)
+    
+    slide_1 = VGroup(section_rumusan, section_tujuan).arrange(DOWN, aligned_edge=LEFT, buff=0.6)
+    slide_1.to_edge(LEFT, buff=0.3).to_edge(UP, buff=top_margin)
+    list_batasan = [
+        r"1. Penelitian ini hanya membahas Latin square berukuran $n \times n$ dengan setiap baris dan kolomnya merupakan permutasi dari himpunan $\underline{n} = \{1, 2, \dots, n\}$.",
+        r"2. Penelitian ini membatasi ordo Latin square hanya pada $n \leq 5$."
+    ]
+    list_manfaat = [
+        r"1. Secara teoritis, menambah khasanah ilmu pengetahuan khususnya dalam bidang aljabar max-plus dan teori Latin square.",
+        r"2. Secara praktis, memberikan kontribusi dalam pengembangan protokol sistem keamanan kunci privat berbasis aljabar tropikal.",
+        r"3. Sebagai bahan referensi untuk penelitian selanjutnya yang berkaitan dengan aljabar max-plus dan Latin square."
+    ]
+    
+    section_batasan = buat_section("Batasan Masalah", list_batasan)
+    section_manfaat = buat_section("Manfaat Penelitian", list_manfaat)
+    
+    slide_2 = VGroup(section_batasan, section_manfaat).arrange(DOWN, aligned_edge=LEFT, buff=0.6)
+    slide_2.to_edge(LEFT, buff=0.3).to_edge(UP, buff=top_margin)
+    s.play(Write(slide_1), run_time=1.5)
+    s.wait(1)
+    s.next_slide()
+    
+    s.play(Transform(slide_1, slide_2), run_time=1.5)
+    s.wait(1)
+    s.next_slide(auto_next=True)
+    s.remove(slide_1)
    
 def stickel_protocol(s):
     judul_stickel = Title("Protokol Stickel (E. Stickel, 2005)", color=BLACK, font_size=48)
@@ -13,8 +116,9 @@ def stickel_protocol(s):
     my_template = TexTemplate()
     my_template.add_to_preamble(r"\usepackage{enumitem}")
     my_template.add_to_preamble(r"\usepackage{amssymb}")
+    my_template.add_to_preamble(r"\usepackage{xcolor}")
 
-    isi_stickel = r"""
+    isi_stickel_raw = r"""
         Misalkan $G$ adalah grup non-abelian hingga, dan $a, b \in G$ dengan $ab \neq ba$.
         \begin{itemize}[label=$\bullet$, leftmargin=0.5cm]
             \item Bob memilih $r, s \in \mathbb{N}$, kemudian mengirimkan $c = a^{r} b^{s}$ kepada Alice.
@@ -23,12 +127,35 @@ def stickel_protocol(s):
             \item Bob dengan cara yang sama menghitung $k = a^r d b^s$. 
         \end{itemize}
         """
+    
+    replacements_stickel = {
+        "Alice": r"\textcolor{red}{Alice}",
+        "Bob": r"\textcolor{blue}{Bob}",
+        "a, b": r"\textcolor{green!70!black}{a}, \textcolor{green!70!black}{b}",
+        "$ab": r"$\textcolor{green!70!black}{ab}",
+        "ba$": r"\textcolor{green!70!black}{ba}$",
+        "r, s": r"\textcolor{blue}{r}, \textcolor{blue}{s}",
+        "v, w": r"\textcolor{red}{v}, \textcolor{red}{w}",
+        "a^{r}": r"\textcolor{green!70!black}{a}^{\textcolor{blue}{r}}",
+        "b^{s}": r"\textcolor{green!70!black}{b}^{\textcolor{blue}{s}}",
+        "a^{v}": r"\textcolor{green!70!black}{a}^{\textcolor{red}{v}}",
+        "b^{w}": r"\textcolor{green!70!black}{b}^{\textcolor{red}{w}}",
+        "a^v": r"\textcolor{green!70!black}{a}^{\textcolor{red}{v}}",
+        "b^w": r"\textcolor{green!70!black}{b}^{\textcolor{red}{w}}",
+        "a^r": r"\textcolor{green!70!black}{a}^{\textcolor{blue}{r}}",
+        "b^s": r"\textcolor{green!70!black}{b}^{\textcolor{blue}{s}}",
+        "$k": r"$\textcolor{brown}{k}"
+    }
+
+    isi_stickel = isi_stickel_raw
+    for k, v in replacements_stickel.items():
+        isi_stickel = isi_stickel.replace(k, v)
 
     algoritma_stickel = Tex(
             r"\parbox{" + lebar_teks + r"}{" + isi_stickel + r"}", 
             font_size=30,
             color=BLACK,
-            tex_template=my_template
+            tex_template=my_template,
         ).to_edge(LEFT, buff=1)
     
     lebar_setengah = f"{config.frame_width / 2 }cm"
@@ -38,47 +165,62 @@ def stickel_protocol(s):
             color=BLACK,
             tex_template=my_template
         ).to_edge(LEFT, buff=0.5)
-    algoritma_tropikal = Tex(
-        r"\parbox{" + lebar_setengah + r"}{"
-        r"""
+
+    isi_tropikal_raw = r"""
         Misalkan matriks $W \in \mathbb{R}_{\max}^{n \times n}$.
         \begin{itemize}[label=$\bullet$, leftmargin=0.5cm, itemsep=0.3cm]
-            \item Alice memilih matriks acak $A_1, A_2$, kemudian mengirimkan
+            \item Alice memilih matriks Ldlp acak $A_1, A_2$, kemudian mengirimkan
             $U = A_1 \otimes W \otimes A_2$ kepada Bob.
-            \item Bob memilih matriks acak $B_1, B_2$, kemudian mengirimkan
+            \item Bob memilih matriks Ldlp acak $B_1, B_2$, kemudian mengirimkan
             $V = B_1 \otimes W \otimes B_2$ kepada Alice.
             \item Alice menghitung kunci bersama $K = A_1 \otimes V \otimes A_2$.
             \item Bob dengan cara yang sama menghitung $K = B_1 \otimes U \otimes B_2$.
         \end{itemize}
         """
-        r"}",
+    
+    replacements_tropikal = {
+        "W" : r"\textcolor{green!70!black}{W}",
+        "Alice": r"\textcolor{red}{Alice}",
+        "Bob": r"\textcolor{blue}{Bob}",
+        "A_1": r"\textcolor{red}{A_1}",
+        "A_2": r"\textcolor{red}{A_2}",
+        "B_1": r"\textcolor{blue}{B_1}",
+        "B_2": r"\textcolor{blue}{B_2}",
+        "K": r"\textcolor{brown}{K}"
+    }
+
+    isi_tropikal = isi_tropikal_raw
+    for k, v in replacements_tropikal.items():
+        isi_tropikal = isi_tropikal.replace(k, v)
+
+    algoritma_tropikal = Tex(
+        r"\parbox{" + lebar_setengah + r"}{" + isi_tropikal + r"}",
         font_size=30,
         color=BLACK,
         tex_template=my_template
     ).to_edge(RIGHT, buff=0.5).shift(DOWN*0.45)
 
-    # judul.next_to(algoritma, UP, buff=0.5)
-    s.play(Write(judul_stickel))
-    # s.play(judul_stickel[1].animate.match_width(judul_stickel[0]))
-    s.play(Write(algoritma_stickel), run_time=2)
+    s.play(Write(judul_stickel), run_time=0.5)
+    s.play(Write(algoritma_stickel))
     s.wait()
     s.next_slide()
 
+    judul_stickel[0].set_z_index(10)
     garis_tengah = Line(UP*5, DOWN*5, color=DARK_GRAY).next_to(algoritma_stickel_col, RIGHT, buff=0.5)
     target_teks = judul_stickel[0].copy()
     target_teks.move_to(algoritma_stickel_col.get_top()+UP)
     target_teks.set_width(algoritma_stickel_col.width * 0.8)
+    
     judul_stickel_bg = SurroundingRectangle(
             target_teks,
             color=BLUE_D,
             fill_color=BLUE_B,
             fill_opacity=0.5,
             corner_radius=0.2,
-            buff=0.2,
+            buff=0.2, 
             stroke_width=2
         )
-    judul_tropikal = Tex("Protokol Tropikal", font_size=target_teks.font_size, color=BLACK)
-    judul_tropikal.set_text("Protokol Tropikal")
+    judul_tropikal = Tex("Protokol Tropikal (Sergeev, 2024)", font_size=target_teks.font_size, color=BLACK)
     judul_tropikal.move_to(algoritma_tropikal.get_top()+UP)
     judul_tropikal_bg = SurroundingRectangle(
             judul_tropikal,
@@ -90,20 +232,22 @@ def stickel_protocol(s):
             stroke_width=2
         )   
 
-
     s.play(
-       ReplacementTransform(algoritma_stickel, algoritma_stickel_col),
+       ReplacementTransform(algoritma_stickel, algoritma_stickel_col, run_time=0.5),
        Create(garis_tengah),
        Write(algoritma_tropikal),
        Transform(judul_stickel[1], judul_stickel_bg),
        Transform(judul_stickel[0], target_teks),
-        Write(judul_tropikal_bg),
-        Write(judul_tropikal),
-       run_time=2
+       Write(judul_tropikal_bg),
+       Write(judul_tropikal),
+       run_time=1
     )
     s.wait()
     
     s.next_slide()
+    
+    s.play(Unwrite(algoritma_stickel_col), Unwrite(algoritma_tropikal), Unwrite(garis_tengah), Unwrite(judul_stickel), Unwrite(judul_tropikal), Unwrite(judul_tropikal_bg),run_time=1)
+
 
 def diffie_hellman(s):
    def get_key(color, location, scale=0.4):

@@ -58,9 +58,9 @@ def bikin_bab(judul, warna, video_path=None):
         # Grouping: Konten (belakang) -> Frame (depan) -> Judul
         return Group(content_obj, frame, t_judul)
 
-b1 = bikin_bab("Pendahuluan", BLUE,"vid/DiffieHellmanExchange.mp4")
-b2 = bikin_bab("Tinjauan Pustaka", TEAL)
-b3 = bikin_bab("Metodologi", GREEN)
+b1 = bikin_bab("Pendahuluan", BLUE,"vid/bab1.mp4")
+b2 = bikin_bab("Tinjauan Pustaka", TEAL, "vid/bab2.mp4")
+b3 = bikin_bab("Metodologi", GREEN, "vid/bab3.mp4")
 bab = [b1, b2, b3]
 
 grup_utama = Group(b1, b2, b3).arrange(RIGHT, buff=1.0)
@@ -75,16 +75,12 @@ bg_baru = Rectangle(
 
 def unzoom_section(s, bab_idx):
     zoom_balik = s.camera.frame.animate.move_to(bab[bab_idx-1]).set(width=bab[bab_idx-1].width * 1)
-    s.play(zoom_balik,FadeOut(bg_baru))
-    s.play(FadeIn(grup_utama))
+    s.play(zoom_balik,FadeOut(bg_baru), run_time=0.5)
+    s.play(FadeIn(grup_utama), lag_ratio=0.25, run_time=0.5)
 
     animasi_unzoom = s.camera.frame.animate.move_to(bab[bab_idx-1]).set(width=bab[bab_idx-1].width * 1.25)
     s.play(animasi_unzoom)
-    s.next_slide(loop=True)
-    s.wait(5)
-    s.next_slide(auto_next=True) 
-
-    
+    s.wait(0.5)
 
 
 def zoom_section(s,bab_idx):
@@ -92,7 +88,7 @@ def zoom_section(s,bab_idx):
 
     s.play(animasi_zoom)
     s.next_slide(loop=True)
-    s.wait(5) 
+    s.wait(3) 
     s.next_slide()
 
     bab_putih = Rectangle(
@@ -111,41 +107,13 @@ def zoom_section(s,bab_idx):
     s.play(Restore(s.camera.frame), FadeOut(bab_putih),run_time=0.2)
 
 def content(s):
-    # Tambahkan ke layar
     s.play(*[Add(obj, run_time=0.2) for obj in grup_utama], rate_func=smooth)
 
-    # --- LOGIKA ZOOM ---
-    
-    # 1. Simpan posisi Normal (Overview)
     s.camera.frame.save_state()
 
-    # 2. Zoom Out Awal (Overview)
-    # width=grup_utama.width + 2 supaya pas di layar kiri-kanan
+
     s.play(s.camera.frame.animate.set(width=grup_utama.width + 2).move_to(grup_utama))
-    s.next_slide(loop=True) 
-    s.wait(5) 
-    # 2. LOGIKA LOOPING (HANYA VIDEO JALAN)
-    # Nah, sekarang slide baru isinya CUMA nunggu (video jalan).
-    
-    
-    # Kunci Loop disini. Karena slide sebelumnya udah dipotong pake auto_next,
-    # yang diulang-ulang sekarang CUMA si s.wait(5) ini.
+    s.next_slide(loop=True, auto_next=True) 
+    s.wait(3) 
+
     s.next_slide(auto_next=True)
-
-
-    # # 4. Pindah Tinjauan Pustaka
-    # s.play(Restore(s.camera.frame), run_time=0.5) # Mundur cepat
-    # s.play(zoom_section(bab[1])) # Maju
-    # s.next_slide() 
-
-    # # 5. Pindah Metodologi
-    # s.play(Restore(s.camera.frame), run_time=0.5)
-    # s.play(zoom_section(bab[2]))
-    # s.next_slide() 
-
-    # # 6. Balik Overview & Clear
-    # s.play(Restore(s.camera.frame))
-    # s.play(FadeOut(grup_utama))
-
-def uncreate_content(s):
-    s.play(*[FadeOut(obj) for obj in grup_utama], rate_func=smooth)
