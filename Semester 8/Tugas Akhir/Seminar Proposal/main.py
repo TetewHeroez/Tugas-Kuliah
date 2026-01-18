@@ -17,7 +17,7 @@ class MainPresentation(MovingCameraScene, Slide):
         self.total_slides = 12
 
         self.num = Integer(1, color=GRAY, font_size=24)
-        self.text_total = Text(f" / {self.total_slides}", color=GRAY, font_size=24)
+        self.text_total = Text(f"/{self.total_slides}", color=GRAY, font_size=24)
         
         self.ind = VGroup(self.num, self.text_total).arrange(RIGHT, buff=0.1).set_z_index(1000)
         
