@@ -225,10 +225,30 @@ def latin_square(s):
         s.play(FadeOut(VGroup(*highlights)), run_time=0.3)
         if k < 3:
             s.play(Write(operators[k-1]), run_time=0.5)
-    
+
     s.wait(5)
+    cycle_notations = [
+        r"(1 \ 3 \ 2)", 
+        r"(1)", 
+        r"(1 \ 2 \ 3)"
+        ]
+
+    cycle_group = VGroup()
+
+    for i in range(3):
+        matrix_obj = terms[i][2] 
+        brace = Brace(matrix_obj, direction=DOWN, color=BLACK)
+        perm_label = MathTex(cycle_notations[i], color=val_colors[i+1], font_size=36)
+        perm_label.next_to(brace, DOWN, buff=0.1)
+        cycle_group.add(brace, perm_label)
+
     s.next_slide()
-    s.play(FadeOut(VGroup(full_equation, judul_bab, deskripsi_baru), scale=0.5), run_time=1)
+
+    s.play(Write(cycle_group), run_time=1.5)
+    s.wait()
+    
+    s.next_slide()
+    s.play(FadeOut(VGroup(full_equation, judul_bab, deskripsi_baru, cycle_group), scale=0.5), run_time=1)
 
 def permutasi(s):
     judul_bab = Title("Permutasi", color=BLACK, font_size=48, include_underline=True)

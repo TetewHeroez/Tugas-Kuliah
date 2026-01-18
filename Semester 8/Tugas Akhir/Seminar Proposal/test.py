@@ -1,187 +1,229 @@
 from manim import *
+from lib.slide_tracker import *
 
 config.background_color = WHITE
 
-class MaxPlusMatrixCalcFinal(Scene):
+class RevisionScene(Scene):
     def construct(self):
-        # --- KONFIGURASI KECEPATAN ---
-        # 0.5 = 2x lebih cepat
-        speed = 0.5 
+        latin_square(self)
+
+def latin_square(s):
+    judul_bab = Title("Latin Square", color=BLACK, font_size=48, include_underline=True)
+    judul_bab[-1].set_color(BLACK)
+    deskripsi = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Latin Square adalah susunan $n \times n$ yang diisi dengan $n$ simbol berbeda,
+                sehingga setiap simbol muncul tepat satu kali di setiap baris dan tepat satu kali di setiap kolom.}""", color=BLACK, font_size=30).next_to(judul_bab, DOWN, buff=0.5)
+    s.play(Write(judul_bab), Write(deskripsi), run_time=1)
+
+    n = 4
+    square_size = 1.0
+    
+    grid_data = [
+        [1, 2, 3, 4], 
+        [2, 1, 4, 3], 
+        [3, 4, 1, 2], 
+        [4, 3, 2, 1]  
+    ]
+    
+    color_map = {
+        1: TEAL_C,
+        2: RED_C,
+        3: GREEN_C,
+        4: ORANGE
+    }
+    grid_group = VGroup()
+    cells = {} 
+    number_mobjects = {} 
+    
+    for r in range(n):
+        for c in range(n):
+            sq = Square(side_length=square_size, color=DARK_GRAY, stroke_width=2)
+            pos = np.array([c * square_size - (n/2 * square_size) + square_size/2, 
+                            -r * square_size + (n/2 * square_size) - square_size/2, 
+                            0])
+            sq.move_to(pos)
+            grid_group.add(sq)
+            cells[(r, c)] = sq
+    grid_group.next_to(deskripsi, DOWN, buff=0.5)
+    s.play(Create(grid_group), run_time=1)
+    
+    row1_anims = []
+    for c in range(n):
+        val = grid_data[0][c]
+        num_obj = MathTex(str(val), color=BLACK, font_size=42)
+        num_obj.move_to(cells[(0, c)])
+        num_obj.set_z_index(1) 
+        number_mobjects[(0, c)] = num_obj
+        row1_anims.append(Write(num_obj))
         
-        # --- 1. SETUP DATA & LOGIKA HITUNG ---
-        matrix_A = [[2, 3], [4, 1]]
-        matrix_B = [[1, 5], [2, 3]]
-        
-        rows_a, cols_a = len(matrix_A), len(matrix_A[0])
-        rows_b, cols_b = len(matrix_B), len(matrix_B[0])
-
-        # Hitung hasil (Logic)
-        res_data = [[0 for _ in range(cols_b)] for _ in range(rows_a)]
-        for i in range(rows_a):
-            for j in range(cols_b):
-                candidates = []
-                for k in range(cols_a):
-                    val = matrix_A[i][k] + matrix_B[k][j]
-                    candidates.append(val)
-                res_data[i][j] = max(candidates)
-
-        # --- 2. SETUP VISUAL (STATIC / LANGSUNG MUNCUL) ---
-        
-        # A. Judul (Pastikan Hitam)
-        judul_bab = Title("Perkalian Matriks Max-Plus", color=BLACK)
-        judul_bab[1].set_color(BLACK) # Garis bawah hitam
-        
-        # B. Rumus (Langsung di posisi Kiri) - Text Hitam
-        rumus_1 = MathTex(r"(A \otimes B)_{ij}", color=BLACK, font_size=30)
-        rumus_2 = MathTex(r"= \max_{1 \leq k \leq n} (a_{ik} + b_{kj})", color=BLACK, font_size=30)
-        
-        # Posisi Rumus
-        rumus_2.next_to(rumus_1, RIGHT, buff=0.1)
-        rumus_group = VGroup(rumus_1, rumus_2)
-        
-        kotak_rumus = SurroundingRectangle(
-            rumus_group,
-            color=BLUE_D,
-            fill_color=BLUE_D,
-            fill_opacity=0.6,
-            corner_radius=0,
-            buff=0.3
-        ).set_z_index(-1)
-        
-        full_rumus = VGroup(kotak_rumus, rumus_group)
-        full_rumus.to_edge(LEFT, buff=1.0).shift(UP*0.5)
-
-        # C. Matriks Definisi (Langsung di posisi Kanan Rumus) - Set Warna HITAM
-        mat_a = IntegerMatrix(matrix_A).set_color(BLACK)
-        mat_b = IntegerMatrix(matrix_B).set_color(BLACK)
-        
-        label_a = MathTex("A =", font_size=30, color=BLACK)
-        label_b = MathTex("B =", font_size=30, color=BLACK)
-        
-        group_a = VGroup(label_a, mat_a.scale(0.6)).arrange(RIGHT, buff=0.2)
-        group_b = VGroup(label_b, mat_b.scale(0.6)).arrange(RIGHT, buff=0.2)
-        
-        # Susun group a dan b
-        group_a.next_to(full_rumus, RIGHT, buff=1.0)
-        group_b.next_to(group_a, RIGHT, buff=0.5)
-        
-        kotak_group_a_b = SurroundingRectangle(
-            VGroup(group_a, group_b),
-            color=GREEN_D,
-            fill_color=GREEN_D,
-            fill_opacity=0.6,
-            corner_radius=0,
-            buff=0.2
-        ).set_z_index(-1)
-
-        # --- TAMPILKAN OBJEK AWAL SECARA INSTAN ---
-        self.add(judul_bab)
-        self.add(full_rumus)
-        self.add(kotak_group_a_b, group_a, group_b)
-        
-        self.wait(1 * speed)
-
-        # --- 3. MULAI ANIMASI PERHITUNGAN ---
-
-        # Persiapan Transisi ke Bentuk Persamaan Besar
-        # Copy dan pastikan WARNA HITAM
-        target_mat_a = mat_a.copy().scale(2).set_color(BLACK) 
-        target_mat_b = mat_b.copy().scale(2).set_color(BLACK)
-
-        # Matriks Hasil (Kosong/Transparan tapi bracket Hitam)
-        mat_res = IntegerMatrix(res_data).set_color(BLACK)
-        target_mat_res = mat_res.copy().scale(1.2) 
-        target_mat_res.get_entries().set_opacity(0) # Sembunyikan angka dulu
-        target_mat_res.set_color(BLACK) # Bracket hitam
-        target_mat_res.match_height(target_mat_a)
-
-        times_sym = MathTex(r"\otimes", font_size=60, color=BLACK)
-        equals_sym = MathTex(r"=", font_size=60, color=BLACK)
-
-        # Group Akhir (Posisi Bawah)
-        group_akhir = VGroup(
-            target_mat_a, 
-            times_sym, 
-            target_mat_b, 
-            equals_sym, 
-            target_mat_res
-        )
-        group_akhir.arrange(RIGHT, buff=0.3)
-        group_akhir.move_to(DOWN * 1.5)
-
-        # Animasi Transisi: Dari Definisi Kecil ke Persamaan Besar
-        self.play(
-            ReplacementTransform(group_a[1].copy(), target_mat_a), 
-            ReplacementTransform(group_b[1].copy(), target_mat_b), 
-            Write(times_sym),
-            Write(equals_sym),
-            Write(target_mat_res.get_brackets()), 
-            run_time=1.5 * speed
-        )
-        self.wait(0.5 * speed)
-
-        # Referensi ulang untuk loop
-        final_mat_a = target_mat_a
-        final_mat_b = target_mat_b
-        final_mat_res = target_mat_res
-
-        # --- 4. LOOP PERHITUNGAN ---
-        for r in range(rows_a):
-            for c in range(cols_b):
-                row_obj = final_mat_a.get_rows()[r]
-                col_obj = final_mat_b.get_columns()[c]
-                
-                # Highlight Baris & Kolom (Warna cerah agar terlihat di putih)
-                rect_row = SurroundingRectangle(row_obj, color=BLUE, buff=0.1)
-                rect_col = SurroundingRectangle(col_obj, color=GREEN, buff=0.1)
-                
-                self.play(Create(rect_row), Create(rect_col), run_time=0.4 * speed)
-
-                # Siapkan Teks Perhitungan
-                parts_str = []
-                sums_val = []
-                for k in range(cols_a):
-                    val_a = matrix_A[r][k]
-                    val_b = matrix_B[k][c]
-                    val_sum = val_a + val_b
-                    sums_val.append(val_sum)
-                    parts_str.append(f"({val_a}+{val_b})")
-                
-                max_val = max(sums_val)
-                inner_content = ", ".join(parts_str)
-                latex_str = f"\\max \\big( {inner_content} \\big) = {max_val}"
-                
-                # Tampilkan Teks di Bawah (Warna Coklat Tua agar kontras)
-                step_calculation = MathTex(latex_str, font_size=34, color=DARK_BROWN)
-                step_calculation.next_to(group_akhir, DOWN, buff=0.3)
-
-                self.play(Write(step_calculation), run_time=0.6 * speed)
-                self.wait(0.3 * speed)
-
-                # Isi Angka ke Matriks Hasil
-                entry_index = r * cols_b + c
-                target_placeholder = final_mat_res.get_entries()[entry_index]
-                
-                # Angka hasil berwarna HITAM
-                new_entry = MathTex(str(max_val), font_size=target_placeholder.font_size, color=BLACK)
-                new_entry.move_to(target_placeholder.get_center())
-                
-                # Ambil bagian angka terakhir dari teks perhitungan
-                source_part = step_calculation[-len(str(max_val)):] 
-                
-                self.play(
-                    ReplacementTransform(source_part.copy(), new_entry), 
-                    run_time=0.6 * speed
+    s.play(AnimationGroup(*row1_anims, lag_ratio=0.1), run_time=1)
+    s.wait(0.3)
+    for r in range(1, n):
+        anims = []
+        for c in range(n):
+            target_val = grid_data[r][c]
+            target_cell = cells[(r, c)]
+            
+            source_obj = None
+            for prev_c in range(n):
+                if grid_data[r-1][prev_c] == target_val:
+                    source_obj = number_mobjects[(r-1, prev_c)]
+                    break
+            
+            final_num = MathTex(str(target_val), color=BLACK, font_size=42)
+            final_num.move_to(target_cell)
+            final_num.set_z_index(1)
+            number_mobjects[(r, c)] = final_num
+            
+            anims.append(
+                TransformFromCopy(
+                    source_obj, 
+                    final_num, 
+                    path_arc=-PI/2
                 )
+            )
+        s.play(AnimationGroup(*anims), run_time=1.2)
+        s.wait(0.2)
+    s.wait(0.5)
+    coloring_anims = []
+    for r in range(n):
+        for c in range(n):
+            val = grid_data[r][c]
+            color = color_map[val]
+            cell = cells[(r, c)]
+            
+            coloring_anims.append(
+                cell.animate.set_fill(color, opacity=0.5).set_stroke(opacity=1)
+            )
+    s.play(LaggedStart(*coloring_anims, lag_ratio=0.05), run_time=2)
+    s.wait(2)
+    s.next_slide()
+    s.play(FadeOut(VGroup(deskripsi, grid_group, *number_mobjects.values()), shift=LEFT), run_time=1)
+    next_slide_count(s)
 
-                # Bersihkan Highlight & Teks
-                self.play(
-                    FadeOut(rect_row),
-                    FadeOut(rect_col),
-                    FadeOut(step_calculation),
-                    run_time=0.3 * speed
-                )
+    deskripsi_baru = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Setiap Latin Square dapat didekomposisi menjadi penjumlahan matriks permutasi max--plus.
+                         Matriks permutasi bersesuaian dengan permutasi yang merepresentasikan posisi simbol pada setiap baris.
+                         }""", color=BLACK, font_size=30).next_to(judul_bab, DOWN, buff=0.5)
+    s.play(Write(deskripsi_baru), run_time=1)
+    s.wait(1)
+    s.next_slide(auto_next=True)
+    scale_fac = 0.8
+    matrix_vals = [
+        [2, 3, 1],
+        [1, 2, 3],
+        [3, 1, 2]
+    ]
+    n = 3
+    
+    val_colors = {
+        1: BLUE,
+        2: RED,
+        3: GREEN_E
+    }
+    label_A = MathTex("A =", color=BLACK, font_size=40)
+    
+    m_A = Matrix(matrix_vals, v_buff=0.5, h_buff=0.6, left_bracket="(", right_bracket=")")
+    m_A.set_color(BLACK)
+    m_A.scale(scale_fac)
+    
+    eq_sign = MathTex("=", color=BLACK, font_size=40)
+    terms = []
+    operators = []
+    p_matrices = [] 
+    for k in range(1, 4):
+        scalar_tex = MathTex(str(k), color=val_colors[k], font_size=40)
+        otimes = MathTex(r"\otimes", color=BLACK, font_size=50)
+        
+        p_vals = [[r"\varepsilon" for _ in range(n)] for _ in range(n)]
+        
+        target_indices = []
+        for r in range(n):
+            for c in range(n):
+                if matrix_vals[r][c] == k:
+                    p_vals[r][c] = "0"
+                    target_indices.append((r, c))
+        m_P = Matrix(p_vals, v_buff=0.5, h_buff=0.5, left_bracket="(", right_bracket=")")
+        m_P.set_color(BLACK)
+        m_P.scale(scale_fac)
+        for r in range(n):
+            for c in range(n):
+                idx = r * n + c
+                ent = m_P.get_entries()[idx]
+                if (r, c) in target_indices:
+                    ent.set_color(val_colors[k])
+                else:
+                    ent.set_color(GRAY_C)
+        
+        p_matrices.append((m_P, target_indices))
+        term_group = VGroup(scalar_tex, otimes, m_P).arrange(RIGHT, buff=0.15)
+        terms.append(term_group)
+        if k < 3:
+            oplus = MathTex(r"\oplus", color=BLACK, font_size=50)
+            operators.append(oplus)
+    full_equation = VGroup(label_A, m_A, eq_sign)
+    for i in range(3):
+        full_equation.add(terms[i])
+        if i < 2:
+            full_equation.add(operators[i])
+    full_equation.arrange(RIGHT, buff=0.2)
+    
+    target_width = config.frame_width - 1
+    if full_equation.width > target_width:
+        full_equation.scale_to_fit_width(target_width)
+    
+    full_equation.next_to(deskripsi_baru, DOWN, buff=1.0)
+    s.play(Write(label_A), Create(m_A))
+    s.play(Write(eq_sign))
+    s.next_slide(loop=True)
+    for k in range(1, 4):
+        m_P, target_indices = p_matrices[k-1]
+        term_group = terms[k-1]
+        scalar = term_group[0]
+        otimes = term_group[1]
+        
+        highlights = []
+        entries_A = m_A.get_entries()
+        
+        for r, c in target_indices:
+            idx = r * n + c
+            entry = entries_A[idx]
+            rect = SurroundingRectangle(entry, color=val_colors[k], buff=0.08, stroke_width=2)
+            highlights.append(rect)
+        s.play(
+            LaggedStart(*[Create(h) for h in highlights], lag_ratio=0.1),
+            run_time=0.5
+        )
+        s.play(
+            TransformFromCopy(VGroup(*highlights), m_P),
+            Write(scalar),
+            Write(otimes),
+            run_time=1
+        )
+        
+        s.play(FadeOut(VGroup(*highlights)), run_time=0.3)
+        if k < 3:
+            s.play(Write(operators[k-1]), run_time=0.5)
 
-        # Highlight Hasil Akhir (Warna Merah Bata / Coklat)
-        self.play(Indicate(final_mat_res, color=DARK_BROWN, scale_factor=1.1), run_time=1 * speed)
-        self.wait(2 * speed)
+    s.wait(5)
+    cycle_notations = [
+        r"(1 \ 3 \ 2)", 
+        r"(1)", 
+        r"(1 \ 2 \ 3)"
+        ]
+
+    cycle_group = VGroup()
+
+    for i in range(3):
+        matrix_obj = terms[i][2] 
+        brace = Brace(matrix_obj, direction=DOWN, color=BLACK)
+        perm_label = MathTex(cycle_notations[i], color=val_colors[i+1], font_size=36)
+        perm_label.next_to(brace, DOWN, buff=0.1)
+        cycle_group.add(brace, perm_label)
+
+    s.next_slide()
+
+    s.play(Write(cycle_group), run_time=1.5)
+    s.wait()
+    
+    s.next_slide()
+    s.play(FadeOut(VGroup(full_equation, judul_bab, deskripsi_baru, cycle_group), scale=0.5), run_time=1)
+    
