@@ -13,7 +13,7 @@ def tinjauan_pustaka(s):
     s.camera.frame.animate
     .move_to(ORIGIN)
     .set(width=config.frame_width)
-    .set_rotation(0), # Tambahan buat reset putaran
+    .set_rotation(0), 
     run_time=1.5
 )
     aljabar_max_plus(s)
@@ -263,7 +263,7 @@ def permutasi(s):
     inputs = [1, 2, 3, 4, 5, 6]
     outputs = [3, 5, 1, 2, 6, 4] 
     n = len(inputs)
-    matrix_content = VGroup().next_to(deskripsi, DOWN, buff=1.5)
+    matrix_content = VGroup().move_to(ORIGIN)
     top_row_refs = [] 
     bot_row_refs = []
     for i in range(n):
@@ -287,6 +287,7 @@ def permutasi(s):
     full_matrix_group = VGroup(sigma_label, left_bracket, matrix_content, right_bracket)
     
     full_matrix_group.to_edge(LEFT, buff=1.0)
+    s.next_slide(auto_next=True)
     s.play(
         Write(sigma_label),
         Write(left_bracket),
@@ -298,6 +299,7 @@ def permutasi(s):
     equals_sign.next_to(full_matrix_group, RIGHT, buff=0.3)
     
     s.play(Write(equals_sign))
+    s.next_slide(loop=True)
     
     visited = [False] * n
     cursor_box = SurroundingRectangle(top_row_refs[0], color=ORANGE, buff=0.08, stroke_width=2)
@@ -379,7 +381,6 @@ def permutasi(s):
              lag_ratio=0.05
          ), run_time=0.5
     )
-    
     s.play(total_group.animate.move_to(ORIGIN),run_time=0.5)
     s.play(Circumscribe(cycle_group), run_time=0.5, color=DARK_BROWN)
     s.wait()
@@ -425,11 +426,11 @@ def permutasi(s):
     col_labels = VGroup()
     for i in range(n):
         row_ref = matrix_mobj.get_rows()[i]
-        lbl_r = MathTex(str(i+1), color=RED, font_size=20)
+        lbl_r = MathTex(str(i+1), color=BLUE_E, font_size=20)
         lbl_r.next_to(row_ref, RIGHT, buff=0.4)
         row_labels.add(lbl_r)
         col_ref = matrix_mobj.get_columns()[i]
-        lbl_c = MathTex(str(i+1), color=BLUE, font_size=20)
+        lbl_c = MathTex(str(i+1), color=RED_E, font_size=20)
         lbl_c.next_to(col_ref, DOWN, buff=0.3)
         col_labels.add(lbl_c)
     p_sigma_label = MathTex(r"P_{\sigma} =", color=BLACK, font_size=40).next_to(matrix_mobj, LEFT, buff=0.5)
@@ -467,28 +468,32 @@ def permutasi(s):
     ]
     entries = matrix_mobj.get_entries()
     for inp, out, mob_in, mob_out in mappings:
+        idx = (inp - 1) * n + (out - 1) 
+        target_entry = entries[idx]
+
         s.play(
-            mob_in.animate.set_color(BLUE).scale(1.2),
-            mob_out.animate.set_color(RED).scale(1.2),
-            col_labels[inp-1].animate.set_color(BLUE).set_weight(BOLD).scale(1.2),
-            row_labels[out-1].animate.set_color(RED).set_weight(BOLD).scale(1.2),
+            mob_in.animate.set_color(BLUE).scale(1.2), 
+            mob_out.animate.set_color(RED).scale(1.2),  
+            row_labels[inp-1].animate.set_color(BLUE).set_weight(BOLD).scale(1.2),
+            col_labels[out-1].animate.set_color(RED).set_weight(BOLD).scale(1.2),
             run_time=0.4
         )
-        idx = (out - 1) * n + (inp - 1)
-        target_entry = entries[idx]
+        
         indicator = SurroundingRectangle(target_entry, color=ORANGE, buff=0.15)
         s.play(Create(indicator), run_time=0.2)
+        
         new_val = MathTex("0", color=BLACK, font_size=32).move_to(target_entry)
         
         s.play(
             Transform(target_entry, new_val),
             run_time=0.4
         )
+        
         s.play(
             mob_in.animate.set_color(BLACK).scale(1/1.2),
             mob_out.animate.set_color(BLACK).scale(1/1.2),
-            col_labels[inp-1].animate.set_color(BLUE).scale(1/1.2),
-            row_labels[out-1].animate.set_color(RED).scale(1/1.2),
+            row_labels[inp-1].animate.set_color(BLUE).scale(1/1.2), 
+            col_labels[out-1].animate.set_color(RED).scale(1/1.2),
             FadeOut(indicator),
             run_time=0.3
         )
@@ -758,7 +763,7 @@ def teorema_matriks(s):
     s.play(Write(deskripsi_full), run_time=2)
     s.wait()
     s.next_slide()
-    s.play(FadeOut(deskripsi_full), FadeOut(judul_bab), run_time=1)
+    s.play(FadeOut(deskripsi_full, judul_bab, shift=LEFT), run_time=1)
     
 def matriks(s):
     my_template = TexTemplate()
@@ -816,8 +821,6 @@ def matriks(s):
     if cols_a != rows_b:
         s.add(Text("Dimensi Error").set_color(RED))
         return
-
-    # Hitung hasil matriks
     res_data = [[0 for _ in range(cols_b)] for _ in range(rows_a)]
     for i in range(rows_a):
         for j in range(cols_b):
@@ -948,8 +951,7 @@ def matriks(s):
     s.play(Indicate(final_mat_res,color=DARK_BROWN, scale_factor=1.1), run_time=1)
     s.wait()
     s.next_slide()
-    s.play(FadeOut(VGroup(
-        judul_bab, rumus_1, rumus_3, kotak_rumus, group_akhir,final_mat_res, group_a, group_b, kotak_group_a_b), shift=LEFT))
+    s.play(FadeOut(VGroup(rumus_1, rumus_3, kotak_rumus, group_akhir,final_mat_res, group_a, group_b, kotak_group_a_b), shift=LEFT))
 
 def aljabar_max_plus(s):
     my_template = TexTemplate()
