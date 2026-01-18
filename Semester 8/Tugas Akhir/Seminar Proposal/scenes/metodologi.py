@@ -115,6 +115,7 @@ def flowchart(s):
           MoveAlongPath(travel_dot, entrance_arrow),
           run_time=1
       )
+      s.wait(0.5)
       s.remove(travel_dot)
       for i, idx in enumerate(chunk):
           node = nodes[idx]

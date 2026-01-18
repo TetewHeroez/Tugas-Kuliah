@@ -106,7 +106,7 @@ def tujuan_manfaat(s):
     s.play(Transform(slide_1, slide_2), run_time=1.5)
     s.wait(1)
     s.next_slide(auto_next=True)
-    s.remove(slide_1)
+    s.play(FadeOut(slide_1,scale=0.5), run_time=1)
    
 def stickel_protocol(s):
     judul_stickel = Title("Protokol Stickel (E. Stickel, 2005)", color=BLACK, font_size=48)
@@ -439,7 +439,3 @@ def diffie_hellman(s):
 
    s.next_slide()
    s.play(Unwrite(because), Unwrite(final_center_key),Unwrite(final_lbl), Unwrite(box), Unwrite(VGroup(eq, math_A_shared_2, math_B_shared_2)), Unwrite(judul), run_time=1)
-
-   
-   
-#    s.play(*[FadeOut(mobj) for mobj in s.mobjects])

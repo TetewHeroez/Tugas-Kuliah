@@ -1,273 +1,187 @@
 from manim import *
-from itertools import permutations
 
 config.background_color = WHITE
 
-class VisualDerangementS4(Scene):
+class MaxPlusMatrixCalcFinal(Scene):
     def construct(self):
-        # --- JUDUL ---
-        title = Text("Visualisasi Derangement S4", font_size=36, color=BLACK, weight=BOLD).to_edge(UP)
-        subtitle = Text("Mencari permutasi di mana indeks ≠ nilai", font_size=20, color=GRAY).next_to(title, DOWN)
-        self.play(Write(title), FadeIn(subtitle))
-
-        # --- GENERATE DATA ---
-        perms = list(permutations([1, 2, 3, 4]))
+        # --- KONFIGURASI KECEPATAN ---
+        # 0.5 = 2x lebih cepat
+        speed = 0.5 
         
-        # Container
-        all_cards = VGroup()
-        card_data = [] # Simpan referensi logika
-
-        # Fungsi bikin kartu cantik
-        def create_card(p):
-            # Background Kartu
-            card_bg = RoundedRectangle(corner_radius=0.1, width=2.2, height=0.8, fill_color=WHITE, fill_opacity=1, stroke_color=GRAY, stroke_width=1)
-            
-            # Slot Angka
-            slots = VGroup()
-            fixed_indices = []
-            
-            for i, val in enumerate(p):
-                # i+1 adalah posisi index (1,2,3,4)
-                # val adalah nilai
-                
-                # Kotak kecil per angka
-                sq = Square(side_length=0.4, fill_color=WHITE, fill_opacity=0, stroke_width=0)
-                num = Text(str(val), font_size=24, color=BLACK).move_to(sq)
-                
-                # Cek Fixed Point (Nilai == Posisi)
-                is_fixed = (val == i + 1)
-                if is_fixed:
-                    fixed_indices.append(i)
-                
-                # Indikator posisi kecil di bawah (opsional, biar tau ini posisi ke berapa)
-                idx_lbl = Text(str(i+1), font_size=10, color=GRAY).next_to(sq, DOWN, buff=0.05)
-                
-                slot_group = VGroup(sq, num, idx_lbl)
-                slots.add(slot_group)
-            
-            slots.arrange(RIGHT, buff=0.15).move_to(card_bg)
-            
-            full_card = VGroup(card_bg, slots)
-            return full_card, fixed_indices, slots
-
-        # Buat semua 24 kartu
-        for p in perms:
-            card_obj, fixed_idxs, slots_ref = create_card(p)
-            all_cards.add(card_obj)
-            
-            is_derangement = (len(fixed_idxs) == 0)
-            card_data.append({
-                "mobject": card_obj,
-                "bg": card_obj[0],
-                "slots": slots_ref,
-                "fixed_idxs": fixed_idxs,
-                "is_derangement": is_derangement
-            })
-
-        # --- LAYOUT GRID (ANTI OVERFLOW) ---
-        # Susun 6 baris x 4 kolom
-        all_cards.arrange_in_grid(rows=6, cols=4, buff=0.3)
+        # --- 1. SETUP DATA & LOGIKA HITUNG ---
+        matrix_A = [[2, 3], [4, 1]]
+        matrix_B = [[1, 5], [2, 3]]
         
-        # Scale otomatis agar muat di layar (menyisakan ruang untuk judul)
-        max_h = config.frame_height - 2.5
-        max_w = config.frame_width - 1.0
+        rows_a, cols_a = len(matrix_A), len(matrix_A[0])
+        rows_b, cols_b = len(matrix_B), len(matrix_B[0])
+
+        # Hitung hasil (Logic)
+        res_data = [[0 for _ in range(cols_b)] for _ in range(rows_a)]
+        for i in range(rows_a):
+            for j in range(cols_b):
+                candidates = []
+                for k in range(cols_a):
+                    val = matrix_A[i][k] + matrix_B[k][j]
+                    candidates.append(val)
+                res_data[i][j] = max(candidates)
+
+        # --- 2. SETUP VISUAL (STATIC / LANGSUNG MUNCUL) ---
         
-        # Kecilkan grup agar pas
-        if all_cards.height > max_h:
-            all_cards.scale_to_fit_height(max_h)
-        if all_cards.width > max_w:
-            all_cards.scale_to_fit_width(max_w)
-            
-        all_cards.move_to(DOWN * 0.5)
-
-        # Animasi Muncul (Pop up)
-        self.play(LaggedStart(*[GrowFromCenter(c) for c in all_cards], lag_ratio=0.03), run_time=2)
-        self.wait(0.5)
-
-        # --- ANIMASI LOGIKA (CEK SATU PER SATU) ---
+        # A. Judul (Pastikan Hitam)
+        judul_bab = Title("Perkalian Matriks Max-Plus", color=BLACK)
+        judul_bab[1].set_color(BLACK) # Garis bawah hitam
         
-        # 1. Highlight yang SALAH (Fixed Points) jadi MERAH
-        anims_bad = []
-        for data in card_data:
-            if not data["is_derangement"]:
-                for idx in data["fixed_idxs"]:
-                    # Ambil kotak angka yang salah posisi
-                    slot_group = data["slots"][idx] 
-                    # slot_group[0] adalah Square, slot_group[1] adalah Angka
-                    # Warnai angkanya Merah, kotaknya merah muda
-                    anims_bad.append(
-                        slot_group[1].animate.set_color(RED).set_weight(BOLD)
-                    )
-                    # Tambahkan background merah pada kotak spesifik
-                    bg_bad = Square(side_length=0.4, color=RED, fill_opacity=0.2, stroke_opacity=0).move_to(slot_group[0])
-                    # Kita add langsung ke scene biar cepet (hacky but fast visual)
-                    self.add(bg_bad) # Static add, nanti di fadeout bareng card
-                    data["mobject"].add(bg_bad) # Masukkan ke grup kartu biar ikut gerak
+        # B. Rumus (Langsung di posisi Kiri) - Text Hitam
+        rumus_1 = MathTex(r"(A \otimes B)_{ij}", color=BLACK, font_size=30)
+        rumus_2 = MathTex(r"= \max_{1 \leq k \leq n} (a_{ik} + b_{kj})", color=BLACK, font_size=30)
+        
+        # Posisi Rumus
+        rumus_2.next_to(rumus_1, RIGHT, buff=0.1)
+        rumus_group = VGroup(rumus_1, rumus_2)
+        
+        kotak_rumus = SurroundingRectangle(
+            rumus_group,
+            color=BLUE_D,
+            fill_color=BLUE_D,
+            fill_opacity=0.6,
+            corner_radius=0,
+            buff=0.3
+        ).set_z_index(-1)
+        
+        full_rumus = VGroup(kotak_rumus, rumus_group)
+        full_rumus.to_edge(LEFT, buff=1.0).shift(UP*0.5)
 
-        self.play(AnimationGroup(*anims_bad, lag_ratio=0.01), run_time=1.5)
-        self.wait(0.5)
+        # C. Matriks Definisi (Langsung di posisi Kanan Rumus) - Set Warna HITAM
+        mat_a = IntegerMatrix(matrix_A).set_color(BLACK)
+        mat_b = IntegerMatrix(matrix_B).set_color(BLACK)
+        
+        label_a = MathTex("A =", font_size=30, color=BLACK)
+        label_b = MathTex("B =", font_size=30, color=BLACK)
+        
+        group_a = VGroup(label_a, mat_a.scale(0.6)).arrange(RIGHT, buff=0.2)
+        group_b = VGroup(label_b, mat_b.scale(0.6)).arrange(RIGHT, buff=0.2)
+        
+        # Susun group a dan b
+        group_a.next_to(full_rumus, RIGHT, buff=1.0)
+        group_b.next_to(group_a, RIGHT, buff=0.5)
+        
+        kotak_group_a_b = SurroundingRectangle(
+            VGroup(group_a, group_b),
+            color=GREEN_D,
+            fill_color=GREEN_D,
+            fill_opacity=0.6,
+            corner_radius=0,
+            buff=0.2
+        ).set_z_index(-1)
 
-        # 2. Redupkan kartu yang GAGAL (Punya elemen merah)
-        anims_dim = []
-        good_cards = VGroup()
-        bad_cards = VGroup()
+        # --- TAMPILKAN OBJEK AWAL SECARA INSTAN ---
+        self.add(judul_bab)
+        self.add(full_rumus)
+        self.add(kotak_group_a_b, group_a, group_b)
+        
+        self.wait(1 * speed)
 
-        for data in card_data:
-            if not data["is_derangement"]:
-                anims_dim.append(data["mobject"].animate.set_opacity(0.2))
-                bad_cards.add(data["mobject"])
-            else:
-                # Highlight yang BENAR (Derangement) jadi HIJAU
-                anims_dim.append(data["bg"].animate.set_stroke(GREEN, width=4))
-                good_cards.add(data["mobject"])
+        # --- 3. MULAI ANIMASI PERHITUNGAN ---
 
-        self.play(AnimationGroup(*anims_dim), run_time=1)
-        self.wait(1)
+        # Persiapan Transisi ke Bentuk Persamaan Besar
+        # Copy dan pastikan WARNA HITAM
+        target_mat_a = mat_a.copy().scale(2).set_color(BLACK) 
+        target_mat_b = mat_b.copy().scale(2).set_color(BLACK)
 
-        # --- FILTERING ---
-        # Buang yang gagal
-        self.play(
-            FadeOut(bad_cards),
-            FadeOut(subtitle),
-            run_time=1
+        # Matriks Hasil (Kosong/Transparan tapi bracket Hitam)
+        mat_res = IntegerMatrix(res_data).set_color(BLACK)
+        target_mat_res = mat_res.copy().scale(1.2) 
+        target_mat_res.get_entries().set_opacity(0) # Sembunyikan angka dulu
+        target_mat_res.set_color(BLACK) # Bracket hitam
+        target_mat_res.match_height(target_mat_a)
+
+        times_sym = MathTex(r"\otimes", font_size=60, color=BLACK)
+        equals_sym = MathTex(r"=", font_size=60, color=BLACK)
+
+        # Group Akhir (Posisi Bawah)
+        group_akhir = VGroup(
+            target_mat_a, 
+            times_sym, 
+            target_mat_b, 
+            equals_sym, 
+            target_mat_res
         )
+        group_akhir.arrange(RIGHT, buff=0.3)
+        group_akhir.move_to(DOWN * 1.5)
 
-        # Susun ulang 9 Derangement menjadi grid 3x3 yang rapi
+        # Animasi Transisi: Dari Definisi Kecil ke Persamaan Besar
         self.play(
-            good_cards.animate.arrange_in_grid(rows=3, cols=3, buff=0.5).scale(1.2).move_to(ORIGIN),
-            run_time=1.5
+            ReplacementTransform(group_a[1].copy(), target_mat_a), 
+            ReplacementTransform(group_b[1].copy(), target_mat_b), 
+            Write(times_sym),
+            Write(equals_sym),
+            Write(target_mat_res.get_brackets()), 
+            run_time=1.5 * speed
         )
+        self.wait(0.5 * speed)
 
-        # Label Final
-        final_lbl = Text("Total: 9 Derangement", color=GREEN_E, font_size=32).next_to(good_cards, UP, buff=0.5)
-        
-        # Kotak pembungkus hasil akhir
-        final_box = SurroundingRectangle(good_cards, color=GREEN, buff=0.3, corner_radius=0.2)
-        
-        self.play(Write(final_lbl), Create(final_box))
-        
-        self.wait(3)
-class DerangementExplainer(Scene):
-    def construct(self):
-        COL_TEXT = BLACK
-        COL_SLOT = GRAY
-        COL_ITEM = BLUE
-        COL_CORRECT = RED   
-        COL_WRONG = GREEN   
+        # Referensi ulang untuk loop
+        final_mat_a = target_mat_a
+        final_mat_b = target_mat_b
+        final_mat_res = target_mat_res
 
-        title = Title("Apa itu Derangement (!n)?", color=COL_TEXT, font_size=48, include_underline=True)
-        subtitle = Text("Permutasi di mana TIDAK ADA elemen yang menempati posisi aslinya.", font_size=24, color=COL_TEXT)
-        subtitle.next_to(title, DOWN)
-
-        self.play(Write(title), Write(subtitle), run_time=1)
-        self.wait(1)
-        
-        n = 4
-        slots = VGroup()
-        items = VGroup()
-        
-        start_buff = 1.5
-        
-        for i in range(n):
-            slot_box = Square(side_length=1.2, color=COL_SLOT, stroke_width=2)
-            label = Integer(i+1, color=COL_SLOT).move_to(slot_box.get_top() + UP*0.3)
-            slot_group = VGroup(slot_box, label)
-            slots.add(slot_group)
-            
-            item_circ = Circle(radius=0.4, color=COL_ITEM, fill_opacity=0.5, fill_color=COL_ITEM)
-            item_lbl = Integer(i+1, color=WHITE).move_to(item_circ)
-            item_group = VGroup(item_circ, item_lbl)
-            items.add(item_group)
-
-        slots.arrange(RIGHT, buff=0.5).shift(UP*0.5)
-        
-        for i, item in enumerate(items):
-            item.next_to(slots[i], DOWN, buff=1.5)
-
-        self.play(Create(slots), FadeIn(items), run_time=1)
-
-        def move_items(permutation, label_text, is_derangement):
-            anims = []
-            targets = []
-
-            for item_idx, slot_idx in enumerate(permutation):
-                item = items[item_idx]
-                target_slot = slots[slot_idx][0] 
-                targets.append(target_slot)
-                anims.append(item.animate.move_to(target_slot.get_center()))
-            
-            lbl_status = Text(label_text, color=COL_TEXT, font_size=36).to_edge(DOWN, buff=1.5)
-            
-            self.play(*anims, Write(lbl_status), run_time=1)
-            
-            highlights = [] 
-            highlight_anims = [] 
-            all_wrong_pos = True
-            
-            for i, slot_idx in enumerate(permutation):
+        # --- 4. LOOP PERHITUNGAN ---
+        for r in range(rows_a):
+            for c in range(cols_b):
+                row_obj = final_mat_a.get_rows()[r]
+                col_obj = final_mat_b.get_columns()[c]
                 
-                item = items[i]
-                rect = SurroundingRectangle(slots[slot_idx], buff=0.1, stroke_width=4)
+                # Highlight Baris & Kolom (Warna cerah agar terlihat di putih)
+                rect_row = SurroundingRectangle(row_obj, color=BLUE, buff=0.1)
+                rect_col = SurroundingRectangle(col_obj, color=GREEN, buff=0.1)
                 
-                if i == slot_idx: 
-                    rect.set_color(COL_CORRECT) # 
-                    item.set_color(COL_CORRECT)
-                    all_wrong_pos = False
-                else:
-                    rect.set_color(COL_WRONG) 
-                    item.set_color(COL_WRONG)
+                self.play(Create(rect_row), Create(rect_col), run_time=0.4 * speed)
+
+                # Siapkan Teks Perhitungan
+                parts_str = []
+                sums_val = []
+                for k in range(cols_a):
+                    val_a = matrix_A[r][k]
+                    val_b = matrix_B[k][c]
+                    val_sum = val_a + val_b
+                    sums_val.append(val_sum)
+                    parts_str.append(f"({val_a}+{val_b})")
                 
-                # PERBAIKAN DISINI:
-                highlights.append(rect)          # Simpan MOBJECT-nya
-                highlight_anims.append(Create(rect)) # Simpan ANIMASI-nya terpisah
-            
-            # Jalankan animasi Create
-            self.play(*highlight_anims, run_time=0.5)
-            
-            result_text = r"Yes" if is_derangement else r"No"
-            col_res = COL_WRONG if is_derangement else COL_CORRECT
-            
-            lbl_res = Text(result_text, color=col_res, font_size=28, weight=BOLD).next_to(lbl_status, DOWN)
-            self.play(Write(lbl_res), run_time=0.5)
-            self.wait(1.5)
-            
-            # 3. Reset
-            reset_anims = []
-            for i, item in enumerate(items):
-                item.set_color(COL_ITEM) # Balik biru
-                reset_anims.append(item.animate.next_to(slots[i], DOWN, buff=1.5))
-            
-            self.play(
-                *reset_anims, 
-                FadeOut(lbl_status), FadeOut(lbl_res), 
-                # SEKARANG INI AKAN BERHASIL KARENA 'h' ADALAH MOBJECT
-                *[FadeOut(h) for h in highlights], 
-                run_time=0.8
-            )
-        # --- KASUS 1: IDENTITAS (1->1, 2->2...) ---
-        move_items([0, 1, 2, 3], "Kasus 1: Posisi Tetap", False)
+                max_val = max(sums_val)
+                inner_content = ", ".join(parts_str)
+                latex_str = f"\\max \\big( {inner_content} \\big) = {max_val}"
+                
+                # Tampilkan Teks di Bawah (Warna Coklat Tua agar kontras)
+                step_calculation = MathTex(latex_str, font_size=34, color=DARK_BROWN)
+                step_calculation.next_to(group_akhir, DOWN, buff=0.3)
 
-        # --- KASUS 2: PARTIAL (1->2, 2->1, tapi 3->3, 4->4) ---
-        move_items([1, 0, 2, 3], "Kasus 2: Sebagian Tertukar", False)
+                self.play(Write(step_calculation), run_time=0.6 * speed)
+                self.wait(0.3 * speed)
 
-        # --- KASUS 3: DERANGEMENT (Semua pindah) ---
-        # 1->2, 2->1, 3->4, 4->3
-        move_items([1, 0, 3, 2], "Kasus 3: Semua Pindah", True)
-        
-        # --- KASUS 4: DERANGEMENT LAIN (Geser siklis) ---
-        # 1->2, 2->3, 3->4, 4->1
-        move_items([1, 2, 3, 0], "Kasus 4: Geser Siklis", True)
+                # Isi Angka ke Matriks Hasil
+                entry_index = r * cols_b + c
+                target_placeholder = final_mat_res.get_entries()[entry_index]
+                
+                # Angka hasil berwarna HITAM
+                new_entry = MathTex(str(max_val), font_size=target_placeholder.font_size, color=BLACK)
+                new_entry.move_to(target_placeholder.get_center())
+                
+                # Ambil bagian angka terakhir dari teks perhitungan
+                source_part = step_calculation[-len(str(max_val)):] 
+                
+                self.play(
+                    ReplacementTransform(source_part.copy(), new_entry), 
+                    run_time=0.6 * speed
+                )
 
-        # --- OUTRO: RUMUS ---
-        self.play(FadeOut(slots), FadeOut(items), FadeOut(subtitle), run_time=0.5)
-        
-        formula = MathTex(
-            r"!n = n! \sum_{i=0}^{n} \frac{(-1)^i}{i!}",
-            color=BLACK, font_size=48
-        ).move_to(ORIGIN)
-        
-        approx = MathTex(r"!n \approx \frac{n!}{e}", color=BLUE, font_size=40).next_to(formula, DOWN, buff=0.5)
-        
-        self.play(Write(formula), run_time=1)
-        self.play(Write(approx), run_time=1)
-        self.wait(2)
+                # Bersihkan Highlight & Teks
+                self.play(
+                    FadeOut(rect_row),
+                    FadeOut(rect_col),
+                    FadeOut(step_calculation),
+                    run_time=0.3 * speed
+                )
+
+        # Highlight Hasil Akhir (Warna Merah Bata / Coklat)
+        self.play(Indicate(final_mat_res, color=DARK_BROWN, scale_factor=1.1), run_time=1 * speed)
+        self.wait(2 * speed)

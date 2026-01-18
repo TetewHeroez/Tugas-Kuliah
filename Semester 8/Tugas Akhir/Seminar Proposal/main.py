@@ -1,7 +1,7 @@
 from manim import *
 from manim_slides import Slide
 
-from scenes.title import title
+from scenes.judul import *
 from scenes.content import *
 from scenes.pendahuluan import *
 from scenes.tinjauan_pustaka import *
@@ -10,58 +10,55 @@ from scenes.penutup import *
 
 from lib.slide_tracker import *
 
-config.background_color =  "#EAEAEA"
+config.background_color = "#EAEAEA"
 
 class MainPresentation(MovingCameraScene, Slide):
     def construct(self):
-        urutan = [
-            # title,   
-            # content,
-            # lambda s: zoom_section(s,1),
-            # pendahuluan,
-            # lambda s: unzoom_section(s,1),
-            # content,
-            # lambda s: zoom_section(s,2),
-            tinjauan_pustaka,
-            # lambda s: unzoom_section(s,2),
-            # content,
-            # lambda s: zoom_section(s,3),
-            # metodologi,
-        ]
+        self.total_slides = 12
 
-        self.total_slides = 5
-        self.slide_tracker = ValueTracker(0)
-
-        def next_slide_count(self):
-            self.play(self.slide_tracker.animate.increment_value(1))
-
-        def jaga_ketebalan_stroke(mob):
-            factor = self.camera.frame.height / config.frame_height
-            mob.set_stroke(width=1 * factor)
+        self.num = Integer(1, color=GRAY, font_size=24)
+        self.text_total = Text(f" / {self.total_slides}", color=GRAY, font_size=24)
         
-        self.num = Integer(self.slide_tracker.get_value(), color=GRAY, font_size=24)
-        self.text_total = Text(f"/{self.total_slides}", color=GRAY, font_size=24)
-        self.logo_its = SVGMobject("assets/ITS.svg").add_updater(jaga_ketebalan_stroke)
+        self.ind = VGroup(self.num, self.text_total).arrange(RIGHT, buff=0.1).set_z_index(1000)
+        
+        self.logo_its = SVGMobject("assets/ITS.svg")
         self.logo_matematika = SVGMobject("assets/M.svg").next_to(self.logo_its, RIGHT, buff=0.1)
         self.logo = VGroup(self.logo_its, self.logo_matematika).arrange(RIGHT, buff=0.5).set_z_index(1000)
-        self.ind = VGroup(self.num, self.text_total).arrange(RIGHT, buff=0.1).set_z_index(1000)
 
-        def update_posisi_indikator(mob, corner, padding, height=0.3):
-            zoom_factor = self.camera.frame.height / config.frame_height
-            mob.scale_to_fit_height(height * zoom_factor) 
-            mob.move_to(self.camera.frame.get_corner(corner) + (padding) * 0.5 * zoom_factor)
+        def update_posisi_logo(mob):
+            factor = self.camera.frame.height / config.frame_height
+            mob.scale_to_fit_height(0.5 * factor)
+            mob.move_to(self.camera.frame.get_corner(DL) + (UR + 0.5*RIGHT) * 0.5 * factor)
+            mob.set_stroke(width=1 * factor)
 
-        self.ind.add_updater(lambda m: update_posisi_indikator(m, DR, UL))
-        self.logo.add_updater(lambda m: update_posisi_indikator(m, DL, UR+0.5*RIGHT, 0.5))
+        def update_posisi_angka(mob):
+            factor = self.camera.frame.height / config.frame_height
+            mob.scale_to_fit_height(0.3 * factor)
+            mob.move_to(self.camera.frame.get_corner(DR) + UL * 0.5 * factor)
 
-        for i, scene_func in enumerate(urutan):
-            self.num.set_value(i + 1)
-            if i == 1: 
-                self.play(Write(self.logo),Write(self.ind), run_time=1)
-            scene_func(self) 
-            next_slide_count(self)
+        self.logo.add_updater(update_posisi_logo)
+        self.ind.add_updater(update_posisi_angka)
 
-        self.ind.remove_updater(update_posisi_indikator)
-        self.remove(self.ind) 
+        urutan = [
+            content,
+            lambda s: zoom_section(s,1),
+            pendahuluan,
+            lambda s: unzoom_section(s,1),
+            content,
+            lambda s: zoom_section(s,2),
+            tinjauan_pustaka,
+            lambda s: unzoom_section(s,2),
+            content,
+            lambda s: zoom_section(s,3),
+            metodologi,
+        ]
 
+        judul(self)
+        self.play(Write(VGroup(self.logo, self.ind)), run_time=0.2)
+        for scene_func in urutan:
+            scene_func(self)
+
+        self.logo.remove_updater(update_posisi_logo)
+        self.ind.remove_updater(update_posisi_angka)
+        
         penutup(self)

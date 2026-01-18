@@ -1,6 +1,6 @@
 from manim import *
 
-def title(scene):
+def judul(scene):
     main_text_color = BLACK
     accent_line_color = GRAY_E
     subtitle_color = GRAY_D

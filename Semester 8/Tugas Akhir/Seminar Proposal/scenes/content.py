@@ -66,8 +66,8 @@ bab = [b1, b2, b3]
 grup_utama = Group(b1, b2, b3).arrange(RIGHT, buff=1.0)
 
 bg_baru = Rectangle(
-  width=config.frame_width *2, # Lebihin dikit biar aman
-  height=config.frame_height *2,
+  width=config.frame_width *3, # Lebihin dikit biar aman
+  height=config.frame_height *3,
   stroke_width=0,
   fill_color=WHITE, # Warna tujuan
   fill_opacity=1
