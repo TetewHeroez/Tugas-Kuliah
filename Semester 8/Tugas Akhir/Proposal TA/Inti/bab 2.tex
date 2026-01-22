@@ -9,18 +9,18 @@
     2           & \citeauthorfullname{linde2014matricescommutinggivennormal} & \citeyear{linde2014matricescommutinggivennormal} & Menyatakan syarat perlu dan cukup bagi dua matriks tropikal agar komutatif berdasarkan nilai diagonal utama.          \\ \hline
     3           & \citeauthorfullname{trivialeigenvectorsym14061101}         & \citeyear{trivialeigenvectorsym14061101}         & Mengkaji sifat-sifat vektor eigen trivial pada aljabar max-plus.                                                      \\ \hline
     4           & \citeauthorfullname{zufar2023konstruksigrup}               & \citeyear{zufar2023konstruksigrup}               & Mengkonstruksi grup Latin square pada aljabar max-plus dengan operasi perkalian matriks tropikal.                     \\ \hline
-    5           & \citeauthorfullname{alhussaini2024securityinitialtropical} & \citeyear{alhussaini2024securityinitialtropical} & Memperkenalkan protokol kriptografi berbasis aljabar tropikal yang terinspirasi dari pertukaran kunci Diffie-Hellman. \\ \hline
+    5           & \citeauthorfullname{alhussaini2024securityinitialtropical} & 2024                                             & Memperkenalkan protokol kriptografi berbasis aljabar tropikal yang terinspirasi dari pertukaran kunci Diffie-Hellman. \\ \hline
   \end{tabular}
 \end{table}
 \section{Aljabar Max-Plus}
 Aljabar max-plus salah satu cabang dari aljabar tropikal yang menggunakan operasi maksimum dan penjumlahan sebagai operasi dasar.
 \begin{definisi}[\cite{subiono2015minmaxplus}]
-  Aljabar max-plus adalah himpunan $\mathbb{R}_{\max} = \mathbb{R} \cup \{\varepsilon\}$ yang dilengkapi dengan dua operasi biner yaitu:
+  Aljabar max-plus adalah himpunan $\mathbb{R}_{\max} = \mathbb{R} \cup \{\varepsilon\}$ dengan $\varepsilon=-\infty$ yang dilengkapi dengan dua operasi biner yaitu:
   \begin{align*}
     a \oplus b  & = \max\{a, b\}, \quad \forall a, b \in \mathbb{R}_{\max} \\
     a \otimes b & = a + b, \quad \forall a, b \in \mathbb{R}_{\max}
   \end{align*}
-  dengan elemen identitasnya adalah $\varepsilon=-\infty$ untuk operasi $\oplus$ dan $0$ untuk operasi $\otimes$.
+  yang elemen identitasnya adalah $\varepsilon$ untuk operasi $\oplus$ dan $0$ untuk operasi $\otimes$.
 \end{definisi}
 
 Selanjutnya $(\mathbb{R}_{\max}, \oplus, \otimes)$ disebut sebagai semiring max-plus, yaitu suatu struktur aljabar yang memenuhi sifat seperti ring biasa, kecuali tidak memiliki elemen invers untuk operasi $\oplus$.
@@ -256,7 +256,7 @@ Dengan menggunakan notasi sikel, permutasi akan lebih ringkas untuk dituliskan d
 \end{contoh}
 
 \subsection{Matriks Permutasi}
-Setiap permutasi $\sigma \in S_n$ dapat kita representasikan dalam bentuk matriks permutasi $P_{\sigma}\in\R^{n \times n}$ yang elemen-elemennya hanya terdiri dari $0$ dan $1$, dengan aturan sebagai berikut:
+Setiap permutasi $\sigma \in S_n$ dapat direpresentasikan dalam bentuk matriks permutasi $P_{\sigma}\in\R^{n \times n}$ yang elemen-elemennya hanya terdiri dari $0$ dan $1$, dengan aturan sebagai berikut:
 \[
   (P_{\sigma})_{ij} =
   \begin{cases}
@@ -320,7 +320,7 @@ dituliskan dalam bentuk polinomial dari matriks permutasi yaitu
   C = c_0 I_n \oplus c_1 P_{\sigma} \oplus c_2 P_{\sigma}^{2} \oplus \cdots \oplus c_{n-1} P_{\sigma}^{n-1},
 \end{align}
 dengan $\sigma = (1\ 2\ \ldots\ n)$ adalah permutasi siklik pada $n$ elemen. Jika dituliskan, maka matriks $P_{\sigma}$ adalah
-\[
+\begin{align}
   P_{\sigma} =
   \begin{pmatrix}
     \varepsilon & 0           & \varepsilon & \cdots & \varepsilon \\
@@ -329,7 +329,7 @@ dengan $\sigma = (1\ 2\ \ldots\ n)$ adalah permutasi siklik pada $n$ elemen. Jik
     \vdots      & \vdots      & \vdots      & \ddots & \vdots      \\
     0           & \varepsilon & \varepsilon & \cdots & \varepsilon
   \end{pmatrix}.
-\]
+\end{align}
 Karena bentuk matriks sirkulan-$t$ yang dapat direpresentasikan sebagai polinomial, maka muncul sebuah teorema penting mengenai kekomutatifan antara dua matriks sirkulan-$t$.
 \begin{teorema}[\cite{huang2024newsemiring}]
   Misalkan $A$ dan $B$ adalah dua matriks sirkulan, maka $A$ dan $B$ komutatif terhadap operasi $\otimes$, yaitu
@@ -368,12 +368,12 @@ Selanjutnya, diperoleh juga sebuah proposisi penting mengenai representasi matri
 
 \begin{proposisi}[\cite{buchinskiy2024analysisfour}]
   Setiap matriks sirkulan-$t$ bawah $C_{(t)}$ dan matriks sirkulan-$t$ atas $C^{(t)}$ dapat direpresentasikan sebagai polinomial dari matriks $P$, yaitu
-  \begin{align*}
-    C^{(t)} & = c_0 I_n \oplus c_1 (P^{(t)}) \oplus c_2 (P^{(t)})^{2} \oplus \cdots \oplus c_{n-1} (P^{(t)})^{n-1}, \\
-    C_{(t)} & = c_0 I_n \oplus c_1 (P_{(t)}) \oplus c_2 (P_{(t)})^{2} \oplus \cdots \oplus c_{n-1} (P_{(t)})^{n-1}.
-  \end{align*}
+  \begin{align}
+    C^{(t)} & = c_0 I_n \oplus c_1 P^{(t)} \oplus c_2 \left(P^{(t)}\right)^{2} \oplus \cdots \oplus c_{n-1} \left(P^{(t)}\right)^{n-1}, \\
+    C_{(t)} & = c_0 I_n \oplus c_1 P_{(t)} \oplus c_2 \left(P_{(t)}\right)^{2} \oplus \cdots \oplus c_{n-1} \left(P_{(t)}\right)^{n-1}.
+  \end{align}
   dengan
-  \begin{align*}
+  \begin{align}
     P_{(t)} & =
     \begin{pmatrix}
       \varepsilon & 0           & \varepsilon & \cdots & \varepsilon & \varepsilon \\
@@ -390,7 +390,7 @@ Selanjutnya, diperoleh juga sebuah proposisi penting mengenai representasi matri
       \vdots      & \vdots      & \vdots      & \ddots & \vdots      & \vdots      \\
       \varepsilon & \varepsilon & \varepsilon & \cdots & 0           & \varepsilon \\
     \end{pmatrix}.
-  \end{align*}
+  \end{align}
 \end{proposisi}
 Sehingga, dari proposisi di atas diperoleh juga teorema mengenai kekomutatifan antara dua matriks sirkulan-$t$.
 \begin{teorema}[\cite{buchinskiy2024analysisfour}]

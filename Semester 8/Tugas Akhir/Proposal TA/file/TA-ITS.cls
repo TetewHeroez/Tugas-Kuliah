@@ -63,9 +63,16 @@
     hyperref=true,        
     giveninits=true, 
     uniquename=init, 
-  natbib
+    natbib,
     ]{biblatex}
 
+\AtEveryBibitem{%
+  \clearfield{volume}%
+  \clearfield{number}%
+  \clearfield{issue}%
+  % \clearfield{journaltitle}%
+  \clearfield{pages}%
+}
 
 \newrobustcmd*{\nextcitefullname}{%
   \AtNextCite{%
