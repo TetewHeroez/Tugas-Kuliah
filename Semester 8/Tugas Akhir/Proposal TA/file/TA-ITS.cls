@@ -488,7 +488,7 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
     \begin{flushright}
     \begin{tabular}{c}
     Mengetahui                        \\
-    Kepala Departemen Matematika      \\
+    Kepala Prodi Sarjana Matematika      \\
     Fakultas Sains dan Analitika Data \vspace{2cm}\\
     \underline{\@kadep}                   \\
     NIP. \@NIPkadep                       
@@ -535,7 +535,7 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
     \begin{center}
     \begin{tabular}{c}
     Mengetahui,                        \\
-    Kepala Departemen Matematika FSAD-ITS  \vspace{2.5cm}\\
+    Kepala Prodi Sarjana Matematika FSAD-ITS  \vspace{2.5cm}\\
     \underline{\@kadep}                   \\
     NIP. \@NIPkadep                     
     \end{tabular} \vspace{1cm}\\
