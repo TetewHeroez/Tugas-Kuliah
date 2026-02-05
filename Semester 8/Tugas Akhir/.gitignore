@@ -10,8 +10,11 @@
 *.fot
 *.cb
 *.cb2
+<<<<<<< HEAD
+=======
 *.nav
 *.snm
+>>>>>>> 039d566 (first)
 .*.lb
 *.run.xml
 
