@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}
+\newtheorem{teorema}{Teorema}
+\newtheorem*{bukti}{Bukti}
+
+\begin{document}
+
+\begin{definisi}[Himpunan Indeks dan Skalar]
+  Misalkan $N = \{1, 2, \dots, n\}$ adalah himpunan indeks koordinat matriks. Misalkan $S \subset \mathbb{R}$ adalah himpunan skalar berhingga yang menyusun Latin square $A$ dan $B$, sedemikian sehingga elemen matriks $A_{ij}, B_{ij} \in S$ untuk setiap $i, j \in N$.
+\end{definisi}
+
+\begin{definisi}[Dekomposisi Permutasi Matriks]
+  Untuk setiap nilai skalar $x \in S$, letak elemen $x$ pada matriks Latin square $A$ merepresentasikan sebuah permutasi unik. Definisikan fungsi permutasi $P_x : N \to N$ sedemikian sehingga:
+  $$A_{i, P_x(i)} = x \quad \text{untuk setiap } i \in N$$
+  Secara serupa, definisikan fungsi permutasi $Q_y : N \to N$ untuk matriks $B$ sedemikian sehingga:
+  $$B_{i, Q_y(i)} = y \quad \text{untuk setiap } i \in N$$
+\end{definisi}
+
+\begin{definisi}[Representasi Koordinat Permutasi]
+  Untuk setiap fungsi permutasi $\pi : N \to N$, definisikan representasi koordinatnya, $\Gamma(\pi)$, sebagai himpunan pasangan berurutan:
+  $$\Gamma(\pi) = \{(i, \pi(i)) \mid i \in N\}$$
+\end{definisi}
+
+\begin{definisi}[Himpunan Tingkat Atas Kumulatif]
+  Untuk setiap nilai batas observasi $v \in \mathbb{R}$, definisikan $\mathcal{U}_{\ge v}^{AB}$ sebagai gabungan dari seluruh representasi koordinat komposisi permutasi dari perkalian $A \otimes B$ yang menghasilkan bobot skalar $x + y \ge v$:
+  $$\mathcal{U}_{\ge v}^{AB} = \bigcup_{\substack{x, y \in S \\ x+y \ge v}} \Gamma(Q_y \circ P_x)$$
+  Dan secara simetris untuk arah $B \otimes A$:
+  $$\mathcal{U}_{\ge v}^{BA} = \bigcup_{\substack{x, y \in S \\ x+y \ge v}} \Gamma(P_x \circ Q_y)$$
+\end{definisi}
+
+\begin{teorema}[Kesetaraan Himpunan Tingkat]
+  Dua matriks Latin square $A$ dan $B$ saling komutatif terhadap operasi perkalian max-plus ($A \otimes B = B \otimes A$) \textbf{jika dan hanya jika} untuk setiap nilai batas observasi $v$, himpunan tingkat atas dari kedua arah perkalian tersebut ekuivalen:
+  $$\mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA}$$
+\end{teorema}
+
+\begin{bukti}
+  Misalkan $C = A \otimes B$ dan $D = B \otimes A$.
+  Berdasarkan definisi perkalian max-plus, elemen pada matriks $C$ adalah:
+  $$C_{ij} = \max_{k \in N} (A_{ik} + B_{kj})$$
+
+  Kombinasi nilai $A_{ik} = x$ dan $B_{kj} = y$ terjadi jika dan hanya jika $k = P_x(i)$ dan $j = Q_y(k)$.
+  Maka nilai bobot $C_{ij} \ge v$ dapat tercapai jika dan hanya jika terdapat skalar $x, y \in S$ dengan $x+y \ge v$ sedemikian sehingga $j = (Q_y \circ P_x)(i)$.
+  Secara ekuivalen dalam teori himpunan, hal ini berarti $C_{ij} \ge v \iff (i, j) \in \mathcal{U}_{\ge v}^{AB}$.
+
+  Dengan logika yang simetris dari $D_{ij} = \max_{k} (B_{ik} + A_{kj})$, elemen pada matriks $D$ memenuhi $D_{ij} \ge v \iff (i, j) \in \mathcal{U}_{\ge v}^{BA}$.
+  \begin{itemize}
+    \item \textbf{($\Rightarrow$)} Asumsikan $A \otimes B = B \otimes A$, yang berarti $C_{ij} = D_{ij}$ untuk setiap $i, j \in N$.
+          Ambil sembarang nilai batas $v \in \mathbb{R}$.
+          Jika koordinat $(i, j) \in \mathcal{U}_{\ge v}^{AB}$, maka $C_{ij} \ge v$.
+          Karena matriks komutatif ($C_{ij} = D_{ij}$), maka $D_{ij} \ge v$, yang secara definitif mengimplikasikan $(i, j) \in \mathcal{U}_{\ge v}^{BA}$.
+          Sebaliknya, jika $(i, j) \in \mathcal{U}_{\ge v}^{BA}$, maka $D_{ij} \ge v \implies C_{ij} \ge v \implies (i, j) \in \mathcal{U}_{\ge v}^{AB}$.
+          Oleh karena itu, terbukti bahwa $\mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA}$.
+
+    \item \textbf{($\Leftarrow$)} Asumsikan kesetaraan himpunan tingkat berlaku, yaitu $\mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA}$ untuk setiap $v \in \mathbb{R}$.
+          Kita akan membuktikannya menggunakan kontradiksi. Andaikan $A \otimes B \neq B \otimes A$, maka haruslah terdapat setidaknya satu pasang koordinat $(i, j)$ di mana $C_{ij} \neq D_{ij}$.
+          Tanpa mengurangi keumuman, asumsikan $C_{ij} > D_{ij}$.
+
+          Misalkan $v = C_{ij}$. Karena nilai maksimum di koordinat $(i, j)$ pada matriks $C$ adalah tepat sebesar $v$, maka $(i, j) \in \mathcal{U}_{\ge v}^{AB}$.
+          Namun di sisi lain, karena $D_{ij} < v$, maka rute pada koordinat $(i, j)$ tidak mungkin mencapai bobot sebesar $v$ pada matriks $D$. Akibatnya, $(i, j) \notin \mathcal{U}_{\ge v}^{BA}$.
+          Hal ini menghasilkan kontradiksi langsung dengan asumsi awal kita bahwa $\mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA}$.
+          Maka, pengandaian tersebut salah. Haruslah $C_{ij} = D_{ij}$ untuk semua $i, j \in N$.
+          Terbukti bahwa $A \otimes B = B \otimes A$.
+  \end{itemize}
+
+\end{bukti}
+\end{document}
