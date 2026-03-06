@@ -1,0 +1,226 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+    \addbibresource{reference.bib}
+\usepackage{csquotes}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{pgfplots, tkz-euclide,calc}
+    \pgfplotsset{compat=1.18}
+\usepackage{listings}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!50]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\colorlet{cOne}{white}     % 1 putih
+\colorlet{cTwo}{yellow}   % 2 kuning
+\colorlet{cThree}{cyan}   % 3 merah muda
+\colorlet{cFour}{green}   % 4 hijau
+
+\newcommand{\numcolor}[1]{%
+  \ifnum#1=1 cOne\fi
+  \ifnum#1=2 cTwo\fi
+  \ifnum#1=3 cThree\fi
+  \ifnum#1=4 cFour\fi
+}
+
+
+\newcommand{\permcell}[3]{%
+  % #1 = x-shift
+  % #2 = nilai sigma(i)
+  % #3 = indeks i
+
+  % kotak
+  \draw[thick, fill=\numcolor{#3}]
+    (#1,0) rectangle ++(1,1);
+
+  % lingkaran
+  \draw[thick, fill=\numcolor{#2}]
+    (#1+0.5,0.5) circle (0.3);
+
+  % angka
+  \node at (#1+0.5,0.5) {\small #2};
+
+  % fixed point
+  \ifnum#2=#3
+    \draw[red!60, very thick] (#1,0) -- (#1+1,1);
+    \draw[red!60, very thick] (#1,1) -- (#1+1,0);
+  \fi
+}
+
+
+\newcommand{\permrow}[4]{%
+  \begin{tikzpicture}[baseline,scale=0.8]
+    \permcell{0}{#1}{1}
+    \permcell{1}{#2}{2}
+    \permcell{2}{#3}{3}
+    \permcell{3}{#4}{4}
+  \end{tikzpicture}
+}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% \setbeamercovered{transparent}
+
+
+\theoremstyle{definition}
+% \numberwithin{subsection}{section}
+\newtheorem{definisi}{Definisi}
+\numberwithin{definisi}{subsection}
+\newtheorem{teorema}[definisi]{Teorema}
+\newtheorem{lema}[definisi]{Lema}
+\newtheorem{proposisi}[definisi]{Proposisi}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+
+\AtBeginEnvironment{contoh}{%
+  \setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
+  \setbeamercolor{block body}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+}
+\AtBeginEnvironment{definisi}{
+    \setbeamercolor{block title}{fg=white,bg=HIMAtua}
+    \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+}
+
+% \date{Desember 2025}
+\title[Proposal TA]{Latin Square Komutatif atas Aljabar Max-Plus}
+\author[Teosofi]{Teosofi Hidayah Agung}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+% \titlegraphic{\includegraphics[width=2cm]{logoITS}$\quad$\includegraphics[width=2cm]{M.png}}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}{Daftar isi}
+    \tableofcontents[currentsection,hidesubsections]
+  \end{frame}
+}
+
+\section{Permasalahan}
+\begin{frame}{\insertsection}
+  \textbf{Tujuan Penelitian}
+  \begin{enumerate}
+    \item Menentukan syarat perlu bagi dua buah \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$.
+    \item Menentukan syarat cukup bagi dua buah \textit{Latin square} $A,B\in\R^{n\times n}_{\max}$ agar komutatif terhadap operasi $\otimes$.
+    \item Merumuskan prosedur untuk mengonstruksi \textit{Latin square} $B \in L_S(n)$ sehingga $A \otimes B = B \otimes A$ untuk suatu \textit{Latin square} $A \in L_S(n)$.
+          % \item Menghitung banyaknya pasangan \textit{Latin square} komutatif yang mungkin dibentuk dari $L_S(n)$.
+  \end{enumerate}
+  \textbf{Batasan Masalah}
+  \begin{enumerate}
+    \item Penelitian ini hanya membahas \textit{Latin square} berukuran $n\times n$ dengan setiap baris dan kolomnya merupakan permutasi dari himpunan $\underline{n}=\{1,2,\ldots,n\}$.
+    \item Penelitian ini membatasi ordo \textit{Latin square} hanya pada $n \leq 5$.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{\insertsection}
+  Latin square adalah matriks persegi berukuran $n \times n$ yang diisi dengan $n$ simbol berbeda, masing-masing muncul tepat sekali di setiap baris dan kolom. Untuk simbolnya disini dibatasi pada himpunan $\overline{n} = \{1, 2, \dots, n\}$, contoh Latin square berukuran $4 \times 4$ adalah sebagai berikut:
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      1 & 2 & 3 & 4 \\
+      \hline
+      2 & 3 & 4 & 1 \\
+      \hline
+      3 & 4 & 1 & 2 \\
+      \hline
+      4 & 1 & 2 & 3 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  Pada umumnya, Latin square dapat direpresentasikan sebagai matriks.
+\end{frame}
+
+\begin{frame}{\insertsection}
+  Dalam konteks aljabar max-plus, operasi penjumlahan biasa digantikan oleh operasi maksimum, dan operasi perkalian biasa digantikan oleh operasi penjumlahan.
+  \begin{align*}
+    +      & \to \max (\oplus) \\
+    \times & \to + (\otimes)
+  \end{align*}
+
+  Sehingga perkalian antara dua matriks $A$ dan $B$ didefinisikan sebagai
+  $$C_{ij} = \bigoplus_{k=1}^n (A_{ik} \otimes B_{kj}) = \max_{k} (A_{ik} + B_{kj})$$
+  dengan $C = A \otimes B$.
+  Kita menyatakan bahwa dua matriks Latin square $A$ dan $B$ \textbf{komutatif} terhadap operasi perkalian max-plus jika $A \otimes B = B \otimes A$.
+\end{frame}
+
+\section{Strategi}
+\begin{frame}{\insertsection}
+  Misalkan $A \in L_S(n)$ dengan himpunan simbol
+  $\{a_1, a_2, \ldots, a_n\}$.
+  Untuk setiap $i = 1,2,\ldots,n$, definisikan permutasi $\tau_i \in S_n$ dengan
+  \[
+    \tau_i(r) = c \iff [A]_{r c} = a_i.
+  \]
+  Maka matriks $A$ dapat dituliskan sebagai
+  \begin{align}
+    A = a_1 P_{\tau_1} \oplus a_2 P_{\tau_2} \oplus \cdots \oplus a_n P_{\tau_n}
+    = \bigoplus_{i=1}^{n} a_i P_{\tau_i},
+  \end{align}
+  dengan $P_{\tau_i}$ adalah matriks permutasi max--plus yang bersesuaian dengan permutasi
+  $\tau_i$.
+\end{frame}
+
+\begin{frame}{\insertsection}
+  Menggunakan proposisi sebelumnya, dapat kita misalkan
+  \[A=\bigoplus_{i=1}^{n} a_i P_{\tau_i} \quad \text{dan} \quad B=\bigoplus_{j=1}^{n} b_j P_{\sigma_j}\]
+  dengan $a_i, b_j \in \overline{n}$ dan $\tau_i, \sigma_j \in S_n$ untuk setiap $i, j$.
+  Maka kita dapat mengekspresikan $A \otimes B$ sebagai berikut:
+  \begin{align*}
+    A \otimes B & = \left(\bigoplus_{i=1}^{n} a_i P_{\tau_i}\right) \otimes \left(\bigoplus_{j=1}^{n} b_j P_{\sigma_j}\right) = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i + b_j) (P_{\tau_i} \otimes P_{\sigma_j})
+  \end{align*}
+  Menggunakan fakta bahwa $(P_{\tau},\otimes) \cong (S_n, \circ)$, kita dapat menyatakan $P_{\tau_i} \otimes P_{\sigma_j} = P_{\tau_i \circ \sigma_j}$.
+  \begin{align*}
+    A \otimes B & = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i + b_j) P_{\tau_i \circ \sigma_j}
+  \end{align*}
+\end{frame}
+
+\section{Progress}
+\begin{frame}{\insertsection}
+  \begin{itemize}
+    \item Jika $A$ dan $B$ Latin square komutatif, maka permutasi yang elemen $n$ (maksimum) pada $A$ dan $B$ keduanya harus saling komutatif. Bisa dituliskan $\tau_n \in C(\sigma_n)$ atau $\sigma_n \in C(\tau_n)$, dengan $C(\sigma)$ adalah sentralizer dari $\sigma$.
+    \item Jika $A$ dan $B$ Latin square dan siruklan, maka $A$ dan $B$ komutatif.
+    \item
+  \end{itemize}
+\end{frame}
+
+\end{document}
