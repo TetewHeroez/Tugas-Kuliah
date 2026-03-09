@@ -46,39 +46,42 @@
 
 \begin{document}
 \begin{definisi}[Fungsi Cantor]
-  Fungsi Cantor $C:[0,1]\to[0,1]$ didefinisikan melalui representasi basis $3$ dari $x \in [0,1]$. Misalkan
+  Definisikan barisan fungsi $C_n:[0,1]\to[0,1]$ secara rekursif sebagai berikut. Ambil
   \[
-    x=\sum_{k=1}^{\infty}\frac{a_k}{3^k}, \qquad a_k \in \{0,1,2\}.
+    C_0(x)=x.
   \]
-  Jika $x$ tidak memiliki digit $1$ pada ekspansi ternary-nya (yakni $a_k \in \{0,2\}$ untuk semua $k$), maka fungsi Cantor didefinisikan sebagai
-
+  Untuk $n\ge0$, definisikan
   \[
-    C(x)=\sum_{k=1}^{\infty}\frac{b_k}{2^k},
-  \]
-  dengan
-  \[
-    b_k=
+    C_{n+1}(x)=
     \begin{cases}
-      0 & \text{jika } a_k=0, \\
-      1 & \text{jika } a_k=2.
+      \frac12 C_n(3x),           & 0\le x\le \frac13,       \\
+      \frac12,                   & \frac13\le x\le \frac23, \\
+      \frac12+\frac12 C_n(3x-2), & \frac23\le x\le1.
     \end{cases}
   \]
-  Untuk $x$ yang memiliki digit $1$ pada ekspansi ternary, nilai $C(x)$ didefinisikan sebagai limit dari fungsi-fungsi aproksimasi yang diperoleh dari konstruksi himpunan Cantor. Fungsi ini bersifat monoton tak-menurun dan kontinu pada interval $[0,1]$.
+  Fungsi Cantor $C:[0,1]\to[0,1]$ didefinisikan sebagai
+  \[
+    C(x)=\lim_{n\to\infty}C_n(x).
+  \]
 \end{definisi}
 
 \begin{teorema}
-  Fungsi Cantor $C:[0,1]\to[0,1]$ adalah fungsi Lebesgue measurable.
+  Fungsi Cantor $C:[0,1]\to[0,1]$ adalah measurable.
 \end{teorema}
 
 \begin{bukti}
-  Diketahui bahwa fungsi Cantor $C(x)$ merupakan fungsi kontinu pada interval $[0,1]$. Ambil sebarang himpunan terbuka $U \subset \mathbb{R}$. Karena $C$ kontinu, maka pra-citra dari $U$ di bawah $C$ adalah himpunan terbuka di $[0,1]$, yaitu
+  Misalkan $\Sigma=\mathcal T=\sigma(\{(a,b)\subset[0,1]\})$.
+  Menurut definisi, fungsi $f:(X,\Sigma)\to(Y,\mathcal T)$
+  measurable jika $f^{-1}(E)\in\Sigma$ untuk setiap $E\in\mathcal T$. Karena $\mathcal T$ dihasilkan oleh interval terbuka,
+  cukup dibuktikan bahwa $C^{-1}((a,b))\in\Sigma$. Ambil interval $(a,b)\subset[0,1]$ dan definisikan
   \[
-    C^{-1}(U) \text{ adalah himpunan terbuka}.
+    A=C^{-1}((a,b))=\{x\in[0,1]:a<C(x)<b\}.
   \]
-  Setiap himpunan terbuka merupakan elemen dari $\sigma$-aljabar Borel $\mathcal{B}(\mathbb{R})$. Oleh karena itu
-  \[
-    C^{-1}(U) \in \mathcal{B}(\mathbb{R}).
-  \]
-  Ini menunjukkan bahwa $C$ adalah fungsi Borel measurable. Karena setiap fungsi Borel measurable juga Lebesgue measurable, maka diperoleh bahwa fungsi Cantor adalah Lebesgue measurable. Dengan demikian fungsi Cantor $C:[0,1]\to[0,1]$ adalah fungsi measurable.
+  Karena fungsi Cantor monoton tidak menurun,
+  maka himpunan $\{x:C(x)<b\}$ dan $\{x:C(x)\le a\}$
+  masing-masing merupakan interval.
+  Akibatnya $A$ juga merupakan interval $(\alpha,\beta)$
+  untuk suatu $\alpha,\beta$. Karena interval berada dalam $\Sigma$,
+  maka $C^{-1}((a,b))\in\Sigma$.
 \end{bukti}
 \end{document}
