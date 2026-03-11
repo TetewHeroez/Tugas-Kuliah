@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}
+\newtheorem{teorema}{Teorema}
+\newtheorem*{bukti}{Bukti}
+\newtheorem*{sangkal}{Sangkal}
+
+\begin{document}
+\begin{teorema}[Teorema Lagrange]
+  Jika $G$ adalah sebuah grup berhingga dengan orde (jumlah elemen) mutlak $|G| = n$, maka orde dari setiap elemen $g \in G$ (disimbolkan dengan $|g|$) wajib membagi habis orde dari grup tersebut. Secara matematis:
+  $$|G| \equiv 0 \pmod{|g|}$$
+\end{teorema}
+
+\begin{teorema}[Struktur Elemen Grup Orde 3]
+  Setiap struktur aljabar (termasuk matriks Latin square komutatif yang mewakili Tabel Cayley-nya) yang berorde mutlak $n=3$ tidak mungkin memiliki elemen yang dibangun oleh permutasi bersikel panjang 2.
+\end{teorema}
+
+\begin{bukti}
+  Misalkan $L$ adalah struktur Latin square komutatif berorde 3, yang secara isomorfik ekuivalen dengan Grup Siklik $\mathbb{Z}_3$. Maka orde grup ini adalah $|L| = 3$.
+
+  Misalkan terdapat sebuah permutasi $\pi$ di dalam $L$ yang berupa sikel panjang 2 (transposisi). Berdasarkan sifat komposisi fungsi, jika sebuah sikel panjang 2 dikomposisikan dengan dirinya sendiri, ia akan kembali ke titik awal (menjadi identitas):
+  $$\pi = (a\ b) \implies \pi \circ \pi = (a\ b) \circ (a\ b) = id$$
+  Karena butuh 2 kali komposisi untuk kembali ke identitas, ini membuktikan bahwa orde dari elemen sikel panjang 2 adalah mutlak $|g| = 2$.
+
+  Berdasarkan Teorema Lagrange, orde elemen ($|g|$) wajib membagi habis orde grup ($|L|$). Namun, angka $2$ tidak membagi habis angka $3$.
+  Hal ini menghasilkan kontradiksi matematis yang absolut. Oleh karena itu, pengandaian salah. Terbukti bahwa sikel panjang 2 eksistensinya ditolak secara kodrati dari struktur Latin square komutatif berorde 3.
+\end{bukti}
+
+\begin{teorema}[Sifat Non-Abelian $S_3$]
+  Grup Simetri $S_3$ adalah grup terkecil yang bersifat Non-Abelian (tidak komutatif). Setiap pasang permutasi sikel panjang 2 yang berbeda di dalam $S_3$ dijamin tidak saling komutatif satu sama lain.
+  $$(a\ b) \circ (a\ c) \neq (a\ c) \circ (a\ b)$$
+\end{teorema}
+\end{document}
