@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{enumitem}
+\pagenumbering{gobble}
+\begin{document}
+
+\begin{center}
+  \textbf{\underline{QUIZ 1 Kalkulus Stokastik Genap 2025/2026}}
+  \begin{tabular}{ll}
+    Mata Kuliah/SKS & : Kalkulus Stokastik / 3 SKS  \\
+    Hari, Tanggal   & : Senin, 13 April 2026        \\
+    Waktu           & : 13.30-16.00 WIB (150 menit) \\
+    Sifat           & : Tertutup
+  \end{tabular}
+\end{center}
+
+
+
+\begin{enumerate}
+  \item Misalkan: $\Omega = \{1, 2, 3, 4\}$. dan $A = \{1, 2\}$, $B = \{2, 3\}$.
+        \begin{enumerate}[label=(\alph*)]
+          \item Tentukan $\sigma(A, B)$.
+          \item Tentukan semua atom dari $\sigma(A, B)$.
+        \end{enumerate}
+
+  \item Misalkan $(\Omega, \mathcal{F}, \mu)$ adalah ruang ukuran dengan $\Omega = \{1, 2, 3, 4, 5, 6\}$, $\mathcal{F} = 2^\Omega$, dan $\mu(\{\omega\}) = \frac{1}{6}$, untuk $\omega \in \Omega$. Diberikan fungsi $f : \Omega \to \mathbb{R}$ dengan
+        \[
+          f(\omega) = \begin{cases}
+            \omega, & \omega \text{ genap}   \\
+            0,      & \omega \text{ ganjil.}
+          \end{cases}
+        \]
+        \begin{enumerate}[label=(\alph*)]
+          \item Tunjukkan bahwa $f$ terukur.
+          \item Hitung $\int_\Omega f \, d\mu$.
+          \item Tentukan semua nilai $p \in [1, \infty)$ sehingga $f \in L^p(\Omega, \mu)$.
+        \end{enumerate}
+
+  \item Misalkan $\Omega = \mathbb{N}$, $\mathcal{F} = 2^\mathbb{N}$, dan
+        \[
+          \mu(A) = \sum_{n \in A} \frac{1}{2^n}, \text{ untuk } A \in \mathcal{F}.
+        \]
+        Diberikan fungsi $f : \Omega \to \mathbb{R}$ dengan $f(n) = n$.
+        \begin{enumerate}[label=(\alph*)]
+          \item Tunjukkan bahwa $(\Omega, \mathcal{F}, \mu)$ adalah ruang ukuran.
+          \item Tentukan apakah $f \in L^1(\Omega, \mu)$.
+          \item Misalkan
+                \[
+                  f_n(k) = \begin{cases}
+                    n, & k = n          \\
+                    0, & \text{lainnya}
+                  \end{cases}
+                \]
+                Tentukan $\lim f_n$ dan hitung $\int f_n \, d\mu$. Bandingkan dengan $\int \lim f_n \, d\mu$.
+        \end{enumerate}
+
+  \item Misalkan $(\Omega, \mathcal{F}, \mu)$, $\Omega = (0, 1]$, $\mathcal{F} = \mathcal{B}((0, 1])$, dengan $\mu$ adalah ukuran Lebesgue. Diberikan fungsi $f_n : \Omega \to \mathbb{R}$ dengan
+        \[
+          f_n(x) = n \mathbf{1}_{(0, 1/n)}(x).
+        \]
+        \begin{enumerate}[label=(\alph*)]
+          \item Tentukan limit titik demi titik dari $f_n$.
+          \item Hitung $\int_\Omega f_n \, d\mu$.
+          \item Jelaskan apakah Teorema Konvergensi Dominasi berlaku.
+        \end{enumerate}
+\end{enumerate}
+\newpage
+\begin{center}
+  \textbf{\underline{Solusi Quiz 1 Kalkulus Stokastik Genap 2025/2026}}
+\end{center}
+\begin{enumerate}
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item Berdasarkan definisi aljabar $\sigma$, kita perlu mencari partisi terkecil dari $\Omega$ yang dihasilkan oleh $A$ dan $B$. Partisi ini (atom-atom) terbentuk dari irisan himpunan $A, B$ dan komplemennya.
+                \begin{align*}
+                  A \cap B     & = \{1, 2\} \cap \{2, 3\} = \{2\} \\
+                  A \cap B^c   & = \{1, 2\} \cap \{1, 4\} = \{1\} \\
+                  A^c \cap B   & = \{3, 4\} \cap \{2, 3\} = \{3\} \\
+                  A^c \cap B^c & = \{3, 4\} \cap \{1, 4\} = \{4\}
+                \end{align*}
+                Karena $\{1\}, \{2\}, \{3\}, \{4\}$ semuanya berada di dalam $\sigma(A, B)$, maka $\sigma(A, B)$ mengandung semua himpunan bagian dari $\Omega$.
+                Jadi, $\sigma(A, B) = 2^\Omega$.
+          \item Atom-atom dari $\sigma(A, B)$ adalah himpunan bagian tak kosong terkecil dalam $\sigma(A, B)$ yang bukan gabungan dari himpunan-himpunan lain dalam $\sigma(A, B)$.
+                Berdasarkan perhitungan di bagian (a), atom-atom tersebut adalah $\{1\}, \{2\}, \{3\}, \text{ dan } \{4\}$.
+        \end{enumerate}
+
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item Karena aljabar $\sigma$ pada ruang $\Omega$ adalah $\mathcal{F} = 2^\Omega$ yang mencakup seluruh himpunan bagian dari $\Omega$, maka bayangan invers dari setiap himpunan Borel $B \subset \mathbb{R}$ terhadap $f$, yaitu $f^{-1}(B)$, pasti merupakan elemen dari $\mathcal{F} = 2^\Omega$. Jadi, $f$ terukur.
+          \item Nilai ekspektasi dari $f$ adalah:
+                \begin{align*}
+                  \int_\Omega f \, d\mu & = \sum_{\omega=1}^6 f(\omega)\mu(\{\omega\})            \\
+                                        & = \frac{1}{6}\left(f(1)+f(2)+f(3)+f(4)+f(5)+f(6)\right) \\
+                                        & = \frac{1}{6}(0 + 2 + 0 + 4 + 0 + 6)                    \\
+                                        & = \frac{12}{6} = 2.
+                \end{align*}
+          \item Karena $\Omega$ adalah ruang probabilitas (ukuran hingga, $\mu(\Omega) = 1$) yang diskrit dan berhingga, fungsi $f$ hanya memetakan ke nilai-nilai berhingga (maksimal 6). Fungsi berhingga di atas ruang terukur berhingga akan selalu memiliki integral pangkat $p$ yang berhingga. Jadi $f \in L^p(\Omega, \mu)$ untuk semua $p \in [1, \infty)$.
+        \end{enumerate}
+
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item Untuk menunjukkan bahwa $(\Omega, \mathcal{F}, \mu)$ adalah ruang ukuran, kita cek sifat-sifat ukuran untuk $\mu$:
+                1. $\mu(\emptyset) = \sum_{n \in \emptyset} \frac{1}{2^n} = 0$.
+                2. Untuk setiap $A \in \mathcal{F}$, $\mu(A) \ge 0$ karena $1/2^n > 0$.
+                3. Jika $A_1, A_2, \dots$ adalah barisan himpunan saling lepas, maka:
+                \[ \mu\left(\bigcup_i A_i\right) = \sum_{n \in \bigcup_i A_i} \frac{1}{2^n} = \sum_i \sum_{n \in A_i} \frac{1}{2^n} = \sum_i \mu(A_i). \]
+                Sehingga $\mu$ adalah ukuran, dan $(\Omega, \mathcal{F}, \mu)$ adalah ruang ukuran.
+          \item Fungsi $f(n) = n$. Kita evaluasi $\int_\Omega |f| \, d\mu$:
+                \[
+                  \int_\Omega |f| \, d\mu = \sum_{n=1}^\infty n \mu(\{n\}) = \sum_{n=1}^\infty \frac{n}{2^n}.
+                \]
+                Deret ini konvergen ke $2$ (dapat ditunjukkan melalui uji rasio atau dengan penurunan fungsi pembangkit). Karena $\int |f| \, d\mu = 2 < \infty$, maka $f \in L^1(\Omega, \mu)$.
+          \item Limit $f_n(k)$ saat $n \to \infty$ untuk setiap nilai $k$ yang tetap adalah 0 (karena untuk $n > k$, $f_n(k) = 0$). Jadi $\lim f_n = 0$.
+                Integral dari $f_n$:
+                \[ \int f_n \, d\mu = \sum_{k=1}^\infty f_n(k) \mu(\{k\}) = f_n(n) \mu(\{n\}) = n \left(\frac{1}{2^n}\right) = \frac{n}{2^n}. \]
+                Lalu kita ambil limit saat $n \to \infty$:
+                \[ \lim_{n \to \infty} \int f_n \, d\mu = \lim_{n \to \infty} \frac{n}{2^n} = 0. \]
+                Integral dari $\lim f_n$:
+                \[ \int \lim_{n \to \infty} f_n \, d\mu = \int 0 \, d\mu = 0. \]
+                Ternyata $\lim \int f_n \, d\mu = \int \lim f_n \, d\mu = 0$, keduanya memperoleh hasil yang sama (terjadi pertukaran batas).
+        \end{enumerate}
+
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item Limit titik demi titik $f_n(x)$ untuk $x \in (0, 1]$. Ambil $x > 0$. Berdasarkan sifat Archimedes, ada bilangan bulat $N$ sedemikian sehingga $\frac{1}{N} < x$. Untuk setiap $n \ge N$, kita memiliki $x > \frac{1}{n}$, sehingga $\mathbf{1}_{(0, 1/n)}(x) = 0$ dan $f_n(x) = 0$. Akibatnya, $\lim_{n \to \infty} f_n(x) = 0$ untuk setiap $x \in (0, 1]$.
+          \item
+                \[
+                  \int_\Omega f_n \, d\mu = \int_0^1 n \mathbf{1}_{(0, 1/n)}(x) \, dx = n \int_0^{1/n} 1 \, dx = n \left(\frac{1}{n}\right) = 1.
+                \]
+          \item Berdasarkan hasil di atas:
+                \[ \lim_{n \to \infty} \int_\Omega f_n \, d\mu = \lim_{n \to \infty} 1 = 1. \]
+                Sedangkan
+                \[ \int_\Omega \lim_{n \to \infty} f_n \, d\mu = \int_\Omega 0 \, d\mu = 0. \]
+                Karena limits dan integral tidak dapat ditukar ($1 \neq 0$), Teorema Konvergensi Dominasi (Dominant Convergence Theorem - DCT) tidak berlaku.
+                Alasannya adalah tidak ada fungsi dominan yang terintegralkan ($g \in L^1(\Omega, \mu)$) sedemikian rupa sehingga $|f_n(x)| \le g(x)$ untuk semua $n$. (Supremum atas $n$ adalah ukuran tak hingga di sekitar 0).
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
