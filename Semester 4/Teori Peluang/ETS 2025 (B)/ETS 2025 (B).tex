@@ -1,0 +1,259 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+  \geometry{
+    left = 15mm,
+    right = 15mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER GENAP 2024 / 2025} \\
+  \textbf{DEPARTEMEN MATEMATIKA - FSAD ITS} \\
+  \vspace{0.3cm}
+  \begin{tabular}{l l p{8cm}}
+    Mata kuliah / Kode & : & Teori Peluang                       \\
+    Hari / Tanggal     & : & Selasa, 22 April 2025               \\
+    Sifat / waktu      & : & Tertulis/tutup buku, 100 menit      \\
+    Dosen              & : & Dra. Laksmi Prita W.,               \\
+                       &   & Dr. Mont. Kistosil Fahim, S.Si.,    \\
+                       &   & Sena Safarina, S.Si., M.Sc., D.Sc., \\
+                       &   & Amirul Hakam, S.Si., M.Si.
+  \end{tabular}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \includegraphics[width=1.8cm]{M.png}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent \textbf{HARAP DIPERHATIKAN !!!} \\
+\textit{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat ETS/EAS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.}
+
+\vspace{0.5cm}
+
+\noindent \textbf{ETS mengukur kemampuan}
+\vspace*{-0.5cm}
+\begin{center}
+  \begin{tabular}{|c|m{10.5cm}|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{\multirow{2}{*}{\textbf{CPMK}} } & \multirow{2}{*}{\textbf{\begin{tabular}{c} BOBOT CPMK \\ (\%) \end{tabular}}}                   & \multicolumn{2}{c|}{\textbf{CPL}}                               \\ \cline{4-5}
+    \multicolumn{2}{|c|}{ }                               &                                                                                                 & \textbf{5}                        & \textbf{8}                  \\ \hline
+    \textbf{CPMK-1}                                       & Mahasiswa mampu menjelaskan dan menerapkan konsep dasar peluang, peubah acak dan distribusinya  & \textbf{10}                       & $\checkmark$ &              \\ \hline
+    \textbf{CPMK-2}                                       & Mampu menjelaskan dan menyelesaikan permasalahan mengenai distribusi khusus diskrit dan kontinu & \textbf{15}                       & $\checkmark$ & $\checkmark$ \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{SOAL}}                  & \multirow{2}{*}{\textbf{BOBOT SOAL (\%)}} & \multicolumn{2}{c|}{\textbf{BOBOT CPMK (\%)}}                   \\ \cline{3-4}
+                                                    &                                           & \textbf{CPMK-1}                               & \textbf{CPMK-5} \\ \hline
+    \textbf{1}                                      & \textbf{20}                               & \textbf{5}                                    &                 \\ \hline
+    \textbf{2}                                      & \textbf{20}                               & \textbf{2.5}                                  &                 \\ \hline
+    \textbf{3}                                      & \textbf{20}                               & \textbf{2.5}                                  &                 \\ \hline
+    \textbf{4}                                      & \textbf{20}                               &                                               & \textbf{7.5}    \\ \hline
+    \textbf{5}                                      & \textbf{20}                               &                                               & \textbf{7.5}    \\ \hline
+    \multicolumn{2}{|c|}{\textbf{TOTAL BOBOT CPMK}} & \textbf{10}                               & \textbf{15}                                                     \\ \hline
+  \end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\noindent
+\begin{enumerate}
+  \item Suatu percobaan dilakukan dengan menekan tombol acak pada sebuah mesin penjual otomatis yang mengeluarkan minuman dalam empat rasa: cokelat, vanila, mangga dan stroberi.
+        \begin{enumerate}[label=\alph*.]
+          \item Tuliskan ruang sampel dari percobaan tersebut.
+          \item Tuliskan semua kejadian yang mungkin.
+          \item Jika dua minuman dikeluarkan dari mesin melalui dua kali percobaan dan urutan rasa diperhatikan, hitung peluang bahwa paling banyak terdapat satu minuman rasa cokelat.
+          \item Berdasarkan (c), misalkan $A$ adalah kejadian munculnya selain minuman rasa cokelat. Hitung peluang kejadian $A$.
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Sebuah laboratorium mengembangkan tes untuk mendeteksi infeksi COVID-19. Tingkat akurasi dari tes tersebut ditunjukkan dalam tabel berikut:
+        \begin{center}
+          Tabel Akurasi Tes COVID-19 \\
+          \vspace{0.2cm}
+          \begin{tabular}{|l|l|l|}
+            \hline
+            Terinfeksi & Hasil Tes   & Hasil Tes   \\
+            COVID-19   & Positif (+) & Negatif (-) \\ \hline
+            Ya         & 0,94        & 0,06        \\ \hline
+            Tidak      & 0,03        & 0,97        \\ \hline
+          \end{tabular}
+        \end{center}
+        Jika diketahui bahwa 5 dari setiap 1000 orang di populasi tersebut terinfeksi COVID-19, maka:
+        \begin{enumerate}[label=\alph*.]
+          \item Berapa peluang bahwa seseorang yang dipilih secara acak dari populasi tersebut akan mendapatkan hasil tes positif?
+          \item Jika seseorang mendapatkan hasil tes positif, berapa peluang bahwa orang tersebut benar-benar terinfeksi COVID-19?
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Misalkan $X$ adalah peubah acak kontinu dengan fungsi densitas probabilitas (pdf) sebagai berikut:
+        \[ f(x) = \begin{cases} e^{x+2}, & \text{untuk } x \le -2, \\ 0, & \text{untuk } x > -2. \end{cases} \]
+        \begin{enumerate}[label=\alph*.]
+          \item Tentukan fungsi pembangkit momen (Moment Generating Function/MGF) dari $X$.
+          \item Gunakan MGF dari bagian (a) untuk menghitung nilai harapan $E(X)$ dan $Var(X)$.
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Misalkan $X$ variabel acak kontinu berdistribusi Weibull dengan parameter $\beta = 2$ dan $\theta = 1$.
+        \begin{enumerate}[label=\alph*.]
+          \item Dapatkan CDF dari $X$, $F_X(x)$
+          \item Dapatkan $E[X]$
+          \item Dapatkan $P[X > 2]$
+        \end{enumerate}
+        \textbf{Catatan:} Variabel acak kontinu $X$ dikatakan memiliki distribusi Weibull dengan parameter $\beta > 0$ dan $\theta > 0$ jika memiliki bentuk pdf
+        \[ f(x) = \frac{\beta}{\theta^\beta} x^{\beta-1} e^{-(x/\theta)^\beta}, \quad x > 0 \]
+        dan
+        \[ \int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2} . \]
+        \vspace{0.3cm}
+
+  \item Seorang ayah membayar Rp 5.000,00 untuk sebuah percobaan pelemparan untuk mendapatkan sebuah boneka. Peluang keberhasilan setiap pelemparan adalah 0,1.
+        \begin{enumerate}[label=\alph*.]
+          \item Berapa peluang bahwa 5 lemparan diperlukan untuk memenangkan satu boneka?
+          \item Jika seorang ayah tersebut memiliki tiga anak dan dia harus memenangkan boneka untuk setiap anaknya, maka tentukan peluang bahwa 10 lemparan diperlukan untuk memenangkan tiga boneka pertama.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+\begin{enumerate}
+  \item \begin{enumerate}[label=\alph*.]
+          \item Misalkan kejadian minuman rasa cokelat $= C$, vanila $= V$, mangga $= M$, stroberi $= S$. \\
+                Maka ruang sampel dari satu percobaan adalah $S_1 = \{C, V, M, S\}$.
+          \item Semua kejadian yang mungkin adalah himpunan kuasa dari $S_1$ (terdapat $2^4 = 16$ kejadian), yaitu: \\
+                $\Sigma = \{\emptyset, \{C\}, \{V\}, \{M\}, \{S\}, \{C, V\}, \{C, M\}, \{C, S\}, \{V, M\}, \{V, S\}, \{M, S\}, \{C, V, M\}, \{C, V, S\}, \{C, M, S\}, \{V, M, S\}, \{C, V, M, S\}\}$.
+          \item Kejadian diperoleh dua minuman dengan urutan diperhatikan (total sampel $n(S_2) = 4 \times 4 = 16$). \\
+                Banyak kejadian terdapat dua minuman rasa cokelat, $(C,C)$, adalah $1$. \\
+                Peluang paling banyak terdapat satu minuman cokelat adalah komplemen dari kejadian "keduanya cokelat". \\
+                $P(\text{paling banyak } 1 \text{ cokelat}) = 1 - P(\text{keduanya cokelat}) = 1 - \frac{1}{16} = \frac{15}{16}$.
+          \item Berdasarkan (c), $A$ adalah kejadian munculnya selain minuman rasa cokelat. Artinya, tak satu pun dari kedua minuman tersebut rasa cokelat. \\
+                Jumlah kemungkinan rasa yang dipilih (selain cokelat) pada setiap lemparan adalah 3 ($V, M,$ atau $S$). \\
+                Maka banyak anggota $A$ adalah $3 \times 3 = 9$. \\
+                Sehingga peluang kejadian $A$ adalah $P(A) = \frac{9}{16}$.
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Misalkan: \\
+        $C$ = Kejadian seseorang terinfeksi COVID-19. \\
+        $C^c$ = Kejadian seseorang tidak terinfeksi COVID-19. \\
+        $+$ = Kejadian hasil tes positif. \\
+        $-$ = Kejadian hasil tes negatif. \\
+        Diketahui dari populasi, $P(C) = \frac{5}{1000} = 0.005$ dan $P(C^c) = 0.995$. \\
+        Dari tabel, diketahui: $P(+|C) = 0.94$ dan $P(+|C^c) = 0.03$.
+
+        \begin{enumerate}[label=\alph*.]
+          \item Peluang hasil tes positif ($P(+)$): \\
+                Berdasarkan Teorema Peluang Total:
+                \begin{align*}
+                  P(+) & = P(+|C)P(C) + P(+|C^c)P(C^c)   \\
+                       & = (0.94)(0.005) + (0.03)(0.995) \\
+                       & = 0.0047 + 0.02985              \\
+                       & = 0.03455
+                \end{align*}
+          \item Peluang orang benar-benar terinfeksi COVID-19, bila hasil tesnya positif ($P(C|+)$): \\
+                Berdasarkan Teorema Bayes:
+                \begin{align*}
+                  P(C|+) & = \frac{P(+|C)P(C)}{P(+)}                          \\
+                         & = \frac{0.0047}{0.03455}                           \\
+                         & \approx 0.1360 \quad (\text{atau } \frac{94}{691})
+                \end{align*}
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Diketahui pdf: $f(x) = \begin{cases} e^{x+2}, & \text{untuk } x \le -2, \\ 0, & \text{untuk } x > -2. \end{cases}$
+        \begin{enumerate}[label=\alph*.]
+          \item MGF dari $X$ adalah $M_X(t) = E[e^{tX}]$:
+                \begin{align*}
+                  M_X(t) & = \int_{-\infty}^{\infty} e^{tx} f(x) dx                                                             \\
+                         & = \int_{-\infty}^{-2} e^{tx} e^{x+2} dx                                                              \\
+                         & = e^2 \int_{-\infty}^{-2} e^{(t+1)x} dx                                                              \\
+                         & = e^2 \left[ \frac{e^{(t+1)x}}{t+1} \right]_{-\infty}^{-2}                                           \\
+                         & = e^2 \left( \frac{e^{-2(t+1)}}{t+1} - 0 \right) \quad \text{dengan syarat } t+1 > 0 \implies t > -1 \\
+                         & = \frac{e^{-2t}}{t+1}, \quad t > -1
+                \end{align*}
+          \item Menghitung $E(X)$ dan $Var(X)$. Kita perlu mencari turunan $M_X(t)$: \\
+                $M_X(t) = (t+1)^{-1} e^{-2t}$. \\
+                \begin{align*}
+                  M'_X(t) & = -1(t+1)^{-2}e^{-2t} + (t+1)^{-1}(-2)e^{-2t}               \\
+                          & = -e^{-2t} \left( \frac{1}{(t+1)^2} + \frac{2}{t+1} \right)
+                \end{align*}
+                $E(X) = M'_X(0) = -1 \left( \frac{1}{1} + \frac{2}{1} \right) = -3$.
+
+                Untuk mendapatkan $E(X^2)$, kita cari turunan kedua, atau turunkan $M'_X(t)$:
+                \begin{align*}
+                  M'_X(t)  & = - (t+1)^{-2} e^{-2t} - 2(t+1)^{-1} e^{-2t}                                                                      \\
+                  M''_X(t) & = \left[ 2(t+1)^{-3}e^{-2t} + 2(t+1)^{-2}e^{-2t} \right] + \left[ 2(t+1)^{-2}e^{-2t} + 4(t+1)^{-1}e^{-2t} \right]
+                \end{align*}
+                $E(X^2) = M''_X(0) = [ 2(1) + 2(1) ] + [ 2(1) + 4(1) ] = 4 + 6 = 10$.
+
+                Maka, variansinya adalah:
+                \[ Var(X) = E(X^2) - (E(X))^2 = 10 - (-3)^2 = 10 - 9 = 1. \]
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Diketahui $X \sim Weibull(\beta=2, \theta=1)$. Maka pdf-nya:
+        \[ f(x) = \frac{2}{1^2} x^{2-1} e^{-(x/1)^2} = 2x e^{-x^2}, \quad x > 0 \]
+        \begin{enumerate}[label=\alph*.]
+          \item CDF dari $X$, $F_X(x)$:
+                \[ F_X(x) = \int_{0}^{x} f(t) dt = \int_{0}^{x} 2t e^{-t^2} dt \]
+                Gunakan substitusi $u = t^2 \implies du = 2t dt$.
+                \[ F_X(x) = \int_{0}^{x^2} e^{-u} du = \left[-e^{-u}\right]_{0}^{x^2} = 1 - e^{-x^2}, \quad \text{untuk } x > 0 \]
+                Sehingga $F_X(x) = \begin{cases} 1 - e^{-x^2}, & x > 0 \\ 0, & x \le 0 \end{cases}$
+          \item Menghitung Nilai Harapan $E[X]$:
+                \[ E[X] = \int_{0}^{\infty} x \cdot (2x e^{-x^2}) dx = \int_{0}^{\infty} 2x^2 e^{-x^2} dx \]
+                Gunakan integrasi parsial, misalkan $u = x \implies du = dx$ dan $dv = 2x e^{-x^2} dx \implies v = -e^{-x^2}$:
+                \begin{align*}
+                  E[X] & = \left[ -x e^{-x^2} \right]_0^\infty + \int_{0}^{\infty} e^{-x^2} dx \\
+                       & = (0 - 0) + \frac{\sqrt{\pi}}{2} = \frac{\sqrt{\pi}}{2}
+                \end{align*}
+          \item $P[X > 2]$:
+                \[ P[X > 2] = 1 - P[X \le 2] = 1 - F_X(2) = 1 - (1 - e^{-2^2}) = e^{-4} \]
+        \end{enumerate}
+        \vspace{0.3cm}
+
+  \item Diketahui peluang sukses $p = 0.1$ dan peluang gagal $q = 1 - 0.1 = 0.9$.
+        \begin{enumerate}[label=\alph*.]
+          \item Ini adalah kasus Distribusi Geometrik, yang mensyaratkan sukses pertama pada percobaan ke-$y$. Atau dapat dipandang peluang dari kegagalan 4 kali berturut-turut diikuti 1 sukses:
+                \begin{align*}
+                  P(\text{sukses pertama di lemparan ke-5}) & = q^4 p                       \\
+                                                            & = (0.9)^4 (0.1)               \\
+                                                            & = 0.6561 \times 0.1 = 0.06561
+                \end{align*}
+          \item Ini adalah kasus Distribusi Binomial Negatif dengan parameter jumlah sukses $k=3$. Misalkan peubah acak $Y \sim NB(k=3, p=0.1)$. Kita mencari kejadian diperlukan total 10 percobaan untuk mencapai sukses ke-3 ($Y=10$):
+                \begin{align*}
+                  P(Y = y)  & = \binom{y-1}{k-1} p^k q^{y-k}           \\
+                  P(Y = 10) & = \binom{10-1}{3-1} (0.1)^3 (0.9)^{10-3} \\
+                            & = \binom{9}{2} (0.1)^3 (0.9)^7           \\
+                            & = 36 \times 0.001 \times 0.4782969       \\
+                            & = 0.036 \times 0.4782969 \approx 0.0172
+                \end{align*}
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
