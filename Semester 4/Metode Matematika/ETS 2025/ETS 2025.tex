@@ -1,0 +1,220 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+  \geometry{
+    left = 15mm,
+    right = 15mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER GENAP 2024 / 2025} \\
+  \textbf{DEPARTEMEN MATEMATIKA - FSAD ITS} \\
+  \vspace{0.3cm}
+  \begin{tabular}{l l p{8cm}}
+    Mata kuliah / Kode & : & Metode Matematika                         \\
+    Hari / Tanggal     & : & Kamis 24 April 2025                       \\
+    Sifat / waktu      & : & Tertutup, 100 menit                       \\
+    Dosen              & : & 1. Prof. Dr. Dra. Mardlijah, M.T (A)      \\
+                       &   & 2. Drs. Iis Herisman, M.Si (B)            \\
+                       &   & 3. Dr. Didik Khusnul Arif, S.Si, M.Si (B) \\
+                       &   & 4. Drs. Sentot Didik S, M.Si. (C)         \\
+                       &   & 5. Prof. Dr. Chairul Imron, MI.Komp (C)   \\
+                       &   & 6. Dra. Nur Asiyah, M.Si. (D)
+  \end{tabular}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \includegraphics[width=1.8cm]{M.png}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent \textbf{HARAP DIPERHATIKAN !!!} \\
+\textit{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat ETS/EAS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.}
+
+\vspace{0.5cm}
+
+\noindent \textbf{ETS mengukur kemampuan}
+\vspace*{-.5cm}
+\begin{center}
+  \begin{tabular}{|c|p{9cm}|c|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{\multirow{2}{*}{\textbf{CPMK}} } & \multirow{2}{*}{\textbf{\begin{tabular}{c} BOBOT CPMK \\ (\%) \end{tabular}}}         & \multicolumn{4}{c|}{\textbf{CPL}}                                                             \\ \cline{4-7}
+    \multicolumn{2}{|c|}{ }                               &                                                                                       & \textbf{4}                        & \textbf{5}   & \textbf{8}   & \textbf{9}                  \\ \hline
+    \textbf{CPMK-1}                                       & Mampu menjelaskan, menyelesaikan, dan menghubungkan fungsi Gamma dan fungsi Beta.     & \textbf{10 \%}                    & $\checkmark$ & $\checkmark$ &              &              \\ \hline
+    \textbf{CPMK-2}                                       & Mampu menjelaskan, menyelesaikan Deret dan Transformasi Fourier beserta penerapannya. & \textbf{5 \%}                     & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\ \hline
+    \textbf{CPMK-3}                                       & Mampu menjelaskan, menyelesaikan Beda Hingga dan Transformasi Z.                      & \textbf{10 \%}                    & $\checkmark$ & $\checkmark$ &              &              \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{SOAL}}                  & \multirow{2}{*}{\textbf{BOBOT SOAL (\%)}} & \multicolumn{3}{c|}{\textbf{BOBOT CPMK (\%)}}                                     \\ \cline{3-5}
+                                                    &                                           & \textbf{CPMK-1}                               & \textbf{CPMK-2} & \textbf{CPMK-3} \\ \hline
+    \textbf{1}                                      & \textbf{20}                               & \textbf{5}                                    &                 &                 \\ \hline
+    \textbf{2}                                      & \textbf{20}                               & \textbf{5}                                    &                 &                 \\ \hline
+    \textbf{3}                                      & \textbf{20}                               &                                               & \textbf{5}      &                 \\ \hline
+    \textbf{4}                                      & \textbf{20}                               &                                               &                 & \textbf{5}      \\ \hline
+    \textbf{5}                                      & \textbf{20}                               &                                               &                 & \textbf{5}      \\ \hline
+    \multicolumn{2}{|c|}{\textbf{TOTAL BOBOT CPMK}} & \textbf{10}                               & \textbf{5}                                    & \textbf{10}                       \\ \hline
+  \end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\begin{center}
+  \underline{\textbf{SOAL}}
+\end{center}
+
+\begin{enumerate}
+  \item Selesaikan $\displaystyle\int_{0}^{\infty} x^{1/4} e^{-\sqrt{x}} dx$
+  \item Tentukan: $\displaystyle\int_{0}^{3} \frac{x^2}{\sqrt{3-x}} dx$
+  \item Diketahui fungsi periodik $f(x) = x + \pi, \quad -\pi < x < \pi$.
+        \begin{enumerate}[label=\alph*)]
+          \item Sketsa gelombang dari $f(x)$ untuk 3 periode.
+          \item Apakah termasuk fungsi genap, fungsi ganjil atau bukan keduanya?
+          \item Dapatkan deret Fourier dalam notasi Sigma.
+        \end{enumerate}
+  \item Diberikan tabel nilai fungsi berikut :
+        \begin{center}
+          \begin{tabular}{|l|c|c|c|c|c|}
+            \hline
+            $x$    & 0 & 1 & 2 & 3 & 4  \\ \hline
+            $f(x)$ & 1 & 2 & 4 & 8 & 16 \\ \hline
+          \end{tabular}
+        \end{center}
+        \begin{enumerate}[label=\alph*.]
+          \item Buatlah tabel beda maju sampai $\Delta^4 f(x)$
+          \item Gunakan interpolasi Newton maju untuk menghitung nilai pendekatan $f(2.5)$
+          \item Berikan penjelasan karakteristik fungsi $f(x)$ dari data yang diberikan.
+        \end{enumerate}
+  \item Selesaikan Persamaan Beda hingga berikut ini :
+        \[ y_{n+2} - 3y_{n+1} + 2y_n = 1, \ n \ge 0 \quad \text{dengan syarat awal } y_0 = 1 \text{ dan } y_1 = 0 \]
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item Untuk menyelesaikan $\int_{0}^{\infty} x^{1/4} e^{-\sqrt{x}} dx$, kita gunakan fungsi Gamma. \\
+        Misalkan $u = \sqrt{x} = x^{1/2} \implies du = \frac{1}{2} x^{-1/2} dx \implies dx = 2u du$. \\
+        Saat $x = 0$, $u = 0$. Saat $x \to \infty$, $u \to \infty$. \\
+        Karena $x = u^2$, maka $x^{1/4} = u^{1/2}$. \\
+        Substitusikan ke dalam integral:
+        \begin{align*}
+          \int_{0}^{\infty} u^{1/2} e^{-u} (2u du) & = 2 \int_{0}^{\infty} u^{3/2} e^{-u} du                                      \\
+                                                   & = 2 \Gamma\left(\frac{5}{2}\right)                                           \\
+                                                   & = 2 \cdot \frac{3}{2} \cdot \frac{1}{2} \cdot \Gamma\left(\frac{1}{2}\right) \\
+                                                   & = \frac{3}{2} \sqrt{\pi}
+        \end{align*}
+
+  \item Untuk menentukan $\int_{0}^{3} \frac{x^2}{\sqrt{3-x}} dx$, kita gunakan fungsi Beta. \\
+        Misalkan $x = 3t \implies dx = 3 dt$. \\
+        Untuk batas integrasinya: saat $x = 0$, $t = 0$; saat $x = 3$, $t = 1$.
+        \begin{align*}
+          \int_{0}^{3} \frac{x^2}{\sqrt{3-x}} dx & = \int_{0}^{1} \frac{(3t)^2}{\sqrt{3-3t}} (3 dt)                                                   = \int_{0}^{1} \frac{9t^2}{\sqrt{3}\sqrt{1-t}} \cdot 3 dt                                          = \frac{27}{\sqrt{3}} \int_{0}^{1} t^2 (1-t)^{-1/2} dt                                                                                                                                                                                                                                                                                                                                                                                                      \\
+                                                 & = 9\sqrt{3} \int_{0}^{1} t^{3-1} (1-t)^{1/2-1} dt                                                                                                                                                                                                            = 9\sqrt{3} \beta\left(3, \frac{1}{2}\right)                                                                                                                                                                                                                 = 9\sqrt{3} \frac{\Gamma(3) \Gamma(1/2)}{\Gamma(7/2)}                                                                                   \\
+                                                 & = 9\sqrt{3} \frac{2! \cdot \sqrt{\pi}}{\frac{5}{2} \cdot \frac{3}{2} \cdot \frac{1}{2} \sqrt{\pi}}                                                                                                                                                                                                                                                                                                                                                                                                                                                                              = 9\sqrt{3} \frac{2}{15/8} = 9\sqrt{3} \cdot \frac{16}{15} = \frac{48\sqrt{3}}{5}
+        \end{align*}
+
+  \item \begin{enumerate}[label=\alph*)]
+          \item Sketsa gelombang fungsi periodik $f(x) = x + \pi$, $-\pi < x < \pi$ untuk 3 periode adalah grafik gigi gergaji miring ke kanan dengan asimtot dari $y=0$ hingga $y=2\pi$, dan tak terdefinisi tepat di $x = -\pi, \pi, 3\pi$, dll. Gelombang naik dari $(0, -\pi)$ menuju $(2\pi, \pi)$ jika dipusatkan secara berbeda, tetapi dalam soal ini dari $x=-\pi$ maka $y=0$ melesat ke $x=\pi$ maka $y=2\pi$. Sehingga grafiknya berulang antara $y=0$ dan $y=2\pi$.
+          \item Karena $f(-x) = -x + \pi \neq f(x)$ dan $f(-x) \neq -f(x)$, maka fungsi $f(x) = x + \pi$ di interval $(-\pi, \pi)$ adalah \textbf{bukan keduanya} (bukan fungsi genap dan bukan fungsi ganjil).
+          \item Deret Fourier dari $f(x) = x + \pi$:
+                $L = \pi$.
+                \begin{align*}
+                  a_0 & = \frac{1}{\pi} \int_{-\pi}^{\pi} (x + \pi) dx = \frac{1}{\pi} \left[ \frac{1}{2}x^2 + \pi x \right]_{-\pi}^{\pi} = \frac{1}{\pi} \left( (\frac{1}{2}\pi^2 + \pi^2) - (\frac{1}{2}\pi^2 - \pi^2) \right) = \frac{1}{\pi} (2\pi^2) = 2\pi \\
+                  a_n & = \frac{1}{\pi} \int_{-\pi}^{\pi} (x + \pi) \cos(nx) dx = 0                                                                                                                                                                              \\
+                  b_n & = \frac{1}{\pi} \int_{-\pi}^{\pi} (x + \pi) \sin(nx) dx = \frac{1}{\pi} \left( \left[ \frac{-(x+\pi)}{n}\cos(nx) \right]_{-\pi}^{\pi} - \int_{-\pi}^{\pi} \frac{-\cos(nx)}{n} dx \right)                                                 \\
+                      & = \frac{1}{\pi} \left( \frac{-2\pi}{n}\cos(n\pi) - 0 + 0 \right) = -\frac{2}{n}(-1)^n = 2\frac{(-1)^{n+1}}{n}
+                \end{align*}
+                Sehingga deret Fouriernya:
+                \[ f(x) = \pi + \sum_{n=1}^{\infty} 2\frac{(-1)^{n+1}}{n} \sin(nx) \]
+        \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*.]
+          \item Tabel Beda Maju:
+                \begin{center}
+                  \begin{tabular}{|c|c|c|c|c|c|}
+                    \hline
+                    $x$ & $f(x)$ & $\Delta f(x)$ & $\Delta^2 f(x)$ & $\Delta^3 f(x)$ & $\Delta^4 f(x)$ \\
+                    \hline
+                    0   & 1      &               &                 &                 &                 \\
+                        &        & 1             &                 &                 &                 \\
+                    1   & 2      &               & 1               &                 &                 \\
+                        &        & 2             &                 & 1               &                 \\
+                    2   & 4      &               & 2               &                 & 0               \\
+                        &        & 4             &                 & 1               &                 \\
+                    3   & 8      &               & 3               &                 &                 \\
+                        &        & 8             &                 &                 &                 \\
+                    4   & 16     &               &                 &                 &                 \\
+                  \end{tabular}
+                \end{center}
+          \item Interpolasi Newton Maju dengan $x_0 = 2, h = 1, x = 2.5 \implies s = \frac{2.5 - 2}{1} = 0.5$. \\
+                Kita gunakan tabel dari titik $(x_0=2)$ ke bawah:
+                $f(2) = 4, \Delta f(2) = 4, \Delta^2 f(2) = 4$ (jika tabel dilanjutkan).
+                Sebenarnya tabelnya adalah:
+                $\Delta f(0)=1, \Delta f(1)=2, \Delta f(2)=4, \Delta f(3)=8$.
+                $\Delta^2 f(0)=1, \Delta^2 f(1)=2, \Delta^2 f(2)=4$.
+                $\Delta^3 f(0)=1, \Delta^3 f(1)=2$.
+                $\Delta^4 f(0)=1$.
+
+                Dari $x_0 = 2$:
+                \begin{align*}
+                  f(2.5) & \approx f(2) + s\Delta f(2) + \frac{s(s-1)}{2!}\Delta^2 f(2) \\
+                         & \approx 4 + (0.5)(4) + \frac{(0.5)(-0.5)}{2}(4)              \\
+                         & = 4 + 2 - 0.5 = 5.5
+                \end{align*}
+          \item Berdasarkan data: $f(0)=1=2^0$, $f(1)=2=2^1$, $f(2)=4=2^2$, $f(3)=8=2^3$, $f(4)=16=2^4$. Karakteristik fungsinya berbentuk eksponensial (tepatnya $f(x) = 2^x$), maka nilai perbedaannya akan selalu membentuk kelipatan dari nilai sebelumnya.
+        \end{enumerate}
+
+  \item Persamaan Beda: $y_{n+2} - 3y_{n+1} + 2y_n = 1$, dengan $y_0 = 1, y_1 = 0$. \\
+        Untuk solusi homogen $y_h(n)$:
+        Karakteristik persamaan homogen $r^2 - 3r + 2 = 0 \implies (r-1)(r-2) = 0 \implies r_1 = 1, r_2 = 2$. \\
+        Maka $y_h(n) = C_1 (1)^n + C_2 (2)^n = C_1 + C_2 2^n$. \\
+
+        Karena $r=1$ adalah akar, maka tebak solusi partikular berupa konstanta dikali $n$, yaitu $y_p(n) = A n$. \\
+        Substitusikan:
+        \begin{align*}
+          A(n+2) - 3A(n+1) + 2An   & = 1                 \\
+          An + 2A - 3An - 3A + 2An & = 1                 \\
+          -A                       & = 1 \implies A = -1
+        \end{align*}
+        Jadi, $y_p(n) = -n$.
+
+        Solusi umum: $y_n = y_h(n) + y_p(n) = C_1 + C_2 2^n - n$.
+        Masukkan syarat awal:
+        \begin{align*}
+          y_0 & = 1 \implies C_1 + C_2 - 0 = 1 \implies C_1 + C_2 = 1   \\
+          y_1 & = 0 \implies C_1 + 2C_2 - 1 = 0 \implies C_1 + 2C_2 = 1
+        \end{align*}
+        Dengan mengurangkan kedua persamaan: $(C_1+2C_2) - (C_1+C_2) = 1 - 1 \implies C_2 = 0$. \\
+        Sehingga $C_1 = 1$. \\
+        Maka Solusi dari persamaan beda tersebut adalah:
+        \[ y_n = 1 - n \]
+\end{enumerate}
+\end{document}

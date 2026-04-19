@@ -1,0 +1,818 @@
+\documentclass[a4paper,extrafontsizes, 9pt]{memoir}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\pagestyle{empty}
+
+\setlrmarginsandblock{1cm}{1cm}{*}
+\setulmarginsandblock{1cm}{1cm}{*}
+\checkandfixthelayout
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+
+\let\bf\textbf{}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.5}
+
+\newtheorem{kalstok}{Teorema}
+\renewcommand{\thekalstok}{1.\arabic{kalstok}}
+
+\theoremstyle{definition}
+\newtheorem{definisi}[kalstok]{Definisi}
+\newtheorem{lemma}[kalstok]{Lema}
+\newtheorem{proposisi}[kalstok]{Proposisi}
+\newtheorem{akibat}[kalstok]{Akibat}
+\newtheorem{contoh}[kalstok]{Contoh}
+
+\theoremstyle{plain}
+\newtheorem{teorema}[kalstok]{Teorema}
+
+\theoremstyle{remark}
+\newtheorem{catatan}[kalstok]{Catatan}
+
+\newcommand{\textbetweenrules}[2][.4pt]{%
+  \par\vspace{\topsep}
+  \noindent\makebox[\textwidth]{%
+    \sbox0{#2}%
+    \dimen0=.5\dimexpr\ht0+#1\relax
+    \dimen2=-.5\dimexpr\ht0-#1\relax
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+    \quad #2\quad
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+  }\par\nopagebreak\vspace{\topsep}
+}
+
+\begin{document}
+\footnotesize \textbf{{Cheatsheet -- Kalkulus Stokastik}} \hfill \textit{Teosofi Hidayah Agung/5002221132}
+\begin{multicols}{2}
+  \section*{\small Teori Ukuran untuk Kalkulus Stokastik}
+
+  \begin{definisi}[Aljabar Himpunan]
+    Misalkan $X$ adalah suatu himpunan tak kosong. Aljabar dari himpunan $X$ adalah suatu koleksi $\mathcal{A}$ dari himpunan-himpunan bagian $X$ yang memenuhi:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (A1) $\mathcal{A}$ tidak kosong.
+      \item (A2) Jika $E\in\mathcal{A}$, maka komplemennya $E^c:=X\setminus E$ juga elemen $\mathcal{A}$.
+      \item (A3) Jika $E,F\in\mathcal{A}$, maka gabungan $E\cup F\in\mathcal{A}$.
+    \end{itemize}
+  \end{definisi}
+
+  \begin{lemma}
+    Misal $X$ himpunan tak kosong. Jika $\mathcal{A}$ aljabar pada $X$ maka berlaku:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (A1$^*$) $X\in\mathcal{A}$.
+      \item (A1$^{\#}$) $\varnothing\in\mathcal{A}$.
+      \item (A3$^*$) Jika $E,F\in\mathcal{A}$, maka $E\cap F\in\mathcal{A}$.
+      \item (A4) Jika $m\in\mathbb{N}$ dan $A_1,A_2,\ldots,A_m\in\mathcal{A}$ maka $\displaystyle\bigcup_{n=1}^{m}A_n\in\mathcal{A}$.
+      \item (A5) Jika $m\in\mathbb{N}$ dan $A_1,A_2,\ldots,A_m\in\mathcal{A}$ maka $\displaystyle\bigcap_{n=1}^{m}A_n\in\mathcal{A}$.
+    \end{itemize}
+  \end{lemma}
+
+  \begin{definisi}[Sigma-Aljabar]
+    Misalkan $X$ adalah suatu himpunan tak kosong. Sigma-aljabar dari himpunan $X$ adalah koleksi $\mathcal{A}$ dari himpunan-himpunan bagian $X$ yang memenuhi:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (S1) $\mathcal{A}$ tidak kosong.
+      \item (S2) Jika $E\in\mathcal{A}$, maka komplemennya $E^c:=X\setminus E$ juga elemen $\mathcal{A}$.
+      \item (S3) Jika $\{E_n\}_{n\in\mathbb{N}}$ barisan himpunan di $\mathcal{A}$, maka $\displaystyle\bigcup_{n\in\mathbb{N}}E_n\in\mathcal{A}$.
+    \end{itemize}
+    Pasangan $(X,\mathcal{A})$ disebut ruang terukur, dan setiap himpunan dalam $\mathcal{A}$ disebut himpunan terukur.
+  \end{definisi}
+
+  \begin{teorema}
+    Misalkan $X$ adalah himpunan tak kosong dan $\mathcal{A}$ sigma-aljabar pada $X$. Maka berlaku:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (S1) $\mathcal{A}$ tidak kosong.
+      \item (S2) Jika $E\in\mathcal{A}$, maka $E^c\in\mathcal{A}$.
+      \item (S3$^*$) Jika $\{E_n\}_{n\in\mathbb{N}}$ barisan himpunan di $\mathcal{A}$, maka $\displaystyle\bigcap_{n\in\mathbb{N}}E_n\in\mathcal{A}$.
+    \end{itemize}
+  \end{teorema}
+
+  \begin{teorema}[Dekomposisi Atomik]
+    Jika $X$ himpunan tak kosong berhingga dan $\mathcal{F}$ suatu sigma-aljabar pada $X$, maka:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (a) Terdapat elemen atom $E$ dengan sifat: (i) $E\in\mathcal{F}$, (ii) $E\neq\varnothing$, dan (iii) jika $B\in\mathcal{F}$ dan $B\subseteq E$, maka $B=\varnothing$ atau $B=E$.
+      \item (b) Atom-atom tersebut saling asing.
+      \item (c) Setiap $A\in\mathcal{F}$ dapat dituliskan secara unik sebagai gabungan beberapa atom.
+    \end{itemize}
+  \end{teorema}
+
+  \begin{akibat}
+    $\mathcal{F}$ berkorespondensi satu-satu dengan suatu partisi dari $X$.
+  \end{akibat}
+
+  \begin{definisi}[Sigma-Aljabar Borel]
+    Jika $X$ ruang topologi, maka sigma-aljabar yang dibangkitkan oleh koleksi semua himpunan terbuka $\mathcal{T}$ ditulis $\sigma(\mathcal{T})$.
+    Sigma-aljabar ini disebut sigma-aljabar Borel dan dilambangkan $\mathcal{B}(X)$. Setiap anggota $\mathcal{B}(X)$ disebut himpunan Borel.
+  \end{definisi}
+
+  \begin{definisi}[Ukuran Positif]
+    Misalkan $(X,\mathcal{A})$ ruang terukur. Ukuran positif pada ruang ini adalah fungsi
+    \[\mu:\mathcal{A}\to[0,\infty]\]
+    yang memenuhi:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $\mu(\varnothing)=0$.
+      \item Aditif terhitung: untuk barisan himpunan saling asing $E_n\in\mathcal{A}$,
+            \[\mu\!\left(\bigcup_{n=1}^{\infty}E_n\right)=\sum_{n=1}^{\infty}\mu(E_n).\]
+    \end{enumerate}
+    Himpunan $(X,\mathcal{A},\mu)$ disebut ruang ukuran.
+  \end{definisi}
+
+  \begin{teorema}[Sifat Ukuran]
+    Jika $(X,\mathcal{A},\mu)$ ruang ukuran, maka:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (i) Additif berhingga: jika $E_1,E_2,\ldots,E_m\in\mathcal{A}$ saling asing,
+            \[\mu\!\left(\bigcup_{n=1}^{m}E_n\right)=\sum_{n=1}^{m}\mu(E_n).\]
+      \item (ii) Monotonisitas: jika $E,F\in\mathcal{A}$ dan $E\subseteq F$, maka $\mu(E)\leq\mu(F)$.
+      \item (iii) Pengurangan: untuk $E,F\in\mathcal{A}$ dengan $E\subseteq F$ dan $\mu(E)<\infty$,
+            \[\mu(F\setminus E)=\mu(F)-\mu(E).\]
+      \item (iv) Subadditivitas: untuk $A,B\in\mathcal{A}$ (dengan salah satu ukuran berhingga),
+            \[\mu(A\cup B)=\mu(A)+\mu(B)-\mu(A\cap B).\]
+    \end{itemize}
+  \end{teorema}
+
+  \begin{teorema}[Ketaksamaan Boole]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Untuk setiap barisan $E_1,E_2,\ldots\in\mathcal{A}$ berlaku
+    \[\mu\!\left(\bigcup_{n=1}^{\infty}E_n\right)\leq\sum_{n=1}^{\infty}\mu(E_n).\]
+  \end{teorema}
+
+  \begin{definisi}[Fungsi Terukur]
+    Misalkan $(X,\mathcal{A})$ dan $(Y,\mathcal{B})$ adalah ruang terukur.
+    Sebuah fungsi $f:X\to Y$ disebut terukur jika untuk setiap $B\in\mathcal{B}$, prapetaannya
+    \[f^{-1}(B)=\{x\in X\mid f(x)\in B\}\]
+    berada dalam $\mathcal{A}$.
+  \end{definisi}
+
+  \begin{catatan}
+    Selain notasi $f^{-1}(B)$, sering juga dipakai notasi
+    \[\{f\in B\}=\{x\in X\mid f(x)\in B\}.\]
+  \end{catatan}
+
+  \begin{teorema}
+    Komposisi dari dua fungsi terukur juga menghasilkan fungsi terukur.
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $(X,\mathcal{A})$ dan $(Y,\mathcal{B})$ ruang terukur, dengan $\mathcal{H}$ pembangkit sigma-aljabar $\mathcal{B}$, yaitu $\sigma(\mathcal{H})=\mathcal{B}$.
+    Sebuah fungsi $f:X\to Y$ terukur jika, dan hanya jika, untuk setiap $V\in\mathcal{H}$ berlaku
+    \[f^{-1}(V)\in\mathcal{A}.\]
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $(X,\mathcal{A})$ ruang terukur. Suatu fungsi $f:X\to\mathbb{R}$ terukur jika dan hanya jika
+    \[\{f>c\}=f^{-1}((c,\infty))\in\mathcal{A}\]
+    untuk setiap $c\in\mathbb{R}$.
+  \end{teorema}
+
+  \begin{contoh}
+    Misalkan $(\mathbb{R},\mathcal{B}(\mathbb{R}))$ ruang terukur dengan $\mathcal{B}(\mathbb{R})$ sigma-aljabar Borel pada $\mathbb{R}$.
+    Definisikan fungsi
+    \[f:\mathbb{R}\to\mathbb{R},\qquad f(x)=x^2.\]
+    Untuk setiap interval terbuka $(a,\infty)$ berlaku
+    \[f^{-1}((a,\infty))=\{x\in\mathbb{R}\mid x^2>a\}.\]
+    Jika $a\ge 0$, maka
+    \[f^{-1}((a,\infty))=(-\infty,-\sqrt{a})\cup(\sqrt{a},\infty),\]
+    yang merupakan gabungan dua interval terbuka, sehingga termasuk dalam $\mathcal{B}(\mathbb{R})$.
+    Karena prapeta setiap himpunan terbuka adalah himpunan Borel, maka $f$ fungsi terukur.
+  \end{contoh}
+
+  \begin{catatan}
+    Dalam pernyataan teorema sebelumnya, interval $(c,\infty)$ dapat diganti dengan $[c,\infty)$, $(-\infty,c)$,
+    atau variasi ekuivalen lainnya, tanpa mengubah esensi.
+  \end{catatan}
+
+  \begin{teorema}
+    Misalkan $(X,\mathcal{A})$ ruang terukur dan $\{f_n\}$ barisan fungsi terukur $f_n:X\to\overline{\mathbb{R}}$.
+    Jika untuk setiap $x\in X$ limit
+    \[f(x)=\lim_{n\to\infty}f_n(x)\]
+    ada (hingga atau tak hingga), maka fungsi $f$ adalah terukur.
+  \end{teorema}
+
+  \begin{definisi}
+    Misalkan $S\subseteq X$. Fungsi $\mathbf{1}_S:X\to\mathbb{R}$ yang didefinisikan oleh
+    \[\mathbf{1}_S(x)=\begin{cases}
+        1, & \text{jika } x\in S,   \\
+        0, & \text{jika } x\notin S
+      \end{cases}\]
+    disebut fungsi indikator (fungsi karakteristik) dari himpunan $S$.
+  \end{definisi}
+
+  \begin{catatan}
+    Fungsi indikator digunakan untuk merepresentasikan keberadaan titik dalam suatu himpunan.
+    Nilainya $1$ jika titik berada dalam himpunan dan $0$ jika berada di luar himpunan.
+    Selain itu, $\mathbf{1}_S$ terukur jika dan hanya jika $S$ adalah himpunan terukur.
+  \end{catatan}
+
+  \begin{definisi}
+    Suatu fungsi $\varphi:X\to\mathbb{R}$ disebut fungsi sederhana jika fungsi tersebut hanya mengambil
+    sejumlah hingga nilai. Dengan fungsi indikator, setiap fungsi sederhana dapat direpresentasikan sebagai
+    \[\varphi(x)=\sum_{k=1}^{n}a_k\mathbf{1}_{E_k}(x).\]
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Integral Lebesgue pada $X$ untuk fungsi sederhana terukur
+    bernilai di $\mathbb{R}^{+}$ didefinisikan sebagai
+    \[\int_X\varphi\,d\mu=\sum_{k=1}^{n}a_k\mu(E_k),\]
+    dengan
+    \[\varphi=\sum_{k=1}^{n}a_k\mathbf{1}_{E_k}.\]
+  \end{definisi}
+
+  \begin{teorema}[Teorema Aproksimasi]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Jika $f:X\to[0,\infty]$ fungsi terukur,
+    maka terdapat barisan fungsi sederhana terukur tak negatif $\{\varphi_n\}_{n=1}^{\infty}$ sehingga
+    \[\varphi_n(x)\nearrow f(x)\quad\text{untuk setiap }x\in X.\]
+    Artinya, untuk setiap $x\in X$ berlaku
+    \[0\le\varphi_1(x)\le\varphi_2(x)\le\cdots\quad\text{dan}\quad\lim_{n\to\infty}\varphi_n(x)=f(x).\]
+    Jika fungsi $f$ terbatas, maka barisan $\{\varphi_n\}$ dapat dipilih sehingga konvergen seragam ke $f$ pada $X$.
+  \end{teorema}
+
+  \begin{definisi}
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran dan $f:X\to\mathbb{R}$ fungsi terukur.
+    Jika $f$ tidak selalu bernilai tak negatif, maka integral Lebesgue dari $f$ didefinisikan sebagai
+    \[\int_X f\,d\mu=\int_X f^{+}\,d\mu-\int_X f^{-}\,d\mu,\]
+    dengan
+    \[f^{+}(x)=\max\{f(x),0\},\qquad f^{-}(x)=\max\{-f(x),0\}.\]
+    Definisi ini berlaku dengan syarat bahwa kedua integral
+    \[\int_X f^{+}\,d\mu\quad\text{dan}\quad\int_X f^{-}\,d\mu\]
+    tidak bernilai $+\infty$ secara bersamaan.
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Suatu himpunan terukur $E\subseteq X$ dikatakan
+    memiliki $\mu$-ukuran nol (himpunan nol) jika
+    \[\mu(E)=0.\]
+  \end{definisi}
+
+  \begin{catatan}
+    Pada ruang Euclid $\mathbb{R}^{n}$ dengan ukuran Lebesgue, himpunan yang terdiri dari satu titik memiliki ukuran nol.
+    Garis atau kurva dalam $\mathbb{R}^{n}$ untuk $n\ge 2$ juga berukuran nol, dan setiap himpunan terhitung memiliki
+    ukuran Lebesgue nol. Secara khusus, fungsi $f$ dikatakan nol hampir di mana-mana jika
+    \[\{x\in X:f(x)\neq 0\}\]
+    memiliki ukuran nol.
+  \end{catatan}
+
+  \begin{teorema}
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran dan $f:X\to[0,\infty]$ fungsi terukur.
+    Fungsi $f$ bernilai nol hampir di mana-mana jika dan hanya jika
+    \[\int_X f\,d\mu=0.\]
+  \end{teorema}
+
+  \begin{teorema}[Teorema Konvergensi Monoton]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Jika $\{f_n\}$ barisan fungsi terukur tak negatif yang memenuhi
+    \[f_1\le f_2\le\cdots\quad\text{dan}\quad f_n(x)\nearrow f(x)\]
+    untuk setiap $x\in X$, maka berlaku
+    \[\int_X f\,d\mu=\int_X\left(\lim_{n\to\infty}f_n\right)d\mu=\lim_{n\to\infty}\int_X f_n\,d\mu.\]
+  \end{teorema}
+
+  \begin{teorema}[Teorema Beppo Levi]
+    Jika $\{f_n\}_{n=1}^{\infty}$ barisan fungsi terukur tak negatif pada ruang ukuran $(X,\mathcal{A},\mu)$,
+    maka berlaku
+    \[\int_X\sum_{n=1}^{\infty}f_n\,d\mu=\sum_{n=1}^{\infty}\int_X f_n\,d\mu.\]
+  \end{teorema}
+
+  \begin{definisi}
+    Suatu fungsi $f:X\to\mathbb{R}$ dikatakan terintegralkan (Lebesgue integrable) jika fungsi tersebut
+    terukur dan memenuhi
+    \[\int_X |f|\,d\mu<\infty.\]
+  \end{definisi}
+
+  \begin{teorema}[Teorema Konvergensi Dominasi]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Andaikan $\{f_n\}$ barisan fungsi terukur
+    $f_n:X\to\mathbb{R}$ yang konvergen titik demi titik ke fungsi $f$.
+    Jika terdapat fungsi terintegralkan $g:X\to[0,\infty]$ sehingga
+    \[|f_n(x)|\le g(x)\quad\text{untuk setiap }n\text{ dan setiap }x\in X,\]
+    maka fungsi $f_n$ dan $f$ terintegralkan dan berlaku
+    \[\lim_{n\to\infty}\int_X |f_n-f|\,d\mu=0.\]
+  \end{teorema}
+
+  \begin{teorema}[Generalisasi Teorema Beppo Levi]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran. Jika $\{f_n\}$ barisan fungsi terukur
+    $f_n:X\to\mathbb{R}$ yang memenuhi
+    \[\sum_{n=1}^{\infty}\int_X |f_n|\,d\mu<\infty,\]
+    maka deret $\sum_{n=1}^{\infty}f_n(x)$ konvergen hampir di mana-mana terhadap suatu fungsi
+    $f$ yang terintegralkan, dan berlaku
+    \[\int_X\sum_{n=1}^{\infty}f_n\,d\mu=\sum_{n=1}^{\infty}\int_X f_n\,d\mu.\]
+  \end{teorema}
+
+  \begin{definisi}
+    Suatu koleksi himpunan $\mathcal{P}$ disebut $\pi$-sistem apabila tertutup terhadap irisan berhingga,
+    yaitu untuk setiap $A,B\in\mathcal{P}$ berlaku
+    \[A\cap B\in\mathcal{P}.\]
+    Sedangkan koleksi himpunan $\mathcal{L}$ disebut $\lambda$-sistem (Dynkin system) apabila:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $\Omega\in\mathcal{L}$.
+      \item Jika $A\in\mathcal{L}$, maka $A^c\in\mathcal{L}$.
+      \item Jika $\{A_n\}_{n=1}^{\infty}\subseteq\mathcal{L}$ saling asing, maka
+            \[\bigcup_{n=1}^{\infty}A_n\in\mathcal{L}.\]
+    \end{enumerate}
+  \end{definisi}
+
+  \begin{teorema}[Teorema $\pi$-$\lambda$ (Dynkin)]
+    Misalkan $\mathcal{P}$ suatu $\pi$-sistem dan $\mathcal{L}$ suatu $\lambda$-sistem dengan
+    $\mathcal{P}\subseteq\mathcal{L}$. Maka berlaku
+    \[\sigma(\mathcal{P})\subseteq\mathcal{L}.\]
+  \end{teorema}
+
+  \begin{teorema}[Teorema Tonelli]
+    Misalkan $(X,\mathcal{A},\mu)$ dan $(Y,\mathcal{B},\nu)$ adalah dua ruang ukuran
+    $\sigma$-hingga. Jika $f:X\times Y\to[0,\infty]$ fungsi terukur, maka:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Untuk setiap $x\in X$, fungsi $y\mapsto f(x,y)$ terukur terhadap $\nu$, dan untuk setiap
+            $y\in Y$, fungsi $x\mapsto f(x,y)$ terukur terhadap $\mu$.
+      \item Fungsi berikut terdefinisi (mungkin tak hingga):
+            \[x\mapsto\int_Y f(x,y)\,d\nu(y),\qquad y\mapsto\int_X f(x,y)\,d\mu(x).\]
+      \item Berlaku persamaan
+            \[\int_{X\times Y} f(x,y)\,d(\mu\otimes\nu)(x,y)
+              =\int_X\left(\int_Y f(x,y)\,d\nu(y)\right)d\mu(x)
+              =\int_Y\left(\int_X f(x,y)\,d\mu(x)\right)d\nu(y).\]
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran, dan misalkan $g:X\to[0,\infty]$ fungsi terukur.
+    Jika didefinisikan fungsi $\nu:\mathcal{A}\to[0,\infty]$ dengan
+    \[\nu(E)=\int_E g\,d\mu,\qquad E\in\mathcal{A},\]
+    maka $\nu$ merupakan suatu ukuran pada $(X,\mathcal{A})$. Selanjutnya, untuk setiap fungsi terukur
+    $f$ berlaku
+    \[\int_X f\,d\nu=\int_X fg\,d\mu,\]
+    dengan pengertian bahwa kedua ruas terdefinisi (tidak menghasilkan bentuk tak tentu).
+    Penulisan ini sering disingkat sebagai
+    \[d\nu=g\,d\mu.\]
+  \end{teorema}
+
+  \begin{teorema}[Perubahan Variabel]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran dan $(Y,\mathcal{B})$ ruang terukur.
+    Jika $f:Y\to\mathbb{R}$ dan $g:X\to Y$ fungsi terukur, maka berlaku
+    \[\int_X (f\circ g)\,d\mu=\int_Y f\,d\nu,\]
+    dengan $\nu$ ukuran pada $(Y,\mathcal{B})$ yang diberikan oleh
+    \[\nu(B)=\mu\bigl(g^{-1}(B)\bigr),\qquad B\in\mathcal{B}.\]
+  \end{teorema}
+
+  \begin{teorema}[Perubahan Variabel Diferensial dalam $\mathbb{R}^{n}$]
+    Misalkan $g:X\to Y$ suatu difeomorfisme antara himpunan terbuka di $\mathbb{R}^{n}$.
+    Jika $A\subseteq X$ himpunan terukur dan $f:Y\to\mathbb{R}$ fungsi terukur, maka berlaku
+    \[\int_{g(A)} f(y)\,d\lambda(y)
+      =\int_A (f\circ g)(x)\,|\det Dg(x)|\,d\lambda(x).\]
+  \end{teorema}
+
+  \begin{teorema}[Teorema Dasar Pertama Kalkulus]
+    Misalkan $I\subseteq\mathbb{R}$ suatu interval dan $f:I\to\mathbb{R}$ fungsi yang terintegralkan Lebesgue.
+    Jika didefinisikan fungsi $F:I\to\mathbb{R}$ oleh
+    \[F(x)=\int_a^x f(t)\,dt,\]
+    untuk suatu $a\in I$, maka $F$ bersifat kontinu pada $I$.
+    Lebih lanjut, jika $f$ kontinu di titik $x\in I$, maka $F$ terdiferensialkan di titik tersebut dan
+    \[F'(x)=f(x).\]
+  \end{teorema}
+
+  \begin{teorema}[Ketergantungan Kontinu pada Parameter Integral]
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran, $T$ ruang metrik, dan $f:X\times T\to\mathbb{R}$ fungsi
+    sehingga untuk setiap $t\in T$, fungsi $f(\cdot,t)$ terukur pada $X$. Definisikan
+    \[F(t)=\int_X f(x,t)\,d\mu(x).\]
+    Fungsi $F$ kontinu di titik $t_0\in T$ apabila dipenuhi syarat:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item (i) Untuk setiap $x\in X$, fungsi $t\mapsto f(x,t)$ kontinu di $t_0$.
+      \item (ii) Terdapat fungsi terintegralkan $g:X\to[0,\infty]$ sehingga
+            \[|f(x,t)|\le g(x)\quad\text{untuk semua }x\in X\text{ dan }t\text{ di sekitar }t_0.\]
+    \end{itemize}
+  \end{teorema}
+
+  \begin{definisi}
+    Dua bilangan $p$ dan $q$ dalam interval $(1,\infty)$ disebut eksponen konjugat apabila memenuhi
+    \[\frac{1}{p}+\frac{1}{q}=1.\]
+  \end{definisi}
+
+  \begin{teorema}[Ketaksamaan Holder]
+    Jika $f$ dan $g$ fungsi terukur pada ruang ukuran $(X,\mathcal{A},\mu)$,
+    dengan $1<p,q<\infty$ dan
+    \[\frac{1}{p}+\frac{1}{q}=1,\]
+    maka berlaku
+    \[\int_X |fg|\,d\mu\le\|f\|_p\,\|g\|_q.\]
+  \end{teorema}
+
+  \begin{teorema}[Ketaksamaan Minkowski]
+    Misalkan $f$ dan $g$ fungsi terukur pada ruang ukuran $(X,\mathcal{A},\mu)$, dengan $1\le p<\infty$.
+    Maka berlaku
+    \[\|f+g\|_p\le\|f\|_p+\|g\|_p.\]
+  \end{teorema}
+
+  \begin{definisi}
+    Suatu ruang ukuran $(X,\mathcal{A},\mu)$ dikatakan memiliki ukuran berhingga jika
+    \[\mu(X)<\infty.\]
+  \end{definisi}
+
+  \begin{teorema}
+    Misalkan $(X,\mathcal{A},\mu)$ ruang ukuran dengan $\mu(X)<\infty$. Jika $1\le r<p<\infty$, maka berlaku
+    \[L^p(X)\subseteq L^r(X).\]
+    Selain itu, inklusi ini bersifat kontinu: terdapat konstanta $C>0$ sehingga
+    \[\|f\|_r\le C\|f\|_p\quad\text{untuk setiap }f\in L^p(X).\]
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $\{f_n\}$ barisan fungsi terukur $f_n:X\to\mathbb{R}$ yang konvergen ke $f$ hampir di semua titik.
+    Jika terdapat fungsi $g\in L^p(X)$, dengan $1\le p<\infty$, yang memenuhi
+    \[|f_n(x)|\le g(x)\quad\text{untuk hampir semua }x\in X\text{ dan setiap }n,\]
+    maka berlaku:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $f_n\in L^p(X)$ untuk setiap $n$,
+      \item $f\in L^p(X)$,
+      \item $f_n\to f$ dalam norma $L^p$, yaitu
+            \[\lim_{n\to\infty}\|f_n-f\|_p=0.\]
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{definisi}
+    Misalkan $X$ ruang ukur, dan $f:X\to\mathbb{R}$ fungsi terukur.
+    Bilangan $M\in[0,\infty]$ disebut batas atas hampir di mana-mana untuk $|f|$ apabila
+    \[|f(x)|\le M\quad\text{untuk hampir semua }x\in X.\]
+    Infimum dari semua bilangan tersebut disebut supremum esensial dari $|f|$ dan dilambangkan
+    \[\|f\|_{\infty}=\inf\{M\in[0,\infty]:|f(x)|\le M\text{ hampir di semua }x\in X\}.\]
+  \end{definisi}
+
+  \begin{definisi}
+    Ruang $L^{\infty}$ didefinisikan sebagai himpunan semua fungsi terukur $f:X\to\mathbb{R}$ yang memenuhi
+    \[\|f\|_{\infty}<\infty.\]
+    Norma pada ruang ini diberikan oleh $\|f\|_{\infty}$.
+  \end{definisi}
+
+  \begin{catatan}
+    Konsep serupa berlaku untuk vektor $\mathbf{a}=(a_1,\ldots,a_n)\in\mathbb{R}^{n}$:
+    \[\lim_{p\to\infty}\|\mathbf{a}\|_{p}=\lim_{p\to\infty}\left(|a_1|^p+\cdots+|a_n|^p\right)^{1/p}
+      =\max(|a_1|,\ldots,|a_n|)=\|\mathbf{a}\|_{\infty}.\]
+  \end{catatan}
+
+  \begin{teorema}[Teorema Riemann-Lebesgue]
+    Untuk setiap $f\in L^1(\mathbb{R})$,
+    \[\lim_{|\omega|\to\infty}\int_{\mathbb{R}}f(x)\sin(\omega x)\,dx=0.\]
+  \end{teorema}
+
+  \section*{\small 2.1 Ruang Probabilitas}
+
+  \begin{definisi}
+    Misalkan $\mathcal{F}$ suatu sigma-aljabar pada himpunan $\Omega$. Suatu fungsi
+    \[\mathbb{P}:\mathcal{F}\to[0,1]\]
+    disebut ukuran probabilitas (probability measure) apabila memenuhi:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Normalisasi: $\mathbb{P}(\Omega)=1$.
+      \item Aditif terhitung: jika $\{A_n\}_{n=1}^{\infty}$ barisan himpunan dalam $\mathcal{F}$ yang saling asing
+            (yaitu $A_i\cap A_j=\varnothing$ untuk setiap $i\ne j$), maka
+            \[\mathbb{P}\!\left(\bigcup_{n=1}^{\infty}A_n\right)=\sum_{n=1}^{\infty}\mathbb{P}(A_n).\]
+    \end{enumerate}
+    Tripel $(\Omega,\mathcal{F},\mathbb{P})$ disebut ruang probabilitas.
+    Setiap himpunan $A\in\mathcal{F}$ disebut kejadian (event). Kejadian $A$ dikatakan terjadi hampir pasti
+    (almost surely, a.s.) apabila
+    \[\mathbb{P}(A)=1.\]
+  \end{definisi}
+
+  \begin{lemma}[Borel-Cantelli I]
+    Misalkan $\{A_n\}_{n=1}^{\infty}$ barisan kejadian dalam ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$
+    yang memenuhi
+    \[\sum_{n=1}^{\infty}\mathbb{P}(A_n)<\infty.\]
+    Jika
+    \[B_n=\bigcup_{k=n}^{\infty}A_k,\]
+    maka
+    \[\mathbb{P}\!\left(\bigcap_{n=1}^{\infty}B_n\right)=0.\]
+  \end{lemma}
+
+  \section*{\small 2.2 Variabel Acak}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ suatu ruang probabilitas.
+    Suatu fungsi $\xi:\Omega\to\mathbb{R}$ disebut variabel acak (random variable) apabila $\xi$ terukur,
+    yaitu untuk setiap $B\in\mathcal{B}(\mathbb{R})$ berlaku
+    \[\{\xi\in B\}\in\mathcal{F}.\]
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $\xi:\Omega\to\mathbb{R}$ variabel acak.
+    Sigma-aljabar yang dibangkitkan oleh $\xi$, dilambangkan dengan $\sigma(\xi)$, didefinisikan sebagai
+    \[\sigma(\xi):=\sigma\bigl(\{\{\xi\in B\}:B\in\mathcal{B}(\mathbb{R})\}\bigr).\]
+    Dengan kata lain, $\sigma(\xi)$ terdiri atas semua himpunan berbentuk $\{\xi\in B\}$,
+    dengan $B$ himpunan Borel di $\mathbb{R}$.
+  \end{definisi}
+
+  \begin{teorema}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ suatu ruang probabilitas, dan misalkan $\mathcal{H}$
+    koleksi himpunan bagian dari $\mathbb{R}$ yang membangkitkan sigma-aljabar Borel, yaitu
+    \[\sigma(\mathcal{H})=\mathcal{B}(\mathbb{R}).\]
+    Jika $\xi:\Omega\to\mathbb{R}$ variabel acak, maka
+    \[\sigma(\xi)=\sigma\bigl(\{\{\xi\in B\}:B\in\mathcal{H}\}\bigr).\]
+  \end{teorema}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas. Jika $\xi$ variabel acak dengan
+    himpunan nilai $\xi(\Omega)=\{x_1,x_2,\ldots\}$ yang terhitung, maka setiap $A\in\sigma(\xi)$ dapat
+    dinyatakan sebagai gabungan terhitung dari himpunan-himpunan $\{\xi=x_n\}$.
+    Artinya, terdapat himpunan indeks $I$ sehingga
+    \[A=\bigcup_{n\in I}\{\xi=x_n\},\]
+    dengan gabungan saling asing.
+  \end{lemma}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\{\xi_i:i\in I\}$ suatu keluarga variabel acak dengan $I$ himpunan indeks.
+    Sigma-aljabar yang dihasilkan keluarga tersebut, dilambangkan
+    \[\sigma(\{\xi_i:i\in I\}),\]
+    didefinisikan sebagai sigma-aljabar terkecil yang memuat semua himpunan berbentuk
+    \[\{\xi_i\in B\},\]
+    dengan $B\in\mathcal{B}(\mathbb{R})$ dan $i\in I$.
+    Secara ekuivalen,
+    \[\sigma(\{\xi_i:i\in I\})=\sigma\bigl(\{\{\xi_i\in B\}:B\in\mathcal{B}(\mathbb{R}),\ i\in I\}\bigr).\]
+  \end{definisi}
+
+  \begin{lemma}
+    Suatu fungsi $f:\mathbb{R}\to\mathbb{R}$ disebut fungsi Borel apabila untuk setiap himpunan Borel
+    $B\in\mathcal{B}(\mathbb{R})$ berlaku
+    \[f^{-1}(B)\in\mathcal{B}(\mathbb{R}).\]
+    Jika $f$ fungsi Borel dan $\xi$ variabel acak, maka komposisi $f(\xi)$ merupakan variabel acak
+    yang terukur terhadap $\sigma(\xi)$.
+  \end{lemma}
+
+  \begin{lemma}[Doob-Dynkin]
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $\xi:\Omega\to\mathbb{R}$
+    variabel acak. Jika $\eta:\Omega\to\mathbb{R}$ variabel acak yang $\sigma(\xi)$-terukur,
+    maka terdapat fungsi Borel $f:\mathbb{R}\to\mathbb{R}$ sehingga
+    \[\eta=f(\xi)\quad\text{hampir di semua titik}.\]
+  \end{lemma}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $\xi:\Omega\to\mathbb{R}$ variabel acak.
+    Ukuran probabilitas yang didapatkan dari $\xi$, dilambangkan $\mathbb{P}_{\xi}$,
+    didefinisikan pada $\mathcal{B}(\mathbb{R})$ sebagai
+    \[\mathbb{P}_{\xi}(B)=\mathbb{P}(\{\xi\in B\}),\qquad B\in\mathcal{B}(\mathbb{R}).\]
+    Ukuran probabilitas $\mathbb{P}_{\xi}$ disebut distribusi dari $\xi$.
+    Selanjutnya fungsi $F_{\xi}:\mathbb{R}\to[0,1]$ yang didefinisikan oleh
+    \[F_{\xi}(x)=\mathbb{P}(\{\xi\le x\})\]
+    disebut cumulative distribution function (CDF) dari $\xi$.
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $\xi:\Omega\to\mathbb{R}$ variabel acak.
+
+    \textbf{Distribusi kontinu absolut:} jika terdapat fungsi Borel
+    $f_{\xi}:\mathbb{R}\to[0,\infty)$ sehingga untuk setiap $B\in\mathcal{B}(\mathbb{R})$ berlaku
+    \[\mathbb{P}(\{\xi\in B\})=\int_B f_{\xi}(x)\,dx,\]
+    maka $\xi$ dikatakan memiliki distribusi kontinu absolut, dan $f_{\xi}$ disebut
+    probability density function (PDF) dari $\xi$.
+
+    \textbf{Distribusi diskrit:} jika terdapat himpunan terhitung
+    $S=\{x_1,x_2,\ldots\}\subset\mathbb{R}$ dengan elemen-elemen saling berbeda sehingga
+    untuk setiap $B\in\mathcal{B}(\mathbb{R})$ berlaku
+    \[\mathbb{P}(\{\xi\in B\})=\sum_{x\in B\cap S}\mathbb{P}(\{\xi=x\}),\]
+    maka $\xi$ dikatakan memiliki distribusi diskrit, dengan probability mass function (PMF)
+    \[p_{\xi}(x_i):=\mathbb{P}(\{\xi=x_i\}),\qquad i=1,2,\ldots.\]
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\xi_1,\ldots,\xi_n:\Omega\to\mathbb{R}$ variabel acak.
+    Distribusi gabungan dari $\xi_1,\ldots,\xi_n$ didefinisikan sebagai ukuran probabilitas
+    $\mathbb{P}_{\xi_1,\ldots,\xi_n}$ pada $\mathbb{R}^n$ yang diberikan oleh
+    \[\mathbb{P}_{\xi_1,\ldots,\xi_n}(B)=\mathbb{P}(\{(\xi_1,\ldots,\xi_n)\in B\}),\qquad B\in\mathcal{B}(\mathbb{R}^n).\]
+
+    \textbf{Distribusi kontinu absolut:} jika terdapat fungsi Borel
+    $f_{\xi_1,\ldots,\xi_n}:\mathbb{R}^n\to[0,\infty)$ sehingga untuk setiap $B\in\mathcal{B}(\mathbb{R}^n)$
+    berlaku
+    \[\mathbb{P}(\{(\xi_1,\ldots,\xi_n)\in B\})=\int_B f_{\xi_1,\ldots,\xi_n}(x_1,\ldots,x_n)\,dx_1\cdots dx_n,\]
+    maka $f_{\xi_1,\ldots,\xi_n}$ disebut fungsi kerapatan peluang gabungan (PDF bersama).
+
+    \textbf{Distribusi diskrit:} jika terdapat himpunan terhitung $S\subset\mathbb{R}^n$ sehingga
+    \[\mathbb{P}(\{(\xi_1,\ldots,\xi_n)\in B\})=\sum_{x\in B\cap S}\mathbb{P}(\{(\xi_1,\ldots,\xi_n)=x\}),\]
+    untuk setiap $B\in\mathcal{B}(\mathbb{R}^n)$, maka distribusi tersebut disebut distribusi diskrit.
+    Fungsi
+    \[p_{\xi_1,\ldots,\xi_n}(x_1,\ldots,x_n):=\mathbb{P}(\{\xi_1=x_1,\ldots,\xi_n=x_n\})\]
+    disebut fungsi massa peluang gabungan (PMF bersama), dengan syarat
+    \[p_{\xi_1,\ldots,\xi_n}(x_1,\ldots,x_n)\ge0,\qquad
+      \sum_{(x_1,\ldots,x_n)\in S}p_{\xi_1,\ldots,\xi_n}(x_1,\ldots,x_n)=1.\]
+  \end{definisi}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\xi_1,\ldots,\xi_n:\Omega\to\mathbb{R}$ variabel acak.
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Jika $\xi_1,\ldots,\xi_n$ berdistribusi kontinu dengan PDF bersama
+            $f_{\xi_1,\ldots,\xi_n}$, maka PDF marginal dari $\xi_k$ diberikan oleh
+            \[f_{\xi_k}(x_k)=\int_{\mathbb{R}^{n-1}} f_{\xi_1,\ldots,\xi_n}(x_1,\ldots,x_n)
+              \,dx_1\cdots dx_{k-1}dx_{k+1}\cdots dx_n.\]
+      \item Jika $\xi_1,\ldots,\xi_n$ berdistribusi diskrit dengan PMF bersama
+            $p_{\xi_1,\ldots,\xi_n}$ dan $(\xi_1,\ldots,\xi_n)(\Omega)=S$, maka PMF marginal dari $\xi_k$ diberikan oleh
+            \[p_{\xi_k}(x_k)=\sum_{\substack{(x_1,\ldots,x_n)\in S\\x_k\ \text{tetap}}}
+              p_{\xi_1,\ldots,\xi_n}(x_1,\ldots,x_n).\]
+    \end{enumerate}
+    Fungsi $f_{\xi_k}$ dan $p_{\xi_k}$ masing-masing disebut distribusi marginal dari variabel acak $\xi_k$.
+  \end{lemma}
+
+  \begin{teorema}
+    Misalkan $X=(X_1,\ldots,X_k)$ vektor variabel acak diskrit dengan PMF bersama
+    $f_X(x_1,\ldots,x_k)$. Misalkan $Y=(Y_1,\ldots,Y_k)$ vektor variabel acak diskrit
+    didefinisikan melalui transformasi
+    \[Y=u(X),\]
+    dengan $u$ suatu fungsi.
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Jika transformasi $u$ bersifat satu-ke-satu, maka PMF bersama dari $Y$ diberikan oleh
+            \[f_Y(y_1,\ldots,y_k)=f_X(x_1,\ldots,x_k),\]
+            dengan $(x_1,\ldots,x_k)$ solusi unik dari persamaan $y=u(x)$.
+      \item Jika transformasi $u$ tidak satu-ke-satu, maka PMF bersama dari $Y$ diberikan oleh
+            \[f_Y(y)=\sum_{x\in u^{-1}(y)}f_X(x),\]
+            yaitu penjumlahan atas semua nilai $x$ yang dipetakan ke $y$.
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $X=(X_1,\ldots,X_k)$ vektor variabel acak kontinu dengan PDF bersama
+    $f_X(x_1,\ldots,x_k)>0$ pada himpunan $A\subseteq\mathbb{R}^k$.
+    Misalkan $Y=(Y_1,\ldots,Y_k)$ vektor variabel acak kontinu yang didefinisikan melalui
+    transformasi satu-ke-satu
+    \[Y_i=u_i(X_1,\ldots,X_k),\qquad i=1,\ldots,k,\]
+    dengan invers $X=w(Y)$. Jika determinan Jacobian dari transformasi invers kontinu dan tidak nol
+    pada daerah yang dipertimbangkan, maka PDF bersama dari $Y$ diberikan oleh
+    \[f_Y(y_1,\ldots,y_k)=f_X\bigl(w(y_1,\ldots,y_k)\bigr)
+      \left|\det\!\left(\frac{\partial(x_1,\ldots,x_k)}{\partial(y_1,\ldots,y_k)}\right)\right|.\]
+  \end{teorema}
+
+  \begin{definisi}[Terintegralkan]
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas.
+    Suatu variabel acak $\xi:\Omega\to\mathbb{R}$ disebut terintegralkan (integrable) apabila
+    \[\int_{\Omega}|\xi|\,d\mathbb{P}<\infty.\]
+    Dalam hal ini, ekspektasi dari $\xi$ didefinisikan sebagai
+    \[\mathbb{E}(\xi)=\int_{\Omega}\xi\,d\mathbb{P}.\]
+    Himpunan semua variabel acak yang terintegralkan dinotasikan dengan
+    \[L^1=\left\{\xi:\int_{\Omega}|\xi|\,d\mathbb{P}<\infty\right\}.\]
+    Lebih detail, $L^1$ juga bisa ditulis sebagai $L^1(\Omega)$ atau $L^1(\Omega,\mathcal{F},\mathbb{P})$.
+    Untuk setiap $\xi\in L^1(\Omega,\mathcal{F},\mathbb{P})$, didefinisikan norma
+    \[\|\xi\|_1=\mathbb{E}(|\xi|)=\int_{\Omega}|\xi|\,d\mathbb{P}.\]
+  \end{definisi}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\xi_1,\xi_2,\ldots,\xi_n$ variabel acak. Jika $h:\mathbb{R}^n\to\mathbb{R}$ fungsi Borel
+    sehingga $h(\xi_1,\xi_2,\ldots,\xi_n)$ terintegralkan, maka berlaku
+    \[\mathbb{E}\bigl(h(\xi_1,\xi_2,\ldots,\xi_n)\bigr)
+      =\int_{\mathbb{R}^n}h(x_1,x_2,\ldots,x_n)\,d\mathbb{P}_{\xi_1,\ldots,\xi_n}(x_1,x_2,\ldots,x_n).\]
+  \end{lemma}
+
+  \begin{akibat}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\xi_1,\xi_2,\ldots,\xi_n$ variabel acak. Dinyatakan
+    \[\xi=(\xi_1,\xi_2,\ldots,\xi_n).\]
+    Jika $\xi$ memiliki distribusi kontinu dengan PDF bersama $f_{\xi}$, dan
+    $h:\mathbb{R}^n\to\mathbb{R}$ fungsi Borel sehingga $h(\xi)$ terintegralkan, maka
+    \[\mathbb{E}(h(\xi))=\int_{\mathbb{R}^n}h(x_1,x_2,\ldots,x_n)f_{\xi}(x_1,x_2,\ldots,x_n)\,dx_1dx_2\cdots dx_n.\]
+    Selanjutnya, jika $\xi$ memiliki distribusi diskrit dengan
+    \[\xi(\Omega)=\{y_1,y_2,\ldots\},\]
+    dan $y_i\in\mathbb{R}^n$ saling berbeda, maka berlaku
+    \[\mathbb{E}(h(\xi))=\sum_i h(y_i)\,\mathbb{P}(\{\xi=y_i\}).\]
+  \end{akibat}
+
+  \begin{definisi}[Terintegralkan Kuadrat]
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas.
+    Suatu variabel acak $\xi:\Omega\to\mathbb{R}$ disebut terintegralkan kuadrat
+    (square integrable) apabila memenuhi
+    \[\int_{\Omega}|\xi|^2\,d\mathbb{P}<\infty.\]
+    Himpunan semua variabel acak yang terintegralkan kuadrat dinotasikan dengan
+    \[L^2=\left\{\xi:\int_{\Omega}|\xi|^2\,d\mathbb{P}<\infty\right\}.\]
+    Lebih detail, $L^2$ juga bisa dituliskan sebagai $L^2(\Omega)$ atau
+    $L^2(\Omega,\mathcal{F},\mathbb{P})$. Untuk setiap $\xi\in L^2(\Omega,\mathcal{F},\mathbb{P})$,
+    didefinisikan norma
+    \[\|\xi\|_2=\left(\int_{\Omega}|\xi|^2\,d\mathbb{P}\right)^{1/2}.\]
+    Selanjutnya, varians dari $\xi$ didefinisikan sebagai
+    \[\Var(\xi)=\int_{\Omega}(\xi-\mathbb{E}(\xi))^2\,d\mathbb{P}.\]
+  \end{definisi}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas. Jika
+    $\eta:\Omega\to[0,\infty)$ variabel acak berdistribusi kontinu absolut dan memenuhi
+    \[\int_{\Omega}\eta^2\,d\mathbb{P}<\infty,\]
+    maka berlaku
+    \[\mathbb{E}(\eta^2)=2\int_0^{\infty}t\,\mathbb{P}(\eta>t)\,dt.\]
+  \end{lemma}
+
+  \section*{\small 2.3 Peluang Bersyarat dan Independensi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $A,B\in\mathcal{F}$.
+    Jika $\mathbb{P}(B)>0$, maka probabilitas bersyarat dari $A$ terhadap $B$ didefinisikan sebagai
+    \[\mathbb{P}(A\mid B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}.\]
+  \end{definisi}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $A\in\mathcal{F}$.
+    Jika $\{B_n\}_{n\ge1}\subseteq\mathcal{F}$ merupakan barisan kejadian saling asing,
+    yaitu $B_i\cap B_j=\varnothing$ untuk setiap $i\ne j$, dan memenuhi
+    \[\bigcup_{n=1}^{\infty}B_n=\Omega,\qquad \mathbb{P}(B_n)>0\text{ untuk setiap }n,\]
+    maka berlaku hukum probabilitas total:
+    \[\mathbb{P}(A)=\sum_{n=1}^{\infty}\mathbb{P}(A\mid B_n)\mathbb{P}(B_n).\]
+  \end{lemma}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas. Dua kejadian $A$ dan $B$ dalam
+    $\mathcal{F}$ disebut independen apabila memenuhi
+    \[\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B).\]
+    Secara umum, sejumlah kejadian $A_1,A_2,\ldots,A_n$ dikatakan saling independen apabila
+    untuk setiap pilihan indeks $i_1,i_2,\ldots,i_k$ dengan $1\le i_1<i_2<\cdots<i_k\le n$ berlaku
+    \[\mathbb{P}(A_{i_1}\cap A_{i_2}\cap\cdots\cap A_{i_k})
+      =\mathbb{P}(A_{i_1})\mathbb{P}(A_{i_2})\cdots\mathbb{P}(A_{i_k}).\]
+  \end{definisi}
+
+  \begin{lemma}
+    Diberikan kejadian $B\in\mathcal{F}$ dengan $\mathbb{P}(B)\neq0$.
+    Kejadian $A$ dan $B$ saling independen jika dan hanya jika berlaku
+    \[\mathbb{P}(A\mid B)=\mathbb{P}(A).\]
+  \end{lemma}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\xi,\eta:\Omega\to\mathbb{R}$ dua variabel acak.
+    Kedua variabel acak tersebut dikatakan independen apabila untuk setiap
+    $A,B\in\mathcal{B}(\mathbb{R})$, kejadian
+    \[\{\xi\in A\}\quad\text{dan}\quad\{\eta\in B\}\]
+    saling independen, yaitu
+    \[\mathbb{P}(\{\xi\in A\}\cap\{\eta\in B\})=\mathbb{P}(\{\xi\in A\})\mathbb{P}(\{\eta\in B\}).\]
+    Secara umum, variabel acak $\xi_1,\xi_2,\ldots,\xi_n$ dikatakan saling independen apabila
+    untuk setiap $B_1,B_2,\ldots,B_n\in\mathcal{B}(\mathbb{R})$ berlaku
+    \[\mathbb{P}\!\left(\bigcap_{i=1}^{n}\{\xi_i\in B_i\}\right)=\prod_{i=1}^{n}\mathbb{P}(\{\xi_i\in B_i\}).\]
+    Lebih lanjut, keluarga variabel acak $\{\xi_i:i\in I\}$ dikatakan independen apabila
+    setiap subkeluarga berhingga $\{\xi_{i_1},\ldots,\xi_{i_k}\}$ dengan
+    $i_1,\ldots,i_k\in I$ saling independen.
+  \end{definisi}
+
+  \begin{teorema}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\xi,\eta:\Omega\to\mathbb{R}$ dua variabel acak.
+    Pernyataan berikut ekuivalen:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $\xi$ dan $\eta$ saling independen, yaitu untuk setiap $A,B\in\mathcal{B}(\mathbb{R})$ berlaku
+            \[\mathbb{P}(\xi\in A,\eta\in B)=\mathbb{P}(\xi\in A)\mathbb{P}(\eta\in B).\]
+      \item Distribusi gabungan $\mathbb{P}_{\xi,\eta}$ merupakan hasil kali distribusi marginalnya,
+            yaitu
+            \[\mathbb{P}_{\xi,\eta}=\mathbb{P}_{\xi}\otimes\mathbb{P}_{\eta}.\]
+    \end{enumerate}
+    Jika salah satu (dan karenanya kedua) pernyataan di atas berlaku, maka untuk setiap
+    fungsi Borel tak-negatif $g$ atau fungsi yang terintegralkan, diperoleh
+    \[\int_{\mathbb{R}^2}g(x_1,x_2)\,d\mathbb{P}_{\xi,\eta}(x_1,x_2)
+      =\int_{\mathbb{R}}\int_{\mathbb{R}}g(x_1,x_2)\,d\mathbb{P}_{\xi}(x_1)\,d\mathbb{P}_{\eta}(x_2).\]
+  \end{teorema}
+
+  \begin{proposisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas.
+    Jika $\xi$ dan $\eta$ dua variabel acak yang terintegralkan dan saling independen,
+    serta hasil kali $\xi\eta$ juga terintegralkan, maka berlaku
+    \[\mathbb{E}(\xi\eta)=\mathbb{E}(\xi)\mathbb{E}(\eta).\]
+    Secara umum, jika $\xi_1,\xi_2,\ldots,\xi_n$ adalah variabel acak yang saling independen
+    dan terintegralkan, serta hasil kali $\xi_1\xi_2\cdots\xi_n$ terintegralkan,
+    maka berlaku
+    \[\mathbb{E}(\xi_1\xi_2\cdots\xi_n)=\prod_{i=1}^{n}\mathbb{E}(\xi_i).\]
+  \end{proposisi}
+
+  \begin{teorema}
+    Jika $\eta$ dan $\xi$ peubah acak independen pada ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$,
+    dan $f$ serta $g$ fungsi terukur, maka peubah acak $f(\eta)$ dan $g(\xi)$ juga independen.
+  \end{teorema}
+
+  \begin{proposisi}
+    Misalkan $\xi$ variabel acak dan $\eta_1,\ldots,\eta_n$ variabel acak.
+    Diasumsikan bahwa $\xi$ independen terhadap vektor variabel acak
+    \[(\eta_1,\ldots,\eta_n),\]
+    yang artinya untuk setiap $B\in\mathcal{B}(\mathbb{R})$ dan setiap $A\in\mathcal{B}(\mathbb{R}^n)$ berlaku
+    \[\mathbb{P}(\{\xi\in B,\ g(\eta_1,\ldots,\eta_n)\in A\})
+      =\mathbb{P}(\{\xi\in B\})\,\mathbb{P}(\{g(\eta_1,\ldots,\eta_n)\in A\}).\]
+    Jika $g:\mathbb{R}^n\to\mathbb{R}^n$ fungsi terukur, maka $\xi$ independen terhadap
+    variabel acak vektor $g(\eta_1,\ldots,\eta_n)$.
+  \end{proposisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas.
+    Diberikan dua sigma-aljabar $\mathcal{G}$ dan $\mathcal{H}$ dengan
+    \[\mathcal{G},\mathcal{H}\subseteq\mathcal{F}.\]
+    Kedua sigma-aljabar tersebut dikatakan independen apabila untuk setiap pasangan kejadian
+    $A\in\mathcal{G}$ dan $B\in\mathcal{H}$ berlaku
+    \[\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B).\]
+  \end{definisi}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas dan
+    $\xi,\eta:\Omega\to\mathbb{R}$ dua variabel acak.
+    Maka $\xi$ dan $\eta$ saling independen jika dan hanya jika sigma-aljabar
+    $\sigma(\xi)$ dan $\sigma(\eta)$ saling independen.
+  \end{lemma}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan
+    $\mathcal{G}\subseteq\mathcal{F}$ suatu sigma-aljabar.
+    Suatu variabel acak $\xi:\Omega\to\mathbb{R}$ dikatakan independen terhadap sigma-aljabar
+    $\mathcal{G}$ apabila sigma-aljabar $\sigma(\xi)$ dan $\mathcal{G}$ saling independen,
+    yaitu apabila untuk setiap $A\in\mathcal{B}(\mathbb{R})$ dan setiap $G\in\mathcal{G}$ berlaku
+    \[\mathbb{P}(\{\xi\in A\}\cap G)=\mathbb{P}(\xi\in A)\mathbb{P}(G).\]
+    Dengan kata lain, nilai variabel acak $\xi$ tidak dipengaruhi oleh informasi yang terkandung
+    dalam sigma-aljabar $\mathcal{G}$.
+  \end{definisi}
+\end{multicols}
+\end{document}
