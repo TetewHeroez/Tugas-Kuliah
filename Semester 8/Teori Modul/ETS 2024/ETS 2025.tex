@@ -1,0 +1,223 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[indonesian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.5cm]{geometry}
+
+\newtheorem*{theorem}{Teorema}
+\newtheorem*{lemma}{Lema}
+
+\begin{document}
+
+\begin{center}
+  Evaluasi Tengah, Semester Genap 2023/2024, Program S2, Departemen Matematika FSAD-ITS
+\end{center}
+\begin{center}
+  \begin{tabular}{p{2.5cm} c l}
+    Matakuliah & : & Teori Modul   \\
+    Tanggal    & : & 22 April 2024 \\
+    Waktu      & : & 100 menit     \\
+    Sifat      & : & Tutup buku    \\
+    Dosen      & : & Subiono       \\
+  \end{tabular}
+
+  \vspace{0.25cm}
+
+  \rule{0.5\textwidth}{0.4pt}
+\end{center}
+\vspace{0.25cm}
+
+\begin{enumerate}
+  \item Diberikan suatu modul $M$ atas suatu ring $R$. Untuk suatu $r \in R$ tetap didefinisikan himpunan
+        \[
+          N_r = \{m \in M \mid rm = 0_M\}.
+        \]
+        Tunjukkan bahwa $N_r$ adalah submodul dari $M$. Selanjutnya buat suatu modul $M$ tsb. dengan $N_r \neq \{0_M\}$ tetapi $|N_r| = 5$ (kardinalitas dari $N_r$ sama dengan 5).
+
+  \item Tunjukkan bahwa : Modul $M$ atas $R$ adalah modul bebas dengan basis $\{b_i\}_{i\in I}$ bila dan hanya bila
+        \[
+          M = \bigoplus_{i\in I} Rb_i,
+        \]
+        dimana $Rb_i \cong R$ untuk setiap $i \in I$.
+
+  \item Misalkan $f : E \to F$ homomorfisma modul atas $R$ dengan $f$ adalah surjektif (pada). Bila untuk sebarang basis $\{v_1,v_2,\dots,v_r\}$ di $F$ dan untuk sebarang $u_1,u_2,\dots,u_r \in E$ yang memenuhi $f(u_i)=v_i$, $i=1,2,\dots,r$, maka tunjukkan bahwa
+        \[
+          E = \ker(f) \oplus U
+        \]
+        dimana $U = \langle \{u_1,u_2,\dots,u_r\}\rangle$. Selanjutnya juga tunjukkan bahwa himpunan $\{u_1,u_2,\dots,u_r\}$ adalah bebas linier. Berikuttnya, apa kesimpulan saudara bila $f$ juga pemetaan injektif (satu-satu).
+
+
+  \item Buat suatu modul $M = M_1 \oplus M_2 \oplus M_3$ atas suatu ring $R$ yang memenuhi $M = \langle \{m_1,m_2,m_3\} \rangle$, $m_i \in M_i$, $i=1,2,3$ dimana $\{m_1,m_2,m_3\}$ tidak bebas linear.
+
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{Solusi}
+\end{center}
+
+\begin{enumerate}
+  \item Diberikan suatu modul $M$ atas suatu ring $R$. Untuk suatu $r \in R$ tetap didefinisikan himpunan
+        \[
+          N_r = \{m \in M \mid rm = 0_M\}.
+        \]
+        Tunjukkan bahwa $N_r$ adalah submodul dari $M$. Selanjutnya buat suatu modul $M$ tsb. dengan $N_r \neq \{0_M\}$ tetapi $|N_r| = 5$ (kardinalitas dari $N_r$ sama dengan 5).
+
+        \begin{proof}
+          Akan ditunjukkan bahwa $N_r$ memenuhi tiga sifat submodul.
+
+          Pertama, $0_M \in N_r$ karena $r0_M = 0_M$.
+
+          Kedua, jika $x,y \in N_r$, maka
+          \[
+            r(x+y) = rx + ry = 0_M + 0_M = 0_M,
+          \]
+          sehingga $x+y \in N_r$.
+
+          Ketiga, jika $a \in R$ dan $x \in N_r$, maka
+          \[
+            r(ax) = a(rx) = a0_M = 0_M,
+          \]
+          sehingga $ax \in N_r$.
+
+          Jadi $N_r$ adalah submodul dari $M$.
+
+          Untuk contoh dengan $|N_r|=5$, ambil $R=\mathbb{Z}$, $M=\mathbb{Z}_5$ sebagai $\mathbb{Z}$-modul, dan pilih $r=5$. Karena untuk setiap $m \in \mathbb{Z}_5$ berlaku $5m=0$, maka
+          \[
+            N_5 = \mathbb{Z}_5.
+          \]
+          Akibatnya $N_5 \neq \{0_M\}$ dan $|N_5|=5$.
+        \end{proof}
+
+  \item Tunjukkan bahwa : Modul $M$ atas $R$ adalah modul bebas dengan basis $\{b_i\}_{i\in I}$ bila dan hanya bila
+        \[
+          M = \bigoplus_{i\in I} Rb_i,
+        \]
+        dimana $Rb_i \cong R$ untuk setiap $i \in I$.
+
+        \begin{proof}
+          $(\Rightarrow)$ Misalkan $\{b_i\}_{i\in I}$ adalah basis bebas dari $M$. Maka setiap $m \in M$ dapat ditulis secara unik sebagai kombinasi linear berhingga
+          \[
+            m = \sum_{i\in I} r_i b_i.
+          \]
+          Jadi setiap elemen $M$ adalah jumlah berhingga dari elemen-elemen di $Rb_i$, sehingga
+          \[
+            M = \sum_{i\in I} Rb_i.
+          \]
+          Keunikan representasi basis memberi jumlah tersebut bersifat langsung, jadi
+          \[
+            M = \bigoplus_{i\in I} Rb_i.
+          \]
+
+          Untuk setiap $i$, definisikan pemetaan
+          \[
+            \varphi_i : R \to Rb_i, \qquad \varphi_i(r)=rb_i.
+          \]
+          Karena $b_i$ bagian dari basis, maka $rb_i=0$ hanya jika $r=0$. Jadi $\varphi_i$ adalah isomorfisma modul, sehingga $Rb_i \cong R$.
+
+          $(\Leftarrow)$ Sebaliknya, misalkan
+          \[
+            M = \bigoplus_{i\in I} Rb_i
+            \quad \text{dan} \quad Rb_i \cong R \text{ untuk setiap } i.
+          \]
+          Karena penjumlahan langsung, setiap elemen $M$ ditulis secara unik sebagai jumlah berhingga $\sum r_i b_i$, sehingga $\{b_i\}_{i\in I}$ membangkitkan $M$.
+
+          Tinggal ditunjukkan bahwa himpunan ini bebas linear. Jika
+          \[
+            \sum_{k=1}^n r_k b_{i_k} = 0,
+          \]
+          maka karena jumlahnya langsung, tiap komponen harus nol:
+          \[
+            r_k b_{i_k} = 0 \quad \text{untuk semua } k.
+          \]
+          Karena $Rb_{i_k} \cong R$, pemetaan $r \mapsto rb_{i_k}$ injektif, sehingga $r_k=0$ untuk semua $k$.
+
+          Jadi $\{b_i\}_{i\in I}$ adalah basis bebas dan $M$ adalah modul bebas.
+        \end{proof}
+
+  \item Misalkan $f : E \to F$ homomorfisma modul atas $R$ dengan $f$ adalah surjektif (pada). Bila untuk sebarang basis $\{v_1,v_2,\dots,v_r\}$ di $F$ dan untuk sebarang $u_1,u_2,\dots,u_r \in E$ yang memenuhi $f(u_i)=v_i$, $i=1,2,\dots,r$, maka tunjukkan bahwa
+        \[
+          E = \ker(f) \oplus U
+        \]
+        dimana $U = \langle \{u_1,u_2,\dots,u_r\}\rangle$. Selanjutnya juga tunjukkan bahwa himpunan $\{u_1,u_2,\dots,u_r\}$ adalah bebas linier. Berikuttnya, apa kesimpulan saudara bila $f$ juga pemetaan injektif (satu-satu).
+
+        \begin{proof}
+          Karena $\{v_1,\dots,v_r\}$ basis $F$, setiap $y \in F$ dapat ditulis unik sebagai
+          \[
+            y = \sum_{i=1}^r a_i v_i.
+          \]
+          Ambil $x \in E$. Maka $f(x) \in F$, sehingga ada $a_i \in R$ dengan
+          \[
+            f(x) = \sum_{i=1}^r a_i v_i = \sum_{i=1}^r a_i f(u_i) = f\!\left(\sum_{i=1}^r a_i u_i\right).
+          \]
+          Akibatnya
+          \[
+            x - \sum_{i=1}^r a_i u_i \in \ker(f).
+          \]
+          Jadi setiap $x \in E$ dapat ditulis sebagai jumlah elemen di $\ker(f)$ dan elemen di $U$, maka
+          \[
+            E = \ker(f) + U.
+          \]
+
+          Sekarang ambil $z \in \ker(f) \cap U$. Karena $z \in U$, maka
+          \[
+            z = \sum_{i=1}^r a_i u_i
+          \]
+          untuk suatu $a_i \in R$. Terapkan $f$:
+          \[
+            0 = f(z) = \sum_{i=1}^r a_i f(u_i) = \sum_{i=1}^r a_i v_i.
+          \]
+          Karena $\{v_1,\dots,v_r\}$ basis, maka semua $a_i=0$. Jadi $z=0$ dan
+          \[
+            \ker(f) \cap U = \{0\}.
+          \]
+          Maka
+          \[
+            E = \ker(f) \oplus U.
+          \]
+
+          Selanjutnya, untuk menunjukkan bahwa $\{u_1,\dots,u_r\}$ bebas linear, misalkan
+          \[
+            \sum_{i=1}^r a_i u_i = 0.
+          \]
+          Maka dengan menerapkan $f$ diperoleh
+          \[
+            \sum_{i=1}^r a_i v_i = 0.
+          \]
+          Karena $\{v_1,\dots,v_r\}$ basis, semua $a_i=0$. Jadi $\{u_1,\dots,u_r\}$ bebas linear. Karena himpunan ini juga membangkitkan $U$, maka ia adalah basis dari $U$.
+
+          Jika $f$ juga injektif, maka $\ker(f)=\{0\}$ sehingga
+          \[
+            E = U.
+          \]
+          Dengan kata lain, $f$ adalah isomorfisma modul, dan $\{u_1,\dots,u_r\}$ menjadi basis dari $E$ yang berkorespondensi dengan basis $\{v_1,\dots,v_r\}$ di $F$.
+        \end{proof}
+
+  \item Buat suatu modul $M = M_1 \oplus M_2 \oplus M_3$ atas suatu ring $R$ yang memenuhi $M = \langle \{m_1,m_2,m_3\} \rangle$, $m_i \in M_i$, $i=1,2,3$ dimana $\{m_1,m_2,m_3\}$ tidak bebas linear.
+
+        \begin{proof}
+          Ambil ring $R=\mathbb{Z}$ dan pilih
+          \[
+            M_1 = M_2 = M_3 = \mathbb{Z}_2.
+          \]
+          Maka
+          \[
+            M = \mathbb{Z}_2 \oplus \mathbb{Z}_2 \oplus \mathbb{Z}_2.
+          \]
+          Ambil
+          \[
+            m_1=(1,0,0), \qquad m_2=(0,1,0), \qquad m_3=(0,0,1).
+          \]
+          Karena setiap komponen berada di $\mathbb{Z}_2$, berlaku $2m_i=0$ untuk setiap $i$.
+
+          Maka ada relasi linear tak trivial, misalnya
+          \[
+            2m_1 + 0\cdot m_2 + 0\cdot m_3 = 0,
+          \]
+          dengan koefisien tidak semuanya nol. Jadi $\{m_1,m_2,m_3\}$ tidak bebas linear. Selain itu himpunan ini jelas membangkitkan $M$.
+        \end{proof}
+\end{enumerate}
+
+\end{document}
