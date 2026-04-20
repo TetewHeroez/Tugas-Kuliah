@@ -8,6 +8,7 @@
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{geometry}
+\usepackage{tikz}
   \geometry{
     left = 15mm,
     right = 15mm,
@@ -142,7 +143,39 @@
         \end{align*}
 
   \item \begin{enumerate}[label=\alph*)]
-          \item Sketsa gelombang fungsi periodik $f(x) = x + \pi$, $-\pi < x < \pi$ untuk 3 periode adalah grafik gigi gergaji miring ke kanan dengan asimtot dari $y=0$ hingga $y=2\pi$, dan tak terdefinisi tepat di $x = -\pi, \pi, 3\pi$, dll. Gelombang naik dari $(0, -\pi)$ menuju $(2\pi, \pi)$ jika dipusatkan secara berbeda, tetapi dalam soal ini dari $x=-\pi$ maka $y=0$ melesat ke $x=\pi$ maka $y=2\pi$. Sehingga grafiknya berulang antara $y=0$ dan $y=2\pi$.
+          \item Sketsa gelombang fungsi periodik $f(x) = x + \pi$, $-\pi < x < \pi$ untuk 3 periode.
+                \begin{center}
+                  \begin{tikzpicture}[scale=0.8]
+                    % Sumbu x dan y
+                    \draw[->] (-10.5,0) -- (10.5,0) node[right] {$x$};
+                    \draw[->] (0,-1) -- (0,7) node[above] {$f(x)$};
+
+                    % Garis asimtot y = 2\pi
+                    \draw[dashed, gray] (-10.5, 6.28) -- (10.5, 6.28);
+
+                    % Periode ketiga dari kiri (-3pi sampai -pi), \pi = 3.14
+                    \draw[thick, blue] (-9.42, 0) -- (-3.14, 6.28);
+                    \draw[dashed, blue] (-3.14, 6.28) -- (-3.14, 0);
+
+                    % Periode utama (-pi sampai pi)
+                    \draw[thick, blue] (-3.14, 0) -- (3.14, 6.28);
+                    \draw[dashed, blue] (3.14, 6.28) -- (3.14, 0);
+
+                    % Periode ketiga ke kanan (pi sampai 3pi)
+                    \draw[thick, blue] (3.14, 0) -- (9.42, 6.28);
+                    \draw[dashed, blue] (9.42, 6.28) -- (9.42, 0);
+
+                    % Label koordinat di sumbu-x
+                    \node[below] at (-9.42, 0) {$-3\pi$};
+                    \node[below] at (-3.14, 0) {$-\pi$};
+                    \node[below right] at (0, 0) {$0$};
+                    \node[below] at (3.14, 0) {$\pi$};
+                    \node[below] at (9.42, 0) {$3\pi$};
+
+                    % Label koordinat di sumbu-y
+                    \node[left] at (0, 6.28) {$2\pi$};
+                  \end{tikzpicture}
+                \end{center}
           \item Karena $f(-x) = -x + \pi \neq f(x)$ dan $f(-x) \neq -f(x)$, maka fungsi $f(x) = x + \pi$ di interval $(-\pi, \pi)$ adalah \textbf{bukan keduanya} (bukan fungsi genap dan bukan fungsi ganjil).
           \item Deret Fourier dari $f(x) = x + \pi$:
                 $L = \pi$.
@@ -167,44 +200,48 @@
                         &        & 1             &                 &                 &                 \\
                     1   & 2      &               & 1               &                 &                 \\
                         &        & 2             &                 & 1               &                 \\
-                    2   & 4      &               & 2               &                 & 0               \\
-                        &        & 4             &                 & 1               &                 \\
-                    3   & 8      &               & 3               &                 &                 \\
+                    2   & 4      &               & 2               &                 & 1               \\
+                        &        & 4             &                 & 2               &                 \\
+                    3   & 8      &               & 4               &                 &                 \\
                         &        & 8             &                 &                 &                 \\
                     4   & 16     &               &                 &                 &                 \\
+                    \hline
                   \end{tabular}
                 \end{center}
-          \item Interpolasi Newton Maju dengan $x_0 = 2, h = 1, x = 2.5 \implies s = \frac{2.5 - 2}{1} = 0.5$. \\
-                Kita gunakan tabel dari titik $(x_0=2)$ ke bawah:
-                $f(2) = 4, \Delta f(2) = 4, \Delta^2 f(2) = 4$ (jika tabel dilanjutkan).
-                Sebenarnya tabelnya adalah:
-                $\Delta f(0)=1, \Delta f(1)=2, \Delta f(2)=4, \Delta f(3)=8$.
-                $\Delta^2 f(0)=1, \Delta^2 f(1)=2, \Delta^2 f(2)=4$.
-                $\Delta^3 f(0)=1, \Delta^3 f(1)=2$.
-                $\Delta^4 f(0)=1$.
+          \item Berdasarkan tabel interpolasi Newton maju dengan titik dasar $x_0 = 0, x=2.5$ dan langkah $h=1 \implies s = \frac{x-x_0}{h} = \frac{2.5-0}{1} = 2.5$.
+                Nilai beda pertamanya masing-masing dari $x_0=0$ adalah:
+                $f(0)=1, \Delta f(0)=1, \Delta^2 f(0)=1, \Delta^3 f(0)=1, \Delta^4 f(0)=1$.
 
-                Dari $x_0 = 2$:
+                Maka dengan rumus Newton Maju:
                 \begin{align*}
-                  f(2.5) & \approx f(2) + s\Delta f(2) + \frac{s(s-1)}{2!}\Delta^2 f(2) \\
-                         & \approx 4 + (0.5)(4) + \frac{(0.5)(-0.5)}{2}(4)              \\
-                         & = 4 + 2 - 0.5 = 5.5
+                  f(2.5) & \approx f(0) + s\Delta f(0) + \frac{s(s-1)}{2!}\Delta^2 f(0) + \frac{s(s-1)(s-2)}{3!}\Delta^3 f(0) + \frac{s(s-1)(s-2)(s-3)}{4!}\Delta^4 f(0) \\
+                         & \approx 1 + 2.5(1) + \frac{(2.5)(1.5)}{2}(1) + \frac{(2.5)(1.5)(0.5)}{6}(1) + \frac{(2.5)(1.5)(0.5)(-0.5)}{24}(1)                             \\
+                         & \approx 1 + 2.5 + 1.875 + 0.3125 - 0.0390625                                                                                                  \\
+                         & \approx 5.6484375
                 \end{align*}
-          \item Berdasarkan data: $f(0)=1=2^0$, $f(1)=2=2^1$, $f(2)=4=2^2$, $f(3)=8=2^3$, $f(4)=16=2^4$. Karakteristik fungsinya berbentuk eksponensial (tepatnya $f(x) = 2^x$), maka nilai perbedaannya akan selalu membentuk kelipatan dari nilai sebelumnya.
+          \item Berdasarkan data tabel: $f(x)$ selalu berbentuk fungsi eksponensial $f(x) = 2^x$. Hal ini juga terlihat dari nilai karakteristik kolom perbedaan yang selalu konstan secara berturut ($\Delta^k f(x) = f(x)$ untuk interval langkah $h=1$).
         \end{enumerate}
 
   \item Persamaan Beda: $y_{n+2} - 3y_{n+1} + 2y_n = 1$, dengan $y_0 = 1, y_1 = 0$. \\
         Untuk solusi homogen $y_h(n)$:
-        Karakteristik persamaan homogen $r^2 - 3r + 2 = 0 \implies (r-1)(r-2) = 0 \implies r_1 = 1, r_2 = 2$. \\
+        \begin{align*}
+          (E^2 - 3E + 2) y_n & = 0 \\
+          (E-1)(E-2) y_n     & = 0
+        \end{align*}
+        Sehingga akar karakteristiknya $E_1 = 1, E_2 = 2$. \\
         Maka $y_h(n) = C_1 (1)^n + C_2 (2)^n = C_1 + C_2 2^n$. \\
 
-        Karena $r=1$ adalah akar, maka tebak solusi partikular berupa konstanta dikali $n$, yaitu $y_p(n) = A n$. \\
-        Substitusikan:
+        Sedangkan untuk mencari solusi partikulir $y_p(n)$, gunakan pendekatan operator translasi ($E$):
         \begin{align*}
-          A(n+2) - 3A(n+1) + 2An   & = 1                 \\
-          An + 2A - 3An - 3A + 2An & = 1                 \\
-          -A                       & = 1 \implies A = -1
+          y_p(n) & = \frac{1}{E^2 - 3E + 2} (1^n) \\
+                 & = \frac{1}{(E-1)(E-2)} (1^n)
         \end{align*}
-        Jadi, $y_p(n) = -n$.
+        Karena jika kita langsung mensubstitusikan $E = 1$ nilai pembaginya $0$, kita akan modifikasi fraksi $(E-1)$ tersebut menggunakan sifat Operator Beda $(\Delta = E - 1)$:
+        \begin{align*}
+          y_p(n) & = \frac{1}{E-1} \left( \frac{1}{1-2} 1^n \right) = \frac{1}{\Delta} (-1)
+        \end{align*}
+        Nilai $\frac{1}{\Delta}(1)$ adalah antiturun diskrit dari 1 (sebagaimana dengan deret), yang nilainya adalah $n$, sehingga didapatkan:
+        \[ y_p(n) = -n \]
 
         Solusi umum: $y_n = y_h(n) + y_p(n) = C_1 + C_2 2^n - n$.
         Masukkan syarat awal:
