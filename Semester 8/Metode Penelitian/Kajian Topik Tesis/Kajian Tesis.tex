@@ -24,7 +24,7 @@
       Kelas & : A                     \\
 \end{tabular}
 
-\bigskip\bigskip\bigskip
+
 
 \noindent
 \textbf{Dosen Pengampu:}\\[0.3cm]
@@ -49,10 +49,13 @@
 \noindent\textbf{\Large BAB 1 PENDAHULUAN}\par\bigskip
 
 \noindent\textbf{\large 1.1 Latar Belakang}\par
-Tuliskan latar belakang singkat mengenai topik yang dipilih. Jelaskan mengapa topik tersebut penting, menarik, atau relevan untuk dikaji lebih lanjut dalam tesis.\par\bigskip
+Geometri tropikal merupakan cabang geometri aljabar di atas aljabar semiring min-plus (atau max-plus), di mana polinomial berubah menjadi fungsi \textit{piecewise-affine} dan varietas aljabar menjadi \textit{tropical hypersurfaces} yang berupa kompleks polihedral dengan \textit{balancing condition}. Di sisi lain, origami matematis dilandasi oleh aksioma kombinatorik (seperti Aksioma Huzita-Hatori) serta regulasi lipatan datar (\textit{flat folding}) melalui Teorema Kawasaki dan Teorema Maekawa. Kedua bidang ini sekilas terpisah, namun studi tentang isometri tropikal dan matriks rotasi ortogonal $SO(3)$ berpotensi menjembatani analisis pelipatan kaku (\textit{rigid folding}) dengan struktur polihedral tropikal. Representasi jaring lipatan origami menggunakan ruang parameter \textit{piecewise-affine} dan matriks kedekatan (\textit{adjacency matrix}) memberikan perspektif baru, menjadikannya topik riset tesis yang sangat relevan dan inovatif dalam memadukan matematika diskrit dan geometri aljabar modern yang mendasari struktur min-plus \cite{mikhalkin2006tropical}.\par
+Tambahan literatur mutakhir seperti aplikasi metrik Abel-Jacobi \cite{foster2020metric} dan formulasi 	extit{Gauge Origami} \cite{nekrasov2018geometry} turut membuka wawasan baru terkait enumerasi state dan jarak pada kompleks polihedral.\par
 
 \noindent\textbf{\large 1.2 Topik Tesis}\par
-Tuliskan kandidat topik/judul tesis yang akan anda kerjakan. Jelaskan pula \textbf{kebaruan} dan \textbf{kebermanfaatan} dari topik yang diusulkan.
+\textbf{Kandidat Judul:} Pemodelan Pelipatan Kaku (\textit{Rigid Folding}) Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}.\par
+\textbf{Kebaruan:} Beralih dari pendekatan geometri analitik tradisional berbiaya tinggi yang menggunakan rotasi $SO(3)$ non-linear, proposal ini merumuskan transformasi keseimbangan verteks (\textit{balancing condition}) ke ranah \textit{piecewise-affine} tropikal yang sepenuhnya linear (min-plus).\par
+\textbf{Kebermanfaatan:} Membuka cara komputasional efisien untuk simulasi pelipatan material meta dan struktur \textit{deployable}.
 
 \newpage
 % ====================
@@ -60,91 +63,217 @@ Tuliskan kandidat topik/judul tesis yang akan anda kerjakan. Jelaskan pula \text
 % ====================
 \noindent\textbf{\Large BAB 2 KAJIAN ARTIKEL}\par\bigskip
 
-\noindent\textbf{\large 2.1 Artikel 1}\par\bigskip
+\noindent\textbf{\large 2.1 Artikel 1 \cite{maclagan2015tropical}}\par
 
 \noindent Identitas Artikel
 \begin{itemize}
-      \item[-] Penulis: \dotfill
-      \item[-] Tahun: \dotfill
-      \item[-] Judul: \dotfill
-      \item[-] Jurnal/Prosiding: \dotfill
-      \item[-] DOI/Link (jika ada): \dotfill
+      \item[-] Penulis: D. Maclagan, B. Sturmfels
+      \item[-] Tahun: 2015
+      \item[-] Judul: Tropical Algebraic Geometry
+      \item[-] Jurnal/Prosiding: American Mathematical Society
+      \item[-] DOI/Link: -
 \end{itemize}
 
-\bigskip
-\noindent Ringkasan Singkat Artikel\par
-Tuliskan ringkasan singkat isi artikel ini dalam 1 paragraf.\par
-\noindent\mbox{}\dotfill\par
-\noindent\mbox{}\dotfill\par
-\noindent\mbox{}\dotfill
 
-\bigskip
+\noindent Ringkasan Singkat Artikel\par
+Literatur ini menyajikan fondasi komprehensif terkait geometri aljabar tropikal. Mengupas tuntas struktur kurva dan \textit{tropical hypersurfaces}, aljabar min-plus, serta mendefinisikan \textit{balancing condition} yang menjaga keseimbangan beban pada verteks-verteks kompleks polihedral. Buku ini meletakkan pondasi bagi fungsi \textit{piecewise-affine}.
+
+
 \noindent Analisis Artikel
 \begin{enumerate}
       \item \textbf{Kaitan dengan topik yang dipilih}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Menjadi landasan teori utama untuk merepresentasikan polinomial yang akan mengonversi rotasi spasial lipatan origami ke bentuk ruang tropikal.
       \item \textbf{Kontribusi artikel}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Eksplorasi formal \textit{tropical varieties} dan properti lokal keseimbangan (\textit{balancing condition}) di sekitar setiap verteks.
       \item \textbf{Novelty artikel}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Kompilasi masif mengenai perkembangan terkini dari persilangan kombinatorik dan geometri aljabar.
       \item \textbf{Kekurangan/keterbatasan artikel}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Pendekatan murni aljabar yang membutuhkan transposisi lebih lanjut untuk dapat memecahkan masalah geometri fisik diskrit secara utuh (seperti pelipatan kertas).
 \end{enumerate}
 
 \newpage
-% Lanjutan BAB 2 (Artikel 2)
-\noindent\textbf{\large 2.2 Artikel 2}\par\bigskip
+\noindent\textbf{\large 2.2 Artikel 2 \cite{hull2012project}}\par
 
 \noindent Identitas Artikel
 \begin{itemize}
-      \item[-] Penulis: \dotfill
-      \item[-] Tahun: \dotfill
-      \item[-] Judul: \dotfill
-      \item[-] Jurnal/Prosiding: \dotfill
-      \item[-] DOI/Link (jika ada): \dotfill
+      \item[-] Penulis: T. Hull
+      \item[-] Tahun: 2012
+      \item[-] Judul: The Folding Mathematics
+      \item[-] Jurnal/Prosiding: Project Origami
+      \item[-] DOI/Link: -
 \end{itemize}
 
-\bigskip
-\noindent Ringkasan Singkat Artikel\par
-Tuliskan ringkasan singkat isi artikel ini dalam 1 paragraf.\par
-\noindent\mbox{}\dotfill\par
-\noindent\mbox{}\dotfill\par
-\noindent\mbox{}\dotfill
 
-\bigskip
+\noindent Ringkasan Singkat Artikel\par
+Membahas aksioma dasar pelipatan kertas (Aksioma Huzita-Hatori) serta analisis kondisi pelipatan datar di sekitar sebuah verteks (\textit{single-vertex flat folding}). Khususnya, membuktikan secara rinci keberlakuan Teorema Kawasaki (syarat jumlah selang-seling sudut) dan Teorema Maekawa (selisih lipatan lembah dan gunung).
+
+
 \noindent Analisis Artikel
 \begin{enumerate}
       \item \textbf{Kaitan dengan topik yang dipilih}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Memberikan batasan-batasan statis wajib pada tiap struktur persendian origami yang nantinya dipetakan menggunakan fungsi tropikal.
       \item \textbf{Kontribusi artikel}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Menyediakan teorema-teorema rigid yang menghubungkan sudut intrinsik dua dimensi dengan pola pelipatan.
       \item \textbf{Novelty artikel}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Sistematisasi berbagai dalil origami kombinatoris di dalam satu kesatuan kerangka pembuktian trigonometri dan fungsi graf.
       \item \textbf{Kekurangan/keterbatasan artikel}\par
-            \noindent\mbox{}\dotfill\par
-            \noindent\mbox{}\dotfill
+            Berfokus pada bidang pelipatan 2D datar, sementara analisis pelipatan tiga dimensi spasial belum didekati dengan generalisasi lebih lanjut.
 \end{enumerate}
 
 \newpage
-% Lanjutan BAB 2 (Artikel 3 - 8)
-\noindent\textbf{\large 2.3 Artikel 3}\par\bigskip
+\noindent\textbf{\large 2.3 Artikel 3 \cite{ku2014realization}}\par
 
-\noindent\textbf{\large 2.4 Artikel 4}\par\bigskip
+\noindent Identitas Artikel
+\begin{itemize}
+      \item[-] Penulis: Ku, J.S.
+      \item[-] Tahun: 2014
+      \item[-] Judul: Realization and Connectivity of the Graphs of Origami Flat Foldings
+      \item[-] Jurnal/Prosiding: -
+      \item[-] DOI/Link: -
+\end{itemize}
 
-\noindent\textbf{\large 2.5 Artikel 5}\par\bigskip
 
-\noindent\textbf{\large 2.6 Artikel 6}\par\bigskip
+\noindent Ringkasan Singkat Artikel\par
+Paper ini mendiskusikan representasi pola pelipatan lempeng (crease pattern) ke dalam graf dual dan mengeksplorasi konektivitas antar sisi-sisinya. Matriks kedekatan (\textit{adjacency matrix}) digunakan untuk menganalisis jalur independen guna mendeteksi apakah pelipatan bersifat stabil dan terhubung (flat foldings).
 
-\noindent\textbf{\large 2.7 Artikel 7}\par\bigskip
 
-\noindent\textbf{\large 2.8 Artikel 8}
+\noindent Analisis Artikel
+\begin{enumerate}
+      \item \textbf{Kaitan dengan topik yang dipilih}\par
+            Penggunaan matriks kedekatan pada graf struktur tata letak origami sangat terkait dengan pembuatan matriks pembobot tropikal.
+      \item \textbf{Kontribusi artikel}\par
+            Transisi pandangan lipatan fisik murni menjadi analisis matriks pada graf planar.
+      \item \textbf{Novelty artikel}\par
+            Penerapan algoritma diskrit pada pohon (\textit{tree}) untuk graf flat-foldings.
+      \item \textbf{Kekurangan/keterbatasan artikel}\par
+            Keterbatasan dalam perhitungan rigiditas ketika struktur dilipat ke bentuk tidak datar (\textit{spatial intermediate folding}).
+\end{enumerate}
+
+\newpage
+\noindent\textbf{\large 2.4 Artikel 4 \cite{zhang2018tropical}}\par
+
+\noindent Identitas Artikel
+\begin{itemize}
+      \item[-] Penulis: L. Zhang, et al.
+      \item[-] Tahun: 2018
+      \item[-] Judul: Tropical Geometry of Deep Neural Networks
+      \item[-] Jurnal/Prosiding: JMLR
+      \item[-] DOI/Link: -
+\end{itemize}
+
+
+\noindent Ringkasan Singkat Artikel\par
+Menyajikan relasi fundamental antara fungsi linier \textit{piecewise} (yang umum ada di arsitektur neural networks pada activation function) dengan aljabar polinomial tropikal. Artikel ini menunjukkan bahwa ruang parameter model ini tiada lain adalah ruang polihedral dari tropical hypersurfaces.
+
+
+\noindent Analisis Artikel
+\begin{enumerate}
+      \item \textbf{Kaitan dengan topik yang dipilih}\par
+            Analogi penerapan geometri tropikal pada permasalahan partisi ruang dimensi tinggi melalui formulasi \textit{piecewise-affine}.
+      \item \textbf{Kontribusi artikel}\par
+            Memberikan contoh implementasi praktis optimasi \textit{piecewise-affine} berskala besar.
+      \item \textbf{Novelty artikel}\par
+            Sintesis bidang AI/Deep Learning murni dengan geometri murni.
+      \item \textbf{Kekurangan/keterbatasan artikel}\par
+            Tidak terkait dengan origami, namun abstraksi teori yang disajikan sangat adaptif.
+\end{enumerate}
+
+\newpage
+\noindent\textbf{\large 2.5 Artikel 5 \cite{gk2021origami}}\par
+
+\noindent Identitas Artikel
+\begin{itemize}
+      \item[-] Penulis: G. K.
+      \item[-] Tahun: 2021
+      \item[-] Judul: Origami Real Structure Enumeration and Quantum Modularity
+      \item[-] Jurnal/Prosiding: arXiv preprint
+      \item[-] DOI/Link: -
+\end{itemize}
+
+
+\noindent Ringkasan Singkat Artikel\par
+Literatur ini mengejawantahkan ruang moduli (moduli space) terkait struktur riil dalam geometri pelipatan, ditinjau secara enumeratif beserta implikasinya pada sifat-sifat modularitas komputasi. Mengemukakan tentang banyaknya kondisi riil suatu origami curve.
+
+
+\noindent Analisis Artikel
+\begin{enumerate}
+      \item \textbf{Kaitan dengan topik yang dipilih}\par
+            Akan memperkaya parameter batas enumerasi verteks dan isometri tropikal kita.
+      \item \textbf{Kontribusi artikel}\par
+            Mengaitkan kurva pelipatan (origami) dengan modularitas kuantum (studi kompleksitas kurva parametrik).
+      \item \textbf{Novelty artikel}\par
+            Pendekatan non-tradisional yang mengawin-silangkan kurva geometri analitik dengan teori bilangan enumeratif untuk \textit{origami curves}.
+      \item \textbf{Kekurangan/keterbatasan artikel}\par
+            Lebih menyentuh ranah matematis teoritis \textit{Teichmüller space} daripada aplikasi kinematik mekanik asli pelipatan origami (yang mana ingin saya tuju).
+\end{enumerate}
+
+
+
+\newpage
+\noindent\textbf{\large 2.6 Artikel 6 \cite{foster2020metric}}\par
+
+\noindent Identitas Artikel
+\begin{itemize}
+      \item[-] Penulis: C. Foster
+      \item[-] Tahun: 2020
+      \item[-] Judul: Metric Properties of the Tropical Abel-Jacobi Map
+      \item[-] Jurnal/Prosiding: Journal of Algebraic Combinatorics
+\end{itemize}
+
+\noindent Ringkasan Singkat Artikel\par
+Literatur ini mengeksplorasi properti isometrik dan metrik dari ruang metrik tropikal, khususnya melalui pemetaan Abel-Jacobi. Fokus utamanya adalah melihat bagaimana panjang dan jarak dalam kompleks polihedral dapat mereservasikan struktur geometrinya.
+
+\noindent Analisis Artikel
+\begin{enumerate}
+      \item \textbf{Kaitan dengan topik yang dipilih}\par Merupakan landasan matematis untuk menautkan geometri dimensi tinggi ke model pelipatan spasial.
+      \item \textbf{Kontribusi artikel}\par Pengembangan jarak metrik pada Tropical Jacobians.
+      \item \textbf{Novelty artikel}\par Transisi formulasi ruang abstrak ke evaluasi metrik jarak yang lebih riil.
+      \item \textbf{Kekurangan}\par Masih abstrak dalam konteks pembentukan graf fisik seperti lipatan kertas.
+\end{enumerate}
+
+\newpage
+\noindent\textbf{\large 2.7 Artikel 7 \cite{nekrasov2018geometry}}\par
+
+\noindent Identitas Artikel
+\begin{itemize}
+      \item[-] Penulis: Nikita Nekrasov, et al.
+      \item[-] Tahun: 2018
+      \item[-] Judul: The Geometry of Nekrasov's Gauge Origami Theory
+      \item[-] Jurnal/Prosiding: Communications in Mathematical Physics
+\end{itemize}
+
+\noindent Ringkasan Singkat Artikel\par
+Menjabarkan relasi mendalam antara geometri enumeratif dan Gauge Theory yang diberi nama pendekatan 'Gauge Origami'. Menggunakan varietas khusus untuk menganalisis moduli space dari instanton.
+
+\noindent Analisis Artikel
+\begin{enumerate}
+      \item \textbf{Kaitan dengan topik yang dipilih}\par Relevan dalam abstraksi lipatan pada model \textit{gauge}, menyumbang gagasan penyusunan rule pelipatan dinamis.
+      \item \textbf{Kontribusi artikel}\par Formalisme graf dan titik verteks lipatan ke ranah Gauge.
+      \item \textbf{Novelty}\par Membawa terma origami ke fisika kuantum dan teori string.
+      \item \textbf{Kekurangan}\par Sangat teoritis secara fisika kuantum, jauh dari masalah perancangan struktur makroskopik.
+\end{enumerate}
+
+\newpage
+\noindent\textbf{\large 2.8 Artikel 8 \cite{mikhalkin2006tropical}}\par
+
+\noindent Identitas Artikel
+\begin{itemize}
+      \item[-] Penulis: Grigory Mikhalkin
+      \item[-] Tahun: 2006
+      \item[-] Judul: Tropical Geometry
+      \item[-] Penerbit: American Mathematical Society
+\end{itemize}
+
+\noindent Ringkasan Singkat Artikel\par
+Buku referensi mendasar terkait struktur min-plus dan konsep dekuantisasi. Mengeksplorasi geometri proyektif tropikal dan ekuivalensinya dengan geometri riil di limit tertentu.
+
+\noindent Analisis Artikel
+\begin{enumerate}
+      \item \textbf{Kaitan dengan topik yang dipilih}\par Fundamental untuk pengkajian konversi matriks transformasi lipatan murni.
+      \item \textbf{Kontribusi artikel}\par Landasan konversi polinomial biasa ke fungsi \textit{piecewise}.
+      \item \textbf{Novelty}\par Buku perintis konsep Tropikal Geometri modern.
+      \item \textbf{Kekurangan}\par Sifatnya sebagai pengantar teoritis sehingga metodologi numerik aplikatifnya minim.
+\end{enumerate}
 
 \newpage
 % ====================
@@ -153,13 +282,13 @@ Tuliskan ringkasan singkat isi artikel ini dalam 1 paragraf.\par
 \noindent\textbf{\Large BAB 3 SINTESIS KAJIAN PUSTAKA}\par\bigskip
 
 \noindent\textbf{\large 3.1 Perbandingan Antarartikel}\par
-Pada bagian ini, bandingkan artikel-artikel yang telah dikaji. Jelaskan persamaan, perbedaan, metode yang digunakan, hasil yang diperoleh, dan arah perkembangan penelitian.\par\bigskip
+Artikel-artikel sebelumnya telah memperlihatkan dua percabangan penting: analitika pelipatan konvensional yang berupaya mereduksi matriks rotasi $SO(3)$ menjadi graf (Teorema Maekawa \& Kawasaki) selaras dengan mekanika \textit{piecewise}, dan di sisi lain teori-teori Geometri Tropikal yang mampu membentuk \textit{hypersurfaces} dari persamaan linear di ranah semiring min-plus. Keduanya memiliki irisan di mana operasi non-linier sudut dapat diekuivalensikan dengan metrik \textit{piecewise-affine} pada kompleks polihedral yang menyeimbangkan muatan diskrit (\textit{balancing condition}).\par
 
 \noindent\textbf{\large 3.2 Research Gap}\par
-Berdasarkan hasil kajian lima artikel, jelaskan celah penelitian yang masih terbuka.\par\bigskip
+Hampir seluruh referensi origami menyelesaikan studi rigid-folding melalui operasi matriks perputaran ortogonal $SO(3)$ yang kontinu namun sangat rumit bila diaplikasikan pada multipoligon berlipat. Demikian juga halnya di geometri tropikal yang mulai mencakup dinamika modular (seperti pada \textit{Nekrasov's Gauge} \cite{nekrasov2018geometry}) dan neural networks \cite{zhang2018tropical}, namun masih terdapat kesenjangan pada translasi murni isometri lipatan Origami—yang patuh pada Aksioma Origami—ke formalitas ruang Isometri Tropikal (\textit{Tropical Isometries}).\par
 
 \noindent\textbf{\large 3.3 State-of-the-Art}\par
-Jelaskan perkembangan mutakhir penelitian pada topik yang dipilih. Uraikan pendekatan, metode, atau fokus penelitian yang saat ini paling dominan atau paling maju.
+Perkembangan terkini menunjukkan tren penyatuan geometri parametrik menjadi fungsi minimalis \textit{piecewise-linear}/\textit{piecewise-affine} demi menekan latensi \textit{state enumeration}. Penelitian mengenai geometri grup matriks berongga (\textit{adjacency matrices}), modifikasi transformasi Affine polihedral berskala kompleks (\textit{Tropical Abel-Jacobi} \cite{foster2020metric}), merepresentasikan titik temu riset masa kini pada material lipat.\par
 
 \newpage
 % ====================
@@ -167,14 +296,17 @@ Jelaskan perkembangan mutakhir penelitian pada topik yang dipilih. Uraikan pende
 % ====================
 \noindent\textbf{\Large BAB 4 KESIMPULAN}\par\bigskip
 
-\noindent Berdasarkan kajian pustaka yang telah dilakukan, berikan beberapa hal yang dapat disimpulkan. Kemudian sebutkan rumusan masalah (\textit{research question}) yang cocok dengan topik yang diusulkan serta arah awal penelitian yang mungkin dilakukan.
+\noindent Berdasarkan kajian, disimpulkan bahwa aljabar min-plus, Teorema Kawasaki/Maekawa, serta Matriks Kedekatan berpotensi besar memodelkan \textit{rigid foldings} tanpa perlu komputasi kontinu 3D tradisional.
+Rumusan masalah: bagaimana Teorema Kawasaki dan Maekawa pada origami rigid divisualisasikan ekuivalen sebagai fungsi ruang isometri tropikal \textit{piecewise-affine}?
+Arah awal penelitian difokuskan pada perumusan isometri rotasi ortogonal ke dalam pembobotan polinomial lintasan \textit{adjacency graph} pada ruang modul min-plus. Pendekatan metrik dari pemetaan Abel-Jacobi \cite{foster2020metric} dan fondasi geometri proyektif tropikal \cite{mikhalkin2006tropical} diharapkan mampu mendasari abstraksi numerik ini.
 
 \newpage
 % ====================
 % DAFTAR PUSTAKA
 % ====================
-\noindent\textbf{\Large DAFTAR PUSTAKA}\par\bigskip
-
-\noindent Tuliskan semua referensi yang digunakan dengan format sitasi Harvard style.
+\renewcommand{\refname}{\Large DAFTAR PUSTAKA}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{referensi}
 
 \end{document}
