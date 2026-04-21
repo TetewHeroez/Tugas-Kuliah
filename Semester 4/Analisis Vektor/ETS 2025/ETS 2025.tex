@@ -141,43 +141,59 @@
                       ]
 
                       % Titik-titik
-                      % Memakai titik-titik sungguhan dari soal agar gambarnya akurat secara matematis 100%
-                      \coordinate (Q) at (axis cs:2,2,0);
-                      \coordinate (R) at (axis cs:3,-1,5);
-                      \coordinate (P) at (axis cs:1,2,3);
-                      \coordinate (S) at (axis cs:2,-1,8);
-                      \coordinate (P_proj) at (axis cs:2.14, 1.57, 0.71); % Titik proyeksi presisi
+                      % Variabel titik agar fleksibel dan bisa direlatifkan
+                      \def\Qx{2} \def\Qy{2} \def\Qz{0}
+                      \def\Rx{3} \def\Ry{-1} \def\Rz{5}
+                      \def\Px{-1} \def\Py{2} \def\Pz{3}
+                      \def\Sx{2} \def\Sy{-1} \def\Sz{8}
+
+                      \coordinate (Q) at (axis cs:\Qx,\Qy,\Qz);
+                      \coordinate (R) at (axis cs:\Rx,\Ry,\Rz);
+                      \coordinate (P) at (axis cs:\Px,\Py,\Pz);
+                      \coordinate (S) at (axis cs:\Sx,\Sy,\Sz);
+
+                      % Hitung P_proj (proyeksi ortogonal P ke garis QR) secara matematis
+                      \pgfmathsetmacro{\QRx}{\Rx - \Qx} \pgfmathsetmacro{\QRy}{\Ry - \Qy} \pgfmathsetmacro{\QRz}{\Rz - \Qz}
+                      \pgfmathsetmacro{\QPx}{\Px - \Qx} \pgfmathsetmacro{\QPy}{\Py - \Qy} \pgfmathsetmacro{\QPz}{\Pz - \Qz}
+                      \pgfmathsetmacro{\t}{(\QPx*\QRx + \QPy*\QRy + \QPz*\QRz) / (\QRx*\QRx + \QRy*\QRy + \QRz*\QRz)}
+                      \pgfmathsetmacro{\Pjx}{\Qx + \t*\QRx} \pgfmathsetmacro{\Pjy}{\Qy + \t*\QRy} \pgfmathsetmacro{\Pjz}{\Qz + \t*\QRz}
+                      \coordinate (P_proj) at (axis cs:\Pjx, \Pjy, \Pjz);
 
                       % Garis L
-                      \addplot3[thick, blue, <->, forget plot] coordinates {(1.5, 3.5, -2.5) (3.5, -2.5, 7.5)} node[pos=0.2, above right, text=black] {$L$};
+                      \addplot3[thick, blue, <->, forget plot] coordinates {(1.5, 3.5, -2.5) (3.5, -2.5, 7.5)} node[pos=0.9, above, text=blue] {$L$};
 
                       % Jajargenjang
-                      \addplot3[fill=gray!30, opacity=0.7, draw=none, forget plot] coordinates {
-                          (2,2,0) (3,-1,5) (2,-1,8) (1,2,3) (2,2,0)
-                        };
-                      \addplot3[dashed, gray, forget plot] coordinates {
-                          (2,2,0) (3,-1,5) (2,-1,8) (1,2,3) (2,2,0)
-                        };
+                      \fill[gray!30, opacity=0.7] (Q) -- (R) -- (S) -- (P) -- cycle;
+                      \draw[dashed, gray] (Q) -- (R) -- (S) -- (P) -- cycle;
 
                       % Vektor QR & QP
                       \draw[->, thick, red] (Q) -- (R) node[midway, below left] {$\vec{QR}$};
-                      \draw[->, thick, red] (Q) -- (P) node[midway, above right] {$\vec{QP}$};
+                      \draw[->, thick, red] (Q) -- (P) node[midway, right] {$\vec{QP}$};
 
                       % Vektor cross product (Normal)
                       % Arah: (-9, -8, -3), di-scale agar muat di grafik
-                      \coordinate (N) at (axis cs:-0.7, -0.4, -0.9);
-                      \draw[->, thick, orange] (Q) -- (N) node[below left] {$\vec{QR} \times \vec{QP}$};
+                      \coordinate (N) at (axis cs:-0.7, 0, 2);
+                      \node[below left, gray,rotate=-30] at (N) {$|\vec{QR} \times \vec{QP}|$};
 
                       % Jarak d
                       \draw[dashed, thick, black] (P) -- (P_proj) node[midway, above] {$d$};
 
-                      % Tanda Siku-siku (sudut proyeksi ke L)
-                      \draw (axis cs:2.02, 1.6, 0.95) -- (axis cs:1.9, 1.7, 1.05) -- (axis cs:2.04, 1.63, 0.81);
+                      % Tanda Siku-siku (sudut proyeksi ke L direlatifkan terhadap posisi baru P dan Q)
+                      \pgfmathsetmacro{\lenQ}{sqrt((\Qx-\Pjx)^2 + (\Qy-\Pjy)^2 + (\Qz-\Pjz)^2)}
+                      \pgfmathsetmacro{\lenP}{sqrt((\Px-\Pjx)^2 + (\Py-\Pjy)^2 + (\Pz-\Pjz)^2)}
+                      \pgfmathsetmacro{\dQ}{0.25 / \lenQ} \pgfmathsetmacro{\dP}{0.25 / \lenP}
+                      \pgfmathsetmacro{\Ax}{\Pjx + \dQ*(\Qx - \Pjx)} \pgfmathsetmacro{\Ay}{\Pjy + \dQ*(\Qy - \Pjy)} \pgfmathsetmacro{\Az}{\Pjz + \dQ*(\Qz - \Pjz)}
+                      \pgfmathsetmacro{\Cx}{\Pjx + \dP*(\Px - \Pjx)} \pgfmathsetmacro{\Cy}{\Pjy + \dP*(\Py - \Pjy)} \pgfmathsetmacro{\Cz}{\Pjz + \dP*(\Pz - \Pjz)}
+                      \pgfmathsetmacro{\Bx}{\Ax + \Cx - \Pjx} \pgfmathsetmacro{\By}{\Ay + \Cy - \Pjy} \pgfmathsetmacro{\Bz}{\Az + \Cz - \Pjz}
+                      \draw (axis cs:\Ax, \Ay, \Az) -- (axis cs:\Bx, \By, \Bz) -- (axis cs:\Cx, \Cy, \Cz);
 
                       % Label Titik
-                      \node[circle, fill=black, inner sep=1.5pt, label=right:$Q$] at (Q) {};
-                      \node[circle, fill=black, inner sep=1.5pt, label=right:$R$] at (R) {};
-                      \node[circle, fill=black, inner sep=1.5pt, label=left:$P$] at (P) {};
+                      \node[circle, fill=black, inner sep=1.5pt, label=below:$Q$] at (Q) {};
+                      \node[circle, fill=black, inner sep=1.5pt, label=below:$R$] at (R) {};
+                      \node[circle, fill=black, inner sep=1.5pt, label=above:$P$] at (P) {};
+
+                      % Garis z nembus ke jajar genjang
+                      \draw[] (axis cs:0, 0, 3) -- (axis cs:0, 0, 6);
                     \end{axis}
                   \end{tikzpicture}
                 \end{center}
@@ -197,7 +213,32 @@
         \end{enumerate}
 
   \item \begin{enumerate}[label=\alph*.]
-          \item Fungsi vektor lintasan partikel adalah $\vec{r}(t) = (2\sin t + 2)\hat{i} + (3\cos t)\hat{j} + t\hat{k}$. Lintasan ini merupakan \textit{elliptical helix}.
+          \item Fungsi vektor lintasan partikel adalah $\vec{r}(t) = (2\sin t + 2)\hat{i} + (3\cos t)\hat{j} + t\hat{k}$.
+                Untuk mengetahui bentuk kurvanya, kita dapat mencari hubungan antara variabel $x$ dan $y$.
+                Diketahui $x = 2\sin t + 2 \implies \frac{x-2}{2} = \sin t$ dan $y = 3\cos t \implies \frac{y}{3} = \cos t$.
+                Dengan menggunakan identitas trigonometri $\sin^2 t + \cos^2 t = 1$, kita dapat mensubstitusikannya menjadi:
+                \[ \left(\frac{x-2}{2}\right)^2 + \left(\frac{y}{3}\right)^2 = 1 \]
+                Persamaan di atas merupakan persamaan sebuah silinder eliptik (elips) yang sejajar memanjang di sepanjang sumbu z (pusat di koordinat $x=2, y=0$). Karena $z = t$, titik pada partikel akan terus naik seiring waktu sambil bergerak melingkari elips tersebut. Jadi lintasan ini berbentuk sebuah \textit{elliptical helix}.
+                \begin{center}
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                        view={60}{30},
+                        width=9cm,
+                        height=8cm,
+                        grid=major,
+                        xlabel={$x$},
+                        ylabel={$y$},
+                        zlabel={$z$},
+                        samples=100,
+                        domain=0:2*pi
+                      ]
+                      % Proyeksi keliling elips di dasar (bidang xy)
+                      \addplot3 [dashed, gray, variable=t, samples y=0] ({2*sin(deg(t)) + 2}, {3*cos(deg(t))}, {0});
+                      % Lintasan heliks / lintasan partikel
+                      \addplot3 [thick, red, variable=t, samples y=0] ({2*sin(deg(t)) + 2}, {3*cos(deg(t))}, {t});
+                    \end{axis}
+                  \end{tikzpicture}
+                \end{center}
           \item Vektor kecepatan $\vec{v}(t) = \vec{r}'(t) = 2\cos t\hat{i} - 3\sin t\hat{j} + \hat{k}$.
                 Vektor percepatan $\vec{a}(t) = \vec{v}'(t) = -2\sin t\hat{i} - 3\cos t\hat{j}$.
                 Pada $t = \frac{\pi}{4}$:
@@ -210,8 +251,15 @@
         \end{enumerate}
 
   \item \begin{enumerate}[label=\alph*.]
-          \item Sketsa kurva ruang parametrik $x = t - \sin t$, $y = 1 - \cos t$, $z = 4\sin(t/2)$.
-                Berikut adalah ilustrasi grafiknya dengan memetakan nilai $t$ ke koordinat 3D:
+          \item Substitusi variabel akan membantu menelusuri lintasan parameter $x = t - \sin t$, $y = 1 - \cos t$, dan $z = 4\sin(t/2)$.
+                Untuk mengetahui bentuk bidang lintasannya, kita dapat mencari hubungan fungsional antara $y$ dan $z$.
+                Dari identitas trigonometri sudut penengahan, diketahui hubungan $1 - \cos t = 2\sin^2\left(\frac{t}{2}\right)$.
+                Substitusikan identitas tersebut ke persamaan komponen ordinat $y$:
+                \[ y = 2\sin^2\left(\frac{t}{2}\right) \]
+                Dari komponen ordinat $z$, persamaan $z = 4\sin(t/2)$ dapat ditulis ulang sebagai $\sin(t/2) = \frac{z}{4}$.
+                Selanjutnya, kita akan mensubstitusikan nilai $\sin(t/2)$ tersebut ke dalam persamaan $y$:
+                \[ y = 2\left(\frac{z}{4}\right)^2 = 2\left(\frac{z^2}{16}\right) = \frac{z^2}{8} \implies z^2 = 8y \]
+                Oleh karena itu, bisa disimpulkan bahwa kurva ruang ini sebenarnya secara keseluruhan terhimpit sepenuhnya pada silinder parabola ($z^2 = 8y$). Sementara komponen translasi mendatarnya ($x = t - \sin t$) merambat melengkung layaknya fungsi \textit{cycloid} normal mengikuti bentuk parabola ini.
                 \begin{center}
                   \begin{tikzpicture}
                     \begin{axis}[
@@ -222,9 +270,12 @@
                         xlabel={$x$},
                         ylabel={$y$},
                         zlabel={$z$},
-                        samples=100,
+                        samples=60,
                         domain=0:4*pi
                       ]
+                      % Sketsa bayangan parabola menempel secara konstan pada kurva cycloid
+                      \addplot3 [dashed, gray, variable=t, samples y=0] ({0}, {1 - cos(deg(t))}, {4*sin(deg(t/2))});
+                      % Kurva lintasan aktual 3D
                       \addplot3 [variable=t, thick, blue, samples y=0] ({t - sin(deg(t))}, {1 - cos(deg(t))}, {4*sin(deg(t/2))});
                     \end{axis}
                   \end{tikzpicture}
