@@ -59,13 +59,7 @@
 \end{center}
 
 \begin{enumerate}
-  \item Diberikan suatu modul $M$ atas suatu ring $R$. Untuk suatu $r \in R$ tetap didefinisikan himpunan
-        \[
-          N_r = \{m \in M \mid rm = 0_M\}.
-        \]
-        Tunjukkan bahwa $N_r$ adalah submodul dari $M$. Selanjutnya buat suatu modul $M$ tsb. dengan $N_r \neq \{0_M\}$ tetapi $|N_r| = 5$ (kardinalitas dari $N_r$ sama dengan 5).
-
-        \begin{proof}
+  \item        \begin{proof}
           Akan ditunjukkan bahwa $N_r$ memenuhi tiga sifat submodul.
 
           Pertama, $0_M \in N_r$ karena $r0_M = 0_M$.
@@ -91,13 +85,7 @@
           Akibatnya $N_5 \neq \{0_M\}$ dan $|N_5|=5$.
         \end{proof}
 
-  \item Tunjukkan bahwa : Modul $M$ atas $R$ adalah modul bebas dengan basis $\{b_i\}_{i\in I}$ bila dan hanya bila
-        \[
-          M = \bigoplus_{i\in I} Rb_i,
-        \]
-        dimana $Rb_i \cong R$ untuk setiap $i \in I$.
-
-        \begin{proof}
+  \item         \begin{proof}
           $(\Rightarrow)$ Misalkan $\{b_i\}_{i\in I}$ adalah basis bebas dari $M$. Maka setiap $m \in M$ dapat ditulis secara unik sebagai kombinasi linear berhingga
           \[
             m = \sum_{i\in I} r_i b_i.
@@ -137,13 +125,7 @@
           Jadi $\{b_i\}_{i\in I}$ adalah basis bebas dan $M$ adalah modul bebas.
         \end{proof}
 
-  \item Misalkan $f : E \to F$ homomorfisma modul atas $R$ dengan $f$ adalah surjektif (pada). Bila untuk sebarang basis $\{v_1,v_2,\dots,v_r\}$ di $F$ dan untuk sebarang $u_1,u_2,\dots,u_r \in E$ yang memenuhi $f(u_i)=v_i$, $i=1,2,\dots,r$, maka tunjukkan bahwa
-        \[
-          E = \ker(f) \oplus U
-        \]
-        dimana $U = \langle \{u_1,u_2,\dots,u_r\}\rangle$. Selanjutnya juga tunjukkan bahwa himpunan $\{u_1,u_2,\dots,u_r\}$ adalah bebas linier. Berikuttnya, apa kesimpulan saudara bila $f$ juga pemetaan injektif (satu-satu).
-
-        \begin{proof}
+  \item         \begin{proof}
           Karena $\{v_1,\dots,v_r\}$ basis $F$, setiap $y \in F$ dapat ditulis unik sebagai
           \[
             y = \sum_{i=1}^r a_i v_i.
@@ -195,9 +177,7 @@
           Dengan kata lain, $f$ adalah isomorfisma modul, dan $\{u_1,\dots,u_r\}$ menjadi basis dari $E$ yang berkorespondensi dengan basis $\{v_1,\dots,v_r\}$ di $F$.
         \end{proof}
 
-  \item Buat suatu modul $M = M_1 \oplus M_2 \oplus M_3$ atas suatu ring $R$ yang memenuhi $M = \langle \{m_1,m_2,m_3\} \rangle$, $m_i \in M_i$, $i=1,2,3$ dimana $\{m_1,m_2,m_3\}$ tidak bebas linear.
-
-        \begin{proof}
+  \item      \begin{proof}
           Ambil ring $R=\mathbb{Z}$ dan pilih
           \[
             M_1 = M_2 = M_3 = \mathbb{Z}_2.
