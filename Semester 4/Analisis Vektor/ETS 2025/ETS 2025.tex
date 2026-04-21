@@ -220,23 +220,43 @@
                 \[ \left(\frac{x-2}{2}\right)^2 + \left(\frac{y}{3}\right)^2 = 1 \]
                 Persamaan di atas merupakan persamaan sebuah silinder eliptik (elips) yang sejajar memanjang di sepanjang sumbu z (pusat di koordinat $x=2, y=0$). Karena $z = t$, titik pada partikel akan terus naik seiring waktu sambil bergerak melingkari elips tersebut. Jadi lintasan ini berbentuk sebuah \textit{elliptical helix}.
                 \begin{center}
-                  \begin{tikzpicture}
-                    \begin{axis}[
-                        view={60}{30},
-                        width=9cm,
-                        height=8cm,
-                        grid=major,
-                        xlabel={$x$},
-                        ylabel={$y$},
-                        zlabel={$z$},
-                        samples=100,
-                        domain=0:2*pi
-                      ]
-                      % Proyeksi keliling elips di dasar (bidang xy)
-                      \addplot3 [dashed, gray, variable=t, samples y=0] ({2*sin(deg(t)) + 2}, {3*cos(deg(t))}, {0});
-                      % Lintasan heliks / lintasan partikel
-                      \addplot3 [thick, red, variable=t, samples y=0] ({2*sin(deg(t)) + 2}, {3*cos(deg(t))}, {t});
-                    \end{axis}
+                  \begin{tikzpicture}[x={(-0.6cm,-0.4cm)}, y={(1cm,0cm)}, z={(0cm,0.7cm)}]
+                    % Sumbu x, y, z
+                    \draw[->, thick] (0,0,0) -- (6,0,0) node[below] {$x$};
+                    \draw[->, thick] (0,-4,0) -- (0,4,0) node[right] {$y$};
+                    \draw[->, thick] (0,0,0) -- (0,0,7.5) node[above] {$z$};
+
+                    % Label angka sumbu x
+                    \foreach \x in {1,2,3,4} {
+                        \draw (\x,-0.1,0) -- (\x,0.1,0);
+                        \node[anchor=north east, font=\scriptsize] at (\x,0,0) {\x};
+                      }
+                    % Label angka sumbu y
+                    \foreach \y in {-3,-2,-1,1,2,3} {
+                        \draw (0,\y,-0.1) -- (0,\y,0.1);
+                        \node[anchor=north, font=\scriptsize] at (0,\y,0) {\y};
+                      }
+                    % Label angka sumbu z
+                    \foreach \z in {1,2,3,4,5,6} {
+                        \draw (-0.1,0,\z) -- (0.1,0,\z);
+                        \node[anchor=east, font=\scriptsize] at (0,0,\z) {\z};
+                      }
+
+                    % Proyeksi keliling elips di dasar (bidang xy)
+                    \draw[dashed, gray, thick, domain=0:360, samples=150, variable=\t]
+                    plot ({2*sin(\t) + 2}, {3*cos(\t)}, {0});
+
+                    % Lintasan heliks / lintasan partikel
+                    \draw[thick, red, domain=0:360, samples=150, variable=\t]
+                    plot ({2*sin(\t) + 2}, {3*cos(\t)}, {\t*pi/180});
+
+                    % Garis putus-putus penghubung t=2\pi ke t=0
+                    \draw[dashed, orange] (2,3,6.28318) -- (2,3,0);
+
+                    % Titik penanda t = 0, pi, 2pi
+                    \node[circle, fill=black, inner sep=1pt, label={[font=\tiny]right:$t=0$}] at (2,3,0) {};
+                    \node[circle, fill=black, inner sep=1pt, label={[font=\tiny]left:$t=\pi$}] at (2,-3,3.14159) {};
+                    \node[circle, fill=black, inner sep=1pt, label={[font=\tiny]right:$t=2\pi$}] at (2,3,6.28318) {};
                   \end{tikzpicture}
                 \end{center}
           \item Vektor kecepatan $\vec{v}(t) = \vec{r}'(t) = 2\cos t\hat{i} - 3\sin t\hat{j} + \hat{k}$.
@@ -261,23 +281,35 @@
                 \[ y = 2\left(\frac{z}{4}\right)^2 = 2\left(\frac{z^2}{16}\right) = \frac{z^2}{8} \implies z^2 = 8y \]
                 Oleh karena itu, bisa disimpulkan bahwa kurva ruang ini sebenarnya secara keseluruhan terhimpit sepenuhnya pada silinder parabola ($z^2 = 8y$). Sementara komponen translasi mendatarnya ($x = t - \sin t$) merambat melengkung layaknya fungsi \textit{cycloid} normal mengikuti bentuk parabola ini.
                 \begin{center}
-                  \begin{tikzpicture}
-                    \begin{axis}[
-                        view={45}{30},
-                        width=10cm,
-                        height=8cm,
-                        grid=major,
-                        xlabel={$x$},
-                        ylabel={$y$},
-                        zlabel={$z$},
-                        samples=60,
-                        domain=0:4*pi
-                      ]
-                      % Sketsa bayangan parabola menempel secara konstan pada kurva cycloid
-                      \addplot3 [dashed, gray, variable=t, samples y=0] ({0}, {1 - cos(deg(t))}, {4*sin(deg(t/2))});
-                      % Kurva lintasan aktual 3D
-                      \addplot3 [variable=t, thick, blue, samples y=0] ({t - sin(deg(t))}, {1 - cos(deg(t))}, {4*sin(deg(t/2))});
-                    \end{axis}
+                  \begin{tikzpicture}[x={(-0.6cm,-0.4cm)}, y={(1cm,0cm)}, z={(0cm,1cm)}]
+                    % Sumbu x, y, z
+                    \draw[->, thick] (0,0,0) -- (14,0,0) node[below] {$x$};
+                    \draw[->, thick] (0,0,0) -- (0,3.5,0) node[right] {$y$};
+                    \draw[->, thick] (0,0,-5.5) -- (0,0,5.5) node[above] {$z$};
+
+                    % Label sumbu x
+                    \foreach \x in {3,6,9,12} {
+                        \draw (\x,-0.1,0) -- (\x,0.1,0);
+                        \node[anchor=north east, font=\scriptsize] at (\x,0,0) {\x};
+                      }
+                    % Label sumbu y
+                    \foreach \y in {1,2,3} {
+                        \draw (0,\y,-0.1) -- (0,\y,0.1);
+                        \node[anchor=north, font=\scriptsize] at (0,\y,0) {\y};
+                      }
+                    % Label sumbu z
+                    \foreach \z in {-4,-2,2,4} {
+                        \draw (-0.1,0,\z) -- (0.1,0,\z);
+                        \node[anchor=east, font=\scriptsize] at (0,0,\z) {\z};
+                      }
+
+                    % Proyeksi parabola di bidang yz (x=0)
+                    \draw[dashed, gray, thick, domain=0:720, samples=150, variable=\t]
+                    plot ({0}, {1 - cos(\t)}, {4*sin(\t/2)});
+
+                    % Lintasan aktual 3D cycloid
+                    \draw[thick, blue, domain=0:720, samples=200, variable=\t]
+                    plot ({\t*pi/180 - sin(\t)}, {1 - cos(\t)}, {4*sin(\t/2)});
                   \end{tikzpicture}
                 \end{center}
 
