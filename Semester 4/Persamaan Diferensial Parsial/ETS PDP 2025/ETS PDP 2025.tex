@@ -64,183 +64,225 @@
 \pagestyle{fancy}
 \begin{enumerate}
   \item Diberikan PDP \( u_x - 2u = x \)
-  \begin{itemize}
-      \item[(a)] Dapatkan penyelesaian umum PDP tersebut.
-      \item[(b)] Jika diberikan syarat batas: \( u(0,y) = y \). Dapatkan penyelesaian partikular PDP tersebut.
-      \item[(c)] Jika diberikan syarat batas: \( u(x,0) = \frac{3}{4} - \frac{x}{2} \). Tunjukkan PDP tersebut tidak mempunyai penyelesaian.
-  \end{itemize}
+        \begin{itemize}
+          \item[(a)] Dapatkan penyelesaian umum PDP tersebut.
+          \item[(b)] Jika diberikan syarat batas: \( u(0,y) = y \). Dapatkan penyelesaian partikular PDP tersebut.
+          \item[(c)] Jika diberikan syarat batas: \( u(x,0) = \frac{3}{4} - \frac{x}{2} \). Tunjukkan PDP tersebut tidak mempunyai penyelesaian.
+        \end{itemize}
 
   \item Dapatkan penyelesaian PDP berikut dengan menggunakan metode Lagrange:
-  \[
-  y \frac{\partial u}{\partial x} + x \frac{\partial u}{\partial y} = xy
-  \]
+        \[
+          y \frac{\partial u}{\partial x} + x \frac{\partial u}{\partial y} = xy
+        \]
 
   \item Dapatkan penyelesaian PDP berikut dengan menggunakan metode karakteristik:
-  \[
-  u_x + u_y = -\frac{1}{2}u
-  \]
-  dengan kondisi awal \( u(x,0) = 1 \).
+        \[
+          uu_x + u_y = -\frac{1}{2}u
+        \]
+        dengan kondisi awal \( u(x,0) = 1 \).
 
   \item Dapatkan penyelesaian PDP berikut dengan menggunakan metode pemisahan variabel:
-  \[
-  u_x + 2u_y = 0 \quad \text{jika} \quad u(0,y) = 3e^{-2y} - 4e^y
-  \]
+        \[
+          u_x + 2u_y = 0 \quad \text{jika} \quad u(0,y) = 3e^{-2y} - 4e^y
+        \]
 \end{enumerate}
 \centering\textbf{\underline{SOLUSI}}
 \begin{enumerate}
   \item \begin{enumerate}
-    \item Kalikan seluruh persamaan dengan faktor integrasi \( e^{-2x} \):
-    \[
-    e^{-2x}u_x - 2e^{-2x}u = xe^{-2x}
-    \quad \Rightarrow \quad
-    \frac{d}{dx}(e^{-2x}u) = xe^{-2x}
-    \]
-    
-    Integralkan kedua ruas:
-    \[
-    e^{-2x}u = \int xe^{-2x} \, dx
-    \]
-    Gunakan integrasi parsial:
-    \[
-    \int xe^{-2x} \, dx = -\frac{1}{2}xe^{-2x} - \frac{1}{4}e^{-2x} + f(y)
-    \]
-    
-    Sehingga:
-    \[
-    e^{-2x}u = -\frac{1}{2}xe^{-2x} - \frac{1}{4}e^{-2x} + f(y)
-    \]
-    Kalikan dengan \( e^{2x} \):
-    \[
-    u(x,y) = f(y)e^{2x} - \frac{1}{2}x - \frac{1}{4}
-    \]
-    \item Substitusi \(x = 0\):
-    \[
-    u(0,y) = f(y) - \frac{1}{4}
-    \]
-    Sehingga:
-    \[
-    f(y) = y + \frac{1}{4}
-    \]
-    Penyelesaian partikular:
-    \[
-    u(x,y) = \left( y + \frac{1}{4} \right) e^{2x} - \frac{1}{2}x - \frac{1}{4}
-    \]
-    \item Substitusi \(y = 0\):
-    \begin{align*}
-      u(x,0) &= f(0)e^{2x} - \frac{1}{2}x - \frac{1}{4}\\
-      \frac{3}{4} - \frac{x}{2} &= f(0)e^{2x} - \frac{1}{2}x - \frac{1}{4}\\
-      f(0) = e^{2x}
-    \end{align*}
-    Hal ini kontradiksi karena fungsi $f$ bergantung pada $y$ saja. Sehingga tidak ada penyelesaian untuk syarat batas ini.
-  \end{enumerate}
-  \item Karakteristik:
-  \[
-  \frac{dx}{y} = \frac{dy}{x} = \frac{du}{xy}
-  \]
-  
-  Dari \(\frac{dx}{y} = \frac{dy}{x}\), diperoleh:
-  \[
-  x\,dx = y\,dy
-  \quad \Rightarrow \quad
-  \frac{1}{2}x^2 = \frac{1}{2}y^2 + C
-  \quad \Rightarrow \quad
-  x^2 - y^2 = k
-  \]
-  
-  Dari \(\frac{dx}{y} = \frac{du}{xy}\), didapatkan:
-  \[
-  du = x\,dx
-  \quad \Rightarrow \quad
-  u = \frac{1}{2}x^2 + f(x^2 - y^2)
-  \]
-  
-  Jadi solusi umum:
-  \[
-  u(x,y) = \frac{1}{2}x^2 + f(x^2 - y^2)
-  \]
-  \item Karakteristik:
-  \[
-  \frac{dx}{1} = \frac{dy}{1} = \frac{du}{-\frac{1}{2}u}
-  \]
-  
-  Dari \(\frac{dx}{1} = \frac{dy}{1}\):
-  \[
-  x - y = k
-  \]
-  
-  Dari \(\frac{du}{-\frac{1}{2}u}\):
-  \[
-  \frac{du}{u} = -\frac{1}{2}ds
-  \quad \Rightarrow \quad
-  \ln u = -\frac{1}{2}s + C
-  \quad \Rightarrow \quad
-  u = A(k)e^{-\frac{1}{2}s}
-  \]
-  
-  Sehingga:
-  \[
-  u(x,y) = f(x-y)e^{-\frac{1}{2}x}
-  \]
-  
-  Gunakan syarat \(u(x,0) = 1\):
-  \[
-  f(x)e^{-\frac{1}{2}x} = 1
-  \quad \Rightarrow \quad
-  f(x) = e^{\frac{1}{2}x}
-  \]
-  
-  Maka:
-  \[
-  u(x,y) = e^{-\frac{1}{2}y}
-  \]
-  \item 
-  
-  Misalkan solusi berbentuk:
-  \[
-  U(x,y) = X(x)Y(y)
-  \]
-  
-  Maka persamaan menjadi:
-  \[
-  X'Y + 2XY' = 0 \Rightarrow \frac{X'}{X} = -2\frac{Y'}{Y}
-  \]
-  
-  Pisahkan variabel:
-  \[
-  \frac{X'}{2X} = -\frac{Y'}{Y} = \lambda
-  \]
-  
-  Maka diperoleh dua persamaan diferensial biasa (PDB):
-  
-  \begin{enumerate}
-      \item $\displaystyle \frac{X'}{X} = 2\lambda \Rightarrow X(x) = C_1 e^{2\lambda x}$
-      \item $\displaystyle \frac{Y'}{Y} = -\lambda \Rightarrow Y(y) = C_2 e^{-\lambda y}$
-  \end{enumerate}
-  
-  Sehingga solusi umum:
-  \[
-  U(x,y) = C_1C_2 e^{2\lambda x} e^{-\lambda y} = A e^{\lambda(2x - y)}
-  \]
-  
-  Dengan $A = C_1C_2$, maka superposisi solusi umum:
-  \[
-  U(x,y) = A_1 e^{\lambda_1(2x - y)} + A_2 e^{\lambda_2(2x - y)}
-  \]
-  
-  Gunakan syarat batas \( u(0,y) = 3e^{-2y} - 4e^y \). Maka:
-  \[
-  U(0,y) = A_1 e^{-\lambda_1 y} + A_2 e^{-\lambda_2 y} = 3e^{-2y} - 4e^{y}
-  \]
-  
-  Dapat dilihat bahwa:
-  \[
-  \lambda_1 = 2, \quad A_1 = 3; \qquad \lambda_2 = -1, \quad A_2 = -4
-  \]
-  
-  Maka solusi partikular:
-  \[
-  U(x,y) = 3e^{2(2x - y)} - 4e^{-1(2x - y)} = 3e^{4x - 2y} - 4e^{-2x + y}
-  \]
+          \item Kalikan seluruh persamaan dengan faktor integrasi \( e^{-2x} \):
+                \[
+                  e^{-2x}u_x - 2e^{-2x}u = xe^{-2x}
+                  \quad \Rightarrow \quad
+                  \frac{d}{dx}(e^{-2x}u) = xe^{-2x}
+                \]
+
+                Integralkan kedua ruas:
+                \[
+                  e^{-2x}u = \int xe^{-2x} \, dx
+                \]
+                Gunakan integrasi parsial:
+                \[
+                  \int xe^{-2x} \, dx = -\frac{1}{2}xe^{-2x} - \frac{1}{4}e^{-2x} + f(y)
+                \]
+
+                Sehingga:
+                \[
+                  e^{-2x}u = -\frac{1}{2}xe^{-2x} - \frac{1}{4}e^{-2x} + f(y)
+                \]
+                Kalikan dengan \( e^{2x} \):
+                \[
+                  u(x,y) = f(y)e^{2x} - \frac{1}{2}x - \frac{1}{4}
+                \]
+          \item Substitusi \(x = 0\):
+                \[
+                  u(0,y) = f(y) - \frac{1}{4}
+                \]
+                Sehingga:
+                \[
+                  f(y) = y + \frac{1}{4}
+                \]
+                Penyelesaian partikular:
+                \[
+                  u(x,y) = \left( y + \frac{1}{4} \right) e^{2x} - \frac{1}{2}x - \frac{1}{4}
+                \]
+          \item Berdasarkan kondisi awal (syarat batas) pada \(y=0\), kita dapat memparameterisasi batas dalam bentuk $s$:
+                \[ x_0(s) = s, \quad y_0(s) = 0, \quad u_0(s) = \frac{3}{4} - \frac{s}{2} \]
+                Kita buktikan apakah mempunyai penyelesaian dengan uji determinan Jacobian (\(J\)). Dari PDP \( u_x - 2u = x \), didapat fungsi karakteristik parametrik terhadap $t$:
+                \[ x_t = 1, \quad y_t = 0, \quad u_t = 2u+x \]
+                Hitung determinan Jacobian (\(J\)) sepanjang batas:
+                \[
+                  J = \det \begin{pmatrix} x_t & y_t \\ x_s & y_s \end{pmatrix} = \begin{vmatrix} 1 & 0 \\ 1 & 0 \end{vmatrix} = 0
+                \]
+                Karena \( J = 0 \), kurva batas sejajar dengan kurva karakteristik. Dalam hal ini, sistem tidak mempunyai penyelesaian kecuali jika syarat kompatibilitasnya terpenuhi, yaitu \( \frac{du_0}{ds} x_t = u_t x_s \).
+                \[  \frac{du_0}{ds} \cdot x_t = -\frac{1}{2} \cdot 1 = -\frac{1}{2} \]
+                \[ u_t \cdot x_s = (2u_0 + x_0) \cdot 1 = 2\left(\frac{3}{4} - \frac{s}{2}\right) + s = \frac{3}{2} \]
+                Karena \( -\frac{1}{2} \neq \frac{3}{2} \), syarat kompatibilitas tidak terpenuhi. Sehingga, terbukti bahwa PDP tersebut tidak memiliki solusi (inkonsisten).
+
+                Cara lain yaitu substitusikan $y = 0$ ke dalam penyelesaian umum awal:
+                $$u(x,0) = -\frac{1}{2}x - \frac{1}{4} + f(0)e^{2x}$$
+
+                Berdasarkan syarat batas $u(x,0) = \frac{3}{4} - \frac{x}{2}$, kita peroleh:
+                $$-\frac{1}{2}x - \frac{1}{4} + f(0)e^{2x} = \frac{3}{4} - \frac{1}{2}x$$
+
+                Tambahkan $\frac{1}{2}x$ di kedua ruas:
+                $$-\frac{1}{4} + f(0)e^{2x} = \frac{3}{4}$$
+
+                Pindahkan konstanta:
+                $$f(0)e^{2x} = \frac{3}{4} + \frac{1}{4}$$
+                $$f(0)e^{2x} = 1$$
+
+                Karena $y=0$, maka $f(0)$ adalah sebuah nilai konstanta (misalkan $C$). Persamaan menjadi:
+                $$C e^{2x} = 1 \implies e^{2x} = \frac{1}{C}$$
+
+                Persamaan ini menyatakan bahwa fungsi eksponensial $e^{2x}$ sama dengan sebuah nilai konstanta mutlak ($\frac{1}{C}$) untuk semua nilai $x$. Ini merupakan sebuah kontradiksi matematis karena $e^{2x}$ adalah fungsi yang nilainya berubah bergantung pada $x$, bukan sebuah garis lurus konstan. Karena tidak ada nilai konstanta $f(0)$ yang dapat memenuhi persamaan tersebut untuk setiap $x$, maka dapat disimpulkan bahwa PDP dengan syarat batas tersebut tidak mempunyai penyelesaian.
+        \end{enumerate}
+  \item Berdasarkan persamaan \( y u_x + x u_y = xy \), kita pandang \( u = u(x,y) \) merupakan luasan integral pada ruang geometri 3 dimensi. Vektor normal dari luasan \( F(x,y,u) = u(x,y) - u = 0 \) adalah:
+        \[
+          \mathbf{n} = \left\langle \frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}, -1 \right\rangle
+        \]
+
+        Persamaan PDP tersebut dapat ditulis sebagai perkalian titik (dot product) antara vektor medan karakteristik \(\mathbf{V}\) dan vektor normal \(\mathbf{n}\):
+        \[
+          \langle y, x, xy \rangle \cdot \left\langle \frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}, -1 \right\rangle = 0
+        \]
+
+        Hal ini menunjukkan medan vektor karakteristik \(\mathbf{V} = \langle y, x, xy \rangle\) selalu menyinggung permukaan luasan integral. Persamaan diferensial karakteristik Lagrange didapatkan dari \( d\mathbf{r} \parallel \mathbf{V} \) atau:
+        \[
+          \frac{dx}{y} = \frac{dy}{x} = \frac{du}{xy}
+        \]
+
+        Dari persamaan \(\frac{dx}{y} = \frac{dy}{x}\), diperoleh:
+        \[
+          x\,dx - y\,dy = 0
+          \quad \Rightarrow \quad
+          \frac{1}{2}x^2 - \frac{1}{2}y^2 = c_1
+          \quad \Rightarrow \quad
+          x^2 - y^2 = C_1
+        \]
+
+        Dari persamaan \(\frac{dx}{y} = \frac{du}{xy}\), diperoleh:
+        \[
+          x\,dx = du
+          \quad \Rightarrow \quad
+          \int x\,dx = \int du
+          \quad \Rightarrow \quad
+          u - \frac{1}{2}x^2 = C_2
+        \]
+
+        Berdasarkan metode Lagrange, solusi umum dinyatakan dalam bentuk persamaan implisit \( F(C_1, C_2) = 0 \) atau \( C_2 = f(C_1) \). Sehingga:
+        \[
+          u - \frac{1}{2}x^2 = f(x^2 - y^2)
+        \]
+
+        Jadi, solusi umumnya adalah:
+        \[
+          u(x,y) = \frac{1}{2}x^2 + f(x^2 - y^2)
+        \]
+  \item Persamaan \(uu_x + u_y = -\frac{1}{2}u\) memiliki bentuk simetri karakteristik:
+        \[
+          \frac{dx}{u} = \frac{dy}{1} = \frac{du}{-\frac{1}{2}u}
+        \]
+
+        Pendekatan solusi analitik kita bangun dari parameterisasi karakteristik dengan variabel bantu \(t\):
+        \[
+          \frac{dx}{dt} = u, \quad \frac{dy}{dt} = 1, \quad \frac{du}{dt} = -\frac{1}{2}u
+        \]
+
+        Kondisi awal \( u(x,0) = 1 \) diparameterisasi dengan variabel luasan \( s \) saat \( t = 0 \):
+        \[
+          x(s,0) = s, \quad y(s,0) = 0, \quad u(s,0) = 1
+        \]
+
+        Berdasarkan turunan untuk \(y\):
+        \[
+          \frac{dy}{dt} = 1 \quad \Rightarrow \quad y(s,t) = t + c_1
+        \]
+        Substitusi kondisi awal \( y(s,0) = 0 \), jadinya \( y(s,t) = t \).
+
+        Berdasarkan turunan untuk \(u\):
+        \[
+          \frac{du}{dt} = -\frac{1}{2}u \quad \Rightarrow \quad \frac{du}{u} = -\frac{1}{2}dt \quad \Rightarrow \quad u(s,t) = C(s) e^{-\frac{1}{2}t}
+        \]
+        Substitusi kondisi awal \( u(s,0) = 1 \), maka \( C(s)=1 \), jadinya \( u(s,t) = e^{-\frac{1}{2}t} \).
+
+        Karena \( y(s,t) = t \), hasilnya bisa dicari bebas dari variabel $x$, dengan melakukan substitusi bentuk waktu \(t=y\) secara definitif ke variabel karakteristik tersebut:
+        \[
+          u(x,y) = e^{-\frac{1}{2}y}
+        \]
+
+  \item
+
+        Misalkan solusi berbentuk:
+        \[
+          U(x,y) = X(x)Y(y)
+        \]
+
+        Maka persamaan menjadi:
+        \[
+          X'Y + 2XY' = 0 \Rightarrow \frac{X'}{X} = -2\frac{Y'}{Y}
+        \]
+
+        Pisahkan variabel:
+        \[
+          \frac{X'}{2X} = -\frac{Y'}{Y} = \lambda
+        \]
+
+        Maka diperoleh dua persamaan diferensial biasa (PDB):
+
+        \begin{enumerate}
+          \item $\displaystyle \frac{X'}{X} = 2\lambda \Rightarrow X(x) = C_1 e^{2\lambda x}$
+          \item $\displaystyle \frac{Y'}{Y} = -\lambda \Rightarrow Y(y) = C_2 e^{-\lambda y}$
+        \end{enumerate}
+
+        Maka dengan mengembalikan pemodelan pemisahan variabel tersebut melalui perkalian konstanta parameter $A = C_1C_2$, kita dapat merekonstruksi penyelesaian solusi fundamentalnya:
+        \[
+          U(x,y) = A e^{\lambda(2x - y)}
+        \]
+
+        Berdasarkan syarat batas \(u(0,y) = 3e^{-2y} - 4e^y\), terdapat dua suku eksponensial di mana basis aljabarnya tidak sama. Karena persamaan dan kondisi batas ini linear serta homogen, kita dapat menggunakan \textbf{Prinsip Superposisi}. Prinsip ini menyatakan bahwa jika \(U_1\) dan \(U_2\) adalah solusi dari persamaan tersebut, maka kombinasi linear \(A_1 U_1 + A_2 U_2\) juga merupakan solusi. Secara matematis, dituliskan bentuk sumasinya:
+        \[
+          U(x,y) = \sum_{n=1}^{N} A_n e^{\lambda_n(2x - y)}
+        \]
+
+        Berdasarkan petunjuk dari syarat kondisinya yang memuat dua buah suku, kita menggunakan bentuk dasar superposisi kombinasi untuk $n=2$ sebagai jembatannya:
+        \[
+          U(x,y) = A_1 e^{\lambda_1(2x - y)} + A_2 e^{\lambda_2(2x - y)}
+        \]
+
+        Batas \( u(0,y) = 3e^{-2y} - 4e^y \) dievaluasi silang. Maka:
+        \[
+          U(0,y) = A_1 e^{-\lambda_1 y} + A_2 e^{-\lambda_2 y} = 3e^{-2y} - 4e^{y}
+        \]
+
+        Dapat dilihat bahwa:
+        \[
+          \lambda_1 = 2, \quad A_1 = 3; \qquad \lambda_2 = -1, \quad A_2 = -4
+        \]
+
+        Maka solusi partikular:
+        \[
+          U(x,y) = 3e^{2(2x - y)} - 4e^{-1(2x - y)} = 3e^{4x - 2y} - 4e^{-2x + y}
+        \]
 
 \end{enumerate}
 \end{document}
