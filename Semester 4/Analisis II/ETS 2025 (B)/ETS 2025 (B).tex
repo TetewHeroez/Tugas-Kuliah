@@ -1,0 +1,203 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{
+  left = 15mm,
+  right = 15mm,
+  top = 20mm,
+  bottom = 30mm,
+}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+% Update: Analisis 2 (Versi B)
+\pagenumbering{gobble}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \centering
+  % \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER} \\
+  \textbf{SEMESTER GENAP 2024 / 2025} \\
+  \textbf{DEPARTEMEN MATEMATIKA -- FSAD ITS} \\
+  \vspace{0.3cm}
+  \begin{tabular}{l l l}
+    Mata kuliah, Kode & : & Analisis 2, SM234402                     \\
+    Hari, Tanggal     & : & Senin, 21 April 2025                     \\
+    Sifat, waktu      & : & Tertutup, 09.00-10.40                    \\
+    Dosen             & : & D. Dr.mont. Kistosil Fahim, S.Si., M.Si. \\
+                      &   & E. Dr. Sunarsini, S.Si., M.Si.
+  \end{tabular}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \Huge\textbf{M}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent \textbf{HARAP DIPERHATIKAN !!!} \\
+\textit{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat ETS/EAS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.}
+
+\vspace{0.5cm}
+
+\noindent \textbf{ETS mengukur kemampuan}
+\vspace*{.1cm}
+\begin{center}
+  \begin{tabular}{|c|p{9cm}|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{\multirow{2}{*}{\textbf{CPMK}} } & \multirow{2}{*}{\textbf{\begin{tabular}{c} BOBOT CPMK \\ (\%) \end{tabular}}}           & \multicolumn{3}{c|}{\textbf{CPL}}                               \\ \cline{4-6}
+    \multicolumn{2}{|c|}{ }                               &                                                                                         & \textbf{4}                        & \textbf{8} & \textbf{9}     \\ \hline
+    \textbf{CPMK-1}                                       & Mahasiswa mampu menjelaskan konsep dasar tentang Integral Riemann dan Integral Darboux. & \textbf{18.75}                    & v          & v          &   \\ \hline
+    \textbf{CPMK-2}                                       & Mahasiswa mampu menjelaskan definisi dan sifat-sifat barisan fungsi.                    & \textbf{6.25}                     & v          &            & v \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{SOAL}}                  & \multirow{2}{*}{\textbf{BOBOT SOAL (\%)}} & \multicolumn{2}{c|}{\textbf{BOBOT CPMK (\%)}}                   \\ \cline{3-4}
+                                                    &                                           & \textbf{CPMK-1}                               & \textbf{CPMK-2} \\ \hline
+    \textbf{1}                                      & \textbf{25}                               & \textbf{6.25}                                 &                 \\ \hline
+    \textbf{2}                                      & \textbf{25}                               & \textbf{6.25}                                 &                 \\ \hline
+    \textbf{3}                                      & \textbf{25}                               & \textbf{6.25}                                 &                 \\ \hline
+    \textbf{4}                                      & \textbf{25}                               &                                               & \textbf{6.25}   \\ \hline
+    \multicolumn{2}{|c|}{\textbf{TOTAL BOBOT CPMK}} & \textbf{18.75}                            & \textbf{6.25}                                                   \\ \hline
+  \end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+
+\begin{enumerate}
+  \item Jika $f(x) := \sin(x)$ untuk $x \in [0,\pi]$, hitung jumlah Riemann dengan partisi dan tanda diberikan sebagai berikut:
+        \begin{enumerate}[label=\alph*)]
+          \item $\mathcal{P}_1 = \left(0, \frac{\pi}{3}, \frac{3\pi}{4}, \pi\right)$ dengan tanda di titik kiri subinterval.
+          \item $\mathcal{P}_2 = \left(0, \frac{\pi}{4}, \frac{5\pi}{6}, \pi\right)$ dengan tanda di titik kanan subinterval.
+          \item $\mathcal{P}_3 = \left(0, \frac{\pi}{3}, \frac{2\pi}{3}, \pi\right)$ dengan tanda di titik tengah subinterval.
+        \end{enumerate}
+  \item Misalkan $f_1$ dan $f_2$ fungsi terbatas pada $I := [a,b]$. Tunjukkan bahwa $L(f_1) + L(f_2) \leq L(f_1 + f_2)$.
+  \item Diberikan barisan fungsi $(f_n)$ dengan $f_n(x) = \frac{2025nx}{1+2025n^2x^2}$ untuk $x \in \mathbb{R}$.
+        \begin{enumerate}[label=\alph*)]
+          \item Hitung $\lim_{n \to \infty} (f_n(x))$.
+          \item Apakah $(f_n)$ konvergen seragam pada $[1, \infty)$? Buktikan.
+        \end{enumerate}
+  \item Jika $h$ kontinu pada $[a,b]$ dan jika $h(x) > 0$ untuk semua $x \in [a,b]$, maka buktikan $\int_a^b h > 0$.
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item Diketahui fungsi $f(x) = \sin(x)$ pada interval $[0,\pi]$. Jumlah Riemann dirumuskan sebagai $S(f, \mathcal{P}) = \sum_{i=1}^{n} f(t_i) \Delta x_i$.
+        \begin{enumerate}[label=\alph*)]
+          \item Partisi $\mathcal{P}_1 = \left\{0, \frac{\pi}{3}, \frac{3\pi}{4}, \pi\right\}$ dengan tanda di titik kiri ($t_i = x_{i-1}$).
+                \begin{itemize}
+                  \item Subinterval 1: $\left[0, \frac{\pi}{3}\right]$, $\Delta x_1 = \frac{\pi}{3}$, $t_1 = 0 \implies \sin(0) = 0$
+                  \item Subinterval 2: $\left[\frac{\pi}{3}, \frac{3\pi}{4}\right]$, $\Delta x_2 = \frac{3\pi}{4} - \frac{\pi}{3} = \frac{9\pi}{12} - \frac{4\pi}{12} = \frac{5\pi}{12}$, $t_2 = \frac{\pi}{3} \implies \sin\left(\frac{\pi}{3}\right) = \frac{\sqrt{3}}{2}$
+                  \item Subinterval 3: $\left[\frac{3\pi}{4}, \pi\right]$, $\Delta x_3 = \pi - \frac{3\pi}{4} = \frac{\pi}{4}$, $t_3 = \frac{3\pi}{4} \implies \sin\left(\frac{3\pi}{4}\right) = \frac{\sqrt{2}}{2}$
+                \end{itemize}
+                \begin{align*}
+                  S(f, \mathcal{P}_1) & = \sin(0)\left(\frac{\pi}{3}\right) + \sin\left(\frac{\pi}{3}\right)\left(\frac{5\pi}{12}\right) + \sin\left(\frac{3\pi}{4}\right)\left(\frac{\pi}{4}\right) \\
+                                      & = 0 + \left(\frac{\sqrt{3}}{2}\right)\left(\frac{5\pi}{12}\right) + \left(\frac{\sqrt{2}}{2}\right)\left(\frac{\pi}{4}\right)                                \\
+                                      & = \frac{5\pi\sqrt{3}}{24} + \frac{\pi\sqrt{2}}{8}
+                \end{align*}
+
+          \item Partisi $\mathcal{P}_2 = \left\{0, \frac{\pi}{4}, \frac{5\pi}{6}, \pi\right\}$ dengan tanda di titik kanan ($t_i = x_i$).
+                \begin{itemize}
+                  \item Subinterval 1: $\left[0, \frac{\pi}{4}\right]$, $\Delta x_1 = \frac{\pi}{4}$, $t_1 = \frac{\pi}{4} \implies \sin\left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}$
+                  \item Subinterval 2: $\left[\frac{\pi}{4}, \frac{5\pi}{6}\right]$, $\Delta x_2 = \frac{5\pi}{6} - \frac{\pi}{4} = \frac{10\pi}{12} - \frac{3\pi}{12} = \frac{7\pi}{12}$, $t_2 = \frac{5\pi}{6} \implies \sin\left(\frac{5\pi}{6}\right) = \frac{1}{2}$
+                  \item Subinterval 3: $\left[\frac{5\pi}{6}, \pi\right]$, $\Delta x_3 = \pi - \frac{5\pi}{6} = \frac{\pi}{6}$, $t_3 = \pi \implies \sin(\pi) = 0$
+                \end{itemize}
+                \begin{align*}
+                  S(f, \mathcal{P}_2) & = \sin\left(\frac{\pi}{4}\right)\left(\frac{\pi}{4}\right) + \sin\left(\frac{5\pi}{6}\right)\left(\frac{7\pi}{12}\right) + \sin(\pi)\left(\frac{\pi}{6}\right) \\
+                                      & = \left(\frac{\sqrt{2}}{2}\right)\left(\frac{\pi}{4}\right) + \left(\frac{1}{2}\right)\left(\frac{7\pi}{12}\right) + 0                                         \\
+                                      & = \frac{\pi\sqrt{2}}{8} + \frac{7\pi}{24}
+                \end{align*}
+
+          \item Partisi $\mathcal{P}_3 = \left\{0, \frac{\pi}{3}, \frac{2\pi}{3}, \pi\right\}$ dengan tanda di titik tengah ($t_i = \frac{x_{i-1} + x_i}{2}$).
+                \begin{itemize}
+                  \item Subinterval 1: $\left[0, \frac{\pi}{3}\right]$, $\Delta x_1 = \frac{\pi}{3}$, $t_1 = \frac{0 + \frac{\pi}{3}}{2} = \frac{\pi}{6} \implies \sin\left(\frac{\pi}{6}\right) = \frac{1}{2}$
+                  \item Subinterval 2: $\left[\frac{\pi}{3}, \frac{2\pi}{3}\right]$, $\Delta x_2 = \frac{2\pi}{3} - \frac{\pi}{3} = \frac{\pi}{3}$, $t_2 = \frac{\frac{\pi}{3} + \frac{2\pi}{3}}{2} = \frac{\pi}{2} \implies \sin\left(\frac{\pi}{2}\right) = 1$
+                  \item Subinterval 3: $\left[\frac{2\pi}{3}, \pi\right]$, $\Delta x_3 = \pi - \frac{2\pi}{3} = \frac{\pi}{3}$, $t_3 = \frac{\frac{2\pi}{3} + \pi}{2} = \frac{5\pi}{6} \implies \sin\left(\frac{5\pi}{6}\right) = \frac{1}{2}$
+                \end{itemize}
+                \begin{align*}
+                  S(f, \mathcal{P}_3) & = \sin\left(\frac{\pi}{6}\right)\left(\frac{\pi}{3}\right) + \sin\left(\frac{\pi}{2}\right)\left(\frac{\pi}{3}\right) + \sin\left(\frac{5\pi}{6}\right)\left(\frac{\pi}{3}\right) \\
+                                      & = \left(\frac{1}{2}\right)\left(\frac{\pi}{3}\right) + (1)\left(\frac{\pi}{3}\right) + \left(\frac{1}{2}\right)\left(\frac{\pi}{3}\right)                                         \\
+                                      & = \frac{\pi}{6} + \frac{\pi}{3} + \frac{\pi}{6} = \frac{2\pi}{3}
+                \end{align*}
+        \end{enumerate}
+
+  \item Misalkan $P = \{x_0, x_1, \dots, x_n\}$ adalah sembarang partisi dari interval $I = [a,b]$. Karena $f_1$ dan $f_2$ adalah fungsi yang didefinisikan pada subinterval $I_k = [x_{k-1}, x_k]$, kita memiliki sifat infimum untuk sembarang penjumlahan fungsi:
+        \[ \inf_{x \in I_k} (f_1(x) + f_2(x)) \geq \inf_{x \in I_k} f_1(x) + \inf_{x \in I_k} f_2(x) \]
+        Atau dengan menggunakan notasi $m_k$, berlaku:
+        \[ m_k(f_1 + f_2) \geq m_k(f_1) + m_k(f_2) \]
+        Kalikan kedua ruas dengan $\Delta x_k$ dan jumlahkan dari $k=1$ sampai $n$:
+        \[ \sum_{k=1}^n m_k(f_1 + f_2) \Delta x_k \geq \sum_{k=1}^n m_k(f_1) \Delta x_k + \sum_{k=1}^n m_k(f_2) \Delta x_k \]
+        Sehingga untuk sembarang partisi $P$, berlaku pada jumlah Darboux bawahnya:
+        \[ L(f_1 + f_2, P) \geq L(f_1, P) + L(f_2, P) \]
+        Misalkan diberikan sembarang dua partisi $P_1$ dan $P_2$. Tinjau partisi gabungan $P^* = P_1 \cup P_2$. Karena $P^*$ adalah penghalusan (refinement) dari $P_1$ dan $P_2$, maka jumlah Darboux bawah selalu meningkat atau sama dengan partisi asalnya:
+        \[ L(f_1, P_1) \leq L(f_1, P^*) \quad \text{dan} \quad L(f_2, P_2) \leq L(f_2, P^*) \]
+        Sehingga:
+        \[ L(f_1, P_1) + L(f_2, P_2) \leq L(f_1, P^*) + L(f_2, P^*) \leq L(f_1 + f_2, P^*) \]
+        Karena nilai integral batas bawah didefinisikan sebagai supremum keseluruhan partisi, maka $L(f_1 + f_2, P^*) \leq L(f_1 + f_2)$, yang berimplikasi:
+        \[ L(f_1, P_1) + L(f_2, P_2) \leq L(f_1 + f_2) \]
+        Ambil supremum untuk semua kemungkinan partisi $P_1$:
+        \[ L(f_1) + L(f_2, P_2) \leq L(f_1 + f_2) \]
+        Akhirnya, ambil supremum untuk semua kemungkinan partisi $P_2$:
+        \[ L(f_1) + L(f_2) \leq L(f_1 + f_2) \]
+        Terbukti.
+
+  \item Diberikan barisan fungsi $f_n(x) = \frac{2025nx}{1+2025n^2x^2}$ untuk $x \in \mathbb{R}$.
+        \begin{enumerate}[label=\alph*)]
+          \item Evaluasi limit \textit{pointwise}:
+                \begin{itemize}
+                  \item Jika $x = 0$, maka $f_n(0) = 0$ untuk setiap $n$, maka $\lim_{n \to \infty} f_n(0) = 0$.
+                  \item Jika $x \neq 0$, bagilah pembilang dan penyebut dengan $n^2$:
+                        \[ \lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \frac{2025 \cdot \frac{x}{n}}{\frac{1}{n^2} + 2025x^2} = \frac{0}{0 + 2025x^2} = 0 \]
+                \end{itemize}
+                Oleh karena itu, fungsi limitnya adalah $f(x) = 0$ secara \textit{pointwise} untuk semua $x \in \mathbb{R}$.
+          \item Pada interval $[1, \infty)$, akan diselidiki konvergensi seragam.
+                Cari titik maksimum dari $|f_n(x)|$. Menurut pertidaksamaan AM-GM pada penyebut:
+                \[ (1) + (2025n^2x^2) \ge 2\sqrt{1 \cdot 2025n^2x^2} = 2(45nx) = 90nx \]
+                Maka nilai maksimum lokal f(x) diraih ketika $1 = 2025n^2x^2 \implies x^2 = \frac{1}{2025n^2} \implies x = \frac{1}{45n}$.
+                Namun, area yang ditinjau pada interval ini adalah di separuh blokir $x \in [1, \infty)$.
+                Karena $n \ge 1$ merupakan indeks berjalan maka titik puncak ini berkisar di stasioner $x = \frac{1}{45n} \le \frac{1}{45} < 1$.
+                Letak maksimum global pada himpunan persekitaran ini adalah di batas asimtot terdekat kurvanya yang mana terus turun, yaitu di pangkal permulaan di ujung kirinya yakni $x = 1$.
+                Oleh karena itu, jarak interval deviasinya (supremum norm):
+                \[ M_n = \sup_{x \geq 1} |f_n(x) - f(x)| = \sup_{x \geq 1} \frac{2025nx}{1+2025n^2x^2} = f_n(1) = \frac{2025n}{1+2025n^2} \]
+                Ambil nilai limit $n \to \infty$:
+                \[ \lim_{n \to \infty} M_n = \lim_{n \to \infty} \frac{2025n}{1+2025n^2} = \lim_{n \to \infty} \frac{\frac{2025}{n}}{\frac{1}{n^2} + 2025} = \frac{0}{0 + 2025} = 0 \]
+                Karena barisan norm supremumnya konvergen menuju 0 ($\lim_{n \to \infty} M_n = 0$), maka terbukti bahwa barisan fungsi $(f_n)$ tersebut konvergen seragam ke fungsi $f(x)=0$ pada rentang interval $[1,\infty)$.
+        \end{enumerate}
+
+  \item Akan dibuktikan secara langsung menggunakan Teorema Nilai Ekstrim (\textit{Extreme Value Theorem}).
+        Diketahui bahwa $h$ adalah fungsi kontinu pada interval tertutup dan terbatas $[a,b]$. Menurut Teorema Nilai Ekstrim, fungsi $h$ pasti mencapai nilai minimum global pada selang tersebut. Artinya, terdapat suatu titik $c \in [a,b]$ sedemikian sehingga untuk setiap $x \in [a,b]$ berlaku:
+        \[ h(x) \geq h(c) \]
+        Karena disyaratkan dalam soal bahwa $h(x) > 0$ untuk setiap $x \in [a,b]$, maka nilai dari eksistensi titik minimum tersebut juga harus bernilai positif:
+        \[ h(c) > 0 \]
+        Misalkan $m = h(c)$, maka akan diperoleh suatu batas bawah konstan $h(x) \geq m > 0$ untuk semua nilai $x \in [a,b]$.
+        Berdasarkan sifat keterurutan dari integral (kemonotonan integral tentu), berlaku:
+        \[ \int_a^b h(x) \, dx \geq \int_a^b m \, dx \]
+        Dengan mengevaluasi hasil integral fungsi bernilai konstan di ruas kanan tersebut, didapatkan nilai luas panjang interval batasan:
+        \[ \int_a^b m \, dx = m(b - a) \]
+        Karena kita bekerja pada rentang interval garis riil $[a,b]$, disyaratkan bahwa $b > a$, yang setara dengan menunjukan bahwa lebar selangnya $(b - a) > 0$. Diketahui pula dari konstruksi sebelumnya bahwa batas minimumnya bernilai $m > 0$. Titik pertemuan antara dua himpunan bilangan real dengan tanda positif, hasil kalinya pastilah lebih besar mutlak dari nol:
+        \[ m(b - a) > 0 \]
+        Berdasarkan berlakunya sifat transitif ketaksamaan pada gabungan integralnya, maka kita susun utuh menjadi batasan:
+        \[ \int_a^b h(x) \, dx \ge m(b - a) > 0 \implies \int_a^b h(x) \, dx > 0 \]
+        Ketaksamaan berkonjungsi tersebut menyimpulkan terbuktinya nilai luasan integral totalnya selalu bernilai bilangan positif tanpa bisa bernilai nol. Terbukti.
+\end{enumerate}
+\end{document}

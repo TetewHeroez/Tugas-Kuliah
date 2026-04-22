@@ -1,0 +1,183 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{
+  left = 15mm,
+  right = 15mm,
+  top = 20mm,
+  bottom = 30mm,
+}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+% Update: Analisis 2
+\pagenumbering{gobble}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \centering
+  % \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER} \\
+  \textbf{SEMESTER GENAP 2024 / 2025} \\
+  \textbf{DEPARTEMEN MATEMATIKA -- FSAD ITS} \\
+  \vspace{0.3cm}
+  \begin{tabular}{l l l}
+    Mata kuliah, Kode & : & Analisis 2, SM234402                     \\
+    Hari, Tanggal     & : & Senin, 21 April 2025                     \\
+    Sifat, waktu      & : & Tertutup, 09.00-10.40                    \\
+    Dosen             & : & D. Dr.mont. Kistosil Fahim, S.Si., M.Si. \\
+                      &   & E. Dr. Sunarsini, S.Si., M.Si.
+  \end{tabular}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \Huge\textbf{M}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent \textbf{HARAP DIPERHATIKAN !!!} \\
+\textit{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat ETS/EAS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.}
+
+\vspace{0.5cm}
+
+\noindent \textbf{ETS mengukur kemampuan}
+\vspace*{.1cm}
+\begin{center}
+  \begin{tabular}{|c|p{9cm}|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{\multirow{2}{*}{\textbf{CPMK}} } & \multirow{2}{*}{\textbf{\begin{tabular}{c} BOBOT CPMK \\ (\%) \end{tabular}}}           & \multicolumn{3}{c|}{\textbf{CPL}}                               \\ \cline{4-6}
+    \multicolumn{2}{|c|}{ }                               &                                                                                         & \textbf{4}                        & \textbf{8} & \textbf{9}     \\ \hline
+    \textbf{CPMK-1}                                       & Mahasiswa mampu menjelaskan konsep dasar tentang Integral Riemann dan Integral Darboux. & \textbf{18.75}                    & v          & v          &   \\ \hline
+    \textbf{CPMK-2}                                       & Mahasiswa mampu menjelaskan definisi dan sifat-sifat barisan fungsi.                    & \textbf{6.25}                     & v          &            & v \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{SOAL}}                  & \multirow{2}{*}{\textbf{BOBOT SOAL (\%)}} & \multicolumn{2}{c|}{\textbf{BOBOT CPMK (\%)}}                   \\ \cline{3-4}
+                                                    &                                           & \textbf{CPMK-1}                               & \textbf{CPMK-2} \\ \hline
+    \textbf{1}                                      & \textbf{25}                               & \textbf{6.25}                                 &                 \\ \hline
+    \textbf{2}                                      & \textbf{25}                               & \textbf{6.25}                                 &                 \\ \hline
+    \textbf{3}                                      & \textbf{25}                               & \textbf{6.25}                                 &                 \\ \hline
+    \textbf{4}                                      & \textbf{25}                               &                                               & \textbf{6.25}   \\ \hline
+    \multicolumn{2}{|c|}{\textbf{TOTAL BOBOT CPMK}} & \textbf{18.75}                            & \textbf{6.25}                                                   \\ \hline
+  \end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+
+\begin{enumerate}
+  \item Jika $f(x) := x^2 + 2x + 3$ untuk $x \in [0,2]$, hitung jumlah Riemann dengan partisi dan tanda diberikan sebagai berikut:
+        \begin{enumerate}[label=\alph*)]
+          \item $\mathcal{P}_1 = (0, \frac{1}{2}, 1, 2)$ dengan tanda di titik kiri subinterval.
+          \item $\mathcal{P}_2 = (0, 1, \frac{3}{2}, 2)$ dengan tanda di titik kanan subinterval.
+          \item $\mathcal{P}_3 = (0, \frac{1}{2}, \frac{3}{2}, 2)$ dengan tanda di titik tengah subinterval.
+        \end{enumerate}
+  \item Misalkan $f$ dan $g$ fungsi terbatas pada $I := [a,b]$. Jika $f(x) \leq g(x)$ untuk semua $x \in I$, buktikan bahwa $L(f) \leq L(g)$ dan $U(f) \leq U(g)$.
+  \item Diberikan barisan fungsi $(f_n)$ dengan $f_n(x) = \frac{nx}{(1+nx)}$ untuk $x \in \mathbb{R}, x \geq 0$.
+        \begin{enumerate}[label=\alph*)]
+          \item Hitung $\lim_{n \to \infty} (f_n(x))$.
+          \item Tunjukkan bahwa $(f_n)$ konvergen seragam pada $[2, \infty)$.
+        \end{enumerate}
+  \item Jika $h$ kontinu pada $[a,b]$ dengan $h(x) \geq 0$ untuk semua $x \in [a,b]$ dan $\int_a^b h = 0$, maka buktikan $h(x) = 0$ untuk semua $x \in [a,b]$.
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item Diketahui fungsi $f(x) = x^2 + 2x + 3$ pada interval $[0,2]$. Jumlah Riemann dirumuskan sebagai $S(f, \mathcal{P}) = \sum_{i=1}^{n} f(t_i) \Delta x_i$.
+        \begin{enumerate}[label=\alph*)]
+          \item Partisi $\mathcal{P}_1 = \{0, \frac{1}{2}, 1, 2\}$ dengan tanda di titik kiri ($t_i = x_{i-1}$).
+                \begin{itemize}
+                  \item Subinterval 1: $[0, \frac{1}{2}]$, $\Delta x_1 = \frac{1}{2}$, $t_1 = 0 \implies f(0) = 3$
+                  \item Subinterval 2: $[\frac{1}{2}, 1]$, $\Delta x_2 = \frac{1}{2}$, $t_2 = \frac{1}{2} \implies f\left(\frac{1}{2}\right) = \left(\frac{1}{2}\right)^2 + 2\left(\frac{1}{2}\right) + 3 = \frac{1}{4} + 1 + 3 = \frac{17}{4}$
+                  \item Subinterval 3: $[1, 2]$, $\Delta x_3 = 1$, $t_3 = 1 \implies f(1) = 6$
+                \end{itemize}
+                \begin{align*}
+                  S(f, \mathcal{P}_1) & = f(0)\left(\frac{1}{2}\right) + f\left(\frac{1}{2}\right)\left(\frac{1}{2}\right) + f(1)(1) = (3)\left(\frac{1}{2}\right) + \left(\frac{17}{4}\right)\left(\frac{1}{2}\right) + (6)(1) \\
+                                      & = \frac{3}{2} + \frac{17}{8} + 6  = \frac{12}{8} + \frac{17}{8} + \frac{48}{8} = \frac{77}{8}
+                \end{align*}
+          \item Partisi $\mathcal{P}_2 = \{0, 1, \frac{3}{2}, 2\}$ dengan tanda di titik kanan ($t_i = x_i$).
+                \begin{itemize}
+                  \item Subinterval 1: $[0, 1]$, $\Delta x_1 = 1$, $t_1 = 1 \implies f(1) = 6$
+                  \item Subinterval 2: $[1, \frac{3}{2}]$, $\Delta x_2 = \frac{1}{2}$, $t_2 = \frac{3}{2} \implies f\left(\frac{3}{2}\right) = \left(\frac{3}{2}\right)^2 + 2\left(\frac{3}{2}\right) + 3 = \frac{9}{4} + 3 + 3 = \frac{33}{4}$
+                  \item Subinterval 3: $[\frac{3}{2}, 2]$, $\Delta x_3 = \frac{1}{2}$, $t_3 = 2 \implies f(2) = 11$
+                \end{itemize}
+                \begin{align*}
+                  S(f, \mathcal{P}_2) & = f(1)(1) + f\left(\frac{3}{2}\right)\left(\frac{1}{2}\right) + f(2)\left(\frac{1}{2}\right) = (6)(1) + \left(\frac{33}{4}\right)\left(\frac{1}{2}\right) + (11)\left(\frac{1}{2}\right) \\
+                                      & = 6 + \frac{33}{8} + \frac{11}{2} = \frac{48}{8} + \frac{33}{8} + \frac{44}{8} = \frac{125}{8}
+                \end{align*}
+
+          \item Partisi $\mathcal{P}_3 = \{0, \frac{1}{2}, \frac{3}{2}, 2\}$ dengan tanda di titik tengah ($t_i = \frac{x_{i-1} + x_i}{2}$).
+                \begin{itemize}
+                  \item Subinterval 1: $[0, \frac{1}{2}]$, $\Delta x_1 = \frac{1}{2}$, $t_1 = \frac{1}{4} \implies f\left(\frac{1}{4}\right) = \left(\frac{1}{4}\right)^2 + 2\left(\frac{1}{4}\right) + 3 = \frac{1}{16} + \frac{1}{2} + 3 = \frac{57}{16}$
+                  \item Subinterval 2: $[\frac{1}{2}, \frac{3}{2}]$, $\Delta x_2 = 1$, $t_2 = 1 \implies f(1) = 6$
+                  \item Subinterval 3: $[\frac{3}{2}, 2]$, $\Delta x_3 = \frac{1}{2}$, $t_3 = \frac{7}{4} \implies f\left(\frac{7}{4}\right) = \left(\frac{7}{4}\right)^2 + 2\left(\frac{7}{4}\right) + 3 = \frac{49}{16} + \frac{7}{2} + 3 = \frac{153}{16}$
+                \end{itemize}
+                \begin{align*}
+                  S(f, \mathcal{P}_3) & = f\left(\frac{1}{4}\right)\left(\frac{1}{2}\right) + f(1)(1) + f\left(\frac{7}{4}\right)\left(\frac{1}{2}\right) = \left(\frac{57}{16}\right)\left(\frac{1}{2}\right) + (6)(1) + \left(\frac{153}{16}\right)\left(\frac{1}{2}\right) \\
+                                      & = \frac{57}{32} + 6 + \frac{153}{32} = \frac{210}{32} + \frac{192}{32} = \frac{402}{32} = \frac{201}{16}
+                \end{align*}
+        \end{enumerate}
+
+  \item Misalkan $P = \{x_0, x_1, \dots, x_n\}$ adalah sembarang partisi dari interval $I = [a,b]$. Karena $f(x) \leq g(x)$ untuk setiap $x \in I$, maka untuk setiap subinterval $I_k = [x_{k-1}, x_k]$, berlaku:
+        \[ m_k(f) = \inf_{x \in I_k} f(x) \leq \inf_{x \in I_k} g(x) = m_k(g) \]
+        \[ M_k(f) = \sup_{x \in I_k} f(x) \leq \sup_{x \in I_k} g(x) = M_k(g) \]
+        Berdasarkan definisi jumlah Darboux bawah dan atas, kita peroleh:
+        \[ L(f, P) = \sum_{k=1}^n m_k(f) \Delta x_k \leq \sum_{k=1}^n m_k(g) \Delta x_k = L(g, P) \]
+        \[ U(f, P) = \sum_{k=1}^n M_k(f) \Delta x_k \leq \sum_{k=1}^n M_k(g) \Delta x_k = U(g, P) \]
+        Integral Darboux bawah $L(f)$ adalah supremum dari semua kemungkinan jumlah Darboux bawah, sehingga:
+        \[ L(f) = \sup_P L(f, P) \leq \sup_P L(g, P) = L(g) \]
+        Demikian pula integral Darboux atas $U(f)$ adalah infimum dari semua jumlah Darboux atas. Karena setiap $U(f, P) \leq U(g, P)$, maka batas bawah terbesarnya pun akan tetap memenuhi:
+        \[ U(f) = \inf_P U(f, P) \leq \inf_P U(g, P) = U(g) \]
+        Terbukti bahwa $L(f) \leq L(g)$ dan $U(f) \leq U(g)$.
+
+  \item Diberikan barisan fungsi $f_n(x) = \frac{nx}{1+nx}$ untuk $x \geq 0$.
+        \begin{enumerate}[label=\alph*)]
+          \item Evaluasi limit terpusat secara \textit{pointwise}:
+                \begin{itemize}
+                  \item Jika $x = 0$, maka $f_n(0) = 0$ untuk setiap $n$, maka $\lim_{n \to \infty} f_n(0) = 0$.
+                  \item Jika $x > 0$, maka:
+                        \[ \lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \frac{nx}{1+nx} = \lim_{n \to \infty} \frac{x}{\frac{1}{n} + x} = \frac{x}{0 + x} = 1 \]
+                \end{itemize}
+                Maka fungsi limit konvergen titik demi titiknya adalah $f(x) = \begin{cases} 0 & x = 0 \\ 1 & x > 0 \end{cases}$.
+          \item Pada interval $[2, \infty)$, diketahui fungsi limit \textit{pointwise}-nya adalah konstan $f(x) = 1$. Untuk membuktikan konvergensi seragam, kita harus menunjukkan $\lim_{n \to \infty} \sup_{x \geq 2} |f_n(x) - f(x)| = 0$.
+                \[ |f_n(x) - 1| = \left| \frac{nx}{1+nx} - 1 \right| = \left| \frac{nx - (1+nx)}{1+nx} \right| = \left| \frac{-1}{1+nx} \right| = \frac{1}{1+nx} \]
+                Karena $x \geq 2$, kita peroleh $1+nx \geq 1+2n$.
+                Oleh karena itu, supremum normanya adalah:
+                \[ \sup_{x \geq 2} \frac{1}{1+nx} = \frac{1}{1+2n} \]
+                Ambil nilai limit $n \to \infty$:
+                \[ \lim_{n \to \infty} \sup_{x \geq 2} |f_n(x) - f(x)| = \lim_{n \to \infty} \frac{1}{1+2n} = 0 \]
+                Karena jarak deviasi maksimumnya menuju nol, maka terbukti bahwa barisan fungsi tersebut konvergen seragam pada $[2, \infty)$.
+        \end{enumerate}
+
+  \item Bukti dengan kontradiksi. Asumsikan terdapat titik $c \in [a,b]$ sedemikian sehingga $h(c) > 0$.
+        Karena $h$ kontinu di $c$, berdasarkan definisi limit dan kekontinuan fungsi (dengan mengambil $\varepsilon = \frac{h(c)}{2} > 0$), maka terdapat $\delta > 0$ sedemikian rupa sehingga untuk setiap $x \in (c-\delta, c+\delta) \cap [a,b]$, berlaku:
+        \[ h(x) > h(c) - \varepsilon = \frac{h(c)}{2} \]
+        Kita bisa memilih suatu subinterval tertutup $[x_1, x_2]$ di dalam $(c-\delta, c+\delta) \cap [a,b]$ dengan $x_1 < x_2$. Berdasarkan sifat aditif integral pada interval penintegralan:
+        \[ \int_a^b h = \int_a^{x_1} h + \int_{x_1}^{x_2} h + \int_{x_2}^b h \]
+        Karena $h(x) \geq 0$ untuk setiap $x \in [a,b]$, maka $\int_a^{x_1} h \geq 0$ dan $\int_{x_2}^b h \geq 0$. Sementara itu, pada interval $[x_1, x_2]$, nilai $h(x) > \frac{h(c)}{2}$, sehingga:
+        \[ \int_{x_1}^{x_2} h \geq \int_{x_1}^{x_2} \frac{h(c)}{2} = \frac{h(c)}{2} (x_2 - x_1) > 0 \]
+        Akibatnya, ditotal keseluruhan rentang diperoleh:
+        \[ \int_a^b h \geq 0 + \frac{h(c)}{2} (x_2 - x_1) + 0 > 0 \]
+        Hal ini kontradiksi dengan yang diketahui di soal bahwa $\int_a^b h = 0$.
+        Oleh karena pengandaian salah, maka disimpulkan haruslah $h(x) = 0$ untuk semua $x \in [a,b]$. Terbukti.
+\end{enumerate}
+\end{document}
