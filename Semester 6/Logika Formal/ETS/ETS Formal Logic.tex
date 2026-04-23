@@ -82,9 +82,7 @@
 \subsection*{Solutions}
 
 \begin{enumerate}
-  \item \textbf{Solution for Problem 1:}
-
-        Let's use the resolution method to check the satisfiability. Let $+$ denote disjunction ($\lor$) and the multiplication between parentheses denote conjunction ($\land$).
+  \item Let's use the resolution method to check the satisfiability. Let $+$ denote disjunction ($\lor$) and the multiplication between parentheses denote conjunction ($\land$).
 
         First, check the clauses $(a \lor \neg c \lor d)$ and $(a \lor \neg c \lor \neg d)$. By resolving with respect to the variable $d$, we obtain:
         \[ (a \lor \neg c) \]
@@ -117,8 +115,7 @@
 
         Since we can find a truth assignment that satisfies the formula ($a = 1, b = 1, c = 0, d = 1$) without leading to an empty clause (contradiction), we conclude that the formula is \textbf{Satisfiable}.
 
-  \item \textbf{Solution for Problem 2:}
-        \begin{enumerate}
+  \item \begin{enumerate}
           \item[a.] Expressing each constraint as a propositional clause:
                 \begin{itemize}
                   \item[(i)] If Alina picks Doctor ($d_1$), she cannot go through Market Street ($r_3$): \\ $d_1 \to \neg r_3 \equiv \neg d_1 \lor \neg r_3$
