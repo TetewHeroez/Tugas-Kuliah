@@ -35,9 +35,10 @@
   \begin{tabular}{l l l}
     Mata kuliah, Kode & : & Analisis 2, SM234402                     \\
     Hari, Tanggal     & : & Senin, 21 April 2025                     \\
-    Sifat, waktu      & : & Tertutup, 09.00-10.40                    \\
-    Dosen             & : & D. Dr.mont. Kistosil Fahim, S.Si., M.Si. \\
-                      &   & E. Dr. Sunarsini, S.Si., M.Si.
+    Sifat, waktu      & : & Tertutup, 15.30-17.10                    \\
+    Dosen             & : & A. Dr.mont. Kistosil Fahim, S.Si., M.Si. \\
+                      &   & B. Dr. Sunarsini, S.Si., M.Si.           \\
+                      &   & C. Dr. Dra. Rinurwati, M.Si.             \\
   \end{tabular}
 \end{minipage}%
 \begin{minipage}{0.15\textwidth}
@@ -142,6 +143,7 @@
 
   \item Misalkan $P = \{x_0, x_1, \dots, x_n\}$ adalah sembarang partisi dari interval $I = [a,b]$. Karena $f_1$ dan $f_2$ adalah fungsi yang didefinisikan pada subinterval $I_k = [x_{k-1}, x_k]$, kita memiliki sifat infimum untuk sembarang penjumlahan fungsi:
         \[ \inf_{x \in I_k} (f_1(x) + f_2(x)) \geq \inf_{x \in I_k} f_1(x) + \inf_{x \in I_k} f_2(x) \]
+        (\textit{Bukti:} Berdasarkan definisi infimum, untuk setiap $x \in I_k$ berlaku $f_1(x) \geq \inf_{x \in I_k} f_1(x)$ dan $f_2(x) \geq \inf_{x \in I_k} f_2(x)$. Jika dijumlahkan, diperoleh $f_1(x) + f_2(x) \geq \inf_{x \in I_k} f_1(x) + \inf_{x \in I_k} f_2(x)$ untuk setiap $x \in I_k$. Hal ini berarti $\inf_{x \in I_k} f_1(x) + \inf_{x \in I_k} f_2(x)$ adalah batas bawah dari himpunan $\{f_1(x) + f_2(x) \mid x \in I_k\}$. Karena $\inf_{x \in I_k} (f_1(x) + f_2(x))$ adalah batas bawah terbesar dari himpunan tersebut, maka nilainya pasti lebih besar atau sama dengan sembarang batas bawah, sehingga sifat tersebut terbukti.) \\
         Atau dengan menggunakan notasi $m_k$, berlaku:
         \[ m_k(f_1 + f_2) \geq m_k(f_1) + m_k(f_2) \]
         Kalikan kedua ruas dengan $\Delta x_k$ dan jumlahkan dari $k=1$ sampai $n$:
@@ -170,13 +172,14 @@
                 \end{itemize}
                 Oleh karena itu, fungsi limitnya adalah $f(x) = 0$ secara \textit{pointwise} untuk semua $x \in \mathbb{R}$.
           \item Pada interval $[1, \infty)$, akan diselidiki konvergensi seragam.
-                Cari titik maksimum dari $|f_n(x)|$. Menurut pertidaksamaan AM-GM pada penyebut:
-                \[ (1) + (2025n^2x^2) \ge 2\sqrt{1 \cdot 2025n^2x^2} = 2(45nx) = 90nx \]
-                Maka nilai maksimum lokal f(x) diraih ketika $1 = 2025n^2x^2 \implies x^2 = \frac{1}{2025n^2} \implies x = \frac{1}{45n}$.
-                Namun, area yang ditinjau pada interval ini adalah di separuh blokir $x \in [1, \infty)$.
-                Karena $n \ge 1$ merupakan indeks berjalan maka titik puncak ini berkisar di stasioner $x = \frac{1}{45n} \le \frac{1}{45} < 1$.
-                Letak maksimum global pada himpunan persekitaran ini adalah di batas asimtot terdekat kurvanya yang mana terus turun, yaitu di pangkal permulaan di ujung kirinya yakni $x = 1$.
-                Oleh karena itu, jarak interval deviasinya (supremum norm):
+                Cari titik maksimum dari $|f_n(x)|$ menggunakan turunan pertama:
+                \[ f_n'(x) = \frac{2025n(1+2025n^2x^2) - 2025nx(4050n^2x)}{(1+2025n^2x^2)^2} = \frac{2025n(1 - 2025n^2x^2)}{(1+2025n^2x^2)^2} \]
+                Titik kritis dicapai saat $f_n'(x) = 0$, yaitu:
+                \[ 1 - 2025n^2x^2 = 0 \implies x^2 = \frac{1}{2025n^2} \implies x = \frac{1}{45n} \]
+                Namun, area yang ditinjau pada interval ini adalah $x \in [1, \infty)$.
+                Karena untuk setiap $n \ge 1$ titik ekstrem $x = \frac{1}{45n} \le \frac{1}{45} < 1$, maka titik tersebut berada di luar interval $[1, \infty)$.
+                Selanjutnya, untuk setiap $x \ge 1$, nilai $1 - 2025n^2x^2 < 0$, sehingga $f_n'(x) < 0$. Hal ini menunjukkan bahwa $f_n(x)$ adalah fungsi yang monoton turun pada interval $[1, \infty)$.
+                Oleh karena itu, jarak interval deviasinya (supremum norm) dicapai pada batas asimtot terdekat kurvanya di ujung kiri yakni $x = 1$:
                 \[ M_n = \sup_{x \geq 1} |f_n(x) - f(x)| = \sup_{x \geq 1} \frac{2025nx}{1+2025n^2x^2} = f_n(1) = \frac{2025n}{1+2025n^2} \]
                 Ambil nilai limit $n \to \infty$:
                 \[ \lim_{n \to \infty} M_n = \lim_{n \to \infty} \frac{2025n}{1+2025n^2} = \lim_{n \to \infty} \frac{\frac{2025}{n}}{\frac{1}{n^2} + 2025} = \frac{0}{0 + 2025} = 0 \]
