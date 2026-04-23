@@ -1,0 +1,159 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\renewcommand{\baselinestretch}{1.2}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+\theoremstyle{definition}
+\newtheorem*{bukti}{Bukti}
+
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+\fancyhead[L]{\textit{Teosofi Hidayah Agung}}
+\fancyhead[R]{\textit{5002221132}}
+\pagestyle{fancy}
+\section*{ETS Formal Logic}
+
+\subsection*{Questions}
+\begin{enumerate}
+  \item Given the Boolean formula in CNF:
+        \[ (\neg a + b + \neg c)(a + \neg c + d)(a + \neg c + \neg d)(a + c + d)(a + c + \neg d)(\neg b + c + d)(\neg a + b + c)(\neg a + \neg b + \neg c) \]
+        Check the satisfiability of the above formula using any algorithm.
+
+  \item Agent Alina is preparing a stealth operation. To succeed, she must choose exactly one disguise, one route, and one gadget from the following options:
+        \begin{itemize}
+          \item[(i)] Disguise: Doctor ($d_1$), Tourist ($d_2$), and Delivery Person ($d_3$)
+          \item[(ii)] Route: Sewer Tunnel ($r_1$), Rooftops ($r_2$), and Market Streets ($r_3$)
+          \item[(iii)] Gadget: Invisibility Cloak ($g_1$), Grappling Hook ($g_2$), and Translator Earpiece ($g_3$)
+        \end{itemize}
+        However, she has certain constraints based on intel from the headquarter.
+        \begin{itemize}
+          \item[(i)] If Alina picks the Doctor disguise, she cannot go through the Market Street.
+          \item[(ii)] She must use either the Rooftops or the Invisibility Cloak.
+          \item[(iii)] The Translator Earpiece is useless in the Sewer Tunnel.
+          \item[(iv)] She can't wear a Tourist disguise if she uses the Grappling Hook.
+        \end{itemize}
+
+        \begin{enumerate}
+          \item[a.] Express each constraint into a clause (using the introduced variables)
+          \item[b.] Can Agent Alina complete the mission? Explain your answer and show the satisfiability assignment for each variable.
+        \end{enumerate}
+\end{enumerate}
+
+\subsection*{Solutions}
+
+\begin{enumerate}
+  \item \textbf{Solution for Problem 1:}
+
+        Let's use the resolution method to check the satisfiability. Let $+$ denote disjunction ($\lor$) and the multiplication between parentheses denote conjunction ($\land$).
+
+        First, check the clauses $(a \lor \neg c \lor d)$ and $(a \lor \neg c \lor \neg d)$. By resolving with respect to the variable $d$, we obtain:
+        \[ (a \lor \neg c) \]
+
+        Second, check the clauses $(a \lor c \lor d)$ and $(a \lor c \lor \neg d)$. By resolving with respect to the variable $d$, we obtain:
+        \[ (a \lor c) \]
+
+        From the two resolution results above, namely $(a \lor \neg c)$ and $(a \lor c)$, resolving with respect to $c$ yields:
+        \[ a \]
+        This means the variable $a$ must evaluate to \textbf{True (1)}.
+
+        Next, substitute $a = 1$ (so $\neg a = 0$) into the clauses containing $\neg a$:
+        \begin{itemize}
+          \item $(\neg a \lor b \lor \neg c) \implies (0 \lor b \lor \neg c) \implies (b \lor \neg c)$
+          \item $(\neg a \lor b \lor c) \implies (0 \lor b \lor c) \implies (b \lor c)$
+          \item $(\neg a \lor \neg b \lor \neg c) \implies (0 \lor \neg b \lor \neg c) \implies (\neg b \lor \neg c)$
+        \end{itemize}
+
+        Resolve the clauses $(b \lor \neg c)$ and $(b \lor c)$ to obtain:
+        \[ b \]
+        So, the variable $b$ must evaluate to \textbf{True (1)}.
+
+        Substitute $b = 1$ (so $\neg b = 0$) into the clause $(\neg b \lor \neg c)$ above:
+        \[ 0 \lor \neg c \implies \neg c \]
+        Thus, the variable $c$ must evaluate to \textbf{False (0)}.
+
+        Finally, consider the remaining clause from the original formula that has not been used, which is $(\neg b \lor c \lor d)$. Substitute $b = 1$ and $c = 0$:
+        \[ 0 \lor 0 \lor d \implies d \]
+        This means the variable $d$ must evaluate to \textbf{True (1)}.
+
+        Since we can find a truth assignment that satisfies the formula ($a = 1, b = 1, c = 0, d = 1$) without leading to an empty clause (contradiction), we conclude that the formula is \textbf{Satisfiable}.
+
+  \item \textbf{Solution for Problem 2:}
+        \begin{enumerate}
+          \item[a.] Expressing each constraint as a propositional clause:
+                \begin{itemize}
+                  \item[(i)] If Alina picks Doctor ($d_1$), she cannot go through Market Street ($r_3$): \\ $d_1 \to \neg r_3 \equiv \neg d_1 \lor \neg r_3$
+                  \item[(ii)] She must use either Rooftops ($r_2$) or Invisibility Cloak ($g_1$): \\ $r_2 \lor g_1$
+                  \item[(iii)] Translator Earpiece ($g_3$) is useless in Sewer Tunnel ($r_1$) -- meaning she cannot use both: \\ $\neg (g_3 \land r_1) \equiv \neg g_3 \lor \neg r_1$
+                  \item[(iv)] If she uses Grappling Hook ($g_2$), she cannot wear Tourist disguise ($d_2$): \\ $g_2 \to \neg d_2 \equiv \neg g_2 \lor \neg d_2$
+                \end{itemize}
+
+          \item[b.] \textbf{Yes}, Agent Alina can complete the mission. Here is the proof by finding at least one valid truth assignment.
+
+                From the main premise, Alina must choose \textbf{exactly one} Disguise, Route, and Gadget.
+                Based on constraint (ii), she must have at least one of $r_2$ or $g_1$ set to True.
+
+                Let's pick a scenario where $r_2 = 1$ (Rooftops) and $g_1 = 1$ (Invisibility Cloak). Consequently, the other options in their respective categories are eliminated:
+                \begin{itemize}
+                  \item Route: Because $r_2 = 1 \implies r_1 = 0 \text{ and } r_3 = 0$.
+                  \item Gadget: Because $g_1 = 1 \implies g_2 = 0 \text{ and } g_3 = 0$.
+                \end{itemize}
+
+                Let's check if this assignment violates any other constraints:
+                \begin{itemize}
+                  \item Constraint (i): $\neg d_1 \lor \neg r_3 \implies \neg d_1 \lor 1 \equiv \mathbf{1}$ (\textit{Satisfied}, regardless of $d_1$).
+                  \item Constraint (iii): $\neg g_3 \lor \neg r_1 \implies 1 \lor 1 \equiv \mathbf{1}$ (\textit{Satisfied}).
+                  \item Constraint (iv): $\neg g_2 \lor \neg d_2 \implies 1 \lor \neg d_2 \equiv \mathbf{1}$ (\textit{Satisfied}, regardless of $d_2$).
+                \end{itemize}
+
+                Since all constraints are satisfied, Alina just needs to pick one disguise. Suppose she picks Doctor ($d_1 = 1$), which means $d_2 = 0$ and $d_3 = 0$.
+
+                The satisfiability assignment model for the variables is:
+                \begin{itemize}
+                  \item \textbf{Disguise:} $d_1 = 1,\quad d_2 = 0,\quad d_3 = 0$
+                  \item \textbf{Route:} $r_1 = 0,\quad r_2 = 1,\quad r_3 = 0$
+                  \item \textbf{Gadget:} $g_1 = 1,\quad g_2 = 0,\quad g_3 = 0$
+                \end{itemize}
+                This combination is valid and satisfies all rules.
+        \end{enumerate}
+\end{enumerate}
+\end{document}
