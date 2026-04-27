@@ -27,7 +27,7 @@ Selanjutnya $(\mathbb{R}_{\max}, \oplus, \otimes)$ disebut sebagai semiring max-
 
 \subsection{Matriks Aljabar Max-Plus}
 Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan operasi penjumlahan dan perkalian pada aljabar max-plus. Sebuah matriks bisa dianggap sebagai representasi dari suatu sistem diskrit atau graf berarah berbobot, sehingga dapat digunakan untuk memodelkan berbagai permasalahan matematika \parencite{subiono2015minmaxplus}.
-\begin{definisi}[\cite{Baccelli1994maxplus}]
+\begin{definisi}[\cite{Baccelli1994maxplus}]\label{def:perkalian_matriks_maxplus}
   Misalkan $A = (a_{ij})$ adalah matriks berukuran $m \times n$ dan $B = (b_{ij})$ adalah matriks berukuran $n \times p$ dengan elemen-elemen dari $\mathbb{R}_{\max}$. Operasi penjumlahan dan perkalian matriks pada aljabar max-plus didefinisikan sebagai berikut:
   \begin{align*}
     (A \oplus B)_{ij}  & = a_{ij} \oplus b_{ij} = \max\{a_{ij}, b_{ij}\}                                          \\
@@ -213,12 +213,12 @@ Dengan menggunakan notasi sikel, permutasi akan lebih ringkas untuk dituliskan d
 
 \begin{contoh}
   Misalkan diberikan permutasi $\tau\in S_9$ yang didefinisikan
-  \begin{align}
+  \begin{align*}
     \tau=\begin{pmatrix}
            1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
            3 & 1 & 2 & 5 & 4 & 6 & 8 & 7 & 9
          \end{pmatrix}.
-  \end{align}
+  \end{align*}
   Dengan menggunakan notasi sikel, permutasi $\tau$ dapat dituliskan sebagai
   \[
     \tau = (1\ 3\ 2)(4\ 5)(6)(7\ 8)(9).
@@ -265,7 +265,7 @@ Setiap permutasi $\sigma \in S_n$ dapat direpresentasikan dalam bentuk matriks p
   \end{cases} \quad \forall i, j = 1, 2, \ldots, n.
 \]
 Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan dengan cara yang serupa, di mana elemen-elemen matriks hanya terdiri dari $\varepsilon$ dan $0$ yang merepresentasikan identitas dan elemen nol dalam aljabar max-plus.
-\begin{definisi}[\cite{Farlow2009}]
+\begin{definisi}[\cite{Farlow2009}]\label{def:matriks_permutasi}
   Misalkan $\sigma : \{1,2,\dots,n\} \to \{1,2,\dots,n\}$
   adalah suatu permutasi, maka matriks permutasi max-plus
   $P_{\sigma} = [p_{ij}]$ didefinisikan sebagai
@@ -300,6 +300,131 @@ Dalam konteks aljabar max-plus, matriks permutasi juga dapat didefinisikan denga
   dengan $D(\lambda)$ adalah matriks diagonal max-plus dengan entri diagonal
   $\lambda_1, \lambda_2, \ldots, \lambda_n$
 \end{teorema}
+
+Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan komposisi permutasi dapat diperlihatkan melalui lema berikut.
+
+\begin{lema}\label{lem:perkalian_matriks_permutasi}
+  Misalkan $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi max-plus berukuran $n \times n$. Untuk setiap permutasi $\alpha, \beta \in S_n$, berlaku sifat perkalian:
+  \begin{align}\label{eq:perkalian_matriks_permutasi}
+    P_{\alpha} \otimes P_{\beta} = P_{\beta \circ \alpha}
+  \end{align}
+\end{lema}
+
+\begin{proof}
+  Berdasarkan \autoref{def:matriks_permutasi}, entri-entri dari matriks permutasi $P_{\alpha}$ dan $P_{\beta}$ didefinisikan sebagai:
+  \[
+    [P_{\alpha}]_{ik} = \begin{cases}
+      0,           & \text{jika } k = \alpha(i) \\
+      \varepsilon, & \text{lainnya}
+    \end{cases}
+    \quad\text{dan}\quad
+    [P_{\beta}]_{kj} = \begin{cases}
+      0,           & \text{jika } j = \beta(k) \\
+      \varepsilon, & \text{lainnya}
+    \end{cases}
+  \]
+  Misalkan $C = P_{\alpha} \otimes P_{\beta}$. Berdasarkan \autoref{def:perkalian_matriks_maxplus}, entri pada baris ke-$i$ dan kolom ke-$j$ dari $C$ adalah:
+  \begin{align}\label{eq:lema_perkalian_matriks_permutasi_AB}
+    [C]_{ij} = \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj})
+  \end{align}
+  Karena nilai maksimum yang mungkin dalam matriks permutasi max-plus adalah $0$, entri $[C]_{ij}$ akan bernilai $0$ jika dan hanya jika terdapat indeks $k$ sedemikian sehingga $[P_{\alpha}]_{ik} = 0$ dan $[P_{\beta}]_{kj} = 0$ secara bersamaan. Jika kondisi ini tidak terpenuhi untuk seluruh $k$, maka $[C]_{ij} = \varepsilon$.
+  Diketahui dari definisi sebelumnya bahwa:
+  \begin{align}
+    [P_{\alpha}]_{ik} = 0 & \iff k = \alpha(i) \label{eq:lema_perkalian_matriks_permutasi_1} \\
+    [P_{\beta}]_{kj} = 0  & \iff j = \beta(k) \label{eq:lema_perkalian_matriks_permutasi_2}
+  \end{align}
+  Dengan mensubstitusikan \eqref{eq:lema_perkalian_matriks_permutasi_1} ke dalam \eqref{eq:lema_perkalian_matriks_permutasi_2}, diperoleh:
+  \[
+    j = \beta(\alpha(i)) = (\beta \circ \alpha)(i)
+  \]
+  Karena $\alpha$ dan $\beta$ adalah permutasi di $S_n$, fungsi komposisinya juga merupakan permutasi yang bijektif. Artinya, untuk setiap baris $i$ hanya terdapat tepat satu kolom $j$ bernilai $0$ yang dituju.
+  Maka, \eqref{eq:lema_perkalian_matriks_permutasi_AB} dapat disederhanakan menjadi:
+  \begin{align}\label{eq:lema_perkalian_matriks_permutasi_hasil_kali}
+    \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj}) = [C]_{ij} = \begin{cases}
+                                                                                    0,           & \text{jika } j = (\beta \circ \alpha)(i) \\
+                                                                                    \varepsilon, & \text{lainnya}
+                                                                                  \end{cases}
+  \end{align}
+  Matriks dengan definisi \eqref{eq:lema_perkalian_matriks_permutasi_hasil_kali} secara tepat merepresentasikan matriks permutasi max-plus yang dibangun oleh fungsi komposisi $\beta \circ \alpha$. Dengan demikian, disimpulkan bahwa \eqref{eq:perkalian_matriks_permutasi} berlaku.
+\end{proof}
+\begin{contoh}
+  Diberikan grup simetri $S_3$. Misalkan diambil dua buah permutasi $\alpha, \beta \in S_3$ yang dituliskan dalam notasi sikel sebagai:
+  \[
+    \alpha = (1\;2\;3), \quad \beta = (1\;2)
+  \]
+  Matriks permutasi max-plus yang berkorespondensi dengan $\alpha$ dan $\beta$ berturut-turut adalah:
+  \[
+    P_\alpha = \begin{bmatrix}
+      \varepsilon & 0           & \varepsilon \\
+      \varepsilon & \varepsilon & 0           \\
+      0           & \varepsilon & \varepsilon
+    \end{bmatrix}, \quad
+    P_\beta = \begin{bmatrix}
+      \varepsilon & 0           & \varepsilon \\
+      0           & \varepsilon & \varepsilon \\
+      \varepsilon & \varepsilon & 0
+    \end{bmatrix}
+  \]
+  Kemudian diperoleh matriks hasil kali:
+  \[
+    P_\alpha \otimes P_\beta =\begin{bmatrix}
+      0           & \varepsilon & \varepsilon \\
+      \varepsilon & \varepsilon & 0           \\
+      \varepsilon & 0           & \varepsilon
+    \end{bmatrix}
+  \]
+  Selanjutnya, tinjau komposisi fungsi $\beta \circ \alpha=(1\;2\;3)(1\;2)=(2\;3)$.
+  Matriks permutasi max-plus yang dibangun dari permutasi $\beta \circ \alpha$ adalah:
+  \[
+    P_{\beta \circ \alpha} = \begin{bmatrix}
+      0           & \varepsilon & \varepsilon \\
+      \varepsilon & \varepsilon & 0           \\
+      \varepsilon & 0           & \varepsilon
+    \end{bmatrix}
+  \]
+  Dari perhitungan di atas, terlihat jelas bahwa hasil akhir $P_\alpha \otimes P_\beta$ sama persis dengan $P_{\beta \circ \alpha}$.
+\end{contoh}
+
+Ternyata dari \autoref{lem:perkalian_matriks_permutasi} diperoleh bahwa setiap $L_S(n)$ sangat berkaitan erat dengan sebuah permutasi. Dari hal tersebut dapat diperoleh sebuah ide untuk mendefinisikan grup yang dibangun dari himpunan seluruh matriks permutasi max-plus berukuran $n \times n$. Berikut adalah definisi dari grup matriks permutasi max-plus.
+
+\begin{definisi}\label{def:grup_permutasi_maxplus}
+  Misalkan $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi max-plus berukuran $n \times n$.
+  Dilengkapi dengan operasi perkalian matriks max-plus $(\otimes)$, $(\mathcal{P}_n, \otimes)$ membentuk sebuah grup dengan sifat:
+  \begin{enumerate}
+    \item Elemen identitas adalah matriks identitas max-plus $I_{n}$ (entri diagonal $0$ dan entri lainnya $\varepsilon$).
+    \item Invers dari $P_\tau \in \mathcal{P}_n$ adalah transposenya, yaitu $(P_\tau)^{-1} = (P_\tau)^T = P_{\tau^{-1}}$.
+  \end{enumerate}
+\end{definisi}
+
+\begin{teorema}\label{thm:isomorfisma_Sn}
+  Grup matriks permutasi max-plus $(\mathcal{P}_n, \otimes)$ isomorfis dengan grup simetri $(S_n, \circ)$.
+  Isomorfisma tersebut diberikan oleh fungsi bijektif $\phi : S_n \to \mathcal{P}_n$ yang didefinisikan sebagai
+  \[
+    \phi(\tau) = P_{\tau^{-1}}, \quad \forall\tau \in S_n.
+  \]
+\end{teorema}
+\begin{proof}
+  Akan ditunjukkan bahwa pemetaan $\phi : S_n \to \mathcal{P}_n$ dengan $\phi(\tau) = P_{\tau^{-1}}$ adalah sebuah isomorfisma dengan membuktikan bahwa $\phi$ merupakan homomorfisma grup yang bijektif.
+
+  \noindent Pertama, akan ditunjukkan bahwa $\phi$ adalah homomorfisma. Ambil sembarang $\tau, \sigma \in S_n$. Berdasarkan sifat invers dari komposisi fungsi dan \autoref{lem:perkalian_matriks_permutasi}, diperoleh:
+  \begin{align*}
+    \phi(\tau \circ \sigma) & = P_{(\tau \circ \sigma)^{-1}} = P_{\sigma^{-1} \circ \tau^{-1}} = P_{\tau^{-1}} \otimes P_{\sigma^{-1}} = \phi(\tau) \otimes \phi(\sigma).
+  \end{align*}
+  Terbukti $\phi$ mempertahankan operasi grup.
+
+  \noindent Selanjutnya, akan ditunjukkan bahwa $\phi$ bersifat injektif dengan meninjau kernelnya. Misalkan $e$ adalah permutasi identitas pada $S_n$ dan $I_{\max}$ adalah elemen identitas pada $\mathcal{P}_n$. Kernel dari $\phi$ adalah $\ker(\phi) = \{\tau \in S_n \mid \phi(\tau) = I_{\max}\}$.
+  Ambil sembarang $\tau \in \ker(\phi)$, maka $\phi(\tau) = P_{\tau^{-1}} = I_{\max}$.
+  Karena $I_{\max}$ hanya dibangun oleh permutasi identitas, haruslah $\tau^{-1} = e$, yang berakibat $\tau = e$.
+  Sehingga diperoleh $\ker(\phi) = \{e\}$. Mengingat kernel dari homomorfisma $\phi$ trivial, maka $\phi$ bersifat injektif.
+
+  \noindent Terakhir, akan ditunjukkan bahwa $\phi$ bersifat surjektif. Diketahui grup simetri memiliki orde $|S_n| = n!$. Karena $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi berukuran $n \times n$, ordonya juga $|\mathcal{P}_n| = n!$.
+  Karena $\phi : S_n \to \mathcal{P}_n$ adalah fungsi injektif di antara dua himpunan berhingga dengan kardinalitas yang sama ($|S_n| = |\mathcal{P}_n|$), maka berdasarkan prinsip Dirichlet (Pigeonhole Principle), $\phi$ secara otomatis bersifat surjektif.
+
+  \noindent Karena $\phi$ adalah homomorfisma grup yang injektif dan surjektif, terbukti bahwa $\phi$ adalah isomorfisma, sehingga $(\mathcal{P}_n, \otimes) \cong (S_n, \circ)$.
+\end{proof}
+
+\autoref{thm:isomorfisma_Sn} menunjukkan bahwa struktur matriks permutasi max-plus $(\mathcal{P}_n, \otimes)$ sama persis dengan struktur grup simetri $(S_n, \circ)$, sehingga setiap sifat yang berlaku pada $(S_n, \circ)$ juga berlaku pada $(\mathcal{P}_n, \otimes)$ dan sebaliknya.
+
 
 \subsection{Matriks Sirkulan}
 
@@ -424,7 +549,7 @@ dari $n$ buah objek berbeda \parencite{george2017introductioncombinatorics}.
   \caption{\emph{derangement} dari himpunan $S_4$}
   \label{fig:derangement_s4}
 \end{figure}
-Perhatikan pada gambar \ref{fig:derangement_s4}, jika kita ekstrak penempatan blok-blok nya akan diperoleh permutasi-permutasi di $S_4$, yang di mana terdapat 9 \emph{derangement} yaitu
+Perhatikan pada Gambar \ref{fig:derangement_s4}, jika kita ekstrak penempatan blok-blok nya akan diperoleh permutasi-permutasi di $S_4$, yang di mana terdapat 9 \emph{derangement} yaitu
 \[
   \mathrm{Der}(S_4)
   =\{
@@ -481,9 +606,9 @@ Tabel berikut menunjukkan jumlah \textit{Latin square} untuk ordo $n$ dari 1 hin
   \end{tabular}
 \end{table}
 
-Selanjutnya, diperoleh sebuah proposisi penting mengenai dekomposisi \textit{Latin square} dalam bentuk matriks permutasi max-plus yang dimana berlaku untuk setiap ordo $n$.
+Berikut merupakan sebuah proposisi penting mengenai dekomposisi \textit{Latin square} dalam bentuk matriks permutasi max-plus yang dimana berlaku untuk setiap ordo $n$.
 
-\begin{proposisi}\label{eq:dekomposisi_latin_square}
+\begin{proposisi}\label{prop:dekomposisi_latin_square}
   Misalkan $A \in L_S(n)$ dengan himpunan simbol
   $\{a_1, a_2, \ldots, a_n\}$.
   Untuk setiap $i = 1,2,\ldots,n$, definisikan permutasi $\tau_i \in S_n$ dengan
@@ -491,7 +616,7 @@ Selanjutnya, diperoleh sebuah proposisi penting mengenai dekomposisi \textit{Lat
     \tau_i(r) = c \iff [A]_{r c} = a_i.
   \]
   Maka matriks $A$ dapat dituliskan sebagai
-  \begin{align}
+  \begin{align}\label{eq:dekomposisi_latin_square_maxplus}
     A = a_1 P_{\tau_1} \oplus a_2 P_{\tau_2} \oplus \cdots \oplus a_n P_{\tau_n}
     = \bigoplus_{i=1}^{n} a_i P_{\tau_i},
   \end{align}

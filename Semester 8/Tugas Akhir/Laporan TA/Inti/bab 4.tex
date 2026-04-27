@@ -1,1 +1,51 @@
 \chapter{Pembahasan}
+
+\section{Sifat Perkalian Latin Square Max-Plus}
+Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \autoref{lem:perkalian_matriks_permutasi} dan \autoref{prop:dekomposisi_latin_square}.
+\begin{akibat}\label{cor:perkalian_latin_square}
+  Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol $\{a_1, a_2, \ldots, a_n\}$ dan $\{b_1, b_2, \ldots, b_n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{prop:dekomposisi_latin_square}, matriks $A$ dan $B$ memiliki dekomposisi $A = \bigoplus_{i=1}^{n} a_i \otimes P_{\sigma_i^A}$ dan $B = \bigoplus_{j=1}^{n} b_j \otimes P_{\sigma_j^B}$, maka hasil kali max-plus dari $A$ dan $B$ diberikan oleh:
+  \begin{align}\label{eq:perkalian_latin_square_maxplus}
+    A \otimes B = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes P_{\sigma_j^B \circ \sigma_i^A}.
+  \end{align}
+\end{akibat}
+
+\begin{proof}
+  Berdasarkan \autoref{prop:dekomposisi_latin_square}, elemen pada baris ke-$r$ dan kolom ke-$c$ dari matriks $A \otimes B$ adalah:
+  \[
+    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} ([A]_{rk} \otimes [B]_{kc})
+  \]
+  Berdasarkan \eqref{eq:dekomposisi_latin_square_maxplus}, substitusikan bentuk dekomposisi matriks $A$ dan $B$ ke dalam persamaan tersebut:
+  \[
+    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} \left( \left( \bigoplus_{i=1}^{n} a_i \otimes [P_{\sigma_i^A}]_{rk} \right) \otimes \left( \bigoplus_{j=1}^{n} b_j \otimes [P_{\sigma_j^B}]_{kc} \right) \right)
+  \]
+  Karena sifat distributif dan komutatif di dalam $\mathbb{R}_{\max}$, persamaan dapat disusun ulang menjadi:
+  \[
+    [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes \left( \bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc} \right)
+  \]
+  Bentuk $\bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc}$ merupakan definisi perkalian elemen baris ke-$r$ dan kolom ke-$c$ dari matriks hasil kali $P_{\sigma_i^A} \otimes P_{\sigma_j^B}$. Berdasarkan \autoref{lem:perkalian_matriks_permutasi}, berlaku hubungan $P_{\sigma_i^A} \otimes P_{\sigma_j^B} = P_{\sigma_j^B \circ \sigma_i^A}$.
+  Dengan mensubstitusikan sifat tersebut, diperoleh:
+  \[
+    [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes [P_{\sigma_j^B \circ \sigma_i^A}]_{rc}
+  \]
+  Secara matriks penuh, hal tersebut ekuivalen dengan \eqref{eq:perkalian_latin_square_maxplus}.
+\end{proof}
+\begin{akibat}\label{cor:perkalian_latin_square_simbol_1_hingga_n}
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{cor:perkalian_latin_square}, hasil kali max-plus dari $A$ dan $B$ diberikan oleh:
+  \begin{align}\label{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n}
+    A \otimes B = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A}.
+  \end{align}
+  Lebih lanjut, dapat digabungkan menjadi:
+  \begin{align}\label{eq:perkalian_latin_square_gabung}
+    A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right)
+  \end{align}
+\end{akibat}
+
+\begin{contoh}
+  Misalkan $A, B \in L_S(3)$, maka
+  \begin{align*}
+    A \otimes B & = \bigoplus_{i=1}^{3} \bigoplus_{j=1}^{3} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A}                                                                                                                                                 \\
+                & = 2 \otimes P_{\sigma_1^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_2^B \circ \sigma_1^A} \oplus 4 \otimes P_{\sigma_3^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_1^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_2^B \circ \sigma_2^A} \\
+                & \quad \oplus 5 \otimes P_{\sigma_3^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_1^B \circ \sigma_3^A} \oplus 5 \otimes P_{\sigma_2^B \circ \sigma_3^A} \oplus 6 \otimes P_{\sigma_3^B \circ \sigma_3^A}
+  \end{align*}
+\end{contoh}
+
