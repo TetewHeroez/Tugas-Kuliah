@@ -30,8 +30,8 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
 \begin{definisi}[\cite{Baccelli1994maxplus}]\label{def:perkalian_matriks_maxplus}
   Misalkan $A = (a_{ij})$ adalah matriks berukuran $m \times n$ dan $B = (b_{ij})$ adalah matriks berukuran $n \times p$ dengan elemen-elemen dari $\mathbb{R}_{\max}$. Operasi penjumlahan dan perkalian matriks pada aljabar max-plus didefinisikan sebagai berikut:
   \begin{align*}
-    (A \oplus B)_{ij}  & = a_{ij} \oplus b_{ij} = \max\{a_{ij}, b_{ij}\}                                          \\
-    (A \otimes B)_{ij} & = \bigoplus_{k=1}^{n} a_{ik} \otimes b_{kj} = \max_{1 \leq k \leq n} \{a_{ik} + b_{kj}\}
+    [A \oplus B]_{ij}  & = a_{ij} \oplus b_{ij} = \max\{a_{ij}, b_{ij}\}                                           \\
+    [A \otimes B]_{ij} & = \bigoplus_{k=1}^{n} a_{ik} \otimes b_{kj} = \max_{1 \leq k \leq n} \{a_{ik} + b_{kj}\}.
   \end{align*}
 \end{definisi}
 
@@ -45,7 +45,7 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
     B = \begin{pmatrix}
       4 & 0 \\
       2 & 6
-    \end{pmatrix}
+    \end{pmatrix}.
   \]
   Maka, penjumlahan dan perkalian matriks $A$ dan $B$ pada aljabar max-plus adalah:
   \begin{align*}
@@ -55,14 +55,14 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
                     \end{pmatrix} = \begin{pmatrix}
                                       4 & 3 \\
                                       5 & 6
-                                    \end{pmatrix}              \\
+                                    \end{pmatrix},              \\
     A \otimes B & = \begin{pmatrix}
                       \max\{2 + 4, 3 + 2\} & \max\{2 + 0, 3 + 6\} \\
                       \max\{5 + 4, 1 + 2\} & \max\{5 + 0, 1 + 6\}
                     \end{pmatrix} = \begin{pmatrix}
                                       6 & 9 \\
                                       9 & 7
-                                    \end{pmatrix}
+                                    \end{pmatrix}.
   \end{align*}
   Dari hasil di atas, dapat didefinisikan matriks identitas terhadap operasi $\otimes$ yaitu
   \[
@@ -150,12 +150,86 @@ Dalam aljabar abstrak, grup adalah himpunan yang dilengkapi dengan suatu operasi
   grup simetri berderajad $n$.
 \end{contoh}
 
-\subsection{Homomorfisma dan Isomorfirsma Grup}
+\subsection{Homomorfisma dan Isomorfisma Grup}
 Homomorfisma grup adalah suatu pemetaan antara dua grup yang mempertahankan struktur grup tersebut. Misalkan $(G, *)$ dan $(H, \cdot)$ adalah dua grup, maka suatu fungsi $f: G \to H$ disebut homomorfisma grup jika untuk setiap elemen $a, b$ dalam $G$, berlaku
 \[
   f(a * b) = f(a) \cdot f(b).
 \]
 Jika homomorfisma $f$ bersifat bijektif (satu-satu dan pada), maka $f$ disebut isomorfisma grup. Dua grup misalkan $G$ dan $H$ dikatakan isomorfik jika terdapat isomorfisma antara keduanya dan dinotasikan sebagai $G\cong H$. Isomorfik menunjukkan bahwa kedua grup tersebut memiliki struktur yang sama meskipun elemen-elemennya berbeda \parencite{subiono2022aljabar}.
+
+\subsection{Tindakan Grup}
+
+Untuk memahami bagaimana elemen-elemen dalam suatu grup bertransformasi atau berinteraksi dengan sebuah himpunan, diperlukan konsep tindakan grup.
+
+\begin{definisi}[\cite{subiono2022aljabar}]\label{def:tindakan_grup}
+  Suatu tindakan grup $G$ pada suatu himpunan tak-kosong $X$ adalah suatu pemetaan $\cdot:G \times X$ ke $X$ dengan sifat berikut:
+  \begin{enumerate}
+    \item $e\cdot x = x$ untuk semua $x \in X$ dan $e$ adalah elemen netral di $G$.
+    \item $g_1\cdot(g_2\cdot x) = (g_1g_2)\cdot x$ untuk semua $g_1, g_2 \in G$ dan semua $x \in X$.
+  \end{enumerate}
+  Bila tindakan tersebut ada, maka dikatakan grup $G$ bertindak pada $X$ dan $X$ adalah $G$-set.
+\end{definisi}
+
+Ketika grup $G$ bertindak pada himpunan $X$, kita dapat mengamati jejak pergerakan suatu elemen $a \in X$ akibat tindakan tersebut, yang disebut sebagai orbit. Di sisi lain, kita juga dapat mengidentifikasi elemen-elemen grup apa saja yang membuat elemen $a$ tersebut tetap diam di tempatnya, yang disebut sebagai \emph{stabilizer}.
+
+\begin{definisi}[\cite{subiono2022aljabar}]\label{def:orbit_stabilizer}
+  Misalkan grup $G$ bertindak pada himpunan tak-kosong $X$, dan $a \in X$.
+  Orbit dari $a$, dinotasikan dengan $O_a$, adalah himpunan seluruh elemen di $X$ yang merupakan hasil tindakan elemen-elemen $G$ terhadap $a$:
+  \[
+    O_a = \{ g\cdot a \mid g \in G \}
+  \]
+  \emph{Stabilizer} dari $a$, dinotasikan dengan $G_a$, adalah himpunan seluruh elemen di $G$ yang membiarkan $a$ tetap (tidak berubah):
+  \[
+    G_a = \{ g \in G \mid g\cdot a = a \}.
+  \]
+\end{definisi}
+
+Terdapat hubungan sangat penting antara kardinalitas dari grup, orbit, dan \emph{stabilizer}, yang diformulasikan dalam Teorema Orbit-Stabilizer.
+
+\begin{teorema}[\cite{subiono2022aljabar}]\label{thm:orbit_stabilizer}
+  Diberikan grup $G$ bertindak pada suatu himpunan tak-kosong $X$ dan $a$ adalah sebarang elemen di $X$. Bila $G$ adalah berhingga, maka $|O_a| = |G|/|G_a|$.
+  Secara ekuivalen, persamaan tersebut dapat dituliskan kembali sebagai $|G| = |O_a| \times |G_a|$.
+\end{teorema}
+
+Untuk memberikan ilustrasi yang lebih konkret mengenai bagaimana \autoref{thm:orbit_stabilizer} bekerja, berikut diberikan contoh tindakan dari sebuah grup permutasi.
+
+\begin{contoh}
+  Misalkan $G = S_3 = \{(1), (1\;2), (1\;3), (2\;3), (1\;2\;3), (1\;3\;2)\}$ dengan kardinalitas $|S_3| = 6$. Grup $S_3$ bertindak pada himpunan $X = \{1, 2, 3\}$ melalui tindakan natural $\sigma\cdot x = \sigma(x)$ untuk $\sigma \in S_3$ dan $x \in X$.
+
+  \noindent Ambil elemen $a = 3 \in X$. Orbit $O_3$ memuat semua nilai hasil pemetaan angka $3$ oleh setiap permutasi di $S_3$. Karena $S_3$ memuat semua permutasi yang mungkin, angka $3$ dapat dipetakan ke $1$, $2$, atau $3$. Maka:
+  \[
+    O_3 = \{1, 2, 3\} \implies |O_3| = 3
+  \]
+  \emph{Stabilizer} $(S_3)_3$ memuat permutasi di $S_3$ yang menetapkan angka $3$. Elemen yang memenuhi hanya permutasi identitas $(1)$ dan elemen transposisi $(1\;2)$. Maka:
+  \[
+    (S_3)_3 = \{(1), (1\;2)\} \implies |(S_3)_3| = 2
+  \]
+  Menurut \autoref{thm:orbit_stabilizer}, berlaku $|S_3| = |O_3| \times |(S_3)_3|$, yaitu $6 = 3 \times 2$.
+\end{contoh}
+
+\subsection{\emph{Centralizer}}
+
+Konsep tindakan grup pada suatu himpunan tak-kosong dapat diaplikasikan pada grup itu sendiri. Salah satu bentuk tindakan grup yang mendasar adalah tindakan grup pada dirinya sendiri melalui operasi konjugasi. Tindakan ini memunculkan himpunan elemen yang saling berelasi dalam suatu orbit yang disebut sebagai klas konjugasi, serta himpunan elemen yang menetap atau komutatif yang secara formal didefinisikan sebagai \emph{centralizer}.
+
+\begin{definisi}[{\cite{subiono2022aljabar}}]\label{def:centralizer_abstrak}
+  Bila $G$ adalah suatu grup dan $a, b \in G$, maka $a$ dan $b$ berkonjuget dalam $G$ bila ada suatu $g \in G$ yang memenuhi $b = gag^{-1}$ atau dengan kata lain bila $a$ dan $b$ adalah dalam orbit yang sama oleh tindakan $G$ pada dirinya sendiri melalui konjugasi. Klas konjugasi dari suatu $a \in G$ yaitu $K_G(a) = \{gag^{-1} \mid g \in G\}$ adalah himpunan semua konjuget dari $a$ atau dengan kata lain orbit dari $a$ dalam tindakan tersebut. Ingat bahwa, \emph{centralizer} dari $a \in G$
+  \[
+    C_G(a) = \{g \in G \mid ga = ag\} = \{g \in G \mid gag^{-1} = a\}
+  \]
+  adalah himpunan dari semua elemen yang komutatif dengan $a$ atau secara ekivalen stabiliser dari $a$ dalam tindakan tersebut.
+\end{definisi}
+
+Sebagai catatan terkait perluasan notasi, konsep \emph{centralizer} juga dapat diaplikasikan pada suatu himpunan. Apabila evaluasi komutatifitas dilakukan terhadap suatu himpunan bagian $A \subseteq G$, notasinya ditulis sebagai
+\[
+  C_G(A)=\{g \in G \mid ga = ag, \forall a \in A\} = \{g \in G \mid gag^{-1} = a, \forall a \in A\},
+\]
+yang merepresentasikan himpunan elemen di $G$ yang komutatif dengan seluruh elemen di dalam $A$. Lebih jauh, apabila himpunan yang dievaluasi adalah grup $G$ itu sendiri, maka himpunan $C_G(G)$ disebut sebagai senter dari grup (\emph{center of a group}) dan secara eksklusif dinotasikan dengan $Z(G)$.
+
+Karena klas konjugasi pada dasarnya adalah sebuah orbit dan \emph{centralizer} adalah sebuah stabiliser dari tindakan konjugasi, maka \autoref{thm:orbit_stabilizer} dapat secara langsung diterapkan untuk mengevaluasi ukurannya di dalam grup.
+
+\begin{proposisi}[{\cite{subiono2022aljabar}}]\label{prop:kardinalitas_centralizer}
+  Misalkan $G$ adalah suatu grup bertindak pada dirinya sendiri melalui konjugasi dan $a \in G$. Maka banyaknya klas konjugasi dari $a$ sama dengan indeks dari \emph{centralizer} dari $a$ yaitu $|K(a)| = [G : C(a)]$. Bila $G$ berhingga maka $|K(a)| = |G|/|C(a)|$ atau dengan kata lain $|C(a)| = |G|/|K(a)|$.
+\end{proposisi}
 
 \section{Permutasi}
 Dalam aljabar, permutasi ialah suatu fungsi bijektif dari himpunan ke dirinya sendiri. Sebuah permutasi dari himpunan $X = \{1, 2, \ldots, n\}$ biasanya disimbolkan dengan $\sigma: X \to X$, dengan $\sigma$ bersifat satu-satu dan pada. Himpunan semua permutasi dari $X$ membentuk suatu grup terhadap operasi komposisi fungsi, yang disebut grup simetris pada $n$ elemen yang disimbolkan dengan $S_n$ \parencite{subiono2022aljabar}.
@@ -169,7 +243,7 @@ Dalam aljabar, permutasi ialah suatu fungsi bijektif dari himpunan ke dirinya se
     \sigma = \begin{pmatrix}
       1 & 2 & 3 \\
       2 & 3 & 1
-    \end{pmatrix}
+    \end{pmatrix}.
   \]
 \end{contoh}
 \subsection{Sikel}
@@ -258,7 +332,7 @@ Dengan menggunakan notasi sikel, permutasi akan lebih ringkas untuk dituliskan d
 \subsection{Matriks Permutasi}
 Setiap permutasi $\sigma \in S_n$ dapat direpresentasikan dalam bentuk matriks permutasi $P_{\sigma}\in\R^{n \times n}$ yang elemen-elemennya hanya terdiri dari $0$ dan $1$, dengan aturan sebagai berikut:
 \[
-  (P_{\sigma})_{ij} =
+  [P_{\sigma}]_{ij} =
   \begin{cases}
     1, & \text{jika } j = \sigma(i), \\
     0, & \text{lainnya}.
@@ -306,7 +380,7 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
 \begin{lema}\label{lem:perkalian_matriks_permutasi}
   Misalkan $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi max-plus berukuran $n \times n$. Untuk setiap permutasi $\alpha, \beta \in S_n$, berlaku sifat perkalian:
   \begin{align}\label{eq:perkalian_matriks_permutasi}
-    P_{\alpha} \otimes P_{\beta} = P_{\beta \circ \alpha}
+    P_{\alpha} \otimes P_{\beta} = P_{\beta \circ \alpha}.
   \end{align}
 \end{lema}
 
@@ -325,24 +399,24 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
   \]
   Misalkan $C = P_{\alpha} \otimes P_{\beta}$. Berdasarkan \autoref{def:perkalian_matriks_maxplus}, entri pada baris ke-$i$ dan kolom ke-$j$ dari $C$ adalah:
   \begin{align}\label{eq:lema_perkalian_matriks_permutasi_AB}
-    [C]_{ij} = \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj})
+    [C]_{ij} = \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj}).
   \end{align}
   Karena nilai maksimum yang mungkin dalam matriks permutasi max-plus adalah $0$, entri $[C]_{ij}$ akan bernilai $0$ jika dan hanya jika terdapat indeks $k$ sedemikian sehingga $[P_{\alpha}]_{ik} = 0$ dan $[P_{\beta}]_{kj} = 0$ secara bersamaan. Jika kondisi ini tidak terpenuhi untuk seluruh $k$, maka $[C]_{ij} = \varepsilon$.
   Diketahui dari definisi sebelumnya bahwa:
   \begin{align}
     [P_{\alpha}]_{ik} = 0 & \iff k = \alpha(i) \label{eq:lema_perkalian_matriks_permutasi_1} \\
-    [P_{\beta}]_{kj} = 0  & \iff j = \beta(k) \label{eq:lema_perkalian_matriks_permutasi_2}
+    [P_{\beta}]_{kj} = 0  & \iff j = \beta(k). \label{eq:lema_perkalian_matriks_permutasi_2}
   \end{align}
   Dengan mensubstitusikan \eqref{eq:lema_perkalian_matriks_permutasi_1} ke dalam \eqref{eq:lema_perkalian_matriks_permutasi_2}, diperoleh:
   \[
-    j = \beta(\alpha(i)) = (\beta \circ \alpha)(i)
+    j = \beta(\alpha(i)) = (\beta \circ \alpha)(i).
   \]
   Karena $\alpha$ dan $\beta$ adalah permutasi di $S_n$, fungsi komposisinya juga merupakan permutasi yang bijektif. Artinya, untuk setiap baris $i$ hanya terdapat tepat satu kolom $j$ bernilai $0$ yang dituju.
   Maka, \eqref{eq:lema_perkalian_matriks_permutasi_AB} dapat disederhanakan menjadi:
   \begin{align}\label{eq:lema_perkalian_matriks_permutasi_hasil_kali}
     \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj}) = [C]_{ij} = \begin{cases}
                                                                                     0,           & \text{jika } j = (\beta \circ \alpha)(i) \\
-                                                                                    \varepsilon, & \text{lainnya}
+                                                                                    \varepsilon, & \text{lainnya}.
                                                                                   \end{cases}
   \end{align}
   Matriks dengan definisi \eqref{eq:lema_perkalian_matriks_permutasi_hasil_kali} secara tepat merepresentasikan matriks permutasi max-plus yang dibangun oleh fungsi komposisi $\beta \circ \alpha$. Dengan demikian, disimpulkan bahwa \eqref{eq:perkalian_matriks_permutasi} berlaku.
@@ -350,7 +424,7 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
 \begin{contoh}
   Diberikan grup simetri $S_3$. Misalkan diambil dua buah permutasi $\alpha, \beta \in S_3$ yang dituliskan dalam notasi sikel sebagai:
   \[
-    \alpha = (1\;2\;3), \quad \beta = (1\;2)
+    \alpha = (1\;2\;3), \quad \beta = (1\;2).
   \]
   Matriks permutasi max-plus yang berkorespondensi dengan $\alpha$ dan $\beta$ berturut-turut adalah:
   \[
@@ -363,7 +437,7 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
       \varepsilon & 0           & \varepsilon \\
       0           & \varepsilon & \varepsilon \\
       \varepsilon & \varepsilon & 0
-    \end{bmatrix}
+    \end{bmatrix}.
   \]
   Kemudian diperoleh matriks hasil kali:
   \[
@@ -371,7 +445,7 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
       0           & \varepsilon & \varepsilon \\
       \varepsilon & \varepsilon & 0           \\
       \varepsilon & 0           & \varepsilon
-    \end{bmatrix}
+    \end{bmatrix}.
   \]
   Selanjutnya, tinjau komposisi fungsi $\beta \circ \alpha=(1\;2\;3)(1\;2)=(2\;3)$.
   Matriks permutasi max-plus yang dibangun dari permutasi $\beta \circ \alpha$ adalah:
@@ -380,7 +454,7 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
       0           & \varepsilon & \varepsilon \\
       \varepsilon & \varepsilon & 0           \\
       \varepsilon & 0           & \varepsilon
-    \end{bmatrix}
+    \end{bmatrix}.
   \]
   Dari perhitungan di atas, terlihat jelas bahwa hasil akhir $P_\alpha \otimes P_\beta$ sama persis dengan $P_{\beta \circ \alpha}$.
 \end{contoh}
@@ -412,13 +486,13 @@ Ternyata dari \autoref{lem:perkalian_matriks_permutasi} diperoleh bahwa setiap $
   \end{align*}
   Terbukti $\phi$ mempertahankan operasi grup.
 
-  \noindent Selanjutnya, akan ditunjukkan bahwa $\phi$ bersifat injektif dengan meninjau kernelnya. Misalkan $e$ adalah permutasi identitas pada $S_n$ dan $I_{\max}$ adalah elemen identitas pada $\mathcal{P}_n$. Kernel dari $\phi$ adalah $\ker(\phi) = \{\tau \in S_n \mid \phi(\tau) = I_{\max}\}$.
-  Ambil sembarang $\tau \in \ker(\phi)$, maka $\phi(\tau) = P_{\tau^{-1}} = I_{\max}$.
-  Karena $I_{\max}$ hanya dibangun oleh permutasi identitas, haruslah $\tau^{-1} = e$, yang berakibat $\tau = e$.
+  \noindent Selanjutnya, akan ditunjukkan bahwa $\phi$ bersifat injektif dengan meninjau kernelnya. Misalkan $e$ adalah permutasi identitas pada $S_n$ dan $I_n$ adalah elemen identitas pada $\mathcal{P}_n$. Kernel dari $\phi$ adalah $\ker(\phi) = \{\tau \in S_n \mid \phi(\tau) = I_n\}$.\\
+  Ambil sembarang $\tau \in \ker(\phi)$, maka $\phi(\tau) = P_{\tau^{-1}} = I_n$.
+  Karena $I_n$ hanya dibangun oleh permutasi identitas, haruslah $\tau^{-1} = e$, yang berakibat $\tau = e$.
   Sehingga diperoleh $\ker(\phi) = \{e\}$. Mengingat kernel dari homomorfisma $\phi$ trivial, maka $\phi$ bersifat injektif.
 
   \noindent Terakhir, akan ditunjukkan bahwa $\phi$ bersifat surjektif. Diketahui grup simetri memiliki orde $|S_n| = n!$. Karena $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi berukuran $n \times n$, ordonya juga $|\mathcal{P}_n| = n!$.
-  Karena $\phi : S_n \to \mathcal{P}_n$ adalah fungsi injektif di antara dua himpunan berhingga dengan kardinalitas yang sama ($|S_n| = |\mathcal{P}_n|$), maka berdasarkan prinsip Dirichlet (Pigeonhole Principle), $\phi$ secara otomatis bersifat surjektif.
+  Karena $\phi : S_n \to \mathcal{P}_n$ adalah fungsi injektif di antara dua himpunan berhingga dengan kardinalitas yang sama ($|S_n| = |\mathcal{P}_n|$), maka $\phi$ secara otomatis bersifat surjektif.
 
   \noindent Karena $\phi$ adalah homomorfisma grup yang injektif dan surjektif, terbukti bahwa $\phi$ adalah isomorfisma, sehingga $(\mathcal{P}_n, \otimes) \cong (S_n, \circ)$.
 \end{proof}
@@ -429,7 +503,7 @@ Ternyata dari \autoref{lem:perkalian_matriks_permutasi} diperoleh bahwa setiap $
 \subsection{Matriks Sirkulan}
 
 Matriks sirkulan adalah matriks persegi di mana setiap barisnya merupakan pergeseran siklik dari baris sebelumnya. Sebuah matriks sirkulan berukuran $n \times n$ dapat dituliskan dalam bentuk umum
-\begin{align}
+\begin{align*}
   C =
   \begin{pmatrix}
     c_0     & c_{n-1} & c_{n-2} & \cdots & c_1    \\
@@ -438,14 +512,14 @@ Matriks sirkulan adalah matriks persegi di mana setiap barisnya merupakan perges
     \vdots  & \vdots  & \vdots  & \ddots & \vdots \\
     c_{n-1} & c_{n-2} & c_{n-3} & \cdots & c_0
   \end{pmatrix}.
-\end{align}
+\end{align*}
 Secara umum, setiap matriks sirkulan dapat direpresentasikan sebagai kombinasi linear dari matriks permutasi. Hal ini membuat matriks sirkulan dapat
 dituliskan dalam bentuk polinomial dari matriks permutasi yaitu
-\begin{align}
+\begin{align*}
   C = c_0 I_n \oplus c_1 P_{\sigma} \oplus c_2 P_{\sigma}^{2} \oplus \cdots \oplus c_{n-1} P_{\sigma}^{n-1},
-\end{align}
+\end{align*}
 dengan $\sigma = (1\ 2\ \ldots\ n)$ adalah permutasi siklik pada $n$ elemen. Jika dituliskan, maka matriks $P_{\sigma}$ adalah
-\begin{align}
+\begin{align*}
   P_{\sigma} =
   \begin{pmatrix}
     \varepsilon & 0           & \varepsilon & \cdots & \varepsilon \\
@@ -454,7 +528,7 @@ dengan $\sigma = (1\ 2\ \ldots\ n)$ adalah permutasi siklik pada $n$ elemen. Jik
     \vdots      & \vdots      & \vdots      & \ddots & \vdots      \\
     0           & \varepsilon & \varepsilon & \cdots & \varepsilon
   \end{pmatrix}.
-\end{align}
+\end{align*}
 Karena bentuk matriks sirkulan-$t$ yang dapat direpresentasikan sebagai polinomial, maka muncul sebuah teorema penting mengenai kekomutatifan antara dua matriks sirkulan-$t$.
 \begin{teorema}[\cite{huang2024newsemiring}]
   Misalkan $A$ dan $B$ adalah dua matriks sirkulan, maka $A$ dan $B$ komutatif terhadap operasi $\otimes$, yaitu
@@ -466,7 +540,7 @@ Karena bentuk matriks sirkulan-$t$ yang dapat direpresentasikan sebagai polinomi
 Selain matriks sirkulan biasa, terdapat juga variasi matriks sirkulan yang dikenal sebagai matriks sirkulan-$t$.
 \begin{definisi}[\cite{buchinskiy2024analysisfour}]
   Misalkan $t$ adalah bilangan bulat, didefinisikan \textit{matriks sirkulan-$t$ bawah} berorde $n$ sebagai
-  \begin{align}
+  \begin{align*}
     C_{(t)} =
     \begin{pmatrix}
       c_0               & c_{n-1}           & c_{n-2}           & \cdots & c_1    \\
@@ -475,9 +549,9 @@ Selain matriks sirkulan biasa, terdapat juga variasi matriks sirkulan yang diken
       \vdots            & \vdots            & \vdots            & \ddots & \vdots \\
       c_{n-1} \otimes t & c_{n-2} \otimes t & c_{n-3} \otimes t & \cdots & c_0
     \end{pmatrix}
-  \end{align}
+  \end{align*}
   dan \textit{matriks sirkulan-$t$ atas} berorde $n$ sebagai
-  \begin{align}
+  \begin{align*}
     C^{(t)} =
     \begin{pmatrix}
       c_0     & c_{n-1} \otimes t & c_{n-2} \otimes t & \cdots & c_1 \otimes t \\
@@ -486,19 +560,19 @@ Selain matriks sirkulan biasa, terdapat juga variasi matriks sirkulan yang diken
       \vdots  & \vdots            & \vdots            & \ddots & \vdots        \\
       c_{n-1} & c_{n-2}           & c_{n-3}           & \cdots & c_0
     \end{pmatrix}.
-  \end{align}
+  \end{align*}
 \end{definisi}
 
 Selanjutnya, diperoleh juga sebuah proposisi penting mengenai representasi matriks sirkulan-$t$ dalam bentuk polinomial dari matriks permutasi.
 
 \begin{proposisi}[\cite{buchinskiy2024analysisfour}]
   Setiap matriks sirkulan-$t$ bawah $C_{(t)}$ dan matriks sirkulan-$t$ atas $C^{(t)}$ dapat direpresentasikan sebagai polinomial dari matriks $P$, yaitu
-  \begin{align}
+  \begin{align*}
     C^{(t)} & = c_0 I_n \oplus c_1 P^{(t)} \oplus c_2 \left(P^{(t)}\right)^{2} \oplus \cdots \oplus c_{n-1} \left(P^{(t)}\right)^{n-1}, \\
-    C_{(t)} & = c_0 I_n \oplus c_1 P_{(t)} \oplus c_2 \left(P_{(t)}\right)^{2} \oplus \cdots \oplus c_{n-1} \left(P_{(t)}\right)^{n-1}.
-  \end{align}
+    C_{(t)} & = c_0 I_n \oplus c_1 P_{(t)} \oplus c_2 \left(P_{(t)}\right)^{2} \oplus \cdots \oplus c_{n-1} \left(P_{(t)}\right)^{n-1},
+  \end{align*}
   dengan
-  \begin{align}
+  \begin{align*}
     P_{(t)} & =
     \begin{pmatrix}
       \varepsilon & 0           & \varepsilon & \cdots & \varepsilon & \varepsilon \\
@@ -515,7 +589,7 @@ Selanjutnya, diperoleh juga sebuah proposisi penting mengenai representasi matri
       \vdots      & \vdots      & \vdots      & \ddots & \vdots      & \vdots      \\
       \varepsilon & \varepsilon & \varepsilon & \cdots & 0           & \varepsilon \\
     \end{pmatrix}.
-  \end{align}
+  \end{align*}
 \end{proposisi}
 Sehingga, dari proposisi di atas diperoleh juga teorema mengenai kekomutatifan antara dua matriks sirkulan-$t$.
 \begin{teorema}[\cite{buchinskiy2024analysisfour}]
@@ -524,6 +598,55 @@ Sehingga, dari proposisi di atas diperoleh juga teorema mengenai kekomutatifan a
     A \otimes B = B \otimes A.
   \]
 \end{teorema}
+
+\subsection{\emph{Centralizer} di $S_n$}
+
+grup simetri ($S_n$) adalah salah satu grup yang berisi semua permutasi dari $n$ elemen. Berdasarkan \autoref{prop:kardinalitas_centralizer}, perhitungan kardinalitas \emph{centralizer} dari suatu permutasi tunggal $a \in S_n$ bergantung pada kardinalitas klas konjugasinya, yakni $|K(a)|$. Di dalam grup simetri, anggota dari suatu klas konjugasi sepenuhnya ditentukan oleh struktur dekomposisi sikel dari permutasi tersebut, yang secara formal didefinisikan sebagai tipe permutasi.
+
+\begin{definisi}[{\cite{subiono2022aljabar}}]\label{def:tipe_permutasi}
+  Bila $a \in S_n$ adalah komposisi dari sikel-sikel disjoint yang terdiri dari sikel panjang $1$ sebanyak $a_1$, sikel dengan panjang $2$ sebanyak $a_2$, $\ldots$, sikel panjang $n$ sebanyak $a_n$ dengan $a_i \in \mathbb{Z}$ yang memenuhi
+  \[
+    1a_1 + 2a_2 + \ldots + na_n = n,
+  \]
+  maka tipe permutasi dari $a$ adalah $[a_1, a_2, \ldots, a_n]$.
+\end{definisi}
+
+Dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada dalam satu orbit di bawah tindakan konjugasi) jika dan hanya jika keduanya memiliki tipe permutasi yang identik. Karakteristik struktural ini memungkinkan \autoref{prop:kardinalitas_centralizer} dijabarkan ke dalam rumusan perhitungan kardinalitas yang eksplisit untuk grup simetri.
+
+\begin{lema}[{\cite{dummit2004abstract}}]\label{lem:kardinalitas_centralizer_Sn}
+  Misalkan permutasi $a \in S_n$ memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Kardinalitas dari \emph{centralizer} $a$ di dalam $S_n$ diberikan oleh:
+  \[
+    |C_{S_n}(a)| = \prod_{k=1}^{n} k^{a_k} (a_k!).
+  \]
+\end{lema}
+
+\begin{proof}
+  Berdasarkan \autoref{prop:kardinalitas_centralizer}, untuk grup berhingga $S_n$ berlaku hubungan kardinalitas:
+  \[
+    |C_{S_n}(a)| = \frac{|S_n|}{|K(a)|}.
+  \]
+  Diketahui bahwa kardinalitas dari grup simetri secara keseluruhan adalah $|S_n| = n!$. Sementara itu, klas konjugasi $K(a)$ memuat seluruh permutasi di $S_n$ yang saling berkonjugasi dengan $a$, yang ekuivalen dengan himpunan permutasi yang memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Secara kombinatorial, banyaknya permutasi di $S_n$ yang memenuhi struktur sikel tersebut bernilai:
+  \[
+    |K(a)| = \frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}.
+  \]
+  Dengan mensubstitusikan nilai kardinalitas grup simetri dan kardinalitas klas konjugasi tersebut ke dalam persamaan awal, diperoleh kardinalitas eksak untuk \emph{centralizer} sebagai berikut:
+  \[
+    |C_{S_n}(a)| = \frac{n!}{\frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}} = \prod_{k=1}^{n} k^{a_k} (a_k!).
+  \]
+\end{proof}
+
+\begin{contoh}
+  Sebagai ilustrasi penerapan \autoref{lem:kardinalitas_centralizer_Sn}, tinjau grup simetri $S_4$ dan sebuah permutasi $a = (1\;2) \in S_4$. Dalam representasi dekomposisi sikel yang saling lepas secara utuh di $S_4$, permutasi $a$ ditulis sebagai $(1\;2)(3)(4)$. Dari bentuk tersebut, terlihat bahwa $a$ memiliki dua sikel berpanjang $1$ dan satu sikel berpanjang $2$. Dengan demikian, tipe permutasi dari $a$ adalah $[2, 1, 0, 0]$, yang berarti nilai $a_1 = 2$, $a_2 = 1$, $a_3 = 0$, dan $a_4 = 0$.\\
+  Berdasarkan formula pada \autoref{lem:kardinalitas_centralizer_Sn}, kardinalitas dari \emph{centralizer} elemen $a$ di dalam $S_4$ dapat dihitung sebagai
+  \begin{align*}
+    |C_{S_4}(a)| & = \prod_{k=1}^{4} k^{a_k} (a_k!)                                                      = (1^2 \times 2!) \times (2^1 \times 1!) \times (3^0 \times 0!) \times (4^0 \times 0!)
+    = 4.
+  \end{align*}
+  Hasil perhitungan ini secara aljabar menunjukkan bahwa terdapat tepat $4$ permutasi di dalam grup $S_4$ yang bersifat komutatif dengan permutasi $(1\;2)$. Secara eksplisit, keempat permutasi tersebut dapat dijabarkan ke dalam himpunan berikut:
+  \[
+    C_{S_4}((1\;2)) = \{ (1), (1\;2), (3\;4), (1\;2)(3\;4) \}.
+  \]
+\end{contoh}
 
 \section{\textit{Derangement}}
 Titik tetap dari fungsi $f: X\to X$ adalah sebuah $x\in X$ yang memenuhi $f(x)=x$. Dalam konteks sebuah permutasi
@@ -555,7 +678,7 @@ Perhatikan pada Gambar \ref{fig:derangement_s4}, jika kita ekstrak penempatan bl
   =\{
   (12)(34),(13)(24),(14)(23),
   (1234),(1243),(1324),
-  (1342),(1423),(1432)\}
+  (1342),(1423),(1432)\}.
 \]
 
 Karakteristik pengurutan yang cukup unik ini dapat memunculkan adanya lema dan teorema
@@ -589,7 +712,7 @@ Tabel berikut menunjukkan jumlah \textit{Latin square} untuk ordo $n$ dari 1 hin
   \caption{Jumlah Latin squares berordo $n$ (\cite{oeisA002860})}
   \begin{tabular}{r r}
     \hline
-    $n$ & Jumlah Latin squares                                                           \\
+    $n$ & Jumlah Latin square                                                            \\
     \hline
     1   & 1                                                                              \\
     2   & 2                                                                              \\

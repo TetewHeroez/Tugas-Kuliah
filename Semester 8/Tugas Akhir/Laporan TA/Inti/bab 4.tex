@@ -1,9 +1,9 @@
-\chapter{Pembahasan}
+\chapter{PEMBAHASAN}
 
 \section{Sifat Perkalian Latin Square Max-Plus}
 Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \autoref{lem:perkalian_matriks_permutasi} dan \autoref{prop:dekomposisi_latin_square}.
 \begin{akibat}\label{cor:perkalian_latin_square}
-  Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol $\{a_1, a_2, \ldots, a_n\}$ dan $\{b_1, b_2, \ldots, b_n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{prop:dekomposisi_latin_square}, matriks $A$ dan $B$ memiliki dekomposisi $A = \bigoplus_{i=1}^{n} a_i \otimes P_{\sigma_i^A}$ dan $B = \bigoplus_{j=1}^{n} b_j \otimes P_{\sigma_j^B}$, maka hasil kali max-plus dari $A$ dan $B$ diberikan oleh:
+  Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol $\{a_1, a_2, \ldots, a_n\}$ dan $\{b_1, b_2, \ldots, b_n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{prop:dekomposisi_latin_square}, matriks $A$ dan $B$ memiliki dekomposisi $A = \bigoplus_{i=1}^{n} a_i \otimes P_{\sigma_i^A}$ dan $B = \bigoplus_{j=1}^{n} b_j \otimes P_{\sigma_j^B}$, maka hasil kali max-plus dari $A$ dan $B$ diberikan oleh
   \begin{align}\label{eq:perkalian_latin_square_maxplus}
     A \otimes B = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes P_{\sigma_j^B \circ \sigma_i^A}.
   \end{align}
@@ -12,20 +12,20 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
 \begin{proof}
   Berdasarkan \autoref{prop:dekomposisi_latin_square}, elemen pada baris ke-$r$ dan kolom ke-$c$ dari matriks $A \otimes B$ adalah:
   \[
-    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} ([A]_{rk} \otimes [B]_{kc})
+    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} ([A]_{rk} \otimes [B]_{kc}).
   \]
   Berdasarkan \eqref{eq:dekomposisi_latin_square_maxplus}, substitusikan bentuk dekomposisi matriks $A$ dan $B$ ke dalam persamaan tersebut:
   \[
-    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} \left( \left( \bigoplus_{i=1}^{n} a_i \otimes [P_{\sigma_i^A}]_{rk} \right) \otimes \left( \bigoplus_{j=1}^{n} b_j \otimes [P_{\sigma_j^B}]_{kc} \right) \right)
+    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} \left( \left( \bigoplus_{i=1}^{n} a_i \otimes [P_{\sigma_i^A}]_{rk} \right) \otimes \left( \bigoplus_{j=1}^{n} b_j \otimes [P_{\sigma_j^B}]_{kc} \right) \right).
   \]
   Karena sifat distributif dan komutatif di dalam $\mathbb{R}_{\max}$, persamaan dapat disusun ulang menjadi:
   \[
-    [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes \left( \bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc} \right)
+    [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes \left( \bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc} \right).
   \]
   Bentuk $\bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc}$ merupakan definisi perkalian elemen baris ke-$r$ dan kolom ke-$c$ dari matriks hasil kali $P_{\sigma_i^A} \otimes P_{\sigma_j^B}$. Berdasarkan \autoref{lem:perkalian_matriks_permutasi}, berlaku hubungan $P_{\sigma_i^A} \otimes P_{\sigma_j^B} = P_{\sigma_j^B \circ \sigma_i^A}$.
   Dengan mensubstitusikan sifat tersebut, diperoleh:
   \[
-    [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes [P_{\sigma_j^B \circ \sigma_i^A}]_{rc}
+    [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes [P_{\sigma_j^B \circ \sigma_i^A}]_{rc}.
   \]
   Secara matriks penuh, hal tersebut ekuivalen dengan \eqref{eq:perkalian_latin_square_maxplus}.
 \end{proof}
@@ -36,16 +36,201 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
   \end{align}
   Lebih lanjut, dapat digabungkan menjadi:
   \begin{align}\label{eq:perkalian_latin_square_gabung}
-    A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right)
+    A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
   \end{align}
+  Pada \eqref{eq:perkalian_latin_square_gabung}, jumlahan ganda sebelumnya telah dikelompokkan berdasarkan nilai skalar hasil operasi max-plus $i \otimes j = i + j$. Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$. Bentuk di dalam tanda kurung besar merupakan jumlahan matriks (operasi maksimum pada setiap entri) dari seluruh matriks permutasi yang bersesuaian dengan pasangan indeks $i$ dan $j$ yang memenuhi $i+j=k$.
 \end{akibat}
 
-\begin{contoh}
-  Misalkan $A, B \in L_S(3)$, maka
+\begin{contoh}\label{ex:hasil_iterasi_semua}
+  Misalkan $A, B \in L_S(3)$ dengan himpunan simbol $\{1, 2, 3\}$, maka
   \begin{align*}
-    A \otimes B & = \bigoplus_{i=1}^{3} \bigoplus_{j=1}^{3} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A}                                                                                                                                                 \\
-                & = 2 \otimes P_{\sigma_1^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_2^B \circ \sigma_1^A} \oplus 4 \otimes P_{\sigma_3^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_1^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_2^B \circ \sigma_2^A} \\
-                & \quad \oplus 5 \otimes P_{\sigma_3^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_1^B \circ \sigma_3^A} \oplus 5 \otimes P_{\sigma_2^B \circ \sigma_3^A} \oplus 6 \otimes P_{\sigma_3^B \circ \sigma_3^A}
+    A \otimes B & = \bigoplus_{i=1}^{3} \bigoplus_{j=1}^{3} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A} =      A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right) \\
+                & = 2 \otimes P_{\sigma_1^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_2^B \circ \sigma_1^A} \oplus 4 \otimes P_{\sigma_3^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_1^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_2^B \circ \sigma_2^A}           \\
+                & \quad \oplus 5 \otimes P_{\sigma_3^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_1^B \circ \sigma_3^A} \oplus 5 \otimes P_{\sigma_2^B \circ \sigma_3^A} \oplus 6 \otimes P_{\sigma_3^B \circ \sigma_3^A}.
   \end{align*}
 \end{contoh}
+
+Lebih lanjut, \eqref{eq:perkalian_latin_square_gabung} dapat direduksi batas bawah iterasinya dengan meninjau keberadaan elemen maksimum pada matriks \emph{Latin Square}, terlebih jika himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$.
+
+Ambil sembarang entri pada baris ke-$r$ dan kolom ke-$s$ dari matriks hasil kali $A \otimes B$. Berdasarkan definisi perkalian max-plus:
+\[
+  [A \otimes B]_{rs} = \max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}).
+\]
+Karena $A$ memuat setiap elemen dari himpunan $\{1, 2, \ldots, n\}$ tepat satu kali di setiap baris, maka $\exists t^* \in \{1, \ldots, n\}$ sedemikian sehingga $[A]_{rt^*} = n$. Karena setiap entri pada matriks $B$ bernilai minimal $1$, dipastikan bahwa $[B]_{t^*s} \ge 1$, maka diperoleh ketaksamaan
+\[
+  [A \otimes B]_{rs} \ge [A]_{rt^*} + [B]_{t^*s} \ge n + 1.
+\]
+Batas bawah mutlak untuk setiap entri $A \otimes B$ adalah $n+1$.\\
+Selanjutnya, akan dibuktikan kondisi perlu untuk mencapai nilai eksak $[A \otimes B]_{rs} = n+1$. Misalkan $\displaystyle\max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}) = n+1$. Berdasarkan definisi nilai maksimum, hal ini mengimplikasikan
+\[
+  [A]_{rt} + [B]_{ts} \le n+1, \quad \forall t \in \{1, 2, \ldots, n\}.
+\]
+Definisikan variabel selisih non-negatif $\epsilon_t \ge 0$ sedemikian sehingga
+\[
+  [A]_{rt} + [B]_{ts} = n+1 - \epsilon_t.
+\]
+Lakukan operasi jumlahan (\emph{summation}) untuk seluruh rentang indeks $t$:
+\begin{align*}
+  \sum_{t=1}^n ([A]_{rt} + [B]_{ts})            & = \sum_{t=1}^n (n+1 - \epsilon_t)   \\
+  \sum_{t=1}^n [A]_{rt} + \sum_{t=1}^n [B]_{ts} & = n(n+1) - \sum_{t=1}^n \epsilon_t.
+\end{align*}
+Karena $A$ dan $B$ adalah \emph{Latin Square}, jumlahan elemen pada sebarang baris maupun kolom merupakan deret aritmetika dari $1$ hingga $n$, yakni $\sum_{k=1}^n k = \frac{n(n+1)}{2}$. Substitusikan nilai tersebut:
+\begin{align*}
+  n(n+1) & = n(n+1) - \sum_{t=1}^n \epsilon_t \implies
+  \sum_{t=1}^n \epsilon_t              = 0.
+\end{align*}
+Mengingat $\epsilon_t \ge 0$ untuk setiap $t$, satu-satunya solusi nyata yang memenuhi $\sum_{t=1}^n \epsilon_t = 0$ adalah $\epsilon_t = 0, \forall t$. Substitusi kembali $\epsilon_t = 0$ menghasilkan persamaan mutlak:
+\[
+  [A]_{rt} + [B]_{ts} = n+1, \quad \forall t \in \{1, 2, \ldots, n\}.
+\]
+Persamaan $[B]_{ts} = (n+1) - [A]_{rt}$ tersebut merupakan pemetaan bijektif $x \mapsto n+1-x$ pada himpunan $\{1, 2, \ldots, n\}$. Dalam representasi grup simetri $S_n$, pemetaan komplemen ini diekspresikan oleh sebuah permutasi pencerminan (involusi) $\rho$ dengan dekomposisi sikel:
+\[
+  \rho = (1\;\; n)(2\;\; n-1)(3\;\; n-2)\ldots
+\]
+Pembuktian ini menunjukkan bahwa batas bawah $n+1$ hanya eksis jika struktur kolom $B$ merupakan transformasi $\rho$ secara utuh dari baris $A$.
+
+Karena setiap entri hasil selalu $\ge n+1$, skalar $k \le n$ dipastikan terdominasi dalam operasi maksimum. Oleh karena itu, batas bawah iterasi dekomposisi direduksi dari $k=2$ menjadi $k=n+1$:
+\begin{align}\label{eq:perkalian_latin_square_reduksi}
+  A \otimes B = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right)
+\end{align}
+
+\begin{contoh}
+  Berdasarkan \autoref{ex:hasil_iterasi_semua}, hasil perkalian $A \otimes B$ dapat direduksi menjadi:
+  \begin{align*}
+    A \otimes B & = 4 \otimes P_{\sigma_3^B \circ \sigma_1^A} \oplus 4 \otimes P_{\sigma_2^B \circ \sigma_2^A} \oplus 5 \otimes P_{\sigma_3^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_1^B \circ \sigma_3^A} \oplus 5 \otimes P_{\sigma_2^B \circ \sigma_3^A} \oplus 6 \otimes P_{\sigma_3^B \circ \sigma_3^A}.
+  \end{align*}
+\end{contoh}
+
+Mereduksi \eqref{eq:perkalian_latin_square_gabung} menjadi \eqref{eq:perkalian_latin_square_reduksi} secara signifikan mengurangi jumlah iterasi yang diperlukan untuk mengevaluasi hasil perkalian max-plus dari dua buah matriks \emph{Latin Square}.
+
+\section{Kekomutatifan Latin Square Max-Plus}
+
+Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif terhadap perkalian max-plus.
+
+\begin{teorema}\label{thm:komutatif_elemen_maksimum}
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus ($A \otimes B = B \otimes A$), maka permutasi yang bersesuaian dengan elemen maksimum $n$ dari kedua matriks tersebut harus saling komutatif, yaitu:
+  \[
+    \sigma_n^A \circ \sigma_n^B = \sigma_n^B \circ \sigma_n^A.
+  \]
+\end{teorema}
+\begin{proof}
+  Berdasarkan \eqref{eq:perkalian_latin_square_reduksi}, perkalian $A \otimes B$ dan $B \otimes A$ dapat dituliskan sebagai:
+  \begin{align*}
+    A \otimes B & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right) \\
+    B \otimes A & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_i^A \circ \sigma_j^B} \right)
+  \end{align*}
+  Agar persamaan $A \otimes B = B \otimes A$ terpenuhi, komponen matriks pada setiap tingkatan skalar $k$ haruslah sama. Tinjau suku dengan nilai skalar maksimum yang mungkin terbentuk pada operasi tersebut, yaitu $k = 2n$.\\
+  Nilai $k = 2n$ hanya dapat dicapai melalui tepat satu kombinasi indeks, yaitu saat $i = n$ dan $j = n$. Dengan menyamakan suku pada $k = 2n$ dari kedua ruas persamaan, diperoleh:
+  \[
+    2n \otimes P_{\sigma_n^B \circ \sigma_n^A} = 2n \otimes P_{\sigma_n^A \circ \sigma_n^B}.
+  \]
+  Karena $2n$ merupakan nilai skalar yang berhingga di dalam $\mathbb{R}_{\max}$, skalar tersebut dapat disederhanakan dari kedua ruas sehingga menghasilkan kesamaan matriks permutasi:
+  \[
+    P_{\sigma_n^B \circ \sigma_n^A} = P_{\sigma_n^A \circ \sigma_n^B}.
+  \]
+  Berdasarkan isomorfisma antara grup matriks permutasi max-plus dan grup simetri $S_n$ (\autoref{thm:isomorfisma_Sn}), kesamaan matriks tersebut berakibat langsung pada kesamaan fungsi permutasinya:
+  \[
+    \sigma_n^B \circ \sigma_n^A = \sigma_n^A \circ \sigma_n^B
+  \]
+\end{proof}
+
+Selain itu, dapat diperoleh kondisi lain tentang komutativitas permutasi elemen maksimum kedua ($2n-1$) dari kedua matriks tersebut.
+
+\begin{teorema}\label{thm:kondisi_elemen_maksimum_kedua}
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus ($A \otimes B = B \otimes A$), maka himpunan pemetaan posisi yang menghasilkan elemen bernilai $2n-1$ harus ekuivalen:
+  \[
+    \{\sigma_{n-1}^B \circ \sigma_n^A, \sigma_n^B \circ \sigma_{n-1}^A\} = \{\sigma_{n-1}^A \circ \sigma_n^B, \sigma_n^A \circ \sigma_{n-1}^B\}.
+  \]
+  Ekuivalensi himpunan tersebut mensyaratkan bahwa permutasi elemen maksimum $n$ dan elemen maksimum kedua $n-1$ harus memenuhi setidaknya satu dari dua kondisi komposisi berikut:
+  \begin{enumerate}
+    \item Kondisi Paralel
+          \begin{align*}
+            \sigma_{n-1}^B \circ \sigma_n^A  = \sigma_{n-1}^A \circ \sigma_n^B \quad\text{dan}\quad\sigma_n^B \circ \sigma_{n-1}^A  = \sigma_n^A \circ \sigma_{n-1}^B.
+          \end{align*}
+
+    \item Kondisi Silang
+          \begin{align*}
+            \sigma_{n-1}^B \circ \sigma_n^A  = \sigma_n^A \circ \sigma_{n-1}^B \quad\text{dan}\quad\sigma_n^B \circ \sigma_{n-1}^A = \sigma_{n-1}^A \circ \sigma_n^B.
+          \end{align*}
+  \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+  Berdasarkan \eqref{eq:perkalian_latin_square_reduksi}, perkalian $A \otimes B$ dan $B \otimes A$ dapat dituliskan sebagai:
+  \begin{align*}
+    A \otimes B & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right) \\
+    B \otimes A & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_i^A \circ \sigma_j^B} \right)
+  \end{align*}
+  Agar persamaan $A \otimes B = B \otimes A$ terpenuhi, komponen matriks pada setiap tingkatan skalar $k$ haruslah sama. Tinjau suku dengan nilai skalar maksimum kedua yang mungkin terbentuk pada operasi tersebut, yaitu $k = 2n-1$.\\
+  Nilai $k = 2n-1$ hanya dapat dicapai melalui kombinasi indeks saat $i = n, j = n-1$ dan $i = n-1, j = n$. Dengan menyamakan suku pada $k = 2n-1$ dari kedua ruas persamaan, diperoleh:
+  \[
+    (2n-1) \otimes (P_{\sigma_{n-1}^B \circ \sigma_n^A} \oplus P_{\sigma_n^B \circ \sigma_{n-1}^A}) = (2n-1) \otimes (P_{\sigma_{n-1}^A \circ \sigma_n^B} \oplus P_{\sigma_n^A \circ \sigma_{n-1}^B})
+  \]
+  Karena $2n-1$ merupakan nilai skalar yang berhingga di dalam $\mathbb{R}_{\max}$, skalar tersebut dapat disederhanakan dari kedua ruas sehingga menghasilkan kesamaan penjumlahan matriks permutasi:
+  \[
+    P_{\sigma_{n-1}^B \circ \sigma_n^A} \oplus P_{\sigma_n^B \circ \sigma_{n-1}^A} = P_{\sigma_{n-1}^A \circ \sigma_n^B} \oplus P_{\sigma_n^A \circ \sigma_{n-1}^B}.
+  \]
+  Berdasarkan sifat matriks permutasi, kesamaan antara jumlahan dua matriks permutasi ini hanya akan terpenuhi jika terjadi pemetaan ekuivalen antar elemennya, yang berakibat langsung pada kesamaan himpunan fungsi permutasinya:
+  \[
+    \{\sigma_{n-1}^B \circ \sigma_n^A, \sigma_n^B \circ \sigma_{n-1}^A\} = \{\sigma_{n-1}^A \circ \sigma_n^B, \sigma_n^A \circ \sigma_{n-1}^B\}.
+  \]
+  Ekuivalensi antara himpunan beranggotakan dua permutasi tersebut mensyaratkan berlakunya salah satu dari pemetaan saling sejajar (Kondisi Paralel) atau pemetaan bertukar tempat (Kondisi Silang).
+\end{proof}
+
+Konsep ekuivalensi pada kondisi elemen maksimum tersebut secara analitik dapat dieksekusi melalui generalisasi untuk elemen pembentuk maksimum ke-$k$.
+
+\begin{teorema}\label{thm:kondisi_elemen_maksimum_ke_k}
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $N=\{1, 2, \ldots, n\}$. Jika $A \otimes B = B \otimes A$, maka untuk setiap observasi pembentukan elemen dengan bobot skalar $v = 2n - (k-1)$ (di mana $1 \le k \le n$), himpunan relasi permutasinya harus memenuhi ekuivalensi:
+  \[
+    \{\sigma_x^A \circ \sigma_y^B \mid x, y \in N,\, x+y = v\} = \{\sigma_x^B \circ \sigma_y^A \mid x, y \in N,\, x+y = v\}.
+  \]
+\end{teorema}
+
+Ekuivalensi himpunan komposisi permutasi untuk elemen ke-$k$ ini menuntut kita memeriksa semua kemungkinan pemetaan yang ada. Sayangnya, jumlah kemungkinan tersebut tumbuh secara faktorial sebesar $k!$. Mengingat himpunan fungsi pembentuk skalar $v$ memiliki $k$ anggota ekuivalen, maka total pemetaan yang harus dievaluasi adalah:
+\[
+  \text{Total Variasi Pemetaan} = k! \sim \mathcal{O}(k!).
+\]
+Meskipun secara teori matematis persamaan ini benar, mengecek elemen lapis demi lapis sangatlah tidak efisien untuk matriks berukuran besar. Semakin dalam tingkat elemen yang dicek (ketika nilai $k$ makin besar), beban perhitungannya akan melonjak secara eksponensial sehingga mustahil untuk diselesaikan secara komputasi (\emph{intractable}).
+
+Guna menyelesaikan problematika sifat dominasi laten yang menyertai tiap-tiap entri hasil matriks, skema identifikasi syarat komutatif perlu diformulasikan ulang melalui konsep Himpunan Superlevel (\emph{Superlevel Sets} atau \emph{Upper Level Sets}).
+
+\begin{definisi}\label{def:representasi_koordinat}
+  Misalkan $N = \{1, 2, \ldots, n\}$. Untuk setiap permutasi $\sigma : N \to N$, representasi koordinat untuk permutasi tersebut, yang disimbolkan dengan $\Gamma(\sigma) \subseteq N \times N$, didefinisikan sebagai himpunan pasangan berurutan yang memetakan elemen ke bayangannya:
+  \[
+    \Gamma(\sigma) = \{(j, \sigma(j)) \mid j \in N\}.
+  \]
+\end{definisi}
+
+\begin{definisi}\label{def:himpunan_superlevel}
+  Misalkan $A, B \in L_S(n)$ dan diberikan sebuah skalar pembanding $v \in \mathbb{R}_{\max}$. Himpunan Superlevel (\emph{Upper Level Set}) dari perkalian $A \otimes B$, dengan notasi $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai gabungan representasi koordinat dari seluruh komposisi permutasi penyusun yang menghasilkan skalar penjumlahan minimum sebesar $v$:
+  \[
+    \mathcal{U}_{\ge v}^{AB} = \bigcup_{\substack{x, y \in N \\ x+y \ge v}} \Gamma(\sigma_x^A \circ \sigma_y^B).
+  \]
+\end{definisi}
+
+\begin{teorema}\label{thm:syarat_cukup_komutatif_himpunan}
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $N=\{1, 2, \ldots, n\}$. Matriks $A$ dan $B$ saling komutatif ($A \otimes B = B \otimes A$) jika dan hanya jika $\mathcal{U}_{\ge v}^{AB}=\mathcal{U}_{\ge v}^{BA}$ untuk setiap $v \geq n+1$.
+\end{teorema}
+
+\begin{proof}
+  Misalkan $C = A \otimes B$ dan $D = B \otimes A$. Untuk matriks $C$, entri $[C]_{ij} \ge v$ tercapai jika dan hanya jika terdapat nilai penyusun $A_{ik} = x$ dan $B_{kj} = y$ sedemikian sehingga $x + y \ge v$. Secara pemetaan pemetaan komposisi, keadaan ini berarti koordinat $(j, i) \in \Gamma(\sigma_x^A \circ \sigma_y^B)$.
+  Maka berdasarkan definisi himpunan superlevel, berlaku ekuivalensi:
+  \[
+    [C]_{ij} \ge v \iff (j, i) \in \mathcal{U}_{\ge v}^{AB}.
+  \]
+  Melalui penalaran yang sama untuk matriks $D$, diperoleh:
+  \[
+    [D]_{ij} \ge v \iff (j, i) \in \mathcal{U}_{\ge v}^{BA}.
+  \]
+  Dua matriks dikatakan sama ($C = D$) jika dan hanya jika kondisi $[C]_{ij} \ge v \iff [D]_{ij} \ge v$ selalu berlaku untuk setiap elemen matriks. Berhubung batasan nilai minimum dari matriks hasil perkalian \emph{Latin Square} ini adalah $n+1$, maka sifat komutatif $A \otimes B = B \otimes A$ terbukti eksis berpadanan dengan kesamaan himpunan superlevelnya, yakni $\mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA}$ untuk setiap skalar $v \ge n+1$.
+\end{proof}
+
+\section{Pasangan Latin Square Komutatif}
+
+Pada bagian ini akan dijelaskan sebuah algoritma untuk menentukan sebuah pasangan matriks \emph{Latin Square} yang telah diberikan sebelumnya agar dua \emph{Latin Square} tersebut saling komutatif terhadap perkalian max-plus.
+
+
+
+
+
 
