@@ -48,10 +48,17 @@
     urlcolor={black}
 }
 \RequirePackage{float}
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+\floatname{algorithm}{Algoritma}
+\renewcommand{\algorithmicrequire}{\textbf{Masukan:}}
+\renewcommand{\algorithmicensure}{\textbf{Keluaran:}}
+
 \RequirePackage{setspace}
 \RequirePackage{afterpage}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
+\RequirePackage{enumitem}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 % \RequirePackage[nosectionbib]{apacite}

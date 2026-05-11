@@ -77,6 +77,19 @@ Pada aljabar max-plus, matriks juga dapat didefinisikan dengan menggunakan opera
   dengan $n$ adalah ordo matriks identitas tersebut. Oleh karena itu, setiap matriks $A\in \mathbb{R}_{\max}^{n \times n}$ akan memenuhi $A \otimes I_n = I_n \otimes A = A$.
 \end{contoh}
 
+Sama halnya dengan matriks pada aljabar linier biasa, operasi penjumlahan dan perkalian matriks pada aljabar max-plus juga mewarisi beberapa sifat aljabar penting, salah satunya adalah kekonstanan sifat asosiatif yang krusial untuk berbagai pembuktian terkait grup matriks permutasi.
+
+\begin{teorema}[\cite{subiono2015minmaxplus}]\label{thm:sifat_matriks_maxplus}
+  Beberapa sifat berikut berlaku untuk sebarang matriks $A$, $B$, dan $C$ dengan ukuran yang bersesuaian sehingga operasi matriks terdefinisi:
+  \begin{enumerate}[label=(\roman*.)]
+    \item $(A \oplus B) \oplus C = A \oplus (B \oplus C)$
+    \item $(A \otimes B) \otimes C = A \otimes (B \otimes C)$
+    \item $A \otimes (B \oplus C) = (A \otimes B) \oplus (A \otimes C)$
+    \item $(A \oplus B) \otimes C = (A \otimes C) \oplus (B \otimes C)$
+    \item $A \oplus A = A$.
+  \end{enumerate}
+\end{teorema}
+
 \subsection{Polinomial dalam Aljabar Max-Plus}
 Polinomial adalah suatu ekspresi matematika yang terdiri dari variabel dan koefisien, yang dioperasikan dengan penjumlahan, pengurangan, dan perkalian. Dalam aljabar max-plus, polinomial juga dapat didefinisikan dengan menggunakan operasi maksimum dan penjumlahan pada aljabar max-plus \parencite{burden2010numerical}.
 \begin{definisi}[\cite{muanalifah2020modifyingtropical}]
@@ -157,6 +170,11 @@ Homomorfisma grup adalah suatu pemetaan antara dua grup yang mempertahankan stru
 \]
 Jika homomorfisma $f$ bersifat bijektif (satu-satu dan pada), maka $f$ disebut isomorfisma grup. Dua grup misalkan $G$ dan $H$ dikatakan isomorfik jika terdapat isomorfisma antara keduanya dan dinotasikan sebagai $G\cong H$. Isomorfik menunjukkan bahwa kedua grup tersebut memiliki struktur yang sama meskipun elemen-elemennya berbeda \parencite{subiono2022aljabar}.
 
+Salah satu hasil fundamental dalam teori grup terkait konsep isomorfisma adalah Teorema Cayley, yang dinamakan secara khusus untuk menghormati Arthur Cayley.\parencite{subiono2022aljabar}
+\begin{teorema}[Teorema Cayley]\label{thm:cayley}
+  Setiap grup $G$ isomorfik dengan suatu subgrup dari grup simetri. Lebih khusus lagi, $G$ isomorfik dengan suatu subgrup dari grup simetri $\operatorname{Sym}(G)$, yang elemen-elemennya merupakan permutasi-permutasi dari himpunan asal $G$.
+\end{teorema}
+
 \subsection{Tindakan Grup}
 
 Untuk memahami bagaimana elemen-elemen dalam suatu grup bertransformasi atau berinteraksi dengan sebuah himpunan, diperlukan konsep tindakan grup.
@@ -207,16 +225,24 @@ Untuk memberikan ilustrasi yang lebih konkret mengenai bagaimana \autoref{thm:or
   Menurut \autoref{thm:orbit_stabilizer}, berlaku $|S_3| = |O_3| \times |(S_3)_3|$, yaitu $6 = 3 \times 2$.
 \end{contoh}
 
-\subsection{\emph{Centralizer}}
+\subsection{Konjugasi dan \emph{Centralizer}}
 
-Konsep tindakan grup pada suatu himpunan tak-kosong dapat diaplikasikan pada grup itu sendiri. Salah satu bentuk tindakan grup yang mendasar adalah tindakan grup pada dirinya sendiri melalui operasi konjugasi. Tindakan ini memunculkan himpunan elemen yang saling berelasi dalam suatu orbit yang disebut sebagai klas konjugasi, serta himpunan elemen yang menetap atau komutatif yang secara formal didefinisikan sebagai \emph{centralizer}.
+Konsep tindakan grup pada suatu himpunan tak-kosong dapat diaplikasikan pada grup itu sendiri. Salah satu bentuk tindakan grup yang mendasar adalah tindakan grup pada dirinya sendiri melalui operasi konjugasi. Tindakan ini memunculkan relasi antar elemen yang membentuk suatu orbit spesifik, serta himpunan elemen yang menetap atau komutatif yang secara formal menstabilkan tindakan tersebut.
+
+\begin{definisi}[{\cite{subiono2022aljabar}}]\label{def:konjugasi_abstrak}
+  Bila $G$ adalah suatu grup dan $a, b \in G$, maka $a$ dan $b$ saling berkonjuget dalam $G$ apabila terdapat $g \in G$ sedemikian sehingga $b = gag^{-1}$. Klas konjugasi dari suatu $a \in G$ adalah himpunan semua konjuget dari $a$, dinotasikan dengan
+  \[
+    K_G(a) = \{gag^{-1} \mid g \in G\}.
+  \]
+\end{definisi}
+
+Relasi kekongruenan melalui tindakan konjugasi ini merupakan sebuah relasi ekuivalensi pada grup $G$. Akibatnya, grup $G$ dapat dipartisi secara saling lepas menjadi gabungan dari klas-klas konjugasi yang berbeda. Berkaitan dengan tindakan konjugasi tersebut, himpunan elemen yang menstabilkan suatu elemen mendefinisikan sebuah subgrup yang sangat penting.
 
 \begin{definisi}[{\cite{subiono2022aljabar}}]\label{def:centralizer_abstrak}
-  Bila $G$ adalah suatu grup dan $a, b \in G$, maka $a$ dan $b$ berkonjuget dalam $G$ bila ada suatu $g \in G$ yang memenuhi $b = gag^{-1}$ atau dengan kata lain bila $a$ dan $b$ adalah dalam orbit yang sama oleh tindakan $G$ pada dirinya sendiri melalui konjugasi. Klas konjugasi dari suatu $a \in G$ yaitu $K_G(a) = \{gag^{-1} \mid g \in G\}$ adalah himpunan semua konjuget dari $a$ atau dengan kata lain orbit dari $a$ dalam tindakan tersebut. Ingat bahwa, \emph{centralizer} dari $a \in G$
+  Misalkan $G$ adalah suatu grup dan $a \in G$. \emph{Centralizer} dari elemen $a$ di dalam grup $G$, dinotasikan sebagai $C_G(a)$, adalah himpunan dari semua elemen di $G$ yang komutatif dengan $a$, atau secara ekuivalen merupakan stabiliser dari $a$ dalam tindakan konjugasi. Secara formal didefinisikan sebagai:
   \[
-    C_G(a) = \{g \in G \mid ga = ag\} = \{g \in G \mid gag^{-1} = a\}
+    C_G(a) = \{g \in G \mid ga = ag\} = \{g \in G \mid gag^{-1} = a\}.
   \]
-  adalah himpunan dari semua elemen yang komutatif dengan $a$ atau secara ekivalen stabiliser dari $a$ dalam tindakan tersebut.
 \end{definisi}
 
 Sebagai catatan terkait perluasan notasi, konsep \emph{centralizer} juga dapat diaplikasikan pada suatu himpunan. Apabila evaluasi komutatifitas dilakukan terhadap suatu himpunan bagian $A \subseteq G$, notasinya ditulis sebagai
@@ -470,6 +496,8 @@ Ternyata dari \autoref{lem:perkalian_matriks_permutasi} diperoleh bahwa setiap $
   \end{enumerate}
 \end{definisi}
 
+\autoref{def:grup_permutasi_maxplus} dipastikan memenuhi keempat aksioma grup. Sifat tertutup dijamin oleh berlakunya \autoref{lem:perkalian_matriks_permutasi}, sedangkan sifat asosiatif diwarisi dari sifat dasar perkalian matriks max-plus yang ditunjukkan dalam \autoref{thm:sifat_matriks_maxplus}. Keberadaan elemen identitas $I_n$ yang komutatif dari kedua sisi sudah sangat jelas, dan eksistensi invers untuk masing-masing anggotanya juga dapat ditunjukkan kembali melalui penggunaaan \autoref{lem:perkalian_matriks_permutasi} dengan memandang grup $S_n$.
+
 \begin{teorema}\label{thm:isomorfisma_Sn}
   Grup matriks permutasi max-plus $(\mathcal{P}_n, \otimes)$ isomorfis dengan grup simetri $(S_n, \circ)$.
   Isomorfisma tersebut diberikan oleh fungsi bijektif $\phi : S_n \to \mathcal{P}_n$ yang didefinisikan sebagai
@@ -599,9 +627,19 @@ Sehingga, dari proposisi di atas diperoleh juga teorema mengenai kekomutatifan a
   \]
 \end{teorema}
 
-\subsection{\emph{Centralizer} di $S_n$}
+\subsection{Konjugasi dan \emph{Centralizer} di $S_n$}
 
-grup simetri ($S_n$) adalah salah satu grup yang berisi semua permutasi dari $n$ elemen. Berdasarkan \autoref{prop:kardinalitas_centralizer}, perhitungan kardinalitas \emph{centralizer} dari suatu permutasi tunggal $a \in S_n$ bergantung pada kardinalitas klas konjugasinya, yakni $|K(a)|$. Di dalam grup simetri, anggota dari suatu klas konjugasi sepenuhnya ditentukan oleh struktur dekomposisi sikel dari permutasi tersebut, yang secara formal didefinisikan sebagai tipe permutasi.
+Aplikasi langsung dari tindakan grup melalui konjugasi pada grup simetri ($S_n$) memberikan representasi kombinatorial yang sangat terstruktur. Di dalam grup yang berisi seluruh permutasi dari $n$ elemen ini, operasi konjugasi memiliki sifat visual dan komputasional yang unik, yakni mengubah elemen-elemen di dalam suatu sikel tanpa merusak bentuk atau kepanjangan sikel tersebut. Sifat mendasar ini direpresentasikan melalui proposisi berikut.
+
+\begin{proposisi}[{\cite{dummit2004abstract}}]\label{prop:konjugasi_sikel_Sn}
+  Misalkan $\sigma, \tau \in S_n$ dan $\sigma$ memiliki representasi dekomposisi sikel $(a_1\;\; a_2\;\; \ldots\;\; a_k)(b_1\;\; b_2\;\; \ldots\;\; b_m)\ldots$. Konjugasi dari $\sigma$ oleh $\tau$, yang diekspresikan sebagai $\tau \sigma \tau^{-1}$, memiliki dekomposisi sikel
+  \[
+    (\tau(a_1)\;\; \tau(a_2)\;\; \ldots\;\; \tau(a_k))(\tau(b_1)\;\; \tau(b_2)\;\; \ldots\;\; \tau(b_m))\ldots.
+  \]
+  Dengan kata lain, $\tau \sigma \tau^{-1}$ diperoleh dari $\sigma$ dengan mensubstitusi setiap elemen $i$ di dalam dekomposisi sikel $\sigma$ dengan nilai pemetaannya $\tau(i)$.
+\end{proposisi}
+
+Karena tindakan konjugasi bekerja murni dengan mensubstitusi elemen tanpa memodifikasi kuantitas maupun ukuran panjang sikel asalnya, maka konjugasi secara mutlak selalu mempertahankan arsitektur sikel permutasi tersebut. Karakteristik struktural dari himpunan panjang sikel ini diklasifikasikan secara formal sebagai tipe permutasi.
 
 \begin{definisi}[{\cite{subiono2022aljabar}}]\label{def:tipe_permutasi}
   Bila $a \in S_n$ adalah komposisi dari sikel-sikel disjoint yang terdiri dari sikel panjang $1$ sebanyak $a_1$, sikel dengan panjang $2$ sebanyak $a_2$, $\ldots$, sikel panjang $n$ sebanyak $a_n$ dengan $a_i \in \mathbb{Z}$ yang memenuhi
@@ -611,7 +649,7 @@ grup simetri ($S_n$) adalah salah satu grup yang berisi semua permutasi dari $n$
   maka tipe permutasi dari $a$ adalah $[a_1, a_2, \ldots, a_n]$.
 \end{definisi}
 
-Dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada dalam satu orbit di bawah tindakan konjugasi) jika dan hanya jika keduanya memiliki tipe permutasi yang identik. Karakteristik struktural ini memungkinkan \autoref{prop:kardinalitas_centralizer} dijabarkan ke dalam rumusan perhitungan kardinalitas yang eksplisit untuk grup simetri.
+Berdasarkan sifat invarian pada \autoref{prop:konjugasi_sikel_Sn}, dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada dalam satu orbit di bawah tindakan konjugasi) jika dan hanya jika keduanya memiliki tipe permutasi yang identik. Karakteristik pengklasifikasian ini memungkinkan \autoref{prop:kardinalitas_centralizer} dijabarkan ke dalam rumusan perhitungan kardinalitas yang eksplisit.
 
 \begin{lema}[{\cite{dummit2004abstract}}]\label{lem:kardinalitas_centralizer_Sn}
   Misalkan permutasi $a \in S_n$ memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Kardinalitas dari \emph{centralizer} $a$ di dalam $S_n$ diberikan oleh:
@@ -625,7 +663,7 @@ Dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada da
   \[
     |C_{S_n}(a)| = \frac{|S_n|}{|K(a)|}.
   \]
-  Diketahui bahwa kardinalitas dari grup simetri secara keseluruhan adalah $|S_n| = n!$. Sementara itu, klas konjugasi $K(a)$ memuat seluruh permutasi di $S_n$ yang saling berkonjugasi dengan $a$, yang ekuivalen dengan himpunan permutasi yang memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Secara kombinatorial, banyaknya permutasi di $S_n$ yang memenuhi struktur sikel tersebut bernilai:
+  Diketahui bahwa kardinalitas dari grup simetri secara keseluruhan adalah $|S_n| = n!$. Sementara itu, klas konjugasi $K(a)$ memuat seluruh permutasi di $S_n$ yang saling berkonjugasi dengan $a$, yang ekuivalen dengan himpunan permutasi yang memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Secara kombinatorial, banyaknya permutasi di $S_n$ yang memenuhi struktur tipe permutasi tersebut bernilai:
   \[
     |K(a)| = \frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}.
   \]
@@ -635,17 +673,33 @@ Dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada da
   \]
 \end{proof}
 
+Secara kombinatorial, formula pada \autoref{lem:kardinalitas_centralizer_Sn} adalah akibat langsung dari syarat pelestarian struktur konjugasi $\tau a \tau^{-1} = a$. Komponen $k^{a_k}$ merepresentasikan banyaknya cara merotasi elemen secara internal di dalam $a_k$ sikel. Sementara itu, komponen $a_k!$ merepresentasikan banyaknya cara menukar silang letak antar sikel yang panjangnya identik. Pemetaan ke sikel dengan panjang berbeda dilarang mutlak karena dipastikan akan merusak tipe permutasi asalnya.
+
 \begin{contoh}
-  Sebagai ilustrasi penerapan \autoref{lem:kardinalitas_centralizer_Sn}, tinjau grup simetri $S_4$ dan sebuah permutasi $a = (1\;2) \in S_4$. Dalam representasi dekomposisi sikel yang saling lepas secara utuh di $S_4$, permutasi $a$ ditulis sebagai $(1\;2)(3)(4)$. Dari bentuk tersebut, terlihat bahwa $a$ memiliki dua sikel berpanjang $1$ dan satu sikel berpanjang $2$. Dengan demikian, tipe permutasi dari $a$ adalah $[2, 1, 0, 0]$, yang berarti nilai $a_1 = 2$, $a_2 = 1$, $a_3 = 0$, dan $a_4 = 0$.\\
-  Berdasarkan formula pada \autoref{lem:kardinalitas_centralizer_Sn}, kardinalitas dari \emph{centralizer} elemen $a$ di dalam $S_4$ dapat dihitung sebagai
-  \begin{align*}
-    |C_{S_4}(a)| & = \prod_{k=1}^{4} k^{a_k} (a_k!)                                                      = (1^2 \times 2!) \times (2^1 \times 1!) \times (3^0 \times 0!) \times (4^0 \times 0!)
-    = 4.
-  \end{align*}
-  Hasil perhitungan ini secara aljabar menunjukkan bahwa terdapat tepat $4$ permutasi di dalam grup $S_4$ yang bersifat komutatif dengan permutasi $(1\;2)$. Secara eksplisit, keempat permutasi tersebut dapat dijabarkan ke dalam himpunan berikut:
+  Tinjau permutasi $\sigma = (1\;2)(3\;4) \in S_4$. Berdasarkan \autoref{prop:konjugasi_sikel_Sn}, fungsi $\tau \in C_{S_4}(\sigma)$ harus memenuhi persamaan komutatif konjugasi:
   \[
-    C_{S_4}((1\;2)) = \{ (1), (1\;2), (3\;4), (1\;2)(3\;4) \}.
+    \tau \sigma \tau^{-1} = (\tau(1)\;\;\tau(2))(\tau(3)\;\;\tau(4)) = (1\;2)(3\;4).
   \]
+  Agar kesamaan terpenuhi, $\tau$ hanya diizinkan merotasi elemen di dalam sikel yang sama, atau menukar silang kedua sikel utuh tersebut karena panjangnya identik.
+  \begin{enumerate}
+    \item Pemetaan rotasi internal menghasilkan permutasi: $(1), (1\;2), (3\;4), (1\;2)(3\;4)$.
+    \item Pemetaan pertukaran silang antar sikel (dikombinasikan dengan rotasi internal) menghasilkan: $(1\;3)(2\;4), (1\;4)(2\;3), (1\;3\;2\;4), (1\;4\;2\;3)$.
+  \end{enumerate}
+  Gabungan keseluruhan pemetaan tersebut membentuk himpunan \emph{centralizer} utuh secara eksplisit:
+  \[
+    C_{S_4}((1\;2)(3\;4)) = \{ (1), (1\;2), (3\;4), (1\;2)(3\;4), (1\;3)(2\;4), (1\;4)(2\;3), (1\;3\;2\;4), (1\;4\;2\;3) \}.
+  \]
+  Kardinalitas ini berjumlah $8$, yang mana konsisten dengan formula analitik \autoref{lem:kardinalitas_centralizer_Sn} untuk tipe permutasi $[0, 2, 0, 0]$, yakni $|C_{S_4}(\sigma)| = 2^2(2!) = 8$.
+\end{contoh}
+
+\begin{contoh}
+  Sebagai perluasan ilustrasi derajat kebebasan pemetaan $\tau$, tinjau permutasi $\sigma = (1\;2\;3)(4\;5\;6)(7\;8)(9) \in S_9$ dengan tipe permutasi $[1, 1, 2, 0, 0, 0, 0, 0, 0]$.
+  Berdasarkan batasan pada \autoref{prop:konjugasi_sikel_Sn}, pembentukan anggota \emph{centralizer} diperoleh dari analisis per blok sikel:
+  Sikel $(9)$ terkunci mutlak ($1$ cara rotasi). Sikel $(7\;8)$ terisolasi secara ukuran panjang ($2$ cara rotasi internal). Pasangan sikel identik $(1\;2\;3)$ dan $(4\;5\;6)$ memiliki kebebasan berotasi internal masing-masing $3$ kali sekaligus bertukar letak secara utuh ($3^2 \times 2! = 18$ cara).
+  Kardinalitas \emph{centralizer} merupakan perkalian langsung dari derajat kebebasan pergerakan tersebut:
+  \begin{align*}
+    |C_{S_9}(\sigma)| & = \prod_{k=1}^{9} k^{a_k} (a_k!)                                = (1^1 \times 1!) \times (2^1 \times 1!) \times (3^2 \times 2!) = 1 \times 2 \times 18 = 36.
+  \end{align*}
 \end{contoh}
 
 \section{\textit{Derangement}}

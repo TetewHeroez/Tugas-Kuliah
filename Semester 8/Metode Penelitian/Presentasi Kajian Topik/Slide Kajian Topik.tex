@@ -1,0 +1,118 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+    \addbibresource{referensi.bib} % Pastikan file bib Anda bernama referensi.bib
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} 
+\setbeamercolor{section in toc}{fg=HIMAtua} 
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\date{\today}
+\title[Kajian Topik Tesis]{Pemodelan Pelipatan Kaku (Rigid Folding) Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}}
+\author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}{Daftar isi}
+    \tableofcontents[currentsection,hidesubsections]
+  \end{frame}
+}
+
+\section{Pendahuluan}
+\begin{frame}{Latar Belakang}
+  \begin{itemize}
+    \item \textbf{Geometri Tropikal:} Cabang geometri aljabar di atas aljabar semiring min-plus (atau max-plus), di mana polinomial berubah menjadi fungsi \textit{piecewise-affine} dan varietas aljabar menjadi \textit{tropical hypersurfaces}.
+    \item \textbf{Origami Matematis:} Dilandasi aksioma kombinatorik (Aksioma Huzita-Hatori) serta regulasi lipatan datar (\textit{flat folding}) melalui Teorema Kawasaki dan Teorema Maekawa.
+    \item \textbf{Pertemuan Dua Bidang:} Studi tentang isometri tropikal dan matriks rotasi $SO(3)$ berpotensi menjembatani analisis pelipatan kaku (\textit{rigid folding}) dengan struktur polihedral tropikal.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Topik Tesis}
+  \begin{block}{Kandidat Judul}
+    Pemodelan Pelipatan Kaku (\textit{Rigid Folding}) Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}.
+  \end{block}
+  \begin{itemize}
+    \item \textbf{Kebaruan:} Beralih dari pendekatan geometri analitik tradisional berbiaya tinggi yang menggunakan rotasi $SO(3)$ non-linear, menjadi transformasi \textit{balancing condition} ke ranah \textit{piecewise-affine} tropikal yang sepenuhnya linear (min-plus).
+    \item \textbf{Kebermanfaatan:} Membuka cara komputasional efisien untuk simulasi pelipatan material meta dan struktur \textit{deployable}.
+  \end{itemize}
+\end{frame}
+
+\section{Kajian Artikel}
+\begin{frame}{Fondasi Geometri Tropikal}
+  \begin{itemize}
+    \item \textbf{Maclagan \& Sturmfels (2015) \cite{maclagan2015tropical}:} Menyajikan fondasi geometri aljabar tropikal. Mengupas kurva, \textit{tropical hypersurfaces}, dan \textit{balancing condition}. Menjadi landasan teori konversi rotasi konvensional.
+    \item \textbf{Mikhalkin (2006) \cite{mikhalkin2006tropical}:} Perintis struktur min-plus dan konsep dekuantisasi. Mengeksplorasi ekuivalensi geometri proyektif tropikal dengan geometri riil di limit tertentu.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Matematika Origami dan Graf}
+  \begin{itemize}
+    \item \textbf{Hull (2012) \cite{hull2012project}:} Dasar \textit{folding mathematics}. Membuktikan Teorema Kawasaki (syarat jumlah selang-seling sudut) dan Maekawa (selisih lembah/gunung) pada struktur persendian origami.
+    \item \textbf{Ku (2014) \cite{ku2014realization}:} Representasi matriks dan graf untuk origami. Menggunakan \textit{adjacency matrix} (matriks kedekatan) untuk mendeteksi stabilitas \textit{flat foldings}. Sejalan dengan pembuatan matriks pembobot tropikal.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Geometri Lanjutan dan Aplikasinya}
+  \begin{itemize}
+    \item \textbf{Zhang et al. (2018) \cite{zhang2018tropical}:} Geometri Tropikal pada jaringan saraf (\textit{Neural Networks}). Mengaitkan representasi fungsi \textit{piecewise-affine} pada ruang polihedral.
+    \item \textbf{Foster (2020) \cite{foster2020metric}:} Mengkaji properti isometrik pemetaan Abel-Jacobi. Mengevaluasi metrik jarak riil yang relevan untuk menautkan dimensi tinggi ke model spasial.
+    \item \textbf{G.K. (2021) \& Nekrasov (2018) \cite{gk2021origami,nekrasov2018geometry}:} Analisis \textit{moduli space} dan modularitas kuantum (\textit{Gauge Origami}). Pendekatan geometris untuk enumerasi kondisi riil struktur pelipatan.
+  \end{itemize}
+\end{frame}
+
+\section{Sintesis Kajian}
+\begin{frame}{Sintesis Kajian Pustaka}
+  \begin{itemize}
+    \item \textbf{Perbandingan Artikel:} Terdapat dua arus utama: analitika pelipatan matriks $SO(3)$ kontinu, dan teori Geometri Tropikal linear min-plus. Keduanya beririsan pada titik di mana sudut non-linear ekuivalen dengan matriks \textit{piecewise-affine} yang menjaga \textit{balancing condition}.
+    \item \textbf{Research Gap:} Sebagian besar rujukan origami masih berdasar pada komputasi $SO(3)$ yang berat untuk multipoligon kompleks. Selain itu, translasi isometri origami murni menuju Geometri Tropikal formal belum dieksplorasi seutuhnya.
+    \item \textbf{State-of-the-Art:} Mengadopsi modifikasi transformasi Affine polihedral berskala kompleks (\textit{Tropical Abel-Jacobi}) dan representasi \textit{piecewise} linier untuk menekan latensi \textit{state enumeration}.
+  \end{itemize}
+\end{frame}
+
+\section{Kesimpulan}
+\begin{frame}{Kesimpulan}
+  \begin{itemize}
+    \item \textbf{Asumsi Utama:} Aljabar min-plus, Teorema Kawasaki/Maekawa, serta Matriks Kedekatan (\textit{Adjacency}) berpotensi besar memodelkan \textit{rigid foldings} tanpa perlu komputasi kontinu 3D tradisional.
+    \item \textbf{Rumusan Masalah Utama:} Bagaimana Teorema Kawasaki dan Maekawa pada origami rigid divisualisasikan sepenuhnya sebagai fungsi ruang isometri tropikal \textit{piecewise-affine}?
+    \item \textbf{Arah Riset:} Isometri rotasi ortogonal akan dirumuskan ulang ke dalam pembobotan polinomial lintasan \textit{adjacency graph} pada ruang modul min-plus, berlandaskan pemetaan Abel-Jacobi dan proyektif tropikal.
+  \end{itemize}
+\end{frame}
+
+\section{Referensi}
+\begin{frame}[allowframebreaks]{Referensi}
+  \printbibliography
+\end{frame}
+
+\end{document}

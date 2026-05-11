@@ -201,12 +201,36 @@ Guna menyelesaikan problematika sifat dominasi laten yang menyertai tiap-tiap en
   \]
 \end{definisi}
 
+\begin{contoh}
+  Misalkan $n = 3$, sehingga $N = \{1, 2, 3\}$. Diberikan sebuah permutasi $\sigma = (1\;2\;3) \in S_3$. Permutasi ini mendefinisikan pemetaan $\sigma(1) = 2$, $\sigma(2) = 3$, dan $\sigma(3) = 1$. Berdasarkan \autoref{def:representasi_koordinat}, representasi koordinat untuk permutasi $\sigma$ adalah himpunan pasangan berurutan berikut:
+  \[
+    \Gamma(\sigma) = \{(1, 2), (2, 3), (3, 1)\}.
+  \]
+\end{contoh}
+
 \begin{definisi}\label{def:himpunan_superlevel}
   Misalkan $A, B \in L_S(n)$ dan diberikan sebuah skalar pembanding $v \in \mathbb{R}_{\max}$. Himpunan Superlevel (\emph{Upper Level Set}) dari perkalian $A \otimes B$, dengan notasi $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai gabungan representasi koordinat dari seluruh komposisi permutasi penyusun yang menghasilkan skalar penjumlahan minimum sebesar $v$:
   \[
     \mathcal{U}_{\ge v}^{AB} = \bigcup_{\substack{x, y \in N \\ x+y \ge v}} \Gamma(\sigma_x^A \circ \sigma_y^B).
   \]
 \end{definisi}
+
+\begin{contoh}
+  Misalkan $n = 2$, sehingga $N = \{1, 2\}$, dan diberikan skalar pembanding $v = 3$. Pasangan indeks $(x, y) \in N \times N$ yang memenuhi syarat batas $x + y \ge 3$ adalah $(1, 2), (2, 1)$, dan $(2, 2)$.\\
+  Misalkan matriks permutasi penyusun untuk $A$ dan $B$ diketahui eksistensinya sebagai $\sigma_1^A = (1)$, $\sigma_2^A = (1\;2)$, $\sigma_1^B = (1\;2)$, dan $\sigma_2^B = (1)$. Komposisi permutasi dievaluasi hanya untuk pasangan indeks yang memenuhi syarat $x+y \ge 3$:
+  \begin{itemize}
+    \item Untuk $(1, 2) \implies \sigma_1^A \circ \sigma_2^B = (1) \circ (1) = (1)$.
+    \item Untuk $(2, 1) \implies \sigma_2^A \circ \sigma_1^B = (1\;2) \circ (1\;2) = (1)$.
+    \item Untuk $(2, 2) \implies \sigma_2^A \circ \sigma_2^B = (1\;2) \circ (1) = (1\;2)$.
+  \end{itemize}
+  Representasi koordinat untuk permutasi identitas adalah $\Gamma((1)) = \{(1, 1), (2, 2)\}$, sedangkan untuk permutasi transposisi adalah $\Gamma((1\;2)) = \{(1, 2), (2, 1)\}$. Berdasarkan \autoref{def:himpunan_superlevel}, himpunan superlevel $\mathcal{U}_{\ge 3}^{AB}$ dibentuk dari gabungan koordinat komposisi tersebut:
+  \begin{align*}
+    \mathcal{U}_{\ge 3}^{AB} & = \Gamma(\sigma_1^A \circ \sigma_2^B) \cup \Gamma(\sigma_2^A \circ \sigma_1^B) \cup \Gamma(\sigma_2^A \circ \sigma_2^B) \\
+                             & = \Gamma((1)) \cup \Gamma((1)) \cup \Gamma((1\;2))                                                                      \\
+                             & = \{(1, 1), (2, 2)\} \cup \{(1, 1), (2, 2)\} \cup \{(1, 2), (2, 1)\}                                                    \\
+                             & = \{(1, 1), (1, 2), (2, 1), (2, 2)\}.
+  \end{align*}
+\end{contoh}
 
 \begin{teorema}\label{thm:syarat_cukup_komutatif_himpunan}
   Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $N=\{1, 2, \ldots, n\}$. Matriks $A$ dan $B$ saling komutatif ($A \otimes B = B \otimes A$) jika dan hanya jika $\mathcal{U}_{\ge v}^{AB}=\mathcal{U}_{\ge v}^{BA}$ untuk setiap $v \geq n+1$.
@@ -228,6 +252,34 @@ Guna menyelesaikan problematika sifat dominasi laten yang menyertai tiap-tiap en
 \section{Pasangan Latin Square Komutatif}
 
 Pada bagian ini akan dijelaskan sebuah algoritma untuk menentukan sebuah pasangan matriks \emph{Latin Square} yang telah diberikan sebelumnya agar dua \emph{Latin Square} tersebut saling komutatif terhadap perkalian max-plus.
+
+\begin{definisi}\label{def:ekstraksi_simbol}
+  Misalkan $L$ adalah sebuah matriks Latin square berukuran $n \times n$ dengan elemen matriks $L_{i,j} \in N = \{1, 2, \ldots, n\}$. Himpunan koordinat posisi untuk kemunculan suatu simbol spesifik $k \in N$, yang disimbolkan dengan $E_k(L)$, didefinisikan secara matematis sebagai himpunan pasangan indeks baris dan kolom berikut:
+  $$E_k(L) = \{(i, j) \in N \times N \mid L_{i,j} = k\}.$$
+\end{definisi}
+
+\begin{algorithm}[H]
+  \caption{Konstruksi $C_{S_n}(\sigma)$ dari Elemen Terbesar Latin Square}
+  \begin{algorithmic}[1]
+    \REQUIRE $A \in L_S(n)$
+    \ENSURE $C$
+    \STATE $v_{\max} \leftarrow \max_{i,j} A_{i,j}$
+    \STATE $E \leftarrow \{(i, j) \in N \times N \mid A_{i,j} = v_{\max}\}$
+    \STATE $\sigma \leftarrow \Gamma^{-1}(E)$
+    \STATE $\Sigma \leftarrow \left\{ c_1, c_2, \ldots, c_m \mid \sigma = \prod_{x=1}^{m} c_x \right\}$
+    \STATE $C \leftarrow \{(1)\}$
+    \FOR{$k = 1$ \TO $n$}
+    \STATE $S_k \leftarrow \{c \in \Sigma \mid |c| = k\}$
+    \IF{$|S_k| > 0$}
+    \STATE $\displaystyle R_k \leftarrow \left\{ \prod_{c \in S_k} c^{p_c} \mid 0 \le p_c < k \right\}$
+    \STATE $P_k \leftarrow \left\{ \pi \in S_n \mid \pi(S_k) = S_k \land \pi(x)=x, \forall x \notin \bigcup_{c \in S_k} c \right\}$
+    \STATE $T_k \leftarrow \{ r \circ p \mid r \in R_k, p \in P_k \}$
+    \STATE $C \leftarrow \{ \alpha \circ \beta \mid \alpha \in C, \beta \in T_k \}$
+    \ENDIF
+    \ENDFOR
+    \RETURN $C$
+  \end{algorithmic}
+\end{algorithm}
 
 
 
