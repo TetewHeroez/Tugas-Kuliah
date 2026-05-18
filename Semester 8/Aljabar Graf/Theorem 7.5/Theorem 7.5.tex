@@ -1,133 +1,84 @@
 \documentclass{beamer}
-\usepackage{amsmath, amssymb, tikz}
+\usetheme{Madrid}
+\usecolortheme{whale}
 
-\usetikzlibrary{matrix, arrows}
-
-\title{Teorema 7.5: Koefisien Polinomial Laplacian dan Forests}
-\author{Teosofi Hidayah Agung}
+\title{Definisi Terkait Teorema 7.5}
+\subtitle{Ekspansi Polinomial Karakteristik Matriks Graf}
+\author{Analisis Literatur Norman Biggs}
 \date{\today}
 
 \begin{document}
 
 \frame{\titlepage}
 
-%-------------------------------------------------
-\begin{frame}{Definisi Forest}
-  \textbf{Forest:} graf tanpa siklus.
-  \textbf{Tree:} forest yang terhubung.
-
-  \medskip
-  \textbf{Contoh:}
-  \begin{tikzpicture}[every node/.style={circle,draw,fill=blue!20}]
-    \node (1) at (0,0) {1};
-    \node (2) at (1.5,0) {2};
-    \node (3) at (3,0) {3};
-    \node (4) at (4.5,0) {4};
-    \draw (1) -- (2);
-    \draw (3) -- (4); % forest dengan 2 tree
-  \end{tikzpicture}
-
-  \medskip
-  Ada dua tree: \{1,2\} dan \{3,4\}, tidak ada siklus.
+\begin{frame}
+  \frametitle{Objek Utama: Graf dan Matriks Q}
+  \begin{block}{Graf Sederhana $\Gamma$}
+    Graf $\Gamma$ terdiri dari himpunan titik $V\Gamma$ dan himpunan sisi $E\Gamma$. Hubungan antar keduanya ditentukan oleh relasi insidensi.
+  \end{block}
+  \begin{block}{Matriks Signless Laplacian}
+    Matriks $Q$ didefinisikan sebagai:
+    $$Q = A + \Delta$$
+    di mana $A$ adalah matriks ketetanggaan dan $\Delta$ adalah matriks diagonal yang entri-entrinya berisi derajat (valency) dari setiap titik di $\Gamma$.
+  \end{block}
 \end{frame}
 
-%-------------------------------------------------
-\begin{frame}{Definisi $p(\Phi)$}
-  \textbf{p(\Phi):} produk jumlah vertex pada setiap komponen forest $\Phi$.
-
-  \medskip
-  \textbf{Contoh:} Forest dari slide sebelumnya:
-  \[
-    \text{Komponen 1: 2 vertex}, \quad
-    \text{Komponen 2: 2 vertex}
-  \]
-  \[
-    p(\Phi) = 2 \cdot 2 = 4
-  \]
+\begin{frame}
+  \frametitle{Matriks Insidensi $D$}
+  Matriks insidensi $D$ berukuran $|V\Gamma| \times |E\Gamma|$ menghubungkan titik dengan sisi.
+  \begin{exampleblock}{Identitas Fundamental}
+    $$Q = DD^t$$
+  \end{exampleblock}
+  Identitas ini menjadi jembatan utama antara sifat aljabar matriks $Q$ dengan struktur topologis dari graf $\Gamma$.
 \end{frame}
 
-%-------------------------------------------------
-\begin{frame}{Definisi Matriks Laplacian $Q$}
-  \textbf{Q = D D^T}, D = matriks insidensi graf.
-  Diagonal Q = degree vertex, off-diagonal = -1 jika edge menghubungkan vertex.
-
-  \medskip
-  \textbf{Contoh graf:} 3 vertex, 2 edge: (1-2), (2-3)
-  \[
-    D = \begin{bmatrix}1 & 0\\1 & 1\\0 & 1\end{bmatrix}, \quad
-    Q = D D^T =
-    \begin{bmatrix}
-      1  & -1 & 0  \\
-      -1 & 2  & -1 \\
-      0  & -1 & 1
-    \end{bmatrix}
-  \]
-
-  \medskip
-  Hubungan: $Q = \text{diag(degree)} - A$
+\begin{frame}
+  \frametitle{Polinomial Karakteristik $\tau(\Gamma; \lambda)$}
+  Fungsi ekspansi didefinisikan sebagai:
+  $$\tau(\Gamma; \lambda) = \det(\lambda I + Q) = \lambda^n + q_1 \lambda^{n-1} + \dots + q_{n-1}\lambda + q_n$$
+  \begin{alertblock}{Definisi Koefisien $q_i$}
+    Setiap koefisien $q_i$ ($1 \le i \le n$) merupakan jumlahan dari seluruh minor utama (principal minors) berukuran $i \times i$ dari matriks $Q$.
+  \end{alertblock}
 \end{frame}
 
-%-------------------------------------------------
-\begin{frame}{Definisi Polinomial $\tau(\Gamma;\lambda)$}
-  \[
-    \tau(\Gamma;\lambda) = \det(\lambda I + Q)
-  \]
-
-  \medskip
-  \textbf{Contoh:}
-  \[
-    Q =
-    \begin{bmatrix}
-      1  & -1 & 0  \\
-      -1 & 2  & -1 \\
-      0  & -1 & 1
-    \end{bmatrix}
-    \Rightarrow
-    \tau(\Gamma;\lambda) = \det\begin{bmatrix}\lambda+1 & -1 & 0\\-1 & \lambda+2 & -1\\0 & -1 & \lambda+1\end{bmatrix}
-  \]
-\end{frame}
-
-%-------------------------------------------------
-\begin{frame}{Definisi Koefisien $q_i$}
-  Koefisien polinomial:
-  \[
-    \tau(\Gamma;\lambda) = \lambda^3 + q_1 \lambda^2 + q_2 \lambda + q_3
-  \]
-
-  \medskip
-  \textbf{Contoh:}
-  - Subgraf dengan 1 edge: (1-2), (2-3)
-  - Forest → hitung $p(\Phi)$ untuk tiap forest
-  \[
-    q_1 = 2 + 2 = 4, \quad q_2 = 3, \quad q_3 = 0
-  \]
-\end{frame}
-
-%-------------------------------------------------
-\begin{frame}{Definisi Principal Submatrix $Q_X$}
-  Ambil subset vertex $X$, submatrix $Q_X$ = baris & kolom sesuai $X$.
-
-  \medskip
-  \textbf{Contoh:}
-  $X = \{1,2\}$, maka
-  \[
-    Q_X =
-    \begin{bmatrix}
-      1  & -1 \\
-      -1 & 2
-    \end{bmatrix}, \quad \det(Q_X) = 1
-  \]
-
-  - Menggunakan Binet-Cauchy, determinan ini terkait forest dengan edges pada subset vertex $X$.
-\end{frame}
-
-%-------------------------------------------------
-\begin{frame}{Kesimpulan Teorema 7.5}
+\begin{frame}
+  \frametitle{Nilai Spesifik Koefisien $q_i$}
+  Beberapa nilai koefisien yang sudah diketahui dari observasi elementer:
   \begin{itemize}
-    \item Setiap $q_i$ = jumlah semua $p(\Phi)$ dari forest dengan i edge.
-    \item Matriks Laplacian $Q$ mempermudah ekspansi determinan → hitung $q_i$.
-    \item Contoh-contoh konkret membantu memahami hubungan graf $\rightarrow$ matriks $\rightarrow$ koefisien polinomial.
+    \item $q_1 = 2|E\Gamma|$ (Dua kali jumlah sisi / jumlah derajat)
+    \item $q_{n-1} = n\kappa(\Gamma)$ (Di mana $\kappa(\Gamma)$ adalah jumlah pohon rentang graf)
+    \item $q_n = 0$ (Matriks $Q$ selalu bersifat singular)
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Submatriks $D(X, Y)$ \& Teorema Binet-Cauchy}
+  Misalkan $X \subseteq V\Gamma$ dan $Y \subseteq E\Gamma$ dengan $|X| = |Y| = i$.
+  \begin{itemize}
+    \item $D(\cdot, Y)$: Submatriks $D$ yang hanya mengambil kolom dari himpunan sisi $Y$.
+    \item $D(X, Y)$: Submatriks dari $D(\cdot, Y)$ yang hanya mengambil baris dari himpunan titik $X$.
+  \end{itemize}
+  \begin{block}{Ekspansi Binet-Cauchy}
+    $$\det Q_X = \sum_{Y} (\det D(X, Y))^2$$
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Struktur Kombinatorika: Hutan $\Phi$}
+  \begin{block}{Hutan (Forest) $\Phi$}
+    Hutan $\Phi = \langle Y \rangle$ adalah subgraf dari $\Gamma$ yang tidak memuat siklus dan memiliki tepat $i$ sisi.
+  \end{block}
+  \begin{block}{Fungsi $p(\Phi)$}
+    Banyaknya cara untuk membuang tepat satu titik dari setiap komponen terhubung pada hutan $\Phi$. Jika setiap komponen memiliki jumlah titik $v_1, v_2, \dots, v_k$, maka:
+    $$p(\Phi) = v_1 \times v_2 \times \dots \times v_k$$
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Kesimpulan Teorema 7.5}
+  Formulasi akhir untuk koefisien polinomial karakteristik:
+  $$q_i = \sum p(\Phi) \quad (1 \le i \le n)$$
+  di mana jumlahan dilakukan atas semua subgraf sisi dari $\Gamma$ yang memiliki $i$ sisi dan berbentuk hutan (forest).
 \end{frame}
 
 \end{document}
