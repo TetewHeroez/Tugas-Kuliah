@@ -11,23 +11,38 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
 
 \begin{proof}
   Berdasarkan \autoref{prop:dekomposisi_latin_square}, elemen pada baris ke-$r$ dan kolom ke-$c$ dari matriks $A \otimes B$ adalah:
-  \[
-    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} ([A]_{rk} \otimes [B]_{kc}).
-  \]
-  Berdasarkan \eqref{eq:dekomposisi_latin_square_maxplus}, substitusikan bentuk dekomposisi matriks $A$ dan $B$ ke dalam persamaan tersebut:
-  \[
-    [A \otimes B]_{rc} = \bigoplus_{k=1}^{n} \left( \left( \bigoplus_{i=1}^{n} a_i \otimes [P_{\sigma_i^A}]_{rk} \right) \otimes \left( \bigoplus_{j=1}^{n} b_j \otimes [P_{\sigma_j^B}]_{kc} \right) \right).
-  \]
-  Karena sifat distributif dan komutatif di dalam $\mathbb{R}_{\max}$, persamaan dapat disusun ulang menjadi:
-  \[
+  \begin{align}\label{eq:entri_perkalian_latin_square_awal}
+    [A \otimes B]_{rc}
+    =
+    \bigoplus_{k=1}^{n} ([A]_{rk} \otimes [B]_{kc}).
+  \end{align}
+  substitusi bentuk dekomposisi \eqref{eq:dekomposisi_latin_square_maxplus} pada matriks $A$ dan $B$ ke dalam \eqref{eq:entri_perkalian_latin_square_awal} menghasilkan
+  \begin{align}\label{eq:entri_perkalian_latin_square_substitusi}
+    [A \otimes B]_{rc}
+    =
+    \bigoplus_{k=1}^{n}
+    \left(
+    \left(
+    \bigoplus_{i=1}^{n}
+    a_i \otimes [P_{\sigma_i^A}]_{rk}
+    \right)
+    \otimes
+    \left(
+    \bigoplus_{j=1}^{n}
+    b_j \otimes [P_{\sigma_j^B}]_{kc}
+    \right)
+    \right).
+  \end{align}
+  Karena sifat distributif dan komutatif di dalam $\mathbb{R}_{\max}$, \eqref{eq:entri_perkalian_latin_square_substitusi} dapat disusun ulang menjadi:
+  \begin{equation}\label{eq:hasil_perkalian_max_plus}
     [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes \left( \bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc} \right).
-  \]
-  Bentuk $\bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc}$ merupakan definisi perkalian elemen baris ke-$r$ dan kolom ke-$c$ dari matriks hasil kali $P_{\sigma_i^A} \otimes P_{\sigma_j^B}$. Berdasarkan \autoref{lem:perkalian_matriks_permutasi}, berlaku hubungan $P_{\sigma_i^A} \otimes P_{\sigma_j^B} = P_{\sigma_j^B \circ \sigma_i^A}$.
+  \end{equation}
+  Bentuk $\bigoplus_{k=1}^{n} [P_{\sigma_i^A}]_{rk} \otimes [P_{\sigma_j^B}]_{kc}$ pada \eqref{eq:hasil_perkalian_max_plus} merupakan definisi perkalian elemen baris ke-$r$ dan kolom ke-$c$ dari matriks hasil kali $P_{\sigma_i^A} \otimes P_{\sigma_j^B}$. Berdasarkan \autoref{lem:perkalian_matriks_permutasi}, berlaku hubungan $P_{\sigma_i^A} \otimes P_{\sigma_j^B} = P_{\sigma_j^B \circ \sigma_i^A}$.
   Dengan mensubstitusikan sifat tersebut, diperoleh:
-  \[
+  \begin{equation}\label{eq:hasil_perkalian_max_plus_final}
     [A \otimes B]_{rc} = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes [P_{\sigma_j^B \circ \sigma_i^A}]_{rc}.
-  \]
-  Secara matriks penuh, hal tersebut ekuivalen dengan \eqref{eq:perkalian_latin_square_maxplus}.
+  \end{equation}
+  Karena berlaku untuk setiap baris $r$ dan kolom $c$, \eqref{eq:hasil_perkalian_max_plus_final} ekuivalen dengan \eqref{eq:perkalian_latin_square_maxplus}.
 \end{proof}
 \begin{akibat}\label{cor:perkalian_latin_square_simbol_1_hingga_n}
   Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{cor:perkalian_latin_square}, hasil kali max-plus dari $A$ dan $B$ diberikan oleh:
@@ -52,47 +67,79 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
 
 Lebih lanjut, \eqref{eq:perkalian_latin_square_gabung} dapat direduksi batas bawah iterasinya dengan meninjau keberadaan elemen maksimum pada matriks \emph{Latin Square}, terlebih jika himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$.
 
-Ambil sembarang entri pada baris ke-$r$ dan kolom ke-$s$ dari matriks hasil kali $A \otimes B$. Berdasarkan definisi perkalian max-plus:
-\[
-  [A \otimes B]_{rs} = \max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}).
-\]
-Karena $A$ memuat setiap elemen dari himpunan $\{1, 2, \ldots, n\}$ tepat satu kali di setiap baris, maka $\exists t^* \in \{1, \ldots, n\}$ sedemikian sehingga $[A]_{rt^*} = n$. Karena setiap entri pada matriks $B$ bernilai minimal $1$, dipastikan bahwa $[B]_{t^*s} \ge 1$, maka diperoleh ketaksamaan
-\[
-  [A \otimes B]_{rs} \ge [A]_{rt^*} + [B]_{t^*s} \ge n + 1.
-\]
-Batas bawah mutlak untuk setiap entri $A \otimes B$ adalah $n+1$.\\
-Selanjutnya, akan dibuktikan kondisi perlu untuk mencapai nilai eksak $[A \otimes B]_{rs} = n+1$. Misalkan $\displaystyle\max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}) = n+1$. Berdasarkan definisi nilai maksimum, hal ini mengimplikasikan
-\[
-  [A]_{rt} + [B]_{ts} \le n+1, \quad \forall t \in \{1, 2, \ldots, n\}.
-\]
-Definisikan variabel selisih non-negatif $\epsilon_t \ge 0$ sedemikian sehingga
-\[
-  [A]_{rt} + [B]_{ts} = n+1 - \epsilon_t.
-\]
-Lakukan operasi jumlahan (\emph{summation}) untuk seluruh rentang indeks $t$:
-\begin{align*}
-  \sum_{t=1}^n ([A]_{rt} + [B]_{ts})            & = \sum_{t=1}^n (n+1 - \epsilon_t)   \\
-  \sum_{t=1}^n [A]_{rt} + \sum_{t=1}^n [B]_{ts} & = n(n+1) - \sum_{t=1}^n \epsilon_t.
-\end{align*}
-Karena $A$ dan $B$ adalah \emph{Latin Square}, jumlahan elemen pada sebarang baris maupun kolom merupakan deret aritmetika dari $1$ hingga $n$, yakni $\sum_{k=1}^n k = \frac{n(n+1)}{2}$. Substitusikan nilai tersebut:
-\begin{align*}
-  n(n+1) & = n(n+1) - \sum_{t=1}^n \epsilon_t \implies
-  \sum_{t=1}^n \epsilon_t              = 0.
-\end{align*}
-Mengingat $\epsilon_t \ge 0$ untuk setiap $t$, satu-satunya solusi nyata yang memenuhi $\sum_{t=1}^n \epsilon_t = 0$ adalah $\epsilon_t = 0, \forall t$. Substitusi kembali $\epsilon_t = 0$ menghasilkan persamaan mutlak:
-\[
-  [A]_{rt} + [B]_{ts} = n+1, \quad \forall t \in \{1, 2, \ldots, n\}.
-\]
-Persamaan $[B]_{ts} = (n+1) - [A]_{rt}$ tersebut merupakan pemetaan bijektif $x \mapsto n+1-x$ pada himpunan $\{1, 2, \ldots, n\}$. Dalam representasi grup simetri $S_n$, pemetaan komplemen ini diekspresikan oleh sebuah permutasi pencerminan (involusi) $\rho$ dengan dekomposisi sikel:
-\[
-  \rho = (1\;\; n)(2\;\; n-1)(3\;\; n-2)\ldots
-\]
-Pembuktian ini menunjukkan bahwa batas bawah $n+1$ hanya eksis jika struktur kolom $B$ merupakan transformasi $\rho$ secara utuh dari baris $A$.
+\begin{proposisi}\label{prop:batas_bawah_perkalian_latin_square}
+  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $N=\{1,2,\ldots,n\}$. Untuk setiap $(r,s)\in N\times N$, entri ke-$(r,s)$ dari hasil perkalian $A\otimes B$ memenuhi
+  \begin{align}\label{eq:batas_bawah_entri_perkalian_latin_square}
+    [A\otimes B]_{rs}\ge n+1.
+  \end{align}
+\end{proposisi}
+\begin{proof}
+  Ambil sembarang entri pada baris ke-$r$ dan kolom ke-$s$ dari matriks hasil kali $A \otimes B$. Berdasarkan \autoref{def:perkalian_matriks_maxplus}
+  \[
+    [A \otimes B]_{rs} = \max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}).
+  \]
+  Karena $A$ memuat setiap elemen dari himpunan $\{1, 2, \ldots, n\}$ tepat satu kali di setiap baris, maka $\exists t^* \in \{1, \ldots, n\}$ sedemikian sehingga $[A]_{rt^*} = n$. Karena setiap entri pada matriks $B$ bernilai minimal $1$, dipastikan bahwa $[B]_{t^*s} \ge 1$, maka diperoleh ketaksamaan
+  \[
+    [A \otimes B]_{rs} \ge [A]_{rt^*} + [B]_{t^*s} \ge n + 1.
+  \]
+  Selanjutnya, akan dibuktikan kondisi perlu untuk mencapai nilai eksak $[A \otimes B]_{rs} = n+1$. Misalkan $\displaystyle\max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}) = n+1$. Berdasarkan definisi nilai maksimum, hal ini mengimplikasikan
+  \[
+    [A]_{rt} + [B]_{ts} \le n+1, \quad \forall t \in \{1, 2, \ldots, n\}.
+  \]
+  Definisikan variabel selisih non-negatif $\epsilon_t \ge 0$ sedemikian sehingga
+  \begin{equation}\label{eq:hubungan_dengan_epsilon}
+    [A]_{rt} + [B]_{ts} = n+1 - \epsilon_t.
+  \end{equation}
+  Lakukan operasi jumlahan (\emph{summation}) pada \eqref{eq:hubungan_dengan_epsilon} untuk seluruh rentang indeks $t$:
+  \begin{align}
+    \sum_{t=1}^n ([A]_{rt} + [B]_{ts})            & = \sum_{t=1}^n (n+1 - \epsilon_t) \notag                                         \\
+    \sum_{t=1}^n [A]_{rt} + \sum_{t=1}^n [B]_{ts} & = n(n+1) - \sum_{t=1}^n \epsilon_t. \label{eq:jumlahan_baris_kolom_latin_square}
+  \end{align}
+  Karena $A$ dan $B$ adalah \emph{Latin Square}, jumlahan elemen pada sebarang baris maupun kolom merupakan deret aritmetika dari $1$ hingga $n$, yakni $\sum_{k=1}^n k = \frac{n(n+1)}{2}$. Substitusikan nilai tersebut pada \eqref{eq:jumlahan_baris_kolom_latin_square} sehingga
+  \begin{align*}
+    \frac{n(n+1)}{2} + \frac{n(n+1)}{2} & = n(n+1) - \sum_{t=1}^n \epsilon_t \implies
+    \sum_{t=1}^n \epsilon_t              = 0.
+  \end{align*}
+  Mengingat $\epsilon_t \ge 0$ untuk setiap $t$, satu-satunya solusi nyata yang memenuhi $\sum_{t=1}^n \epsilon_t = 0$ adalah $\epsilon_t = 0, \forall t\in\{1,2,\dots,n\}$. Substitusi kembali $\epsilon_t = 0$ pada \eqref{eq:hubungan_dengan_epsilon} yang menghasilkan persamaan
+  \begin{align}
+    [A]_{rt} + [B]_{ts} = n+1, \quad \forall t \in \{1, 2, \ldots, n\}\notag \\
+    [B]_{ts} = (n+1) - [A]_{rt}, \quad \forall t \in \{1, 2, \ldots, n\}. \label{eq:persamaan_komplemen}
+  \end{align}
+  Persamaan \eqref{eq:persamaan_komplemen} merupakan pemetaan bijektif $x \mapsto n+1-x$ pada himpunan $\{1, 2, \ldots, n\}$. Dalam representasi grup simetri $S_n$, pemetaan komplemen ini diekspresikan oleh sebuah permutasi pencerminan (involusi) $\rho$ dengan dekomposisi sikel:
+  \[
+    \rho = (1\;\; n)(2\;\; n-1)(3\;\; n-2)\ldots
+  \]
+  Pembuktian ini menunjukkan bahwa batas bawah $n+1$ hanya eksis jika struktur kolom $B$ merupakan transformasi $\rho$ secara utuh dari baris $A$.
+\end{proof}
 
-Karena setiap entri hasil selalu $\ge n+1$, skalar $k \le n$ dipastikan terdominasi dalam operasi maksimum. Oleh karena itu, batas bawah iterasi dekomposisi direduksi dari $k=2$ menjadi $k=n+1$:
-\begin{align}\label{eq:perkalian_latin_square_reduksi}
-  A \otimes B = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right)
-\end{align}
+Oleh karena itu menggunakan \autoref{prop:batas_bawah_perkalian_latin_square}, batas bawah iterasi dekomposisi pada \eqref{eq:perkalian_latin_square_gabung} dapat direduksi.
+\begin{akibat}\label{col:reduksi_iterasi_perkalian_latin_square}
+  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $N=\{1,2,\ldots,n\}$. Maka hasil perkalian $A\otimes B$ dapat direduksi menjadi
+  \begin{align}\label{eq:perkalian_latin_square_reduksi}
+    A \otimes B
+    =
+    \bigoplus_{k=n+1}^{2n}
+    k \otimes
+    \left(
+    \bigoplus_{\substack{i,j \in N \\ i+j=k}}
+    P_{\sigma_j^B \circ \sigma_i^A}
+    \right).
+  \end{align}
+\end{akibat}
+\begin{proof}
+  Berdasarkan \eqref{eq:perkalian_latin_square_gabung}, hasil perkalian $A\otimes B$ semula dapat dituliskan sebagai
+  \[
+    A \otimes B
+    =
+    \bigoplus_{k=2}^{2n}
+    k \otimes
+    \left(
+    \bigoplus_{\substack{i,j \in N \\ i+j=k}}
+    P_{\sigma_j^B \circ \sigma_i^A}
+    \right).
+  \]
+  Berdasarkan \autoref{prop:batas_bawah_perkalian_latin_square}, setiap entri dari $A\otimes B$ bernilai sekurang-kurangnya $n+1$. Oleh karena itu, suku-suku dengan $k\le n$ tidak menentukan nilai akhir entri hasil perkalian karena terdominasi oleh nilai yang lebih besar atau sama dengan $n+1$. Dengan demikian, dekomposisi tersebut dapat direduksi menjadi \eqref{eq:perkalian_latin_square_reduksi}.
+\end{proof}
 
 \begin{contoh}
   Berdasarkan \autoref{ex:hasil_iterasi_semua}, hasil perkalian $A \otimes B$ dapat direduksi menjadi:
@@ -108,181 +155,595 @@ Mereduksi \eqref{eq:perkalian_latin_square_gabung} menjadi \eqref{eq:perkalian_l
 Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif terhadap perkalian max-plus.
 
 \begin{teorema}\label{thm:komutatif_elemen_maksimum}
-  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus ($A \otimes B = B \otimes A$), maka permutasi yang bersesuaian dengan elemen maksimum $n$ dari kedua matriks tersebut harus saling komutatif, yaitu:
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $N=\{1,2,\ldots,n\}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus, yaitu $A \otimes B = B \otimes A$, maka permutasi yang bersesuaian dengan simbol maksimum $n$ dari kedua matriks tersebut saling komutatif, yaitu
   \[
-    \sigma_n^A \circ \sigma_n^B = \sigma_n^B \circ \sigma_n^A.
+    \sigma_n^A \circ \sigma_n^B
+    =
+    \sigma_n^B \circ \sigma_n^A.
   \]
 \end{teorema}
+
 \begin{proof}
-  Berdasarkan \eqref{eq:perkalian_latin_square_reduksi}, perkalian $A \otimes B$ dan $B \otimes A$ dapat dituliskan sebagai:
-  \begin{align*}
-    A \otimes B & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right) \\
-    B \otimes A & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_i^A \circ \sigma_j^B} \right)
-  \end{align*}
-  Agar persamaan $A \otimes B = B \otimes A$ terpenuhi, komponen matriks pada setiap tingkatan skalar $k$ haruslah sama. Tinjau suku dengan nilai skalar maksimum yang mungkin terbentuk pada operasi tersebut, yaitu $k = 2n$.\\
-  Nilai $k = 2n$ hanya dapat dicapai melalui tepat satu kombinasi indeks, yaitu saat $i = n$ dan $j = n$. Dengan menyamakan suku pada $k = 2n$ dari kedua ruas persamaan, diperoleh:
-  \[
-    2n \otimes P_{\sigma_n^B \circ \sigma_n^A} = 2n \otimes P_{\sigma_n^A \circ \sigma_n^B}.
-  \]
-  Karena $2n$ merupakan nilai skalar yang berhingga di dalam $\mathbb{R}_{\max}$, skalar tersebut dapat disederhanakan dari kedua ruas sehingga menghasilkan kesamaan matriks permutasi:
-  \[
-    P_{\sigma_n^B \circ \sigma_n^A} = P_{\sigma_n^A \circ \sigma_n^B}.
-  \]
-  Berdasarkan isomorfisma antara grup matriks permutasi max-plus dan grup simetri $S_n$ (\autoref{thm:isomorfisma_Sn}), kesamaan matriks tersebut berakibat langsung pada kesamaan fungsi permutasinya:
-  \[
-    \sigma_n^B \circ \sigma_n^A = \sigma_n^A \circ \sigma_n^B
-  \]
+  Berdasarkan \eqref{eq:perkalian_latin_square_reduksi}, perkalian $A \otimes B$ dapat dituliskan sebagai
+  \begin{align}\label{eq:AB_dekomposisi_level}
+    A \otimes B
+    =
+    \bigoplus_{k=n+1}^{2n}
+    k \otimes
+    \left(
+    \bigoplus_{\substack{i,j \in N \\ i+j=k}}
+    P_{\sigma_j^B \circ \sigma_i^A}
+    \right).
+  \end{align}
+  Dengan menukar peran $A$ dan $B$ pada \eqref{eq:perkalian_latin_square_reduksi}, perkalian $B \otimes A$ dapat dituliskan sebagai
+  \begin{align}\label{eq:BA_dekomposisi_level}
+    B \otimes A
+    =
+    \bigoplus_{k=n+1}^{2n}
+    k \otimes
+    \left(
+    \bigoplus_{\substack{i,j \in N \\ i+j=k}}
+    P_{\sigma_j^A \circ \sigma_i^B}
+    \right).
+  \end{align}
+  Berdasarkan \eqref{eq:AB_dekomposisi_level} dan \eqref{eq:BA_dekomposisi_level}, nilai skalar terbesar yang mungkin muncul pada kedua hasil perkalian tersebut adalah $2n$. Nilai ini hanya dapat diperoleh dari pasangan indeks $(i,j)=(n,n)$. Oleh karena itu, suku yang menghasilkan nilai $2n$ pada $A\otimes B$ adalah
+  $
+    2n \otimes P_{\sigma_n^B \circ \sigma_n^A},
+  $
+  sedangkan suku yang menghasilkan nilai $2n$ pada $B\otimes A$ adalah
+  $
+    2n \otimes P_{\sigma_n^A \circ \sigma_n^B}.
+  $
+  Karena diasumsikan $A \otimes B = B \otimes A$, maka posisi kemunculan nilai maksimum $2n$ pada kedua matriks hasil harus sama. Akibatnya,
+  \begin{align}\label{eq:kesamaan_matriks_permutasi_maksimum}
+    P_{\sigma_n^B \circ \sigma_n^A}
+    =
+    P_{\sigma_n^A \circ \sigma_n^B}.
+  \end{align}
+  Berdasarkan korespondensi satu-satu antara matriks permutasi dan permutasi pada $S_n$, dari \eqref{eq:kesamaan_matriks_permutasi_maksimum} diperoleh
+  \begin{align}\label{eq:komutatif_permutasi_maksimum}
+    \sigma_n^B \circ \sigma_n^A
+    =
+    \sigma_n^A \circ \sigma_n^B.
+  \end{align}
+  Dengan demikian, permutasi $\sigma_n^A$ dan $\sigma_n^B$ saling komutatif.
 \end{proof}
 
 Selain itu, dapat diperoleh kondisi lain tentang komutativitas permutasi elemen maksimum kedua ($2n-1$) dari kedua matriks tersebut.
 
-\begin{teorema}\label{thm:kondisi_elemen_maksimum_kedua}
-  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus ($A \otimes B = B \otimes A$), maka himpunan pemetaan posisi yang menghasilkan elemen bernilai $2n-1$ harus ekuivalen:
-  \[
-    \{\sigma_{n-1}^B \circ \sigma_n^A, \sigma_n^B \circ \sigma_{n-1}^A\} = \{\sigma_{n-1}^A \circ \sigma_n^B, \sigma_n^A \circ \sigma_{n-1}^B\}.
-  \]
-  Ekuivalensi himpunan tersebut mensyaratkan bahwa permutasi elemen maksimum $n$ dan elemen maksimum kedua $n-1$ harus memenuhi setidaknya satu dari dua kondisi komposisi berikut:
-  \begin{enumerate}
-    \item Kondisi Paralel
-          \begin{align*}
-            \sigma_{n-1}^B \circ \sigma_n^A  = \sigma_{n-1}^A \circ \sigma_n^B \quad\text{dan}\quad\sigma_n^B \circ \sigma_{n-1}^A  = \sigma_n^A \circ \sigma_{n-1}^B.
-          \end{align*}
+Secara umum, untuk suatu nilai $v\in\{n+1,n+2,\ldots,2n\}$, kontribusi terhadap entri hasil perkalian berasal dari seluruh pasangan indeks $(x,y)\in N\times N$ yang memenuhi $x+y=v$. Pada perkalian $A\otimes B$, pasangan $(x,y)$ tersebut menghasilkan komposisi permutasi
+$
+  \sigma_y^B \circ \sigma_x^A,
+$
+sedangkan pada perkalian $B\otimes A$, pasangan yang sama menghasilkan komposisi permutasi
+$
+  \sigma_y^A \circ \sigma_x^B.
+$
 
-    \item Kondisi Silang
-          \begin{align*}
-            \sigma_{n-1}^B \circ \sigma_n^A  = \sigma_n^A \circ \sigma_{n-1}^B \quad\text{dan}\quad\sigma_n^B \circ \sigma_{n-1}^A = \sigma_{n-1}^A \circ \sigma_n^B.
-          \end{align*}
-  \end{enumerate}
-\end{teorema}
+Akan tetapi, kesamaan komposisi permutasi untuk pasangan indeks dengan $x+y=v$ belum cukup untuk menjamin kesamaan entri hasil perkalian. Hal ini disebabkan karena pada aljabar max-plus, nilai suatu entri ditentukan oleh nilai maksimum dari seluruh kemungkinan penjumlahan yang muncul pada posisi tersebut. Dengan demikian, apabila suatu posisi matriks memperoleh nilai dari pasangan indeks dengan jumlah $v$, tetapi pada posisi yang sama terdapat pasangan indeks lain dengan jumlah lebih besar dari $v$, maka nilai akhir pada posisi tersebut ditentukan oleh jumlah yang lebih besar.
 
-\begin{proof}
-  Berdasarkan \eqref{eq:perkalian_latin_square_reduksi}, perkalian $A \otimes B$ dan $B \otimes A$ dapat dituliskan sebagai:
-  \begin{align*}
-    A \otimes B & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right) \\
-    B \otimes A & = \bigoplus_{k=n+1}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_i^A \circ \sigma_j^B} \right)
-  \end{align*}
-  Agar persamaan $A \otimes B = B \otimes A$ terpenuhi, komponen matriks pada setiap tingkatan skalar $k$ haruslah sama. Tinjau suku dengan nilai skalar maksimum kedua yang mungkin terbentuk pada operasi tersebut, yaitu $k = 2n-1$.\\
-  Nilai $k = 2n-1$ hanya dapat dicapai melalui kombinasi indeks saat $i = n, j = n-1$ dan $i = n-1, j = n$. Dengan menyamakan suku pada $k = 2n-1$ dari kedua ruas persamaan, diperoleh:
-  \[
-    (2n-1) \otimes (P_{\sigma_{n-1}^B \circ \sigma_n^A} \oplus P_{\sigma_n^B \circ \sigma_{n-1}^A}) = (2n-1) \otimes (P_{\sigma_{n-1}^A \circ \sigma_n^B} \oplus P_{\sigma_n^A \circ \sigma_{n-1}^B})
-  \]
-  Karena $2n-1$ merupakan nilai skalar yang berhingga di dalam $\mathbb{R}_{\max}$, skalar tersebut dapat disederhanakan dari kedua ruas sehingga menghasilkan kesamaan penjumlahan matriks permutasi:
-  \[
-    P_{\sigma_{n-1}^B \circ \sigma_n^A} \oplus P_{\sigma_n^B \circ \sigma_{n-1}^A} = P_{\sigma_{n-1}^A \circ \sigma_n^B} \oplus P_{\sigma_n^A \circ \sigma_{n-1}^B}.
-  \]
-  Berdasarkan sifat matriks permutasi, kesamaan antara jumlahan dua matriks permutasi ini hanya akan terpenuhi jika terjadi pemetaan ekuivalen antar elemennya, yang berakibat langsung pada kesamaan himpunan fungsi permutasinya:
-  \[
-    \{\sigma_{n-1}^B \circ \sigma_n^A, \sigma_n^B \circ \sigma_{n-1}^A\} = \{\sigma_{n-1}^A \circ \sigma_n^B, \sigma_n^A \circ \sigma_{n-1}^B\}.
-  \]
-  Ekuivalensi antara himpunan beranggotakan dua permutasi tersebut mensyaratkan berlakunya salah satu dari pemetaan saling sejajar (Kondisi Paralel) atau pemetaan bertukar tempat (Kondisi Silang).
-\end{proof}
-
-Konsep ekuivalensi pada kondisi elemen maksimum tersebut secara analitik dapat dieksekusi melalui generalisasi untuk elemen pembentuk maksimum ke-$k$.
-
-\begin{teorema}\label{thm:kondisi_elemen_maksimum_ke_k}
-  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $N=\{1, 2, \ldots, n\}$. Jika $A \otimes B = B \otimes A$, maka untuk setiap observasi pembentukan elemen dengan bobot skalar $v = 2n - (k-1)$ (di mana $1 \le k \le n$), himpunan relasi permutasinya harus memenuhi ekuivalensi:
-  \[
-    \{\sigma_x^A \circ \sigma_y^B \mid x, y \in N,\, x+y = v\} = \{\sigma_x^B \circ \sigma_y^A \mid x, y \in N,\, x+y = v\}.
-  \]
-\end{teorema}
-
-Ekuivalensi himpunan komposisi permutasi untuk elemen ke-$k$ ini menuntut kita memeriksa semua kemungkinan pemetaan yang ada. Sayangnya, jumlah kemungkinan tersebut tumbuh secara faktorial sebesar $k!$. Mengingat himpunan fungsi pembentuk skalar $v$ memiliki $k$ anggota ekuivalen, maka total pemetaan yang harus dievaluasi adalah:
-\[
-  \text{Total Variasi Pemetaan} = k! \sim \mathcal{O}(k!).
-\]
-Meskipun secara teori matematis persamaan ini benar, mengecek elemen lapis demi lapis sangatlah tidak efisien untuk matriks berukuran besar. Semakin dalam tingkat elemen yang dicek (ketika nilai $k$ makin besar), beban perhitungannya akan melonjak secara eksponensial sehingga mustahil untuk diselesaikan secara komputasi (\emph{intractable}).
-
-Guna menyelesaikan problematika sifat dominasi laten yang menyertai tiap-tiap entri hasil matriks, skema identifikasi syarat komutatif perlu diformulasikan ulang melalui konsep Himpunan Superlevel (\emph{Superlevel Sets} atau \emph{Upper Level Sets}).
+Oleh karena itu, analisis tidak cukup dilakukan hanya dengan memperhatikan pasangan indeks yang memenuhi $x+y=v$. Untuk menentukan apakah suatu posisi matriks memiliki nilai sekurang-kurangnya $v$, perlu diperhatikan seluruh pasangan indeks yang memenuhi
+$
+  x+y\ge v.
+$
+Dengan demikian, pembahasan selanjutnya diarahkan pada posisi-posisi entri matriks yang dihasilkan oleh komposisi permutasi tersebut. Untuk itu, terlebih dahulu diperlukan notasi yang merepresentasikan suatu permutasi sebagai himpunan koordinat posisi pada matriks permutasi.
 
 \begin{definisi}\label{def:representasi_koordinat}
-  Misalkan $N = \{1, 2, \ldots, n\}$. Untuk setiap permutasi $\sigma : N \to N$, representasi koordinat untuk permutasi tersebut, yang disimbolkan dengan $\Gamma(\sigma) \subseteq N \times N$, didefinisikan sebagai himpunan pasangan berurutan yang memetakan elemen ke bayangannya:
+  Misalkan $N=\{1,2,\ldots,n\}$. Untuk setiap permutasi $\sigma:N\to N$, representasi koordinat dari $\sigma$, yang dinotasikan dengan $\Gamma(\sigma)\subseteq N\times N$, didefinisikan sebagai
   \[
-    \Gamma(\sigma) = \{(j, \sigma(j)) \mid j \in N\}.
+    \Gamma(\sigma)
+    =
+    \{(r,\sigma(r))\mid r\in N\}.
   \]
+  Dengan kata lain, $\Gamma(\sigma)$ menyatakan himpunan posisi entri hingga dari matriks permutasi $P_\sigma$.
 \end{definisi}
 
 \begin{contoh}
-  Misalkan $n = 3$, sehingga $N = \{1, 2, 3\}$. Diberikan sebuah permutasi $\sigma = (1\;2\;3) \in S_3$. Permutasi ini mendefinisikan pemetaan $\sigma(1) = 2$, $\sigma(2) = 3$, dan $\sigma(3) = 1$. Berdasarkan \autoref{def:representasi_koordinat}, representasi koordinat untuk permutasi $\sigma$ adalah himpunan pasangan berurutan berikut:
+  Misalkan $n=3$ dan $N=\{1,2,3\}$. Diberikan permutasi $\sigma=(1\;2\;3)\in S_3$, yaitu $\sigma(1)=2$, $\sigma(2)=3$, dan $\sigma(3)=1$. Berdasarkan \autoref{def:representasi_koordinat}, diperoleh
   \[
-    \Gamma(\sigma) = \{(1, 2), (2, 3), (3, 1)\}.
+    \Gamma(\sigma)=\{(1,2),(2,3),(3,1)\}.
   \]
 \end{contoh}
 
 \begin{definisi}\label{def:himpunan_superlevel}
-  Misalkan $A, B \in L_S(n)$ dan diberikan sebuah skalar pembanding $v \in \mathbb{R}_{\max}$. Himpunan Superlevel (\emph{Upper Level Set}) dari perkalian $A \otimes B$, dengan notasi $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai gabungan representasi koordinat dari seluruh komposisi permutasi penyusun yang menghasilkan skalar penjumlahan minimum sebesar $v$:
+  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $N=\{1,2,\ldots,n\}$, dan misalkan $v\in\{n+1,n+2,\ldots,2n\}$. Himpunan superlevel dari hasil perkalian $A\otimes B$ pada level $v$, yang dinotasikan dengan $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai
   \[
-    \mathcal{U}_{\ge v}^{AB} = \bigcup_{\substack{x, y \in N \\ x+y \ge v}} \Gamma(\sigma_x^A \circ \sigma_y^B).
+    \mathcal{U}_{\ge v}^{AB}
+    =
+    \bigcup_{\substack{x,y\in N\\x+y\ge v}}
+    \Gamma(\sigma_y^B\circ\sigma_x^A).
+  \]
+  Secara analog, himpunan superlevel dari hasil perkalian $B\otimes A$ pada level $v$ didefinisikan sebagai
+  \[
+    \mathcal{U}_{\ge v}^{BA}
+    =
+    \bigcup_{\substack{x,y\in N\\x+y\ge v}}
+    \Gamma(\sigma_y^A\circ\sigma_x^B).
   \]
 \end{definisi}
 
 \begin{contoh}
-  Misalkan $n = 2$, sehingga $N = \{1, 2\}$, dan diberikan skalar pembanding $v = 3$. Pasangan indeks $(x, y) \in N \times N$ yang memenuhi syarat batas $x + y \ge 3$ adalah $(1, 2), (2, 1)$, dan $(2, 2)$.\\
-  Misalkan matriks permutasi penyusun untuk $A$ dan $B$ diketahui eksistensinya sebagai $\sigma_1^A = (1)$, $\sigma_2^A = (1\;2)$, $\sigma_1^B = (1\;2)$, dan $\sigma_2^B = (1)$. Komposisi permutasi dievaluasi hanya untuk pasangan indeks yang memenuhi syarat $x+y \ge 3$:
+  Misalkan $n=2$, sehingga $N=\{1,2\}$, dan diberikan skalar pembanding $v=3$. Pasangan indeks $(x,y)\in N\times N$ yang memenuhi $x+y\ge 3$ adalah $(1,2)$, $(2,1)$, dan $(2,2)$.
+  Misalkan permutasi penyusun untuk $A$ dan $B$ diberikan oleh
+  \[
+    \sigma_1^A=(1),\quad
+    \sigma_2^A=(1\;2),\quad
+    \sigma_1^B=(1\;2),\quad
+    \sigma_2^B=(1).
+  \]
+  Berdasarkan \autoref{def:himpunan_superlevel}, komposisi permutasi yang digunakan untuk membentuk $\mathcal{U}_{\ge 3}^{AB}$ adalah sebagai berikut:
   \begin{itemize}
-    \item Untuk $(1, 2) \implies \sigma_1^A \circ \sigma_2^B = (1) \circ (1) = (1)$.
-    \item Untuk $(2, 1) \implies \sigma_2^A \circ \sigma_1^B = (1\;2) \circ (1\;2) = (1)$.
-    \item Untuk $(2, 2) \implies \sigma_2^A \circ \sigma_2^B = (1\;2) \circ (1) = (1\;2)$.
+    \item Untuk $(x,y)=(1,2)$, diperoleh
+          $
+            \sigma_2^B\circ\sigma_1^A
+            =
+            (1)\circ(1)
+            =
+            (1).
+          $
+    \item Untuk $(x,y)=(2,1)$, diperoleh
+          $
+            \sigma_1^B\circ\sigma_2^A
+            =
+            (1\;2)\circ(1\;2)
+            =
+            (1).
+          $
+    \item Untuk $(x,y)=(2,2)$, diperoleh
+          $
+            \sigma_2^B\circ\sigma_2^A
+            =
+            (1)\circ(1\;2)
+            =
+            (1\;2).
+          $
   \end{itemize}
-  Representasi koordinat untuk permutasi identitas adalah $\Gamma((1)) = \{(1, 1), (2, 2)\}$, sedangkan untuk permutasi transposisi adalah $\Gamma((1\;2)) = \{(1, 2), (2, 1)\}$. Berdasarkan \autoref{def:himpunan_superlevel}, himpunan superlevel $\mathcal{U}_{\ge 3}^{AB}$ dibentuk dari gabungan koordinat komposisi tersebut:
+  Karena
+  $
+    \Gamma((1))=\{(1,1),(2,2)\}
+  $
+  dan
+  $
+    \Gamma((1\;2))=\{(1,2),(2,1)\},
+  $
+  maka
   \begin{align*}
-    \mathcal{U}_{\ge 3}^{AB} & = \Gamma(\sigma_1^A \circ \sigma_2^B) \cup \Gamma(\sigma_2^A \circ \sigma_1^B) \cup \Gamma(\sigma_2^A \circ \sigma_2^B) \\
-                             & = \Gamma((1)) \cup \Gamma((1)) \cup \Gamma((1\;2))                                                                      \\
-                             & = \{(1, 1), (2, 2)\} \cup \{(1, 1), (2, 2)\} \cup \{(1, 2), (2, 1)\}                                                    \\
-                             & = \{(1, 1), (1, 2), (2, 1), (2, 2)\}.
+    \mathcal{U}_{\ge 3}^{AB}
+     & =
+    \Gamma(\sigma_2^B\circ\sigma_1^A)
+    \cup
+    \Gamma(\sigma_1^B\circ\sigma_2^A)
+    \cup
+    \Gamma(\sigma_2^B\circ\sigma_2^A) \\
+     & =
+    \Gamma((1))
+    \cup
+    \Gamma((1))
+    \cup
+    \Gamma((1\;2))                    \\
+     & =
+    \{(1,1),(2,2)\}
+    \cup
+    \{(1,1),(2,2)\}
+    \cup
+    \{(1,2),(2,1)\}                   \\
+     & =
+    \{(1,1),(1,2),(2,1),(2,2)\}.
   \end{align*}
 \end{contoh}
 
-\begin{teorema}\label{thm:syarat_cukup_komutatif_himpunan}
-  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $N=\{1, 2, \ldots, n\}$. Matriks $A$ dan $B$ saling komutatif ($A \otimes B = B \otimes A$) jika dan hanya jika $\mathcal{U}_{\ge v}^{AB}=\mathcal{U}_{\ge v}^{BA}$ untuk setiap $v \geq n+1$.
+\begin{teorema}\label{thm:kriteria_komutatif_superlevel}
+  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $N=\{1,2,\ldots,n\}$. Matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus
+  jika dan hanya jika
+  \[
+    \mathcal{U}_{\ge v}^{AB}
+    =
+    \mathcal{U}_{\ge v}^{BA}
+  \]
+  untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
 \end{teorema}
-
 \begin{proof}
-  Misalkan $C = A \otimes B$ dan $D = B \otimes A$. Untuk matriks $C$, entri $[C]_{ij} \ge v$ tercapai jika dan hanya jika terdapat nilai penyusun $A_{ik} = x$ dan $B_{kj} = y$ sedemikian sehingga $x + y \ge v$. Secara pemetaan pemetaan komposisi, keadaan ini berarti koordinat $(j, i) \in \Gamma(\sigma_x^A \circ \sigma_y^B)$.
-  Maka berdasarkan definisi himpunan superlevel, berlaku ekuivalensi:
-  \[
-    [C]_{ij} \ge v \iff (j, i) \in \mathcal{U}_{\ge v}^{AB}.
-  \]
-  Melalui penalaran yang sama untuk matriks $D$, diperoleh:
-  \[
-    [D]_{ij} \ge v \iff (j, i) \in \mathcal{U}_{\ge v}^{BA}.
-  \]
-  Dua matriks dikatakan sama ($C = D$) jika dan hanya jika kondisi $[C]_{ij} \ge v \iff [D]_{ij} \ge v$ selalu berlaku untuk setiap elemen matriks. Berhubung batasan nilai minimum dari matriks hasil perkalian \emph{Latin Square} ini adalah $n+1$, maka sifat komutatif $A \otimes B = B \otimes A$ terbukti eksis berpadanan dengan kesamaan himpunan superlevelnya, yakni $\mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA}$ untuk setiap skalar $v \ge n+1$.
+  Misalkan $C=A\otimes B$ dan $D=B\otimes A$. Berdasarkan \autoref{col:reduksi_iterasi_perkalian_latin_square}, setiap entri dari $C$ dan $D$ hanya mungkin bernilai pada himpunan $\{n+1,n+2,\ldots,2n\}$.\\
+  Ambil sembarang $(r,s)\in N\times N$. Berdasarkan definisi perkalian max-plus, entri ke-$(r,s)$ dari $C$ adalah $C_{rs}=\max_{t\in N}(A_{rt}+B_{ts})$. Dengan representasi permutasi, kondisi $A_{rt}=x$ berarti $t=\sigma_x^A(r)$, sedangkan kondisi $B_{ts}=y$ berarti $s=\sigma_y^B(t)$. Oleh karena itu, posisi $(r,s)$ memperoleh nilai sekurang-kurangnya $v$ pada $C$ jika dan hanya jika terdapat $x,y\in N$ dengan $x+y\ge v$ sehingga $s=(\sigma_y^B\circ\sigma_x^A)(r)$. Dengan demikian,
+  \begin{align}\label{eq:AB_entri_superlevel}
+    C_{rs}\ge v
+    \iff
+    (r,s)\in\mathcal{U}_{\ge v}^{AB}.
+  \end{align}
+  Dengan cara yang sama, untuk matriks $D=B\otimes A$ diperoleh
+  \begin{align}\label{eq:BA_entri_superlevel}
+    D_{rs}\ge v
+    \iff
+    (r,s)\in\mathcal{U}_{\ge v}^{BA}.
+  \end{align}
+  Berdasarkan \autoref{prop:batas_bawah_perkalian_latin_square}, setiap entri dari $C$ dan $D$ bernilai sekurang-kurangnya $n+1$. Akibatnya,
+  \begin{align}\label{eq:superlevel_nplus1_trivial}
+    \mathcal{U}_{\ge n+1}^{AB}
+    =
+    N\times N
+    =
+    \mathcal{U}_{\ge n+1}^{BA}.
+  \end{align}
+  Jadi, level $n+1$ selalu terpenuhi secara otomatis dan tidak perlu diperiksa.\\
+  \noindent$(\Rightarrow)$ Misalkan $A\otimes B=B\otimes A$. Maka $C=D$. Akibatnya, untuk setiap $(r,s)\in N\times N$ dan setiap $v\in\{n+2,\ldots,2n\}$ berlaku $C_{rs}\ge v \iff D_{rs}\ge v$. Berdasarkan \eqref{eq:AB_entri_superlevel} dan \eqref{eq:BA_entri_superlevel}, diperoleh
+  \begin{align}\label{eq:kesamaan_keanggotaan_superlevel}
+    (r,s)\in\mathcal{U}_{\ge v}^{AB}
+    \iff
+    (r,s)\in\mathcal{U}_{\ge v}^{BA}.
+  \end{align}
+  Karena \eqref{eq:kesamaan_keanggotaan_superlevel} berlaku untuk setiap $(r,s)\in N\times N$, maka
+  \begin{align}\label{eq:kesamaan_himpunan_superlevel}
+    \mathcal{U}_{\ge v}^{AB}
+    =
+    \mathcal{U}_{\ge v}^{BA}
+  \end{align}
+  untuk setiap $v\in\{n+2,\ldots,2n\}$.\\
+  \noindent$(\Leftarrow)$ Sebaliknya, misalkan
+  \begin{align}\label{eq:asumsi_kesamaan_superlevel}
+    \mathcal{U}_{\ge v}^{AB}
+    =
+    \mathcal{U}_{\ge v}^{BA}
+  \end{align}
+  untuk setiap $v\in\{n+2,\ldots,2n\}$. Berdasarkan \eqref{eq:AB_entri_superlevel}, \eqref{eq:BA_entri_superlevel}, dan \eqref{eq:asumsi_kesamaan_superlevel}, diperoleh $C_{rs}\ge v \iff D_{rs}\ge v$ untuk setiap $(r,s)\in N\times N$ dan setiap $v\in\{n+2,\ldots,2n\}$.\\
+  Karena setiap entri dari $C$ dan $D$ berada pada himpunan $\{n+1,n+2,\ldots,2n\}$, kesamaan seluruh relasi ambang untuk $v=n+2,\ldots,2n$ menentukan kesamaan nilai entri. Apabila tidak ada $v\in\{n+2,\ldots,2n\}$ yang memenuhi $C_{rs}\ge v$, maka $C_{rs}=n+1$. Hal yang sama berlaku untuk $D_{rs}$. Dengan demikian, untuk setiap $(r,s)\in N\times N$ berlaku $C_{rs}=D_{rs}$.\\
+  Karena $C_{rs}=D_{rs}$ untuk setiap $(r,s)\in N\times N$, maka $C=D$. Dengan kata lain, $A\otimes B=B\otimes A$.
 \end{proof}
 
 \section{Pasangan Latin Square Komutatif}
 
-Pada bagian ini akan dijelaskan sebuah algoritma untuk menentukan sebuah pasangan matriks \emph{Latin Square} yang telah diberikan sebelumnya agar dua \emph{Latin Square} tersebut saling komutatif terhadap perkalian max-plus.
+Pada bagian sebelumnya telah diperoleh kriteria komutativitas dua Latin square max-plus melalui kesamaan himpunan superlevel. Kriteria tersebut menyatakan bahwa dua Latin square $A$ dan $B$ komutatif terhadap perkalian max-plus jika dan hanya jika $\mathcal{U}_{\ge v}^{AB}=\mathcal{U}_{\ge v}^{BA}$ untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
 
-\begin{definisi}\label{def:ekstraksi_simbol}
-  Misalkan $L$ adalah sebuah matriks Latin square berukuran $n \times n$ dengan elemen matriks $L_{i,j} \in N = \{1, 2, \ldots, n\}$. Himpunan koordinat posisi untuk kemunculan suatu simbol spesifik $k \in N$, yang disimbolkan dengan $E_k(L)$, didefinisikan secara matematis sebagai himpunan pasangan indeks baris dan kolom berikut:
-  $$E_k(L) = \{(i, j) \in N \times N \mid L_{i,j} = k\}.$$
-\end{definisi}
+Kriteria tersebut tidak hanya dapat digunakan untuk memverifikasi komutativitas setelah suatu kandidat $B$ terbentuk, tetapi juga dapat digunakan untuk menyusun prosedur pencarian secara bertahap. Ide utamanya adalah melakukan pemeriksaan dari level terbesar ke level yang lebih kecil. Dengan cara ini, kandidat yang gagal pada suatu level dapat langsung ditolak tanpa perlu melengkapi seluruh permutasi penyusun $B$.
 
-\begin{algorithm}[H]
-  \caption{Konstruksi $C_{S_n}(\sigma)$ dari Elemen Terbesar Latin Square}
-  \begin{algorithmic}[1]
-    \REQUIRE $A \in L_S(n)$
-    \ENSURE $C$
-    \STATE $v_{\max} \leftarrow \max_{i,j} A_{i,j}$
-    \STATE $E \leftarrow \{(i, j) \in N \times N \mid A_{i,j} = v_{\max}\}$
-    \STATE $\sigma \leftarrow \Gamma^{-1}(E)$
-    \STATE $\Sigma \leftarrow \left\{ c_1, c_2, \ldots, c_m \mid \sigma = \prod_{x=1}^{m} c_x \right\}$
-    \STATE $C \leftarrow \{(1)\}$
-    \FOR{$k = 1$ \TO $n$}
-    \STATE $S_k \leftarrow \{c \in \Sigma \mid |c| = k\}$
-    \IF{$|S_k| > 0$}
-    \STATE $\displaystyle R_k \leftarrow \left\{ \prod_{c \in S_k} c^{p_c} \mid 0 \le p_c < k \right\}$
-    \STATE $P_k \leftarrow \left\{ \pi \in S_n \mid \pi(S_k) = S_k \land \pi(x)=x, \forall x \notin \bigcup_{c \in S_k} c \right\}$
-    \STATE $T_k \leftarrow \{ r \circ p \mid r \in R_k, p \in P_k \}$
-    \STATE $C \leftarrow \{ \alpha \circ \beta \mid \alpha \in C, \beta \in T_k \}$
-    \ENDIF
-    \ENDFOR
-    \RETURN $C$
-  \end{algorithmic}
-\end{algorithm}
+Misalkan $A\in L_S(n)$ telah diberikan. Berdasarkan \autoref{thm:komutatif_elemen_maksimum}, apabila $B$ komutatif dengan $A$, maka permutasi yang bersesuaian dengan simbol maksimum pada $B$ harus memenuhi $\sigma_n^B\in C_{S_n}(\sigma_n^A)$. Oleh karena itu, proses pencarian dimulai dengan memilih $\sigma_n^B$ dari centralizer $C_{S_n}(\sigma_n^A)$. Pemilihan ini sekaligus menangani level tertinggi, yaitu level $2n$.
+
+Setelah $\sigma_n^B$ dipilih, proses dilanjutkan dengan memilih $\sigma_{n-1}^B$. Pada tahap ini, level $2n-1$ sudah dapat diperiksa menggunakan kesamaan himpunan superlevel. Jika pemeriksaan pada level tersebut gagal, maka kandidat $\sigma_{n-1}^B$ ditolak. Secara umum, setelah $\sigma_m^B$ dipilih, level $n+m$ sudah dapat diperiksa, karena himpunan $\mathcal{U}_{\ge n+m}^{AB}$ dan $\mathcal{U}_{\ge n+m}^{BA}$ hanya melibatkan permutasi-permutasi $\sigma_m^B,\sigma_{m+1}^B,\ldots,\sigma_n^B$ dari kandidat $B$.
+
+Dengan demikian, pencarian pasangan Latin square komutatif dapat dilakukan secara rekursif atau \emph{backtracking}. Pada setiap tahap, dipilih satu permutasi baru untuk kandidat $B$, kemudian langsung dilakukan pemeriksaan Latin square dan pemeriksaan superlevel pada level yang bersesuaian.
+
+Sebelum algoritma diberikan, terlebih dahulu didefinisikan matriks kandidat parsial $B^*$. Matriks $B^*$ adalah matriks berordo $n$ yang digunakan untuk membangun kandidat Latin square $B$ secara bertahap. Entri pada $B^*$ yang belum diisi dituliskan sebagai $\varepsilon$, yaitu elemen nol pada aljabar max-plus.
+
+\begin{algoritma}\label{alg:pencarian_pasangan_latin_square_komutatif}
+  Pencarian pasangan Latin square yang komutatif dengan suatu Latin square $A\in L_S(n)$ dilakukan melalui langkah-langkah berikut.
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$.
+
+    \item Bentuk matriks kandidat parsial
+          \[
+            B^*=(b^*_{rs})_{n\times n}
+          \]
+          dengan $b^*_{rs}=\varepsilon$ untuk setiap $(r,s)\in N\times N$.
+
+    \item Tentukan centralizer $C_{S_n}(\sigma_n^A)$ menggunakan \autoref{alg:konstruksi_centralizer}.
+
+    \item Untuk setiap $\tau\in C_{S_n}(\sigma_n^A)$, lakukan langkah berikut.
+          \begin{enumerate}
+            \item Tetapkan $\sigma_n^B=\tau$.
+
+            \item Salin kembali $B^*$ menjadi matriks kosong, yaitu $b^*_{rs}=\varepsilon$ untuk setiap $(r,s)\in N\times N$.
+
+            \item Untuk setiap $r\in N$, isi
+                  $
+                    b^*_{r,\sigma_n^B(r)}=n.
+                  $
+                  Dengan demikian, simbol maksimum $n$ ditempatkan pada $B^*$ sesuai permutasi $\sigma_n^B$.
+          \end{enumerate}
+
+    \item Lakukan proses pemilihan permutasi secara menurun untuk $m=n-1,n-2,\ldots,2$.
+          \begin{enumerate}
+            \item Pilih kandidat permutasi $\sigma_m^B\in S_n$.
+
+            \item Periksa entri $B^*$ pada posisi $(r,\sigma_m^B(r))$ untuk setiap $r\in N$.
+
+            \item Jika terdapat $r\in N$ sehingga $b^*_{r,\sigma_m^B(r)}\neq\varepsilon$, maka kandidat $\sigma_m^B$ ditolak.
+
+            \item Jika $b^*_{r,\sigma_m^B(r)}=\varepsilon$ untuk setiap $r\in N$, maka tempatkan simbol $m$ pada $B^*$ dengan aturan
+                  \[
+                    b^*_{r,\sigma_m^B(r)}=m,
+                    \quad r\in N.
+                  \]
+
+            \item Hitung $\mathcal{U}_{\ge n+m}^{AB}$ dan $\mathcal{U}_{\ge n+m}^{BA}$ berdasarkan permutasi-permutasi yang telah dipilih, yaitu $\sigma_m^B,\sigma_{m+1}^B,\ldots,\sigma_n^B$.
+
+            \item Jika $\mathcal{U}_{\ge n+m}^{AB}\neq\mathcal{U}_{\ge n+m}^{BA}$, maka kandidat $\sigma_m^B$ ditolak dan entri yang baru diisi oleh simbol $m$ dikembalikan menjadi $\varepsilon$, yaitu
+                  \[
+                    b^*_{r,\sigma_m^B(r)}=\varepsilon,
+                    \quad r\in N.
+                  \]
+
+            \item Jika $\mathcal{U}_{\ge n+m}^{AB}=\mathcal{U}_{\ge n+m}^{BA}$, maka pemilihan dilanjutkan ke permutasi berikutnya, yaitu $\sigma_{m-1}^B$.
+          \end{enumerate}
+
+    \item Setelah $\sigma_2^B,\sigma_3^B,\ldots,\sigma_n^B$ terpilih, isi seluruh entri $B^*$ yang masih bernilai $\varepsilon$ dengan simbol $1$.
+
+    \item Jika posisi simbol $1$ pada $B^*$ membentuk matriks permutasi, maka diperoleh $\sigma_1^B$ dan matriks $B^*$ menjadi Latin square lengkap. Dalam hal ini, tetapkan
+          \[
+            B=B^*.
+          \]
+          Jika posisi simbol $1$ tidak membentuk matriks permutasi, maka kandidat $B^*$ ditolak.
+
+    \item Kandidat $B$ yang lolos syarat centralizer pada level $2n$ dan seluruh pemeriksaan superlevel untuk $v=2n-1,2n-2,\ldots,n+2$ merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{algoritma}
+
+Pada algoritma tersebut, pemeriksaan dilakukan secara menurun dari level tertinggi. Pemilihan $\sigma_n^B$ berkaitan dengan level $2n$ dan dibatasi oleh syarat centralizer. Setelah $\sigma_{n-1}^B$ dipilih, level $2n-1$ sudah dapat diperiksa. Secara umum, setelah $\sigma_m^B$ dipilih, level $n+m$ sudah dapat diperiksa menggunakan kesamaan himpunan superlevel.
+
+Strategi ini memungkinkan proses pencarian dihentikan lebih awal. Apabila pada suatu tahap diperoleh $\mathcal{U}_{\ge n+m}^{AB}\neq\mathcal{U}_{\ge n+m}^{BA}$, maka pilihan $\sigma_m^B$ tidak mungkin menghasilkan Latin square $B$ yang komutatif dengan $A$. Oleh karena itu, cabang pencarian tersebut dapat langsung ditolak tanpa perlu melengkapi permutasi-permutasi berikutnya.
+
+\subsection{Latin Square Ordo 3}
+
+Pada ordo $3$, struktur Latin square dapat dijelaskan secara eksplisit melalui grup simetri $S_3$. Setiap Latin square $A\in L_S(3)$ dapat ditulis dalam bentuk dekomposisi permutasi
+\[
+  A=\bigoplus_{i=1}^{3} i\otimes P_{\sigma_i^A}.
+\]
+Karena setiap simbol harus muncul tepat satu kali pada setiap baris dan kolom, maka posisi setiap simbol membentuk suatu matriks permutasi. Dengan demikian, pencarian pasangan komutatif dapat dilakukan dengan memilih permutasi-permutasi penyusun $B$ secara bertahap.
+
+Pada ordo ini, syarat elemen maksimum mempunyai peran yang sangat menentukan. Jika $A\otimes B=B\otimes A$, maka harus berlaku $\sigma_3^B\in C_{S_3}(\sigma_3^A)$. Oleh karena itu, banyaknya kandidat awal untuk $\sigma_3^B$ bergantung pada tipe permutasi dari $\sigma_3^A$. Jika $\sigma_3^A$ merupakan sikel panjang $3$, maka centralizer-nya berisi tiga elemen. Jika $\sigma_3^A$ merupakan transposisi, maka centralizer-nya hanya berisi dua elemen. Perbedaan ukuran centralizer ini mempengaruhi banyaknya kandidat $B$ yang dapat diperiksa oleh algoritma.
+
+Selain itu, pada ordo $3$, setiap Latin square dapat dipandang sebagai Latin square sirkulan hingga penamaan ulang baris, kolom, atau simbol. Hal ini terjadi karena tiga permutasi penyusun Latin square harus saling lepas. Jika salah satu permutasi penyusun adalah identitas, maka dua permutasi lainnya harus berupa dua sikel panjang $3$, yaitu $(1\;2\;3)$ dan $(1\;3\;2)$. Oleh karena itu, contoh ordo $3$ digunakan terutama untuk memperlihatkan mekanisme algoritma pada kasus terkecil.
 
 
+\begin{contoh}\label{contoh:penerapan_algoritma_ordo_3}
+  Misalkan diberikan Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 \\
+      3 & 1 & 2 \\
+      2 & 3 & 1
+    \end{pmatrix}.
+  \]
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian max-plus menggunakan \autoref{alg:pencarian_pasangan_latin_square_komutatif}.
 
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$ diperoleh
+          \[
+            \sigma_1^A=(1),\qquad
+            \sigma_2^A=(1\;2\;3),\qquad
+            \sigma_3^A=(1\;3\;2).
+          \]
 
+    \item Bentuk matriks kandidat parsial $B^*$ dengan seluruh entri awal bernilai $\varepsilon$, yaitu
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
 
+    \item Tentukan centralizer dari $\sigma_3^A$. Karena $\sigma_3^A=(1\;3\;2)$, maka
+          \[
+            C_{S_3}(\sigma_3^A)
+            =
+            \{(1),(1\;2\;3),(1\;3\;2)\}.
+          \]
 
+    \item Pilih salah satu elemen centralizer sebagai kandidat $\sigma_3^B$. Misalkan dipilih
+          \[
+            \sigma_3^B=(1\;2\;3).
+          \]
+          Artinya, simbol $3$ ditempatkan pada posisi $(1,2)$, $(2,3)$, dan $(3,1)$. Maka diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & 3           & \varepsilon \\
+              \varepsilon & \varepsilon & 3           \\
+              3           & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Selanjutnya pilih kandidat permutasi untuk simbol $2$. Ambil
+          \[
+            \sigma_2^B=(1\;3\;2).
+          \]
+          Permutasi ini menempatkan simbol $2$ pada posisi $(1,3)$, $(2,1)$, dan $(3,2)$. Posisi-posisi tersebut masih bernilai $\varepsilon$ pada $B^*$, sehingga kandidat $\sigma_2^B$ dapat diterima sementara. Setelah simbol $2$ ditempatkan, diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & 3           & 2           \\
+              2           & \varepsilon & 3           \\
+              3           & 2           & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=3$ dan $m=2$, level yang harus diperiksa adalah $v=n+m=5$. Pasangan indeks yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$, dan $(3,3)$.
+
+          Pada perkalian $A\otimes B$, komposisi permutasi yang terlibat adalah
+          \[
+            \sigma_3^B\circ\sigma_2^A,\qquad
+            \sigma_2^B\circ\sigma_3^A,\qquad
+            \sigma_3^B\circ\sigma_3^A.
+          \]
+          Dengan substitusi permutasi yang telah dipilih, diperoleh
+          \[
+            \sigma_3^B\circ\sigma_2^A=(1\;3\;2),\qquad
+            \sigma_2^B\circ\sigma_3^A=(1\;2\;3),\qquad
+            \sigma_3^B\circ\sigma_3^A=(1).
+          \]
+
+          Pada perkalian $B\otimes A$, komposisi permutasi yang terlibat adalah
+          \[
+            \sigma_3^A\circ\sigma_2^B,\qquad
+            \sigma_2^A\circ\sigma_3^B,\qquad
+            \sigma_3^A\circ\sigma_3^B.
+          \]
+          Diperoleh
+          \[
+            \sigma_3^A\circ\sigma_2^B=(1\;2\;3),\qquad
+            \sigma_2^A\circ\sigma_3^B=(1\;3\;2),\qquad
+            \sigma_3^A\circ\sigma_3^B=(1).
+          \]
+          Dengan demikian, pada level $v=5$, himpunan komposisi yang muncul pada $A\otimes B$ dan $B\otimes A$ sama. Maka kandidat $\sigma_2^B=(1\;3\;2)$ tidak ditolak.
+
+    \item Setelah simbol $2$ dan $3$ ditempatkan, posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah $(1,1)$, $(2,2)$, dan $(3,3)$. Posisi-posisi ini membentuk matriks permutasi identitas, sehingga diperoleh
+          \[
+            \sigma_1^B=(1).
+          \]
+          Isi posisi yang tersisa dengan simbol $1$, sehingga diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              1 & 3 & 2 \\
+              2 & 1 & 3 \\
+              3 & 2 & 1
+            \end{pmatrix}.
+          \]
+          Karena $B^*$ sudah menjadi Latin square lengkap, tetapkan $B=B^*$.
+
+    \item Verifikasi akhir dilakukan dengan menghitung hasil perkalian max-plus. Diperoleh
+          \[
+            A\otimes B
+            =
+            B\otimes A
+            =
+            \begin{pmatrix}
+              6 & 5 & 5 \\
+              5 & 6 & 5 \\
+              5 & 5 & 6
+            \end{pmatrix}.
+          \]
+          Jadi, matriks
+          \[
+            B=
+            \begin{pmatrix}
+              1 & 3 & 2 \\
+              2 & 1 & 3 \\
+              3 & 2 & 1
+            \end{pmatrix}
+          \]
+          merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{contoh}
+
+Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panjang $3$, sehingga centralizer-nya memuat tiga elemen. Akibatnya, algoritma memiliki beberapa kemungkinan awal untuk membentuk kandidat $\sigma_3^B$. Contoh berikut menunjukkan keadaan yang berbeda, yaitu ketika $\sigma_3^A$ berupa transposisi.
+
+\begin{contoh}\label{contoh:penerapan_algoritma_ordo_3_transposisi}
+  Misalkan diberikan Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 \\
+      2 & 3 & 1 \\
+      3 & 1 & 2
+    \end{pmatrix}.
+  \]
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian max-plus.
+
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari posisi masing-masing simbol pada $A$, diperoleh
+          \[
+            \sigma_1^A=(2\;3),\qquad
+            \sigma_2^A=(1\;2),\qquad
+            \sigma_3^A=(1\;3).
+          \]
+
+    \item Bentuk matriks kandidat parsial
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Tentukan centralizer dari $\sigma_3^A$. Karena $\sigma_3^A=(1\;3)$, maka
+          \[
+            C_{S_3}(\sigma_3^A)
+            =
+            \{(1),(1\;3)\}.
+          \]
+
+    \item Pilih kandidat dari centralizer. Ambil $\sigma_3^B=(1\;3)$. Maka simbol $3$ ditempatkan pada posisi $(1,3)$, $(2,2)$, dan $(3,1)$. Diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & \varepsilon & 3           \\
+              \varepsilon & 3           & \varepsilon \\
+              3           & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Selanjutnya pilih kandidat untuk simbol $2$. Karena posisi simbol $3$ sudah terisi, permutasi $\sigma_2^B$ harus tidak beririsan dengan $\sigma_3^B$. Ambil
+          \[
+            \sigma_2^B=(1\;2).
+          \]
+          Permutasi ini menempatkan simbol $2$ pada posisi $(1,2)$, $(2,1)$, dan $(3,3)$, yang seluruhnya masih bernilai $\varepsilon$ pada $B^*$. Maka
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & 2           & 3           \\
+              2           & 3           & \varepsilon \\
+              3           & \varepsilon & 2
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=3$ dan $m=2$, level yang diperiksa adalah $v=n+m=5$. Pasangan indeks yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$, dan $(3,3)$.
+
+          Pada $A\otimes B$, komposisi yang muncul adalah
+          \[
+            \sigma_3^B\circ\sigma_2^A,\qquad
+            \sigma_2^B\circ\sigma_3^A,\qquad
+            \sigma_3^B\circ\sigma_3^A.
+          \]
+          Dengan $\sigma_3^B=(1\;3)$, $\sigma_2^B=(1\;2)$, $\sigma_2^A=(1\;2)$, dan $\sigma_3^A=(1\;3)$, diperoleh
+          \[
+            \sigma_3^B\circ\sigma_2^A=(1\;2\;3),\qquad
+            \sigma_2^B\circ\sigma_3^A=(1\;3\;2),\qquad
+            \sigma_3^B\circ\sigma_3^A=(1).
+          \]
+
+          Pada $B\otimes A$, komposisi yang muncul adalah
+          \[
+            \sigma_3^A\circ\sigma_2^B,\qquad
+            \sigma_2^A\circ\sigma_3^B,\qquad
+            \sigma_3^A\circ\sigma_3^B.
+          \]
+          Diperoleh
+          \[
+            \sigma_3^A\circ\sigma_2^B=(1\;2\;3),\qquad
+            \sigma_2^A\circ\sigma_3^B=(1\;3\;2),\qquad
+            \sigma_3^A\circ\sigma_3^B=(1).
+          \]
+          Jadi kandidat $\sigma_2^B=(1\;2)$ lolos pemeriksaan level $5$.
+
+    \item Posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah $(1,1)$, $(2,3)$, dan $(3,2)$. Posisi tersebut membentuk permutasi
+          \[
+            \sigma_1^B=(2\;3).
+          \]
+          Isi posisi tersebut dengan simbol $1$, sehingga diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              1 & 2 & 3 \\
+              2 & 3 & 1 \\
+              3 & 1 & 2
+            \end{pmatrix}.
+          \]
+          Dengan demikian, diperoleh $B=B^*$.
+
+    \item Verifikasi akhir memberikan
+          \[
+            A\otimes B
+            =
+            B\otimes A
+            =
+            \begin{pmatrix}
+              6 & 5 & 5 \\
+              5 & 6 & 5 \\
+              5 & 5 & 6
+            \end{pmatrix}.
+          \]
+          Jadi, $B=A$ merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{contoh}
+
+Secara teori grup simetri, penyebab hanya diperolehnya satu solusi pada \autoref{contoh:penerapan_algoritma_ordo_3_transposisi} adalah karena syarat elemen maksimum sangat membatasi pilihan $\sigma_3^B$. Karena $\sigma_3^A=(1\;3)$, maka $C_{S_3}(\sigma_3^A)=\{(1),(1\;3)\}$. Jadi hanya terdapat dua kemungkinan untuk $\sigma_3^B$.
+
+Jika $\sigma_3^B=(1)$, maka pilihan $\sigma_2^B$ yang mungkin agar tetap membentuk Latin square adalah $(1\;2\;3)$ atau $(1\;3\;2)$. Namun, kedua pilihan tersebut gagal memenuhi kesesuaian komposisi pada level $5$. Jika $\sigma_3^B=(1\;3)$, maka pilihan $\sigma_2^B$ yang mungkin adalah $(1\;2)$ atau $(2\;3)$. Dari pemeriksaan level $5$, hanya $\sigma_2^B=(1\;2)$ yang lolos. Akibatnya, posisi yang tersisa menentukan $\sigma_1^B=(2\;3)$. Dengan demikian, $\sigma_i^B=\sigma_i^A$ untuk setiap $i=1,2,3$. Jadi satu-satunya pasangan komutatif yang diperoleh pada contoh tersebut adalah $B=A$.
+
+\subsection{Latin Square Ordo 4}
+
+\subsection{Latin Square Ordo 5}

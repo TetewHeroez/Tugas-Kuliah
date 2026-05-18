@@ -1,5 +1,5 @@
 \documentclass[aspectratio=169]{beamer}
-\usepackage[style=ieee,backend=biber]{biblatex}
+\usepackage[style=authoryear,backend=biber]{biblatex}
     \addbibresource{referensi.bib} % Pastikan file bib Anda bernama referensi.bib
 \usepackage{colortbl,tabularx,mathrsfs,calligra}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
@@ -31,14 +31,15 @@
 
 \usefonttheme{professionalfonts}
 \setbeamertemplate{theorems}[numbered]
-\setbeamertemplate{bibliography item}{\insertbiblabel}
+%\setbeamertemplate{bibliography item}{\insertbiblabel} % Dihapus/dimatikan karena style authoryear tidak pakai angka
 
 \date{\today}
-\title[Kajian Topik Tesis]{Pemodelan Pelipatan Kaku (Rigid Folding) Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}}
+\title[Kajian Topik Tesis]{Pemodelan \emph{Rigid Folding} Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}}
 \author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
 \institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
 
 \begin{document}
+
 \begin{frame}
   \titlepage
 \end{frame}
@@ -51,17 +52,109 @@
 }
 
 \section{Pendahuluan}
-\begin{frame}{Latar Belakang}
+\subsection{Latar Belakang}
+
+\begin{frame}{\insertsection}{\insertsubsection}
   \begin{itemize}
     \item \textbf{Geometri Tropikal:} Cabang geometri aljabar di atas aljabar semiring min-plus (atau max-plus), di mana polinomial berubah menjadi fungsi \textit{piecewise-affine} dan varietas aljabar menjadi \textit{tropical hypersurfaces}.
-    \item \textbf{Origami Matematis:} Dilandasi aksioma kombinatorik (Aksioma Huzita-Hatori) serta regulasi lipatan datar (\textit{flat folding}) melalui Teorema Kawasaki dan Teorema Maekawa.
-    \item \textbf{Pertemuan Dua Bidang:} Studi tentang isometri tropikal dan matriks rotasi $SO(3)$ berpotensi menjembatani analisis pelipatan kaku (\textit{rigid folding}) dengan struktur polihedral tropikal.
   \end{itemize}
+  \vspace{0.1cm}
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=0.45]
+      % Sumbu kordinat
+      \draw[gray!70, <->] (-4.5,0) -- (3.5,0) node[right, text=black] {$x$};
+      \draw[gray!70, <->] (0,-2.5) -- (0,6.5) node[above, text=black] {$y$};
+      % Polinomial Klasik
+      \draw[thick, blue, domain=-4:2, samples=50] plot (\x, {\x*\x + 2*\x - 1}) node[right, text=blue] {\scriptsize $p(x)=x^2 + 2x - 1$};
+    \end{tikzpicture}
+    \hspace{1cm}
+    \begin{tikzpicture}[scale=0.45]
+      % Sumbu kordinat
+      \draw[gray!70, <->] (-4.5,0) -- (3.5,0) node[right, text=black] {$x$};
+      \draw[gray!70, <->] (0,-2.5) -- (0,6.5) node[above, text=black] {$y$};
+      % Polinomial Tropikal: max(2x, x+2, -1)
+      \draw[thick, red] (-4.5,-1) -- (-3,-1);
+      \draw[thick, red] (-3,-1) -- (2,4);
+      \draw[thick, red] (2,4) -- (3,6);
+
+      \node[red] at (-2.5,5) {\scriptsize $q(x)=x^{\oplus 2} \oplus (2\odot x) \oplus (-1)$};
+      % Garis bantu
+      \draw[dotted, thick] (-3,0) node[above, text=black] {\scriptsize $-3$} -- (-3,-1);
+      \draw[dotted, thick] (2,0) node[below right, text=black] {\scriptsize $2$} -- (2,4);
+    \end{tikzpicture}
+    \caption{ Perbandingan Polinomial Klasik dan Polinomial Tropikal}
+  \end{figure}
 \end{frame}
 
-\begin{frame}{Topik Tesis}
+\begin{frame}{Latar Belakang: Origami Matematis}
+  \begin{itemize}
+    \item \textbf{\textit{Rigid Folding}:} model mekanis dan matematis dari pelipatan di mana area di antara garis lipatan (panel) diasumsikan kaku sempurna. Dalam model ini, panel sama sekali tidak bisa melengkung, meregang, atau menyusut selama proses transisi dari bentuk datar ke 3D.
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.7, line join=round, line cap=round]
+      \filldraw[fill=gray!40, draw=black, thick] (0,0) rectangle (10,6);
+      \coordinate (V1) at (3.3, 2.5);
+      \coordinate (V2) at (6.6, 2.5);
+      \draw[thick] (V1) -- (V2);
+      \draw[thick] (V1) -- (0, 1.5);
+      \draw[thick] (V1) -- (4.8, 0);
+      \draw[thick] (V1) -- (3.3, 6);
+      \draw[thick] (V2) -- (10, 4);
+      \draw[thick] (V2) -- (8.5, 0);
+      \draw[thick] (V2) -- (6.6, 6);
+
+      \begin{scope}[shift={(0,-7)}]
+        \draw[->, ultra thick] (-1, -1.5) -- (-0.2, -1.5);
+        \filldraw[fill=gray!90, draw=black, thick] (3.5,1.5) -- (5,3) -- (4,0) -- (2,-1) -- cycle;
+        \filldraw[fill=gray!70, draw=black, thick] (5,3) -- (6.5,3.2) -- (5.5,-0.5) -- (4,0) -- cycle;
+        \filldraw[fill=gray!80, draw=black, thick] (4,0) -- (5.5,-0.5) -- (6.5,-3) -- (5,-2) -- cycle;
+        \filldraw[fill=gray!80, draw=black, thick] (0.5,2.5) -- (2.5,1.5) -- (2,-1) -- (-0.5,-0.5) -- cycle;
+        \filldraw[fill=gray!60, draw=black, thick] (-0.5,-0.5) -- (2,-1) -- (3,-3.5) -- (0,-2.5) -- cycle;
+        \filldraw[fill=gray!50, draw=black, thick] (2,-1) -- (4,0) -- (5,-2) -- (3,-3.5) -- cycle;
+      \end{scope}
+
+      \begin{scope}[shift={(7.5,-7)}]
+        \draw[->, ultra thick] (-1.5, -1.5) -- (-0.7, -1.5);
+        \filldraw[fill=gray!100, draw=black, thick] (2.5,1) -- (3.8,2.2) -- (3.2,0.2) -- (2,-0.5) -- cycle;
+        \filldraw[fill=gray!80, draw=black, thick] (3.8,2.2) -- (4.8,2.8) -- (4,-0.2) -- (3.2,0.2) -- cycle;
+        \filldraw[fill=gray!70, draw=black, thick] (3.2,0.2) -- (4,-0.2) -- (4.5,-1.8) -- (3.5,-1.2) -- cycle;
+        \filldraw[fill=gray!90, draw=black, thick] (1,2) -- (2.5,1) -- (2,-0.5) -- (0,0) -- cycle;
+        \filldraw[fill=gray!80, draw=black, thick] (0,0) -- (2,-0.5) -- (2.5,-2.5) -- (0,-1.5) -- cycle;
+        \filldraw[fill=gray!60, draw=black, thick] (2,-0.5) -- (3.2,0.2) -- (3.5,-1.2) -- (2.5,-2.5) -- cycle;
+      \end{scope}
+
+      \begin{scope}[shift={(14.5,-7)}]
+        \draw[->, ultra thick] (-1.5, -1.5) -- (-0.7, -1.5);
+        \filldraw[fill=gray!90, draw=black, thick] (1.5,1) -- (3,2) -- (2.5,0) -- (0,0) -- cycle;
+        \filldraw[fill=gray!70, draw=black, thick] (0,0) -- (2.5,0) -- (3,-2) -- (0.5,-2.5) -- cycle;
+        \filldraw[fill=gray!60, draw=black, thick] (2.5,0) -- (4,-0.5) -- (4.5,-1.5) -- (3,-2) -- cycle;
+        \filldraw[fill=gray!80, draw=black, thick] (3,2) -- (4,1) -- (4,-0.5) -- (2.5,0) -- cycle;
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Latar Belakang: Pertemuan Dua Bidang}
+  \begin{itemize}
+    \item \textbf{Pertemuan Dua Bidang:} Studi tentang isometri tropikal dan matriks rotasi $SO(3)$ berpotensi menjembatani analisis pelipatan kaku (\textit{rigid folding}) dengan struktur polihedral tropikal.
+  \end{itemize}
+  \vspace{0.3cm}
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+      \draw[thick] (0,0) -- (2,1) -- (4,0) -- (2,-1) -- cycle;
+      \draw[dashed, thick] (2,1) -- (2,-1);
+      \draw[->, thick, red] (1,0) arc (180:270:0.5);
+    \end{tikzpicture}
+    \caption{Ilustrasi Rigid Folding dan Pemetaan Isometri}
+  \end{figure}
+\end{frame}
+
+\subsection{Topik Tesis}
+\begin{frame}{\insertsection}{\insertsubsection}
   \begin{block}{Kandidat Judul}
-    Pemodelan Pelipatan Kaku (\textit{Rigid Folding}) Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}.
+    Pemodelan \emph{Rigid Folding} Origami Menggunakan Isometri Tropikal dan Transformasi Fungsi \textit{Piecewise-Affine}.
   \end{block}
   \begin{itemize}
     \item \textbf{Kebaruan:} Beralih dari pendekatan geometri analitik tradisional berbiaya tinggi yang menggunakan rotasi $SO(3)$ non-linear, menjadi transformasi \textit{balancing condition} ke ranah \textit{piecewise-affine} tropikal yang sepenuhnya linear (min-plus).
@@ -72,23 +165,23 @@
 \section{Kajian Artikel}
 \begin{frame}{Fondasi Geometri Tropikal}
   \begin{itemize}
-    \item \textbf{Maclagan \& Sturmfels (2015) \cite{maclagan2015tropical}:} Menyajikan fondasi geometri aljabar tropikal. Mengupas kurva, \textit{tropical hypersurfaces}, dan \textit{balancing condition}. Menjadi landasan teori konversi rotasi konvensional.
-    \item \textbf{Mikhalkin (2006) \cite{mikhalkin2006tropical}:} Perintis struktur min-plus dan konsep dekuantisasi. Mengeksplorasi ekuivalensi geometri proyektif tropikal dengan geometri riil di limit tertentu.
+    \item \parencite{maclagan2015tropical}: Menyajikan fondasi geometri aljabar tropikal. Mengupas kurva, \textit{tropical hypersurfaces}, dan \textit{balancing condition}. Menjadi landasan teori konversi rotasi konvensional.
+    \item \parencite{mikhalkin2006tropical}: Perintis struktur min-plus dan konsep dekuantisasi. Mengeksplorasi ekuivalensi geometri proyektif tropikal dengan geometri riil di limit tertentu.
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Matematika Origami dan Graf}
   \begin{itemize}
-    \item \textbf{Hull (2012) \cite{hull2012project}:} Dasar \textit{folding mathematics}. Membuktikan Teorema Kawasaki (syarat jumlah selang-seling sudut) dan Maekawa (selisih lembah/gunung) pada struktur persendian origami.
-    \item \textbf{Ku (2014) \cite{ku2014realization}:} Representasi matriks dan graf untuk origami. Menggunakan \textit{adjacency matrix} (matriks kedekatan) untuk mendeteksi stabilitas \textit{flat foldings}. Sejalan dengan pembuatan matriks pembobot tropikal.
+    \item \parencite{hull2012project}: Dasar \textit{folding mathematics}. Membuktikan Teorema Kawasaki (syarat jumlah selang-seling sudut) dan Maekawa (selisih lembah/gunung) pada struktur persendian origami.
+    \item \parencite{ku2014realization}: Representasi matriks dan graf untuk origami. Menggunakan \textit{adjacency matrix} (matriks kedekatan) untuk mendeteksi stabilitas \textit{flat foldings}. Sejalan dengan pembuatan matriks pembobot tropikal.
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Geometri Lanjutan dan Aplikasinya}
   \begin{itemize}
-    \item \textbf{Zhang et al. (2018) \cite{zhang2018tropical}:} Geometri Tropikal pada jaringan saraf (\textit{Neural Networks}). Mengaitkan representasi fungsi \textit{piecewise-affine} pada ruang polihedral.
-    \item \textbf{Foster (2020) \cite{foster2020metric}:} Mengkaji properti isometrik pemetaan Abel-Jacobi. Mengevaluasi metrik jarak riil yang relevan untuk menautkan dimensi tinggi ke model spasial.
-    \item \textbf{G.K. (2021) \& Nekrasov (2018) \cite{gk2021origami,nekrasov2018geometry}:} Analisis \textit{moduli space} dan modularitas kuantum (\textit{Gauge Origami}). Pendekatan geometris untuk enumerasi kondisi riil struktur pelipatan.
+    \item \parencite{zhang2018tropical}: Geometri Tropikal pada jaringan saraf (\textit{Neural Networks}). Mengaitkan representasi fungsi \textit{piecewise-affine} pada ruang polihedral.
+    \item \parencite{foster2020metric}: Mengkaji properti isometrik pemetaan Abel-Jacobi. Mengevaluasi metrik jarak riil yang relevan untuk menautkan dimensi tinggi ke model spasial.
+    \item \parencite{gk2021origami,nekrasov2018geometry}: Analisis \textit{moduli space} dan modularitas kuantum (\textit{Gauge Origami}). Pendekatan geometris untuk enumerasi kondisi riil struktur pelipatan.
   \end{itemize}
 \end{frame}
 

@@ -175,6 +175,26 @@ Salah satu hasil fundamental dalam teori grup terkait konsep isomorfisma adalah 
   Setiap grup $G$ isomorfik dengan suatu subgrup dari grup simetri. Lebih khusus lagi, $G$ isomorfik dengan suatu subgrup dari grup simetri $\operatorname{Sym}(G)$, yang elemen-elemennya merupakan permutasi-permutasi dari himpunan asal $G$.
 \end{teorema}
 
+Suatu isomorfisma dari grup $G$ ke dirinya sendiri disebut \emph{automorfisma} \citep{subiono2022aljabar}. Himpunan seluruh automorfisma dari $G$ dinotasikan dengan $\operatorname{Aut}(G)$. Dengan operasi komposisi fungsi, $\operatorname{Aut}(G)$ membentuk sebuah grup.
+
+Salah satu contoh penting dari automorfisma adalah automorfisma dalam. Untuk setiap $g\in G$, didefinisikan pemetaan
+$
+  \varphi_g:G\to G
+$
+dengan
+\[
+  \varphi_g(x)=gxg^{-1}, \quad \forall x\in G.
+\]
+Pemetaan $\varphi_g$ merupakan automorfisma karena untuk setiap $x,y\in G$ berlaku
+\[
+  \varphi_g(xy)=gxyg^{-1}
+  =
+  (gxg^{-1})(gyg^{-1})
+  =
+  \varphi_g(x)\varphi_g(y),
+\]
+dan inversnya diberikan oleh $\varphi_{g^{-1}}$. Automorfisma seperti ini disebut automorfisma dalam.
+
 \subsection{Tindakan Grup}
 
 Untuk memahami bagaimana elemen-elemen dalam suatu grup bertransformasi atau berinteraksi dengan sebuah himpunan, diperlukan konsep tindakan grup.
@@ -187,6 +207,20 @@ Untuk memahami bagaimana elemen-elemen dalam suatu grup bertransformasi atau ber
   \end{enumerate}
   Bila tindakan tersebut ada, maka dikatakan grup $G$ bertindak pada $X$ dan $X$ adalah $G$-set.
 \end{definisi}
+
+Setiap elemen $g\in G$ menentukan suatu pemetaan dari $X$ ke $X$ melalui aturan
+$
+  x\mapsto g\cdot x.
+$
+Berdasarkan sifat tindakan grup, pemetaan tersebut bersifat bijektif. Hal ini disebabkan karena pemetaan yang diinduksi oleh $g^{-1}$ merupakan inversnya, sebab untuk setiap $x\in X$ berlaku
+\[
+  g^{-1}\cdot(g\cdot x)=(g^{-1}g)\cdot x=e\cdot x=x
+\]
+dan
+\[
+  g\cdot(g^{-1}\cdot x)=(gg^{-1})\cdot x=e\cdot x=x.
+\]
+Dengan demikian, tindakan grup dapat dipandang sebagai cara setiap elemen grup menghasilkan permutasi pada himpunan $X$ \parencite{subiono2022aljabar}.
 
 Ketika grup $G$ bertindak pada himpunan $X$, kita dapat mengamati jejak pergerakan suatu elemen $a \in X$ akibat tindakan tersebut, yang disebut sebagai orbit. Di sisi lain, kita juga dapat mengidentifikasi elemen-elemen grup apa saja yang membuat elemen $a$ tersebut tetap diam di tempatnya, yang disebut sebagai \emph{stabilizer}.
 
@@ -205,11 +239,12 @@ Ketika grup $G$ bertindak pada himpunan $X$, kita dapat mengamati jejak pergerak
 Terdapat hubungan sangat penting antara kardinalitas dari grup, orbit, dan \emph{stabilizer}, yang diformulasikan dalam Teorema Orbit-Stabilizer.
 
 \begin{teorema}[\cite{subiono2022aljabar}]\label{thm:orbit_stabilizer}
-  Diberikan grup $G$ bertindak pada suatu himpunan tak-kosong $X$ dan $a$ adalah sebarang elemen di $X$. Bila $G$ adalah berhingga, maka $|O_a| = |G|/|G_a|$.
-  Secara ekuivalen, persamaan tersebut dapat dituliskan kembali sebagai $|G| = |O_a| \times |G_a|$.
+  Diberikan grup $G$ bertindak pada suatu himpunan tak-kosong $X$ dan $a$ adalah sebarang elemen di $X$. Bila $G$ adalah berhingga, maka
+  \begin{align}\label{eq:orbit_stabilizer}
+    |O_a|=\frac{|G|}{|G_a|}.
+  \end{align}
 \end{teorema}
-
-Untuk memberikan ilustrasi yang lebih konkret mengenai bagaimana \autoref{thm:orbit_stabilizer} bekerja, berikut diberikan contoh tindakan dari sebuah grup permutasi.
+Secara ekuivalen, \eqref{eq:orbit_stabilizer} dapat dituliskan sebagai $|G|=|O_a|\times |G_a|$. Untuk memberikan ilustrasi yang lebih konkret mengenai bagaimana \autoref{thm:orbit_stabilizer} bekerja, berikut diberikan contoh tindakan dari sebuah grup permutasi.
 
 \begin{contoh}
   Misalkan $G = S_3 = \{(1), (1\;2), (1\;3), (2\;3), (1\;2\;3), (1\;3\;2)\}$ dengan kardinalitas $|S_3| = 6$. Grup $S_3$ bertindak pada himpunan $X = \{1, 2, 3\}$ melalui tindakan natural $\sigma\cdot x = \sigma(x)$ untuk $\sigma \in S_3$ dan $x \in X$.
@@ -225,9 +260,40 @@ Untuk memberikan ilustrasi yang lebih konkret mengenai bagaimana \autoref{thm:or
   Menurut \autoref{thm:orbit_stabilizer}, berlaku $|S_3| = |O_3| \times |(S_3)_3|$, yaitu $6 = 3 \times 2$.
 \end{contoh}
 
+\subsection{Produk Semidirek}
+
+\begin{definisi}[\cite{subiono2022aljabar}]\label{def:produk_semidirek}
+  Misalkan $N$ dan $H$ adalah grup, dan misalkan terdapat homomorfisma
+  \begin{align}\label{eq:aksi_semidirek_ke_automorfisma}
+    \theta:H\to \operatorname{Aut}(N).
+  \end{align}
+  Produk semidirek dari $N$ oleh $H$ terhadap $\theta$, dinotasikan dengan
+  \[
+    N\rtimes_\theta H,
+  \]
+  adalah himpunan $N\times H$ yang dilengkapi operasi
+  \begin{align}\label{eq:operasi_produk_semidirek}
+    (n_1,h_1)(n_2,h_2)
+    =
+    \bigl(n_1\theta(h_1)(n_2),h_1h_2\bigr),
+  \end{align}
+  untuk setiap $(n_1,h_1),(n_2,h_2)\in N\times H$.
+\end{definisi}
+
+Pada \autoref{def:produk_semidirek}, grup $H$ bertindak pada $N$ melalui automorfisma sebagaimana dinyatakan pada \eqref{eq:aksi_semidirek_ke_automorfisma}. Oleh karena itu, operasi pada produk semidirek tidak hanya mengalikan komponen pertama dan kedua secara terpisah, tetapi juga melibatkan aksi elemen $h_1$ terhadap elemen $n_2$, sebagaimana terlihat pada \eqref{eq:operasi_produk_semidirek}.
+
 \subsection{Konjugasi dan \emph{Centralizer}}
 
-Konsep tindakan grup pada suatu himpunan tak-kosong dapat diaplikasikan pada grup itu sendiri. Salah satu bentuk tindakan grup yang mendasar adalah tindakan grup pada dirinya sendiri melalui operasi konjugasi. Tindakan ini memunculkan relasi antar elemen yang membentuk suatu orbit spesifik, serta himpunan elemen yang menetap atau komutatif yang secara formal menstabilkan tindakan tersebut.
+Konsep tindakan grup dapat diterapkan pada grup itu sendiri. Salah satu tindakan yang penting adalah tindakan konjugasi, yaitu tindakan $G$ pada dirinya sendiri yang didefinisikan oleh
+\[
+  g\cdot a = gag^{-1},
+  \quad g,a\in G.
+\]
+Untuk setiap $g\in G$, pemetaan
+$
+  a\mapsto gag^{-1}
+$
+merupakan automorfisma dalam dari $G$. Dengan demikian, tindakan konjugasi dapat dipandang sebagai cara elemen-elemen grup mentransformasikan elemen lain di dalam grup tanpa mengubah struktur operasinya. Melalui tindakan ini, orbit dari suatu elemen menghasilkan klas konjugasi, sedangkan stabilizer dari elemen tersebut menghasilkan centralizer \citep{subiono2022aljabar}.
 
 \begin{definisi}[{\cite{subiono2022aljabar}}]\label{def:konjugasi_abstrak}
   Bila $G$ adalah suatu grup dan $a, b \in G$, maka $a$ dan $b$ saling berkonjuget dalam $G$ apabila terdapat $g \in G$ sedemikian sehingga $b = gag^{-1}$. Klas konjugasi dari suatu $a \in G$ adalah himpunan semua konjuget dari $a$, dinotasikan dengan
@@ -428,7 +494,7 @@ Sifat perkalian matriks permutasi max-plus yang sangat berkaitan erat dengan kom
     [C]_{ij} = \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj}).
   \end{align}
   Karena nilai maksimum yang mungkin dalam matriks permutasi max-plus adalah $0$, entri $[C]_{ij}$ akan bernilai $0$ jika dan hanya jika terdapat indeks $k$ sedemikian sehingga $[P_{\alpha}]_{ik} = 0$ dan $[P_{\beta}]_{kj} = 0$ secara bersamaan. Jika kondisi ini tidak terpenuhi untuk seluruh $k$, maka $[C]_{ij} = \varepsilon$.
-  Diketahui dari definisi sebelumnya bahwa:
+  Berdasarkan \autoref{def:matriks_permutasi}, berlaku
   \begin{align}
     [P_{\alpha}]_{ik} = 0 & \iff k = \alpha(i) \label{eq:lema_perkalian_matriks_permutasi_1} \\
     [P_{\beta}]_{kj} = 0  & \iff j = \beta(k). \label{eq:lema_perkalian_matriks_permutasi_2}
@@ -649,31 +715,6 @@ Karena tindakan konjugasi bekerja murni dengan mensubstitusi elemen tanpa memodi
   maka tipe permutasi dari $a$ adalah $[a_1, a_2, \ldots, a_n]$.
 \end{definisi}
 
-Berdasarkan sifat invarian pada \autoref{prop:konjugasi_sikel_Sn}, dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada dalam satu orbit di bawah tindakan konjugasi) jika dan hanya jika keduanya memiliki tipe permutasi yang identik. Karakteristik pengklasifikasian ini memungkinkan \autoref{prop:kardinalitas_centralizer} dijabarkan ke dalam rumusan perhitungan kardinalitas yang eksplisit.
-
-\begin{lema}[{\cite{dummit2004abstract}}]\label{lem:kardinalitas_centralizer_Sn}
-  Misalkan permutasi $a \in S_n$ memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Kardinalitas dari \emph{centralizer} $a$ di dalam $S_n$ diberikan oleh:
-  \[
-    |C_{S_n}(a)| = \prod_{k=1}^{n} k^{a_k} (a_k!).
-  \]
-\end{lema}
-
-\begin{proof}
-  Berdasarkan \autoref{prop:kardinalitas_centralizer}, untuk grup berhingga $S_n$ berlaku hubungan kardinalitas:
-  \[
-    |C_{S_n}(a)| = \frac{|S_n|}{|K(a)|}.
-  \]
-  Diketahui bahwa kardinalitas dari grup simetri secara keseluruhan adalah $|S_n| = n!$. Sementara itu, klas konjugasi $K(a)$ memuat seluruh permutasi di $S_n$ yang saling berkonjugasi dengan $a$, yang ekuivalen dengan himpunan permutasi yang memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Secara kombinatorial, banyaknya permutasi di $S_n$ yang memenuhi struktur tipe permutasi tersebut bernilai:
-  \[
-    |K(a)| = \frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}.
-  \]
-  Dengan mensubstitusikan nilai kardinalitas grup simetri dan kardinalitas klas konjugasi tersebut ke dalam persamaan awal, diperoleh kardinalitas eksak untuk \emph{centralizer} sebagai berikut:
-  \[
-    |C_{S_n}(a)| = \frac{n!}{\frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}} = \prod_{k=1}^{n} k^{a_k} (a_k!).
-  \]
-\end{proof}
-
-Secara kombinatorial, formula pada \autoref{lem:kardinalitas_centralizer_Sn} adalah akibat langsung dari syarat pelestarian struktur konjugasi $\tau a \tau^{-1} = a$. Komponen $k^{a_k}$ merepresentasikan banyaknya cara merotasi elemen secara internal di dalam $a_k$ sikel. Sementara itu, komponen $a_k!$ merepresentasikan banyaknya cara menukar silang letak antar sikel yang panjangnya identik. Pemetaan ke sikel dengan panjang berbeda dilarang mutlak karena dipastikan akan merusak tipe permutasi asalnya.
 
 \begin{contoh}
   Tinjau permutasi $\sigma = (1\;2)(3\;4) \in S_4$. Berdasarkan \autoref{prop:konjugasi_sikel_Sn}, fungsi $\tau \in C_{S_4}(\sigma)$ harus memenuhi persamaan komutatif konjugasi:
@@ -689,18 +730,181 @@ Secara kombinatorial, formula pada \autoref{lem:kardinalitas_centralizer_Sn} ada
   \[
     C_{S_4}((1\;2)(3\;4)) = \{ (1), (1\;2), (3\;4), (1\;2)(3\;4), (1\;3)(2\;4), (1\;4)(2\;3), (1\;3\;2\;4), (1\;4\;2\;3) \}.
   \]
-  Kardinalitas ini berjumlah $8$, yang mana konsisten dengan formula analitik \autoref{lem:kardinalitas_centralizer_Sn} untuk tipe permutasi $[0, 2, 0, 0]$, yakni $|C_{S_4}(\sigma)| = 2^2(2!) = 8$.
 \end{contoh}
 
+Berdasarkan sifat invarian pada \autoref{prop:konjugasi_sikel_Sn}, dua buah permutasi di $S_n$ akan berada pada klas konjugasi yang sama (berada dalam satu orbit di bawah tindakan konjugasi) jika dan hanya jika keduanya memiliki tipe permutasi yang identik. Berikut adalah teorema yang menyatakan struktur dari \emph{centralizer} sebuah permutasi di dalam grup simetri.
+
+Produk semidirek muncul secara alami dalam struktur centralizer permutasi karena terdapat dua jenis kebebasan pada sikel-sikel dengan panjang sama. Pertama, setiap sikel berpanjang $k$ dapat dirotasi secara internal, sehingga menghasilkan faktor yang bersesuaian dengan $\mathbb{Z}_k^{a_k}$. Kedua, sikel-sikel berpanjang $k$ dapat dipertukarkan satu sama lain, sehingga menghasilkan faktor $S_{a_k}$.
+
+Grup $S_{a_k}$ bertindak pada $\mathbb{Z}_k^{a_k}$ dengan menukar koordinat. Secara eksplisit, untuk setiap $\pi\in S_{a_k}$ dan $(r_1,r_2,\ldots,r_{a_k})\in \mathbb{Z}_k^{a_k}$, aksi tersebut diberikan oleh
+\begin{align}\label{eq:aksi_Sak_pada_Zkak}
+  \pi\cdot(r_1,r_2,\ldots,r_{a_k})
+  =
+  (r_{\pi^{-1}(1)},r_{\pi^{-1}(2)},\ldots,r_{\pi^{-1}(a_k)}).
+\end{align}
+Aksi pada \eqref{eq:aksi_Sak_pada_Zkak} merupakan automorfisma pada $\mathbb{Z}_k^{a_k}$, sehingga menghasilkan produk semidirek
+\[
+  \mathbb{Z}_k^{a_k}\rtimes S_{a_k}.
+\]
+
+\begin{teorema}[{\cite{dummit2004abstract}}]\label{thm:struktur_centralizer}
+  Misalkan $\sigma\in S_n$ memiliki $a_k$ sikel berpanjang $k$ untuk setiap $k=1,2,\ldots,n$. Maka centralizer dari $\sigma$ di $S_n$ isomorfik dengan
+  \begin{align}\label{eq:struktur_centralizer_semidirek}
+    C_{S_n}(\sigma)
+    \cong
+    \prod_{k=1}^{n}
+    \left(
+    \mathbb{Z}_k^{a_k}\rtimes S_{a_k}
+    \right).
+  \end{align}
+\end{teorema}
+
+\begin{proof}
+  Misalkan $\tau\in C_{S_n}(\sigma)$. Berdasarkan definisi centralizer, berlaku
+  \begin{align}\label{eq:centralizer_tau_sigma_komutatif_semidirek}
+    \tau\sigma=\sigma\tau.
+  \end{align}
+  Dengan mengalikan kedua ruas \eqref{eq:centralizer_tau_sigma_komutatif_semidirek} oleh $\tau^{-1}$ dari kanan, diperoleh
+  \begin{align}\label{eq:centralizer_tau_konjugasi_sigma_semidirek}
+    \tau\sigma\tau^{-1}=\sigma.
+  \end{align}
+  Berdasarkan \autoref{prop:konjugasi_sikel_Sn}, konjugasi oleh $\tau$ mempertahankan panjang sikel. Oleh karena itu, dari \eqref{eq:centralizer_tau_konjugasi_sigma_semidirek}, permutasi $\tau$ harus memetakan setiap sikel berpanjang $k$ dari $\sigma$ ke sikel lain yang juga berpanjang $k$. Misalkan sikel-sikel berpanjang $k$ dari $\sigma$ adalah
+  \begin{align}\label{eq:daftar_sikel_panjang_k_semidirek}
+    c_{k,1},c_{k,2},\ldots,c_{k,a_k}.
+  \end{align}
+  Setiap sikel pada \eqref{eq:daftar_sikel_panjang_k_semidirek} memiliki $k$ kemungkinan rotasi internal. Oleh karena itu, seluruh pilihan rotasi internal pada $a_k$ sikel berpanjang $k$ dapat direpresentasikan oleh elemen
+  \begin{align}\label{eq:rotasi_internal_Zkak}
+    (r_1,r_2,\ldots,r_{a_k})\in \mathbb{Z}_k^{a_k}.
+  \end{align}
+  Selain rotasi internal pada \eqref{eq:rotasi_internal_Zkak}, permutasi $\tau$ juga dapat mempertukarkan sikel-sikel berpanjang $k$. Pertukaran tersebut direpresentasikan oleh suatu elemen $\pi\in S_{a_k}$. Aksi $\pi$ terhadap pilihan rotasi internal diberikan oleh \eqref{eq:aksi_Sak_pada_Zkak}. Dengan demikian, struktur pemetaan pada kelompok sikel berpanjang $k$ diberikan oleh produk semidirek
+  \begin{align}\label{eq:faktor_centralizer_panjang_k}
+    C_{\operatorname{Sym}(X_k)}(\sigma_k) \cong \mathbb{Z}_k^{a_k}\rtimes S_{a_k}.
+  \end{align}
+  Karena kelompok sikel dengan panjang berbeda memiliki pendukung yang saling lepas, pilihan pemetaan untuk masing-masing panjang sikel $k$ dapat dikombinasikan secara bebas. Oleh karena itu, struktur centralizer diperoleh sebagai hasil kali dari faktor-faktor pada \eqref{eq:faktor_centralizer_panjang_k} akan menghasilkan \eqref{eq:struktur_centralizer_semidirek}.
+\end{proof}
+
+Dengan struktur isomorfik dari \emph{centralizer} yang telah diperoleh dari \autoref{thm:struktur_centralizer}, maka dapat dihitung secara eksak kardinalitas dari \emph{centralizer} sebuah permutasi di dalam grup simetri.
+
+\begin{lema}[{\cite{dummit2004abstract}}]\label{lem:kardinalitas_centralizer_Sn}
+  Misalkan permutasi $a \in S_n$ memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Kardinalitas dari \emph{centralizer} $a$ di \begin{align}\label{eq:kardinalitas_centralizer_Sn}
+    |C_{S_n}(a)| = \prod_{k=1}^{n} k^{a_k} (a_k!).
+  \end{align}
+\end{lema}
+
+\begin{proof}[Bukti 1]
+  Berdasarkan \autoref{thm:struktur_centralizer}, grup \emph{centralizer} $C_{S_n}(a)$ isomorfik terhadap perkalian langsung dari produk semidirek:
+  \begin{align}\label{eq:centralizer_elemen_Sn}
+    C_{S_n}(a) \cong \prod_{k=1}^{n} \left( \mathbb{Z}_k^{a_k} \rtimes S_{a_k} \right).
+  \end{align}
+  Kardinalitas dari himpunan \eqref{eq:centralizer_elemen_Sn} dapat dievaluasi secara eksak dari struktur isomorfismanya. Ukuran dari sebuah produk semidirek $\mathbb{Z}_k^{a_k} \rtimes S_{a_k}$ adalah hasil kali dari kardinalitas masing-masing subgrup pembentuknya.\\
+  Diketahui bahwa ukuran dari grup yang memuat rotasi internal independen adalah $|\mathbb{Z}_k^{a_k}| = k^{a_k}$, sedangkan ukuran dari grup simetri yang mempertukarkan blok sikel utuh adalah $|S_{a_k}| = a_k!$. Oleh karena itu, ukuran untuk setiap kelompok sikel berpanjang $k$ bernilai $k^{a_k}(a_k!)$. Perkalian dari ukuran setiap kelompok sikel untuk seluruh kemungkinan panjang $k$ dari $1$ hingga $n$ menghasilkan \eqref{eq:kardinalitas_centralizer_Sn}.
+\end{proof}
+
+\begin{proof}[Bukti 2]
+  Berdasarkan \autoref{prop:kardinalitas_centralizer}, untuk grup berhingga $S_n$ berlaku hubungan kardinalitas:
+  \begin{equation}\label{eq:kardinalitas_centralizer_Sn_prop}
+    |C_{S_n}(a)| = \frac{|S_n|}{|K(a)|}.
+  \end{equation}
+  Diketahui bahwa kardinalitas dari grup simetri secara keseluruhan adalah $|S_n| = n!$. Sementara itu, klas konjugasi $K(a)$ memuat seluruh permutasi di $S_n$ yang saling berkonjugasi dengan $a$, yang ekuivalen dengan himpunan permutasi yang memiliki tipe permutasi $[a_1, a_2, \ldots, a_n]$. Secara kombinatorial, banyaknya permutasi di $S_n$ yang memenuhi struktur tipe permutasi tersebut bernilai:
+  \[
+    |K(a)| = \frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}.
+  \]
+  Dengan mensubstitusikan nilai kardinalitas grup simetri dan kardinalitas klas konjugasi tersebut ke dalam \eqref{eq:kardinalitas_centralizer_Sn_prop}, diperoleh kardinalitas eksak untuk \emph{centralizer} sebagai
+  \[
+    |C_{S_n}(a)| = \frac{n!}{\frac{n!}{\prod_{k=1}^{n} k^{a_k} (a_k!)}} = \prod_{k=1}^{n} k^{a_k} (a_k!).
+  \]
+  Terbukti ekivalen dengan \eqref{eq:kardinalitas_centralizer_Sn}.
+\end{proof}
+
 \begin{contoh}
-  Sebagai perluasan ilustrasi derajat kebebasan pemetaan $\tau$, tinjau permutasi $\sigma = (1\;2\;3)(4\;5\;6)(7\;8)(9) \in S_9$ dengan tipe permutasi $[1, 1, 2, 0, 0, 0, 0, 0, 0]$.
-  Berdasarkan batasan pada \autoref{prop:konjugasi_sikel_Sn}, pembentukan anggota \emph{centralizer} diperoleh dari analisis per blok sikel:
-  Sikel $(9)$ terkunci mutlak ($1$ cara rotasi). Sikel $(7\;8)$ terisolasi secara ukuran panjang ($2$ cara rotasi internal). Pasangan sikel identik $(1\;2\;3)$ dan $(4\;5\;6)$ memiliki kebebasan berotasi internal masing-masing $3$ kali sekaligus bertukar letak secara utuh ($3^2 \times 2! = 18$ cara).
-  Kardinalitas \emph{centralizer} merupakan perkalian langsung dari derajat kebebasan pergerakan tersebut:
-  \begin{align*}
-    |C_{S_9}(\sigma)| & = \prod_{k=1}^{9} k^{a_k} (a_k!)                                = (1^1 \times 1!) \times (2^1 \times 1!) \times (3^2 \times 2!) = 1 \times 2 \times 18 = 36.
-  \end{align*}
+  Diberikan permutasi $\sigma \in S_9$ dengan dekomposisi sikel utuh $\sigma = (1\;\; 2\;\; 3\;\; 4)(5\;\; 6\;\; 7)(8)(9)$. Kita akan mencari \emph{centralizer} $C_{S_9}(\sigma)$ dengan mengevaluasi syarat komutatif $\tau \sigma = \sigma \tau$, yang ekuivalen dengan $\tau \sigma \tau^{-1} = \sigma$.\\
+  Berdasarkan \autoref{prop:konjugasi_sikel_Sn}, hasil dari konjugasi $\tau \sigma \tau^{-1}$ diperoleh dengan mensubstitusikan pemetaan $\tau$ ke dalam setiap elemen di dekomposisi sikel $\sigma$. Persamaan komutatif tersebut berubah menjadi:
+  \[
+    (\tau(1)\;\; \tau(2)\;\; \tau(3)\;\; \tau(4))(\tau(5)\;\; \tau(6)\;\; \tau(7))(\tau(8))(\tau(9)) = (1\;\; 2\;\; 3\;\; 4)(5\;\; 6\;\; 7)(8)(9).
+  \]
+  Agar kedua ruas tersebut bernilai sama secara identitas, struktur panjang sikel di ruas kiri harus berkorespondensi tepat dengan struktur panjang sikel di ruas kanan. Dari kesamaan ini, berlaku pembatasan kombinatorial berikut:
+  \begin{enumerate}
+    \item Sikel Panjang 4: Blok $(\tau(1)\;\; \tau(2)\;\; \tau(3)\;\; \tau(4))$ mutlak harus bernilai sama dengan blok $(1\;\; 2\;\; 3\;\; 4)$. Pemetaan $\tau$ tidak dapat memindahkan elemen ini ke himpunan $\{5, 6, 7\}$ karena akan mengubah panjang sikelnya menjadi 3. Oleh karena itu, $\tau(1)$ hanya memiliki 4 pilihan orientasi internal di dalam himpunan $\{1, 2, 3, 4\}$, yang menghasilkan grup rotasi $\mathbb{Z}_4$.
+    \item Sikel Panjang 3: Blok $(\tau(5)\;\; \tau(6)\;\; \tau(7))$ harus bernilai sama dengan blok $(5\;\; 6\;\; 7)$. Dengan logika yang sama, $\tau(5)$ memiliki 3 pilihan orientasi internal di dalam himpunan $\{5, 6, 7\}$, yang menghasilkan grup rotasi $\mathbb{Z}_3$.
+    \item Sikel Panjang 1: Blok $(\tau(8))$ dan $(\tau(9))$ harus dipetakan ke himpunan sikel berpanjang 1, yakni $\{(8), (9)\}$. Karena kedua blok ini memiliki panjang yang sama, pemetaan $\tau$ diizinkan untuk mempertahankan posisi mereka ($\tau(8)=8, \tau(9)=9$) atau mempertukarkan posisinya ($\tau(8)=9, \tau(9)=8$). Pertukaran ini menghasilkan grup simetri $S_2$.
+  \end{enumerate}
+  Karena pemetaan-pemetaan tersebut beroperasi pada himpunan bagian yang saling lepas, seluruh variasi pemetaan dapat dikombinasikan secara bebas. Struktur akhir dari \emph{centralizer} adalah:
+  \[
+    C_{S_9}(\sigma) \cong \mathbb{Z}_4 \times \mathbb{Z}_3 \times S_2.
+  \]
+  Kardinalitas dari $C_{S_9}(\sigma)$ adalah hasil kali dari seluruh ordo grup pembentuknya, yaitu
+  \[
+    |C_{S_9}(\sigma)| = 4 \times 3 \times 2 = 24.
+  \]
 \end{contoh}
+
+Rumus kardinalitas pada \eqref{eq:kardinalitas_centralizer_Sn} juga memberikan gambaran mengenai cara membangun elemen-elemen pada $C_{S_n}(\sigma)$. Misalkan $\sigma$ memiliki $a_k$ sikel berpanjang $k$. Elemen centralizer harus memetakan sikel berpanjang $k$ ke sikel lain yang juga berpanjang $k$. Oleh karena itu, terdapat dua jenis pemetaan dasar yang membentuk centralizer, yaitu rotasi di dalam masing-masing sikel dan pertukaran antar sikel yang memiliki panjang sama.
+
+Rotasi di dalam suatu sikel menyatakan bahwa setiap sikel dapat digeser secara siklik tanpa mengubah hubungan komutatif dengan $\sigma$. Sementara itu, pertukaran antar sikel berpanjang sama dimungkinkan karena sikel-sikel tersebut memiliki struktur yang identik. Kedua jenis pemetaan ini dapat dipandang sebagai pembangkit dari centralizer. Dengan kata lain, seluruh elemen $C_{S_n}(\sigma)$ dapat diperoleh melalui kombinasi rotasi internal dan pertukaran antar sikel berpanjang sama.
+
+Secara khusus, jika
+\[
+  c_{k,i}=(x_{i,1}\ x_{i,2}\ \cdots\ x_{i,k}),
+  \qquad i=1,2,\ldots,a_k,
+\]
+adalah sikel-sikel berpanjang $k$ pada dekomposisi $\sigma$, maka rotasi internal diberikan oleh pangkat-pangkat
+\[
+  c_{k,i}^{r_i},
+  \qquad r_i\in\{0,1,\ldots,k-1\}.
+\]
+Selain itu, untuk setiap $\pi\in S_{a_k}$, pertukaran antar sikel berpanjang $k$ dapat dinyatakan oleh pemetaan
+\[
+  \tau_\pi(x_{i,j})=x_{\pi(i),j},
+  \qquad i=1,2,\ldots,a_k,\quad j=1,2,\ldots,k.
+\]
+Dengan demikian, untuk setiap panjang sikel $k$, terdapat $k^{a_k}$ pilihan rotasi internal dan $a_k!$ pilihan pertukaran antar sikel. Hal ini sesuai dengan faktor $k^{a_k}a_k!$ pada \eqref{eq:kardinalitas_centralizer_Sn}.
+
+Pada buku yang ditulis oleh \citeauthor{seress2003permutation} (\citeyear{seress2003permutation}), terdapat pembahasan tentang algoritma untuk membangun himpunan \emph{centralizer}. Walaupun tidak ditunjukkan secara eksplisit, namun teorema dan lemanya memberikan dasar yang kuat untuk membangun algoritma tersebut. Berdasarkan \autoref{thm:struktur_centralizer}, setiap elemen centralizer dapat dibangun dari dua komponen, yaitu elemen $\mathbb{Z}_k^{a_k}$ yang merepresentasikan rotasi internal dan elemen $S_{a_k}$ yang merepresentasikan pertukaran antar sikel berpanjang $k$. Dengan demikian, struktur produk semidirek pada \eqref{eq:struktur_centralizer_semidirek} tidak hanya memberikan bentuk teoritis centralizer, tetapi juga memberikan prosedur konstruktif untuk membangkitkan seluruh anggotanya.
+\begin{algoritma}\label{alg:konstruksi_centralizer}
+  Konstruksi elemen-elemen $C_{S_n}(\sigma)$ untuk suatu permutasi $\sigma\in S_n$ dilakukan sebagai berikut.
+  \begin{enumerate}
+    \item Tuliskan dekomposisi sikel saling lepas dari $\sigma$.
+
+    \item Kelompokkan sikel-sikel tersebut berdasarkan panjangnya. Untuk setiap $k$, misalkan
+          $
+            D_k=\{c_{k,1},c_{k,2},\ldots,c_{k,a_k}\}
+          $
+          adalah himpunan seluruh sikel berpanjang $k$ pada dekomposisi $\sigma$.
+
+    \item Untuk setiap $k$, bentuk seluruh pilihan rotasi internal pada sikel-sikel di $D_k$, yaitu
+          \[
+            \rho_k
+            =
+            \prod_{i=1}^{a_k} c_{k,i}^{r_i},
+            \qquad
+            r_i\in\{0,1,\ldots,k-1\}.
+          \]
+
+    \item Untuk setiap $\pi\in S_{a_k}$, bentuk pemetaan $\tau_\pi$ yang menukar sikel-sikel berpanjang $k$ dengan aturan
+          $
+            \tau_\pi(x_{i,j})=x_{\pi(i),j},
+          $
+          untuk setiap $i=1,2,\ldots,a_k$ dan $j=1,2,\ldots,k$, dengan
+          $
+            c_{k,i}=(x_{i,1}\ x_{i,2}\ \cdots\ x_{i,k}).
+          $
+
+    \item Untuk setiap $k$, bentuk seluruh pemetaan
+          $
+            h_k=\rho_k\circ\tau_\pi.
+          $
+
+    \item Gabungkan pilihan $h_k$ untuk seluruh panjang sikel $k$. Karena pendukung sikel-sikel dengan panjang berbeda saling lepas, setiap elemen centralizer diperoleh dalam bentuk
+          $
+            h=\prod_{k=1}^{n} h_k.
+          $
+
+    \item Himpunan seluruh permutasi $h$ yang diperoleh pada langkah sebelumnya adalah
+          $
+            C_{S_n}(\sigma).
+          $
+  \end{enumerate}
+\end{algoritma}
 
 \section{\textit{Derangement}}
 Titik tetap dari fungsi $f: X\to X$ adalah sebuah $x\in X$ yang memenuhi $f(x)=x$. Dalam konteks sebuah permutasi

@@ -1,0 +1,133 @@
+\documentclass{beamer}
+\usepackage{amsmath, amssymb, tikz}
+
+\usetikzlibrary{matrix, arrows}
+
+\title{Teorema 7.5: Koefisien Polinomial Laplacian dan Forests}
+\author{Teosofi Hidayah Agung}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+%-------------------------------------------------
+\begin{frame}{Definisi Forest}
+  \textbf{Forest:} graf tanpa siklus.
+  \textbf{Tree:} forest yang terhubung.
+
+  \medskip
+  \textbf{Contoh:}
+  \begin{tikzpicture}[every node/.style={circle,draw,fill=blue!20}]
+    \node (1) at (0,0) {1};
+    \node (2) at (1.5,0) {2};
+    \node (3) at (3,0) {3};
+    \node (4) at (4.5,0) {4};
+    \draw (1) -- (2);
+    \draw (3) -- (4); % forest dengan 2 tree
+  \end{tikzpicture}
+
+  \medskip
+  Ada dua tree: \{1,2\} dan \{3,4\}, tidak ada siklus.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Definisi $p(\Phi)$}
+  \textbf{p(\Phi):} produk jumlah vertex pada setiap komponen forest $\Phi$.
+
+  \medskip
+  \textbf{Contoh:} Forest dari slide sebelumnya:
+  \[
+    \text{Komponen 1: 2 vertex}, \quad
+    \text{Komponen 2: 2 vertex}
+  \]
+  \[
+    p(\Phi) = 2 \cdot 2 = 4
+  \]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Definisi Matriks Laplacian $Q$}
+  \textbf{Q = D D^T}, D = matriks insidensi graf.
+  Diagonal Q = degree vertex, off-diagonal = -1 jika edge menghubungkan vertex.
+
+  \medskip
+  \textbf{Contoh graf:} 3 vertex, 2 edge: (1-2), (2-3)
+  \[
+    D = \begin{bmatrix}1 & 0\\1 & 1\\0 & 1\end{bmatrix}, \quad
+    Q = D D^T =
+    \begin{bmatrix}
+      1  & -1 & 0  \\
+      -1 & 2  & -1 \\
+      0  & -1 & 1
+    \end{bmatrix}
+  \]
+
+  \medskip
+  Hubungan: $Q = \text{diag(degree)} - A$
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Definisi Polinomial $\tau(\Gamma;\lambda)$}
+  \[
+    \tau(\Gamma;\lambda) = \det(\lambda I + Q)
+  \]
+
+  \medskip
+  \textbf{Contoh:}
+  \[
+    Q =
+    \begin{bmatrix}
+      1  & -1 & 0  \\
+      -1 & 2  & -1 \\
+      0  & -1 & 1
+    \end{bmatrix}
+    \Rightarrow
+    \tau(\Gamma;\lambda) = \det\begin{bmatrix}\lambda+1 & -1 & 0\\-1 & \lambda+2 & -1\\0 & -1 & \lambda+1\end{bmatrix}
+  \]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Definisi Koefisien $q_i$}
+  Koefisien polinomial:
+  \[
+    \tau(\Gamma;\lambda) = \lambda^3 + q_1 \lambda^2 + q_2 \lambda + q_3
+  \]
+
+  \medskip
+  \textbf{Contoh:}
+  - Subgraf dengan 1 edge: (1-2), (2-3)
+  - Forest → hitung $p(\Phi)$ untuk tiap forest
+  \[
+    q_1 = 2 + 2 = 4, \quad q_2 = 3, \quad q_3 = 0
+  \]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Definisi Principal Submatrix $Q_X$}
+  Ambil subset vertex $X$, submatrix $Q_X$ = baris & kolom sesuai $X$.
+
+  \medskip
+  \textbf{Contoh:}
+  $X = \{1,2\}$, maka
+  \[
+    Q_X =
+    \begin{bmatrix}
+      1  & -1 \\
+      -1 & 2
+    \end{bmatrix}, \quad \det(Q_X) = 1
+  \]
+
+  - Menggunakan Binet-Cauchy, determinan ini terkait forest dengan edges pada subset vertex $X$.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Kesimpulan Teorema 7.5}
+  \begin{itemize}
+    \item Setiap $q_i$ = jumlah semua $p(\Phi)$ dari forest dengan i edge.
+    \item Matriks Laplacian $Q$ mempermudah ekspansi determinan → hitung $q_i$.
+    \item Contoh-contoh konkret membantu memahami hubungan graf $\rightarrow$ matriks $\rightarrow$ koefisien polinomial.
+  \end{itemize}
+\end{frame}
+
+\end{document}

@@ -49,10 +49,8 @@
 }
 \RequirePackage{float}
 \RequirePackage{algorithm}
-\RequirePackage{algorithmic}
+\RequirePackage{algpseudocode}
 \floatname{algorithm}{Algoritma}
-\renewcommand{\algorithmicrequire}{\textbf{Masukan:}}
-\renewcommand{\algorithmicensure}{\textbf{Keluaran:}}
 
 \RequirePackage{setspace}
 \RequirePackage{afterpage}
