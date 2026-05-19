@@ -1,84 +1,441 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usetikzlibrary{graphs, positioning, arrows.meta}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
 \usetheme{Madrid}
-\usecolortheme{whale}
 
-\title{Definisi Terkait Teorema 7.5}
-\subtitle{Ekspansi Polinomial Karakteristik Matriks Graf}
-\author{Analisis Literatur Norman Biggs}
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} 
+\setbeamercolor{section in toc}{fg=HIMAtua} 
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{bibliography item}{\insertbiblabel} % Dihapus/dimatikan karena style authoryear tidak pakai angka
+
 \date{\today}
-
+\title[Aljabar Graf]{Theorem 7.5 Buku Norman Biggs}
+\author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
 \begin{document}
 
 \frame{\titlepage}
 
-\begin{frame}
-  \frametitle{Objek Utama: Graf dan Matriks Q}
-  \begin{block}{Graf Sederhana $\Gamma$}
-    Graf $\Gamma$ terdiri dari himpunan titik $V\Gamma$ dan himpunan sisi $E\Gamma$. Hubungan antar keduanya ditentukan oleh relasi insidensi.
-  \end{block}
-  \begin{block}{Matriks Signless Laplacian}
-    Matriks $Q$ didefinisikan sebagai:
-    $$Q = A + \Delta$$
-    di mana $A$ adalah matriks ketetanggaan dan $\Delta$ adalah matriks diagonal yang entri-entrinya berisi derajat (valency) dari setiap titik di $\Gamma$.
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Matriks Insidensi $D$}
-  Matriks insidensi $D$ berukuran $|V\Gamma| \times |E\Gamma|$ menghubungkan titik dengan sisi.
-  \begin{exampleblock}{Identitas Fundamental}
-    $$Q = DD^t$$
-  \end{exampleblock}
-  Identitas ini menjadi jembatan utama antara sifat aljabar matriks $Q$ dengan struktur topologis dari graf $\Gamma$.
-\end{frame}
-
-\begin{frame}
-  \frametitle{Polinomial Karakteristik $\tau(\Gamma; \lambda)$}
-  Fungsi ekspansi didefinisikan sebagai:
-  $$\tau(\Gamma; \lambda) = \det(\lambda I + Q) = \lambda^n + q_1 \lambda^{n-1} + \dots + q_{n-1}\lambda + q_n$$
-  \begin{alertblock}{Definisi Koefisien $q_i$}
-    Setiap koefisien $q_i$ ($1 \le i \le n$) merupakan jumlahan dari seluruh minor utama (principal minors) berukuran $i \times i$ dari matriks $Q$.
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Nilai Spesifik Koefisien $q_i$}
-  Beberapa nilai koefisien yang sudah diketahui dari observasi elementer:
+\begin{frame}{Definisi Dasar}
   \begin{itemize}
-    \item $q_1 = 2|E\Gamma|$ (Dua kali jumlah sisi / jumlah derajat)
-    \item $q_{n-1} = n\kappa(\Gamma)$ (Di mana $\kappa(\Gamma)$ adalah jumlah pohon rentang graf)
-    \item $q_n = 0$ (Matriks $Q$ selalu bersifat singular)
+    \item \textbf{Hutan (Forest - $\Phi$):} Subgraf dari $\Gamma$ yang tidak mengandung siklus. Setiap komponen terhubung dalam hutan adalah sebuah pohon (tree).
+    \item \textbf{Fungsi $p(\Phi)$:} Jumlah cara menghilangkan tepat satu verteks dari setiap komponen $\Phi$. Jika komponen $\Phi$ adalah $C_1, C_2, \dots, C_k$, maka $p(\Phi) = \prod_{j=1}^k |V(C_j)|$.
+    \item \textbf{Matriks Insidensi Berarah ($\mathbf{D}$):}
+          Matriks ukuran $|V| \times |E|$ dengan entri $\mathbf{D}_{v,e}$ bernilai $1$ jika $v$ adalah ujung kepala dari $e$, $-1$ jika $v$ adalah ujung ekor dari $e$, dan $0$ jika $v$ tidak insiden dengan $e$.
+    \item \textbf{Matriks Derajat ($\Delta$):}
+          Matriks diagonal dengan entri $\Delta_{v,v} = d(v)$ yang merepresentasikan derajat atau valensi dari verteks $v$.
+    \item \textbf{Matriks Laplacian ($\mathbf{Q}$):}
+          Didefinisikan melalui hasil kali matriks insidensinya, yaitu $\mathbf{Q} = \mathbf{D}\mathbf{D}^t$. Persamaan ini bernilai ekuivalen dengan
+          $ \mathbf{Q} = \Delta - \mathbf{A} $
   \end{itemize}
+
 \end{frame}
 
-\begin{frame}
-  \frametitle{Submatriks $D(X, Y)$ \& Teorema Binet-Cauchy}
-  Misalkan $X \subseteq V\Gamma$ dan $Y \subseteq E\Gamma$ dengan $|X| = |Y| = i$.
+\begin{frame}{Tanda pada Polinomial Karakteristik}
+  Secara umum, polinomial karakteristik dari suatu matriks $\mathbf{M}$ didefinisikan sebagai $\det(\lambda \mathbf{I} - \mathbf{M})$.
+
+  \vspace{0.5cm}
+  Namun, pada Teorema 7.5, polinomial karakteristik dari matriks Laplacian $\mathbf{Q}$ dituliskan dengan tanda positif:
+  $$ \tau(\Gamma; \lambda) = \det(\lambda \mathbf{I} + \mathbf{Q}) $$
+
+  \vspace{0.5cm}
+  Mengapa menggunakan tanda positif? Alasannya adalah untuk menghindari kemunculan koefisien yang berganti tanda (selang-seling) agar representasi kombinatorialnya menjadi lebih elegan.
+\end{frame}
+
+\begin{frame}{Sifat Semidefinit Positif Matriks Laplacian}
+  Matriks Laplacian $\mathbf{Q}$ bersifat semidefinit positif, yang berarti seluruh nilai eigennya ($\mu_i$) selalu bernilai non-negatif ($\mu_i \geqslant 0$).
+
   \begin{itemize}
-    \item $D(\cdot, Y)$: Submatriks $D$ yang hanya mengambil kolom dari himpunan sisi $Y$.
-    \item $D(X, Y)$: Submatriks dari $D(\cdot, Y)$ yang hanya mengambil baris dari himpunan titik $X$.
+    \item Jika menggunakan $\det(\lambda \mathbf{I} - \mathbf{Q})$, ekspansinya akan menghasilkan koefisien yang selang-seling: $\lambda^n - q_1 \lambda^{n-1} + q_2 \lambda^{n-2} - \dots$
+    \item Jika menggunakan $\det(\lambda \mathbf{I} + \mathbf{Q})$, akar penyelesaiannya bergeser menjadi $-\mu_i$. Persamaannya menjadi $\prod_{i=1}^n (\lambda + \mu_i)$.
   \end{itemize}
-  \begin{block}{Ekspansi Binet-Cauchy}
-    $$\det Q_X = \sum_{Y} (\det D(X, Y))^2$$
-  \end{block}
+
+  Karena semua $\mu_i$ non-negatif, hasil kalinya menjamin bahwa \textbf{semua koefisien $q_i$ bernilai positif}.
 \end{frame}
 
-\begin{frame}
-  \frametitle{Struktur Kombinatorika: Hutan $\Phi$}
-  \begin{block}{Hutan (Forest) $\Phi$}
-    Hutan $\Phi = \langle Y \rangle$ adalah subgraf dari $\Gamma$ yang tidak memuat siklus dan memiliki tepat $i$ sisi.
-  \end{block}
-  \begin{block}{Fungsi $p(\Phi)$}
-    Banyaknya cara untuk membuang tepat satu titik dari setiap komponen terhubung pada hutan $\Phi$. Jika setiap komponen memiliki jumlah titik $v_1, v_2, \dots, v_k$, maka:
-    $$p(\Phi) = v_1 \times v_2 \times \dots \times v_k$$
-  \end{block}
+\begin{frame}{Definisi Fungsi $p(\Phi)$}
+  Fungsi $p(\Phi)$ menyatakan total kemungkinan (jumlah cara) untuk memilih \textbf{tepat satu verteks} dari setiap komponen terhubung di dalam hutan $\Phi$.
+
+  \vspace{0.5cm}
+  Secara matematis, fungsinya dirumuskan sebagai:
+  $$ p(\Phi) = \prod_{j=1}^k |V(C_j)| $$
+
+  di mana $C_j$ adalah komponen-komponen terhubung dalam $\Phi$, dan $|V(C_j)|$ adalah jumlah verteks pada komponen $C_j$.
 \end{frame}
 
-\begin{frame}
-  \frametitle{Kesimpulan Teorema 7.5}
-  Formulasi akhir untuk koefisien polinomial karakteristik:
-  $$q_i = \sum p(\Phi) \quad (1 \le i \le n)$$
-  di mana jumlahan dilakukan atas semua subgraf sisi dari $\Gamma$ yang memiliki $i$ sisi dan berbentuk hutan (forest).
+\begin{frame}{Contoh Skenario Evaluasi $p(\Phi)$}
+  Misalkan kita mengevaluasi sebuah subgraf hutan $\Phi$ dengan 9 verteks yang memiliki 3 komponen terhubung ($k=3$):
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=0.6, transform shape,
+        node distance=1.5cm,
+        every node/.style={circle, draw=black, thick, minimum size=0.7cm, fill=white},
+        forest edge/.style={draw=black, very thick},
+        gamma edge/.style={draw=gray!50, very thick, dashed}
+      ]
+
+      \node (1) at (0,0) {1};
+      \node (2) at (-1.5, 1.5) {2};
+      \node (3) at (1.5, 1.5) {3};
+      \node (4) at (-1.5, -1.5) {4};
+      \node (5) at (1.5, -1.5) {5};
+
+      \node (6) at (5, 0) {6};
+      \node (7) at (4, 1.5) {7};
+      \node (8) at (6, 1.5) {8};
+
+      \node (9) at (9, 0) {9};
+
+      \draw[forest edge] (1) -- (2);
+      \draw[forest edge] (1) -- (3);
+      \draw[forest edge] (1) -- (4);
+      \draw[forest edge] (1) -- (5);
+
+      \draw[forest edge] (6) -- (7);
+      \draw[forest edge] (6) -- (8);
+
+      \draw[gamma edge] (2) -- (3);
+      \draw[gamma edge] (4) -- (5);
+      \draw[gamma edge] (3) -- (7);
+      \draw[gamma edge] (5) -- (6);
+      \draw[gamma edge] (8) -- (9);
+
+      \node[draw=none, fill=none] at (0, -2.5) {\Large $C_1: |V|=5$};
+      \node[draw=none, fill=none] at (5, -2.5) {\Large $C_2: |V|=3$};
+      \node[draw=none, fill=none] at (9, -2.5) {\Large $C_3: |V|=1$};
+    \end{tikzpicture}
+  \end{center}
+  Nilai fungsi $p(\Phi)$ dari graf tersebut adalah:
+  $$ p(\Phi) = 5 \times 3 \times 1 = 15 $$
+\end{frame}
+
+\begin{frame}[fragile]{Contoh Graf dan Subgraf Hutan}
+  Misalkan kita memiliki graf $\Gamma$ dengan $V = \{1, 2, 3, 4, 5\}$ dan himpunan sisi $e_1=(1,2), e_2=(2,3), e_3=(3,1), e_4=(3,4), e_5=(2,5), e_6=(5,4)$.
+
+  \begin{center}
+    \begin{tikzpicture}[node distance=1.5cm, every node/.style={circle, draw, minimum size=0.6cm}]
+      \node (1) {1};
+      \node (2) [right=of 1] {2};
+      \node (3) [below=of 2] {3};
+      \node (4) [right=of 3] {4};
+      \node (5) [right=of 2] {5};
+
+      \begin{scope}[>={Stealth[black]},
+          every edge/.style={draw=black,thick}]
+        \draw[->] (1) -- node[above, draw=none] {$e_1$} (2);
+        \draw[->] (2) -- node[right, draw=none] {$e_2$} (3);
+        \draw[->] (3) -- node[left, draw=none] {$e_3$} (1);
+        \draw[->] (3) -- node[above, draw=none] {$e_4$} (4);
+        \draw[->] (2) -- node[above, draw=none] {$e_5$} (5);
+        \draw[->] (5) -- node[right, draw=none] {$e_6$} (4);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Contoh Matriks $\mathbf{D}$ dan $\mathbf{Q}$}
+  Matriks Insidensi $\mathbf{D}$ ($5 \times 6$):
+  $$
+    \mathbf{D} = \begin{pmatrix}
+      -1 & 0  & 1  & 0  & 0  & 0  \\
+      1  & -1 & 0  & 0  & -1 & 0  \\
+      0  & 1  & -1 & -1 & 0  & 0  \\
+      0  & 0  & 0  & 1  & 0  & 1  \\
+      0  & 0  & 0  & 0  & 1  & -1
+    \end{pmatrix}
+  $$
+
+  Matriks Laplacian $\mathbf{Q} = \Delta - \mathbf{A} = \mathbf{D}\mathbf{D}^t$:
+  $$
+    \mathbf{Q} = \begin{pmatrix}
+      2  & -1 & -1 & 0  & 0  \\
+      -1 & 3  & -1 & 0  & -1 \\
+      -1 & -1 & 3  & -1 & 0  \\
+      0  & 0  & -1 & 2  & -1 \\
+      0  & -1 & 0  & -1 & 2
+    \end{pmatrix}
+  $$
+\end{frame}
+
+\begin{frame}{Teorema Cauchy-Binet}
+  \textbf{Pernyataan Teorema:}
+  Misalkan $\mathbf{A}$ adalah matriks berukuran $m \times p$ dan $\mathbf{B}$ adalah matriks berukuran $p \times m$ dengan $m \leqslant p$. Maka determinan dari hasil kali $\mathbf{AB}$ diberikan oleh formulasi:
+  $$ \det(\mathbf{AB}) = \sum_{S} \det(\mathbf{A}_S) \det(\mathbf{B}^S) $$
+  di mana $S$ adalah himpunan bagian dari $\{1, \dots, p\}$ dengan ukuran $m$, $\mathbf{A}_S$ adalah submatriks $m \times m$ yang dibentuk dari kolom-kolom $S$ dari $\mathbf{A}$, dan $\mathbf{B}^S$ adalah submatriks $m \times m$ yang dibentuk dari baris-baris $S$ dari $\mathbf{B}$.
+\end{frame}
+
+\begin{frame}{Pembuktian Cauchy-Binet}
+  \textbf{Bukti:}
+  Bentuk sebuah matriks blok $\mathbf{M}$ yang berukuran $(p+m) \times (p+m)$:
+  $$ \mathbf{M} = \begin{pmatrix} \mathbf{I}_p & \mathbf{B} \\ -\mathbf{A} & \mathbf{0}_{m} \end{pmatrix} $$
+  Lakukan operasi baris matriks dengan mengalikan matriks identitas termodifikasi sedemikian rupa sehingga:
+  $$ \begin{pmatrix} \mathbf{I}_p & \mathbf{0} \\ \mathbf{A} & \mathbf{I}_m \end{pmatrix} \begin{pmatrix} \mathbf{I}_p & \mathbf{B} \\ -\mathbf{A} & \mathbf{0}_m \end{pmatrix} = \begin{pmatrix} \mathbf{I}_p & \mathbf{B} \\ \mathbf{0} & \mathbf{A}\mathbf{B} \end{pmatrix} $$
+  Determinan dari ruas kiri adalah $\det(\mathbf{M})$, dan determinan dari ruas kanan adalah $\det(\mathbf{A}\mathbf{B})$. Sehingga jelas bahwa $\det(\mathbf{M}) = \det(\mathbf{A}\mathbf{B})$.
+
+  Lanjutkan dengan mengekspansi Laplace pada matriks $\mathbf{M}$ asli terhadap sejumlah $m$ baris terakhirnya. Minor dari matriks $-\mathbf{A}$ berukuran $m \times m$ akan dikalikan dengan kofaktor dari matriks $\mathbf{B}$. Analisis kombinatorial dari tanda kofaktor ini akan membuktikan bahwa ia menghasilkan tepat jumlahan perkalian determinan submatriks $\sum \det(\mathbf{A}_S) \det(\mathbf{B}^S)$.
+  \qed
+\end{frame}
+
+\begin{frame}{Teorema 7.5}
+  \textbf{Pernyataan Teorema:}
+  Koefisien $q_i$ dari polinomial $\tau(\Gamma; \lambda) = \det(\lambda \mathbf{I} + \mathbf{Q})$ diberikan oleh formula:
+  $$ q_i = \sum p(\Phi) \quad (1 \leqslant i \leqslant n), $$
+  di mana penjumlahan dilakukan atas semua subgraf sisi dari $\Gamma$ yang memiliki $i$ sisi dan merupakan hutan (forest).
+
+  \vspace{0.5cm}
+  Secara khusus, berdasarkan observasi dasar polinomial ini, kita memiliki evaluasi:
+  $$ q_1 = 2|E\Gamma|, \quad q_{n-1} = n\kappa(\Gamma), \quad q_n = 0 $$
+\end{frame}
+
+\begin{frame}{Pembuktian Teorema 7.5 (Bagian 1)}
+  \textbf{Bukti:}
+  Misalkan $\mathbf{Q}_X$ menotasikan submatriks utama dari $\mathbf{Q}$ di mana baris dan kolomnya bersesuaian dengan verteks dalam subset $X$ dari $V\Gamma$.
+
+  Menurut Proposisi 7.2 dan Proposisi 7.3 diperoleh $q_i = \sum \det \mathbf{Q}_X$, di mana penjumlahan dilakukan atas semua $X$ dengan $|X| = i$.
+
+  Dengan menggunakan identitas relasi matriks $\mathbf{Q} = \mathbf{D}\mathbf{D}^t$, Tinjau bahwa jika $\mathbf{Q}_X$ adalah submatriks $\mathbf{Q}$ terbatas pada baris dan kolom $X$, maka dekomposisinya menjadi:
+  $$ \mathbf{Q}_X = \mathbf{D}_X \mathbf{D}_X^t $$
+\end{frame}
+
+\begin{frame}{Pembuktian Teorema 7.5 (Bagian 2)}
+  Di mana $\mathbf{D}_X$ adalah matriks insidensi $\mathbf{D}$ yang hanya mengambil baris bersesuaian dengan verteks di $X$, namun tetap memuat seluruh kolom (seluruh sisi di $E\Gamma$).
+
+  Misalkan kita memilih himpunan verteks $X$ sedemikian sehingga kardinalitasnya adalah $|X| = i$.
+
+  \begin{itemize}
+    \item Matriks $\mathbf{Q}_X$ adalah matriks persegi berukuran $i \times i$.
+    \item Matriks $\mathbf{D}_X$ adalah matriks persegi panjang berukuran $i \times |E\Gamma|$.
+    \item Matriks $\mathbf{D}_X^t$ adalah matriks persegi panjang berukuran $|E\Gamma| \times i$.
+  \end{itemize}
+
+  Kita ingin mencari nilai $\det(\mathbf{Q}_X) = \det(\mathbf{D}_X \mathbf{D}_X^t)$.S
+  Karena $\mathbf{D}_X$ bukan matriks persegi, determinannya tidak dapat dieksekusi melalui sifat $\det(\mathbf{A}\mathbf{B}) = \det(\mathbf{A})\det(\mathbf{B})$.
+
+  Namun dengan Teorema Cauchy-Binet, kita bisa memaksa untuk mencari semua kemungkinan submatriks persegi terbesar ($i \times i$) dari matriks persegi panjang $\mathbf{D}_X$.
+\end{frame}
+
+\begin{frame}{Pembuktian Teorema 7.5 (Bagian 3)}
+  Cara membentuk matriks persegi dari $\mathbf{D}_X$ adalah dengan mempertahankan semua barisnya ($X$), lalu \textbf{memilih tepat $i$ kolom} dari total kolom $|E\Gamma|$. Memilih kolom matriks insidensi sama maknanya dengan memilih \textbf{himpunan subset sisi $Y$} dengan ukuran $|Y| = i$. Submatriks persegi ini dinotasikan sebagai $\mathbf{D}(X, Y)$.
+
+  Menurut Cauchy-Binet, determinan hasil kali adalah jumlahan perkalian dari determinan semua matriks potong persegi tersebut:
+  $$ \det(\mathbf{Q}_X) = \sum_{|Y|=i} \det(\mathbf{D}(X, Y)) \cdot \det(\mathbf{D}(X, Y)^t) $$
+
+  Mengingat sifat dasar determinan bahwa nilai determinan suatu matriks sama dengan determinan transposenya ($\det(\mathbf{M}) = \det(\mathbf{M}^t)$), maka:
+  $$ \det(\mathbf{Q}_X) = \sum_{|Y|=i} (\det \mathbf{D}(X, Y))^2 $$
+\end{frame}
+
+\begin{frame}{Pembuktian Teorema 7.5 (Bagian 4)}
+  Penjumlahan ini dilakukan atas semua subset $Y$ dari $E\Gamma$ dengan $|Y| = |X| = i$ (Lema 7.4). Sehingga,
+  $$ q_i = \sum_{X, Y} (\det \mathbf{D}(X, Y))^2 $$
+
+  Dari Proposisi 5.3 dijamin nilai determinan $(\det \mathbf{D}(X, Y))^2$ adalah $0$ atau $1$. Lebih lanjut, nilainya adalah $1$ jika dan hanya jika himpunan sisi $Y$ membentuk subgraf hutan $\Phi = \langle Y \rangle$ (Lema 7.4).
+
+  Untuk setiap hutan $\Phi = \langle Y \rangle$, terdapat sebanyak $p(\Phi)$ cara untuk mengabaikan satu verteks dari masing-masing komponen $\Phi$. Akibatnya, ada tepat $p(\Phi)$ buah suku penambah yang bernilai $1$ di dalam ekspresi penjumlahan koefisien $q_i$.
+  \qed
+\end{frame}
+
+\begin{frame}[fragile]{Graf Contoh: Graf Lengkap $K_4$}
+  Kita menggunakan graf lengkap $K_4$ yang memiliki 4 verteks dan tepat 6 sisi.
+
+  Himpunan verteks $V = \{1, 2, 3, 4\}$.
+  Terdapat sisi di antara setiap pasang verteks.
+
+  \vspace{0.5cm}
+  \begin{center}
+    \begin{tikzpicture}[node distance=2cm, every node/.style={circle, draw, thick, minimum size=0.8cm}]
+      \node (1) {1};
+      \node (2) [right=of 1] {2};
+      \node (4) [below=of 1] {4};
+      \node (3) [right=of 4] {3};
+
+      \draw[thick] (1) -- (2);
+      \draw[thick] (2) -- (3);
+      \draw[thick] (3) -- (4);
+      \draw[thick] (4) -- (1);
+      \draw[thick] (1) -- (3);
+      \draw[thick] (2) -- (4);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Perhitungan Aljabar}
+  Matriks Laplacian $\mathbf{Q} = \Delta - \mathbf{A}$ dari $K_4$:
+  $$
+    \mathbf{Q} = \begin{pmatrix}
+      3  & -1 & -1 & -1 \\
+      -1 & 3  & -1 & -1 \\
+      -1 & -1 & 3  & -1 \\
+      -1 & -1 & -1 & 3
+    \end{pmatrix}
+  $$
+
+  Berdasarkan spektrum graf lengkap, nilai eigen dari Laplacian $K_n$ adalah $0$ (multiplisitas 1) dan $n$ (multiplisitas $n-1$). Untuk $K_4$, nilai eigennya adalah $0, 4, 4, 4$.
+
+  Maka, polinomial karakteristiknya adalah:
+  $$ \det(\lambda \mathbf{I} + \mathbf{Q}) = (\lambda + 0)(\lambda + 4)^3 = \lambda(\lambda^3 + 12\lambda^2 + 48\lambda + 64) $$
+  $$ = \lambda^4 + 12\lambda^3 + 48\lambda^2 + 64\lambda + 0 $$
+
+  Sehingga: $q_1 = 12$, $q_2 = 48$, $q_3 = 64$, dan $q_4 = 0$.
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi $q_1$ (Hutan dengan 1 Sisi)}
+  Ada 6 kemungkinan sisi yang bisa dipilih. Setiap hutan $\Phi$ dengan 1 sisi di $K_4$ akan memiliki tepat 3 komponen terhubung (1 sisi dan 2 verteks terisolasi).
+
+  $$ p(\Phi) = 2 \times 1 \times 1 = 2 \implies q_1 = 6 \times 2 = 12 $$
+
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=0.8, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.6cm, fill=white},
+        fedge/.style={draw=black, very thick},
+        gedge/.style={draw=gray!40, thick, dashed}
+      ]
+      \node[vnode] (1) at (0, 2) {1};
+      \node[vnode] (2) at (2, 2) {2};
+      \node[vnode] (4) at (0, 0) {4};
+      \node[vnode] (3) at (2, 0) {3};
+
+      \draw[gedge] (2) -- (3);
+      \draw[gedge] (3) -- (4);
+      \draw[gedge] (4) -- (1);
+      \draw[gedge] (1) -- (3);
+      \draw[gedge] (2) -- (4);
+
+      \draw[fedge] (1) -- (2);
+
+      \node[draw=none, fill=none, below=0.2cm of 4, xshift=1cm] {Contoh $\Phi$ dengan 1 sisi};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi $q_2$ (Hutan dengan 2 Sisi)}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Kasus A: Sisi Bersebelahan ($P_3$)}
+
+      Terdapat 12 subgraf. Komponen: 3 verteks terhubung, 1 terisolasi.
+      $$ p(\Phi) = 3 \times 1 = 3 $$
+      Total $= 12 \times 3 = 36$
+
+      \vspace{0.2cm}
+      \begin{center}
+        \begin{tikzpicture}[
+            scale=0.7, transform shape,
+            vnode/.style={circle, draw=black, thick, minimum size=0.6cm, fill=white},
+            fedge/.style={draw=black, very thick},
+            gedge/.style={draw=gray!40, thick, dashed}
+          ]
+          \node[vnode] (1) at (0, 2) {1};
+          \node[vnode] (2) at (2, 2) {2};
+          \node[vnode] (4) at (0, 0) {4};
+          \node[vnode] (3) at (2, 0) {3};
+
+          \draw[gedge] (3) -- (4);
+          \draw[gedge] (4) -- (1);
+          \draw[gedge] (1) -- (3);
+          \draw[gedge] (2) -- (4);
+
+          \draw[fedge] (1) -- (2);
+          \draw[fedge] (2) -- (3);
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.5\textwidth}
+      \textbf{Kasus B: Sisi Terpisah (Matching)}
+
+      Terdapat 3 subgraf. Komponen: dua pasang sisi.
+      $$ p(\Phi) = 2 \times 2 = 4 $$
+      Total $= 3 \times 4 = 12$
+
+      \vspace{0.2cm}
+      \begin{center}
+        \begin{tikzpicture}[
+            scale=0.7, transform shape,
+            vnode/.style={circle, draw=black, thick, minimum size=0.6cm, fill=white},
+            fedge/.style={draw=black, very thick},
+            gedge/.style={draw=gray!40, thick, dashed}
+          ]
+          \node[vnode] (1) at (0, 2) {1};
+          \node[vnode] (2) at (2, 2) {2};
+          \node[vnode] (4) at (0, 0) {4};
+          \node[vnode] (3) at (2, 0) {3};
+
+          \draw[gedge] (2) -- (3);
+          \draw[gedge] (4) -- (1);
+          \draw[gedge] (1) -- (3);
+          \draw[gedge] (2) -- (4);
+
+          \draw[fedge] (1) -- (2);
+          \draw[fedge] (3) -- (4);
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.3cm}
+  \begin{center}
+    Total $q_2 = 36 + 12 = 48$
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi $q_3$ (Hutan dengan 3 Sisi)}
+  Hutan berukuran 4 verteks dengan 3 sisi adalah \textbf{Spanning Tree}.  Berdasarkan Teorema Cayley, ada $n^{n-2} = 4^2 = 16$ spanning tree pada $K_4$. Setiap spanning tree memiliki tepat 1 komponen berisi 4 verteks.
+  $$ p(\Phi) = 4 \implies q_3 = 16 \times 4 = 64 $$
+
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=0.8, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.6cm, fill=white},
+        fedge/.style={draw=black, very thick},
+        gedge/.style={draw=gray!40, thick, dashed}
+      ]
+      \node[vnode] (1) at (0, 2) {1};
+      \node[vnode] (2) at (2, 2) {2};
+      \node[vnode] (4) at (0, 0) {4};
+      \node[vnode] (3) at (2, 0) {3};
+
+      \draw[gedge] (2) -- (3);
+      \draw[gedge] (3) -- (4);
+      \draw[gedge] (2) -- (4);
+
+      \draw[fedge] (1) -- (2);
+      \draw[fedge] (1) -- (3);
+      \draw[fedge] (1) -- (4);
+
+      \node[draw=none, fill=none, below=0.2cm of 4, xshift=1cm] {Contoh $\Phi$ Spanning Tree (Star Graph)};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Evaluasi $q_4$ (Hutan dengan 4 Sisi)}
+  Menggunakan fakta bahwa "Suatu subgraf dengan $n$ verteks dan $n$ sisi tidak mungkin merupakan sebuah hutan", kita dapat menyimpulkan bahwa tidak ada subgraf dengan 4 sisi yang bisa menjadi hutan pada graf $K_4$.
+  Maka, $q_4 = 0$.
 \end{frame}
 
 \end{document}
