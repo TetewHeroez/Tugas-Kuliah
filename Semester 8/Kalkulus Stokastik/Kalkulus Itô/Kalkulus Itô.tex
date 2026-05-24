@@ -32,6 +32,8 @@
 
 \usetheme{Madrid}
 
+\setbeamertemplate{frametitle continuation}{}
+
 \setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
 \setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
 \setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
@@ -64,6 +66,15 @@
 \newtheorem{akibat}{Akibat}
 \newtheorem{contoh}{Contoh}
 \newtheorem{latihan}{Latihan}
+
+% Ubah penomoran agar otomatis diawali dengan 5.
+\renewcommand{\thedefinisi}{5.\arabic{definisi}}
+\renewcommand{\theproposisi}{5.\arabic{proposisi}}
+\renewcommand{\theteorema}{5.\arabic{teorema}}
+\renewcommand{\thelema}{5.\arabic{lema}}
+\renewcommand{\theakibat}{5.\arabic{akibat}}
+\renewcommand{\thecontoh}{5.\arabic{contoh}}
+\renewcommand{\thelatihan}{5.\arabic{latihan}}
 
 \usepackage[nameinlink]{cleveref}
 \crefname{teorema}{Teorema}{Teorema}
@@ -118,7 +129,7 @@
 }
 
 \date{25 Mei 2026}
-\title[Kalkulus Itô]{Kalkulus Stokastik Itô: Definisi dan Contoh}
+\title[Kalkulus Stokastik]{Kalkulus Stokastik Itô: Definisi dan Contoh}
 \author[Tetew]{Teosofi Hidayah Agung}
 \institute[Matematika ITS]{Matematika ITS}
 
@@ -132,14 +143,15 @@
 
 \AtBeginSection{
   {
-      \begin{frame}{Daftar Isi}
-        \tableofcontents[currentsection]
+      \begin{frame}{\insertsection}{Daftar Isi}
+        \tableofcontents[currentsection,hideothersubsections]
       \end{frame}}
 }
 
 \section{Kalkulus Itô}
 
-\begin{frame}{Apa itu Kalkulus Itô?}
+\subsection{Pendahuluan}
+\begin{frame}{\insertsection}{\insertsubsection}
   \begin{itemize}
     \item \textbf{Kalkulus Itô} adalah perluasan dari kalkulus klasik untuk fungsi-fungsi stokastik, khususnya proses yang memiliki lintasan kasar (tidak terdiferensiasi di sembarang titik) seperti Gerak Brown (Proses Wiener).
     \item \textbf{Penemu:} Diperkenalkan dan dikembangkan secara bertahap oleh matematikawan Jepang \textbf{Kiyosi Itô} pada pertengahan abad ke-20.
@@ -154,7 +166,7 @@
 
 \section{Integral Stokastik Itô}
 
-\begin{frame}{Latar Belakang Integral Stokastik}
+\begin{frame}{\insertsection}
   Penjumlahan Riemann yang digunakan untuk mendekati integral suatu fungsi $f : [0, T] \to \R$ ditulis sebagai:
   \begin{equation*}
     \sum_{j=0}^{n-1} f(s_j)(t_{j+1} - t_j),
@@ -169,8 +181,9 @@
   dengan $W(t)$ adalah proses Wiener. Pada integral stokastik limit jumlah tersebut \textbf{sangat bergantung} pada pilihan titik $s_j$. Agar nilainya tidak bergantung pada kejadian di masa depan, kita pilih $s_j = t_j$.
 \end{frame}
 
-\begin{frame}{Proses Sederhana Acak}
-  \begin{definisi}[5.1]
+\subsection{Proses Sederhana Acak}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{definisi}
     Suatu fungsi stokastik $f(t)$, dengan $t \geq 0$, disebut sebagai \textbf{proses sederhana acak} jika terdapat suatu partisi berhingga
     \begin{equation*}
       0 = t_0 < t_1 < \dots < t_n,
@@ -184,8 +197,9 @@
   \end{definisi}
 \end{frame}
 
-\begin{frame}{Definisi Integral Stokastik Itô}
-  \begin{definisi}[5.2]
+\subsection{Definisi Integral Stokastik Itô}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{definisi}
     Integral stokastik dari suatu proses sederhana acak $f \in M_{\text{step}}^2$, yang memiliki representasi
     \begin{equation*}
       f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t),
@@ -197,8 +211,9 @@
   \end{definisi}
 \end{frame}
 
-\begin{frame}{Sifat Integral Stokastik}
-  \begin{proposisi}[5.1]
+\subsection{Sifat-sifat Integral Stokastik}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{proposisi}
     Untuk setiap proses sederhana acak $f \in M_{\text{step}}^2$, integral stokastik $I^*(f)$ merupakan variabel acak yang dapat diintegralkan secara kuadrat, yaitu $I^*(f) \in L^2$ dan berlaku:
     \begin{equation*}
       \mathbb{E}((I^*(f))^2) = \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right).
@@ -206,8 +221,8 @@
   \end{proposisi}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Sifat Ekspektasi Bersyarat}
-  \begin{proposisi}[5.2]
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \begin{proposisi}
     Ekspektasi bersyarat memiliki beberapa sifat berikut:
     \begin{enumerate}
       \item Ekspektasi bersyarat bersifat linear, yaitu $\mathbb{E}(\alpha \xi + \beta \zeta | \mathcal{G}) = \alpha \mathbb{E}(\xi | \mathcal{G}) + \beta \mathbb{E}(\zeta | \mathcal{G})$;
@@ -220,7 +235,7 @@
   \end{proposisi}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Bukti Proposisi 5.1}
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   Misalkan inkremen $\Delta_j W = W(t_{j+1}) - W(t_j)$ dan $\Delta_j t = t_{j+1} - t_j$. Maka $\mathbb{E}(\Delta_j W) = 0$ dan $\mathbb{E}((\Delta_j W)^2) = \Delta_j t$.\\
   Pertama dihitung ekspektasinya:
   \begin{equation*}
@@ -261,8 +276,8 @@
   Kedua sisi memiliki nilai yang sama, sehingga berlaku $\mathbb{E}((I^*(f))^2) = \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right)$. \qed
 \end{frame}
 
-\begin{frame}{Lema 5.1}
-  \begin{lema}[5.1]
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
     Untuk setiap proses sederhana acak $f, g \in M_{\text{step}}^2$, berlaku
     \begin{equation*}
       \mathbb{E}(I^*(f)I^*(g)) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
@@ -270,7 +285,7 @@
   \end{lema}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Bukti Lema 5.1}
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   Misalkan $f, g \in M_{\text{step}}^2$. Dengan demikian terdapat suatu partisi berhingga yang sama (setelah penghalusan partisi),
   \begin{equation*}
     f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t).
@@ -302,8 +317,8 @@
   Kedua ruas bernilai sama. Bukti selesai. \qed
 \end{frame}
 
-\begin{frame}{Linieritas Pemetaan $I^*$}
-  \begin{lema}[5.2]
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
     Pemetaan $I^* : M_{\text{step}}^2 \to L^2$ adalah pemetaan linear, yaitu untuk setiap $f, g \in M_{\text{step}}^2$ dan konstanta $\alpha, \beta \in \R$ berlaku:
     \begin{equation*}
       I^*(\alpha f + \beta g) = \alpha I^*(f) + \beta I^*(g).
@@ -311,7 +326,7 @@
   \end{lema}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Bukti Lema 5.2}
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   Misalkan $f, g \in M_{\text{step}}^2$, dan representasi mereka pada partisi bersama adalah
   \begin{equation*}
     f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t).
@@ -330,6 +345,541 @@
   Bukti telah ditunjukkan. \qed
 \end{frame}
 
+\subsection{Perluasan Integral Stokastik}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{definisi}
+    Didefinisikan $M^2$ sebagai kelas proses stokastik $f(t)$, dengan $t \geq 0$, yang memenuhi sifat-sifat berikut:
+    \begin{enumerate}
+      \item Proses $f$ terintegralkan kuadrat dalam rata-rata, yaitu:
+            \begin{equation*}
+              \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right) < \infty.
+            \end{equation*}
+      \item Terdapat barisan proses sederhana acak $\{f_n\}_{n \geq 1} \subset M_{\text{step}}^2$ sedemikian sehingga:
+            \begin{equation*}
+              \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty (f(t) - f_n(t))^2 \, dt\right) = 0.
+            \end{equation*}
+    \end{enumerate}
+    Dalam hal ini, dikatakan bahwa barisan proses sederhana acak $\{f_n\}$ mendekati $f$ dalam ruang $M^2$.
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{definisi}
+    Diberikan suatu proses stokastik $f \in M^2$. Integral stokastik Itô dari $f$ (dari $0$ hingga $\infty$) didefinisikan sebagai suatu variabel acak $I(f) \in L^2$ yang memenuhi:
+    \begin{equation*}
+      \lim_{n \to \infty} \mathbb{E}\left(|I(f) - I^*(f_n)|^2\right) = 0,
+    \end{equation*}
+    untuk setiap barisan proses sederhana acak $\{f_n\}_{n \geq 1} \subset M_{\text{step}}^2$ yang mendekati $f$ dalam $M^2$, yaitu yang memenuhi:
+    \begin{equation*}
+      \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty (f(t) - f_n(t))^2 \, dt\right) = 0.
+    \end{equation*}
+    Integral stokastik ini dilambangkan dengan:
+    \begin{equation*}
+      I(f) = \int_0^\infty f(t) \, dW(t).
+    \end{equation*}
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{proposisi}
+    Untuk setiap $f \in M^2$, integral stokastik
+    \begin{equation*}
+      I(f) \in L^2
+    \end{equation*}
+    ada, bersifat unik (sebagai elemen dalam $L^2$, yaitu unik a.s.), dan memenuhi sifat:
+    \begin{equation*}
+      \mathbb{E}((I(f))^2) = \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right).
+    \end{equation*}
+  \end{proposisi}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Untuk memudahkan notasi, akan lebih nyaman kita menuliskan
+  \begin{equation*}
+    \|f\|_{M^2} = \left(\mathbb{E}\left(\int_0^\infty |f(t)|^2 \, dt\right)\right)^{1/2} \quad \text{dan} \quad \|\eta\|_{L^2} = (\mathbb{E}(\eta^2))^{1/2}.
+  \end{equation*}
+  Misalkan $h_1, h_2, \dots \in M_{\text{step}}^2$ adalah suatu barisan proses sederhana acak yang mengaproksimasi $f \in M^2$, yaitu:
+  \begin{equation*}
+    \lim_{n \to \infty} \|f - h_n\|_{M^2} = 0.
+  \end{equation*}
+  Oleh karena itu, untuk sebarang $\varepsilon > 0$ terdapat $N \in \N$ sehingga
+  \begin{equation*}
+    \|f - h_n\|_{M^2} < \frac{\varepsilon}{2} \quad \text{untuk semua } n > N.
+  \end{equation*}
+  Menurut Proposisi 5.1,
+  \begin{equation*}
+    \|I(h_m) - I(h_n)\|_{L^2} = \|I(h_m - h_n)\|_{L^2} = \|h_m - h_n\|_{M^2}.
+  \end{equation*}
+  Selanjutnya,
+  \begin{equation*}
+    \|h_m - h_n\|_{M^2} \leq \|f - h_m\|_{M^2} + \|f - h_n\|_{M^2} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+  \end{equation*}
+  untuk setiap $m, n > N$. Maka, $\{I(h_n)\}$ adalah barisan Cauchy dalam $L^2$. Karena $L^2$ dengan norma $\|\cdot\|_{L^2}$ merupakan ruang lengkap, yang mana setiap barisan Cauchy memiliki limit. Maka, untuk setiap barisan $\{h_n\}$ proses langkah acak yang mengaproksimasi $f$, barisan $\{I(h_n)\}$ memiliki limit dalam $L^2$.
+
+  Selanjutnya, perlu ditunjukkan bahwa limit tersebut tidak bergantung pada pemilihan barisan aproksimasi. Misalkan $\{h_n\}$ dan $\{g_n\}$ adalah dua barisan proses langkah acak yang mengaproksimasi $f$. Pertimbangkan barisan
+  \begin{equation*}
+    h_1, g_1, h_2, g_2, \dots
+  \end{equation*}
+  yang juga mengaproksimasi $f$. Karena barisan integralnya
+  \begin{equation*}
+    I(h_1), I(g_1), I(h_2), I(g_2), \dots
+  \end{equation*}
+  konvergen dalam $L^2$, maka semua subsekuen, khususnya $\{I(h_n)\}$ dan $\{I(g_n)\}$, memiliki limit yang sama. Limit ini kita definisikan sebagai $I(f)$. Dengan demikian:
+  \begin{equation*}
+    \lim_{n \to \infty} \|I(f) - I(h_n)\|_{L^2} = 0,
+  \end{equation*}
+  untuk setiap barisan aproksimasi proses sederhana.
+  Akhirnya, menurut Proposisi 5.1, untuk setiap $n$ berlaku:
+  \begin{equation*}
+    \|I(h_n)\|_{L^2} = \|h_n\|_{M^2}.
+  \end{equation*}
+  Karena norm bersifat kontinu, diperoleh:
+  \begin{equation*}
+    \lim_{n \to \infty} \|I(h_n)\|_{L^2} = \left\| \lim_{n \to \infty} I(h_n) \right\|_{L^2} = \|I(f)\|_{L^2}
+  \end{equation*}
+  dan
+  \begin{equation*}
+    \lim_{n \to \infty} \|h_n\|_{M^2} = \left\| \lim_{n \to \infty} h_n \right\|_{M^2} = \|f\|_{M^2}.
+  \end{equation*}
+  Sehingga diperoleh $\|I(f)\|_{L^2} = \|f\|_{M^2}$. \qed
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
+    Jika $f$ adalah proses sederhana acak maka $I(f)$ ada dan $I(f) = I^*(f)$.
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Untuk membuktikan hal ini cukup dibuktikan bahwa
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left(|I^*(f) - I^*(f_n)|^2\right) = 0,
+  \end{equation*}
+  untuk setiap barisan proses sederhana acak $\{f_n\}_{n \geq 1} \subset M_{\text{step}}^2$ yang mendekati $f$ dalam $M^2$.
+  Pertama, ambil sebarang barisan $\{f_m\}_{m \geq 1} \subset M_{\text{step}}^2$ yang mendekati $f$ dalam $M^2$, yaitu
+  \begin{equation*}
+    \lim_{m \to \infty} \mathbb{E}\left(\int_0^\infty (f(t) - f_m(t))^2 \, dt\right) = 0.
+  \end{equation*}
+  Berdasarkan Proposisi 5.1, diperoleh
+  \begin{equation*}
+    \mathbb{E}(|I^*(f) - I^*(f_m)|^2) = \mathbb{E}\left(\int_0^\infty (f(t) - f_m(t))^2 \, dt\right).
+  \end{equation*}
+  Dengan demikian,
+  \begin{equation*}
+    \lim_{m \to \infty} \mathbb{E}(|I^*(f) - I^*(f_m)|^2) = \lim_{m \to \infty} \mathbb{E}\left(\int_0^\infty (f(t) - f_m(t))^2 \, dt\right) = 0.
+  \end{equation*}
+  Hal ini menunjukkan bahwa $I^*(f)$ memenuhi Definisi 5.4, sehingga $I(f)$ ada kemudian karena nilai integral tunggal bisa disimpulkan bahwa $I(f) = I^*(f)$. \qed
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
+    Untuk setiap $f, g \in M^2$, berlaku:
+    \begin{equation*}
+      \mathbb{E}(I(f)I(g)) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
+    \end{equation*}
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Akan ditunjukkan bahwa pemetaan $I: M^2 \to L^2$ merupakan isometri, yaitu mempertahankan hasil kali dalam. Mula-mula, untuk $f, g \in M_{\text{step}}^2$, berdasarkan Lemma sebelumnya diperoleh:
+  \begin{equation*}
+    \mathbb{E}(I^*(f)I^*(g)) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
+  \end{equation*}
+  Selanjutnya, misalkan $f, g \in M^2$ sebarang. Maka terdapat barisan $\{f_n\}, \{g_n\} \subset M_{\text{step}}^2$ sehingga
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty (f(t) - f_n(t))^2 \, dt\right) = 0,
+  \end{equation*}
+  dan
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty (g(t) - g_n(t))^2 \, dt\right) = 0.
+  \end{equation*}
+  Berdasarkan definisi integral stokastik Itô, diperoleh
+  \begin{equation*}
+    I(f_n) = I^*(f_n) \xrightarrow{L^2} I(f), \quad I(g_n) = I^*(g_n) \xrightarrow{L^2} I(g).
+  \end{equation*}
+  Perhatikan bahwa
+  \begin{equation*}
+    |\mathbb{E}(I(f)I(g)) - \mathbb{E}(I(f_n)I(g_n))| \leq |\mathbb{E}((I(f) - I(f_n))I(g))| + |\mathbb{E}(I(f_n)(I(g) - I(g_n)))|.
+  \end{equation*}
+  Dengan menggunakan ketaksamaan Cauchy-Schwarz, diperoleh
+  \begin{align*}
+    |\mathbb{E}((I(f) - I(f_n))I(g))|   & \leq \|I(f) - I(f_n)\|_{L^2} \cdot \|I(g)\|_{L^2} \to 0,   \\
+    |\mathbb{E}(I(f_n)(I(g) - I(g_n)))| & \leq \|I(f_n)\|_{L^2} \cdot \|I(g) - I(g_n)\|_{L^2} \to 0.
+  \end{align*}
+  Dengan demikian, $\lim_{n \to \infty} \mathbb{E}(I(f_n)I(g_n)) = \mathbb{E}(I(f)I(g))$.
+
+  Di sisi lain, karena $f_n, g_n \in M_{\text{step}}^2$, maka
+  \begin{equation*}
+    \mathbb{E}(I(f_n)I(g_n)) = \mathbb{E}\left(\int_0^\infty f_n(t)g_n(t) \, dt\right).
+  \end{equation*}
+  Selanjutnya akan ditunjukkan bahwa
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty f_n(t)g_n(t) \, dt\right) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
+  \end{equation*}
+  Perhatikan bahwa
+  \begin{align*}
+     & \left|\mathbb{E}\left(\int_0^\infty (f_n g_n - fg) \, dt\right)\right|                                                                      \\
+     & \leq \mathbb{E}\left(\int_0^\infty |f_n(t) - f(t)||g_n(t)| \, dt\right) + \mathbb{E}\left(\int_0^\infty |f(t)||g_n(t) - g(t)| \, dt\right).
+  \end{align*}
+  Dengan menggunakan ketaksamaan Cauchy-Schwarz pada integral, diperoleh
+  \begin{align*}
+     & \mathbb{E}\left(\int_0^\infty |f_n - f||g_n| \, dt\right)                                                                                                 \\
+     & \leq \left[\mathbb{E}\left(\int_0^\infty (f_n - f)^2 \, dt\right)\right]^{1/2} \left[\mathbb{E}\left(\int_0^\infty g_n^2 \, dt\right)\right]^{1/2} \to 0,
+  \end{align*}
+  dan secara serupa suku kedua juga menuju nol. Sehingga diperoleh
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty f_n(t)g_n(t) \, dt\right) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
+  \end{equation*}
+  Dengan menggabungkan hasil-hasil di atas, diperoleh
+  \begin{equation*}
+    \mathbb{E}(I(f)I(g)) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
+  \end{equation*}
+  Dengan demikian, lemma terbukti. \qed
+\end{frame}
+
+\subsection{Integral Stokastik pada Interval Berhingga}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{definisi}
+    Untuk $T > 0$, didefinisikan $M_T^2$ sebagai himpunan proses stokastik $f(t), t \geq 0$, sehingga $\mathbb{1}_{[0,T]} f \in M^2$. Integral stokastik Itô (dari $0$ hingga $T$) untuk $f \in M_T^2$ didefinisikan sebagai:
+    \begin{equation*}
+      I_T(f) = I(\mathbb{1}_{[0,T]} f).
+    \end{equation*}
+    Juga dituliskan:
+    \begin{equation*}
+      \int_0^T f(t) \, dW(t)
+    \end{equation*}
+    sebagai pengganti $I_T(f)$.
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
+    Setiap proses sederhana acak $f \in M_{\text{step}}^2$ termasuk ke dalam $M_t^2$ untuk sembarang $t > 0$, dan
+    \begin{equation*}
+      I_t(f) = \int_0^t f(s) \, dW(s)
+    \end{equation*}
+    adalah martingale.
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Jika $f \in M_{\text{step}}^2$ adalah suatu proses langkah acak, maka $\mathbb{1}_{[0,t]} f \in M_{\text{step}}^2 \subset M^2$ untuk setiap $t > 0$. Ini menyiratkan bahwa $f \in M_t^2$ untuk semua $t > 0$.
+
+  Kita akan memverifikasi bahwa $I_t(f)$ adalah suatu martingale terhadap filtrasi $\mathcal{F}_t$. Misalkan $0 < s < t$, dan diketahui bahwa $f \in M_{\text{step}}^2$ yang bisa dituliskan dalam bentuk dengan parameter partisi:
+  \begin{equation*}
+    0 = t_0 < t_1 < \dots < t_k = s < t_{k+1} < \dots < t_m = t < t_n.
+  \end{equation*}
+  Partisi $t_0, \dots, t_n$ selalu bisa diperoleh dengan menambahkan titik $s$ dan $t$. Misalkan $\Delta_j W = W(t_{j+1}) - W(t_j)$ adalah inkremen proses Wiener. Maka:
+  \begin{equation*}
+    \mathbb{1}_{[0,t]} f = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1}) \cap [0,t]},
+  \end{equation*}
+  dan:
+  \begin{equation*}
+    I_t(f) = I(\mathbb{1}_{[0,t]} f) = \sum_{j=0}^{m-1} \eta_j \Delta_j W,
+  \end{equation*}
+  yang merupakan proses yang teradaptasi terhadap $\mathcal{F}_t$, kuadrat-integrabel, dan oleh karena itu juga dapat diintegralkan. Sekarang dihitung:
+  \begin{equation*}
+    \mathbb{E}(I_t(f) | \mathcal{F}_s) = \mathbb{E}\left( \sum_{j=0}^{m-1} \eta_j \Delta_j W \middle| \mathcal{F}_s \right) = \sum_{j=0}^{m-1} \mathbb{E}(\eta_j \Delta_j W | \mathcal{F}_s).
+  \end{equation*}
+  Jika $j < k$, maka $\eta_j$ dan $\Delta_j W$ adalah $\mathcal{F}_s$-measurable, sehingga:
+  \begin{equation*}
+    \mathbb{E}(\eta_j \Delta_j W | \mathcal{F}_s) = \eta_j \Delta_j W.
+  \end{equation*}
+  Jika $j \geq k$, maka $\mathcal{F}_s \subset \mathcal{F}_{t_j}$, dan:
+  \begin{equation*}
+    \mathbb{E}(\eta_j \Delta_j W | \mathcal{F}_s) = \mathbb{E}\left( \mathbb{E}(\eta_j \Delta_j W | \mathcal{F}_{t_j}) \middle| \mathcal{F}_s \right).
+  \end{equation*}
+  Karena $\eta_j$ adalah $\mathcal{F}_{t_j}$-measurable dan $\Delta_j W$ independen terhadap $\mathcal{F}_{t_j}$, maka:
+  \begin{equation*}
+    \mathbb{E}(\eta_j \Delta_j W | \mathcal{F}_{t_j}) = \eta_j \cdot \mathbb{E}(\Delta_j W) = 0.
+  \end{equation*}
+  Dengan demikian, kita simpulkan:
+  \begin{equation*}
+    \mathbb{E}(I_t(f) | \mathcal{F}_s) = \sum_{j=0}^{k-1} \eta_j \Delta_j W = I_s(f),
+  \end{equation*}
+  sehingga $I_t(f)$ adalah suatu martingale. \qed
+\end{frame}
+
+\subsection{Kriteria Eksistensi Integral Itô}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{teorema}
+    Misalkan $f(t), t \geq 0$, adalah proses stokastik dengan lintasan kontinu a.s., yang teradaptasi terhadap filtrasi $\mathcal{F}_t$. Maka:
+    \begin{enumerate}
+      \item $f \in M^2$, yaitu, integral Itô $I(f)$ ada jika:
+            \begin{equation*}
+              \mathbb{E}\left(\int_0^\infty |f(t)|^2 \, dt\right) < \infty.
+            \end{equation*}
+      \item $f \in M_T^2$, yaitu, integral Itô $I_T(f)$ ada jika:
+            \begin{equation*}
+              \mathbb{E}\left(\int_0^T |f(t)|^2 \, dt\right) < \infty.
+            \end{equation*}
+    \end{enumerate}
+  \end{teorema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  1. Misalkan $f(t), t \geq 0$, adalah proses teradaptasi dengan lintasan kontinu a.s. Jika parameter eksistensi poin 1 terpenuhi, maka:
+  \begin{equation*}
+    f_n(t) = \begin{cases}
+      n \int_{\frac{k-1}{n}}^{\frac{k}{n}} f(s) \, ds & \text{jika } \frac{k}{n} \leq t < \frac{k+1}{n}, \text{ untuk } k = 1, 2, \dots, n^2-1, \\
+      0                                               & \text{selainnya},
+    \end{cases}
+  \end{equation*}
+  adalah barisan proses sederhana acak dalam $M_{\text{step}}^2$. Perhatikan bahwa untuk sembarang $k = 1, 2, \dots$
+  \begin{equation*}
+    \int_{\frac{k}{n}}^{\frac{k+1}{n}} |f_n(t)|^2 \, dt = \frac{1}{n} \left| n \int_{\frac{k-1}{n}}^{\frac{k}{n}} f(t) \, dt \right|^2 = n \left| \int_{\frac{k-1}{n}}^{\frac{k}{n}} f(t) \, dt \right|^2 \leq \int_{\frac{k-1}{n}}^{\frac{k}{n}} |f(t)|^2 \, dt \quad \text{a.s.}
+  \end{equation*}
+  menggunakan ketaksamaan Hölder. Selanjutnya akan dibuktikan bahwa:
+  \begin{equation*}
+    \lim_{n \to \infty} \int_0^\infty |f(t) - f_n(t)|^2 \, dt = 0 \quad \text{a.s.}
+  \end{equation*}
+  Perhatikan
+  \begin{align*}
+    \int_0^\infty |f(t) - f_n(t)|^2 \, dt & = \int_0^N |f(t) - f_n(t)|^2 \, dt + \int_N^\infty |f(t) - f_n(t)|^2 \, dt,                  \\
+                                          & \leq \int_0^N |f(t) - f_n(t)|^2 \, dt + 2 \int_N^\infty (|f(t)|^2 + |f_n(t)|^2) \, dt,       \\
+                                          & \leq \int_0^N |f(t) - f_n(t)|^2 \, dt + 4 \int_{N-1}^\infty |f(t)|^2 \, dt \quad \text{a.s.}
+  \end{align*}
+  Ketaksamaan terakhir berlaku karena:
+  \begin{equation*}
+    \int_N^\infty |f_n(t)|^2 \, dt \leq \int_{N-1}^\infty |f(t)|^2 \, dt \quad \text{a.s.},
+  \end{equation*}
+  untuk sembarang $n$ dan $N$, dengan menjumlahkan dari $k = nN$ hingga $\infty$ pada pertidaksamaan Hölder sebelumnya. Berdasarkan kontinuitas lintasan $f$ diperoleh
+  \begin{equation*}
+    \lim_{n \to \infty} \int_0^N |f(t) - f_n(t)|^2 \, dt = 0 \quad \text{a.s.}
+  \end{equation*}
+  untuk setiap $N$ dan juga berdasarkan ekspektasi dari batas integral:
+  \begin{equation*}
+    \lim_{N \to \infty} \int_{N-1}^\infty |f(t)|^2 \, dt = 0 \quad \text{a.s.}
+  \end{equation*}
+  sehingga
+  \begin{equation*}
+    \lim_{n \to \infty} \int_0^\infty |f(t) - f_n(t)|^2 \, dt = 0 \quad \text{a.s.}
+  \end{equation*}
+
+  Selanjutnya perhatikan bahwa
+  \begin{equation*}
+    \int_0^\infty |f(t) - f_n(t)|^2 \, dt \leq 2 \int_0^\infty (|f(t)|^2 + |f_n(t)|^2) \, dt \leq 4 \int_0^\infty |f(t)|^2 \, dt,
+  \end{equation*}
+  dimana ketaksamaan terakhir berlaku karena:
+  \begin{equation*}
+    \int_0^\infty |f_n(t)|^2 \, dt \leq \int_0^\infty |f(t)|^2 \, dt \quad \text{a.s.},
+  \end{equation*}
+  untuk setiap $n$, dengan menjumlahkan dari $k=0$ hingga $\infty$ pada pertidaksamaan pertama pembuktian ini. Itu artinya $\int_0^\infty |f(t) - f_n(t)|^2 \, dt$ dibatasi oleh variabel avak terintegral. Oleh karena itu berdasarkan teorema konvergensi terdominasi didapatkan
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left(\int_0^\infty |f(t) - f_n(t)|^2 \, dt\right) = 0.
+  \end{equation*}
+  Pernyataan di atas menyiratkan bahwa deret $f_1, f_2, \dots \in M_{\text{step}}^2$ mendekati $f$ dalam pengertian Definisi 5.3, sehingga $f \in M^2$.
+
+  2. Jika $f$ memenuhi parameter eksistensi poin 2 untuk beberapa $T > 0$, maka $\mathbb{1}_{[0,T]}f$ memenuhi ketentuan poin 1. Karena $f$ teradaptasi dan lintasannya kontinu a.s., maka $\mathbb{1}_{[0,T]}f$ juga teradaptasi, dan lintasannya kontinu a.s. kecuali, mungkin, pada $T$. Namun, diskontinuitas di satu titik tidak memengaruhi argumen pada poin 1), sehingga $\mathbb{1}_{[0,T]}f \in M^2$. Hal ini menyiratkan $f \in M_T^2$, sehingga membuktikan teorema. \qed
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
+    Proses Wiener $W(t)$ termasuk dalam $M_T^2$ untuk setiap $T > 0$.
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Akan ditunjukkan bahwa $W(t)$ memenuhi kedua syarat dalam definisi ruang $M_T^2$. Pertama, karena $\{W(t)\}_{t \geq 0}$ adalah proses Wiener, maka untuk setiap $t \geq 0$, variabel acak $W(t)$ adalah $\mathcal{F}_t$-terukur. Dengan demikian, proses $W(t)$ teradaptasi terhadap filtrasi $\{\mathcal{F}_t\}$. Selanjutnya, akan ditunjukkan bahwa
+  \begin{equation*}
+    \mathbb{E}\left(\int_0^T W(t)^2 \, dt\right) < \infty.
+  \end{equation*}
+  Dengan menggunakan Teorema Fubini (atau Tonelli), diperoleh
+  \begin{equation*}
+    \mathbb{E}\left(\int_0^T W(t)^2 \, dt\right) = \int_0^T \mathbb{E}(W(t)^2) \, dt.
+  \end{equation*}
+  Karena $W(t)$ berdistribusi normal dengan rata-rata $0$ dan variansi $t$, maka $\mathbb{E}(W(t)^2) = t$.
+  Sehingga diperoleh
+  \begin{equation*}
+    \mathbb{E}\left(\int_0^T W(t)^2 \, dt\right) = \int_0^T t \, dt = \frac{T^2}{2} < \infty.
+  \end{equation*}
+  Dengan demikian, syarat cukup dari anggota $M_T^2$ terpenuhi (lihat Teorema 5.1). Sehingga bisa disimpulkan bahwa $W(t) \in M_T^2$ untuk setiap $T > 0$. \qed
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{lema}
+    Proses $W(t)^2$ termasuk dalam $M_T^2$ untuk setiap $T > 0$.
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Akan ditunjukkan bahwa proses $W(t)^2$ memenuhi syarat-syarat dalam Teorema 5.1. Pertama, karena $\{W(t)\}_{t \ge 0}$ adalah proses Wiener yang teradaptasi terhadap filtrasi $\{\mathcal{F}_t\}$, maka untuk setiap $t \ge 0$, variabel acak $W(t)$ adalah $\mathcal{F}_t$-terukur. Oleh karena itu, fungsi komposisi $W(t)^2$ juga merupakan variabel acak yang $\mathcal{F}_t$-terukur. Dengan demikian, proses $W(t)^2$ teradaptasi terhadap filtrasi $\{\mathcal{F}_t\}$.
+
+  Selanjutnya, karena lintasan sampel $t \mapsto W(t)$ kontinu hampir pasti, maka fungsi $t \mapsto W(t)^2$ juga kontinu hampir pasti sebagai komposisi fungsi kontinu. Dengan demikian, proses $W(t)^2$ memiliki lintasan kontinu hampir pasti. Berikutnya, akan ditunjukkan bahwa
+  \begin{equation*}
+    \mathbb{E}\left( \int_0^T W(t)^4 \, dt \right) < \infty.
+  \end{equation*}
+  Dengan menggunakan Teorema Fubini (atau Tonelli), diperoleh
+  \begin{equation*}
+    \mathbb{E}\left( \int_0^T W(t)^4 \, dt \right) = \int_0^T \mathbb{E}(W(t)^4) \, dt.
+  \end{equation*}
+  Karena $W(t) \sim \mathcal{N}(0, t)$, maka momen keempatnya diberikan oleh $\mathbb{E}(W(t)^4) = 3t^2$.
+  Sehingga diperoleh
+  \begin{equation*}
+    \mathbb{E}\left( \int_0^T W(t)^4 \, dt \right) = \int_0^T 3t^2 \, dt = 3 \cdot \frac{T^3}{3} = T^3 < \infty.
+  \end{equation*}
+  Dengan demikian, syarat
+  \begin{equation*}
+    \mathbb{E}\left( \int_0^T |W(t)^2|^2 \, dt \right) = \mathbb{E}\left( \int_0^T W(t)^4 \, dt \right) < \infty
+  \end{equation*}
+  terpenuhi. Berdasarkan Teorema 5.1, karena proses $W(t)^2$ teradaptasi, memiliki lintasan kontinu hampir pasti, dan memenuhi kondisi integrabilitas kuadrat, maka disimpulkan bahwa $W(t)^2 \in M_T^2$ untuk setiap $T > 0$. \qed
+\end{frame}
+
+\subsection{Proses Progresif Terukur}
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{definisi}
+    Suatu proses stokastik $f(t), t \ge 0$, disebut \textit{progresif terukur} jika untuk setiap $t \ge 0$, pemetaan
+    \begin{equation*}
+      (s, \omega) \mapsto f(s, \omega)
+    \end{equation*}
+    merupakan fungsi yang terukur dari ruang ukur $([0, t] \times \Omega, \mathcal{B}([0, t]) \otimes \mathcal{F})$ ke $\mathbb{R}$.
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{teorema}
+    Berlaku pernyataan berikut:
+    \begin{enumerate}
+      \item Ruang $M^2$ terdiri dari semua proses stokastik $f(t), t \ge 0$ yang progresif terukur dan memenuhi
+            \begin{equation*}
+              \mathbb{E}\left( \int_0^\infty |f(t)|^2 \, dt \right) < \infty.
+            \end{equation*}
+      \item Ruang $M_T^2$ terdiri dari semua proses stokastik $f(t), t \ge 0$ yang progresif terukur dan memenuhi
+            \begin{equation*}
+              \mathbb{E}\left( \int_0^T |f(t)|^2 \, dt \right) < \infty.
+            \end{equation*}
+    \end{enumerate}
+  \end{teorema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Akan dibuktikan untuk $M^2$, sedangkan untuk $M_T^2$ dapat dilakukan dengan cara yang serupa.
+
+  $(\Rightarrow)$ Misalkan $f \in M^2$. Berdasarkan definisi, terdapat barisan proses sederhana acak $\{f_n\} \subset M_{\text{step}}^2$ sehingga
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left( \int_0^\infty (f(t) - f_n(t))^2 \, dt \right) = 0.
+  \end{equation*}
+  Setiap $f_n$ adalah proses progresif terukur. Karena limit dalam arti $L^2$ dari fungsi-fungsi progresif terukur tetap progresif terukur (dengan mengambil subsekuen yang konvergen hampir pasti dan menggunakan sifat penutupan sigma-aljabar terhadap limit), maka diperoleh bahwa $f$ juga progresif terukur. Selain itu, dari kondisi awal langsung diperoleh bahwa $\mathbb{E}\left( \int_0^\infty |f(t)|^2 \, dt \right) < \infty$.
+
+  $(\Leftarrow)$ Misalkan $f$ adalah proses progresif terukur dan memenuhi
+  \begin{equation*}
+    \mathbb{E}\left( \int_0^\infty |f(t)|^2 \, dt \right) < \infty.
+  \end{equation*}
+  Akan ditunjukkan bahwa terdapat barisan proses sederhana acak $\{f_n\} \subset M_{\text{step}}^2$ yang mendekati $f$ dalam arti $M^2$. Dengan menggunakan pendekatan standar (misalnya dengan partisi waktu dan aproksimasi sederhana terhadap fungsi terukur), dapat dibangun barisan proses sederhana acak $f_n$ sedemikian sehingga:
+  \begin{equation*}
+    \lim_{n \to \infty} \mathbb{E}\left( \int_0^\infty (f(t) - f_n(t))^2 \, dt \right) = 0.
+  \end{equation*}
+  Konstruksi ini dimungkinkan karena fungsi progresif terukur pada ruang produk dapat diaproksimasi oleh fungsi sederhana terukur terhadap sigma-aljabar produk. Dengan demikian, diperoleh bahwa $f \in M^2$. Pernyataan untuk $M_T^2$ dibuktikan dengan cara yang sama dengan mengganti interval $[0, \infty)$ menjadi $[0, T]$. \qed
+\end{frame}
+
 \section{Contoh-Contoh}
+
+\subsection{Latihan Soal}
+\begin{frame}{\insertsection}{\insertsubsection}
+  Berdasarkan lema sebelumnya, proses Wiener $W(t)$ termasuk dalam $M_T^2$ untuk setiap $T > 0$. Oleh karena itu, integral stokastik berikur dapat didefinisikan.
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{latihan}
+    Verifikasikan persamaan berikut:
+    \begin{equation*}
+      \int_0^T W(t) \, dW(t) = \frac{1}{2} W(T)^2 - \frac{1}{2} T
+    \end{equation*}
+    dengan cara menghitung integral stokastik menggunakan definisinya, yaitu dengan memperkirakan integrand menggunakan fungsi sederhana acak.
+    \\ \textbf{Petunjuk:} Sangat membantu untuk menggunakan partisi interval $[0, T]$ menjadi $n$ bagian yang sama.
+  \end{latihan}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Misalkan interval $[0, T]$ dibagi menjadi $n$ bagian yang sama dengan $t_j = \frac{jT}{n}$ untuk $j = 0, 1, \dots, n$. Kita bentuk proses sederhana acak yang mengaproksimasi $W(t)$:
+  \begin{equation*}
+    h_n(t) = \sum_{j=0}^{n-1} W(t_j) \mathbb{1}_{[t_j, t_{j+1})}(t).
+  \end{equation*}
+  Integral stokastiknya diberikan oleh:
+  \begin{equation*}
+    I^*(h_n) = \sum_{j=0}^{n-1} W(t_j) (W(t_{j+1}) - W(t_j)).
+  \end{equation*}
+  Perhatikan identitas aljabar: $(b-a)^2 = b^2 - 2ab + a^2 \implies a(b-a) = \frac{1}{2}(b^2 - a^2 - (b-a)^2)$. Sehingga:
+  \begin{equation*}
+    W(t_j)(W(t_{j+1}) - W(t_j)) = \frac{1}{2} \left[ W(t_{j+1})^2 - W(t_j)^2 - (W(t_{j+1}) - W(t_j))^2 \right].
+  \end{equation*}
+  Jumlahkan untuk $j=0$ hingga $n-1$:
+  \begin{equation*}
+    \sum_{j=0}^{n-1} W(t_j)\Delta_j W = \frac{1}{2} \sum_{j=0}^{n-1} \left( W(t_{j+1})^2 - W(t_j)^2 \right) - \frac{1}{2} \sum_{j=0}^{n-1} (\Delta_j W)^2.
+  \end{equation*}
+  Suku pertama adalah deret teleskopik yang hasilnya $W(T)^2 - W(0)^2 = W(T)^2$. Suku kedua adalah variasi kuadrat dari Gerak Brown. Ketika $n \to \infty$, $\sum (\Delta_j W)^2 \to T$ dalam $L^2$. Jadi:
+  \begin{equation*}
+    \int_0^T W(t) \, dW(t) = \lim_{n \to \infty} I^*(h_n) = \frac{1}{2} W(T)^2 - \frac{1}{2} T.
+  \end{equation*} \qed
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{latihan}
+    Verifikasikan persamaan berikut:
+    \begin{equation*}
+      \int_0^T t \, dW(t) = T W(T) - \int_0^T W(t) \, dt,
+    \end{equation*}
+    dengan cara menghitung integral stokastik menggunakan definisinya.\\
+    \textbf{Petunjuk:} Gunakan partisi yang sama dari $[0, T]$. Jumlah perkiraan integral stokastik dapat ditransformasikan menggunakan identitas:
+    $c(b-a) = (db - ca) - b(d - c)$.
+  \end{latihan}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Misalkan $t_j = \frac{jT}{n}$ dan proses aproksimasinya adalah $h_n(t) = \sum_{j=0}^{n-1} t_j \mathbb{1}_{[t_j, t_{j+1})}(t)$.
+  Maka integral stokastiknya:
+  \begin{equation*}
+    I^*(h_n) = \sum_{j=0}^{n-1} t_j (W(t_{j+1}) - W(t_j)).
+  \end{equation*}
+  Menggunakan petunjuk identitas dengan substitusi $c = t_j$, $b = W(t_{j+1})$, $a = W(t_j)$, dan $d = t_{j+1}$:
+  \begin{equation*}
+    t_j(W(t_{j+1}) - W(t_j)) = (t_{j+1}W(t_{j+1}) - t_jW(t_j)) - W(t_{j+1})(t_{j+1} - t_j).
+  \end{equation*}
+  Jumlahkan seluruh suku untuk $j=0 \dots n-1$:
+  \begin{align*}
+    I^*(h_n) & = \sum_{j=0}^{n-1} (t_{j+1}W(t_{j+1}) - t_jW(t_j)) - \sum_{j=0}^{n-1} W(t_{j+1}) \Delta_j t \\
+             & = (t_n W(t_n) - t_0 W(t_0)) - \sum_{j=0}^{n-1} W(t_{j+1}) \Delta_j t                        \\
+             & = T W(T) - \sum_{j=0}^{n-1} W(t_{j+1}) \Delta_j t.
+  \end{align*}
+  Saat $n \to \infty$, jumlahan Riemann $\sum W(t_{j+1}) \Delta_j t$ akan konvergen ke integral klasik Riemann. Sehingga memverifikasi bahwa:
+  \begin{equation*}
+    \int_0^T t \, dW(t) = T W(T) - \int_0^T W(t) \, dt.
+  \end{equation*} \qed
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \begin{latihan}
+    Tunjukkan bahwa $W(t)^2$ termasuk dalam $M_T^2$ untuk setiap $T > 0$ dan verifikasikan persamaan berikut:
+    \begin{equation*}
+      \int_0^T W(t)^2 \, dW(t) = \frac{1}{3} W(T)^3 - \int_0^T W(t) \, dt.
+    \end{equation*}
+    \textbf{Petunjuk:} Gunakan identitas berikut:
+    \begin{equation*}
+      a^2(b-a) = \frac{1}{3}(b^3 - a^3) - a(b-a)^2 - \frac{1}{3}(b-a)^3.
+    \end{equation*}
+  \end{latihan}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Proses $W(t)^2 \in M_T^2$ sudah dibuktikan sebelumnya di Lema 5.7. Mari aproksimasi $W(t)^2$ dengan:
+  \begin{equation*}
+    I^*(h_n) = \sum_{j=0}^{n-1} W(t_j)^2 (W(t_{j+1}) - W(t_j)).
+  \end{equation*}
+  Dengan menggunakan identitas yang diberikan, kita punya:
+  \begin{align*}
+    I^*(h_n) & = \sum_{j=0}^{n-1} \left[ \frac{1}{3}(W(t_{j+1})^3 - W(t_j)^3) - W(t_j)(\Delta_j W)^2 - \frac{1}{3}(\Delta_j W)^3 \right] \\
+             & = \frac{1}{3} W(T)^3 - \sum_{j=0}^{n-1} W(t_j)(\Delta_j W)^2 - \frac{1}{3} \sum_{j=0}^{n-1} (\Delta_j W)^3.
+  \end{align*}
+  Pertama-tama, $\sum (\Delta_j W)^3 \to 0$ saat \textit{mesh} ke nol karena ekspektasinya dari pangkat tinggi akan lenyap (mengecil ke $0$).
+  Selanjutnya akan ditunjukkan $\sum W(t_j)(\Delta_j W)^2 \to \int W(t) dt$. Perhatikan manipulasi berikut:
+  \begin{equation*}
+    \sum W(t_j)(\Delta_j W)^2 = \sum W(t_j)[(\Delta_j W)^2 - \Delta_j t] + \sum W(t_j)\Delta_j t.
+  \end{equation*}
+  Suku kedua, $\sum W(t_j)\Delta_j t$, akan konvergen membentuk integral riemann $\int_0^T W(t) \, dt$. Dan nilai ekspektasi kuadrat dari suku pertama adalah nol saat $n \to \infty$ hal ini dikarenakan $\mathbb{E}( [(\Delta_j W)^2 - \Delta_j t]^2 ) = 2(\Delta_j t)^2$ yang sangat kecil, sehingga $\sum W(t_j)[(\Delta_j W)^2 - \Delta_j t] \to 0$ dalam mean kuadrat.
+  Dengan demikian terverifikasi bahwa:
+  \begin{equation*}
+    \int_0^T W(t)^2 \, dW(t) = \frac{1}{3} W(T)^3 - \int_0^T W(t) \, dt.
+  \end{equation*} \qed
+\end{frame}
 
 \end{document}
