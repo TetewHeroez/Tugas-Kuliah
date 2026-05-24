@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169,10pt]{beamer}
+\documentclass[aspectratio=169,11pt]{beamer}
 \usepackage[style=ieee,backend=biber]{biblatex}
 \addbibresource{reference.bib}
 \usepackage{colortbl,tabularx,mathrsfs,calligra}
@@ -17,9 +17,10 @@
 \usepackage{listings}
 \usepackage{ulem}
 \usepackage{hyperref}
-\usepackage{arev}
+% \usepackage{arev}
 % \usepackage{pifont}
-% \usepackage[scaled]{uarial}
+\usepackage[scaled]{uarial}
+\usepackage{dsfont}
 % \renewcommand*\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
 
@@ -143,9 +144,9 @@
 
 \AtBeginSection{
   {
-    \begin{frame}{\insertsection}{Daftar Isi}
-      \tableofcontents[currentsection,hideothersubsections]
-    \end{frame}}
+      \begin{frame}{\insertsection}{Daftar Isi}
+        \tableofcontents[currentsection,hideothersubsections]
+      \end{frame}}
 }
 
 \section{Kalkulus Itô}
@@ -212,83 +213,46 @@
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
 
-  Pada kalkulus biasa, integral seperti
-  \[
-    \int_0^t H(s)\,dA(s)
-  \]
-  dapat dipahami dengan baik jika fungsi $A(s)$ cukup teratur, misalnya mempunyai
-  variasi terbatas.
+  Dalam kalkulus klasik, integral Riemann-Stieltjes seperti
+  \[ \int_0^t H(s) \, dA(s) \]
+  terdefinisi dengan baik asalkan fungsi integrator $A(s)$ memiliki variasi terbatas (\textit{bounded variation}).
 
-  \medskip
+  \vspace{0.3cm}
+  Sebaliknya, dengan probabilitas 1, lintasan proses Wiener $W(t)$ bersifat kontinu di mana-mana namun tidak terdiferensiasi di titik mana pun. Secara analitik, proses ini tidak memiliki variasi terbatas:
+  \[ \lim_{\|\Pi\| \to 0} \sum_{i=0}^{n-1} |W(t_{i+1}) - W(t_i)| = \infty \]
 
-  Namun, proses Wiener $W(t)$ mempunyai lintasan yang sangat tidak teratur.
-  Secara intuitif, jika partisi diperhalus, maka jumlah variasi total
-  \[
-    \sum_{i=0}^{n-1} |W(t_{i+1})-W(t_i)|
-  \]
-  tidak menuju nilai hingga.
-
-  \medskip
-
-  Akibatnya, integral biasa terhadap $W(t)$ tidak cocok digunakan. Oleh karena itu,
-  dibutuhkan integral stokastik, yaitu integral Itô.
-
+  \vspace{0.3cm}
+  Karena kegagalan sifat variasi terbatas ini, integrasi fungsi terhadap diferensial $W(t)$ menggunakan limit Riemann standar tidak akan berkonvergen.
 \end{frame}
 
 \begin{frame}
   \frametitle{\insertsection}
   \framesubtitle{\insertsubsection}
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=0.8,
+        every node/.append style={scale=0.8}]
+      \draw[step=0.5cm, gray!30, very thin] (0,-2) grid (6,2);
+      % Sumbu Koordinat
+      \draw[->] (-0.2,0) -- (6,0) node[right] {$t$};
+      \draw[->] (0,-2.5) -- (0,2.5) node[above] {$X_t$};
 
-  \centering
-  \begin{tikzpicture}[scale=0.65, >=Stealth]
 
-    % kiri
-    \begin{scope}[xshift=0cm]
-      \draw[->] (0,0) -- (5.4,0) node[right] {$t$};
-      \draw[->] (0,-0.2) -- (0,3.2) node[above] {$A(t)$};
+      % --- Plot Fungsi Mulus Bergelombang ---
+      % Menggunakan kombinasi sin dan cos agar gelombangnya tidak monoton
+      \draw[thick, blue, domain=0:5.8, samples=200, smooth]
+      plot (\x, { 0.7*sin(120*\x) + 0.5*sin(250*\x + 40) });
 
-      \draw[thick]
-      (0.2,0.4) .. controls (1,0.7) and (1.6,1.2) ..
-      (2.2,1.5) .. controls (3,1.9) and (4,2.3) ..
-      (5,2.8);
+      % Ilustrasi Partisi Riemann (Tinggi Fungsi Stabil di Dalam Interval)
+      \foreach \i in {1, 2, 3, 4} {
+          \draw[dashed, gray] (\i,0) -- (\i, { 0.7*sin(120*\i) + 0.5*sin(250*\i + 40) });
+        }
 
-      \foreach \x in {0.8,1.8,2.8,3.8,4.8}
-      \draw[dashed] (\x,0) -- (\x,{0.45+0.45*\x});
-
-      \node at (2.7,3.55) {Lintasan halus};
-      \node at (2.7,-0.55) {\small variasi terbatas};
-      \node at (2.7,-0.95) {\small integral biasa dapat digunakan};
-    \end{scope}
-
-    % kanan
-    \begin{scope}[xshift=7.1cm]
-      \draw[->] (0,0) -- (5.4,0) node[right] {$t$};
-      \draw[->] (0,-0.8) -- (0,3.2) node[above] {$W(t)$};
-
-      \draw[thick]
-      (0.2,1.2) -- (0.7,1.8) -- (1.1,0.9) -- (1.5,2.2) --
-      (1.9,1.1) -- (2.3,2.5) -- (2.7,1.0) -- (3.1,2.4) --
-      (3.5,0.8) -- (3.9,2.1) -- (4.3,0.7) -- (4.7,1.9) --
-      (5.1,1.1);
-
-      \foreach \x in {0.8,1.6,2.4,3.2,4.0,4.8}
-      \draw[dashed] (\x,0) -- (\x,2.8);
-
-      \node at (2.7,3.55) {Lintasan Wiener};
-      \node at (2.7,-0.55) {\small variasi total tak hingga};
-      \node at (2.7,-0.95) {\small perlu integral Itô};
-    \end{scope}
-
-  \end{tikzpicture}
-
-  \medskip
-
-  \[
-    \sum |\Delta W| \to \infty,
-    \qquad
-    \sum (\Delta W)^2 \to t.
-  \]
-
+    \end{tikzpicture}
+    \hspace{1cm}
+    \includegraphics[width=0.5\textwidth]{IDR_USD.png}
+    \caption{Perbandingan lintasan halus dengan lintasan Wiener.}
+  \end{figure}
 \end{frame}
 
 \subsection{Tujuan dan Kegunaan}
@@ -375,7 +339,7 @@
     \end{equation*}
     dan variabel acak $\eta_0, \eta_1, \dots, \eta_{n-1}$ terintegralkan kuadrat, yaitu $\mathbb{E}[|\eta_j|^2] < \infty$, sehingga untuk setiap $t \geq 0$ berlaku
     \begin{equation*}
-      f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t),
+      f(t) = \sum_{j=0}^{n-1} \eta_j \mathds{1}_{[t_j, t_{j+1})}(t),
     \end{equation*}
     dengan setiap $\eta_j$ merupakan variabel acak yang $\mathcal{F}_{t_j}$-terukur.
     Himpunan semua proses sederhana acak tersebut dilambangkan dengan $M_{\text{step}}^2$.
@@ -387,7 +351,7 @@
   \begin{definisi}
     Integral stokastik dari suatu proses sederhana acak $f \in M_{\text{step}}^2$, yang memiliki representasi
     \begin{equation*}
-      f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t),
+      f(t) = \sum_{j=0}^{n-1} \eta_j \mathds{1}_{[t_j, t_{j+1})}(t),
     \end{equation*}
     dengan $\eta_j$ adalah variabel acak yang $\mathcal{F}_{t_j}$-terukur dan  $\mathbb{E}[|\eta_j|^2] < \infty$, didefinisikan sebagai
     \begin{equation*}
@@ -433,15 +397,12 @@
 
   Karena $\Delta_j W$ independen terhadap $\mathcal{F}_{t_j}$ dan $\eta_j$ terukur pada $\mathcal{F}_{t_j}$, berlaku:
   \begin{align*}
-    \mathbb{E}(\eta_j^2 (\Delta_j W)^2) & = \mathbb{E}(\mathbb{E}(\eta_j^2 (\Delta_j W)^2 | \mathcal{F}_{t_j}))                \\
-                                        & = \mathbb{E}(\eta_j^2 \mathbb{E}((\Delta_j W)^2)) = \mathbb{E}(\eta_j^2) \Delta_j t.
+    \mathbb{E}(\eta_j^2 (\Delta_j W)^2) & = \mathbb{E}(\mathbb{E}(\eta_j^2 (\Delta_j W)^2 | \mathcal{F}_{t_j}))           = \mathbb{E}(\eta_j^2 \mathbb{E}((\Delta_j W)^2)) = \mathbb{E}(\eta_j^2) \Delta_j t.
   \end{align*}
 
   Demikian juga untuk suku silang dengan $k < j$:
   \begin{align*}
-    \mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W) & = \mathbb{E}(\mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W | \mathcal{F}_{t_j})) \\
-                                                    & = \mathbb{E}(\eta_j \eta_k \Delta_k W \mathbb{E}(\Delta_j W | \mathcal{F}_{t_j})) \\
-                                                    & = 0.
+    \mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W) & = \mathbb{E}(\mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W | \mathcal{F}_{t_j})) = \mathbb{E}(\eta_j \eta_k \Delta_k W \mathbb{E}(\Delta_j W | \mathcal{F}_{t_j}))= 0.
   \end{align*}
 
   Karena suku silangnya nol, kita simpulkan:
@@ -452,7 +413,7 @@
 
   Di sisi lain,
   \begin{equation*}
-    \int_0^\infty f(t)^2 \, dt = \sum_{j=0}^{n-1} \eta_j^2 \mathbb{1}_{[t_j, t_{j+1})}(t).
+    \int_0^\infty f(t)^2 \, dt = \sum_{j=0}^{n-1} \eta_j^2 \mathds{1}_{[t_j, t_{j+1})}(t).
   \end{equation*}
   Sehingga:
   \begin{equation*}
@@ -461,19 +422,16 @@
   Kedua sisi memiliki nilai yang sama, sehingga berlaku $\mathbb{E}((I^*(f))^2) = \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right)$. \qed
 \end{frame}
 
-\begin{frame}{\insertsection}{\insertsubsection}
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   \begin{lema}
     Untuk setiap proses sederhana acak $f, g \in M_{\text{step}}^2$, berlaku
     \begin{equation*}
       \mathbb{E}(I^*(f)I^*(g)) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
     \end{equation*}
   \end{lema}
-\end{frame}
-
-\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   Misalkan $f, g \in M_{\text{step}}^2$. Dengan demikian terdapat suatu partisi berhingga yang sama (setelah penghalusan partisi),
   \begin{equation*}
-    f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t).
+    f(t) = \sum_{j=0}^{n-1} \eta_j \mathds{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathds{1}_{[t_j, t_{j+1})}(t).
   \end{equation*}
   Kemudian,
   \begin{equation*}
@@ -496,7 +454,7 @@
   Maka tersisa $\mathbb{E}(I^*(f)I^*(g)) = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j \zeta_j) \Delta_j t$.
   Sedangkan untuk ruas kanan,
   \begin{align*}
-    \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right) & = \mathbb{E}\left( \int_0^\infty \sum_{j=0}^{n-1} \eta_j \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t) \, dt \right) \\
+    \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right) & = \mathbb{E}\left( \int_0^\infty \sum_{j=0}^{n-1} \eta_j \zeta_j \mathds{1}_{[t_j, t_{j+1})}(t) \, dt \right) \\
                                                         & = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j \zeta_j) \Delta_j t.
   \end{align*}
   Kedua ruas bernilai sama. Bukti selesai. \qed
@@ -514,12 +472,12 @@
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   Misalkan $f, g \in M_{\text{step}}^2$, dan representasi mereka pada partisi bersama adalah
   \begin{equation*}
-    f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t).
+    f(t) = \sum_{j=0}^{n-1} \eta_j \mathds{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathds{1}_{[t_j, t_{j+1})}(t).
   \end{equation*}
   Maka untuk konstanta $\alpha, \beta$:
   \begin{align*}
     (\alpha f + \beta g)(t) & = \alpha f(t) + \beta g(t)                                                         \\
-                            & = \sum_{j=0}^{n-1} (\alpha \eta_j + \beta \zeta_j) \mathbb{1}_{[t_j, t_{j+1})}(t).
+                            & = \sum_{j=0}^{n-1} (\alpha \eta_j + \beta \zeta_j) \mathds{1}_{[t_j, t_{j+1})}(t).
   \end{align*}
   Berdasarkan definisi integral stokastik:
   \begin{align*}
@@ -725,9 +683,9 @@
 \subsection{Integral Stokastik pada Interval Berhingga}
 \begin{frame}{\insertsection}{\insertsubsection}
   \begin{definisi}
-    Untuk $T > 0$, didefinisikan $M_T^2$ sebagai himpunan proses stokastik $f(t), t \geq 0$, sehingga $\mathbb{1}_{[0,T]} f \in M^2$. Integral stokastik Itô (dari $0$ hingga $T$) untuk $f \in M_T^2$ didefinisikan sebagai:
+    Untuk $T > 0$, didefinisikan $M_T^2$ sebagai himpunan proses stokastik $f(t), t \geq 0$, sehingga $\mathds{1}_{[0,T]} f \in M^2$. Integral stokastik Itô (dari $0$ hingga $T$) untuk $f \in M_T^2$ didefinisikan sebagai:
     \begin{equation*}
-      I_T(f) = I(\mathbb{1}_{[0,T]} f).
+      I_T(f) = I(\mathds{1}_{[0,T]} f).
     \end{equation*}
     Juga dituliskan:
     \begin{equation*}
@@ -748,7 +706,7 @@
 \end{frame}
 
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
-  Jika $f \in M_{\text{step}}^2$ adalah suatu proses langkah acak, maka $\mathbb{1}_{[0,t]} f \in M_{\text{step}}^2 \subset M^2$ untuk setiap $t > 0$. Ini menyiratkan bahwa $f \in M_t^2$ untuk semua $t > 0$.
+  Jika $f \in M_{\text{step}}^2$ adalah suatu proses langkah acak, maka $\mathds{1}_{[0,t]} f \in M_{\text{step}}^2 \subset M^2$ untuk setiap $t > 0$. Ini menyiratkan bahwa $f \in M_t^2$ untuk semua $t > 0$.
 
   Kita akan memverifikasi bahwa $I_t(f)$ adalah suatu martingale terhadap filtrasi $\mathcal{F}_t$. Misalkan $0 < s < t$, dan diketahui bahwa $f \in M_{\text{step}}^2$ yang bisa dituliskan dalam bentuk dengan parameter partisi:
   \begin{equation*}
@@ -756,11 +714,11 @@
   \end{equation*}
   Partisi $t_0, \dots, t_n$ selalu bisa diperoleh dengan menambahkan titik $s$ dan $t$. Misalkan $\Delta_j W = W(t_{j+1}) - W(t_j)$ adalah inkremen proses Wiener. Maka:
   \begin{equation*}
-    \mathbb{1}_{[0,t]} f = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1}) \cap [0,t]},
+    \mathds{1}_{[0,t]} f = \sum_{j=0}^{n-1} \eta_j \mathds{1}_{[t_j, t_{j+1}) \cap [0,t]},
   \end{equation*}
   dan:
   \begin{equation*}
-    I_t(f) = I(\mathbb{1}_{[0,t]} f) = \sum_{j=0}^{m-1} \eta_j \Delta_j W,
+    I_t(f) = I(\mathds{1}_{[0,t]} f) = \sum_{j=0}^{m-1} \eta_j \Delta_j W,
   \end{equation*}
   yang merupakan proses yang teradaptasi terhadap $\mathcal{F}_t$, kuadrat-integrabel, dan oleh karena itu juga dapat diintegralkan. Sekarang dihitung:
   \begin{equation*}
@@ -855,7 +813,7 @@
   \end{equation*}
   Pernyataan di atas menyiratkan bahwa deret $f_1, f_2, \dots \in M_{\text{step}}^2$ mendekati $f$ dalam pengertian Definisi 5.3, sehingga $f \in M^2$.
 
-  2. Jika $f$ memenuhi parameter eksistensi poin 2 untuk beberapa $T > 0$, maka $\mathbb{1}_{[0,T]}f$ memenuhi ketentuan poin 1. Karena $f$ teradaptasi dan lintasannya kontinu a.s., maka $\mathbb{1}_{[0,T]}f$ juga teradaptasi, dan lintasannya kontinu a.s. kecuali, mungkin, pada $T$. Namun, diskontinuitas di satu titik tidak memengaruhi argumen pada poin 1), sehingga $\mathbb{1}_{[0,T]}f \in M^2$. Hal ini menyiratkan $f \in M_T^2$, sehingga membuktikan teorema. \qed
+  2. Jika $f$ memenuhi parameter eksistensi poin 2 untuk beberapa $T > 0$, maka $\mathds{1}_{[0,T]}f$ memenuhi ketentuan poin 1. Karena $f$ teradaptasi dan lintasannya kontinu a.s., maka $\mathds{1}_{[0,T]}f$ juga teradaptasi, dan lintasannya kontinu a.s. kecuali, mungkin, pada $T$. Namun, diskontinuitas di satu titik tidak memengaruhi argumen pada poin 1), sehingga $\mathds{1}_{[0,T]}f \in M^2$. Hal ini menyiratkan $f \in M_T^2$, sehingga membuktikan teorema. \qed
 \end{frame}
 
 \begin{frame}{\insertsection}{\insertsubsection}
@@ -978,7 +936,7 @@
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   Misalkan interval $[0, T]$ dibagi menjadi $n$ bagian yang sama dengan $t_j = \frac{jT}{n}$ untuk $j = 0, 1, \dots, n$. Kita bentuk proses sederhana acak yang mengaproksimasi $W(t)$:
   \begin{equation*}
-    h_n(t) = \sum_{j=0}^{n-1} W(t_j) \mathbb{1}_{[t_j, t_{j+1})}(t).
+    h_n(t) = \sum_{j=0}^{n-1} W(t_j) \mathds{1}_{[t_j, t_{j+1})}(t).
   \end{equation*}
   Integral stokastiknya diberikan oleh:
   \begin{equation*}
@@ -1011,7 +969,7 @@
 \end{frame}
 
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
-  Misalkan $t_j = \frac{jT}{n}$ dan proses aproksimasinya adalah $h_n(t) = \sum_{j=0}^{n-1} t_j \mathbb{1}_{[t_j, t_{j+1})}(t)$.
+  Misalkan $t_j = \frac{jT}{n}$ dan proses aproksimasinya adalah $h_n(t) = \sum_{j=0}^{n-1} t_j \mathds{1}_{[t_j, t_{j+1})}(t)$.
   Maka integral stokastiknya:
   \begin{equation*}
     I^*(h_n) = \sum_{j=0}^{n-1} t_j (W(t_{j+1}) - W(t_j)).
