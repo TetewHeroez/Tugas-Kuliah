@@ -143,25 +143,210 @@
 
 \AtBeginSection{
   {
-      \begin{frame}{\insertsection}{Daftar Isi}
-        \tableofcontents[currentsection,hideothersubsections]
-      \end{frame}}
+    \begin{frame}{\insertsection}{Daftar Isi}
+      \tableofcontents[currentsection,hideothersubsections]
+    \end{frame}}
 }
 
 \section{Kalkulus Itô}
 
 \subsection{Pendahuluan}
-\begin{frame}{\insertsection}{\insertsubsection}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  Kalkulus Itô merupakan bagian dari kalkulus stokastik yang digunakan untuk
+  mempelajari perubahan suatu proses acak terhadap waktu.
+
+  \medskip
+
+  Kalkulus ini muncul karena kalkulus biasa tidak cukup untuk menangani proses
+  acak seperti proses Wiener atau Brownian motion. Hal ini disebabkan lintasan
+  proses Wiener sangat tidak teratur.
+
+  \medskip
+
+  Secara umum, suatu proses stokastik sering ditulis dalam bentuk
+  \[
+    dX(t)=\mu(t)\,dt+\sigma(t)\,dW(t),
+  \]
+  dengan $W(t)$ adalah proses Wiener, $\mu(t)$ adalah drift, dan
+  $\sigma(t)dW(t)$ adalah bagian acaknya.
+
+\end{frame}
+
+\subsection{Sejarah Singkat}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  Sejarah kalkulus Itô berawal dari studi mengenai Brownian motion. Beberapa
+  tahap pentingnya adalah sebagai berikut.
+
   \begin{itemize}
-    \item \textbf{Kalkulus Itô} adalah perluasan dari kalkulus klasik untuk fungsi-fungsi stokastik, khususnya proses yang memiliki lintasan kasar (tidak terdiferensiasi di sembarang titik) seperti Gerak Brown (Proses Wiener).
-    \item \textbf{Penemu:} Diperkenalkan dan dikembangkan secara bertahap oleh matematikawan Jepang \textbf{Kiyosi Itô} pada pertengahan abad ke-20.
-    \item \textbf{Kegunaan:}
-          \begin{itemize}
-            \item Matematika Keuangan: Model harga opsi (Model Black-Scholes), pemodelan suku bunga.
-            \item Fisika: Gerak partikel acak, mekanika kuantum.
-            \item Biologi dan rekayasa: Dinamika populasi acak dan pengendalian stokastik.
-          \end{itemize}
+    \item Pada tahun 1900, Louis Bachelier menggunakan Brownian motion untuk
+          memodelkan pergerakan harga aset.
+
+    \item Pada tahun 1905, Albert Einstein menggunakan Brownian motion untuk
+          menjelaskan gerak partikel kecil dalam fluida.
+
+    \item Pada tahun 1923, Norbert Wiener membangun Brownian motion secara
+          lebih matematis, sehingga proses ini juga dikenal sebagai proses Wiener.
+
+    \item Pada tahun 1940-an, Kiyosi Itô mengembangkan integral stokastik dan
+          persamaan diferensial stokastik.
   \end{itemize}
+
+  \medskip
+
+  Dengan demikian, kalkulus Itô lahir dari kebutuhan untuk membangun kalkulus yang
+  sesuai bagi proses acak.
+
+\end{frame}
+
+\subsection{Motivasi Matematis}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  Pada kalkulus biasa, integral seperti
+  \[
+    \int_0^t H(s)\,dA(s)
+  \]
+  dapat dipahami dengan baik jika fungsi $A(s)$ cukup teratur, misalnya mempunyai
+  variasi terbatas.
+
+  \medskip
+
+  Namun, proses Wiener $W(t)$ mempunyai lintasan yang sangat tidak teratur.
+  Secara intuitif, jika partisi diperhalus, maka jumlah variasi total
+  \[
+    \sum_{i=0}^{n-1} |W(t_{i+1})-W(t_i)|
+  \]
+  tidak menuju nilai hingga.
+
+  \medskip
+
+  Akibatnya, integral biasa terhadap $W(t)$ tidak cocok digunakan. Oleh karena itu,
+  dibutuhkan integral stokastik, yaitu integral Itô.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  \centering
+  \begin{tikzpicture}[scale=0.65, >=Stealth]
+
+    % kiri
+    \begin{scope}[xshift=0cm]
+      \draw[->] (0,0) -- (5.4,0) node[right] {$t$};
+      \draw[->] (0,-0.2) -- (0,3.2) node[above] {$A(t)$};
+
+      \draw[thick]
+      (0.2,0.4) .. controls (1,0.7) and (1.6,1.2) ..
+      (2.2,1.5) .. controls (3,1.9) and (4,2.3) ..
+      (5,2.8);
+
+      \foreach \x in {0.8,1.8,2.8,3.8,4.8}
+      \draw[dashed] (\x,0) -- (\x,{0.45+0.45*\x});
+
+      \node at (2.7,3.55) {Lintasan halus};
+      \node at (2.7,-0.55) {\small variasi terbatas};
+      \node at (2.7,-0.95) {\small integral biasa dapat digunakan};
+    \end{scope}
+
+    % kanan
+    \begin{scope}[xshift=7.1cm]
+      \draw[->] (0,0) -- (5.4,0) node[right] {$t$};
+      \draw[->] (0,-0.8) -- (0,3.2) node[above] {$W(t)$};
+
+      \draw[thick]
+      (0.2,1.2) -- (0.7,1.8) -- (1.1,0.9) -- (1.5,2.2) --
+      (1.9,1.1) -- (2.3,2.5) -- (2.7,1.0) -- (3.1,2.4) --
+      (3.5,0.8) -- (3.9,2.1) -- (4.3,0.7) -- (4.7,1.9) --
+      (5.1,1.1);
+
+      \foreach \x in {0.8,1.6,2.4,3.2,4.0,4.8}
+      \draw[dashed] (\x,0) -- (\x,2.8);
+
+      \node at (2.7,3.55) {Lintasan Wiener};
+      \node at (2.7,-0.55) {\small variasi total tak hingga};
+      \node at (2.7,-0.95) {\small perlu integral Itô};
+    \end{scope}
+
+  \end{tikzpicture}
+
+  \medskip
+
+  \[
+    \sum |\Delta W| \to \infty,
+    \qquad
+    \sum (\Delta W)^2 \to t.
+  \]
+
+\end{frame}
+
+\subsection{Tujuan dan Kegunaan}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  Tujuan utama kalkulus Itô adalah menyediakan aturan kalkulus untuk proses acak,
+  khususnya proses yang dipengaruhi oleh proses Wiener.
+
+  \medskip
+
+  Dengan kalkulus Itô, kita dapat mempelajari persamaan diferensial stokastik
+  seperti
+  \[
+    dX(t)=\mu(t)\,dt+\sigma(t)\,dW(t).
+  \]
+
+  \medskip
+
+  Selain itu, kalkulus Itô juga memberikan aturan perubahan variabel untuk fungsi
+  dari proses stokastik. Jika $X(t)$ memenuhi persamaan di atas dan $f$ cukup
+  mulus, maka secara formal berlaku
+  \[
+    df(X(t))
+    =
+    f'(X(t))\,dX(t)
+    +\frac{1}{2}f''(X(t))\,d[X,X](t).
+  \]
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\insertsection}
+  \framesubtitle{\insertsubsection}
+
+  Kalkulus Itô banyak digunakan dalam bidang yang melibatkan ketidakpastian.
+
+  \begin{itemize}
+    \item Dalam teori peluang, kalkulus Itô digunakan untuk mempelajari proses
+          stokastik dan martingal.
+
+    \item Dalam persamaan diferensial stokastik, kalkulus Itô digunakan untuk
+          memodelkan sistem yang dipengaruhi gangguan acak.
+
+    \item Dalam matematika keuangan, kalkulus Itô digunakan untuk memodelkan
+          harga aset, risiko, dan harga opsi.
+
+    \item Dalam fisika dan biologi, kalkulus Itô digunakan untuk memodelkan
+          pergerakan partikel atau populasi yang dipengaruhi faktor acak.
+  \end{itemize}
+
+  \medskip
+
+  Jadi, kalkulus Itô dapat dipandang sebagai perluasan kalkulus biasa untuk sistem
+  yang dipengaruhi proses acak.
+
 \end{frame}
 
 \section{Integral Stokastik Itô}
