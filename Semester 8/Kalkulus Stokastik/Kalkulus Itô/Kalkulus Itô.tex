@@ -1,0 +1,335 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+\addbibresource{reference.bib}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{cancel}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{pgfplots, tkz-euclide,calc}
+\pgfplotsset{compat=1.18}
+\usepackage{listings}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage{arev}
+% \usepackage{pifont}
+% \usepackage[scaled]{uarial}
+% \renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+\definecolor{PastelGreen}{HTML}{77DD77}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usetikzlibrary{shapes.geometric, arrows, calc, intersections}
+
+\tikzstyle{startstop} = [ellipse, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=blue!50]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% \usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}[book]
+
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}
+\newtheorem{proposisi}{Proposisi}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}{Lema}
+\newtheorem{akibat}{Akibat}
+\newtheorem{contoh}{Contoh}
+\newtheorem{latihan}{Latihan}
+
+\usepackage[nameinlink]{cleveref}
+\crefname{teorema}{Teorema}{Teorema}
+\crefname{proposisi}{Proposisi}{Proposisi}
+\crefname{definisi}{Definisi}{Definisi}
+\crefname{lema}{Lema}{Lema}
+\crefname{akibat}{Akibat}{Akibat}
+\crefname{contoh}{Contoh}{Contoh}
+\crefname{latihan}{Latihan}{Latihan}
+
+\newcommand{\myref}[1]{\hyperref[#1]{\nameCref{#1} \ref*{#1}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\AtBeginEnvironment{contoh}{%
+\setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
+\setbeamercolor{block body}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+\setbeamercolor{item}{fg=example text.fg}
+}
+\AtBeginEnvironment{definisi}{
+\setbeamercolor{block title}{fg=white,bg=HIMAtua}
+\setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+\setbeamercolor{item}{fg=HIMAtua}
+}
+\AtBeginEnvironment{latihan}{%
+  \setbeamercolor{block title}{fg=white,bg=yellow!30!orange}
+  \setbeamercolor{block body}{parent=normal text,bg=yellow!30!white}
+  \setbeamercolor{item}{fg=yellow!30!orange}
+}
+\AtBeginEnvironment{teorema}{
+    \setbeamercolor{block title}{bg=darkgray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+    \setbeamercolor{item}{fg=HIMAabu}
+}
+\AtBeginEnvironment{proposisi}{
+    \setbeamercolor{block title}{bg=teal,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=teal!30!white}
+    \setbeamercolor{item}{fg=teal}
+}
+\AtBeginEnvironment{lema}{
+    \setbeamercolor{block title}{bg=lime!70!black,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=lime!30!white}
+    \setbeamercolor{item}{fg=lime}
+}
+\AtBeginEnvironment{akibat}{
+    \setbeamercolor{block title}{bg=magenta,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=magenta!30!white}
+    \setbeamercolor{item}{fg=magenta}
+}
+
+\date{25 Mei 2026}
+\title[Kalkulus Itô]{Kalkulus Stokastik Itô: Definisi dan Contoh}
+\author[Tetew]{Teosofi Hidayah Agung}
+\institute[Matematika ITS]{Matematika ITS}
+
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSection{
+  {
+      \begin{frame}{Daftar Isi}
+        \tableofcontents[currentsection]
+      \end{frame}}
+}
+
+\section{Kalkulus Itô}
+
+\begin{frame}{Apa itu Kalkulus Itô?}
+  \begin{itemize}
+    \item \textbf{Kalkulus Itô} adalah perluasan dari kalkulus klasik untuk fungsi-fungsi stokastik, khususnya proses yang memiliki lintasan kasar (tidak terdiferensiasi di sembarang titik) seperti Gerak Brown (Proses Wiener).
+    \item \textbf{Penemu:} Diperkenalkan dan dikembangkan secara bertahap oleh matematikawan Jepang \textbf{Kiyosi Itô} pada pertengahan abad ke-20.
+    \item \textbf{Kegunaan:}
+          \begin{itemize}
+            \item Matematika Keuangan: Model harga opsi (Model Black-Scholes), pemodelan suku bunga.
+            \item Fisika: Gerak partikel acak, mekanika kuantum.
+            \item Biologi dan rekayasa: Dinamika populasi acak dan pengendalian stokastik.
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Integral Stokastik Itô}
+
+\begin{frame}{Latar Belakang Integral Stokastik}
+  Penjumlahan Riemann yang digunakan untuk mendekati integral suatu fungsi $f : [0, T] \to \R$ ditulis sebagai:
+  \begin{equation*}
+    \sum_{j=0}^{n-1} f(s_j)(t_{j+1} - t_j),
+  \end{equation*}
+  dengan $0 = t_0 < t_1 < \dots < t_n = T$ dan $s_j \in [t_j, t_{j+1}]$. Nilai integral klasik tidak bergantung pada pilihan $s_j$.
+  \vspace{0.3cm}
+
+  Namun, dalam kasus stokastik, bentuk penjumlahan pendekatannya adalah:
+  \begin{equation*}
+    \sum_{j=0}^{n-1} f(s_j)(W(t_{j+1}) - W(t_j)),
+  \end{equation*}
+  dengan $W(t)$ adalah proses Wiener. Pada integral stokastik limit jumlah tersebut \textbf{sangat bergantung} pada pilihan titik $s_j$. Agar nilainya tidak bergantung pada kejadian di masa depan, kita pilih $s_j = t_j$.
+\end{frame}
+
+\begin{frame}{Proses Sederhana Acak}
+  \begin{definisi}[5.1]
+    Suatu fungsi stokastik $f(t)$, dengan $t \geq 0$, disebut sebagai \textbf{proses sederhana acak} jika terdapat suatu partisi berhingga
+    \begin{equation*}
+      0 = t_0 < t_1 < \dots < t_n,
+    \end{equation*}
+    dan variabel acak $\eta_0, \eta_1, \dots, \eta_{n-1}$ terintegralkan kuadrat, yaitu $\mathbb{E}[|\eta_j|^2] < \infty$, sehingga untuk setiap $t \geq 0$ berlaku
+    \begin{equation*}
+      f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t),
+    \end{equation*}
+    dengan setiap $\eta_j$ merupakan variabel acak yang $\mathcal{F}_{t_j}$-terukur.
+    Himpunan semua proses sederhana acak tersebut dilambangkan dengan $M_{\text{step}}^2$.
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{Definisi Integral Stokastik Itô}
+  \begin{definisi}[5.2]
+    Integral stokastik dari suatu proses sederhana acak $f \in M_{\text{step}}^2$, yang memiliki representasi
+    \begin{equation*}
+      f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t),
+    \end{equation*}
+    dengan $\eta_j$ adalah variabel acak yang $\mathcal{F}_{t_j}$-terukur dan  $\mathbb{E}[|\eta_j|^2] < \infty$, didefinisikan sebagai
+    \begin{equation*}
+      I^*(f) = \sum_{j=0}^{n-1} \eta_j (W(t_{j+1}) - W(t_j)).
+    \end{equation*}
+  \end{definisi}
+\end{frame}
+
+\begin{frame}{Sifat Integral Stokastik}
+  \begin{proposisi}[5.1]
+    Untuk setiap proses sederhana acak $f \in M_{\text{step}}^2$, integral stokastik $I^*(f)$ merupakan variabel acak yang dapat diintegralkan secara kuadrat, yaitu $I^*(f) \in L^2$ dan berlaku:
+    \begin{equation*}
+      \mathbb{E}((I^*(f))^2) = \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right).
+    \end{equation*}
+  \end{proposisi}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Sifat Ekspektasi Bersyarat}
+  \begin{proposisi}[5.2]
+    Ekspektasi bersyarat memiliki beberapa sifat berikut:
+    \begin{enumerate}
+      \item Ekspektasi bersyarat bersifat linear, yaitu $\mathbb{E}(\alpha \xi + \beta \zeta | \mathcal{G}) = \alpha \mathbb{E}(\xi | \mathcal{G}) + \beta \mathbb{E}(\zeta | \mathcal{G})$;
+      \item Ekspektasi dari nilai ekspektasi bersyarat sama dengan ekspektasi awal, yaitu $\mathbb{E}(\mathbb{E}(\xi | \mathcal{G})) = \mathbb{E}(\xi)$;
+      \item Jika $\xi$ dapat diukur terhadap $\mathcal{G}$, maka ekspektasi bersyaratnya sama dengan $\xi$, yaitu $\mathbb{E}(\xi \zeta | \mathcal{G}) = \xi \mathbb{E}(\zeta | \mathcal{G})$;
+      \item Jika $\xi$ independen terhadap $\mathcal{G}$, maka $\mathbb{E}(\xi | \mathcal{G}) = \mathbb{E}(\xi)$;
+      \item Memenuhi sifat menara, yaitu $\mathbb{E}(\mathbb{E}(\xi | \mathcal{G}) | \mathcal{H}) = \mathbb{E}(\xi | \mathcal{H})$ jika $\mathcal{H} \subset \mathcal{G}$;
+      \item Jika $\xi \geq 0$, maka $\mathbb{E}(\xi | \mathcal{G}) \geq 0$.
+    \end{enumerate}
+  \end{proposisi}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bukti Proposisi 5.1}
+  Misalkan inkremen $\Delta_j W = W(t_{j+1}) - W(t_j)$ dan $\Delta_j t = t_{j+1} - t_j$. Maka $\mathbb{E}(\Delta_j W) = 0$ dan $\mathbb{E}((\Delta_j W)^2) = \Delta_j t$.\\
+  Pertama dihitung ekspektasinya:
+  \begin{equation*}
+    (I^*(f))^2 = \sum_{j=0}^{n-1}\sum_{k=0}^{n-1} \eta_j \eta_k \Delta_j W \Delta_k W.
+  \end{equation*}
+  Sehingga didapatkan ekspektasinya menjadi:
+  \begin{equation*}
+    \mathbb{E}((I^*(f))^2) = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j^2 (\Delta_j W)^2) + 2 \sum_{k < j} \mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W).
+  \end{equation*}
+
+  Karena $\Delta_j W$ independen terhadap $\mathcal{F}_{t_j}$ dan $\eta_j$ terukur pada $\mathcal{F}_{t_j}$, berlaku:
+  \begin{align*}
+    \mathbb{E}(\eta_j^2 (\Delta_j W)^2) & = \mathbb{E}(\mathbb{E}(\eta_j^2 (\Delta_j W)^2 | \mathcal{F}_{t_j}))                \\
+                                        & = \mathbb{E}(\eta_j^2 \mathbb{E}((\Delta_j W)^2)) = \mathbb{E}(\eta_j^2) \Delta_j t.
+  \end{align*}
+
+  Demikian juga untuk suku silang dengan $k < j$:
+  \begin{align*}
+    \mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W) & = \mathbb{E}(\mathbb{E}(\eta_j \eta_k \Delta_j W \Delta_k W | \mathcal{F}_{t_j})) \\
+                                                    & = \mathbb{E}(\eta_j \eta_k \Delta_k W \mathbb{E}(\Delta_j W | \mathcal{F}_{t_j})) \\
+                                                    & = 0.
+  \end{align*}
+
+  Karena suku silangnya nol, kita simpulkan:
+  \begin{equation*}
+    \mathbb{E}((I^*(f))^2) = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j^2) \Delta_j t.
+  \end{equation*}
+  Karena $\eta_j \in L^2$, maka $I^*(f) \in L^2$.
+
+  Di sisi lain,
+  \begin{equation*}
+    \int_0^\infty f(t)^2 \, dt = \sum_{j=0}^{n-1} \eta_j^2 \mathbb{1}_{[t_j, t_{j+1})}(t).
+  \end{equation*}
+  Sehingga:
+  \begin{equation*}
+    \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right) = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j^2) \Delta_j t.
+  \end{equation*}
+  Kedua sisi memiliki nilai yang sama, sehingga berlaku $\mathbb{E}((I^*(f))^2) = \mathbb{E}\left(\int_0^\infty f(t)^2 \, dt\right)$. \qed
+\end{frame}
+
+\begin{frame}{Lema 5.1}
+  \begin{lema}[5.1]
+    Untuk setiap proses sederhana acak $f, g \in M_{\text{step}}^2$, berlaku
+    \begin{equation*}
+      \mathbb{E}(I^*(f)I^*(g)) = \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right).
+    \end{equation*}
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bukti Lema 5.1}
+  Misalkan $f, g \in M_{\text{step}}^2$. Dengan demikian terdapat suatu partisi berhingga yang sama (setelah penghalusan partisi),
+  \begin{equation*}
+    f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t).
+  \end{equation*}
+  Kemudian,
+  \begin{equation*}
+    \mathbb{E}(I^*(f)I^*(g)) = \sum_{j=0}^{n-1}\sum_{k=0}^{n-1} \mathbb{E}(\eta_j \zeta_k \Delta_j W \Delta_k W).
+  \end{equation*}
+
+  Untuk kasus $j = k$:
+  \begin{align*}
+    \mathbb{E}(\eta_j \zeta_j (\Delta_j W)^2) & = \mathbb{E}(\eta_j \zeta_j \mathbb{E}((\Delta_j W)^2 | \mathcal{F}_{t_j})) \\
+                                              & = \mathbb{E}(\eta_j \zeta_j) \Delta_j t.
+  \end{align*}
+
+  Untuk kasus $j \neq k$, asumsikan $j < k$:
+  \begin{align*}
+    \mathbb{E}(\eta_j \zeta_k \Delta_j W \Delta_k W) & = \mathbb{E}(\eta_j \zeta_k \Delta_j W \mathbb{E}(\Delta_k W | \mathcal{F}_{t_k})) \\
+                                                     & = 0.
+  \end{align*}
+  Sehingga semua suku silang nol.
+
+  Maka tersisa $\mathbb{E}(I^*(f)I^*(g)) = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j \zeta_j) \Delta_j t$.
+  Sedangkan untuk ruas kanan,
+  \begin{align*}
+    \mathbb{E}\left(\int_0^\infty f(t)g(t) \, dt\right) & = \mathbb{E}\left( \int_0^\infty \sum_{j=0}^{n-1} \eta_j \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t) \, dt \right) \\
+                                                        & = \sum_{j=0}^{n-1} \mathbb{E}(\eta_j \zeta_j) \Delta_j t.
+  \end{align*}
+  Kedua ruas bernilai sama. Bukti selesai. \qed
+\end{frame}
+
+\begin{frame}{Linieritas Pemetaan $I^*$}
+  \begin{lema}[5.2]
+    Pemetaan $I^* : M_{\text{step}}^2 \to L^2$ adalah pemetaan linear, yaitu untuk setiap $f, g \in M_{\text{step}}^2$ dan konstanta $\alpha, \beta \in \R$ berlaku:
+    \begin{equation*}
+      I^*(\alpha f + \beta g) = \alpha I^*(f) + \beta I^*(g).
+    \end{equation*}
+  \end{lema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bukti Lema 5.2}
+  Misalkan $f, g \in M_{\text{step}}^2$, dan representasi mereka pada partisi bersama adalah
+  \begin{equation*}
+    f(t) = \sum_{j=0}^{n-1} \eta_j \mathbb{1}_{[t_j, t_{j+1})}(t), \quad g(t) = \sum_{j=0}^{n-1} \zeta_j \mathbb{1}_{[t_j, t_{j+1})}(t).
+  \end{equation*}
+  Maka untuk konstanta $\alpha, \beta$:
+  \begin{align*}
+    (\alpha f + \beta g)(t) & = \alpha f(t) + \beta g(t)                                                         \\
+                            & = \sum_{j=0}^{n-1} (\alpha \eta_j + \beta \zeta_j) \mathbb{1}_{[t_j, t_{j+1})}(t).
+  \end{align*}
+  Berdasarkan definisi integral stokastik:
+  \begin{align*}
+    I^*(\alpha f + \beta g) & = \sum_{j=0}^{n-1} (\alpha \eta_j + \beta \zeta_j)(W(t_{j+1}) - W(t_j))                                       \\
+                            & = \alpha \sum_{j=0}^{n-1} \eta_j (W(t_{j+1}) - W(t_j)) + \beta \sum_{j=0}^{n-1} \zeta_j (W(t_{j+1}) - W(t_j)) \\
+                            & = \alpha I^*(f) + \beta I^*(g).
+  \end{align*}
+  Bukti telah ditunjukkan. \qed
+\end{frame}
+
+\section{Contoh-Contoh}
+
+\end{document}
