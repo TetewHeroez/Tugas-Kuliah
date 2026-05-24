@@ -150,8 +150,12 @@ Oleh karena itu menggunakan \autoref{prop:batas_bawah_perkalian_latin_square}, b
 
 Mereduksi \eqref{eq:perkalian_latin_square_gabung} menjadi \eqref{eq:perkalian_latin_square_reduksi} secara signifikan mengurangi jumlah iterasi yang diperlukan untuk mengevaluasi hasil perkalian max-plus dari dua buah matriks \emph{Latin Square}.
 
-\section{Kekomutatifan Latin Square Max-Plus}
+\section{Kriteria Komutativitas Latin Square Max-Plus}
+Komutativitas dua Latin square terhadap perkalian max-plus bergantung pada interaksi antara nilai simbol dan posisi simbol pada masing-masing matriks. Melalui dekomposisi Latin square ke dalam matriks-matriks permutasi, masalah komutativitas dapat dipelajari melalui komposisi permutasi yang muncul pada hasil perkalian.
 
+Bagian ini membahas beberapa kriteria komutativitas yang diperoleh dari sudut pandang tersebut. Kriteria-kriteria tersebut digunakan untuk memahami syarat yang harus dipenuhi oleh pasangan Latin square komutatif serta menjadi dasar bagi algoritma pencarian pasangan komutatif pada bagian berikutnya.
+
+\subsection{Syarat Perlu Latin Square Max-Plus Saling Komutatif}
 Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif terhadap perkalian max-plus.
 
 \begin{teorema}\label{thm:komutatif_elemen_maksimum}
@@ -209,16 +213,372 @@ Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif t
   Dengan demikian, permutasi $\sigma_n^A$ dan $\sigma_n^B$ saling komutatif.
 \end{proof}
 
-Selain itu, dapat diperoleh kondisi lain tentang komutativitas permutasi elemen maksimum kedua ($2n-1$) dari kedua matriks tersebut.
+\begin{contoh}\label{contoh:syarat_perlu_elemen_maksimum_ordo_4}
+  Misalkan diberikan Latin square
+  \begin{align*}
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 \\
+      2 & 1 & 4 & 3 \\
+      3 & 4 & 1 & 2 \\
+      4 & 3 & 2 & 1
+    \end{pmatrix},\quad B=
+    \begin{pmatrix}
+      1 & 2 & 4 & 3 \\
+      2 & 1 & 3 & 4 \\
+      4 & 3 & 1 & 2 \\
+      3 & 4 & 2 & 1
+    \end{pmatrix},
+    \quad A\otimes B
+    =
+    B\otimes A
+    =
+    \begin{pmatrix}
+      7 & 8 & 6 & 6 \\
+      8 & 7 & 6 & 6 \\
+      6 & 6 & 7 & 8 \\
+      6 & 6 & 8 & 7
+    \end{pmatrix}.
+  \end{align*}
+  Kedua Latin square tersebut bukan Latin square sirkulan. Dekomposisi permutasi dari simbol maksimum $4$ adalah
+  \[
+    \sigma_4^A=(1\;4)(2\;3)
+    \quad\text{dan}\quad
+    \sigma_4^B=(1\;3)(2\;4).
+  \]
+  Berdasarkan \autoref{thm:komutatif_elemen_maksimum}, jika $A$ dan $B$ komutatif terhadap perkalian max-plus, maka harus berlaku
+  \[
+    \sigma_4^B\circ\sigma_4^A
+    =
+    \sigma_4^A\circ\sigma_4^B.
+  \]
+  Pada contoh ini,
+  \[
+    \sigma_4^B\circ\sigma_4^A
+    =
+    (1\;2)(3\;4)
+  \]
+  dan
+  \[
+    \sigma_4^A\circ\sigma_4^B
+    =
+    (1\;2)(3\;4).
+  \]
+  Jadi,
+  \[
+    \sigma_4^B\circ\sigma_4^A
+    =
+    \sigma_4^A\circ\sigma_4^B.
+  \]
+  Dengan demikian, syarat perlu pada elemen maksimum terpenuhi.
+\end{contoh}
+Setelah diperoleh syarat perlu pada nilai maksimum $2n$, muncul pertanyaan
+apakah pola yang sama dapat diterapkan pada nilai maksimum kedua, yaitu
+$2n-1$. Pada nilai maksimum $2n$, hanya terdapat satu pasangan indeks yang
+mungkin, yaitu $(n,n)$. Oleh karena itu, kesamaan hasil perkalian
+$A\otimes B=B\otimes A$ memaksa kesamaan komposisi
+$\sigma_n^B\circ\sigma_n^A=\sigma_n^A\circ\sigma_n^B$.
 
-Secara umum, untuk suatu nilai $v\in\{n+1,n+2,\ldots,2n\}$, kontribusi terhadap entri hasil perkalian berasal dari seluruh pasangan indeks $(x,y)\in N\times N$ yang memenuhi $x+y=v$. Pada perkalian $A\otimes B$, pasangan $(x,y)$ tersebut menghasilkan komposisi permutasi
-$
-  \sigma_y^B \circ \sigma_x^A,
-$
-sedangkan pada perkalian $B\otimes A$, pasangan yang sama menghasilkan komposisi permutasi
-$
-  \sigma_y^A \circ \sigma_x^B.
-$
+Secara alami, untuk nilai $2n-1$ dapat dicoba pendekatan yang serupa. Nilai $2n-1$ hanya dapat diperoleh dari dua pasangan indeks, yaitu $(n,n-1)$ dan $(n-1,n)$. Pada perkalian $A \otimes B$, kedua pasangan tersebut menghasilkan komposisi $\sigma_{n-1}^B\circ\sigma_n^A$ dan $\sigma_n^B\circ\sigma_{n-1}^A$. Sementara itu, pada perkalian $B\otimes A$,
+komposisi yang bersesuaian adalah $\sigma_{n-1}^A\circ\sigma_n^B$ dan
+$\sigma_n^A\circ\sigma_{n-1}^B$. Dengan demikian, dugaan awal yang muncul
+adalah bahwa jika $A$ dan $B$ komutatif, maka harus berlaku
+\[
+  \{
+  \sigma_{n-1}^B\circ\sigma_n^A,\,
+  \sigma_n^B\circ\sigma_{n-1}^A
+  \}
+  =
+  \{
+  \sigma_{n-1}^A\circ\sigma_n^B,\,
+  \sigma_n^A\circ\sigma_{n-1}^B
+  \}.
+\]
+Akan tetapi, dugaan tersebut tidak berlaku sebagai syarat perlu. Penyebabnya
+adalah operasi maksimum pada perkalian max-plus. Kontribusi yang berasal dari
+nilai $2n-1$ dapat tertutup oleh kontribusi nilai yang lebih besar, yaitu
+$2n$, pada posisi yang sama. Akibatnya, kesamaan hasil akhir
+$A\otimes B=B\otimes A$ tidak selalu memaksa kesamaan himpunan komposisi
+permutasi yang menghasilkan nilai tepat $2n-1$. Berikut merupakan contoh penyangkalan terhadap dugaan tersebut.
+\begin{contoh}\label{contoh:counterexample_elemen_2n-1}
+  Misalkan
+  \[
+    A=
+    \begin{pmatrix}
+      5 & 3 & 2 & 1 & 4 \\
+      2 & 1 & 4 & 5 & 3 \\
+      1 & 4 & 3 & 2 & 5 \\
+      4 & 5 & 1 & 3 & 2 \\
+      3 & 2 & 5 & 4 & 1
+    \end{pmatrix}
+    \quad\text{dan}\quad
+    B=
+    \begin{pmatrix}
+      5 & 3 & 1 & 2 & 4 \\
+      1 & 2 & 4 & 5 & 3 \\
+      2 & 1 & 3 & 4 & 5 \\
+      4 & 5 & 2 & 3 & 1 \\
+      3 & 4 & 5 & 1 & 2
+    \end{pmatrix}.
+  \]
+  Dengan perhitungan langsung diperoleh
+  \[
+    A\otimes B
+    =
+    B\otimes A
+    =
+    \begin{pmatrix}
+      10 & 8  & 9  & 8  & 9  \\
+      9  & 10 & 8  & 8  & 9  \\
+      8  & 9  & 10 & 9  & 8  \\
+      9  & 8  & 9  & 10 & 8  \\
+      8  & 9  & 8  & 9  & 10
+    \end{pmatrix}.
+  \]
+  Jadi, $A$ dan $B$ komutatif terhadap perkalian max-plus. Namun, untuk simbol maksimum diperoleh
+  \[
+    \sigma_5^A=\sigma_5^B=(2\;4)(3\;5),
+  \]
+  sedangkan untuk simbol maksimum kedua diperoleh
+  \[
+    \sigma_4^A=(1\;5\;4)(2\;3),
+    \qquad
+    \sigma_4^B=(1\;5\;2\;3\;4).
+  \]
+  Komposisi yang menghasilkan nilai tepat $9$ pada $A\otimes B$ adalah
+  \[
+    \sigma_4^B\circ\sigma_5^A=(1\;5\;4\;3\;2)
+    \quad\text{dan}\quad
+    \sigma_5^B\circ\sigma_4^A=(1\;3\;4)(2\;5).
+  \]
+  Sementara itu, komposisi yang menghasilkan nilai tepat $9$ pada $B\otimes A$
+  adalah
+  \[
+    \sigma_4^A\circ\sigma_5^B=(1\;5\;2)(3\;4)
+    \quad\text{dan}\quad
+    \sigma_5^A\circ\sigma_4^B=(1\;3\;2\;5\;4).
+  \]
+  Dengan demikian,
+  \[
+    \{
+    \sigma_4^B\circ\sigma_5^A,\,
+    \sigma_5^B\circ\sigma_4^A
+    \}
+    \neq
+    \{
+    \sigma_4^A\circ\sigma_5^B,\,
+    \sigma_5^A\circ\sigma_4^B
+    \}.
+  \]
+  Padahal telah diperoleh $A\otimes B=B\otimes A$. Jadi, kesamaan himpunan
+  komposisi permutasi pada nilai tepat $2n-1$ bukan merupakan syarat perlu
+  bagi komutativitas Latin square terhadap perkalian max-plus.
+\end{contoh}
+Dari \autoref{contoh:counterexample_elemen_2n-1} dapat memberikan gambaran untuk nilai maksimum selanjutnya, yaitu $2n-2,\,2n-3,\ldots,\,n+1$ yang dimana tidak bisa kita harapkan untuk menjadi syarat perlu jika kita hanya memperhatikan permutasi yang dibangun dari pasangan nilai tersebut.
+
+\subsection{Syarat Cukup Latin Square Max-Plus Saling Komutatif}
+Syarat perlu pada simbol maksimum hanya memberikan penyaring awal bagi pasangan Latin square yang mungkin komutatif. Selanjutnya diberikan suatu syarat cukup yang lebih kuat. Ide utamanya adalah sebagai berikut. Pada dekomposisi perkalian max-plus, setiap suku pada $A\otimes B$ memuat komposisi permutasi $\sigma_j^B\circ\sigma_i^A$, sedangkan suku yang bersesuaian pada $B\otimes A$ memuat komposisi $\sigma_i^A\circ\sigma_j^B$. Oleh karena itu, jika setiap permutasi penyusun $A$ komutatif dengan setiap permutasi penyusun $B$, maka setiap suku pada kedua hasil perkalian akan bersesuaian.
+
+Kondisi tersebut dapat dijamin apabila seluruh permutasi penyusun $A$ dan $B$ berada di dalam suatu subgrup abelian dari $S_n$. Hal ini menghasilkan syarat cukup berikut.
+\begin{teorema}\label{thm:syarat_cukup_subgrup_abelian}
+  Misalkan $A,B\in L_S(n)$ dengan dekomposisi
+  $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan
+  $B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$.
+  Jika terdapat subgrup abelian $H\le S_n$ sedemikian sehingga
+  $\sigma_i^A\in H$ dan $\sigma_j^B\in H$ untuk setiap $i,j\in N$, maka
+  $A\otimes B=B\otimes A$.
+\end{teorema}
+
+\begin{proof}
+  Karena $H$ abelian, setiap dua elemen di dalam $H$ saling komutatif. Jadi, untuk setiap $i,j\in N$ berlaku
+  \[
+    \sigma_j^B\circ\sigma_i^A
+    =
+    \sigma_i^A\circ\sigma_j^B.
+  \]
+  Berdasarkan dekomposisi perkalian Latin square max-plus, diperoleh
+  \[
+    A\otimes B
+    =
+    \bigoplus_{i,j\in N}
+    (i+j)\otimes P_{\sigma_j^B\circ\sigma_i^A}
+  \]
+  dan
+  \[
+    B\otimes A
+    =
+    \bigoplus_{i,j\in N}
+    (i+j)\otimes P_{\sigma_i^A\circ\sigma_j^B}.
+  \]
+  Karena $\sigma_j^B\circ\sigma_i^A=\sigma_i^A\circ\sigma_j^B$ untuk setiap $i,j\in N$, maka setiap suku pada dekomposisi $A\otimes B$ bersesuaian dengan suku pada dekomposisi $B\otimes A$. Dengan demikian, $A\otimes B=B\otimes A$.
+\end{proof}
+
+Syarat pada \autoref{thm:syarat_cukup_subgrup_abelian} dapat diperlemah.
+Tidak diperlukan bahwa permutasi-permutasi penyusun $A$ saling komutatif
+atau permutasi-permutasi penyusun $B$ saling komutatif. Yang diperlukan
+cukup kondisi silang
+\[
+  \sigma_j^B\circ\sigma_i^A
+  =
+  \sigma_i^A\circ\sigma_j^B
+\]
+untuk setiap $i,j\in N$. Dengan kata lain, jika
+$H_A=\langle \sigma_1^A,\ldots,\sigma_n^A\rangle$ dan
+$\sigma_j^B\in C_{S_n}(H_A)$ untuk setiap $j\in N$, maka
+$A\otimes B=B\otimes A$.
+
+Untuk ordo kecil, \autoref{thm:syarat_cukup_subgrup_abelian} dapat
+digunakan dengan memilih subgrup abelian dari $S_n$ yang memuat
+permutasi-permutasi penyusun Latin square. Pada ordo $3$, subgrup yang
+relevan adalah subgrup siklik berordo $3$. Pada ordo $4$, subgrup yang
+dapat digunakan antara lain subgrup siklik berordo $4$ atau subgrup Klein
+berordo $4$. Pada ordo $5$, karena $5$ prima, pilihan yang paling alami
+adalah subgrup siklik berordo $5$.
+
+\begin{table}[H]
+  \centering
+  \caption{Contoh grup abelian yang dapat direpresentasikan sebagai subgrup dari $S_n$}
+  \label{tab:contoh_subgrup_abelian_sn}
+  \begin{tabular}{|c|l|l|}
+    \hline
+    $n$ & Contoh grup abelian       & Keterangan                \\
+    \hline
+    $3$ & $C_3$                     & grup siklik berordo $3$   \\
+    \hline
+    $4$ & $C_4$                     & grup siklik berordo $4$   \\
+        & $V_4\cong C_2\times C_2$  & grup Klein                \\
+    \hline
+    $5$ & $C_5$                     & grup siklik berordo $5$   \\
+    \hline
+    $6$ & $C_6$                     & grup siklik berordo $6$   \\
+        & $C_2\times C_3$           & isomorfik dengan $C_6$    \\
+    \hline
+    $7$ & $C_7$                     & grup siklik berordo $7$   \\
+    \hline
+    $8$ & $C_8$                     & grup siklik berordo $8$   \\
+        & $C_4\times C_2$           & grup abelian tidak siklik \\
+        & $C_2\times C_2\times C_2$ & grup abelian elementer    \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Kriteria ini memberikan cara konstruktif untuk memperoleh pasangan Latin
+square komutatif. Namun, kriteria ini bukan syarat perlu. Artinya, masih
+mungkin terdapat pasangan Latin square komutatif yang tidak diperoleh dari
+satu subgrup abelian yang sama.
+
+\begin{contoh}\label{contoh:syarat_cukup_subgrup_abelian_ordo_8}
+  Contoh berikut menunjukkan bahwa subgrup abelian pada
+  \autoref{thm:syarat_cukup_subgrup_abelian} tidak harus berupa subgrup
+  siklik atau subgrup Klein. Misalkan
+  \[
+    X=(\mathbb{Z}_2)^3
+    =
+    \{(a,b,c)\mid a,b,c\in\mathbb{Z}_2\}.
+  \]
+  Operasi pada $X$ adalah penjumlahan komponen demi komponen modulo $2$.
+  Sebagai contoh:
+  \[
+    (1,0,1)+(1,1,0)=(0,1,1).
+  \]
+  Untuk setiap $u\in X$, definisikan pemetaan
+  $\tau_u:X\to X$ dengan $\tau_u(x)=x+u$. Pemetaan $\tau_u$ merupakan
+  permutasi pada $X$, karena untuk setiap $x,y\in X$, jika
+  $\tau_u(x)=\tau_u(y)$, maka $x+u=y+u$, sehingga $x=y$. Selain itu,
+  untuk setiap $z\in X$, terdapat $x=z+u$ sedemikian sehingga
+  $\tau_u(x)=z$. Jadi, $\tau_u$ bijektif.\\
+  Setelah $X$ diidentifikasi dengan himpunan simbol $\{1,2,\ldots,8\}$,
+  setiap $\tau_u$ dapat dipandang sebagai elemen dari $S_8$. Definisikan
+  \[
+    H=\{\tau_u\mid u\in X\}.
+  \]
+  Untuk setiap $u,v\in X$ dan setiap $x\in X$, berlaku
+  \[
+    \tau_{u+v}(x)
+    =
+    x+(u+v)
+    =
+    (x+v)+u
+    =
+    \tau_u(\tau_v(x)).
+  \]
+  Oleh karena itu,
+  \[
+    \tau_{u+v}=\tau_u\circ\tau_v.
+  \]
+  Dengan demikian, pemetaan
+  \[
+    \varphi:X\to S_8,\qquad \varphi(u)=\tau_u
+  \]
+  merupakan homomorfisma grup. Jika $\varphi(u)=\varphi(v)$, maka
+  $\tau_u=\tau_v$. Dengan mengambil $x=(0,0,0)$, diperoleh
+  \[
+    u=\tau_u((0,0,0))=\tau_v((0,0,0))=v.
+  \]
+  Jadi, $\varphi$ injektif. Akibatnya, $H=\varphi(X)$ merupakan subgrup
+  dari $S_8$ yang isomorfik dengan $X=(\mathbb{Z}_2)^3$. Dengan kata lain,
+  \[
+    H\cong C_2\times C_2\times C_2.
+  \]
+  Salah satu Latin Square dari operasi penjumlahan pada $X$ adalah
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+      2 & 1 & 4 & 3 & 6 & 5 & 8 & 7 \\
+      3 & 4 & 1 & 2 & 7 & 8 & 5 & 6 \\
+      4 & 3 & 2 & 1 & 8 & 7 & 6 & 5 \\
+      5 & 6 & 7 & 8 & 1 & 2 & 3 & 4 \\
+      6 & 5 & 8 & 7 & 2 & 1 & 4 & 3 \\
+      7 & 8 & 5 & 6 & 3 & 4 & 1 & 2 \\
+      8 & 7 & 6 & 5 & 4 & 3 & 2 & 1
+    \end{pmatrix}.
+  \]
+  Setiap simbol pada $A$ bersesuaian dengan salah satu permutasi translasi
+  $\tau_u$. Jadi, seluruh permutasi penyusun $A$ berada di dalam $H$.
+  Selanjutnya, bentuk Latin square $B$ dengan menukar label simbol $2$ dan
+  $3$ pada $A$, yaitu
+  \[
+    B=
+    \begin{pmatrix}
+      1 & 3 & 2 & 4 & 5 & 6 & 7 & 8 \\
+      3 & 1 & 4 & 2 & 6 & 5 & 8 & 7 \\
+      2 & 4 & 1 & 3 & 7 & 8 & 5 & 6 \\
+      4 & 2 & 3 & 1 & 8 & 7 & 6 & 5 \\
+      5 & 6 & 7 & 8 & 1 & 3 & 2 & 4 \\
+      6 & 5 & 8 & 7 & 3 & 1 & 4 & 2 \\
+      7 & 8 & 5 & 6 & 2 & 4 & 1 & 3 \\
+      8 & 7 & 6 & 5 & 4 & 2 & 3 & 1
+    \end{pmatrix}.
+  \]
+  Karena $B$ hanya diperoleh dengan menukar label simbol pada $A$, maka
+  permutasi-permutasi penyusun $B$ juga merupakan elemen-elemen dari $H$.
+  Dengan demikian, seluruh permutasi penyusun $A$ dan $B$ berada di dalam
+  subgrup abelian yang sama, yaitu $H$.
+  Berdasarkan \autoref{thm:syarat_cukup_subgrup_abelian}, diperoleh
+  $A\otimes B=B\otimes A$. Hasil perkalian max-plus-nya adalah
+  \[
+    A\otimes B
+    =
+    B\otimes A
+    =
+    \begin{pmatrix}
+      16 & 15 & 14 & 13 & 12 & 11 & 11 & 10 \\
+      15 & 16 & 13 & 14 & 11 & 12 & 10 & 11 \\
+      14 & 13 & 16 & 15 & 11 & 10 & 12 & 11 \\
+      13 & 14 & 15 & 16 & 10 & 11 & 11 & 12 \\
+      12 & 11 & 11 & 10 & 16 & 15 & 14 & 13 \\
+      11 & 12 & 10 & 11 & 15 & 16 & 13 & 14 \\
+      11 & 10 & 12 & 11 & 14 & 13 & 16 & 15 \\
+      10 & 11 & 11 & 12 & 13 & 14 & 15 & 16
+    \end{pmatrix}.
+  \]
+  Jadi, contoh ini memperlihatkan bahwa syarat cukup pada
+  \autoref{thm:syarat_cukup_subgrup_abelian} dapat diterapkan pada subgrup
+  abelian yang bukan siklik dan bukan Klein.
+\end{contoh}
+
+\subsection{Syarat Perlu dan Cukup Latin Square Max-Plus Saling Komutatif}
 
 Akan tetapi, kesamaan komposisi permutasi untuk pasangan indeks dengan $x+y=v$ belum cukup untuk menjamin kesamaan entri hasil perkalian. Hal ini disebabkan karena pada aljabar max-plus, nilai suatu entri ditentukan oleh nilai maksimum dari seluruh kemungkinan penjumlahan yang muncul pada posisi tersebut. Dengan demikian, apabila suatu posisi matriks memperoleh nilai dari pasangan indeks dengan jumlah $v$, tetapi pada posisi yang sama terdapat pasangan indeks lain dengan jumlah lebih besar dari $v$, maka nilai akhir pada posisi tersebut ditentukan oleh jumlah yang lebih besar.
 
@@ -406,13 +766,47 @@ Sebelum algoritma diberikan, terlebih dahulu didefinisikan matriks kandidat pars
 \begin{algoritma}\label{alg:pencarian_pasangan_latin_square_komutatif}
   Pencarian pasangan Latin square yang komutatif dengan suatu Latin square $A\in L_S(n)$ dilakukan melalui langkah-langkah berikut.
   \begin{enumerate}
-    \item Dekomposisikan $A$ ke dalam bentuk $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$.
+    \item Dekomposisikan $A$ ke dalam bentuk
+          $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$.
 
-    \item Bentuk matriks kandidat parsial
+    \item Bentuk himpunan kosong $\mathcal{P}(A)$ untuk menyimpan kandidat Latin square yang komutatif dengan $A$.
+
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif, yaitu apakah
           \[
-            B^*=(b^*_{rs})_{n\times n}
+            \sigma_i^A\circ\sigma_j^A
+            =
+            \sigma_j^A\circ\sigma_i^A
           \]
-          dengan $b^*_{rs}=\varepsilon$ untuk setiap $(r,s)\in N\times N$.
+          untuk setiap $i,j\in N$.
+
+    \item Jika kondisi pada langkah sebelumnya terpenuhi, bentuk subgrup
+          $H_A=\langle \sigma_1^A,\sigma_2^A,\ldots,\sigma_n^A\rangle$.
+          Karena permutasi-permutasi pembangkitnya saling komutatif, maka $H_A$ merupakan subgrup abelian dari $S_n$.
+
+    \item Jika $H_A$ abelian, lakukan tahap alternatif berikut.
+          \begin{enumerate}
+            \item Ambil himpunan permutasi penyusun $A$, yaitu
+                  \[
+                    \Sigma_A=\{\sigma_1^A,\sigma_2^A,\ldots,\sigma_n^A\}.
+                  \]
+
+            \item Untuk setiap permutasi indeks $\pi\in S_n$, susun ulang elemen-elemen pada $\Sigma_A$ dengan menetapkan
+                  \[
+                    \sigma_i^B=\sigma_{\pi(i)}^A,
+                    \quad i\in N.
+                  \]
+
+            \item Bentuk kandidat Latin square
+                  \[
+                    B=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^B}.
+                  \]
+
+            \item Simpan $B$ ke dalam $\mathcal{P}(A)$. Karena seluruh permutasi penyusun $A$ dan $B$ berada di dalam subgrup abelian yang sama, yaitu $H_A$, maka berdasarkan \autoref{thm:syarat_cukup_subgrup_abelian} berlaku $A\otimes B=B\otimes A$.
+          \end{enumerate}
+
+    \item Setelah tahap alternatif dilakukan, lanjutkan pencarian menggunakan tahap umum berikut untuk memperoleh kandidat lain yang mungkin tidak diperoleh dari tahap alternatif.
+
+    \item Bentuk matriks kandidat parsial $B^*=(b^*_{rs})_{n\times n}$ dengan $b^*_{rs}=\varepsilon$ untuk setiap $(r,s)\in N\times N$.
 
     \item Tentukan centralizer $C_{S_n}(\sigma_n^A)$ menggunakan \autoref{alg:konstruksi_centralizer}.
 
@@ -423,9 +817,7 @@ Sebelum algoritma diberikan, terlebih dahulu didefinisikan matriks kandidat pars
             \item Salin kembali $B^*$ menjadi matriks kosong, yaitu $b^*_{rs}=\varepsilon$ untuk setiap $(r,s)\in N\times N$.
 
             \item Untuk setiap $r\in N$, isi
-                  $
-                    b^*_{r,\sigma_n^B(r)}=n.
-                  $
+                  $b^*_{r,\sigma_n^B(r)}=n$.
                   Dengan demikian, simbol maksimum $n$ ditempatkan pada $B^*$ sesuai permutasi $\sigma_n^B$.
           \end{enumerate}
 
@@ -438,31 +830,25 @@ Sebelum algoritma diberikan, terlebih dahulu didefinisikan matriks kandidat pars
             \item Jika terdapat $r\in N$ sehingga $b^*_{r,\sigma_m^B(r)}\neq\varepsilon$, maka kandidat $\sigma_m^B$ ditolak.
 
             \item Jika $b^*_{r,\sigma_m^B(r)}=\varepsilon$ untuk setiap $r\in N$, maka tempatkan simbol $m$ pada $B^*$ dengan aturan
-                  \[
-                    b^*_{r,\sigma_m^B(r)}=m,
-                    \quad r\in N.
-                  \]
+                  $b^*_{r,\sigma_m^B(r)}=m$ untuk setiap $r\in N$.
 
             \item Hitung $\mathcal{U}_{\ge n+m}^{AB}$ dan $\mathcal{U}_{\ge n+m}^{BA}$ berdasarkan permutasi-permutasi yang telah dipilih, yaitu $\sigma_m^B,\sigma_{m+1}^B,\ldots,\sigma_n^B$.
 
             \item Jika $\mathcal{U}_{\ge n+m}^{AB}\neq\mathcal{U}_{\ge n+m}^{BA}$, maka kandidat $\sigma_m^B$ ditolak dan entri yang baru diisi oleh simbol $m$ dikembalikan menjadi $\varepsilon$, yaitu
-                  \[
-                    b^*_{r,\sigma_m^B(r)}=\varepsilon,
-                    \quad r\in N.
-                  \]
+                  $b^*_{r,\sigma_m^B(r)}=\varepsilon$ untuk setiap $r\in N$.
 
             \item Jika $\mathcal{U}_{\ge n+m}^{AB}=\mathcal{U}_{\ge n+m}^{BA}$, maka pemilihan dilanjutkan ke permutasi berikutnya, yaitu $\sigma_{m-1}^B$.
           \end{enumerate}
 
     \item Setelah $\sigma_2^B,\sigma_3^B,\ldots,\sigma_n^B$ terpilih, isi seluruh entri $B^*$ yang masih bernilai $\varepsilon$ dengan simbol $1$.
 
-    \item Jika posisi simbol $1$ pada $B^*$ membentuk matriks permutasi, maka diperoleh $\sigma_1^B$ dan matriks $B^*$ menjadi Latin square lengkap. Dalam hal ini, tetapkan
-          \[
-            B=B^*.
-          \]
-          Jika posisi simbol $1$ tidak membentuk matriks permutasi, maka kandidat $B^*$ ditolak.
+    \item Jika posisi simbol $1$ pada $B^*$ membentuk matriks permutasi, maka diperoleh $\sigma_1^B$ dan matriks $B^*$ menjadi Latin square lengkap. Dalam hal ini, tetapkan $B=B^*$. Jika posisi simbol $1$ tidak membentuk matriks permutasi, maka kandidat $B^*$ ditolak.
 
-    \item Kandidat $B$ yang lolos syarat centralizer pada level $2n$ dan seluruh pemeriksaan superlevel untuk $v=2n-1,2n-2,\ldots,n+2$ merupakan pasangan Latin square yang komutatif dengan $A$.
+    \item Kandidat $B$ yang lolos syarat centralizer pada level $2n$ dan seluruh pemeriksaan superlevel untuk $v=2n-1,2n-2,\ldots,n+2$ disimpan ke dalam $\mathcal{P}(A)$.
+
+    \item Jika kandidat yang sama muncul dari tahap alternatif dan tahap umum, maka kandidat tersebut cukup disimpan satu kali di dalam $\mathcal{P}(A)$.
+
+    \item Himpunan $\mathcal{P}(A)$ merupakan himpunan kandidat Latin square yang komutatif dengan $A$ yang diperoleh melalui algoritma.
   \end{enumerate}
 \end{algoritma}
 
@@ -482,7 +868,6 @@ Pada ordo ini, syarat elemen maksimum mempunyai peran yang sangat menentukan. Ji
 
 Selain itu, pada ordo $3$, setiap Latin square dapat dipandang sebagai Latin square sirkulan hingga penamaan ulang baris, kolom, atau simbol. Hal ini terjadi karena tiga permutasi penyusun Latin square harus saling lepas. Jika salah satu permutasi penyusun adalah identitas, maka dua permutasi lainnya harus berupa dua sikel panjang $3$, yaitu $(1\;2\;3)$ dan $(1\;3\;2)$. Oleh karena itu, contoh ordo $3$ digunakan terutama untuk memperlihatkan mekanisme algoritma pada kasus terkecil.
 
-
 \begin{contoh}\label{contoh:penerapan_algoritma_ordo_3}
   Misalkan diberikan Latin square
   \[
@@ -493,106 +878,61 @@ Selain itu, pada ordo $3$, setiap Latin square dapat dipandang sebagai Latin squ
       2 & 3 & 1
     \end{pmatrix}.
   \]
-  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian max-plus menggunakan \autoref{alg:pencarian_pasangan_latin_square_komutatif}.
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian
+  max-plus menggunakan \autoref{alg:pencarian_pasangan_latin_square_komutatif}.
 
   \begin{enumerate}
-    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$ diperoleh
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$
+          diperoleh
           \[
             \sigma_1^A=(1),\qquad
             \sigma_2^A=(1\;2\;3),\qquad
             \sigma_3^A=(1\;3\;2).
           \]
 
-    \item Bentuk matriks kandidat parsial $B^*$ dengan seluruh entri awal bernilai $\varepsilon$, yaitu
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif.
+          Karena
           \[
-            B^*=
-            \begin{pmatrix}
-              \varepsilon & \varepsilon & \varepsilon \\
-              \varepsilon & \varepsilon & \varepsilon \\
-              \varepsilon & \varepsilon & \varepsilon
-            \end{pmatrix}.
+            (1\;2\;3)\circ(1\;3\;2)
+            =
+            (1)
+            =
+            (1\;3\;2)\circ(1\;2\;3),
           \]
+          maka permutasi-permutasi penyusun $A$ saling komutatif.
 
-    \item Tentukan centralizer dari $\sigma_3^A$. Karena $\sigma_3^A=(1\;3\;2)$, maka
+    \item Bentuk subgrup
           \[
-            C_{S_3}(\sigma_3^A)
+            H_A=
+            \langle (1),(1\;2\;3),(1\;3\;2)\rangle
             =
             \{(1),(1\;2\;3),(1\;3\;2)\}.
           \]
+          Subgrup $H_A$ merupakan subgrup abelian dari $S_3$.
 
-    \item Pilih salah satu elemen centralizer sebagai kandidat $\sigma_3^B$. Misalkan dipilih
+    \item Gunakan tahap alternatif dengan menyusun ulang permutasi-permutasi
+          penyusun $A$. Misalkan dipilih
           \[
-            \sigma_3^B=(1\;2\;3).
+            \sigma_1^B=\sigma_1^A=(1),\qquad
+            \sigma_2^B=\sigma_3^A=(1\;3\;2),\qquad
+            \sigma_3^B=\sigma_2^A=(1\;2\;3).
           \]
-          Artinya, simbol $3$ ditempatkan pada posisi $(1,2)$, $(2,3)$, dan $(3,1)$. Maka diperoleh
+          Dengan demikian, kandidat yang terbentuk adalah
           \[
-            B^*=
-            \begin{pmatrix}
-              \varepsilon & 3           & \varepsilon \\
-              \varepsilon & \varepsilon & 3           \\
-              3           & \varepsilon & \varepsilon
-            \end{pmatrix}.
-          \]
-
-    \item Selanjutnya pilih kandidat permutasi untuk simbol $2$. Ambil
-          \[
-            \sigma_2^B=(1\;3\;2).
-          \]
-          Permutasi ini menempatkan simbol $2$ pada posisi $(1,3)$, $(2,1)$, dan $(3,2)$. Posisi-posisi tersebut masih bernilai $\varepsilon$ pada $B^*$, sehingga kandidat $\sigma_2^B$ dapat diterima sementara. Setelah simbol $2$ ditempatkan, diperoleh
-          \[
-            B^*=
-            \begin{pmatrix}
-              \varepsilon & 3           & 2           \\
-              2           & \varepsilon & 3           \\
-              3           & 2           & \varepsilon
-            \end{pmatrix}.
-          \]
-
-    \item Karena $n=3$ dan $m=2$, level yang harus diperiksa adalah $v=n+m=5$. Pasangan indeks yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$, dan $(3,3)$.
-
-          Pada perkalian $A\otimes B$, komposisi permutasi yang terlibat adalah
-          \[
-            \sigma_3^B\circ\sigma_2^A,\qquad
-            \sigma_2^B\circ\sigma_3^A,\qquad
-            \sigma_3^B\circ\sigma_3^A.
-          \]
-          Dengan substitusi permutasi yang telah dipilih, diperoleh
-          \[
-            \sigma_3^B\circ\sigma_2^A=(1\;3\;2),\qquad
-            \sigma_2^B\circ\sigma_3^A=(1\;2\;3),\qquad
-            \sigma_3^B\circ\sigma_3^A=(1).
-          \]
-
-          Pada perkalian $B\otimes A$, komposisi permutasi yang terlibat adalah
-          \[
-            \sigma_3^A\circ\sigma_2^B,\qquad
-            \sigma_2^A\circ\sigma_3^B,\qquad
-            \sigma_3^A\circ\sigma_3^B.
-          \]
-          Diperoleh
-          \[
-            \sigma_3^A\circ\sigma_2^B=(1\;2\;3),\qquad
-            \sigma_2^A\circ\sigma_3^B=(1\;3\;2),\qquad
-            \sigma_3^A\circ\sigma_3^B=(1).
-          \]
-          Dengan demikian, pada level $v=5$, himpunan komposisi yang muncul pada $A\otimes B$ dan $B\otimes A$ sama. Maka kandidat $\sigma_2^B=(1\;3\;2)$ tidak ditolak.
-
-    \item Setelah simbol $2$ dan $3$ ditempatkan, posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah $(1,1)$, $(2,2)$, dan $(3,3)$. Posisi-posisi ini membentuk matriks permutasi identitas, sehingga diperoleh
-          \[
-            \sigma_1^B=(1).
-          \]
-          Isi posisi yang tersisa dengan simbol $1$, sehingga diperoleh
-          \[
-            B^*=
+            B=
             \begin{pmatrix}
               1 & 3 & 2 \\
               2 & 1 & 3 \\
               3 & 2 & 1
             \end{pmatrix}.
           \]
-          Karena $B^*$ sudah menjadi Latin square lengkap, tetapkan $B=B^*$.
 
-    \item Verifikasi akhir dilakukan dengan menghitung hasil perkalian max-plus. Diperoleh
+    \item Karena seluruh permutasi penyusun $A$ dan $B$ berada di dalam
+          subgrup abelian yang sama, yaitu $H_A$, maka berdasarkan
+          \autoref{thm:syarat_cukup_subgrup_abelian} diperoleh
+          $A\otimes B=B\otimes A$.
+
+    \item Sebagai verifikasi, diperoleh
           \[
             A\otimes B
             =
@@ -604,16 +944,7 @@ Selain itu, pada ordo $3$, setiap Latin square dapat dipandang sebagai Latin squ
               5 & 5 & 6
             \end{pmatrix}.
           \]
-          Jadi, matriks
-          \[
-            B=
-            \begin{pmatrix}
-              1 & 3 & 2 \\
-              2 & 1 & 3 \\
-              3 & 2 & 1
-            \end{pmatrix}
-          \]
-          merupakan pasangan Latin square yang komutatif dengan $A$.
+          Jadi, $B$ merupakan pasangan Latin square yang komutatif dengan $A$.
   \end{enumerate}
 \end{contoh}
 
@@ -629,15 +960,30 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
       3 & 1 & 2
     \end{pmatrix}.
   \]
-  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian max-plus.
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian
+  max-plus.
 
   \begin{enumerate}
-    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari posisi masing-masing simbol pada $A$, diperoleh
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari posisi
+          masing-masing simbol pada $A$, diperoleh
           \[
             \sigma_1^A=(2\;3),\qquad
             \sigma_2^A=(1\;2),\qquad
             \sigma_3^A=(1\;3).
           \]
+
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif.
+          Karena
+          \[
+            (1\;2)\circ(1\;3)=(1\;3\;2),
+          \]
+          sedangkan
+          \[
+            (1\;3)\circ(1\;2)=(1\;2\;3),
+          \]
+          maka $(1\;2)\circ(1\;3)\neq(1\;3)\circ(1\;2)$. Jadi,
+          permutasi-permutasi penyusun $A$ tidak saling komutatif. Oleh
+          karena itu, tahap alternatif tidak digunakan.
 
     \item Bentuk matriks kandidat parsial
           \[
@@ -649,14 +995,17 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
             \end{pmatrix}.
           \]
 
-    \item Tentukan centralizer dari $\sigma_3^A$. Karena $\sigma_3^A=(1\;3)$, maka
+    \item Tentukan centralizer dari $\sigma_3^A$. Karena
+          $\sigma_3^A=(1\;3)$, maka
           \[
             C_{S_3}(\sigma_3^A)
             =
             \{(1),(1\;3)\}.
           \]
 
-    \item Pilih kandidat dari centralizer. Ambil $\sigma_3^B=(1\;3)$. Maka simbol $3$ ditempatkan pada posisi $(1,3)$, $(2,2)$, dan $(3,1)$. Diperoleh
+    \item Pilih kandidat dari centralizer. Ambil $\sigma_3^B=(1\;3)$.
+          Maka simbol $3$ ditempatkan pada posisi $(1,3)$, $(2,2)$, dan
+          $(3,1)$. Diperoleh
           \[
             B^*=
             \begin{pmatrix}
@@ -666,11 +1015,13 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
             \end{pmatrix}.
           \]
 
-    \item Selanjutnya pilih kandidat untuk simbol $2$. Karena posisi simbol $3$ sudah terisi, permutasi $\sigma_2^B$ harus tidak beririsan dengan $\sigma_3^B$. Ambil
+    \item Selanjutnya pilih kandidat untuk simbol $2$. Ambil
           \[
             \sigma_2^B=(1\;2).
           \]
-          Permutasi ini menempatkan simbol $2$ pada posisi $(1,2)$, $(2,1)$, dan $(3,3)$, yang seluruhnya masih bernilai $\varepsilon$ pada $B^*$. Maka
+          Permutasi ini menempatkan simbol $2$ pada posisi $(1,2)$, $(2,1)$,
+          dan $(3,3)$, yang seluruhnya masih bernilai $\varepsilon$ pada
+          $B^*$. Maka
           \[
             B^*=
             \begin{pmatrix}
@@ -680,7 +1031,9 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
             \end{pmatrix}.
           \]
 
-    \item Karena $n=3$ dan $m=2$, level yang diperiksa adalah $v=n+m=5$. Pasangan indeks yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$, dan $(3,3)$.
+    \item Karena $n=3$ dan $m=2$, level yang diperiksa adalah $v=n+m=5$.
+          Pasangan indeks yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$,
+          dan $(3,3)$.
 
           Pada $A\otimes B$, komposisi yang muncul adalah
           \[
@@ -688,7 +1041,8 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
             \sigma_2^B\circ\sigma_3^A,\qquad
             \sigma_3^B\circ\sigma_3^A.
           \]
-          Dengan $\sigma_3^B=(1\;3)$, $\sigma_2^B=(1\;2)$, $\sigma_2^A=(1\;2)$, dan $\sigma_3^A=(1\;3)$, diperoleh
+          Dengan $\sigma_3^B=(1\;3)$, $\sigma_2^B=(1\;2)$,
+          $\sigma_2^A=(1\;2)$, dan $\sigma_3^A=(1\;3)$, diperoleh
           \[
             \sigma_3^B\circ\sigma_2^A=(1\;2\;3),\qquad
             \sigma_2^B\circ\sigma_3^A=(1\;3\;2),\qquad
@@ -709,7 +1063,8 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
           \]
           Jadi kandidat $\sigma_2^B=(1\;2)$ lolos pemeriksaan level $5$.
 
-    \item Posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah $(1,1)$, $(2,3)$, dan $(3,2)$. Posisi tersebut membentuk permutasi
+    \item Posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah
+          $(1,1)$, $(2,3)$, dan $(3,2)$. Posisi tersebut membentuk permutasi
           \[
             \sigma_1^B=(2\;3).
           \]
@@ -746,4 +1101,535 @@ Jika $\sigma_3^B=(1)$, maka pilihan $\sigma_2^B$ yang mungkin agar tetap membent
 
 \subsection{Latin Square Ordo 4}
 
+Pada ordo $4$, tahap alternatif dapat digunakan apabila permutasi-permutasi
+penyusun $A$ saling komutatif. Dalam keadaan tersebut, kandidat $B$ dapat
+dibentuk dengan menyusun ulang permutasi-permutasi penyusun $A$. Contoh
+berikut menunjukkan penggunaan tahap alternatif pada ordo $4$.
+
+\begin{contoh}\label{contoh:penerapan_algoritma_ordo_4_alternatif}
+  Misalkan diberikan Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 \\
+      2 & 1 & 4 & 3 \\
+      3 & 4 & 1 & 2 \\
+      4 & 3 & 2 & 1
+    \end{pmatrix}.
+  \]
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian
+  max-plus menggunakan \autoref{alg:pencarian_pasangan_latin_square_komutatif}.
+
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$
+          diperoleh
+          \[
+            \sigma_1^A=(1),\quad
+            \sigma_2^A=(1\;2)(3\;4),\quad
+            \sigma_3^A=(1\;3)(2\;4),\quad
+            \sigma_4^A=(1\;4)(2\;3).
+          \]
+
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif.
+          Keempat permutasi tersebut berada dalam grup Klein
+          \[
+            H_A=
+            \{(1),(1\;2)(3\;4),(1\;3)(2\;4),(1\;4)(2\;3)\}.
+          \]
+          Karena $H_A$ abelian, maka tahap alternatif dapat digunakan.
+
+    \item Susun ulang permutasi-permutasi penyusun $A$. Misalkan dipilih
+          \[
+            \sigma_1^B=\sigma_1^A,\quad
+            \sigma_2^B=\sigma_2^A,\quad
+            \sigma_3^B=\sigma_4^A,\quad
+            \sigma_4^B=\sigma_3^A.
+          \]
+          Dengan demikian, kandidat yang terbentuk adalah
+          \[
+            B=
+            \begin{pmatrix}
+              1 & 2 & 4 & 3 \\
+              2 & 1 & 3 & 4 \\
+              4 & 3 & 1 & 2 \\
+              3 & 4 & 2 & 1
+            \end{pmatrix}.
+          \]
+
+    \item Karena seluruh permutasi penyusun $A$ dan $B$ berada di dalam
+          subgrup abelian yang sama, yaitu $H_A$, maka berdasarkan
+          \autoref{thm:syarat_cukup_subgrup_abelian} diperoleh
+          $A\otimes B=B\otimes A$.
+
+    \item Sebagai verifikasi, diperoleh
+          \[
+            A\otimes B
+            =
+            B\otimes A
+            =
+            \begin{pmatrix}
+              7 & 8 & 6 & 6 \\
+              8 & 7 & 6 & 6 \\
+              6 & 6 & 7 & 8 \\
+              6 & 6 & 8 & 7
+            \end{pmatrix}.
+          \]
+          Jadi, $B$ merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{contoh}
+
+Pada contoh sebelumnya, tahap alternatif dapat digunakan karena permutasi
+penyusun $A$ membentuk subgrup abelian. Contoh berikut menunjukkan keadaan
+sebaliknya. Permutasi-permutasi penyusun $A$ tidak saling komutatif, sehingga
+tahap alternatif tidak dapat digunakan dan pencarian dilanjutkan melalui
+centralizer serta pemeriksaan superlevel.
+
+\begin{contoh}\label{contoh:penerapan_algoritma_ordo_4_umum}
+  Misalkan diberikan Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 4 & 3 \\
+      3 & 1 & 2 & 4 \\
+      2 & 4 & 3 & 1 \\
+      4 & 3 & 1 & 2
+    \end{pmatrix}.
+  \]
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian
+  max-plus.
+
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$
+          diperoleh
+          \[
+            \sigma_1^A=(3\;4),\quad
+            \sigma_2^A=(1\;2\;3),\quad
+            \sigma_3^A=(1\;4\;2),\quad
+            \sigma_4^A=(1\;3\;2\;4).
+          \]
+
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif.
+          Misalnya,
+          \[
+            \sigma_1^A\circ\sigma_2^A=(1\;2\;4\;3),
+          \]
+          sedangkan
+          \[
+            \sigma_2^A\circ\sigma_1^A=(1\;2\;3\;4).
+          \]
+          Jadi, $\sigma_1^A\circ\sigma_2^A\neq
+            \sigma_2^A\circ\sigma_1^A$. Dengan demikian, tahap alternatif
+          tidak digunakan.
+
+    \item Bentuk matriks kandidat parsial
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Tentukan centralizer dari $\sigma_4^A$. Karena
+          $\sigma_4^A=(1\;3\;2\;4)$, diperoleh
+          \[
+            C_{S_4}(\sigma_4^A)
+            =
+            \{(1),(1\;2)(3\;4),(1\;3\;2\;4),(1\;4\;2\;3)\}.
+          \]
+
+    \item Pilih kandidat dari centralizer. Ambil $\sigma_4^B=(1)$. Maka
+          simbol $4$ ditempatkan pada posisi diagonal. Diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              4           & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & 4           & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & 4           & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & 4
+            \end{pmatrix}.
+          \]
+
+    \item Selanjutnya pilih kandidat untuk simbol $3$. Ambil
+          \[
+            \sigma_3^B=(1\;3\;2\;4).
+          \]
+          Permutasi ini menempatkan simbol $3$ pada posisi
+          $(1,3)$, $(2,4)$, $(3,2)$, dan $(4,1)$. Posisi tersebut masih
+          bernilai $\varepsilon$ pada $B^*$, sehingga diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              4           & \varepsilon & 3           & \varepsilon \\
+              \varepsilon & 4           & \varepsilon & 3           \\
+              \varepsilon & 3           & 4           & \varepsilon \\
+              3           & \varepsilon & \varepsilon & 4
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=4$ dan $m=3$, level yang diperiksa adalah $v=n+m=7$.
+          Dari perhitungan diperoleh
+          \[
+            \mathcal{U}_{\ge 7}^{AB}
+            =
+            \mathcal{U}_{\ge 7}^{BA}.
+          \]
+          Maka kandidat $\sigma_3^B=(1\;3\;2\;4)$ tidak ditolak.
+
+    \item Berikutnya pilih kandidat untuk simbol $2$. Ambil
+          \[
+            \sigma_2^B=(1\;4\;2\;3).
+          \]
+          Permutasi ini menempatkan simbol $2$ pada posisi
+          $(1,4)$, $(2,3)$, $(3,1)$, dan $(4,2)$. Posisi tersebut masih
+          bernilai $\varepsilon$ pada $B^*$, sehingga diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              4           & \varepsilon & 3           & 2           \\
+              \varepsilon & 4           & 2           & 3           \\
+              2           & 3           & 4           & \varepsilon \\
+              3           & 2           & \varepsilon & 4
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=4$ dan $m=2$, level yang diperiksa adalah $v=n+m=6$.
+          Dari perhitungan diperoleh
+          \[
+            \mathcal{U}_{\ge 6}^{AB}
+            =
+            \mathcal{U}_{\ge 6}^{BA}.
+          \]
+          Maka kandidat $\sigma_2^B=(1\;4\;2\;3)$ tidak ditolak.
+
+    \item Posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah
+          $(1,2)$, $(2,1)$, $(3,4)$, dan $(4,3)$. Posisi tersebut membentuk
+          permutasi
+          \[
+            \sigma_1^B=(1\;2)(3\;4).
+          \]
+          Isi posisi tersebut dengan simbol $1$, sehingga diperoleh
+          \[
+            B=
+            \begin{pmatrix}
+              4 & 1 & 3 & 2 \\
+              1 & 4 & 2 & 3 \\
+              2 & 3 & 4 & 1 \\
+              3 & 2 & 1 & 4
+            \end{pmatrix}.
+          \]
+
+    \item Sebagai verifikasi akhir, diperoleh
+          \[
+            A\otimes B
+            =
+            B\otimes A
+            =
+            \begin{pmatrix}
+              6 & 7 & 8 & 7 \\
+              7 & 6 & 6 & 8 \\
+              6 & 8 & 7 & 7 \\
+              8 & 7 & 7 & 6
+            \end{pmatrix}.
+          \]
+          Jadi, $B$ merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{contoh}
+
 \subsection{Latin Square Ordo 5}
+
+Pada ordo $5$, tahap alternatif dapat digunakan apabila permutasi-permutasi
+penyusun $A$ saling komutatif. Karena $5$ merupakan bilangan prima, subgrup
+abelian regular yang muncul secara alami berisomorfik dengan grup siklik
+$C_5$. Dengan demikian, contoh pertama pada ordo $5$ diberikan untuk
+menunjukkan penggunaan tahap alternatif, sedangkan contoh kedua menunjukkan
+keadaan ketika tahap alternatif tidak dapat digunakan.
+
+\begin{contoh}\label{contoh:penerapan_algoritma_ordo_5_alternatif}
+  Misalkan diberikan Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 & 5 \\
+      5 & 1 & 2 & 3 & 4 \\
+      4 & 5 & 1 & 2 & 3 \\
+      3 & 4 & 5 & 1 & 2 \\
+      2 & 3 & 4 & 5 & 1
+    \end{pmatrix}.
+  \]
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian
+  max-plus menggunakan \autoref{alg:pencarian_pasangan_latin_square_komutatif}.
+
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$
+          diperoleh
+          \[
+            \sigma_1^A=(1),\quad
+            \sigma_2^A=(1\;2\;3\;4\;5),\quad
+            \sigma_3^A=(1\;3\;5\;2\;4),
+          \]
+          \[
+            \sigma_4^A=(1\;4\;2\;5\;3),\quad
+            \sigma_5^A=(1\;5\;4\;3\;2).
+          \]
+
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif.
+          Permutasi-permutasi tersebut merupakan pangkat-pangkat dari
+          $(1\;2\;3\;4\;5)$. Oleh karena itu, semuanya berada dalam subgrup
+          siklik
+          \[
+            H_A=
+            \langle (1\;2\;3\;4\;5)\rangle
+            =
+            \{
+            (1),
+            (1\;2\;3\;4\;5),
+            (1\;3\;5\;2\;4),
+            (1\;4\;2\;5\;3),
+            (1\;5\;4\;3\;2)
+            \}.
+          \]
+          Karena $H_A$ siklik, maka $H_A$ abelian.
+
+    \item Gunakan tahap alternatif dengan menyusun ulang permutasi-permutasi
+          penyusun $A$. Misalkan dipilih
+          \[
+            \sigma_1^B=\sigma_1^A,\quad
+            \sigma_2^B=\sigma_4^A,\quad
+            \sigma_3^B=\sigma_2^A,\quad
+            \sigma_4^B=\sigma_5^A,\quad
+            \sigma_5^B=\sigma_3^A.
+          \]
+          Dengan demikian, kandidat yang terbentuk adalah
+          \[
+            B=
+            \begin{pmatrix}
+              1 & 4 & 2 & 5 & 3 \\
+              3 & 1 & 4 & 2 & 5 \\
+              5 & 3 & 1 & 4 & 2 \\
+              2 & 5 & 3 & 1 & 4 \\
+              4 & 2 & 5 & 3 & 1
+            \end{pmatrix}.
+          \]
+
+    \item Karena seluruh permutasi penyusun $A$ dan $B$ berada di dalam
+          subgrup abelian yang sama, yaitu $H_A$, maka berdasarkan
+          \autoref{thm:syarat_cukup_subgrup_abelian} diperoleh
+          $A\otimes B=B\otimes A$.
+
+    \item Sebagai verifikasi, diperoleh
+          \[
+            A\otimes B
+            =
+            B\otimes A
+            =
+            \begin{pmatrix}
+              9  & 9  & 10 & 8  & 8  \\
+              8  & 9  & 9  & 10 & 8  \\
+              8  & 8  & 9  & 9  & 10 \\
+              10 & 8  & 8  & 9  & 9  \\
+              9  & 10 & 8  & 8  & 9
+            \end{pmatrix}.
+          \]
+          Jadi, $B$ merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{contoh}
+
+Pada \autoref{contoh:penerapan_algoritma_ordo_5_alternatif}, tahap alternatif
+dapat digunakan karena permutasi-permutasi penyusun $A$ saling komutatif.
+Contoh berikut menunjukkan keadaan sebaliknya. Permutasi-permutasi penyusun
+$A$ tidak saling komutatif, sehingga pencarian dilanjutkan ke tahap umum,
+yaitu melalui centralizer dan pemeriksaan superlevel.
+
+\begin{contoh}\label{contoh:penerapan_algoritma_ordo_5_umum}
+  Misalkan diberikan Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      5 & 3 & 2 & 1 & 4 \\
+      2 & 1 & 4 & 5 & 3 \\
+      1 & 4 & 3 & 2 & 5 \\
+      4 & 5 & 1 & 3 & 2 \\
+      3 & 2 & 5 & 4 & 1
+    \end{pmatrix}.
+  \]
+  Akan dicari Latin square $B$ yang komutatif dengan $A$ terhadap perkalian
+  max-plus.
+
+  \begin{enumerate}
+    \item Dekomposisikan $A$ ke dalam bentuk permutasi. Dari matriks $A$
+          diperoleh
+          \[
+            \sigma_1^A=(1\;4\;3),\quad
+            \sigma_2^A=(1\;3\;4\;5\;2),\quad
+            \sigma_3^A=(1\;2\;5),
+          \]
+          \[
+            \sigma_4^A=(1\;5\;4)(2\;3),\quad
+            \sigma_5^A=(2\;4)(3\;5).
+          \]
+
+    \item Periksa apakah permutasi-permutasi penyusun $A$ saling komutatif.
+          Misalnya,
+          \[
+            \sigma_1^A\circ\sigma_2^A=(2\;4\;5),
+          \]
+          sedangkan
+          \[
+            \sigma_2^A\circ\sigma_1^A=(1\;5\;2).
+          \]
+          Jadi, $\sigma_1^A\circ\sigma_2^A\neq
+            \sigma_2^A\circ\sigma_1^A$. Dengan demikian, tahap alternatif
+          tidak digunakan.
+
+    \item Bentuk matriks kandidat parsial
+          \[
+            B^*=
+            \begin{pmatrix}
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Tentukan centralizer dari $\sigma_5^A$. Karena
+          $\sigma_5^A=(2\;4)(3\;5)$, salah satu elemen centralizer yang dapat
+          dipilih adalah
+          \[
+            \sigma_5^B=(2\;4)(3\;5).
+          \]
+          Tempatkan simbol $5$ sesuai permutasi tersebut, sehingga diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              5           & \varepsilon & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & 5           & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & \varepsilon & 5           \\
+              \varepsilon & 5           & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & \varepsilon & 5           & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Pilih kandidat untuk simbol $4$, yaitu
+          \[
+            \sigma_4^B=(1\;5\;2\;3\;4).
+          \]
+          Permutasi ini menempatkan simbol $4$ pada posisi
+          $(1,5)$, $(2,3)$, $(3,4)$, $(4,1)$, dan $(5,2)$.
+          Posisi tersebut masih bernilai $\varepsilon$ pada $B^*$, sehingga
+          diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              5           & \varepsilon & \varepsilon & \varepsilon & 4           \\
+              \varepsilon & \varepsilon & 4           & 5           & \varepsilon \\
+              \varepsilon & \varepsilon & \varepsilon & 4           & 5           \\
+              4           & 5           & \varepsilon & \varepsilon & \varepsilon \\
+              \varepsilon & 4           & 5           & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=5$ dan $m=4$, level yang diperiksa adalah $v=n+m=9$.
+          Dari perhitungan diperoleh
+          \[
+            \mathcal{U}_{\ge 9}^{AB}
+            =
+            \mathcal{U}_{\ge 9}^{BA}.
+          \]
+          Maka kandidat $\sigma_4^B=(1\;5\;2\;3\;4)$ tidak ditolak.
+
+    \item Pilih kandidat untuk simbol $3$, yaitu
+          \[
+            \sigma_3^B=(1\;2\;5).
+          \]
+          Permutasi ini menempatkan simbol $3$ pada posisi
+          $(1,2)$, $(2,5)$, $(3,3)$, $(4,4)$, dan $(5,1)$.
+          Posisi tersebut masih bernilai $\varepsilon$ pada $B^*$, sehingga
+          diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              5           & 3           & \varepsilon & \varepsilon & 4           \\
+              \varepsilon & \varepsilon & 4           & 5           & 3           \\
+              \varepsilon & \varepsilon & 3           & 4           & 5           \\
+              4           & 5           & \varepsilon & 3           & \varepsilon \\
+              3           & 4           & 5           & \varepsilon & \varepsilon
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=5$ dan $m=3$, level yang diperiksa adalah $v=n+m=8$.
+          Dari perhitungan diperoleh
+          \[
+            \mathcal{U}_{\ge 8}^{AB}
+            =
+            \mathcal{U}_{\ge 8}^{BA}.
+          \]
+          Maka kandidat $\sigma_3^B=(1\;2\;5)$ tidak ditolak.
+
+    \item Pilih kandidat untuk simbol $2$, yaitu
+          \[
+            \sigma_2^B=(1\;4\;3).
+          \]
+          Permutasi ini menempatkan simbol $2$ pada posisi
+          $(1,4)$, $(2,2)$, $(3,1)$, $(4,3)$, dan $(5,5)$.
+          Posisi tersebut masih bernilai $\varepsilon$ pada $B^*$, sehingga
+          diperoleh
+          \[
+            B^*=
+            \begin{pmatrix}
+              5           & 3           & \varepsilon & 2           & 4           \\
+              \varepsilon & 2           & 4           & 5           & 3           \\
+              2           & \varepsilon & 3           & 4           & 5           \\
+              4           & 5           & 2           & 3           & \varepsilon \\
+              3           & 4           & 5           & \varepsilon & 2
+            \end{pmatrix}.
+          \]
+
+    \item Karena $n=5$ dan $m=2$, level yang diperiksa adalah $v=n+m=7$.
+          Dari perhitungan diperoleh
+          \[
+            \mathcal{U}_{\ge 7}^{AB}
+            =
+            \mathcal{U}_{\ge 7}^{BA}.
+          \]
+          Maka kandidat $\sigma_2^B=(1\;4\;3)$ tidak ditolak.
+
+    \item Posisi yang masih bernilai $\varepsilon$ pada $B^*$ adalah
+          $(1,3)$, $(2,1)$, $(3,2)$, $(4,5)$, dan $(5,4)$.
+          Posisi tersebut membentuk permutasi
+          \[
+            \sigma_1^B=(1\;3\;2)(4\;5).
+          \]
+          Isi posisi tersebut dengan simbol $1$, sehingga diperoleh
+          \[
+            B=
+            \begin{pmatrix}
+              5 & 3 & 1 & 2 & 4 \\
+              1 & 2 & 4 & 5 & 3 \\
+              2 & 1 & 3 & 4 & 5 \\
+              4 & 5 & 2 & 3 & 1 \\
+              3 & 4 & 5 & 1 & 2
+            \end{pmatrix}.
+          \]
+
+    \item Sebagai verifikasi akhir, diperoleh
+          \[
+            A\otimes B
+            =
+            B\otimes A
+            =
+            \begin{pmatrix}
+              10 & 8  & 9  & 8  & 9  \\
+              9  & 10 & 8  & 8  & 9  \\
+              8  & 9  & 10 & 9  & 8  \\
+              9  & 8  & 9  & 10 & 8  \\
+              8  & 9  & 8  & 9  & 10
+            \end{pmatrix}.
+          \]
+          Jadi, $B$ merupakan pasangan Latin square yang komutatif dengan $A$.
+  \end{enumerate}
+\end{contoh}
