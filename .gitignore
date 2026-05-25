@@ -33,6 +33,7 @@ _minted-*/
 *.synctex(busy)
 *.bbl-SAVE-ERROR
 *.mkv
+*.bcf-SAVE-ERROR
 
 # Ignore Python bytecode and caches
 __pycache__/
