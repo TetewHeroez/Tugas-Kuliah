@@ -973,6 +973,27 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
 \sloppy
 
 \newcommand{\kb}[1]{\left(#1\right)}
+
+%%%----------------- PENYESUAIAN ALGORITHM ---------------------------
+\renewenvironment{algorithm}
+  {%
+   \begin{center}
+     \refstepcounter{algorithm}%
+     \hrule height.8pt depth0pt \kern2pt
+     \renewcommand{\caption}[2][\relax]{%
+       {\raggedright\textbf{\ALG@name~\thealgorithm.} ##2\par}%
+       \ifx\relax##1\relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }%
+  }
+  {%
+     \kern2pt\hrule\relax
+   \end{center}
+  }
 %%
 %% end of file `TA-ITS.cls'.
 

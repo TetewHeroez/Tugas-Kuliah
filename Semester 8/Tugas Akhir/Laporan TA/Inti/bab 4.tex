@@ -852,72 +852,93 @@ Sebelum algoritma diberikan, terlebih dahulu didefinisikan matriks kandidat pars
   \end{enumerate}
 \end{algoritma}
 
+\begin{algorithm}
+  \caption{Pencarian Pasangan Latin Square Komutatif}
+  \label{alg:pencarian_pasangan_latin_square_komutatif}
+  \begin{algorithmic}[1]
+    \Require $A\in L_S(n)$
+    \Ensure $\mathcal{P}(A)$
 
-\begin{algorithmic}[1]
-  \Require Latin square $A\in L_S(n)$
-  \Ensure Himpunan kandidat $\mathcal{P}(A)$ yang komutatif dengan $A$
+    \State $\mathcal{P}(A)\gets\varnothing$
 
-  \State Dekomposisikan $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$
-  \State $\mathcal{P}(A)\gets\varnothing$
+    \For{$i=1,\ldots,n$}
+    \For{$r=1,\ldots,n$}
+    \State $s\gets\min\{k\in N\mid A_{rk}=i\}$
+    \State $\sigma_i^A(r)\gets s$
+    \EndFor
+    \EndFor
 
-  \Statex
-  \State \textbf{Tahap alternatif}
-  \If{$\sigma_i^A\circ\sigma_j^A=\sigma_j^A\circ\sigma_i^A$ untuk setiap $i,j\in N$}
-  \State Bentuk $H_A=\langle \sigma_1^A,\sigma_2^A,\ldots,\sigma_n^A\rangle$
-  \ForAll{$\pi\in S_n$}
-  \For{$i=1,\ldots,n$}
-  \State $\sigma_i^B\gets\sigma_{\pi(i)}^A$
-  \EndFor
-  \State $B\gets\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^B}$
-  \State $\mathcal{P}(A)\gets \mathcal{P}(A)\cup\{B\}$
-  \EndFor
-  \EndIf
+    \If{$\sigma_i^A\circ\sigma_j^A=\sigma_j^A\circ\sigma_i^A,\ \forall i,j\in N$}
+    \State $H_A\gets\langle\sigma_1^A,\sigma_2^A,\ldots,\sigma_n^A\rangle$
 
-  \Statex
-  \State \textbf{Tahap umum}
-  \State Tentukan $C_{S_n}(\sigma_n^A)$
-  \ForAll{$\tau\in C_{S_n}(\sigma_n^A)$}
-  \State $\sigma_n^B\gets\tau$
-  \State Bentuk $B^*=(b^*_{rs})_{n\times n}$ dengan $b^*_{rs}\gets\varepsilon$ untuk setiap $(r,s)\in N\times N$
-  \ForAll{$r\in N$}
-  \State $b^*_{r,\sigma_n^B(r)}\gets n$
-  \EndFor
-  \State Jalankan \Call{Backtrack}{$n-1,B^*$}
-  \EndFor
+    \ForAll{$\pi\in S_n$}
+    \For{$i=1,\ldots,n$}
+    \State $\sigma_i^B\gets\sigma_{\pi(i)}^A$
+    \EndFor
 
-  \State \Return $\mathcal{P}(A)$
+    \State $B\gets\varepsilon_{n\times n}$
 
-  \Statex
-  \Procedure{Backtrack}{$m,B^*$}
-  \If{$m=1$}
-  \State Isi seluruh entri $B^*$ yang masih bernilai $\varepsilon$ dengan simbol $1$
-  \If{posisi simbol $1$ membentuk matriks permutasi}
-  \State $B\gets B^*$
-  \State $\mathcal{P}(A)\gets \mathcal{P}(A)\cup\{B\}$
-  \EndIf
-  \State \Return
-  \EndIf
+    \For{$i=1,\ldots,n$}
+    \For{$r=1,\ldots,n$}
+    \State $B_{r,\sigma_i^B(r)}\gets i$
+    \EndFor
+    \EndFor
 
-  \ForAll{$\sigma_m^B\in S_n$}
-  \If{$b^*_{r,\sigma_m^B(r)}=\varepsilon$ untuk setiap $r\in N$}
-  \ForAll{$r\in N$}
-  \State $b^*_{r,\sigma_m^B(r)}\gets m$
-  \EndFor
+    \State $\mathcal{P}(A)\gets\mathcal{P}(A)\cup\{B\}$
+    \EndFor
+    \EndIf
 
-  \State Hitung $\mathcal{U}_{\ge n+m}^{AB}$ dan $\mathcal{U}_{\ge n+m}^{BA}$
+    \State $C\gets C_{S_n}(\sigma_n^A)$
 
-  \If{$\mathcal{U}_{\ge n+m}^{AB}=\mathcal{U}_{\ge n+m}^{BA}$}
-  \State Jalankan \Call{Backtrack}{$m-1,B^*$}
-  \EndIf
+    \ForAll{$\tau\in C$}
+    \State $\sigma_n^B\gets\tau$
+    \State $B^*\gets\varepsilon_{n\times n}$
 
-  \ForAll{$r\in N$}
-  \State $b^*_{r,\sigma_m^B(r)}\gets\varepsilon$
-  \EndFor
-  \EndIf
-  \EndFor
-  \EndProcedure
-\end{algorithmic}
+    \For{$r=1,\ldots,n$}
+    \State $b^*_{r,\sigma_n^B(r)}\gets n$
+    \EndFor
 
+    \State \Call{Backtrack}{$n-1,B^*$}
+    \EndFor
+
+    \State \Return $\mathcal{P}(A)$
+
+    \Procedure{Backtrack}{$m,B^*$}
+    \If{$m=1$}
+    \For{$r=1,\ldots,n$}
+    \For{$s=1,\ldots,n$}
+    \If{$b^*_{rs}=\varepsilon$}
+    \State $b^*_{rs}\gets 1$
+    \EndIf
+    \EndFor
+    \EndFor
+
+    \If{$\exists\,\sigma\in S_n\; \ni \;b^*_{r,\sigma(r)}=1,\ \forall r\in N$}
+    \State $B\gets B^*$
+    \State $\mathcal{P}(A)\gets\mathcal{P}(A)\cup\{B\}$
+    \EndIf
+
+    \State \Return
+    \EndIf
+
+    \ForAll{$\sigma_m^B\in S_n$}
+    \If{$b^*_{r,\sigma_m^B(r)}=\varepsilon,\ \forall r\in N$}
+    \For{$r=1,\ldots,n$}
+    \State $b^*_{r,\sigma_m^B(r)}\gets m$
+    \EndFor
+
+    \If{$\mathcal{U}_{\ge n+m}^{AB}=\mathcal{U}_{\ge n+m}^{BA}$}
+    \State \Call{Backtrack}{$m-1,B^*$}
+    \EndIf
+
+    \For{$r=1,\ldots,n$}
+    \State $b^*_{r,\sigma_m^B(r)}\gets\varepsilon$
+    \EndFor
+    \EndIf
+    \EndFor
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
 
 Pada algoritma tersebut, pemeriksaan dilakukan secara menurun dari level tertinggi. Pemilihan $\sigma_n^B$ berkaitan dengan level $2n$ dan dibatasi oleh syarat centralizer. Setelah $\sigma_{n-1}^B$ dipilih, level $2n-1$ sudah dapat diperiksa. Secara umum, setelah $\sigma_m^B$ dipilih, level $n+m$ sudah dapat diperiksa menggunakan kesamaan himpunan superlevel.
 

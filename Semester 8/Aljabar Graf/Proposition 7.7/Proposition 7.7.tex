@@ -1,0 +1,461 @@
+﻿\documentclass[aspectratio=169]{beamer}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usetikzlibrary{graphs, positioning, arrows.meta}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} 
+\setbeamercolor{section in toc}{fg=HIMAtua} 
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{bibliography item}{\insertbiblabel} % Dihapus/dimatikan karena style authoryear tidak pakai angka
+
+\date{\today}
+\title[Aljabar Graf]{Proposisi 7.7 Buku Norman Biggs}
+\author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Definisi Simbol dan Istilah (Misalkan $\Gamma$ Reguler)}
+  \begin{itemize}
+    \item \textbf{Graf Reguler ($\Gamma$):} Graf di mana setiap verteks memiliki derajat atau valensi yang sama.
+    \item \textbf{Valensi ($k$):} Derajat tetap yang dimiliki oleh setiap verteks pada graf $\Gamma$.
+    \item \textbf{Polinomial Karakteristik Adjacency ($\chi(\Gamma; \lambda)$):} Polinomial karakteristik dari matriks ketetanggaan (adjacency matrix), didefinisikan sebagai $\det(\lambda \mathbf{I} - \mathbf{A})$.
+    \item \textbf{Turunan Polinomial ($\chi^{(i)}$):} Menotasikan turunan ke-$i$ dari polinomial karakteristik $\chi$ terhadap variabelnya.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Definisi Simbol dan Istilah (Lanjutan)}
+  \begin{itemize}
+    \item \textbf{Polinomial Laplacian ($\tau(\Gamma; \lambda)$):} Polinomial karakteristik dari matriks Laplacian dengan tanda positif, yaitu $\tau(\Gamma; \lambda) = \det(\lambda \mathbf{I} + \mathbf{Q})$.
+    \item \textbf{Hutan (Forest - $\Phi$):} Subgraf dari $\Gamma$ yang tidak memiliki siklus.
+    \item \textbf{Fungsi $p(\Phi)$:} Banyaknya cara memilih tepat satu verteks dari setiap komponen $\Phi$. Secara matematis, jika $\Phi$ memiliki komponen $C_1, C_2, \dots, C_c$, maka $p(\Phi) = \prod_{j=1}^c |V(C_j)|$.
+    \item \textbf{Koefisien $q_{n-i}$:} Koefisien dari $\lambda^i$ pada polinomial $\tau(\Gamma; \lambda) = \sum q_j \lambda^{n-j}$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Contoh: Graf Reguler \& Valensi}
+  Tinjau Graf Lengkap dengan 3 verteks ($K_3$) yang berbentuk segitiga.
+
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \vspace{0.5cm}
+        \begin{tikzpicture}[node distance=1.5cm, every node/.style={circle, draw, thick, minimum size=0.6cm}]
+          \node (1) {1};
+          \node (2) [below left=of 1] {2};
+          \node (3) [below right=of 1] {3};
+          \draw[thick] (1) -- (2);
+          \draw[thick] (2) -- (3);
+          \draw[thick] (3) -- (1);
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item Setiap verteks memiliki derajat 2.
+        \item Karena semua verteks derajatnya sama, $K_3$ adalah \textbf{graf reguler}.
+        \item Valensinya adalah $k = 2$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Contoh: Matriks \& Polinomial Karakteristik}
+  Untuk graf $K_3$:
+
+  Matriks Ketetanggaan ($\mathbf{A}$) \& Polinomial $\chi$:
+  $$ \mathbf{A} = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix} \implies \chi(\Gamma; \lambda) = \det(\lambda \mathbf{I} - \mathbf{A}) = \lambda^3 - 3\lambda - 2 $$
+
+  Matriks Laplacian ($\mathbf{Q}$) \& Polinomial $\tau$:
+  $$ \mathbf{Q} = \Delta - \mathbf{A} = \begin{pmatrix} 2 & -1 & -1 \\ -1 & 2 & -1 \\ -1 & -1 & 2 \end{pmatrix} $$
+  $$ \tau(\Gamma; \lambda) = \det(\lambda \mathbf{I} + \mathbf{Q}) = \lambda^3 + 6\lambda^2 + 9\lambda $$
+\end{frame}
+
+\begin{frame}[fragile]{Contoh: Hutan dan Fungsi $p(\Phi)$}
+  Misalkan kita ambil subgraf dari $K_3$ yang hanya memuat \textbf{2 sisi} (misal membuang sisi 1-3).
+
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[node distance=1.5cm, every node/.style={circle, draw, thick, minimum size=0.6cm}]
+          \node (1) {1};
+          \node (2) [below left=of 1] {2};
+          \node (3) [below right=of 1] {3};
+          \draw[thick] (1) -- (2);
+          \draw[thick] (2) -- (3);
+          \draw[dashed, gray] (3) -- (1);
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item Subgraf ini tidak membentuk siklus, jadi ia adalah sebuah \textbf{Hutan} ($\Phi$).
+        \item $\Phi$ memiliki tepat \textbf{satu} komponen terhubung (sebuah lintasan $P_3$).
+        \item Komponen tersebut berisi \textbf{3 verteks}.
+        \item $p(\Phi) = |V(C_1)| = 3$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Proposisi 7.7}
+  \textbf{Pernyataan Proposisi:}\\
+  Misalkan $\Gamma$ adalah graf reguler dengan valensi $k$, dan misalkan $\chi^{(i)}$ ($0 \leqslant i \leqslant n$) menyatakan turunan ke-$i$ dari polinomial karakteristik $\Gamma$. Maka
+  $$ \chi^{(i)}(\Gamma; k) = i! \sum p(\Phi), $$
+  di mana penjumlahan dilakukan atas semua hutan (forest) $\Phi$ yang merupakan subgraf sisi dari $\Gamma$ dengan $|E\Phi| = n - i$.
+\end{frame}
+
+\begin{frame}{Detail Pembuktian: Kesetaraan $\tau(\Gamma; \lambda) = \chi(\Gamma; \lambda + k)$}
+  \textbf{Catatan:}
+
+  Untuk graf reguler dengan valensi $k$, setiap verteks memiliki derajat $k$. Maka matriks derajatnya secara diagonal bernilai $k$, disimbolkan $\Delta = k\mathbf{I}$.
+
+  \vspace{0.2cm}
+  Matriks Laplacian didefinisikan sebagai $\mathbf{Q} = \Delta - \mathbf{A}$, sehingga \textbf{$\mathbf{Q} = k\mathbf{I} - \mathbf{A}$}.
+
+  Polinomial Laplacian $\tau$ dijabarkan sebagai berikut:
+  \begin{align*}
+    \tau(\Gamma; \lambda) & = \det(\lambda \mathbf{I} + \mathbf{Q})                         \\
+                          & = \det\Big(\lambda \mathbf{I} + (k\mathbf{I} - \mathbf{A})\Big) \\
+                          & = \det\Big((\lambda + k)\mathbf{I} - \mathbf{A}\Big)
+  \end{align*}
+
+  Mengingat definisi polinomial Adjacency adalah $\chi(\Gamma; x) = \det(x\mathbf{I} - \mathbf{A})$, dengan menyubstitusikan parameter $x = \lambda + k$, terbukti secara formal:
+  $$ \tau(\Gamma; \lambda) = \chi(\Gamma; \lambda + k). $$
+\end{frame}
+
+\begin{frame}{Pembuktian Proposisi 7.7 (Langkah 1: Ekspansi Taylor)}
+  \textbf{Bukti:}
+
+  Berdasarkan Proposisi 6.6 bagian (2), untuk graf reguler dengan valensi $k$, polinomial Laplacian-nya memiliki hubungan dengan polinomial Adjacency melalui persamaan:
+  $$ \tau(\Gamma; \lambda) = \chi(\Gamma; \lambda + k). $$
+
+  Selanjutnya, kita jabarkan persamaan $\chi(\Gamma; \lambda + k)$ dengan menggunakan deret Taylor di sekitar titik (nilai) $k$:
+  $$ \chi(\Gamma; \lambda + k) = \sum_{i=0}^{n} \frac{\chi^{(i)}(\Gamma; k)}{i!} \lambda^i. $$
+\end{frame}
+
+\begin{frame}{Pembuktian Proposisi 7.7 (Langkah 2: Menyamakan Koefisien)}
+  Di sisi lain, berdasarkan bentuk standar polinomial karakteristik pembentuk Laplacian, $\tau(\Gamma; \lambda)$ dapat dituliskan sebagai sebuah deret polinomial:
+  $$ \tau(\Gamma; \lambda) = \det(\lambda \mathbf{I} + \mathbf{Q}) = \sum_{i=0}^{n} q_{n-i} \lambda^i. $$
+
+  Oleh karena itu, jika kita membandingkan masing-masing koefisien untuk basis $\lambda^i$ dari hasil ekspansi Taylor dengan bentuk standar ini, kita mendapatkan relasi yang setara:
+  $$ q_{n-i} = \frac{\chi^{(i)}(\Gamma; k)}{i!} \implies \chi^{(i)}(\Gamma; k) = i! \cdot q_{n-i} $$
+\end{frame}
+
+\begin{frame}{Pembuktian Proposisi 7.7 (Langkah 3: Menggunakan Teorema 7.5)}
+  Dari rumusan \textbf{Teorema 7.5}, kita telah mengetahui formula untuk mencari koefisien pada suatu polinomial Laplacian bernilai positif, yaitu:
+  $$ q_j = \sum p(\Phi) \quad (\text{untuk subgraf hutan } \Phi \text{ dengan banyak sisi } j). $$
+
+  Maka untuk perhitungan mencari koefisien $q_{n-i}$, penjumlahannya dilakukan atas semua subgraf hutan $\Phi$ yang memiliki tepat \textbf{$n-i$ sisi}:
+  $$ q_{n-i} = \sum_{|E\Phi| = n-i} p(\Phi). $$
+
+  Substitusikan fakta ini ke relasi turunan pada langkah sebelumnya, didapatlah:
+  $$ \chi^{(i)}(\Gamma; k) = i! \sum_{|E\Phi| = n-i} p(\Phi). \quad \qed $$
+\end{frame}
+
+\begin{frame}[fragile]{Peninjauan Proposisi 7.7 pada Graf Lengkap $K_4$}
+  Kita meninjau Proposisi 7.7 berdasarkan setiap koefisien $q_j$ (koefisien untuk suku $\lambda^{n-j}$ dari polinomial $\tau$). Hutan yang kita amati adalah $\Phi$ dengan ukuran $j$ sisi.
+  Relasinya: $\frac{\chi^{(n-j)}(\Gamma; k)}{(n-j)!} = q_j$.
+
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \vspace{0.3cm}
+        \begin{tikzpicture}[node distance=2.5cm, every node/.style={circle, draw, thick, minimum size=0.8cm}]
+          \node (1) {1};
+          \node (2) [right=of 1] {2};
+          \node (4) [below=of 1] {4};
+          \node (3) [right=of 4] {3};
+
+          \draw[thick] (1) -- (2);
+          \draw[thick] (2) -- (3);
+          \draw[thick] (3) -- (4);
+          \draw[thick] (4) -- (1);
+          \draw[thick] (1) -- (3);
+          \draw[thick] (2) -- (4);
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      Graf $K_4$ ($n=4$, reguler bernilai valensi $k=3$).\\
+      $\chi(\lambda) = \lambda^4 - 6\lambda^2 - 8\lambda - 3$.
+
+      Pembagian turunan dinilai pada titik $k=3$:
+      \begin{itemize}
+        \item $\chi^{(4)}(3) / 4! = 24 / 24 = 1$ (Cocok uji basis koef. $q_0$)
+        \item $\chi^{(3)}(3) / 3! = 72 / 6 = 12$ (Cocok uji basis koef. $q_1$)
+        \item $\chi^{(2)}(3) / 2! = 96 / 2 = 48$ (Cocok uji basis koef. $q_2$)
+        \item $\chi^{(1)}(3) / 1! = 64 / 1 = 64$ (Cocok uji basis koef. $q_3$)
+        \item $\chi^{(0)}(3) / 0! = 0 / 1 = 0$ (Cocok uji basis koef. $q_4$)
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi Koefisien $q_1$ (Hutan dengan 1 Sisi, $\implies j = 1$)}
+  Relasi yang ditinjau: $\chi^{(3)}(3) / 3! = q_1$.
+  Terdapat 6 kemungkinan subgraf $\Phi$ dengan 1 sisi. Nilai komponen setiap sisinya adalah (2 verteks) beserta 2 verteks lain terisolasi. $p(\Phi) = 2 \times 1 \times 1 = 2$.
+  Maka $q_1 = 6 \times 2 = \mathbf{12}$.
+
+  Berikut \textbf{tiga} contoh dari 6 kemungkinan $\Phi$ tersebut:
+
+  \vspace{0.4cm}
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=1.1, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.8cm, fill=white},
+        fedge/.style={draw=black, very thick},
+        gedge/.style={draw=gray!40, thick, dashed}
+      ]
+      % Contoh 1
+      \begin{scope}[shift={(0,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (2)--(3) (3)--(4) (4)--(1) (1)--(3) (2)--(4);
+        \draw[fedge] (1) -- (2);
+      \end{scope}
+
+      % Contoh 2
+      \begin{scope}[shift={(4.5,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (1)--(2) (2)--(3) (4)--(1) (1)--(3) (2)--(4);
+        \draw[fedge] (3) -- (4);
+      \end{scope}
+
+      % Contoh 3
+      \begin{scope}[shift={(9,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (1)--(2) (3)--(4) (4)--(1) (1)--(3) (2)--(4);
+        \draw[fedge] (2) -- (3);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi Koefisien $q_2$ (Hutan dengan 2 Sisi, $\implies j = 2$)}
+  Relasi yang ditinjau: $\chi^{(2)}(3) / 2! = q_2$. Terdapat 2 kategori untuk jenis hutan 2 sisi:
+
+  \textbf{Kasus A: $P_3$ (Sisi Sambung)} (Total = $12 \times 3 = 36$)
+  \vspace{-0.1cm}
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=0.9, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.7cm, fill=white},
+        fedge/.style={draw=black, very thick},
+        gedge/.style={draw=gray!40, thick, dashed}
+      ]
+      \begin{scope}[shift={(0,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (3)--(4) (4)--(1) (1)--(3) (2)--(4);
+        \draw[fedge] (1)--(2) (2)--(3);
+      \end{scope}
+      \begin{scope}[shift={(3.5,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (1)--(2) (2)--(3) (1)--(3) (2)--(4);
+        \draw[fedge] (3)--(4) (4)--(1);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+
+  \textbf{Kasus B: Matching (Sisi Pisah)} (Total = $3 \times 4 = 12$)
+  \vspace{-0.1cm}
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=0.9, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.7cm, fill=white},
+        fedge/.style={draw=black, very thick},
+        gedge/.style={draw=gray!40, thick, dashed}
+      ]
+      \begin{scope}[shift={(0,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (2)--(3) (4)--(1) (1)--(3) (2)--(4);
+        \draw[fedge] (1)--(2) (3)--(4);
+      \end{scope}
+      \begin{scope}[shift={(3.5,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (1)--(2) (3)--(4) (2)--(3) (4)--(1);
+        \draw[fedge] (1)--(3) (2)--(4);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  Total keseluruhan $q_2 = 36 + 12 = \mathbf{48}$. Cocok dengan $\chi^{(2)}(3)/2! = 96/2 = \mathbf{48}$.
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi Koefisien $q_3$ (Hutan dengan 3 Sisi, $\implies j = 3$)}
+  Relasi yang ditinjau: $\chi^{(1)}(3) / 1! = q_3$.
+  Hutan dengan 3 sisi pada $K_4$ adalah \textbf{Spanning Tree}. Ada 16 subgraf \textit{spanning tree}.
+  Untuk tiap \textit{spanning tree}, $p(\Phi) = 4$, sehingga $q_3 = 16 \times 4 = \mathbf{64}$.
+
+  Berikut \textbf{dua} contoh dari 16 kemungkinan \textit{spanning tree}:
+
+  \vspace{0.4cm}
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=1.3, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.4cm, fill=white},
+        fedge/.style={draw=black, very thick},
+        gedge/.style={draw=gray!40, thick, dashed}
+      ]
+      % Contoh 1
+      \begin{scope}[shift={(0,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (2)--(3) (3)--(4) (1)--(2);
+        \draw[fedge] (4)--(1) (1)--(3) (2)--(4);
+      \end{scope}
+
+      % Contoh 2
+      \begin{scope}[shift={(4,0)}]
+        \node[vnode] (1) at (0, 2) {1}; \node[vnode] (2) at (2, 2) {2};
+        \node[vnode] (4) at (0, 0) {4}; \node[vnode] (3) at (2, 0) {3};
+        \draw[gedge] (1)--(3) (2)--(4) (1)--(2);
+        \draw[fedge] (4)--(1) (4)--(3) (2)--(3);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Evaluasi Koefisien Ekstrem: $q_0$ dan $q_4$}
+  \textbf{Saat $j=0$ (Hutan 0 Sisi / Graf Kosong): $\implies \chi^{(4)}(3) / 4! = q_0$}
+  Kumpulan 4 verteks individual isolasi.  $p(\Phi) = 1 \times (1^4) = 1$. Total $q_0 = \mathbf{1}$.
+  Cocok dengan turunan yang nilainya: $24 / 24 = \mathbf{1}$.
+
+  \vspace{0.4cm}
+  \textbf{Saat $j=4$ (Hutan 4 Sisi): $\implies \chi^{(0)}(3) / 0! = q_4$}
+  Berdasarkan jumlah verteks, tidak ada subgraf pohon/hutan $n=4$ yang memiliki 4 sisi. $q_4 = \mathbf{0}$.
+  Cocok dengan polinom asalnya yaitu $\chi^{(0)}(3) = 0 / 1 = \mathbf{0}$.
+
+\end{frame}
+
+\begin{frame}[fragile]{Contoh Penerapan Teorema pada Graf Lengkap $K_5$}
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \vspace{0.2cm}
+        \begin{tikzpicture}[scale=0.9, every node/.style={circle, draw, thick, minimum size=0.3cm, inner sep=0pt}]
+          \foreach \i in {1,2,3,4,5} {
+              \node (\i) at ({90-72*(\i-1)}:1.5cm) {};
+            }
+          \foreach \i in {1,...,4} {
+              \pgfmathtruncatemacro{\next}{\i+1}
+              \foreach \j in {\next,...,5} {
+                  \draw[thick] (\i) -- (\j);
+                }
+            }
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      Graf Lengkap $K_5$ ($n=5$, valensi $k=4$, jumlah total sisi = 10).\\
+      Polinomial $\chi(\lambda) = (\lambda-4)(\lambda+1)^4$.
+
+      \vspace{0.3cm}
+      Tinjau saat $i=4$, subgraf hutan dengan $5-4 = \textbf{1 sisi}$.
+      \begin{itemize}
+        \item Ada 10 kombinasi mengambil 1 sisi dari $K_5$.
+        \item Tiap subgrafnya memiliki komponen: 1 sisi utuh (ukuran 2) dan 3 titik terisolasi.
+        \item $\sum p(\Phi) = 10 \times (2 \times 1 \times 1 \times 1) = 20$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.3cm}
+  Berdasarkan nilai turunan analitik polinomialnya:
+  $$ \chi^{(4)}(K_5; 4) = 4! \times 20 = 24 \times 20 = 480$$
+\end{frame}
+
+\begin{frame}[fragile]{Contoh Penerapan pada Graf Petersen ($\mathcal{P}$)}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=1.8, every node/.style={circle, fill=black, draw=black, thick, minimum size=0.15cm, inner sep=0pt}]
+          % Lingkaran luar
+          \node (o1) at (90:1cm) {};
+          \node (o2) at (18:1cm) {};
+          \node (o3) at (306:1cm) {};
+          \node (o4) at (234:1cm) {};
+          \node (o5) at (162:1cm) {};
+
+          % Bintang dalam
+          \node (i1) at (90:0.5cm) {};
+          \node (i2) at (18:0.5cm) {};
+          \node (i3) at (306:0.5cm) {};
+          \node (i4) at (234:0.5cm) {};
+          \node (i5) at (162:0.5cm) {};
+
+          % Explicitly draw outer pentagon
+          \draw[thick] (o1) -- (o2);
+          \draw[thick] (o2) -- (o3);
+          \draw[thick] (o3) -- (o4);
+          \draw[thick] (o4) -- (o5);
+          \draw[thick] (o5) -- (o1);
+
+          % Explicitly draw inner pentagram
+          \draw[thick] (i1) -- (i3);
+          \draw[thick] (i3) -- (i5);
+          \draw[thick] (i5) -- (i2);
+          \draw[thick] (i2) -- (i4);
+          \draw[thick] (i4) -- (i1);
+
+          % Explicitly draw connections
+          \draw[thick] (o1) -- (i1);
+          \draw[thick] (o2) -- (i2);
+          \draw[thick] (o3) -- (i3);
+          \draw[thick] (o4) -- (i4);
+          \draw[thick] (o5) -- (i5);
+        \end{tikzpicture}
+        \vspace{0.2cm}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      Graf Petersen $\mathcal{P}$ ($n=10$, valensi $k=3$, sisi = 15).\\
+      \small{$\chi(\lambda) = (\lambda-3)(\lambda-1)^5(\lambda+2)^4$.}
+
+      \vspace{0.2cm}
+      Tinjau saat $i=9$, subgraf hutan dgn $10-9 = \textbf{1 sisi}$.
+      \begin{itemize}
+        \item Ada 15 kombinasi mengambil 1 sisi.
+        \item Tiap subgrafnya memiliki komponen: 1 sisi (ukuran 2) dan 8 titik terisolasi.
+        \item $\sum p(\Phi) = 15 \times (2 \cdot 1^8) = 15 \times 2 = 30$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.2cm}
+  Secara analitik, tanpa perlu mendata manual yang rumit, kita dijamin mendapat nilai turunannya yaitu:
+  $$ \chi^{(9)}(\mathcal{P}; 3) = 9! \times 30 = 362.880 \times 30 = \mathbf{10.886.400} $$
+\end{frame}
+
+\end{document}
