@@ -1,0 +1,266 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{arrows.meta, 3d}
+  \geometry{
+    left = 10mm,
+    right = 10mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI AKHIR SEMESTER - SEMESTER GENAP 2024/2025} \\
+  \textbf{DEPARTEMEN MATEMATIKA - FSAD ITS} \\
+  \vspace{0.3cm}
+  \begin{tabular}{l l p{8.1cm}}
+    Mata kuliah / Kode & : & Analisis Vektor / SM 234405                     \\
+    Hari / Tanggal     & : & Kamis, 26 Juni 2025                             \\
+    Sifat / waktu      & : & Tutup Buku / 100 menit                          \\
+    Dosen              & : & 1. Dra. Nur Asiyah, M.Si. (A)                   \\
+                       &   & 2. Prof. Drs. Basuki Widodo, M.Sc, Ph.D (B)     \\
+                       &   & 3. Dr. Helisyah Nur Fadhilah, S.Si., M.Mat. (C) \\
+                       &   & 4. Drs. Kamiran, M.Si (D)
+  \end{tabular}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \includegraphics[width=1.8cm]{M.png}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent \textbf{HARAP DIPERHATIKAN !!!} \\
+\textit{SEGALA JENIS PELANGGARAN (MENCONTEK, KERJASAMA, DSB) YANG DILAKUKAN SAAT ETS/EAS AKAN DIKENAKAN SANKSI PEMBATALAN MATA KULIAH PADA SEMESTER YANG SEDANG BERJALAN.}
+
+\vspace{0.5cm}
+
+\begin{center}
+  \begin{tabular}{|c|p{10.5cm}|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{CPMK}} & \multirow{2}{*}{\textbf{EAS mengukur kemampuan}}                                                                                                                                                                                                                                                                  & \multirow{2}{*}{\textbf{\begin{tabular}{c} Bobot CPMK \\ (\%) \end{tabular}}} & \multicolumn{4}{c|}{\textbf{CPL}}                                              \\ \cline{4-7}
+                                   &                                                                                                                                                                                                                                                                                                                   &                                                                               & \textbf{4}                        & \textbf{5}   & \textbf{8}   & \textbf{9}   \\ \hline
+    \textbf{3}                     & Mahasiswa mampu menjelaskan Gradien, Divergensi, dan Curl dan dapat menerapkan dalam menyelesaikan integral Garis                                                                                                                                                                                                 & \textbf{8 \%}                                                                 & $\checkmark$                      & $\checkmark$ &              &              \\ \hline
+    \textbf{4}                     & Mahasiswa mampu menerapkan Teorema Green dalam rangka menghitung Usaha untuk lintasan tertutup di bidang $xy$, Teorema Stokes menghitung Flux atas suatu permukaan pada ruang R$^3$, dan Teorema Gauss untuk integral permukaan dari komponen normal suatu vektor $\vec{F}$ meliputi suatu permukaan tertutup $S$ & \textbf{17 \%}                                                                & $\checkmark$                      & $\checkmark$ & $\checkmark$ & $\checkmark$ \\ \hline
+  \end{tabular}
+\end{center}
+
+\noindent EAS Mengukur Capaian Pembelajaran Mata Kuliah Kalkulus Vektor ini, yaitu:
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{Soal nomor}}            & \multirow{2}{*}{\textbf{Bobot Soal (\%)}} & \multicolumn{2}{c|}{\textbf{Bobot CPMK}}                   \\ \cline{3-4}
+                                                    &                                           & \textbf{CPMK 3}                          & \textbf{CPMK 4} \\ \hline
+    \textbf{1}                                      & \textbf{25}                               & \textbf{5}                               &                 \\ \hline
+    \textbf{2}                                      & \textbf{25}                               &                                          & \textbf{5}      \\ \hline
+    \textbf{3}                                      & \textbf{25}                               & \textbf{3}                               & \textbf{5}      \\ \hline
+    \textbf{4}                                      & \textbf{25}                               &                                          & \textbf{7}      \\ \hline
+    \multicolumn{2}{|l|}{\textbf{TOTAL BOBOT CPMK}} & \textbf{8}                                & \textbf{17}                                                \\ \hline
+  \end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\begin{enumerate}
+  \item Tunjukkan bahwa $\mathbf{F} = (2xy + z^3)\mathbf{i} + x^2\mathbf{j} + 3xz^2\mathbf{k}$ adalah suatu medan yang konservatif dan tentukanlah kerja yang dilakukan untuk menggerakkan sebuah partikel di medan ini dari $(1, -2, 1)$ ke $(3, 1, 4)$.
+
+  \item Jika Gaya sebesar $\mathbf{F} = y^2\mathbf{i} + 3xy\mathbf{j}$ bekerja pada lintasan tertutup $C$ yang dibatasi oleh dua kurva $x^2 + y^2 = 1$ dan $x^2 + y^2 = 9$ pada sumbu $y$ positif.
+        \begin{enumerate}[label=\alph*.]
+          \item Gambarkan Grafik lintasan kurva $C$ tersebut.
+          \item Hitung Usaha tersebut dengan perhitungan langsung.
+          \item Hitung Usaha tersebut dengan Teorema Green.
+        \end{enumerate}
+
+  \item Hitunglah $\oint_C \mathbf{A} \cdot d\mathbf{r}$ dimana $\mathbf{A} = (2x - y)\mathbf{i} - (yz^2)\mathbf{j} - (y^2z)\mathbf{k}$ dengan $S$ adalah permukaan setengah bola $x^2 + y^2 + z^2 = 1$, bagian atas dan $C$ adalah batasnya.
+
+  \item Diketahui vektor gaya $\mathbf{A} = (z^2 - x)\mathbf{i} - xy\mathbf{j} + 3z\mathbf{k}$ dan volume benda yang dibatasi oleh permukaan $z = 4 - y^2$, $x = 0$, $x = 3$ dan $z = 0$.
+        \begin{enumerate}[label=\alph*)]
+          \item Sketsa permukaan yang membatasi volume benda tersebut
+          \item Hitunglah $\iint_S \mathbf{A} \cdot \mathbf{n} \, dS$, dengan $S$ adalah permukaan point (a).
+        \end{enumerate}
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{center}
+  \textbf{\~{} Selamat Mengerjakan \~{}}
+\end{center}
+
+\newpage
+\begin{center}
+    \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+    \item \textbf{Solusi:}
+    Untuk menunjukkan bahwa medan vektor $\mathbf{F} = (2xy + z^3)\mathbf{i} + x^2\mathbf{j} + 3xz^2\mathbf{k}$ adalah medan konservatif, kita perlu menunjukkan bahwa $\curl \mathbf{F} = \mathbf{0}$.
+    \begin{flalign*}
+        \curl \mathbf{F} &= \begin{vmatrix}
+            \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+            \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+            2xy+z^3 & x^2 & 3xz^2
+        \end{vmatrix} & \\
+        &= \mathbf{i}\left( \frac{\partial}{\partial y}(3xz^2) - \frac{\partial}{\partial z}(x^2) \right) - \mathbf{j}\left( \frac{\partial}{\partial x}(3xz^2) - \frac{\partial}{\partial z}(2xy+z^3) \right) + \mathbf{k}\left( \frac{\partial}{\partial x}(x^2) - \frac{\partial}{\partial y}(2xy+z^3) \right) & \\
+        &= \mathbf{i}(0 - 0) - \mathbf{j}(3z^2 - 3z^2) + \mathbf{k}(2x - 2x) = \mathbf{0}
+    \end{flalign*}
+    Karena $\curl \mathbf{F} = \mathbf{0}$, maka terbukti $\mathbf{F}$ adalah medan konservatif.
+    
+    Selanjutnya, mencari fungsi potensial $f(x,y,z)$ sehingga $\grad f = \mathbf{F}$:
+    \begin{flalign*}
+        \frac{\partial f}{\partial x} &= 2xy + z^3 \implies f(x,y,z) = x^2y + xz^3 + g(y,z) & \\
+        \frac{\partial f}{\partial y} &= x^2 \implies \frac{\partial}{\partial y}(x^2y + xz^3 + g(y,z)) = x^2 \implies \frac{\partial g}{\partial y} = 0 \implies g(y,z) = h(z) & \\
+        \frac{\partial f}{\partial z} &= 3xz^2 \implies \frac{\partial}{\partial z}(x^2y + xz^3 + h(z)) = 3xz^2 \implies h'(z) = 0 \implies h(z) = C &
+    \end{flalign*}
+    Jadi didapatkan $f(x,y,z) = x^2y + xz^3 + C$.
+    
+    \noindent Kerja yang dilakukan dari titik $(1,-2,1)$ ke $(3,1,4)$ adalah:
+    \[ W = \int_{(1,-2,1)}^{(3,1,4)} \mathbf{F} \cdot d\mathbf{r} = f(3,1,4) - f(1,-2,1) \]
+    \[ W = [ (3)^2(1) + (3)(4)^3 ] - [ (1)^2(-2) + (1)(1)^3 ] = [ 9 + 192 ] - [ -2 + 1 ] = 201 - (-1) = \mathbf{202} \]
+    
+    \item \textbf{Solusi:} \ \vspace{0.2cm}\\
+    \begin{enumerate}[label=\alph*.]
+        \item Sketsa kurva lintasan $C$:
+        \begin{center}
+            \tdplotsetmaincoords{60}{110}
+            \begin{tikzpicture}[tdplot_main_coords, scale=0.8]
+                \draw[-Latex] (0,-4,0) -- (0,4,0) node[right] {$y$};
+                \draw[-Latex] (0,0,-1) -- (0,0,3) node[above] {$z$};
+                \draw[-Latex] (-4,0,0) -- (4,0,0) node[left] {$x$};
+                
+                \draw[thick, blue, fill=yellow, fill opacity=0.3] 
+                    (1,0,0) -- (3,0,0) 
+                    plot[domain=0:180,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0)
+                    -- (-1,0,0) 
+                    plot[domain=180:0,smooth,variable=\t] ({cos(\t)},{sin(\t)},0)
+                    -- cycle;
+                
+                \draw[blue,thick,-Latex] plot[domain=0:45,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0);
+                \draw[blue,thick,-Latex] plot[domain=180:135,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
+                \draw[blue,thick,-Latex] (1,0,0) -- (2,0,0);
+                \draw[blue,thick,-Latex] (-3,0,0) -- (-2,0,0);
+                
+                \node at (2,1.5,0) {$C$};
+                \node at (1,-0.3,0) {$1$};
+                \node at (3,-0.3,0) {$3$};
+                \node at (-1,-0.3,0) {$-1$};
+                \node at (-3,-0.3,0) {$-3$};
+            \end{tikzpicture}
+        \end{center}
+        \vspace{0.2cm}
+
+        \item Hitung Usaha dengan perhitungan langsung:\\
+        Lintasan $C$ terdiri dari 4 segmen ($C_1, C_2, C_3, C_4$):
+        \begin{itemize}
+            \item $C_1$: Garis dari $(1,0)$ ke $(3,0)$. $y = 0 \implies dy = 0$. $\int_{C_1} y^2 dx + 3xy dy = \int_1^3 0 \, dx = 0$.
+            \item $C_2$: Busur $x^2+y^2=9$ dari $(3,0)$ ke $(-3,0)$. $x=3\cos t, y=3\sin t$ untuk $t \in [0, \pi]$.
+            \begin{flalign*}
+                \int_{C_2} \mathbf{F} \cdot d\mathbf{r} &= \int_0^\pi \left[ (9\sin^2 t)(-3\sin t) + 3(3\cos t)(3\sin t)(3\cos t) \right] dt & \\
+                &= \int_0^\pi (-27\sin^3 t + 81\cos^2 t \sin t) dt = \int_0^\pi \sin t (81\cos^2 t - 27(1-\cos^2 t)) dt & \\
+                &= \int_0^\pi \sin t (108\cos^2 t - 27) dt = \left[ -36\cos^3 t + 27\cos t \right]_0^\pi = (36 - 27) - (-36 + 27) = 18 &
+            \end{flalign*}
+            \item $C_3$: Garis dari $(-3,0)$ ke $(-1,0)$. $y = 0 \implies dy = 0$. $\int_{C_3} \mathbf{F} \cdot d\mathbf{r} = 0$.
+            \item $C_4$: Busur $x^2+y^2=1$ dari $(-1,0)$ ke $(1,0)$. $x=\cos t, y=\sin t$ untuk $t \in [\pi, 0]$.
+            \begin{flalign*}
+                \int_{C_4} \mathbf{F} \cdot d\mathbf{r} &= \int_\pi^0 \left[ (\sin^2 t)(-\sin t) + 3\cos t \sin t \cos t \right] dt = \int_\pi^0 (- \sin^3 t + 3\cos^2 t \sin t) dt & \\
+                &= \int_\pi^0 \sin t (4\cos^2 t - 1) dt = \left[ -\frac{4}{3}\cos^3 t + \cos t \right]_\pi^0 = \left( -\frac{4}{3} + 1 \right) - \left( \frac{4}{3} - 1 \right) = -\frac{2}{3} &
+            \end{flalign*}
+        \end{itemize}
+        Total Usaha $W = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4} = 0 + 18 + 0 - \frac{2}{3} = \mathbf{\frac{52}{3}}$.
+        \vspace{0.2cm}
+
+        \item Hitung Usaha dengan Teorema Green:\\
+        $P = y^2, Q = 3xy \implies \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 3y - 2y = y$.
+        Dengan $D$ adalah daerah $1 \le r \le 3$, $0 \le \theta \le \pi$.
+        \begin{flalign*}
+            W &= \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA = \int_0^\pi \int_1^3 (r\sin\theta) r \, dr \, d\theta & \\
+            &= \left( \int_0^\pi \sin\theta \, d\theta \right) \left( \int_1^3 r^2 dr \right) = \left[ -\cos\theta \right]_0^\pi \left[ \frac{1}{3}r^3 \right]_1^3 = (2) \left( \frac{27 - 1}{3} \right) = \mathbf{\frac{52}{3}} &
+        \end{flalign*}
+    \end{enumerate}
+
+    \item \textbf{Solusi:} \ \vspace{0.2cm}\\
+    Gunakan Teorema Stokes: $\oint_C \mathbf{A} \cdot d\mathbf{r} = \iint_S (\curl \mathbf{A}) \cdot \mathbf{n} \, dS$.
+    \begin{flalign*}
+        \curl \mathbf{A} &= \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 2x-y & -yz^2 & -y^2z \end{vmatrix}
+        = \mathbf{i}(-2yz - (-2yz)) - \mathbf{j}(0 - 0) + \mathbf{k}(0 - (-1)) = \mathbf{k} &
+    \end{flalign*}
+    Berdasarkan Teorema Stokes, kita dapat mengganti permukaan setengah bola dengan permukaan datar sirkular $S'$ (lingkaran $x^2+y^2 \le 1$ pada $z=0$) karena kurva batas cincin $C$ di antara keduanya sama persis.
+    Normal arah atas untuk luasan $S'$ di bidang $xy$ tegak lurus ke atas adalah $\mathbf{n} = \mathbf{k}$.
+    \begin{flalign*}
+        \oint_C \mathbf{A} \cdot d\mathbf{r} &= \iint_{S'} (\mathbf{k}) \cdot \mathbf{k} \, dxdy = \iint_{S'} 1 \, dxdy = \text{Luas Lingkaran } S' = \pi(1)^2 = \mathbf{\pi} &
+    \end{flalign*}
+    Sketsa 3D:
+    \begin{center}
+        \tdplotsetmaincoords{70}{110}
+        \begin{tikzpicture}[tdplot_main_coords, scale=1.5]
+            \draw[-Latex] (-1.5,0,0) -- (1.5,0,0) node[left] {$x$};
+            \draw[-Latex] (0,-1.5,0) -- (0,1.5,0) node[right] {$y$};
+            \draw[-Latex] (0,0,-0.5) -- (0,0,1.5) node[above] {$z$};
+            
+            \draw[thick, blue, fill=gray, opacity=0.2] plot[domain=0:360,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
+            \draw[thick, blue, -Latex] plot[domain=0:45,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
+            \draw[thick, blue] plot[domain=45:360,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
+            \node[blue, right] at (0.7,0.7,0) {$C$};
+            
+            \foreach \ang in {0,20,...,180}{
+                \draw[cyan, opacity=0.3] plot[domain=0:180,smooth,variable=\t] ({cos(\ang)*sin(\t)},{sin(\ang)*sin(\t)},{cos(\t)});
+            }
+        \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Solusi:} \ \vspace{0.2cm}
+    \begin{enumerate}[label=\alph*)]
+        \item Sketsa permukaan:
+        \begin{center}
+            \tdplotsetmaincoords{70}{110}
+            \begin{tikzpicture}[tdplot_main_coords, scale=0.7]
+                \draw[-Latex] (-1,0,0) -- (4,0,0) node[below] {$x$};
+                \draw[-Latex] (0,-3,0) -- (0,3,0) node[right] {$y$};
+                \draw[-Latex] (0,0,-1) -- (0,0,5) node[above] {$z$};
+                
+                \draw[blue, thick, fill=blue!10, fill opacity=0.5] plot[domain=-2:2,smooth,variable=\t] (0,{\t},{4-\t*\t}) -- cycle;
+                \draw[blue, thick, fill=blue!10, fill opacity=0.5] plot[domain=-2:2,smooth,variable=\t] (3,{\t},{4-\t*\t}) -- cycle;
+                
+                \draw[blue, thick] (0,-2,0) -- (3,-2,0);
+                \draw[blue, thick] (0,2,0) -- (3,2,0);
+                \draw[blue, thick] (0,0,4) -- (3,0,4);
+                
+                \foreach \y in {-1.5,-1,...,1.5}{
+                    \draw[cyan, opacity=0.5] (0,\y,{4-\y*\y}) -- (3,\y,{4-\y*\y});
+                }
+            \end{tikzpicture}
+        \end{center}
+
+        \item Hitung $\iint_S \mathbf{A} \cdot \mathbf{n} \, dS$ menggunakan Teorema Divergensi Gauss:\\
+        Divergensi dari $\mathbf{A} = (z^2 - x)\mathbf{i} - xy\mathbf{j} + 3z\mathbf{k}$ adalah:
+        \[ \divergence \mathbf{A} = \frac{\partial}{\partial x}(z^2-x) + \frac{\partial}{\partial y}(-xy) + \frac{\partial}{\partial z}(3z) = -1 - x + 3 = 2 - x \]
+        Volume $V$ dibatasi oleh $0 \le x \le 3$, $0 \le z \le 4 - y^2 \implies -2 \le y \le 2$.
+        \begin{flalign*}
+            \iint_S \mathbf{A} \cdot \mathbf{n} \, dS &= \iiint_V \divergence \mathbf{A} \, dV = \int_0^3 \int_{-2}^2 \int_0^{4-y^2} (2-x) dz\,dy\,dx & \\
+            &= \int_0^3 (2-x) dx \int_{-2}^2 (4-y^2) dy = \left[ 2x - \frac{1}{2}x^2 \right]_0^3 \left[ 4y - \frac{1}{3}y^3 \right]_{-2}^2 & \\
+            &= \left( 6 - \frac{9}{2} \right) \left[ \left( 8 - \frac{8}{3} \right) - \left( -8 + \frac{8}{3} \right) \right] = \left( \frac{3}{2} \right) \left( 16 - \frac{16}{3} \right) = \left( \frac{3}{2} \right) \left( \frac{32}{3} \right) = \mathbf{16} &
+        \end{flalign*}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

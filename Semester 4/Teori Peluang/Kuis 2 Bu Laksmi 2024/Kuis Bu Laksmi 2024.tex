@@ -1,0 +1,351 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2cm]{geometry}
+
+\begin{document}
+
+\begin{center}
+  \Large Quis 2 Teori Peluang
+\end{center}
+
+\section*{Soal}
+\begin{enumerate}
+  \item Apakah peubah acak/variabel random? Jelaskan dan beri contoh.
+
+  \item Misalkan diketahui peubah acak dengan pdf
+        \[
+          f(x) = \begin{cases}
+            c(8-x), & x = 0, 1, 2, 3, 4, 5. \\
+            0,      & x \text{ yang lain}
+          \end{cases}
+        \]
+        \begin{enumerate}
+          \item Dapatkan nilai $c$.
+          \item Dapatkan CDF dari $x$.
+          \item Dapatkan $P(x>2)$ dan $E(x+1)$.
+        \end{enumerate}
+
+  \item Diketahui $X$ peubah acak yang mempunyai pdf
+        $f(x) = \frac{2x}{9}, 0 < x < 3$ dan bernilai nol untuk $x$ yang lain. Dapatkan:
+        \begin{enumerate}
+          \item CDF $F(x)$.
+          \item Dapatkan $P(-1 \le x < 1.5)$.
+          \item Dapatkan percentile ke 50. (median)
+        \end{enumerate}
+
+  \item Diketahui pdf suatu variabel random adalah $f(x) = \frac{1}{\theta} e^{-\frac{x}{\theta}}, x > 0, \theta > 0$ dan bernilai nol untuk $x$ yang lain.
+        \begin{enumerate}
+          \item Dapatkan MGF, $M_X(t)$
+          \item Dengan menggunakan (a) dapatkan $E(x), E(x^2)$ dan $Var(x)$.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+\section*{Solusi}
+
+\begin{enumerate}
+  \item Berdasarkan definisi matematis:
+
+        Definisi Sederhana:
+        Suatu variabel acak, katakan $X$, adalah fungsi bernilai real yang didefinisikan atas ruang sampel $S$, yakni $X : S \to \mathbb{R}$.
+
+        Definisi Lengkap:
+        Jika $\mathcal{F}$ sigma-aljabar atas ruang sampel $S$, maka fungsi $X : S \to \mathbb{R}$ dikatakan $\mathcal{F}$-terukur jika
+        \[\{X \in B\} \in \mathcal{F}\]
+        untuk setiap himpunan Borel $B \in \mathcal{B}(\mathbb{R})$. Jika $(S, \mathcal{F}, P)$ ruang peluang, maka fungsi $X$ disebut variabel acak.
+
+        Contoh: \\
+        Pada percobaan pelemparan sebuah dadu homogen bersisi enam. Ruang sampelnya adalah $S = \{1, 2, 3, 4, 5, 6\}$, dan kita asumsikan ruang peluang $(S, \mathcal{P}(S), P)$. Jika didefinisikan $X$ sebagai peubah acak yang menyatakan angka yang muncul di sisi atas dadu, maka fungsional pemetaan $X(\omega) = \omega$ untuk $\omega \in S$ merupakan variabel acak (memetakan le elemen di $S$ ke $\mathbb{R}$).
+
+  \item \begin{enumerate}
+          \item Nilai $c$: \\
+                Karena $f(x)$ adalah probability mass function (pmf), maka total peluang pada semua nilai $x$ yang mungkin harus sama dengan 1.
+                \begin{align*}
+                  \sum_{x=0}^{5} f(x)                                 & = 1                           \\
+                  c(8-0) + c(8-1) + c(8-2) + c(8-3) + c(8-4) + c(8-5) & = 1                           \\
+                  c(8) + c(7) + c(6) + c(5) + c(4) + c(3)             & = 1                           \\
+                  c(8+7+6+5+4+3)                                      & = 1                           \\
+                  33c                                                 & = 1 \implies c = \frac{1}{33}
+                \end{align*}
+
+          \item CDF dari $X$, dinotasikan $F(x) = P(X \le x)$: \\
+                Pertama, kita hitung peluang untuk tiap nilai $x$: \\
+                $f(0)=\frac{8}{33}$, $f(1)=\frac{7}{33}$, $f(2)=\frac{6}{33}$, $f(3)=\frac{5}{33}$, $f(4)=\frac{4}{33}$, $f(5)=\frac{3}{33}$. \\
+                CDF-nya adalah penjumlahan probabilitas kumulatif:
+                \[
+                  F(x) = \begin{cases}
+                    0,             & x < 0       \\
+                    \frac{8}{33},  & 0 \le x < 1 \\
+                    \frac{15}{33}, & 1 \le x < 2 \\
+                    \frac{21}{33}, & 2 \le x < 3 \\
+                    \frac{26}{33}, & 3 \le x < 4 \\
+                    \frac{30}{33}, & 4 \le x < 5 \\
+                    1,             & x \ge 5
+                  \end{cases}
+                \]
+
+          \item Dapatkan $P(X>2)$ dan $E(X+1)$: \\
+                Peluang $P(X>2)$:
+                \begin{align*}
+                  P(X>2) & = 1 - P(X \le 2) = 1 - F(2)                        \\
+                         & = 1 - \frac{21}{33} = \frac{12}{33} = \frac{4}{11}
+                \end{align*}
+                Sedangkan untuk nilai ekspektasi $E(X)$:
+                \begin{align*}
+                  E(X) & = \sum_{x=0}^{5} x \cdot f(x)                                                                                                                                                 \\
+                       & = 0\left(\frac{8}{33}\right) + 1\left(\frac{7}{33}\right) + 2\left(\frac{6}{33}\right) + 3\left(\frac{5}{33}\right) + 4\left(\frac{4}{33}\right) + 5\left(\frac{3}{33}\right) \\
+                       & = \frac{0 + 7 + 12 + 15 + 16 + 15}{33} = \frac{65}{33}
+                \end{align*}
+                Berdasarkan sifat ekspektasi linier:
+                \[
+                  E(X+1) = E(X) + 1 = \frac{65}{33} + 1 = \frac{65}{33} + \frac{33}{33} = \frac{98}{33}
+                \]
+        \end{enumerate}
+
+  \item \begin{enumerate}
+          \item CDF $F(x)$: \\
+                Untuk batas $x \le 0$, $F(x) = \int_{-\infty}^{x} 0 \,dt = 0$. \\
+                Untuk $0 < x < 3$:
+                \[
+                  F(x) = \int_{0}^{x} \frac{2t}{9} \,dt = \left[ \frac{t^2}{9} \right]_0^x = \frac{x^2}{9}
+                \]
+                Untuk batas $x \ge 3$, $F(x) = \int_{0}^{3} \frac{2t}{9} \,dt = \left[ \frac{t^2}{9} \right]_0^3 = \frac{9}{9} = 1$. \\
+                Sehingga Fungsi Distribusi Kumulatifnya (CDF) adalah:
+                \[
+                  F(x) = \begin{cases}
+                    0,             & x \le 0   \\
+                    \frac{x^2}{9}, & 0 < x < 3 \\
+                    1,             & x \ge 3
+                  \end{cases}
+                \]
+
+          \item $P(-1 \le x < 1.5)$: \\
+                Menggunakan sifat CDF:
+                \[
+                  P(-1 \le X \le 1.5) = F(1.5) - F(-1)
+                \]
+                Karena fungsi bernilai $0$ untuk $x < 0$, maka $F(-1) = 0$.
+                \[
+                  F(1.5) = \frac{(1.5)^2}{9} = \frac{2.25}{9} = \frac{1}{4} = 0.25
+                \]
+                Jadi, $P(-1 \le x < 1.5) = 0.25 - 0 = 0.25 = \frac{1}{4}$.
+
+          \item Percentile ke-50 (Median $m$): \\
+                Median tercapai pada nilai $m$ ketika $F(m) = 0.5$.
+                \begin{align*}
+                  F(m)          & = 0.5                                                                                      \\
+                  \frac{m^2}{9} & = 0.5                                                                                      \\
+                  m^2           & = 4.5                                                                                      \\
+                  m             & = \sqrt{4.5} = \sqrt{\frac{9}{2}} = \frac{3}{\sqrt{2}} = \frac{3\sqrt{2}}{2} \approx 2.121
+                \end{align*}
+        \end{enumerate}
+
+  \item Fungsi kepadatan peluang ini merupakan Distribusi Eksponensial dengan parameter rata-rata $\beta = \theta$.
+        \begin{enumerate}
+          \item MGF $M_X(t)$:
+                \begin{align*}
+                  M_X(t) & = E(e^{tX}) = \int_{-\infty}^{\infty} e^{tx} f(x) \,dx                                \\
+                         & = \int_{0}^{\infty} e^{tx} \left( \frac{1}{\theta} e^{-\frac{x}{\theta}} \right) \,dx \\
+                         & = \frac{1}{\theta} \int_{0}^{\infty} e^{-x \left(\frac{1}{\theta} - t\right)} \,dx
+                \end{align*}
+                Agar batas integral tersebut konvergen ke $0$ ketika mendekati tak hingga, haruslah memenuhi syarat $\left(\frac{1}{\theta} - t\right) > 0 \implies t < \frac{1}{\theta}$.
+                \begin{align*}
+                  M_X(t) & = \frac{1}{\theta} \left[ \frac{e^{-x \left(\frac{1}{\theta} - t\right)}}{-\left(\frac{1}{\theta} - t\right)} \right]_{0}^{\infty} \\
+                         & = \frac{1}{\theta} \left( 0 - \frac{1}{-\left(\frac{1}{\theta} - t\right)} \right)                                                 \\
+                         & = \frac{1}{\theta \left(\frac{1}{\theta} - t\right)} = \frac{1}{1 - \theta t}
+                \end{align*}
+                Diperoleh, $M_X(t) = (1 - \theta t)^{-1}$ untuk $t < \frac{1}{\theta}$.
+
+          \item $E(X), E(X^2)$ dan $Var(X)$ menggunakan MGF: \\
+                Moment tentang titik asal diperoleh dengan menurunkan fungsi MGF dan mengevaluasinya pada saat $t = 0$. \\
+                Turunan pertama MGF:
+                \begin{align*}
+                  M'_X(t) & = \frac{d}{dt} \left[ (1 - \theta t)^{-1} \right]             \\
+                          & = -1(1 - \theta t)^{-2} (-\theta) = \theta(1 - \theta t)^{-2}
+                \end{align*}
+                Untuk mendapatkan Ekspektasi $E(X)$:
+                \[
+                  E(X) = M'_X(0) = \theta(1 - 0)^{-2} = \theta
+                \]
+                Turunan kedua MGF:
+                \begin{align*}
+                  M''_X(t) & = \frac{d}{dt} \left[ \theta(1 - \theta t)^{-2} \right]                         \\
+                           & = \theta \cdot (-2)(1 - \theta t)^{-3} (-\theta) = 2\theta^2(1 - \theta t)^{-3}
+                \end{align*}
+                Untuk mendapatkan $E(X^2)$:
+                \[
+                  E(X^2) = M''_X(0) = 2\theta^2(1 - 0)^{-3} = 2\theta^2
+                \]
+                Menghitung Variansi $Var(X)$:
+                \begin{align*}
+                  Var(X) & = E(X^2) - [E(X)]^2                 \\
+                         & = 2\theta^2 - (\theta)^2 = \theta^2
+                \end{align*}
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
+\]
+\begin{enumerate}
+  \item
+  \item
+  \item
+\end{enumerate}
+
+\item  \\
+$f(x) = \frac{2x}{9}, 0 < x < 3$
+\begin{enumerate}
+  \item
+  \item
+  \item
+\end{enumerate}
+
+\item {\theta} e^{-\frac{x}{\theta}}, x > 0, \theta > 0$ dan bernilai nol untuk $x$ yang lain.}
+  \begin{enumerate}
+    \item
+    \item
+  \end{enumerate}
+  \end{enumerate}
+
+  \newpage
+  \section*{Solusi}
+
+  \begin{enumerate}
+  \item  \\
+  Peubah acak (variabel random) adalah suatu fungsi yang memetakan setiap kejadian (outcome) dalam ruang sampel (hasil dari suatu percobaan acak) ke suatu bilangan riil. Dengan kata lain, peubah acak mengaitkan nilai numerik dengan setiap hasil dari suatu percobaan.
+
+  \\
+  Pada percobaan pelemparan sebuah dadu homogen bersisi enam. Ruang sampelnya adalah $S = \{1, 2, 3, 4, 5, 6\}$. Jika didefinisikan $X$ sebagai peubah acak yang menyatakan angka yang muncul di sisi atas dadu, maka nilai yang mungkin diambil oleh $X$ adalah $x \in \{1, 2, 3, 4, 5, 6\}$.
+
+  \item
+  \begin{enumerate}
+  \item  \\
+  Karena $f(x)$ adalah probability mass function (pmf), maka total peluang pada semua nilai $x$ yang mungkin harus sama dengan 1.
+  \begin{align*}
+    \sum_{x=0}^{5} f(x)                                 & = 1                           \\
+    c(8-0) + c(8-1) + c(8-2) + c(8-3) + c(8-4) + c(8-5) & = 1                           \\
+    c(8) + c(7) + c(6) + c(5) + c(4) + c(3)             & = 1                           \\
+    c(8+7+6+5+4+3)                                      & = 1                           \\
+    33c                                                 & = 1 \implies c = \frac{1}{33}
+  \end{align*}
+
+  \item  \\
+  Pertama, kita hitung peluang untuk tiap nilai $x$: \\
+$f(0)=\frac{8}{33}$, $f(1)=\frac{7}{33}$, $f(2)=\frac{6}{33}$, $f(3)=\frac{5}{33}$, $f(4)=\frac{4}{33}$, $f(5)=\frac{3}{33}$. \\
+  CDF-nya adalah penjumlahan probabilitas kumulatif:
+  \[
+  F(x) = \begin{cases}
+    0,             & x < 0       \\
+    \frac{8}{33},  & 0 \le x < 1 \\
+    \frac{15}{33}, & 1 \le x < 2 \\
+    \frac{21}{33}, & 2 \le x < 3 \\
+    \frac{26}{33}, & 3 \le x < 4 \\
+    \frac{30}{33}, & 4 \le x < 5 \\
+    1,             & x \ge 5
+  \end{cases}
+\]
+
+\item  \\
+Peluang $P(X>2)$:
+\begin{align*}
+  P(X>2) & = 1 - P(X \le 2) = 1 - F(2)                        \\
+         & = 1 - \frac{21}{33} = \frac{12}{33} = \frac{4}{11}
+\end{align*}
+Sedangkan untuk nilai ekspektasi $E(X)$:
+\begin{align*}
+  E(X) & = \sum_{x=0}^{5} x \cdot f(x)                                                                                                                                                 \\
+       & = 0\left(\frac{8}{33}\right) + 1\left(\frac{7}{33}\right) + 2\left(\frac{6}{33}\right) + 3\left(\frac{5}{33}\right) + 4\left(\frac{4}{33}\right) + 5\left(\frac{3}{33}\right) \\
+       & = \frac{0 + 7 + 12 + 15 + 16 + 15}{33} = \frac{65}{33}
+\end{align*}
+Berdasarkan sifat ekspektasi linier:
+\[
+  E(X+1) = E(X) + 1 = \frac{65}{33} + 1 = \frac{65}{33} + \frac{33}{33} = \frac{98}{33}
+\]
+\end{enumerate}
+
+\item
+\begin{enumerate}
+  \item  \\
+        Untuk batas $x \le 0$, $F(x) = \int_{-\infty}^{x} 0 \,dt = 0$. \\
+        Untuk $0 < x < 3$:
+        \[
+          F(x) = \int_{0}^{x} \frac{2t}{9} \,dt = \left[ \frac{t^2}{9} \right]_0^x = \frac{x^2}{9}
+        \]
+        Untuk batas $x \ge 3$, $F(x) = \int_{0}^{3} \frac{2t}{9} \,dt = \left[ \frac{t^2}{9} \right]_0^3 = \frac{9}{9} = 1$. \\
+        Sehingga Fungsi Distribusi Kumulatifnya (CDF) adalah:
+        \[
+          F(x) = \begin{cases}
+            0,             & x \le 0   \\
+            \frac{x^2}{9}, & 0 < x < 3 \\
+            1,             & x \ge 3
+          \end{cases}
+        \]
+
+  \item  \\
+        Menggunakan sifat CDF:
+        \[
+          P(-1 \le X \le 1.5) = F(1.5) - F(-1)
+        \]
+        Karena fungsi bernilai $0$ untuk $x < 0$, maka $F(-1) = 0$.
+        \[
+          F(1.5) = \frac{(1.5)^2}{9} = \frac{2.25}{9} = \frac{1}{4} = 0.25
+        \]
+        Jadi, $P(-1 \le x < 1.5) = 0.25 - 0 = 0.25 = \frac{1}{4}$.
+
+  \item  \\
+        Median tercapai pada nilai $m$ ketika $F(m) = 0.5$.
+        \begin{align*}
+          F(m)          & = 0.5                                                                                      \\
+          \frac{m^2}{9} & = 0.5                                                                                      \\
+          m^2           & = 4.5                                                                                      \\
+          m             & = \sqrt{4.5} = \sqrt{\frac{9}{2}} = \frac{3}{\sqrt{2}} = \frac{3\sqrt{2}}{2} \approx 2.121
+        \end{align*}
+\end{enumerate}
+
+\item  \\
+Fungsi kepadatan peluang ini merupakan Distribusi Eksponensial dengan parameter rata-rata $\beta = \theta$.
+\begin{enumerate}
+  \item
+        \begin{align*}
+          M_X(t) & = E(e^{tX}) = \int_{-\infty}^{\infty} e^{tx} f(x) \,dx                                \\
+                 & = \int_{0}^{\infty} e^{tx} \left( \frac{1}{\theta} e^{-\frac{x}{\theta}} \right) \,dx \\
+                 & = \frac{1}{\theta} \int_{0}^{\infty} e^{-x \left(\frac{1}{\theta} - t\right)} \,dx
+        \end{align*}
+        Agar batas integral tersebut konvergen ke $0$ ketika mendekati tak hingga, haruslah memenuhi syarat $\left(\frac{1}{\theta} - t\right) > 0 \implies t < \frac{1}{\theta}$.
+        \begin{align*}
+          M_X(t) & = \frac{1}{\theta} \left[ \frac{e^{-x \left(\frac{1}{\theta} - t\right)}}{-\left(\frac{1}{\theta} - t\right)} \right]_{0}^{\infty} \\
+                 & = \frac{1}{\theta} \left( 0 - \frac{1}{-\left(\frac{1}{\theta} - t\right)} \right)                                                 \\
+                 & = \frac{1}{\theta \left(\frac{1}{\theta} - t\right)} = \frac{1}{1 - \theta t}
+        \end{align*}
+        Diperoleh, $M_X(t) = (1 - \theta t)^{-1}$ untuk $t < \frac{1}{\theta}$.
+
+  \item  \\
+        Moment tentang titik asal diperoleh dengan menurunkan fungsi MGF dan mengevaluasinya pada saat $t = 0$. \\
+        Turunan pertama MGF:
+        \begin{align*}
+          M'_X(t) & = \frac{d}{dt} \left[ (1 - \theta t)^{-1} \right]             \\
+                  & = -1(1 - \theta t)^{-2} (-\theta) = \theta(1 - \theta t)^{-2}
+        \end{align*}
+        Untuk mendapatkan Ekspektasi $E(X)$:
+        \[
+          E(X) = M'_X(0) = \theta(1 - 0)^{-2} = \theta
+        \]
+        Turunan kedua MGF:
+        \begin{align*}
+          M''_X(t) & = \frac{d}{dt} \left[ \theta(1 - \theta t)^{-2} \right]                         \\
+                   & = \theta \cdot (-2)(1 - \theta t)^{-3} (-\theta) = 2\theta^2(1 - \theta t)^{-3}
+        \end{align*}
+        Untuk mendapatkan $E(X^2)$:
+        \[
+          E(X^2) = M''_X(0) = 2\theta^2(1 - 0)^{-3} = 2\theta^2
+        \]
+        Menghitung Variansi $Var(X)$:
+        \begin{align*}
+          Var(X) & = E(X^2) - [E(X)]^2                 \\
+                 & = 2\theta^2 - (\theta)^2 = \theta^2
+        \end{align*}
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

@@ -79,7 +79,6 @@ media/
 slides/
 *.mp4
 *.svg
-*.png
 
 # Manim caches
 partial_movie_files/

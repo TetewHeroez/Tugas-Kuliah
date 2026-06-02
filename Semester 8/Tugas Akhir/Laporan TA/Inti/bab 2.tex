@@ -101,7 +101,7 @@ Polinomial adalah suatu ekspresi matematika yang terdiri dari variabel dan koefi
 \end{definisi}
 \subsection{Matriks Linde-de la Puente}
 Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, diperoleh bahwa kekomutatifan antara dua matriks tropikal sangat bergantung pada diagonal utama matriks tersebut. Dalam perkembangan selanjutnya, \textcite{alhussaini2024securityinitialtropical} memperkenalkan juga sebuah protokol kriptografi yang terinspirasi dari pertukaran kunci Diffie-Hellman, yang basisnya adalah grup siklik $(\Z_p^*\ ,\ \times)$ untuk suatu bilangan prima $p$.
-\begin{definisi}[\cite{alhussaini2024implementationstickel}]
+\begin{definisi}[\cite{alhussaini2024implementationstickel}]\label{def:matriks_ldlp}
   Untuk setiap bilangan real $r \leq 0$ dan bilangan real $k \geq 0$, kita definisikan
   $
     [2r, r]_{n}^{k}
@@ -109,7 +109,7 @@ Berdasarkan hasil penelitian \textcite{linde2014matricescommutinggivennormal}, d
   sebagai himpunan matriks $A_{n\times n}$ sedemikian sehingga $a_{ii} = k$ untuk semua $i$ dan $a_{ij} \in [2r, r]$ untuk $i \neq j$.
 \end{definisi}
 dari definisi di atas diperoleh sebuah teorema penting mengenai kekomutatifan matriks tropikal.
-\begin{teorema}[\cite{alhussaini2024securityinitialtropical}]
+\begin{teorema}[\cite{alhussaini2024securityinitialtropical}]\label{thm:komutatif_ldlp}
   Misalkan $A \in [2r, r]_{n}^{k_{1}}, \, B \in [2s, s]_{n}^{k_{2}}$ untuk setiap $r, s \leq 0$ dan $a_{ii} = k_{1} \geq 0, \, b_{ii} = k_{2} \geq 0$. Maka
   \[
     A \otimes B = B \otimes A = k_{2} \otimes A \oplus k_{1} \otimes B.
@@ -624,7 +624,7 @@ dengan $\sigma = (1\ 2\ \ldots\ n)$ adalah permutasi siklik pada $n$ elemen. Jik
   \end{pmatrix}.
 \end{align*}
 Karena bentuk matriks sirkulan-$t$ yang dapat direpresentasikan sebagai polinomial, maka muncul sebuah teorema penting mengenai kekomutatifan antara dua matriks sirkulan-$t$.
-\begin{teorema}[\cite{huang2024newsemiring}]
+\begin{teorema}[\cite{huang2024newsemiring}]\label{thm:komutatif_matriks_sirkulan}
   Misalkan $A$ dan $B$ adalah dua matriks sirkulan, maka $A$ dan $B$ komutatif terhadap operasi $\otimes$, yaitu
   \[
     A \otimes B = B \otimes A.

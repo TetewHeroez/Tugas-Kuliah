@@ -1,57 +1,47 @@
 \chapter{KESIMPULAN DAN SARAN}
 
-Berdasarkan pembahasan yang telah dilakukan, diperoleh kesimpulan sebagai berikut.
+Berdasarkan pembahasan pada Bab 4, dapat ditarik kesimpulan sebagai berikut.
 
 \begin{enumerate}
-      \item Perkalian dua Latin square max-plus dapat dinyatakan melalui dekomposisi matriks permutasi. Jika
-            $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan
-            $B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$, maka hasil
-            $A\otimes B$ melibatkan komposisi permutasi
-            $\sigma_j^B\circ\sigma_i^A$.
+      \item Syarat perlu komutativitas dua Latin square terhadap perkalian max-plus
+            diperoleh dari elemen maksimum. Berdasarkan
+            \autoref{thm:komutatif_elemen_maksimum}, jika $A,B\in L_S(n)$
+            komutatif, maka permutasi yang bersesuaian dengan simbol maksimum
+            harus saling komutatif. Dengan demikian, kandidat permutasi simbol
+            maksimum pada $B$ harus berada dalam centralizer dari permutasi simbol
+            maksimum pada $A$.
 
-      \item Jika $A\otimes B=B\otimes A$, maka permutasi yang bersesuaian dengan
-            simbol maksimum harus saling komutatif, yaitu
-            $
-                  \sigma_n^A\circ\sigma_n^B
-                  =
-                  \sigma_n^B\circ\sigma_n^A.
-            $
-            Dengan demikian, $\sigma_n^B\in C_{S_n}(\sigma_n^A)$.
+      \item Kriteria komutativitas dua Latin square terhadap perkalian max-plus
+            diperoleh melalui syarat cukup dan kriteria perlu-cukup. Berdasarkan
+            \autoref{thm:syarat_cukup_subgrup_abelian}, komutativitas dijamin
+            ketika seluruh permutasi penyusun $A$ dan $B$ berada dalam subgrup
+            abelian yang sama. Selanjutnya, berdasarkan
+            \autoref{thm:kriteria_komutatif_superlevel}, komutativitas terjadi
+            jika dan hanya jika himpunan superlevel pada $A\otimes B$ dan
+            $B\otimes A$ sama untuk setiap level yang diperlukan.
 
-      \item Jika seluruh permutasi penyusun $A$ dan $B$ berada dalam suatu
-            subgrup abelian yang sama dari $S_n$, maka $A\otimes B=B\otimes A$.
-            Syarat ini merupakan syarat cukup, tetapi bukan syarat perlu.
-
-      \item Kriteria perlu dan cukup komutativitas diberikan oleh kesamaan
-            himpunan superlevel. Matriks $A$ dan $B$ komutatif jika dan hanya jika
-            $
-                  \mathcal{U}_{\ge v}^{AB}
-                  =
-                  \mathcal{U}_{\ge v}^{BA}
-            $
-            untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
-
-      \item Algoritma pencarian pasangan komutatif dapat dilakukan melalui dua
-            tahap, yaitu tahap alternatif menggunakan subgrup abelian dan tahap
-            umum menggunakan centralizer serta pemeriksaan superlevel. Contoh
-            pada ordo $3$, $4$, dan $5$ menunjukkan bahwa kedua tahap tersebut
-            dapat digunakan sesuai struktur permutasi penyusun Latin square.
+      \item Konstruksi pasangan Latin square yang komutatif dengan suatu Latin
+            square $A$ diberikan pada
+            \autoref{alg:pencarian_pasangan_latin_square_komutatif}. Algoritma
+            tersebut memanfaatkan tahap alternatif dari
+            \autoref{thm:syarat_cukup_subgrup_abelian} serta tahap umum melalui
+            centralizer dan pemeriksaan superlevel. Penerapan pada ordo $3$, $4$,
+            dan $5$ menunjukkan bahwa algoritma tersebut dapat digunakan untuk
+            memperoleh kandidat $B$ yang memenuhi $A\otimes B=B\otimes A$.
 \end{enumerate}
 
-Beberapa saran untuk penelitian selanjutnya adalah sebagai berikut.
+Berdasarkan pembahasan sebelumnya, berikut merupakan saran untuk penelitian
+selanjutnya.
 
 \begin{enumerate}
-      \item Algoritma yang diperoleh dapat diimplementasikan secara komputasi
-            untuk menguji Latin square berordo lebih besar.
+      \item Mengimplementasikan
+            \autoref{alg:pencarian_pasangan_latin_square_komutatif} secara
+            komputasi untuk menguji Latin square berordo lebih besar.
 
-      \item Pemeriksaan himpunan superlevel dapat dikaji lebih lanjut agar proses
-            pencarian kandidat menjadi lebih efisien.
+      \item Mengkaji efisiensi pemeriksaan superlevel agar proses pencarian
+            kandidat dapat dilakukan lebih cepat.
 
-      \item Syarat cukup melalui subgrup abelian dapat dikembangkan ke bentuk yang
-            lebih umum, misalnya menggunakan centralizer dari subgrup permutasi
+      \item Mengembangkan syarat cukup melalui subgrup abelian ke bentuk yang
+            lebih umum, misalnya melalui centralizer dari subgrup permutasi
             penyusun Latin square.
-
-      \item Penelitian berikutnya dapat mengkaji pola banyaknya pasangan
-            komutatif dan struktur centralizer yang muncul pada ordo yang lebih
-            besar.
 \end{enumerate}

@@ -1,0 +1,521 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usetikzlibrary{graphs, positioning, arrows.meta}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} 
+\setbeamercolor{section in toc}{fg=HIMAtua} 
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{bibliography item}{\insertbiblabel} % Dihapus/dimatikan karena style authoryear tidak pakai angka
+
+\date{\today}
+\title[Aljabar Graf]{Definisi Automorfisme Graf dan Proposisi 15.1 Buku Norman Biggs}
+\author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Definisi Automorfisme Graf}
+  \textbf{Automorfisme Graf ($\text{Aut}(\Gamma)$ atau $G(\Gamma)$):}
+  Misalkan $\Gamma = (V, E)$ adalah sebuah graf sederhana. Sebuah automorfisme dari $\Gamma$ adalah sebuah permutasi $\pi$ pada himpunan verteks $V$ yang secara sempurna mempertahankan struktur ketetanggaan (adjacency) dari graf tersebut.
+
+  \vspace{0.3cm}
+  Secara matematis, $\pi \in \text{Sym}(V)$ adalah automorfisme jika dan hanya jika:
+  $$ \{u, v\} \in E \iff \{\pi(u), \pi(v)\} \in E $$
+
+  Himpunan seluruh automorfisme dari graf $\Gamma$ beserta operasi komposisi fungsinya membentuk sebuah \textbf{Grup Automorfisme}.
+\end{frame}
+
+\begin{frame}[fragile]{Ilustrasi Automorfisme}
+  Pada graf siklus $C_4$, operasi rotasi $90^\circ$ ekuivalen dengan permutasi siklis $\pi = (1\ 2\ 3\ 4)$. Operasi ini mempertahankan struktur sisi secara utuh (misal sisi $\{1,2\}$ bergeser menjadi sisi valid $\{2,3\}$).
+
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=0.8, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.7cm, fill=white},
+        edge/.style={draw=black, very thick}
+      ]
+      % Graf Asal
+      \node[vnode] (1) at (0, 2) {1};
+      \node[vnode] (2) at (2, 2) {2};
+      \node[vnode] (4) at (0, 0) {4};
+      \node[vnode] (3) at (2, 0) {3};
+
+      \draw[edge] (1) -- (2); \draw[edge] (2) -- (3);
+      \draw[edge] (3) -- (4); \draw[edge] (4) -- (1);
+
+      \node[below=0.3cm of 4, xshift=1cm] {Graf Asal $\Gamma$};
+
+      % Tanda Panah Pemetaan
+      \draw[-{Stealth[scale=1.5]}, thick, color=blue] (3, 1) -- node[above] {$\pi = (1\ 2\ 3\ 4)$} (5, 1);
+
+      % Graf Hasil Pemetaan
+      \begin{scope}[xshift=6cm]
+        \node[vnode, fill=gray!20] (1b) at (0, 2) {4};
+        \node[vnode, fill=gray!20] (2b) at (2, 2) {1};
+        \node[vnode, fill=gray!20] (4b) at (0, 0) {3};
+        \node[vnode, fill=gray!20] (3b) at (2, 0) {2};
+
+        \draw[edge] (1b) -- (2b); \draw[edge] (2b) -- (3b);
+        \draw[edge] (3b) -- (4b); \draw[edge] (4b) -- (1b);
+
+        \node[below=0.3cm of 4b, xshift=1cm] {Graf Setelah $\pi$};
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Transitif-Verteks dan Transitif-Sisi}
+  \textbf{Transitif-Verteks (Vertex-Transitive):}
+  Graf $\Gamma$ dikatakan transitif-verteks jika grup automorfisme $G(\Gamma)$ beraksi transitif pada $V$. Artinya, untuk sembarang pasangan verteks $u$ dan $v$, \textbf{pasti eksis} automorfisme $\pi$ sedemikian sehingga $\pi(u) = v$.
+  \\ \textit{Makna geometris: Graf terlihat identik dari sudut pandang verteks mana pun.}
+
+  \vspace{0.5cm}
+  \textbf{Transitif-Sisi (Edge-Transitive):}
+  Graf $\Gamma$ dikatakan transitif-sisi jika $G(\Gamma)$ beraksi transitif pada himpunan sisi $E$. Untuk sembarang dua sisi, selalu eksis automorfisme yang memetakan sisi pertama tepat ke sisi kedua.
+\end{frame}
+
+\begin{frame}[fragile]{Permutasi Vertex-Transitive Prisma Segitiga}
+  \textbf{Bukti Vertex-Transitive:}
+  Kita bisa memetakan verteks mana pun ke verteks lain menggunakan gabungan rotasi dan refleksi.
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=0.9, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          bedge/.style={draw=blue, thick},
+          oedge/.style={draw=orange, thick}
+        ]
+        \node[vnode] (1) at (90:2) {1};
+        \node[vnode] (2) at (210:2) {2};
+        \node[vnode] (3) at (330:2) {3};
+
+        \node[vnode] (4) at (90:0.8) {4};
+        \node[vnode] (5) at (210:0.8) {5};
+        \node[vnode] (6) at (330:0.8) {6};
+
+        \draw[bedge] (1)--(2)--(3)--(1);
+        \draw[bedge] (4)--(5)--(6)--(4);
+
+        \draw[oedge] (1)--(4);
+        \draw[oedge] (2)--(5);
+        \draw[oedge] (3)--(6);
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \begin{itemize}
+        \item \textbf{Rotasi (Memutar sesama tutup):}
+              $$ \pi_1 = (1\ 2\ 3)(4\ 5\ 6) $$
+              Permutasi ini memindahkan verteks 1 ke posisi 2.
+
+        \item \textbf{Rotasi (Memutar sesama alas):}
+              $$ \pi_2 = (1\ 4)(2\ 5)(3\ 6) $$
+              Permutasi ini memindahkan verteks 1 ke posisi 4 (menukar tutup luar dengan alas dalam).
+      \end{itemize}
+      Melalui kombinasi $\pi_1$ dan $\pi_2$, kita bisa mencapai semua titik.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Prisma Segitiga BUKAN Edge-Transitive}
+  Kita akan membuktikan bahwa tidak ada automorfisme $\pi$ yang bisa memetakan sisi biru $e_1 = \{1, 2\}$ menjadi sisi oranye $e_2 = \{1, 4\}$.
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=0.9, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          gedge/.style={draw=gray!40, thick}
+        ]
+        \node[vnode] (1) at (90:2) {1};
+        \node[vnode] (2) at (210:2) {2};
+        \node[vnode] (3) at (330:2) {3};
+
+        \node[vnode] (4) at (90:0.8) {4};
+        \node[vnode] (5) at (210:0.8) {5};
+        \node[vnode] (6) at (330:0.8) {6};
+
+        \draw[gedge] (2)--(3)--(1);
+        \draw[gedge] (4)--(5)--(6)--(4);
+        \draw[gedge] (2)--(5);
+        \draw[gedge] (3)--(6);
+
+        \draw[draw=blue, line width=2pt] (1)--(2) node[midway, left=0.1cm] {$e_1$};
+        \draw[draw=orange, line width=2pt] (1)--(4) node[midway, right=0.1cm] {$e_2$};
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \textbf{Bukti Kontradiksi:}
+      Andaikan eksis automorfisme $\pi$ dimana $\pi(e_1) = e_2$.
+      \begin{itemize}
+        \item Sisi $e_1$ adalah bagian dari siklus berukuran 3, yaitu $C_3 = (1, 2, 3)$.
+        \item Karena $\pi$ mempertahankan struktur ketetanggaan, maka bayangan dari $C_3$, yaitu $\pi(C_3) = (\pi(1), \pi(2), \pi(3))$, haruslah membentuk siklus $C_3$ yang baru.
+        \item Ini berarti sisi $\pi(e_1) = e_2$ wajib menjadi bagian dari suatu siklus $C_3$.
+        \item Namun dari graf terlihat jelas bahwa sisi $e_2 = \{1, 4\}$ \textbf{bukan} bagian dari segitiga manapun (ia hanya bagian dari $C_4 = (1,4,5,2)$ dan $(1,4,6,3)$).
+      \end{itemize}
+      Kontradiksi! Maka automorfisme $\pi$ tidak mungkin ada.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Permutasi Edge-Transitive Graf Bintang}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=1.1, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode, fill=red!20] (c) at (0, 0) {$c$};
+
+        \node[vnode, fill=green!20] (1) at (90:1.5) {1};
+        \node[vnode, fill=green!20] (2) at (210:1.5) {2};
+        \node[vnode, fill=green!20] (3) at (330:1.5) {3};
+
+        \draw[draw=blue, line width=1.5pt] (c)--(1);
+        \draw[draw=orange, line width=1.5pt, dashed] (c)--(2);
+        \draw[fedge] (c)--(3);
+
+        \node[draw=none, fill=none] at (0.3, 0.8) {$e_1$};
+        \node[draw=none, fill=none] at (-0.8, -0.2) {$e_2$};
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \textbf{Bukti Edge-Transitive:}
+      Misalkan kita ingin memetakan sisi biru $e_1 = \{c, 1\}$ menjadi sisi oranye $e_2 = \{c, 2\}$.
+
+      \textbf{Permutasi $\sigma$:}
+      $$ \sigma = (c)(3)(1\ 2) $$
+
+      Uji Pelestarian Sisi:
+      \begin{itemize}
+        \item Pusat $c$ tetap di tempatnya ($\sigma(c) = c$).
+        \item Daun 3 tetap di tempatnya ($\sigma(3) = 3$).
+        \item Daun 1 dan 2 bertukar posisi ($\sigma(1) = 2, \sigma(2) = 1$).
+        \item Hasilnya: sisi $\{c, 1\}$ berubah menjadi sisi $\{\sigma(c), \sigma(1)\} = \{c, 2\}$.
+      \end{itemize}
+      Terbukti, setiap sisi dapat dipetakan ke sisi lain secara sempurna.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Graf Bintang BUKAN Vertex-Transitive}
+  Kita akan membuktikan bahwa tidak ada automorfisme $\sigma$ yang bisa memetakan verteks pusat $c$ (merah) menjadi verteks daun $1$ (hijau).
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=1, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode, fill=red!30] (c) at (0, 0) {$c$};
+
+        \node[vnode, fill=green!30] (1) at (90:1.5) {1};
+        \node[vnode] (2) at (210:1.5) {2};
+        \node[vnode] (3) at (330:1.5) {3};
+
+        \draw[fedge] (c)--(1);
+        \draw[fedge] (c)--(2);
+        \draw[fedge] (c)--(3);
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \textbf{Bukti Kontradiksi:}
+      Andaikan eksis automorfisme $\sigma$ sedemikian sehingga $\sigma(c) = 1$.
+
+      Automorfisme didefinisikan sebagai fungsi bijektif yang mempertahankan ketetanggaan. Akibat logisnya, automorfisme \textbf{wajib melestarikan derajat} setiap verteks.
+      Jika $x$ dan $y$ bertetangga dengan $c$, maka $\sigma(x)$ dan $\sigma(y)$ harus bertetangga dengan $\sigma(c)$.
+      $$ \text{deg}(v) = \text{deg}(\sigma(v)) \quad \text{untuk setiap } v \in V $$
+
+      \vspace{0.2cm}
+      Pada graf bintang $K_{1,3}$, derajat dari pusat adalah $\text{deg}(c) = 3$.
+      Maka bayangannya harus berderajat sama: $\text{deg}(\sigma(c)) = 3$.
+      Namun, karena $\sigma(c) = 1$, maka kita dapatkan $\text{deg}(1) = 3$.
+
+      \vspace{0.2cm}
+      Dari gambar, verteks 1 hanyalah daun dengan $\text{deg}(1) = 1$.
+      Terjadi kontradiksi ($3 \neq 1$). Maka automorfisme $\sigma$ tidak mungkin ada.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Vertex-Transitive Kompleks: Graf Petersen}
+  Graf Petersen adalah contoh klasik graf yang sangat simetris (bersifat vertex-transitive sekaligus edge-transitive). Semua verteks berderajat 3. Tidak ada satu pun verteks yang "spesial"; jika Anda berdiri di verteks mana pun, graf ini akan terlihat sama persis.
+
+  \begin{center}
+    \begin{tikzpicture}[
+        scale=1, transform shape,
+        vnode/.style={circle, draw=black, thick, minimum size=0.3cm, fill=blue!10},
+        fedge/.style={draw=black, very thick}
+      ]
+      \node[vnode] (u1) at (90:2.5) {1};
+      \node[vnode] (u2) at (18:2.5) {2};
+      \node[vnode] (u3) at (306:2.5) {3};
+      \node[vnode] (u4) at (234:2.5) {4};
+      \node[vnode] (u5) at (162:2.5) {5};
+
+      \node[vnode] (v1) at (90:1.2) {6};
+      \node[vnode] (v2) at (18:1.2) {7};
+      \node[vnode] (v3) at (306:1.2) {8};
+      \node[vnode] (v4) at (234:1.2) {9};
+      \node[vnode] (v5) at (162:1.2) {10};
+
+      \draw[fedge] (u1) -- (u2);
+      \draw[fedge] (u2) -- (u3);
+      \draw[fedge] (u3) -- (u4);
+      \draw[fedge] (u4) -- (u5);
+      \draw[fedge] (u5) -- (u1);
+
+      \draw[fedge] (v1) -- (v3);
+      \draw[fedge] (v3) -- (v5);
+      \draw[fedge] (v5) -- (v2);
+      \draw[fedge] (v2) -- (v4);
+      \draw[fedge] (v4) -- (v1);
+
+      \draw[fedge] (u1) -- (v1);
+      \draw[fedge] (u2) -- (v2);
+      \draw[fedge] (u3) -- (v3);
+      \draw[fedge] (u4) -- (v4);
+      \draw[fedge] (u5) -- (v5);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Bukti Vertex-Transitive: Graf Petersen}
+  Untuk membuktikan graf ini \textit{vertex-transitive}, kita harus bisa memetakan verteks di pentagon luar (misal: 1) menjadi verteks di bintang dalam (misal: 6) menggunakan automorfisme $\pi$.
+
+  \textbf{Permutasi Eksplisit $\pi$:}
+  $$ \pi = (1\ 6)(2\ 8\ 5\ 9)(3\ 10\ 4\ 7) $$
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{tikzpicture}[
+          scale=0.9, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.5cm, inner sep=1pt},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode, fill=red!20] (u1) at (90:2) {1};
+        \node[vnode] (u2) at (18:2) {2};
+        \node[vnode] (u3) at (306:2) {3};
+        \node[vnode] (u4) at (234:2) {4};
+        \node[vnode] (u5) at (162:2) {5};
+
+        \node[vnode, fill=blue!20] (v1) at (90:0.8) {6};
+        \node[vnode] (v2) at (18:0.8) {7};
+        \node[vnode] (v3) at (306:0.8) {8};
+        \node[vnode] (v4) at (234:0.8) {9};
+        \node[vnode] (v5) at (162:0.8) {10};
+
+        \draw[fedge] (u1)--(u2)--(u3)--(u4)--(u5)--(u1);
+        \draw[fedge] (v1)--(v3)--(v5)--(v2)--(v4)--(v1);
+        \draw[fedge] (u1)--(v1); \draw[fedge] (u2)--(v2);
+        \draw[fedge] (u3)--(v3); \draw[fedge] (u4)--(v4);
+        \draw[fedge] (u5)--(v5);
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.6\textwidth}
+      \small
+      Uji pelestarian sisi (adjacency):
+      \begin{itemize}
+        \item $\pi(1) = 6$ dan $\pi(6) = 1$.
+        \item Sisi luar $\{1, 2\} \xrightarrow{\pi} \{6, 8\}$ (sisi dalam valid).
+        \item Sisi dalam $\{6, 8\} \xrightarrow{\pi} \{1, 5\}$ (sisi luar valid).
+        \item Sisi penghubung $\{2, 7\} \xrightarrow{\pi} \{8, 3\}$ (sisi penghubung valid).
+      \end{itemize}
+      Terbukti, struktur graf dipertahankan penuh meski luar dan dalam ditukar letaknya.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Proposisi 15.1}
+  \textbf{Pernyataan Proposisi:}
+  Jika sebuah graf terhubung $\Gamma$ bersifat \textit{edge-transitive} (transitif-sisi) namun \textbf{tidak} \textit{vertex-transitive}, maka graf tersebut pasti merupakan graf bipartit.
+
+  \vspace{0.5cm}
+  Proposisi ini sangat krusial karena ia menunjukkan bagaimana ketiadaan simetri penuh pada verteks—dikombinasikan dengan simetri penuh pada sisi—memaksa graf tersebut untuk memiliki struktur partisi dua warna (bipartit).
+\end{frame}
+
+\begin{frame}{Logika Pembuktian Proposisi 15.1}
+  \textbf{Bukti:}
+  \begin{enumerate}
+    \item Ambil sembarang sisi $\{u, v\}$. Definisikan $U$ sebagai orbit dari $u$ (semua verteks hasil pemetaan $u$), dan $V$ sebagai orbit dari $v$.
+    \item Karena graf ini \textit{edge-transitive} dan terhubung, semua sisi di dalam graf adalah hasil pemetaan dari sisi referensi $\{u, v\}$. Akibatnya, setiap sisi pasti memiliki ujung di himpunan orbit $U$ atau $V$.
+    \item Dalam teori grup, jika ada irisan $U \cap V \neq \emptyset$, maka $U = V$. Jika $U=V$, semua verteks berada di 1 orbit tunggal, yang berarti graf tersebut \textit{vertex-transitive}.
+    \item Namun, premis menyatakan graf ini \textbf{bukan} \textit{vertex-transitive}. Hal ini memaksa $U \cap V = \emptyset$ (orbit saling lepas).
+    \item Karena orbit terpisah penuh dan semua ujung sisi berasal dari himpunan ini, setiap sisi menghubungkan satu titik di $U$ dan satu titik di $V$. Maka, $\Gamma$ adalah bipartit. \qed
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Keluarga Kanonikal: Graf Bipartit Lengkap $K_{3,4}$}
+  Dalam teori graf aljabar, representasi paling natural untuk Proposisi 15.1 adalah keluarga graf $K_{m,n}$ dengan $m \neq n$. Kita gunakan $K_{3,4}$.
+
+  \textbf{Evaluasi Premis Proposisi 15.1:}
+  \begin{itemize}
+    \item \textbf{Edge-Transitive?} YA. Grup automorfismenya adalah $S_3 \times S_4$. Kita bisa menukar verteks mana pun di himpunan kiri secara bebas, dan himpunan kanan secara bebas. Ini memungkinkan pemetaan sisi mana pun ke sisi lainnya secara sempurna.
+    \item \textbf{Vertex-Transitive?} TIDAK. Terdapat 3 verteks berderajat 4, dan 4 verteks berderajat 3. Automorfisme tidak bisa menukar verteks beda derajat.
+  \end{itemize}
+  Karena premis terpenuhi, teorema menjamin eksistensi partisi bipartit.
+\end{frame}
+
+\begin{frame}[fragile]{Langkah 1: Menentukan Sisi dan Orbit}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=0.9, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.7cm, inner sep=1pt},
+          unode/.style={fill=red!30},
+          vnode2/.style={fill=blue!30},
+          fedge/.style={draw=gray!50, thick}
+        ]
+        \node[vnode, unode] (u1) at (0, 3.5) {$u_1$};
+        \node[vnode, unode] (u2) at (0, 1.5) {$u_2$};
+        \node[vnode, unode] (u3) at (0, -0.5) {$u_3$};
+
+        \node[vnode, vnode2] (v1) at (2.5, 4.5) {$v_1$};
+        \node[vnode, vnode2] (v2) at (2.5, 2.5) {$v_2$};
+        \node[vnode, vnode2] (v3) at (2.5, 0.5) {$v_3$};
+        \node[vnode, vnode2] (v4) at (2.5, -1.5) {$v_4$};
+
+        \foreach \u in {1,2,3} {
+            \foreach \v in {1,2,3,4} {
+                \draw[fedge] (u\u)--(v\v);
+              }
+          }
+
+        \draw[draw=orange, line width=2.5pt] (u2)--(v3);
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \textbf{Bukti Aljabar:}
+      1. Ambil sembarang sisi $e = \{u_2, v_3\}$ (ditandai garis tebal oranye).
+
+      2. Definisikan orbit dari masing-masing titik ujung sisi tersebut berdasar aksi grup $G(\Gamma)$:
+      \begin{itemize}
+        \item $U = \text{Orbit}(u_2)$. Karena $u_2$ berderajat 4 dan graf ini beraksi di bawah $S_3$, orbit $U$ akan mencakup seluruh verteks yang berderajat 4 (merah).
+        \item $V = \text{Orbit}(v_3)$. Karena $v_3$ berderajat 3 dan graf ini beraksi di bawah $S_4$, orbit $V$ akan mencakup seluruh verteks yang berderajat 3 (biru).
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Langkah 2: Meninjau Irisan Orbit}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=0.9, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.7cm, inner sep=1pt},
+          unode/.style={fill=red!30},
+          vnode2/.style={fill=blue!30},
+          fedge/.style={draw=gray!50, thick}
+        ]
+        \node[vnode, unode] (u1) at (0, 3.5) {$u_1$};
+        \node[vnode, unode] (u2) at (0, 1.5) {$u_2$};
+        \node[vnode, unode] (u3) at (0, -0.5) {$u_3$};
+
+        \node[vnode, vnode2] (v1) at (2.5, 4.5) {$v_1$};
+        \node[vnode, vnode2] (v2) at (2.5, 2.5) {$v_2$};
+        \node[vnode, vnode2] (v3) at (2.5, 0.5) {$v_3$};
+        \node[vnode, vnode2] (v4) at (2.5, -1.5) {$v_4$};
+
+        \foreach \u in {1,2,3} {
+            \foreach \v in {1,2,3,4} {
+                \draw[fedge] (u\u)--(v\v);
+              }
+          }
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \textbf{Pengecekan Irisan ($U \cap V$):}
+      \begin{itemize}
+        \item Teori grup fundamental menyatakan: jika dua orbit memiliki irisan sekecil apa pun ($U \cap V \neq \emptyset$), maka orbit tersebut pasti identik ($U = V$).
+        \item Jika $U = V$, itu berarti seluruh verteks (derajat 3 maupun 4) tergabung dalam satu orbit tunggal.
+        \item Eksistensi satu orbit tunggal yang menaungi semua verteks adalah definisi mutlak dari graf \textit{Vertex-Transitive}.
+        \item \textbf{Kontradiksi:} Kita tahu pasti bahwa $K_{3,4}$ \textbf{bukan} \textit{vertex-transitive}.
+        \item \textbf{Kesimpulan:} Orbit $U$ dan $V$ wajib terisolasi satu sama lain secara mutlak ($U \cap V = \emptyset$).
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Langkah 3: Konklusi Bipartit Berdasarkan Edge-Transitive}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=0.9, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.7cm, inner sep=1pt},
+          unode/.style={fill=red!30},
+          vnode2/.style={fill=blue!30},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode, unode] (u1) at (0, 3.5) {$u_1$};
+        \node[vnode, unode] (u2) at (0, 1.5) {$u_2$};
+        \node[vnode, unode] (u3) at (0, -0.5) {$u_3$};
+
+        \node[vnode, vnode2] (v1) at (2.5, 4.5) {$v_1$};
+        \node[vnode, vnode2] (v2) at (2.5, 2.5) {$v_2$};
+        \node[vnode, vnode2] (v3) at (2.5, 0.5) {$v_3$};
+        \node[vnode, vnode2] (v4) at (2.5, -1.5) {$v_4$};
+
+        \foreach \u in {1,2,3} {
+            \foreach \v in {1,2,3,4} {
+                \draw[->, thick, shorten >= 1pt] (u\u)--(v\v);
+                \draw[<-, thick, shorten <= 1pt] (v\v)--(u\u);
+              }
+          }
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \textbf{Sintesis Akhir:}
+      \begin{itemize}
+        \item Karena graf ini \textit{edge-transitive}, semua 12 sisi yang ada di graf ini terlahir dari hasil automorfisme ($\pi$) terhadap sisi awal $e = \{u_2, v_3\}$.
+        \item Sisi acuan $e$ menghubungkan satu elemen di $U$ dan satu elemen di $V$.
+        \item Mengingat orbit saling lepas ($U \cap V = \emptyset$), setiap kali grup automorfisme menyalin sisi $e$ untuk membentuk struktur graf keseluruhan, sisi tersebut akan selalu terjebak membentang di antara himpunan $U$ dan $V$.
+        \item Tidak akan pernah eksis sisi di internal $U$ maupun internal $V$.
+        \item \textbf{Terbukti:} Graf terpartisi sempurna menjadi dua set independen (Bipartit). \qed
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
