@@ -109,158 +109,156 @@
 
 \newpage
 \begin{center}
-    \textbf{SOLUSI}
+  \textbf{SOLUSI}
 \end{center}
 
 \begin{enumerate}
-    \item \textbf{Solusi:}
-    Untuk menunjukkan bahwa medan vektor $\mathbf{F} = (2xy + z^3)\mathbf{i} + x^2\mathbf{j} + 3xz^2\mathbf{k}$ adalah medan konservatif, kita perlu menunjukkan bahwa $\curl \mathbf{F} = \mathbf{0}$.
-    \begin{flalign*}
-        \curl \mathbf{F} &= \begin{vmatrix}
-            \mathbf{i} & \mathbf{j} & \mathbf{k} \\
-            \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
-            2xy+z^3 & x^2 & 3xz^2
-        \end{vmatrix} & \\
-        &= \mathbf{i}\left( \frac{\partial}{\partial y}(3xz^2) - \frac{\partial}{\partial z}(x^2) \right) - \mathbf{j}\left( \frac{\partial}{\partial x}(3xz^2) - \frac{\partial}{\partial z}(2xy+z^3) \right) + \mathbf{k}\left( \frac{\partial}{\partial x}(x^2) - \frac{\partial}{\partial y}(2xy+z^3) \right) & \\
-        &= \mathbf{i}(0 - 0) - \mathbf{j}(3z^2 - 3z^2) + \mathbf{k}(2x - 2x) = \mathbf{0}
-    \end{flalign*}
-    Karena $\curl \mathbf{F} = \mathbf{0}$, maka terbukti $\mathbf{F}$ adalah medan konservatif.
-    
-    Selanjutnya, mencari fungsi potensial $f(x,y,z)$ sehingga $\grad f = \mathbf{F}$:
-    \begin{flalign*}
-        \frac{\partial f}{\partial x} &= 2xy + z^3 \implies f(x,y,z) = x^2y + xz^3 + g(y,z) & \\
-        \frac{\partial f}{\partial y} &= x^2 \implies \frac{\partial}{\partial y}(x^2y + xz^3 + g(y,z)) = x^2 \implies \frac{\partial g}{\partial y} = 0 \implies g(y,z) = h(z) & \\
-        \frac{\partial f}{\partial z} &= 3xz^2 \implies \frac{\partial}{\partial z}(x^2y + xz^3 + h(z)) = 3xz^2 \implies h'(z) = 0 \implies h(z) = C &
-    \end{flalign*}
-    Jadi didapatkan $f(x,y,z) = x^2y + xz^3 + C$.
-    
-    \noindent Kerja yang dilakukan dari titik $(1,-2,1)$ ke $(3,1,4)$ adalah:
-    \[ W = \int_{(1,-2,1)}^{(3,1,4)} \mathbf{F} \cdot d\mathbf{r} = f(3,1,4) - f(1,-2,1) \]
-    \[ W = [ (3)^2(1) + (3)(4)^3 ] - [ (1)^2(-2) + (1)(1)^3 ] = [ 9 + 192 ] - [ -2 + 1 ] = 201 - (-1) = \mathbf{202} \]
-    
-    \item \textbf{Solusi:} \ \vspace{0.2cm}\\
-    \begin{enumerate}[label=\alph*.]
-        \item Sketsa kurva lintasan $C$:
-        \begin{center}
-            \tdplotsetmaincoords{60}{110}
-            \begin{tikzpicture}[tdplot_main_coords, scale=0.8]
-                \draw[-Latex] (0,-4,0) -- (0,4,0) node[right] {$y$};
-                \draw[-Latex] (0,0,-1) -- (0,0,3) node[above] {$z$};
-                \draw[-Latex] (-4,0,0) -- (4,0,0) node[left] {$x$};
-                
-                \draw[thick, blue, fill=yellow, fill opacity=0.3] 
-                    (1,0,0) -- (3,0,0) 
+  \item
+        Untuk menunjukkan bahwa medan vektor $\mathbf{F} = (2xy + z^3)\mathbf{i} + x^2\mathbf{j} + 3xz^2\mathbf{k}$ adalah medan konservatif, kita perlu menunjukkan bahwa $\curl \mathbf{F} = \mathbf{0}$.
+        \begin{flalign*}
+          \curl \mathbf{F} & = \begin{vmatrix}
+                                 \mathbf{i}                  & \mathbf{j}                  & \mathbf{k}                  \\
+                                 \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+                                 2xy+z^3                     & x^2                         & 3xz^2
+                               \end{vmatrix}                                                                                                                                                                                                             &                                                                              \\
+                           & = \mathbf{i}\left( \frac{\partial}{\partial y}(3xz^2) - \frac{\partial}{\partial z}(x^2) \right) - \mathbf{j}\left( \frac{\partial}{\partial x}(3xz^2) - \frac{\partial}{\partial z}(2xy+z^3) \right) + \mathbf{k}\left( \frac{\partial}{\partial x}(x^2) - \frac{\partial}{\partial y}(2xy+z^3) \right) & \\
+                           & = \mathbf{i}(0 - 0) - \mathbf{j}(3z^2 - 3z^2) + \mathbf{k}(2x - 2x) = \mathbf{0}
+        \end{flalign*}
+        Karena $\curl \mathbf{F} = \mathbf{0}$, maka terbukti $\mathbf{F}$ adalah medan konservatif.
+
+        Selanjutnya, mencari fungsi potensial $f(x,y,z)$ sehingga $\grad f = \mathbf{F}$:
+        \begin{flalign*}
+          \frac{\partial f}{\partial x} & = 2xy + z^3 \implies f(x,y,z) = x^2y + xz^3 + g(y,z)                                                                                     & \\
+          \frac{\partial f}{\partial y} & = x^2 \implies \frac{\partial}{\partial y}(x^2y + xz^3 + g(y,z)) = x^2 \implies \frac{\partial g}{\partial y} = 0 \implies g(y,z) = h(z) & \\
+          \frac{\partial f}{\partial z} & = 3xz^2 \implies \frac{\partial}{\partial z}(x^2y + xz^3 + h(z)) = 3xz^2 \implies h'(z) = 0 \implies h(z) = C                            &
+        \end{flalign*}
+        Jadi didapatkan $f(x,y,z) = x^2y + xz^3 + C$.
+
+        \noindent Kerja yang dilakukan dari titik $(1,-2,1)$ ke $(3,1,4)$ adalah:
+        \[ W = \int_{(1,-2,1)}^{(3,1,4)} \mathbf{F} \cdot d\mathbf{r} = f(3,1,4) - f(1,-2,1) \]
+        \[ W = [ (3)^2(1) + (3)(4)^3 ] - [ (1)^2(-2) + (1)(1)^3 ] = [ 9 + 192 ] - [ -2 + 1 ] = 201 - (-1) = \mathbf{202} \]
+
+  \item
+        \begin{enumerate}[label=\alph*.]
+          \item Sketsa kurva lintasan $C$:
+                \begin{center}
+                  \tdplotsetmaincoords{60}{110}
+                  \begin{tikzpicture}[tdplot_main_coords, scale=0.8]
+                    \draw[-Latex] (0,-4,0) -- (0,4,0) node[right] {$y$};
+                    \draw[-Latex] (0,0,-1) -- (0,0,3) node[above] {$z$};
+                    \draw[-Latex] (-4,0,0) -- (4,0,0) node[left] {$x$};
+
+                    \draw[thick, blue, fill=yellow, fill opacity=0.3]
+                    (1,0,0) -- (3,0,0)
                     plot[domain=0:180,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0)
-                    -- (-1,0,0) 
+                    -- (-1,0,0)
                     plot[domain=180:0,smooth,variable=\t] ({cos(\t)},{sin(\t)},0)
                     -- cycle;
-                
-                \draw[blue,thick,-Latex] plot[domain=0:45,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0);
-                \draw[blue,thick,-Latex] plot[domain=180:135,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
-                \draw[blue,thick,-Latex] (1,0,0) -- (2,0,0);
-                \draw[blue,thick,-Latex] (-3,0,0) -- (-2,0,0);
-                
-                \node at (2,1.5,0) {$C$};
-                \node at (1,-0.3,0) {$1$};
-                \node at (3,-0.3,0) {$3$};
-                \node at (-1,-0.3,0) {$-1$};
-                \node at (-3,-0.3,0) {$-3$};
-            \end{tikzpicture}
-        \end{center}
-        \vspace{0.2cm}
 
-        \item Hitung Usaha dengan perhitungan langsung:\\
-        Lintasan $C$ terdiri dari 4 segmen ($C_1, C_2, C_3, C_4$):
-        \begin{itemize}
-            \item $C_1$: Garis dari $(1,0)$ ke $(3,0)$. $y = 0 \implies dy = 0$. $\int_{C_1} y^2 dx + 3xy dy = \int_1^3 0 \, dx = 0$.
-            \item $C_2$: Busur $x^2+y^2=9$ dari $(3,0)$ ke $(-3,0)$. $x=3\cos t, y=3\sin t$ untuk $t \in [0, \pi]$.
-            \begin{flalign*}
-                \int_{C_2} \mathbf{F} \cdot d\mathbf{r} &= \int_0^\pi \left[ (9\sin^2 t)(-3\sin t) + 3(3\cos t)(3\sin t)(3\cos t) \right] dt & \\
-                &= \int_0^\pi (-27\sin^3 t + 81\cos^2 t \sin t) dt = \int_0^\pi \sin t (81\cos^2 t - 27(1-\cos^2 t)) dt & \\
-                &= \int_0^\pi \sin t (108\cos^2 t - 27) dt = \left[ -36\cos^3 t + 27\cos t \right]_0^\pi = (36 - 27) - (-36 + 27) = 18 &
-            \end{flalign*}
-            \item $C_3$: Garis dari $(-3,0)$ ke $(-1,0)$. $y = 0 \implies dy = 0$. $\int_{C_3} \mathbf{F} \cdot d\mathbf{r} = 0$.
-            \item $C_4$: Busur $x^2+y^2=1$ dari $(-1,0)$ ke $(1,0)$. $x=\cos t, y=\sin t$ untuk $t \in [\pi, 0]$.
-            \begin{flalign*}
-                \int_{C_4} \mathbf{F} \cdot d\mathbf{r} &= \int_\pi^0 \left[ (\sin^2 t)(-\sin t) + 3\cos t \sin t \cos t \right] dt = \int_\pi^0 (- \sin^3 t + 3\cos^2 t \sin t) dt & \\
-                &= \int_\pi^0 \sin t (4\cos^2 t - 1) dt = \left[ -\frac{4}{3}\cos^3 t + \cos t \right]_\pi^0 = \left( -\frac{4}{3} + 1 \right) - \left( \frac{4}{3} - 1 \right) = -\frac{2}{3} &
-            \end{flalign*}
-        \end{itemize}
-        Total Usaha $W = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4} = 0 + 18 + 0 - \frac{2}{3} = \mathbf{\frac{52}{3}}$.
-        \vspace{0.2cm}
+                    \draw[blue,thick,-Latex] plot[domain=0:45,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0);
+                    \draw[blue,thick,-Latex] plot[domain=180:135,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
+                    \draw[blue,thick,-Latex] (1,0,0) -- (2,0,0);
+                    \draw[blue,thick,-Latex] (-3,0,0) -- (-2,0,0);
 
-        \item Hitung Usaha dengan Teorema Green:\\
-        $P = y^2, Q = 3xy \implies \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 3y - 2y = y$.
-        Dengan $D$ adalah daerah $1 \le r \le 3$, $0 \le \theta \le \pi$.
+                    \node at (2,1.5,0) {$C$};
+                    \node at (1,-0.3,0) {$1$};
+                    \node at (3,-0.3,0) {$3$};
+                    \node at (-1,-0.3,0) {$-1$};
+                    \node at (-3,-0.3,0) {$-3$};
+                  \end{tikzpicture}
+                \end{center}
+
+          \item Hitung Usaha dengan perhitungan langsung:\\
+                Lintasan $C$ terdiri dari 4 segmen ($C_1, C_2, C_3, C_4$):
+                \begin{itemize}
+                  \item $C_1$: Garis dari $(1,0)$ ke $(3,0)$. $y = 0 \implies dy = 0$. $\int_{C_1} y^2 dx + 3xy dy = \int_1^3 0 \, dx = 0$.
+                  \item $C_2$: Busur $x^2+y^2=9$ dari $(3,0)$ ke $(-3,0)$. $x=3\cos t, y=3\sin t$ untuk $t \in [0, \pi]$.
+                        \begin{flalign*}
+                          \int_{C_2} \mathbf{F} \cdot d\mathbf{r} & = \int_0^\pi \left[ (9\sin^2 t)(-3\sin t) + 3(3\cos t)(3\sin t)(3\cos t) \right] dt                                   & \\
+                                                                  & = \int_0^\pi (-27\sin^3 t + 81\cos^2 t \sin t) dt = \int_0^\pi \sin t (81\cos^2 t - 27(1-\cos^2 t)) dt                & \\
+                                                                  & = \int_0^\pi \sin t (108\cos^2 t - 27) dt = \left[ -36\cos^3 t + 27\cos t \right]_0^\pi = (36 - 27) - (-36 + 27) = 18 &
+                        \end{flalign*}
+                  \item $C_3$: Garis dari $(-3,0)$ ke $(-1,0)$. $y = 0 \implies dy = 0$. $\int_{C_3} \mathbf{F} \cdot d\mathbf{r} = 0$.
+                  \item $C_4$: Busur $x^2+y^2=1$ dari $(-1,0)$ ke $(1,0)$. $x=\cos t, y=\sin t$ untuk $t \in [\pi, 0]$.
+                        \begin{flalign*}
+                          \int_{C_4} \mathbf{F} \cdot d\mathbf{r} & = \int_\pi^0 \left[ (\sin^2 t)(-\sin t) + 3\cos t \sin t \cos t \right] dt = \int_\pi^0 (- \sin^3 t + 3\cos^2 t \sin t) dt                                                    & \\
+                                                                  & = \int_\pi^0 \sin t (4\cos^2 t - 1) dt = \left[ -\frac{4}{3}\cos^3 t + \cos t \right]_\pi^0 = \left( -\frac{4}{3} + 1 \right) - \left( \frac{4}{3} - 1 \right) = -\frac{2}{3} &
+                        \end{flalign*}
+                \end{itemize}
+                Total Usaha $W = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4} = 0 + 18 + 0 - \frac{2}{3} = \mathbf{\frac{52}{3}}$.
+
+          \item Hitung Usaha dengan Teorema Green:\\
+                $P = y^2, Q = 3xy \implies \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 3y - 2y = y$.
+                Dengan $D$ adalah daerah $1 \le r \le 3$, $0 \le \theta \le \pi$.
+                \begin{flalign*}
+                  W & = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA = \int_0^\pi \int_1^3 (r\sin\theta) r \, dr \, d\theta                                                                    & \\
+                    & = \left( \int_0^\pi \sin\theta \, d\theta \right) \left( \int_1^3 r^2 dr \right) = \left[ -\cos\theta \right]_0^\pi \left[ \frac{1}{3}r^3 \right]_1^3 = (2) \left( \frac{27 - 1}{3} \right) = \mathbf{\frac{52}{3}} &
+                \end{flalign*}
+        \end{enumerate}
+
+  \item
+        Gunakan Teorema Stokes: $\oint_C \mathbf{A} \cdot d\mathbf{r} = \iint_S (\curl \mathbf{A}) \cdot \mathbf{n} \, dS$.
         \begin{flalign*}
-            W &= \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA = \int_0^\pi \int_1^3 (r\sin\theta) r \, dr \, d\theta & \\
-            &= \left( \int_0^\pi \sin\theta \, d\theta \right) \left( \int_1^3 r^2 dr \right) = \left[ -\cos\theta \right]_0^\pi \left[ \frac{1}{3}r^3 \right]_1^3 = (2) \left( \frac{27 - 1}{3} \right) = \mathbf{\frac{52}{3}} &
+          \curl \mathbf{A}                                                                    & = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 2x-y & -yz^2 & -y^2z \end{vmatrix}
+          = \mathbf{i}(-2yz - (-2yz)) - \mathbf{j}(0 - 0) + \mathbf{k}(0 - (-1)) = \mathbf{k} &
         \end{flalign*}
-    \end{enumerate}
-
-    \item \textbf{Solusi:} \ \vspace{0.2cm}\\
-    Gunakan Teorema Stokes: $\oint_C \mathbf{A} \cdot d\mathbf{r} = \iint_S (\curl \mathbf{A}) \cdot \mathbf{n} \, dS$.
-    \begin{flalign*}
-        \curl \mathbf{A} &= \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 2x-y & -yz^2 & -y^2z \end{vmatrix}
-        = \mathbf{i}(-2yz - (-2yz)) - \mathbf{j}(0 - 0) + \mathbf{k}(0 - (-1)) = \mathbf{k} &
-    \end{flalign*}
-    Berdasarkan Teorema Stokes, kita dapat mengganti permukaan setengah bola dengan permukaan datar sirkular $S'$ (lingkaran $x^2+y^2 \le 1$ pada $z=0$) karena kurva batas cincin $C$ di antara keduanya sama persis.
-    Normal arah atas untuk luasan $S'$ di bidang $xy$ tegak lurus ke atas adalah $\mathbf{n} = \mathbf{k}$.
-    \begin{flalign*}
-        \oint_C \mathbf{A} \cdot d\mathbf{r} &= \iint_{S'} (\mathbf{k}) \cdot \mathbf{k} \, dxdy = \iint_{S'} 1 \, dxdy = \text{Luas Lingkaran } S' = \pi(1)^2 = \mathbf{\pi} &
-    \end{flalign*}
-    Sketsa 3D:
-    \begin{center}
-        \tdplotsetmaincoords{70}{110}
-        \begin{tikzpicture}[tdplot_main_coords, scale=1.5]
+        Berdasarkan Teorema Stokes, kita dapat mengganti permukaan setengah bola dengan permukaan datar sirkular $S'$ (lingkaran $x^2+y^2 \le 1$ pada $z=0$) karena kurva batas cincin $C$ di antara keduanya sama persis.
+        Normal arah atas untuk luasan $S'$ di bidang $xy$ tegak lurus ke atas adalah $\mathbf{n} = \mathbf{k}$.
+        \begin{flalign*}
+          \oint_C \mathbf{A} \cdot d\mathbf{r} & = \iint_{S'} (\mathbf{k}) \cdot \mathbf{k} \, dxdy = \iint_{S'} 1 \, dxdy = \text{Luas Lingkaran } S' = \pi(1)^2 = \mathbf{\pi} &
+        \end{flalign*}
+        Sketsa 3D:
+        \begin{center}
+          \tdplotsetmaincoords{70}{110}
+          \begin{tikzpicture}[tdplot_main_coords, scale=1.5]
             \draw[-Latex] (-1.5,0,0) -- (1.5,0,0) node[left] {$x$};
             \draw[-Latex] (0,-1.5,0) -- (0,1.5,0) node[right] {$y$};
             \draw[-Latex] (0,0,-0.5) -- (0,0,1.5) node[above] {$z$};
-            
+
             \draw[thick, blue, fill=gray, opacity=0.2] plot[domain=0:360,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
             \draw[thick, blue, -Latex] plot[domain=0:45,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
             \draw[thick, blue] plot[domain=45:360,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
             \node[blue, right] at (0.7,0.7,0) {$C$};
-            
+
             \foreach \ang in {0,20,...,180}{
                 \draw[cyan, opacity=0.3] plot[domain=0:180,smooth,variable=\t] ({cos(\ang)*sin(\t)},{sin(\ang)*sin(\t)},{cos(\t)});
-            }
-        \end{tikzpicture}
-    \end{center}
-
-    \item \textbf{Solusi:} \ \vspace{0.2cm}
-    \begin{enumerate}[label=\alph*)]
-        \item Sketsa permukaan:
-        \begin{center}
-            \tdplotsetmaincoords{70}{110}
-            \begin{tikzpicture}[tdplot_main_coords, scale=0.7]
-                \draw[-Latex] (-1,0,0) -- (4,0,0) node[below] {$x$};
-                \draw[-Latex] (0,-3,0) -- (0,3,0) node[right] {$y$};
-                \draw[-Latex] (0,0,-1) -- (0,0,5) node[above] {$z$};
-                
-                \draw[blue, thick, fill=blue!10, fill opacity=0.5] plot[domain=-2:2,smooth,variable=\t] (0,{\t},{4-\t*\t}) -- cycle;
-                \draw[blue, thick, fill=blue!10, fill opacity=0.5] plot[domain=-2:2,smooth,variable=\t] (3,{\t},{4-\t*\t}) -- cycle;
-                
-                \draw[blue, thick] (0,-2,0) -- (3,-2,0);
-                \draw[blue, thick] (0,2,0) -- (3,2,0);
-                \draw[blue, thick] (0,0,4) -- (3,0,4);
-                
-                \foreach \y in {-1.5,-1,...,1.5}{
-                    \draw[cyan, opacity=0.5] (0,\y,{4-\y*\y}) -- (3,\y,{4-\y*\y});
-                }
-            \end{tikzpicture}
+              }
+          \end{tikzpicture}
         \end{center}
 
-        \item Hitung $\iint_S \mathbf{A} \cdot \mathbf{n} \, dS$ menggunakan Teorema Divergensi Gauss:\\
-        Divergensi dari $\mathbf{A} = (z^2 - x)\mathbf{i} - xy\mathbf{j} + 3z\mathbf{k}$ adalah:
-        \[ \divergence \mathbf{A} = \frac{\partial}{\partial x}(z^2-x) + \frac{\partial}{\partial y}(-xy) + \frac{\partial}{\partial z}(3z) = -1 - x + 3 = 2 - x \]
-        Volume $V$ dibatasi oleh $0 \le x \le 3$, $0 \le z \le 4 - y^2 \implies -2 \le y \le 2$.
-        \begin{flalign*}
-            \iint_S \mathbf{A} \cdot \mathbf{n} \, dS &= \iiint_V \divergence \mathbf{A} \, dV = \int_0^3 \int_{-2}^2 \int_0^{4-y^2} (2-x) dz\,dy\,dx & \\
-            &= \int_0^3 (2-x) dx \int_{-2}^2 (4-y^2) dy = \left[ 2x - \frac{1}{2}x^2 \right]_0^3 \left[ 4y - \frac{1}{3}y^3 \right]_{-2}^2 & \\
-            &= \left( 6 - \frac{9}{2} \right) \left[ \left( 8 - \frac{8}{3} \right) - \left( -8 + \frac{8}{3} \right) \right] = \left( \frac{3}{2} \right) \left( 16 - \frac{16}{3} \right) = \left( \frac{3}{2} \right) \left( \frac{32}{3} \right) = \mathbf{16} &
-        \end{flalign*}
-    \end{enumerate}
+  \item \textbf{Solusi:} \ \vspace{0.2cm}
+        \begin{enumerate}[label=\alph*)]
+          \item Sketsa permukaan:
+                \begin{center}
+                  \tdplotsetmaincoords{70}{110}
+                  \begin{tikzpicture}[tdplot_main_coords, scale=0.7]
+                    \draw[-Latex] (-1,0,0) -- (4,0,0) node[below] {$x$};
+                    \draw[-Latex] (0,-3,0) -- (0,3,0) node[right] {$y$};
+                    \draw[-Latex] (0,0,-1) -- (0,0,5) node[above] {$z$};
+
+                    \draw[blue, thick, fill=blue!10, fill opacity=0.5] plot[domain=-2:2,smooth,variable=\t] (0,{\t},{4-\t*\t}) -- cycle;
+                    \draw[blue, thick, fill=blue!10, fill opacity=0.5] plot[domain=-2:2,smooth,variable=\t] (3,{\t},{4-\t*\t}) -- cycle;
+
+                    \draw[blue, thick] (0,-2,0) -- (3,-2,0);
+                    \draw[blue, thick] (0,2,0) -- (3,2,0);
+                    \draw[blue, thick] (0,0,4) -- (3,0,4);
+
+                    \foreach \y in {-1.5,-1,...,1.5}{
+                        \draw[cyan, opacity=0.5] (0,\y,{4-\y*\y}) -- (3,\y,{4-\y*\y});
+                      }
+                  \end{tikzpicture}
+                \end{center}
+
+          \item Hitung $\iint_S \mathbf{A} \cdot \mathbf{n} \, dS$ menggunakan Teorema Divergensi Gauss:\\
+                Divergensi dari $\mathbf{A} = (z^2 - x)\mathbf{i} - xy\mathbf{j} + 3z\mathbf{k}$ adalah:
+                \[ \divergence \mathbf{A} = \frac{\partial}{\partial x}(z^2-x) + \frac{\partial}{\partial y}(-xy) + \frac{\partial}{\partial z}(3z) = -1 - x + 3 = 2 - x \]
+                Volume $V$ dibatasi oleh $0 \le x \le 3$, $0 \le z \le 4 - y^2 \implies -2 \le y \le 2$.
+                \begin{flalign*}
+                  \iint_S \mathbf{A} \cdot \mathbf{n} \, dS & = \iiint_V \divergence \mathbf{A} \, dV = \int_0^3 \int_{-2}^2 \int_0^{4-y^2} (2-x) dz\,dy\,dx                                                                                                                                                        & \\
+                                                            & = \int_0^3 (2-x) dx \int_{-2}^2 (4-y^2) dy = \left[ 2x - \frac{1}{2}x^2 \right]_0^3 \left[ 4y - \frac{1}{3}y^3 \right]_{-2}^2                                                                                                                         & \\
+                                                            & = \left( 6 - \frac{9}{2} \right) \left[ \left( 8 - \frac{8}{3} \right) - \left( -8 + \frac{8}{3} \right) \right] = \left( \frac{3}{2} \right) \left( 16 - \frac{16}{3} \right) = \left( \frac{3}{2} \right) \left( \frac{32}{3} \right) = \mathbf{16} &
+                \end{flalign*}
+        \end{enumerate}
 \end{enumerate}
 
 \end{document}

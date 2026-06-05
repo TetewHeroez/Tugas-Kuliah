@@ -1,17 +1,10 @@
-Aljabar max-plus, yang dinotasikan dengan $(\mathbb{R}_{\max}, \oplus, \otimes)$ dengan $a \oplus b = \max\{a,b\}$ dan $a \otimes b = a + b$, merupakan salah satu struktur aljabar idempoten yang banyak digunakan dalam pemodelan sistem diskrit serta mulai
-dikaji dalam pengembangan skema kriptografi non-konvensional. Dalam konteks ini,
-keberadaan pasangan matriks $A,B \in \mathbb{R}_{\max}^{n \times n}$ yang memenuhi
-$A \otimes B = B \otimes A$ menjadi aspek penting. Salah satu kelas matriks yang
-menarik untuk dikaji adalah matriks \textit{Latin square}, karena memiliki struktur
-kombinatorial yang teratur dan keterkaitan erat dengan teori permutasi.
+Aljabar max-plus merupakan struktur aljabar atas $\mathbb{R}_{\max}$ dengan operasi $a\oplus b=\max\{a,b\}$ dan $a\otimes b=a+b$. Salah satu permasalahan yang penting dalam aljabar max-plus adalah menentukan pasangan matriks yang komutatif terhadap operasi perkalian. Penelitian ini membahas komutativitas dua \textit{Latin square} terhadap perkalian max-plus. \textit{Latin square} yang dikaji berordo $n$ dengan himpunan simbol $\underline{n}=\{1,2,\ldots,n\}$, sehingga setiap baris dan kolomnya merupakan permutasi dari $\underline{n}$.
 
-Penelitian ini bertujuan untuk mengkaji sifat kekomutatifan matriks Latin square pada
-aljabar max-plus, khususnya kondisi yang menyebabkan dua matriks $A,B \in L_S(n)$
-bersifat komutatif melalui representasi kombinasi matriks permutasi $\{P_{\sigma}\}_{\sigma
-  \in S_n}$. Dengan memanfaatkan konsep matriks sirkulan dan karakteristik pola diagonal,
-penelitian ini diharapkan menghasilkan kriteria komutatif yang jelas serta prosedur
-konstruktif untuk membangun pasangan Latin square komutatif. Hasil kajian ini
-diharapkan berkontribusi pada pengembangan teori Latin square dalam aljabar tropikal
-dan menjadi landasan bagi skema kriptografi berbasis aljabar max-plus.
+Penelitian ini bertujuan untuk menentukan syarat perlu, syarat cukup, dan prosedur konstruksi pasangan \textit{Latin square} komutatif. Setiap \textit{Latin square} direpresentasikan melalui dekomposisi matriks permutasi, yaitu $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$. Melalui representasi tersebut, komutativitas $A\otimes B=B\otimes A$ dianalisis berdasarkan komposisi permutasi penyusun $A$ dan $B$. Hasil penelitian menunjukkan bahwa syarat perlu komutativitas dapat diperoleh dari elemen maksimum, yaitu permutasi simbol maksimum harus saling komutatif. Selanjutnya, diperoleh syarat cukup melalui subgrup abelian dari $S_n$, serta kriteria perlu dan cukup melalui kesamaan himpunan superlevel $\mathcal{U}_{\ge v}^{AB}$ dan $\mathcal{U}_{\ge v}^{BA}$ untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
 
-\katakunci{Aljabar Max-Plus, Latin Square, Matriks Komutatif, Matriks Sirkulan, Permutasi, Semiring Tropikal}
+Berdasarkan kriteria tersebut, disusun algoritma untuk mencari pasangan \textit{Latin square} $B$ yang komutatif dengan suatu \textit{Latin square} $A$. Algoritma tersebut memuat tahap alternatif melalui penyusunan ulang permutasi penyusun $A$ ketika permutasi-permutasi tersebut saling komutatif, serta tahap umum yang menggunakan centralizer dari permutasi simbol maksimum, matriks kandidat parsial $B^*$, dan pemeriksaan himpunan superlevel secara bertahap. Penerapan algoritma pada ordo $3$, $4$, dan $5$ menunjukkan bahwa prosedur tersebut dapat digunakan untuk memperoleh kandidat pasangan \textit{Latin square} komutatif.
+
+\katakunci{Aljabar Max-Plus, Latin Square, Matriks Komutatif, Matriks Sirkulan, Permutasi, Semiring Tropikal, Matriks Permutasi, Centralizer, Himpunan Superlevel}
+
+
+

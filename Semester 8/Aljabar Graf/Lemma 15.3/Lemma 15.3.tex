@@ -1,0 +1,159 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usetikzlibrary{graphs, positioning, arrows.meta}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} 
+\setbeamercolor{section in toc}{fg=HIMAtua} 
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{bibliography item}{\insertbiblabel} % Dihapus/dimatikan karena style authoryear tidak pakai angka
+
+\date{\today}
+\title[Aljabar Graf]{Lema 15.3 Buku Norman Biggs}
+\author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Pernyataan Lema 15.3}
+  \textbf{Lema 15.3:}
+  Misalkan $\lambda$ adalah nilai eigen dari graf $\Gamma$ yang memiliki multiplisitas satu, dan misalkan $\mathbf{x}$ adalah vektor eigen yang berkorespondensi dengannya. Jika matriks permutasi $\mathbf{P}$ merepresentasikan sebuah automorfisme dari $\Gamma$, maka $\mathbf{P}\mathbf{x} = \pm \mathbf{x}$.
+
+  \textbf{Bukti 15.3:} Karena $\mathbf{P}$ merepresentasikan automorfisme, matriks tersebut komutatif dengan matriks adjasensi $\mathbf{A}$:
+  $$ \mathbf{A}\mathbf{P} = \mathbf{P}\mathbf{A} $$
+  Diketahui $\mathbf{A}\mathbf{x} = \lambda\mathbf{x}$. Tinjau hasil kali matriks $\mathbf{A}$ dengan vektor $\mathbf{P}\mathbf{x}$:
+  $$ \mathbf{A}(\mathbf{P}\mathbf{x}) = (\mathbf{A}\mathbf{P})\mathbf{x} = (\mathbf{P}\mathbf{A})\mathbf{x} = \mathbf{P}(\mathbf{A}\mathbf{x}) = \mathbf{P}(\lambda\mathbf{x}) = \lambda(\mathbf{P}\mathbf{x}) $$
+  Persamaan di atas menunjukkan bahwa $\mathbf{P}\mathbf{x}$ merupakan vektor eigen dari $\mathbf{A}$ yang berkorespondensi dengan nilai eigen $\lambda$.
+\end{frame}
+
+\begin{frame}{Lanjutan Pembuktian Lema 15.3}
+  Berdasarkan premis, nilai eigen $\lambda$ memiliki multiplisitas satu. Oleh karena itu, ruang eigen yang berkorespondensi dengan $\lambda$ berdimensi satu, dan $\mathbf{P}\mathbf{x}$ harus merupakan kelipatan skalar dari $\mathbf{x}$:
+  $$ \mathbf{P}\mathbf{x} = \mu\mathbf{x} $$
+  Karena matriks $\mathbf{x}$ dan $\mathbf{P}$ bernilai riil, skalar $\mu$ adalah bilangan riil. Matriks permutasi $\mathbf{P}$ memiliki orde berhingga, sehingga terdapat bilangan asli $s \geqslant 1$ yang memenuhi $\mathbf{P}^s = \mathbf{I}$.
+  Maka diperoleh $|\mu| = 1$. Sebagai bilangan riil, nilai yang memenuhi hanyalah $\mu = 1$ atau $\mu = -1$.
+  Sehingga terbukti bahwa $\mathbf{P}\mathbf{x} = \pm \mathbf{x}$. \qed
+\end{frame}
+
+\begin{frame}[fragile]{Konstruksi Graf Kustom $\Gamma$}
+  Kita buat graf $\Gamma$ berukuran 5 verteks. Graf ini bukan graf lengkap, bukan siklus, dan bukan graf bintang.
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[
+          scale=0.8, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode] (1) at (0, 2) {1};
+        \node[vnode, fill=blue!20] (2) at (-1.5, 0) {2};
+        \node[vnode, fill=red!20] (3) at (1.5, 0) {3};
+        \node[vnode] (4) at (0, -2) {4};
+        \node[vnode] (5) at (0, -4) {5};
+
+        \draw[fedge] (1)--(2); \draw[fedge] (1)--(3);
+        \draw[fedge] (2)--(3); \draw[fedge] (2)--(4);
+        \draw[fedge] (3)--(4); \draw[fedge] (4)--(5);
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.7\textwidth}
+      \small
+      \textbf{Matriks Adjasensi $\mathbf{A}$:}
+      $$ \mathbf{A} = \begin{pmatrix}
+          0 & 1 & 1 & 0 & 0 \\
+          1 & 0 & 1 & 1 & 0 \\
+          1 & 1 & 0 & 1 & 0 \\
+          0 & 1 & 1 & 0 & 1 \\
+          0 & 0 & 0 & 1 & 0
+        \end{pmatrix} $$
+
+      Secara topologi, graf ini memiliki ekor di verteks 5, sehingga mematahkan banyak simetri. Satu-satunya automorfisme yang eksis hanyalah menukar "sayap" verteks 2 dan 3.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Analisis Spektral Graf Kustom}
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+      \begin{tikzpicture}[
+          scale=0.8, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode] (1) at (0, 2) {1};
+        \node[vnode, fill=blue!20] (2) at (-1.5, 0) {2};
+        \node[vnode, fill=red!20] (3) at (1.5, 0) {3};
+        \node[vnode] (4) at (0, -2) {4};
+        \node[vnode] (5) at (0, -4) {5};
+
+        \draw[fedge] (1)--(2); \draw[fedge] (1)--(3);
+        \draw[fedge] (2)--(3); \draw[fedge] (2)--(4);
+        \draw[fedge] (3)--(4); \draw[fedge] (4)--(5);
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.8\textwidth}
+      \small
+      Melalui kalkulasi polinomial karakteristik, salah satu akar dari matriks $\mathbf{A}$ adalah $\lambda = -1$.
+      Sifat nilai eigen ini adalah \textbf{sederhana} (multiplisitas 1), sehingga memenuhi syarat Lema 15.3.
+
+      \vspace{0.2cm}
+      Vektor eigen $\mathbf{x}$ yang berkorespondensi dengan $\lambda = -1$ adalah:
+      $$ \mathbf{x} = \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \\ 0 \end{pmatrix} $$
+
+      Uji kebenaran vektor eigen ($\mathbf{A}\mathbf{x} = -\mathbf{x}$):
+      $$ \begin{pmatrix} 0 & 1 & 1 & 0 & 0 \\ 1 & 0 & 1 & 1 & 0 \\ 1 & 1 & 0 & 1 & 0 \\ 0 & 1 & 1 & 0 & 1 \\ 0 & 0 & 0 & 1 & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ -1 \\ 1 \\ 0 \\ 0 \end{pmatrix} $$
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Eksekusi Lema 15.3: Pemetaan Automorfisme}
+  Satu-satunya automorfisme non-trivial pada graf ini adalah permutasi yang menukar verteks 2 dan 3, yaitu $\pi = (2\ 3)$.
+
+  \textbf{Matriks Permutasi $\mathbf{P}$:}
+  $$ \mathbf{P} = \begin{pmatrix}
+      1 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 1 & 0 & 0 \\
+      0 & 1 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 1 & 0 \\
+      0 & 0 & 0 & 0 & 1
+    \end{pmatrix} $$
+
+  Terapkan matriks $\mathbf{P}$ pada vektor eigen $\mathbf{x}$:
+  $$ \mathbf{P}\mathbf{x} = \begin{pmatrix} 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ -1 \\ 1 \\ 0 \\ 0 \end{pmatrix} $$
+\end{frame}
+
+\begin{frame}{Kesimpulan Pembuktian}
+  Perhatikan hasil dari pemetaan automorfisme tadi:
+  $$ \mathbf{P}\mathbf{x} = \begin{pmatrix} 0 \\ -1 \\ 1 \\ 0 \\ 0 \end{pmatrix} $$
+
+  Bentuk ini persis sama dengan negatif dari vektor eigen aslinya:
+  $$ \begin{pmatrix} 0 \\ -1 \\ 1 \\ 0 \\ 0 \end{pmatrix} = -1 \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \\ 0 \end{pmatrix} = -\mathbf{x} $$
+\end{frame}
+\end{document}

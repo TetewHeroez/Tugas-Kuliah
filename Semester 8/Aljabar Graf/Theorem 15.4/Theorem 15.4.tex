@@ -1,0 +1,136 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usetikzlibrary{graphs, positioning, arrows.meta}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{./foto/}}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+
+\usetheme{Madrid}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} 
+\setbeamercolor{section in toc}{fg=HIMAtua} 
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usefonttheme{professionalfonts}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{bibliography item}{\insertbiblabel} % Dihapus/dimatikan karena style authoryear tidak pakai angka
+
+\date{\today}
+\title[Aljabar Graf]{Teorema 15.4 Buku Norman Biggs}
+\author[Teosofi H.\ A.]{Teosofi Hidayah Agung \\ 5002221132}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Pernyataan Teorema 15.4}
+  \textbf{Teorema 15.4:}
+  Jika graf $\Gamma$ memiliki sebuah automorfisme yang ordenya lebih besar dari dua, maka setidaknya ada satu nilai eigen dari $\Gamma$ yang memiliki multiplisitas lebih dari satu.
+
+  \vspace{0.3cm}
+  \textbf{Bukti:} Asumsikan bahwa setiap nilai eigen dari graf $\Gamma$ memiliki multiplisitas tepat satu.
+  Berdasarkan Lema 15.3, untuk setiap automorfisme $\mathbf{P}$ dan vektor eigen $\mathbf{x}$ yang bersesuaian, berlaku $\mathbf{P}\mathbf{x} = \pm \mathbf{x}$.
+  Terapkan kuadrat pada operasi matriks permutasi tersebut:
+  $$ \mathbf{P}^2 \mathbf{x} = \mathbf{P}(\pm \mathbf{x}) = \pm(\pm \mathbf{x}) = \mathbf{x} $$
+\end{frame}
+
+\begin{frame}{Lanjutan Pembuktian Teorema 15.4}
+  Matriks adjasensi $\mathbf{A}$ bersifat simetris. Berdasarkan teorema spektral, ruang yang direntang oleh seluruh vektor eigen $\mathbf{x}$ merupakan ruang vektor kolom secara keseluruhan.
+
+  Karena $\mathbf{P}^2 \mathbf{x} = \mathbf{x}$ berlaku untuk seluruh vektor yang merentang ruang tersebut, maka $\mathbf{P}^2$ bertindak sebagai matriks identitas:
+  $$ \mathbf{P}^2 = \mathbf{I} $$
+
+  Kesimpulan: Jika semua nilai eigen bersifat sederhana (multiplisitas satu), maka setiap automorfisme selain identitas pasti memiliki orde tepat dua. Oleh karena itu, jika terdapat automorfisme dengan orde lebih dari dua, harus ada nilai eigen dengan multiplisitas lebih dari satu. \qed
+\end{frame}
+
+\begin{frame}[fragile]{Konstruksi Graf dengan Orde Automorfisme $>2$}
+  Tinjau graf $\Gamma$ berukuran 7 verteks yang dibangun dari subdivisi graf bintang $K_{1,3}$. Graf ini dipilih untuk menghindari bentuk trivial seperti graf lengkap maupun graf siklus, namun tetap memiliki simetri rotasional.
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{tikzpicture}[
+          scale=0.7, transform shape,
+          vnode/.style={circle, draw=black, thick, minimum size=0.6cm, inner sep=1pt},
+          fedge/.style={draw=black, thick}
+        ]
+        \node[vnode, fill=red!20] (0) at (0, 0) {0};
+
+        \node[vnode, fill=green!20] (1) at (90:1.5) {1};
+        \node[vnode, fill=green!20] (2) at (210:1.5) {2};
+        \node[vnode, fill=green!20] (3) at (330:1.5) {3};
+
+        \node[vnode, fill=blue!20] (4) at (90:3) {4};
+        \node[vnode, fill=blue!20] (5) at (210:3) {5};
+        \node[vnode, fill=blue!20] (6) at (330:3) {6};
+
+        \draw[fedge] (0)--(1); \draw[fedge] (1)--(4);
+        \draw[fedge] (0)--(2); \draw[fedge] (2)--(5);
+        \draw[fedge] (0)--(3); \draw[fedge] (3)--(6);
+
+        \draw[->, thick, dashed] (60:2) arc (60:0:2) node[midway, right] {$\pi$};
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.6\textwidth}
+      \small
+      \textbf{Identifikasi Automorfisme:}
+      Rotasi sebesar $120^\circ$ mempertahankan struktur ketetanggaan graf. Operasi ini direpresentasikan oleh permutasi:
+      $$ \pi = (0)(1\ 2\ 3)(4\ 5\ 6) $$
+
+      Permutasi $\pi$ beraksi memutar cabang 1 ke 2, 2 ke 3, dan 3 ke 1 secara berurutan. Orde dari grup permutasi ini adalah \textbf{3} (karena $\pi^3 = \mathbf{I}$).
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Kalkulasi Spektral}
+  Karena graf $\Gamma$ terbukti memiliki elemen automorfisme berorde $>2$ (yakni orde 3), Teorema 15.4 menjamin bahwa matriks adjasensi graf ini wajib memuat nilai eigen dengan multiplisitas ganda.
+
+  \vspace{0.3cm}
+  Matriks adjasensi $\mathbf{A}$ berukuran $7 \times 7$:
+  $$ \mathbf{A} = \begin{pmatrix}
+      0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+      1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+      1 & 0 & 0 & 0 & 0 & 1 & 0 \\
+      1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+      0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 1 & 0 & 0 & 0
+    \end{pmatrix} $$
+\end{frame}
+
+\begin{frame}{Pembuktian Eksistensi Akar Kembar}
+  Polinomial karakteristik $\det(\lambda \mathbf{I} - \mathbf{A})$ diekspansi menjadi:
+  $$ \lambda^7 - 6\lambda^5 + 9\lambda^3 - 4\lambda = 0 $$
+
+  Lakukan faktorisasi aljabar pada polinomial tersebut:
+  $$ \lambda (\lambda^6 - 6\lambda^4 + 9\lambda^2 - 4) = 0 $$
+  $$ \lambda (\lambda^2 - 4) (\lambda^2 - 1)^2 = 0 $$
+  $$ \lambda (\lambda - 2) (\lambda + 2) (\lambda - 1)^2 (\lambda + 1)^2 = 0 $$
+
+  \vspace{0.3cm}
+  \textbf{Analisis Spektrum Eigen:}
+  \begin{itemize}
+    \item $\lambda = 0, \lambda = 2, \lambda = -2$ (Masing-masing multiplisitas 1)
+    \item $\lambda = 1$ \textbf{(Multiplisitas 2)}
+    \item $\lambda = -1$ \textbf{(Multiplisitas 2)}
+  \end{itemize}
+\end{frame}
+\end{document}

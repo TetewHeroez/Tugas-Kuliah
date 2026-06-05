@@ -1,0 +1,145 @@
+﻿\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Solusi Latihan Section 8.2 (Bartle)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Latihan 8.2}
+
+\begin{enumerate}
+
+  \item[1.] Tunjukkan bahwa barisan $(x^n/(1+x^n))$ tidak konvergen seragam pada $[0, 2]$ dengan menunjukkan bahwa fungsi limitnya tidak kontinu pada $[0, 2]$.\\
+        \textbf{Hint:} Fungsi limitnya adalah $f(x) := 0$ untuk $0 \le x < 1$, $f(1) := 1/2$, dan $f(x) := 1$ untuk $1 < x \le 2$.\\
+        \textbf{Solusi:}
+        Kita bagi menjadi beberapa kasus berdasarkan interval $x$:
+        \begin{itemize}
+          \item Untuk $x \in [0, 1)$, kita memiliki $x^n \to 0$ ketika $n \to \infty$. Sehingga, $\lim_{n \to \infty} \frac{x^n}{1+x^n} = \frac{0}{1+0} = 0$.
+          \item Untuk $x = 1$, kita memiliki $\lim_{n \to \infty} \frac{1^n}{1+1^n} = \frac{1}{2}$.
+          \item Untuk $x \in (1, 2]$, kita memiliki $x^n \to \infty$ ketika $n \to \infty$. Sehingga, $\lim_{n \to \infty} \frac{x^n}{1+x^n} = \lim_{n \to \infty} \frac{1}{1/x^n + 1} = \frac{1}{0+1} = 1$.
+        \end{itemize}
+        Fungsi limit $f(x)$ tidak kontinu di $x=1$ karena limit kiri $f(x) \to 0$ sedangkan limit kanan $f(x) \to 1$. Menurut Teorema (jika barisan fungsi kontinu konvergen seragam, maka fungsi limitnya kontinu), karena $f_n(x)$ kontinu pada $[0,2]$ namun limitnya $f(x)$ tidak kontinu, maka konvergensinya tidak seragam.
+
+        \vspace{0.5cm}
+  \item[4.] Misalkan $(f_n)$ adalah barisan fungsi kontinu pada interval $I$ yang konvergen seragam pada $I$ menuju suatu fungsi $f$. Jika $(x_n) \subseteq I$ konvergen ke $x_0 \in I$, tunjukkan bahwa $\lim_{n \to \infty} (f_n(x_n)) = f(x_0)$.\\
+        \textbf{Hint:} Jika diberikan $\varepsilon > 0$, misalkan $K$ sehingga jika $n \ge K$, maka $\|f_n - f\|_I < \varepsilon/2$. Kemudian $|f_n(x_n) - f(x_0)| \le |f_n(x_n) - f(x_n)| + |f(x_n) - f(x_0)| \le \varepsilon/2 + |f(x_n) - f(x_0)|$. Karena $f$ kontinu (oleh Teorema 8.2.2) dan $x_n \to x_0$, maka $|f(x_n) - f(x_0)| < \varepsilon/2$ untuk $n \ge K'$, sehingga $|f_n(x_n) - f(x_0)| < \varepsilon$ untuk $n \ge \max\{K, K'\}$.\\
+        \textbf{Solusi:}
+        Ambil sembarang $\varepsilon > 0$. Karena $(f_n)$ konvergen seragam ke $f$ pada $I$, terdapat bilangan asli $K$ sedemikian sehingga untuk semua $n \ge K$ dan $x \in I$, $|f_n(x) - f(x)| < \varepsilon/2$.
+        Oleh karena konvergensi seragam dari fungsi-fungsi kontinu $f_n$, limit fungsi $f$ juga kontinu di $I$. Karena $x_n \to x_0$ dan $f$ kontinu di $x_0$, terdapat bilangan asli $K'$ sedemikian sehingga untuk semua $n \ge K'$, $|f(x_n) - f(x_0)| < \varepsilon/2$.
+        Misalkan $N = \max\{K, K'\}$. Untuk $n \ge N$, melalui Ketaksamaan Segitiga, kita dapatkan:
+        \begin{align*}
+          |f_n(x_n) - f(x_0)| & = |f_n(x_n) - f(x_n) + f(x_n) - f(x_0)|                       \\
+                              & \le |f_n(x_n) - f(x_n)| + |f(x_n) - f(x_0)|                   \\
+                              & < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+        \end{align*}
+        Hal ini membuktikan bahwa $\lim_{n \to \infty} f_n(x_n) = f(x_0)$.
+
+        \vspace{0.5cm}
+  \item[6.] Misalkan $f_n(x) := 1 / (1 + x)^n$ untuk $x \in [0, 1]$. Temukan limit titik demi titik (pointwise limit) $f$ dari barisan $(f_n)$ pada $[0, 1]$. Apakah $(f_n)$ konvergen seragam ke $f$ pada $[0, 1]$?\\
+        \textbf{Hint:} Di sini $f(0) = 1$ dan $f(x) = 0$ untuk $x \in (0, 1]$. Konvergensinya tidak seragam pada $[0, 1]$.\\
+        \textbf{Solusi:}
+        \begin{itemize}
+          \item Jika $x = 0$, maka $f_n(0) = 1 / (1+0)^n = 1$. Maka $\lim_{n \to \infty} f_n(0) = 1$.
+          \item Jika $x \in (0, 1]$, maka $1+x > 1$. Akibatnya $(1+x)^n \to \infty$ ketika $n \to \infty$. Maka $\lim_{n \to \infty} 1 / (1+x)^n = 0$.
+        \end{itemize}
+        Maka fungsi pointwise limit $f$ terbagi menjadi dua kasus: $f(x) = 1$ jika $x = 0$, dan $f(x) = 0$ jika $x \in (0, 1]$.
+        Masing-masing $f_n$ adalah fungsi kontinu pada $[0, 1]$. Namun, fungsi limit $f(x)$ tidak kontinu pada $x = 0$. Berdasarkan Teorema Kontinuitas (sifat konvergensi seragam), jika $(f_n)$ konvergen seragam ke $f$, seharusnya fungsi limit $f$ juga kontinu. Karena $f$ tidak kontinu, maka konvergensi barisan $(f_n)$ tidak mungkin seragam pada $[0, 1]$.
+
+        \vspace{0.5cm}
+  \item[7.] Misalkan barisan $(f_n)$ konvergen seragam ke $f$ pada himpunan $A$, dan misalkan masing-masing $f_n$ terbatas pada $A$. (Yakni, untuk setiap $n$ ada suatu konstanta $M_n$ sedemikian sehingga $|f_n(x)| \le M_n$ untuk semua $x \in A$). Tunjukkan bahwa fungsi limit $f$ juga terbatas pada $A$.\\
+        \textbf{Hint:} Diberikan $\varepsilon := 1$, terdapat $K > 0$ sedemikian sehingga jika $n \ge K$ dan $x \in A$, maka $|f_n(x) - f(x)| < 1$, sehingga $|f(x)| \le |f_K(x)| + 1$ untuk semua $x \in A$. Misalkan $M := \max\{\|f_1\|_A, \dots, \|f_{K-1}\|_A, \|f_K\|_A + 1\}$.\\
+        \textbf{Solusi:}
+        Diketahui $(f_n) \to f$ secara seragam. Ambil $\varepsilon = 1$. Terdapat bilangan bulat $K$ sedemikian sehingga untuk semua $n \ge K$ dan untuk sebagian besar $x \in A$, berlaku $|f_n(x) - f(x)| < 1$. Khususnya untuk $n = K$, $|f_K(x) - f(x)| < 1$.
+        Menggunakan Ketaksamaan Segitiga berbalik, $|f(x)| - |f_K(x)| \le |f_K(x) - f(x)|$, yang mengakibatkan $|f(x)| \le |f_K(x)| + 1$ untuk setiap $x \in A$.
+        Diketahui pula $f_K$ terbatas di $A$, anggap terbatas oleh nilai $\|f_K\|_A$. Oleh karenanya, $|f(x)| \le \|f_K\|_A + 1$, sehingga menyimpulkan $f$ sangat pasti terbatas di $A$. Himpunan dari setiap limit terbatas dapat didefinisikan secara lebih ketat dengan memisalkan nilai maksimum $M := \max\{\|f_1\|_A, \dots, \|f_{K-1}\|_A, \|f_K\|_A + 1\}$.
+
+        \vspace{0.5cm}
+  \item[8.] Misalkan $f_n(x) := nx / (1 + nx^2)$ untuk $x \in A := [0, \infty)$. Tunjukkan bahwa masing-masing $f_n$ terbatas pada $A$, tetapi fungsi limit pointwise $f$ dari barisan ini tidak terbatas (unbounded) pada $A$. Apakah $(f_n)$ konvergen seragam terhadap $f$ pada $A$?\\
+        \textbf{Hint:} $f_n(1/\sqrt{n}) = \sqrt{n}/2$.\\
+        \textbf{Solusi:}
+        Fungsi pointwise limit dicari berdasarkan kasus nilai $x$:
+        \begin{itemize}
+          \item Jika $x = 0$, $f_n(0) = 0$, sehingga $\lim_{n \to \infty} f_n(0) = 0$.
+          \item Jika $x > 0$, $\lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \frac{nx}{1+nx^2} = \lim_{n \to \infty} \frac{x}{1/n + x^2} = \frac{1}{x}$.
+        \end{itemize}
+        Fungsi limit $f(x)$ tidak terbatas pada sekitar $x=0$, karena saat $x \to 0^+$, nilai $1/x \to \infty$.
+
+        Fungsi masing-masing sukunya terbatas: Jika diturunkan parameternya bernilai maksimum pada $x = 1/\sqrt{n}$. Nilainya adalah $f_n(1/\sqrt{n}) = \sqrt{n}/2$. Karena ia memuncak pada nilai finit di setiap putaran, hal ini menuntukkan tiap sukunya terbatas.
+
+        Karena limit pointwise adalah f yang tidak terbatas yang seharusnya mengikuti syarat konvergensi terbatas juga mestinya terbatas (menurut latihan 7), maka konvergensinya TIDAK secara seragam pada $A$.
+
+        \vspace{0.5cm}
+  \item[10.] Misalkan $g_n(x) := e^{-nx} / n$ untuk $x \ge 0, n \in \mathbb{N}$. Periksa hubungan antara $\lim (g_n)$ dan $\lim (g_n')$.\\
+        \textbf{Hint:} Di sini $(g_n)$ konvergen seragam ke fungsi nol. Barisan $(g_n')$ tidak konvergen seragam.\\
+        \textbf{Solusi:}
+        Periksa masing-masing konvergensi limit:
+        \begin{itemize}
+          \item \textbf{Fungsi awal $g_n(x)$}: Karena $0 \le e^{-nx} \le 1$ untuk seluruh $x \ge 0$, kita memiliki $0 \le g_n(x) \le \frac{1}{n}$. Karena $\frac{1}{n} \to 0$ saat $n \to \infty$, maka $(g_n)$ konvergen seragam ke $g(x) = 0$. Nilai turunan darinya adalah $g'(x) = 0$.
+          \item \textbf{Barisan turunannya $g_n'(x)$}: Turunan barisannya adalah $g_n'(x) = -e^{-nx}$. Kita cari limitnya dan ditinjau pada dua kasus:
+                \begin{itemize}
+                  \item Jika $x = 0$, limitnya adalah $g_n'(0) = -e^{0} = -1$.
+                  \item Jika $x > 0$, limitnya adalah $\lim_{n \to \infty} -e^{-nx} = 0$.
+                \end{itemize}
+        \end{itemize}
+        Jadi fungsi limit untuk $(g_n')$ bersifat diskontinu, dimana ia bernilai $-1$ di $x=0$, dan $0$ di himpunan selain ujungnya. Hal ini jelas mengindikasikan karena limitnya terpotong, $(g_n')$ tidak konvergen secara seragam.
+
+        \vspace{0.5cm}
+  \item[11.] Misalkan $I := [a, b]$ dan misalkan $(f_n)$ barisan fungsi di $I \to \mathbb{R}$ yang konvergen pada $I$ menuju $f$. Misalkan masing-masing turunan $f_n'$ kontinu pada $I$ dan barisan $(f_n')$ terkonvergensi seragam menuju $g$ pada $I$. Buktikan bahwa $f(x) - f(a) = \int_a^x g(t)dt$ dan $f'(x) = g(x)$ untuk semua $x \in I$.\\
+        \textbf{Hint:} Gunakan Fundamental Theorem 7.3.1 dan Theorem 8.2.4.\\
+        \textbf{Solusi:}
+        Berdasarkan Teorema Dasar Kalkulus (7.3.1), karena $f_n'$ kontinu di $I$, dapat diintegrasikan sebagai:
+        \[ f_n(x) - f_n(a) = \int_a^x f_n'(t) dt \]
+        Berdasarkan Teorema 8.2.4 (terkait pertukaran limit dan integral pada konvergensi seragam), karena deret barisan derivatif $f_n'$ kontinu dan konvergen seragam menuju fungsi $g$, integral dari limit bernilai ekuivalen pada parameter di bawah limitnya:
+        \[ \lim_{n \to \infty} (f_n(x) - f_n(a)) = \lim_{n \to \infty} \int_a^x f_n'(t) dt = \int_a^x g(t) dt \]
+        Bagian luar tersebut membuktikan bahwa $f(x) - f(a) = \int_a^x g(t) dt$.
+        Karena $g$ merupakan fungsi kontinu dari hasil konvergensi seragam, dari sifat teorema kalkulus lanjutan kita bisa menurunkan integralnya kembali hingga diperoleh bentuk definitif $f'(x) = g(x)$ di keseluruhan wilayah $I$.
+
+        \vspace{0.5cm}
+  \item[13.] Jika $a > 0$, tunjukkan bahwa $\lim \int_a^\pi (\sin nx) / (nx) dx = 0$. Apa yang terjadi apabila $a=0$?\\
+        \textbf{Hint:} Jika $a > 0$, maka $\|f_n\|_{[a, \pi]} \le 1 / (na)$ dan Theorem 8.2.4 dapat diaplikasikan.\\
+        \textbf{Solusi:}
+        Kita bagi telaah persoalan ini menjadi dua bahasan untuk dua interval berbeda:
+        \begin{itemize}
+          \item \textbf{Apabila $a > 0$}: Batasan limit seragam bisa dicari terlebih dahulu menggunakan supremasi dari $f_n$. Di rentang di mana basis nilai $x$ menempatkan konstanta penyebut dengan paling tak minimnya $na$, selagi $\sin nx \le 1$. Nilainya terkumpul secara mutlak di dalam norma supremasi:
+                \[ \|f_n\|_{[a, \pi]} \le \frac{1}{na} \]
+                Saat $n \to \infty$, supremumnya konvergen pada bilangan nol secara seragam di seluruh rentang. Dengan demikian, integral bisa diatur ke dalam limit (melalui Teorema 8.2.4),
+                \[ \lim_{n \to \infty} \int_a^\pi \frac{\sin nx}{nx} dx = \int_a^\pi 0 \, dx = 0 \]
+
+          \item \textbf{Apabila $a = 0$}: Norma supremasi barisannya tidak terbatas saat mendekati titik ini dan tidak konvergen seragam secara global di $[0, \pi]$. Teorema 8.2.4 tidak bisa bekerja disini.
+        \end{itemize}
+
+        \vspace{0.5cm}
+  \item[15.] Misalkan $g_n(x) := nx(1 - x)^n$ untuk $x \in [0, 1]$, $n \in \mathbb{N}$. Diskusikan konvergensi dari $(g_n)$ dan $(\int_0^1 g_n dx)$.\\
+        \textbf{Hint:} Di sini $\|g_n\|_{[0, 1]} \le 1$ untuk seluruh $n$. Aplikasikan Theorem 8.2.5.\\
+        \textbf{Solusi:}
+        Perihal konvergensinya, kita tinjau:
+        \begin{itemize}
+          \item \textbf{Fungsi Pointwise Limit} ($n \to \infty$): Jika $x=0$ atau $x=1$, nilainya tetap $0$. Untuk $x \in (0,1)$, term polanya menurun secara eksponensial $(1-x)^n$ yang mendominasi nilai $n$, sehingga $\lim_{n \to \infty} g_n(x) = 0$. Target nilai serempak ini mengikat sentralisasi pointwise kita di angka 0.
+          \item \textbf{Keadaan Terbatas Barisan}: Cari kurva puncaknya melalui akar turunan: $g_n'(x) = n(1-x)^{n-1}(1 - x - nx)$. Limit puncaknya ada di koordinat $x = \frac{1}{n+1}$, nilai tingginya ialah $g_n(1/(n+1)) = \frac{n}{n+1} (1 - \frac{1}{n+1})^n = (\frac{n}{n+1})^{n+1}$ dan hal ini konvergen ke $1/e$. Oleh karena itu supremum maksimalnya bersifat mutlak berapapun suksesi generasinya, mengunci perbatasannya menjadi absolut, yaitu $\|g_n\|_{[0,1]} \le 1$.
+        \end{itemize}
+        Oleh karena konvergensi fungsinya bersifat batas dalam norma terbatas Bounded Convergence (Theorem 8.2.5), integral pun terpusat juga disubstitusi menjadi limit limitan ini yakni di ambang akhir:
+        \[ \lim_{n \to \infty} \int_0^1 g_n(x) dx = \int_0^1 0 \, dx = 0 \]
+
+        \vspace{0.5cm}
+  \item[20.] Berikan contoh dari sekuens / barisan menurun $(f_n)$ bersandingkan fungsi kontinu pada $[0, 1)$ yang konvergen terhadap limit fungsi yang kontinu pula, akan tetapi konvergensinya tidak bersikap seragam di $[0, 1)$.\\
+        \textbf{Hint:} Misalkan $f_n(x) := x^n$ pada $[0, 1)$.\\
+        \textbf{Solusi:}
+        Sebagaimana hint yang diajukan, kita tinjau $f_n(x) = x^n$ yang didikte berakar pada interval $x \in [0, 1)$.
+        Masing-masing fungsi ini merupakan kurva tunggal konstan nan kontinu serentaknya konvergen memudar:
+        \begin{itemize}
+          \item Di setiap titik $x \in [0, 1)$, ketika disematkan pada barisnya $\lim_{n \to \infty} x^n = 0$.
+          \item Dari fenomena terpusat ini titik potong limit adalah $f(x) \equiv 0$, yang mana diwujudkan dengan bentuk kontinu pula.
+          \item Secara pertelaah supremasinya, konvergensinya tidak seragam karena jarak ekivalensi atas kurva membetur ambang batas:
+                \[ \|f_n - f\|_{[0, 1)} = \sup_{x \in [0, 1)} x^n = 1 \]
+        \end{itemize}
+        Ketika norma supremasi dari diferensial batas menampik pengerucutan menuju limit $0$, konvergensi dipastikan mematah dalam parameter seragam secara komprehensif pada batas separuhnya.
+
+\end{enumerate}
+
+\end{document}
