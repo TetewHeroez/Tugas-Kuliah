@@ -439,7 +439,7 @@ export default function LatinSquarePuzzle() {
   return (
     <div className="flex w-full flex-col items-center gap-5">
       <div className="w-full rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-2">
             <p className="text-xs font-bold uppercase tracking-wider text-stone-600">
               Coba Susun Latin Square
@@ -450,7 +450,7 @@ export default function LatinSquarePuzzle() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pt-1">
             {latinSquarePuzzles.map((puzzle) => {
               const isActive = puzzle.id === activePuzzleId;
               return (
@@ -477,10 +477,10 @@ export default function LatinSquarePuzzle() {
         className={[
           gridClass,
           activePuzzle.order === 3
-            ? "max-w-[260px]"
+            ? "max-w-[240px] sm:max-w-[280px]"
             : activePuzzle.order === 4
-              ? "max-w-[310px] sm:max-w-[360px]"
-              : "max-w-[350px] sm:max-w-[430px]",
+              ? "max-w-[270px] sm:max-w-[320px]"
+              : "max-w-[300px] sm:max-w-[360px]",
         ].join(" ")}
         style={{
           gridTemplateColumns: `repeat(${activePuzzle.order}, minmax(0, 1fr))`,
@@ -505,10 +505,10 @@ export default function LatinSquarePuzzle() {
             const cellClass = [
               baseCellClass,
               activePuzzle.order === 3
-                ? "text-xl sm:text-2xl"
+                ? "text-lg sm:text-xl"
                 : activePuzzle.order === 4
-                  ? "text-lg sm:text-2xl"
-                  : "text-lg sm:text-xl",
+                  ? "text-base sm:text-xl"
+                  : "text-base sm:text-lg",
               isOriginallyGiven
                 ? "cursor-default bg-stone-200 font-extrabold text-stone-950"
                 : isHintedCell
