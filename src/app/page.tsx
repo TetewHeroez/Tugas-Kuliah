@@ -200,23 +200,25 @@ export default function Home() {
   useEffect(() => {
     const lastSeenRaw = localStorage.getItem(OPENING_STORAGE_KEY);
     const lastSeen = lastSeenRaw ? Number(lastSeenRaw) : 0;
-
-    setShowOpening(
-      !lastSeen ||
-        Number.isNaN(lastSeen) ||
-        Date.now() - lastSeen > OPENING_EXPIRY_MS,
-    );
-
     const savedSlideRaw = localStorage.getItem(CURRENT_SLIDE_STORAGE_KEY);
     const savedSlide = savedSlideRaw ? Number(savedSlideRaw) : 0;
+    const shouldShowOpening =
+      !lastSeen ||
+      Number.isNaN(lastSeen) ||
+      Date.now() - lastSeen > OPENING_EXPIRY_MS;
+    const syncTimer = window.setTimeout(() => {
+      setShowOpening(shouldShowOpening);
 
-    if (
-      !Number.isNaN(savedSlide) &&
-      savedSlide >= 0 &&
-      savedSlide < SLIDE_LABELS.length
-    ) {
-      setCurrentSlide(savedSlide);
-    }
+      if (
+        !Number.isNaN(savedSlide) &&
+        savedSlide >= 0 &&
+        savedSlide < SLIDE_LABELS.length
+      ) {
+        setCurrentSlide(savedSlide);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(syncTimer);
   }, []);
 
   const [unlockedSlides, setUnlockedSlides] = useState(SLIDE_LABELS.length - 1);

@@ -60,12 +60,12 @@ const latinSquareExamplesTex = latinSquareExamples
 
 export default function LatinSquareConceptSlide() {
   return (
-    <div className="w-full min-h-dvh px-4 pb-24 pt-24 sm:px-6">
+    <div className="w-full min-h-dvh px-4 pb-40 pt-28 sm:px-6 sm:pb-36 sm:pt-28">
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6"
+        className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8"
       >
         <motion.div variants={item} className="space-y-2 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
