@@ -51,6 +51,8 @@ const constructionSteps = [
       [4, ".", ".", "."],
     ] as const satisfies Matrix,
     formula: "\\sigma_4^B",
+    centralizer:
+      "C_{S_4}(\\sigma_4^A) = \\{(1),\\ (1\\ 4)(2\\ 3),\\ (1\\ 3)(2\\ 4),\\ (1\\ 2)(3\\ 4)\\}",
   },
   {
     id: "sigma3",
@@ -200,6 +202,21 @@ export default function CommutativeSearchAlgorithmSlide() {
                       </div>
                     ) : null}
 
+                    {"centralizer" in step && step.centralizer ? (
+                      <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
+                        <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
+                          Centralizer kandidat awal
+                        </p>
+                        <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                          <MathBlock
+                            tex={step.centralizer}
+                            display
+                            className="text-amber-950"
+                          />
+                        </div>
+                      </div>
+                    ) : null}
+
                     <div className="rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4">
                       <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">
                         Cara membacanya
@@ -208,7 +225,7 @@ export default function CommutativeSearchAlgorithmSlide() {
                         {step.id === "start"
                           ? "Di tahap ini belum ada komitmen terhadap permutasi penyusun B. Bentuk kosong ini hanya menandai bahwa pencarian masih berada di titik awal."
                           : step.id === "sigma4"
-                            ? "Begitu simbol maksimum dipilih, kita langsung tahu sebagian bentuk B*. Kalau pilihan ini salah, cabang pencarian bisa dihentikan lebih awal."
+                            ? "Di sinilah centralizer dipakai. Artinya sigma_4^B tidak boleh dipilih sembarang, melainkan hanya dari permutasi yang komutatif dengan sigma_4^A. Dari himpunan inilah bentuk awal B* mulai dibangun."
                             : step.id === "sigma3"
                               ? "Sekarang B* mulai punya struktur. Pemeriksaan level tinggi bekerja sebagai filter supaya kita tidak melanjutkan kandidat yang sudah jelas gagal."
                               : step.id === "sigma2"
