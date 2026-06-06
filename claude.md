@@ -45,6 +45,7 @@
 - Codex update: visual slide 1-3 dirapikan tanpa mengubah tipografi inti. Masalah utamanya bukan Tailwind/global CSS rusak, melainkan ruang atas-bawah slide terlalu mepet terhadap navbar fixed dan tombol navigasi fixed. Wrapper slide 1-3 sekarang diberi `pt` dan `pb` lebih lega serta `gap` antarblok dikembalikan agar konten tidak tampak rapet atau tertindih.
 - Codex update: visual conflict Sudoku disetel lagi. Sel input pemain yang benar-benar bentrok sekarang tetap merah walau feedback cluster sekitarnya sudah memudar, sedangkan highlight biru untuk clue bawaan yang ikut tersorot dibuat sedikit lebih gelap agar lebih gampang dibedakan dari sel biasa.
 - Codex update: contoh KaTeX Latin square di slide 2 diperkecil lagi. Font matriks contoh sekarang lebih kecil dan padding kartu contoh sedikit diringkas supaya blok contoh tidak terasa kebesaran dibanding isi slide lainnya.
+- Codex update: slide 3 tentang perbandingan Aljabar Biasa vs Aljabar Max-Plus dipulihkan sebagai file baru `BasicVsMaxPlusSlide.tsx`, lalu disisipkan kembali di antara slide Latin square dan dekomposisi. Urutan navigasi kini kembali punya langkah `Perkalian` sebelum masuk ke matriks permutasi max-plus.
 
 ## Design Philosophy
 - Warm academic palette: parchment, ink, gold, emerald.

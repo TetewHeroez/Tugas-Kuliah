@@ -11,10 +11,12 @@ import CommutativeExamplesSlide from "@/components/slides/CommutativeExamplesSli
 import ThesisTakeawaysSlide from "@/components/slides/ThesisTakeawaysSlide";
 import LatinSquareConceptSlide from "@/components/slides/LatinSquareConceptSlide";
 import SudokuPuzzleSlide from "@/components/slides/SudokuPuzzleSlide";
+import BasicVsMaxPlusSlide from "@/components/slides/BasicVsMaxPlusSlide";
 
 const SLIDE_LABELS = [
   "Sudoku",
   "Latin Square",
+  "Perkalian",
   "Dekomposisi",
   "Aksi Permutasi",
   "Kriteria",
@@ -250,16 +252,18 @@ export default function Home() {
       case 1:
         return <LatinSquareConceptSlide />;
       case 2:
-        return <LatinSquareDecompositionSlide />;
+        return <BasicVsMaxPlusSlide />;
       case 3:
-        return <PermutationMatrixActionSlide />;
+        return <LatinSquareDecompositionSlide />;
       case 4:
-        return <CommutativityCriteriaSlide />;
+        return <PermutationMatrixActionSlide />;
       case 5:
-        return <CommutativeSearchAlgorithmSlide />;
+        return <CommutativityCriteriaSlide />;
       case 6:
-        return <CommutativeExamplesSlide />;
+        return <CommutativeSearchAlgorithmSlide />;
       case 7:
+        return <CommutativeExamplesSlide />;
+      case 8:
         return <ThesisTakeawaysSlide />;
       default:
         return null;
