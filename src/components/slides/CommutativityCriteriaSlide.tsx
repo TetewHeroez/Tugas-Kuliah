@@ -113,7 +113,7 @@ export default function CommutativityCriteriaSlide() {
                     {panel.explainer}
                   </p>
 
-                  <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                  <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                     <MathBlock
                       tex={panel.formula}
                       display

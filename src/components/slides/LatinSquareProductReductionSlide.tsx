@@ -129,7 +129,7 @@ export default function LatinSquareProductReductionSlide() {
               Rumus Sebelum dan Sesudah Reduksi
             </p>
 
-            <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+            <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
               <MathBlock tex={fullFormula} display className="text-stone-950" />
             </div>
 
@@ -145,18 +145,25 @@ export default function LatinSquareProductReductionSlide() {
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">
                 Kenapa boleh direduksi
               </p>
-              <div className="mt-3 overflow-x-auto">
+              <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 <MathBlock
-                  tex={`${lowerBoundFormula} \\quad\\text{karena}\\quad ${sampleEntryFormula}`}
+                  tex={lowerBoundFormula}
                   display
                   className="text-sky-950"
                 />
               </div>
+              <div className="mt-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <MathBlock
+                  tex={sampleEntryFormula}
+                  display
+                  className="text-sky-950 [&_.katex]:text-[0.92rem] sm:[&_.katex]:text-base"
+                />
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-sky-950">
-                Pada setiap baris A selalu ada simbol maksimum n, dan pada kolom
-                B setiap entri minimal bernilai 1. Jadi kontribusi paling kecil
-                yang pasti bisa dicapai sudah n+1. Itulah sebabnya level 2
-                sampai n tidak lagi berpengaruh.
+                Pada setiap baris A selalu ada simbol maksimum n. Di sisi lain,
+                setiap entri B minimal bernilai 1. Jadi, apa pun kolom yang
+                diambil, hasilnya pasti tidak akan turun di bawah n+1. Karena
+                itu, level 2 sampai n tidak pernah ikut menentukan nilai akhir.
               </p>
             </div>
           </div>
@@ -232,7 +239,7 @@ export default function LatinSquareProductReductionSlide() {
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
                   Suku yang muncul pada level itu
                 </p>
-                <div className="mt-3 overflow-x-auto">
+                <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                   <MathBlock
                     tex={exampleTex}
                     display
