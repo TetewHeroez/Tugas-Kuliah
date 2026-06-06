@@ -11,7 +11,7 @@ import CommutativeExamplesSlide from "@/components/slides/CommutativeExamplesSli
 import ThesisTakeawaysSlide from "@/components/slides/ThesisTakeawaysSlide";
 import LatinSquareConceptSlide from "@/components/slides/LatinSquareConceptSlide";
 import SudokuPuzzleSlide from "@/components/slides/SudokuPuzzleSlide";
-import BasicVsMaxPlusSlide from "@/components/slides/BasicVsMaxPlusSlide";
+import MatrixMultiplicationSlide from "@/components/slides/MatrixMultiplicationSlide";
 
 const SLIDE_LABELS = [
   "Sudoku",
@@ -252,7 +252,7 @@ export default function Home() {
       case 1:
         return <LatinSquareConceptSlide />;
       case 2:
-        return <BasicVsMaxPlusSlide />;
+        return <MatrixMultiplicationSlide />;
       case 3:
         return <LatinSquareDecompositionSlide />;
       case 4:
