@@ -49,6 +49,7 @@
 - Codex update: slide 3 perbandingan operasi dipulihkan lagi dengan nama yang lebih sesuai jejak lama, yaitu `MatrixMultiplicationSlide.tsx`. Isinya sekarang kembali ke bentuk interaktif: mode `Aljabar Biasa` vs `Aljabar Max-Plus`, matriks `A`, `B`, dan `C` yang bisa diklik pada entri hasil, highlight baris/kolom sumber, serta ekspresi KaTeX yang berubah mengikuti entri terpilih.
 - Codex update: puzzle Latin square di slide 2 diperkecil lagi supaya proporsinya lebih selaras dengan contoh dan teks pada slide itu. Lebar maksimum grid untuk ordo 3/4/5 diturunkan, dan ukuran font sel juga diringankan agar papan tidak terasa terlalu besar.
 - Codex update: sizing puzzle Latin square dirapikan lagi agar lebih dekat proporsinya ke Sudoku. Nested ternary untuk lebar grid dan ukuran font sel diganti menjadi config per ordo yang lebih bersih, ukuran papan dikecilkan lagi, dan wrapper header puzzle dibetulkan menjadi `flex flex-col` supaya layout kontrolnya lebih rapi.
+- Codex update: warning canonical Tailwind di `page.tsx` dibersihkan. Kelas background gradient pembuka, arah gradient loading bar, dan radius kartu opening diganti ke bentuk canonical yang disarankan Tailwind IntelliSense tanpa mengubah tampilan.
 
 ## Design Philosophy
 - Warm academic palette: parchment, ink, gold, emerald.

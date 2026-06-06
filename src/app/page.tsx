@@ -70,7 +70,7 @@ function OpeningScreen({ onEnter }: { onEnter: () => void }) {
       onClick={() => {
         if (isLoaded) onEnter();
       }}
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.18),_transparent_32%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.12),_transparent_28%),linear-gradient(180deg,_#fafaf9_0%,_#f5f5f4_100%)] px-4 py-10"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.18),transparent_32%),radial-gradient(circle_at_bottom,rgba(56,189,248,0.12),transparent_28%),linear-gradient(180deg,#fafaf9_0%,#f5f5f4_100%)] px-4 py-10"
     >
       <div className="absolute inset-0 opacity-45">
         <motion.div
@@ -115,7 +115,7 @@ function OpeningScreen({ onEnter }: { onEnter: () => void }) {
                   duration: 1.35,
                   ease: "easeInOut",
                 }}
-                className="h-full w-1/3 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-sky-400"
+                className="h-full w-1/3 rounded-full bg-linear-to-r from-amber-400 via-amber-500 to-sky-400"
               />
             </div>
           </motion.div>
@@ -128,7 +128,7 @@ function OpeningScreen({ onEnter }: { onEnter: () => void }) {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 w-full max-w-4xl"
           >
-            <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white/82 px-6 py-10 shadow-[0_30px_90px_rgba(41,37,36,0.10)] backdrop-blur md:px-12 md:py-14">
+            <div className="overflow-hidden rounded-4xl border border-stone-200/80 bg-white/82 px-6 py-10 shadow-[0_30px_90px_rgba(41,37,36,0.10)] backdrop-blur md:px-12 md:py-14">
               <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
