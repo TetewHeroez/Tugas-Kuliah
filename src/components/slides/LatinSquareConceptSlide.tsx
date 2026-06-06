@@ -123,12 +123,12 @@ export default function LatinSquareConceptSlide() {
             Contoh Latin Square
           </p>
           <div className="grid grid-cols-1 gap-4">
-            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-3 py-4 sm:px-4 sm:py-5">
               <div className="overflow-x-auto">
                 <MathBlock
                   tex={latinSquareExamplesTex}
                   display
-                  className="[&_.katex]:text-[0.82rem] sm:[&_.katex]:text-[0.95rem] md:[&_.katex]:text-[1.02rem] [&_.katex-display]:my-0 text-stone-950"
+                  className="[&_.katex]:text-[0.68rem] sm:[&_.katex]:text-[0.82rem] md:[&_.katex]:text-[0.92rem] [&_.katex-display]:my-0 text-stone-950"
                 />
               </div>
             </div>
