@@ -468,7 +468,7 @@ export default function LatinSquarePuzzle() {
   return (
     <div className="flex w-full flex-col items-center gap-5">
       <div className="w-full rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-2">
             <p className="text-xs font-bold uppercase tracking-wider text-stone-600">
               Coba Susun Latin Square
@@ -503,10 +503,7 @@ export default function LatinSquarePuzzle() {
       </div>
 
       <div
-        className={[
-          gridClass,
-          puzzleSize.gridWidth,
-        ].join(" ")}
+        className={[gridClass, puzzleSize.gridWidth].join(" ")}
         style={{
           gridTemplateColumns: `repeat(${activePuzzle.order}, minmax(0, 1fr))`,
         }}
@@ -650,7 +647,7 @@ export default function LatinSquarePuzzle() {
                   ease: "easeIn",
                   delay: piece.delay,
                 }}
-                className={`pointer-events-none fixed top-[-12px] z-[300] rounded-sm ${piece.colorClass}`}
+                className={`pointer-events-none fixed -top-3 z-300 rounded-sm ${piece.colorClass}`}
                 style={{
                   left: `${piece.left}%`,
                   width: piece.size,
@@ -663,7 +660,7 @@ export default function LatinSquarePuzzle() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={dismissSuccess}
-              className="fixed inset-0 z-[200] flex items-center justify-center bg-stone-950/45 backdrop-blur-sm"
+              className="fixed inset-0 z-200 flex items-center justify-center bg-stone-950/45 backdrop-blur-sm"
             >
               <motion.div
                 initial={{ scale: 0.75, opacity: 0, y: 30 }}
