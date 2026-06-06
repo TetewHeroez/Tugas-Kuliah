@@ -107,7 +107,8 @@ function getSymbolAccent(symbol: SymbolId) {
 
 function matrixCellBase(value: MatrixValue, symbol: SymbolId | null) {
   if (value === "eps") return "bg-stone-50 text-stone-400";
-  if (value === 0 && symbol) return `${getSymbolAccent(symbol).muted} font-bold`;
+  if (value === 0 && symbol)
+    return `${getSymbolAccent(symbol).muted} font-bold`;
   if (value === 0) return "bg-stone-100 font-bold text-stone-700";
   return "bg-white text-stone-900";
 }
@@ -208,19 +209,22 @@ export default function LatinSquareDecompositionSlide() {
     () =>
       activeSymbol === null
         ? null
-        : decompositionLayers.find((layer) => layer.symbol === activeSymbol) ??
-          null,
+        : (decompositionLayers.find((layer) => layer.symbol === activeSymbol) ??
+          null),
     [activeSymbol],
   );
 
   const accent = activeSymbol ? getSymbolAccent(activeSymbol) : null;
   const decompositionFormula = useMemo(
-    () => "A = \\bigoplus_{i=1}^n a_i P_{\\sigma_i}, \\quad i = 1, 2, \\ldots, n",
+    () =>
+      "A = \\bigoplus_{i=1}^n a_i P_{\\sigma_i}, \\quad i = 1, 2, \\ldots, n",
     [],
   );
 
   const positionText = currentLayer
-    ? currentLayer.positions.map(([row, col]) => `(${row + 1}, ${col + 1})`).join(", ")
+    ? currentLayer.positions
+        .map(([row, col]) => `(${row + 1}, ${col + 1})`)
+        .join(", ")
     : "";
 
   return (
@@ -314,7 +318,7 @@ export default function LatinSquareDecompositionSlide() {
                       symbol={currentLayer.symbol}
                     />
                   ) : (
-                    <div className="flex min-h-[14.5rem] items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 text-center text-sm leading-relaxed text-stone-500 sm:min-h-[16rem]">
+                    <div className="flex min-h-[11rem] items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 text-center text-sm leading-relaxed text-stone-500 sm:min-h-[14rem]">
                       Matriks permutasi akan ditampilkan di sini setelah satu
                       simbol dipilih.
                     </div>
@@ -323,11 +327,11 @@ export default function LatinSquareDecompositionSlide() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-700">
+            <div className="rounded-2xl border border-teal-200 bg-teal-50 px-5 py-4">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-teal-700">
                 Inti ide
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-emerald-950">
+              <p className="mt-3 text-sm leading-relaxed text-teal-950">
                 Jadi dekomposisi Latin square dikerjakan dengan membaca satu
                 simbol demi satu simbol. Dari tiap simbol kita peroleh satu
                 matriks permutasi, lalu seluruh matriks permutasi itu digabung

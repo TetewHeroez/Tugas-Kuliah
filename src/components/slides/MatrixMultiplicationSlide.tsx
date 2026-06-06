@@ -330,7 +330,7 @@ export default function MatrixMultiplicationSlide() {
                   matrix={matrixB}
                   activeCol={selectedCol}
                 />
-                <div className="pt-4shrink-0 px-0.5 text-stone-900 text-[1.5rem] sm:text-[2rem]">
+                <div className="pt-4 shrink-0 px-0.5 text-stone-900 text-[1.5rem] sm:text-[2rem]">
                   <MathBlock tex="=" />
                 </div>
                 <MatrixView
