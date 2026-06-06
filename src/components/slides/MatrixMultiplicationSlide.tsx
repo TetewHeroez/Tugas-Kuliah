@@ -64,8 +64,7 @@ const modes = [
     id: "maxplus",
     label: "Aljabar Max-Plus",
     accent: "sky",
-    formula:
-      "c_{ij} = \\bigoplus_{k=1}^{n}(a_{ik} \\otimes b_{kj}) = \\max_k(a_{ik}+b_{kj})",
+    formula: "c_{ij} =  \\max_k(a_{ik}+b_{kj})",
     note: "Tambah dulu, lalu ambil nilai maksimum.",
     result: maxPlusResult,
   },
@@ -79,7 +78,10 @@ function matrixWrapperClass(accent: "amber" | "sky" | "emerald") {
   }[accent];
 }
 
-function matrixCellClass(accent: "amber" | "sky" | "emerald", isActive: boolean) {
+function matrixCellClass(
+  accent: "amber" | "sky" | "emerald",
+  isActive: boolean,
+) {
   if (!isActive) return "bg-white text-stone-900";
 
   return {
@@ -111,11 +113,13 @@ function MatrixView({
 
   return (
     <section className="shrink-0">
-      <h3 className={`text-center text-xs font-bold uppercase tracking-[0.24em] ${titleClass}`}>
+      <h3
+        className={`text-center text-xs font-bold uppercase tracking-[0.24em] ${titleClass}`}
+      >
         {title}
       </h3>
-      <div className="mt-2 flex items-center justify-center gap-2">
-        <span className={`text-5xl leading-none ${titleClass}`}>[</span>
+      <div className="mt-1.5 flex items-center justify-center gap-1 sm:gap-1.5">
+        <span className={`text-4xl leading-none sm:text-5xl ${titleClass}`}>[</span>
         <div
           className="grid overflow-hidden rounded-md border border-stone-300 bg-white"
           style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
@@ -125,7 +129,8 @@ function MatrixView({
               const isActiveRow = activeRow === rowIndex;
               const isActiveCol = activeCol === colIndex;
               const isSelected =
-                selectedCell?.[0] === rowIndex && selectedCell?.[1] === colIndex;
+                selectedCell?.[0] === rowIndex &&
+                selectedCell?.[1] === colIndex;
               const isHighlighted =
                 accent === "amber"
                   ? isActiveRow
@@ -153,14 +158,17 @@ function MatrixView({
               }
 
               return (
-                <div key={`${title}-${rowIndex}-${colIndex}`} className={cellClass}>
+                <div
+                  key={`${title}-${rowIndex}-${colIndex}`}
+                  className={cellClass}
+                >
                   {value}
                 </div>
               );
             }),
           )}
         </div>
-        <span className={`text-5xl leading-none ${titleClass}`}>]</span>
+        <span className={`text-4xl leading-none sm:text-5xl ${titleClass}`}>]</span>
       </div>
     </section>
   );
@@ -201,11 +209,11 @@ export default function MatrixMultiplicationSlide() {
   );
 
   const [selectedRow, selectedCol] = selectedEntry;
-  const selectedValue = mode.result[selectedRow][selectedCol];
   const expression =
     activeMode === "ordinary"
       ? buildOrdinaryExpression(selectedRow, selectedCol)
       : buildMaxPlusExpression(selectedRow, selectedCol);
+  const productOperator = activeMode === "ordinary" ? "\\times" : "\\otimes";
 
   return (
     <div className="w-full min-h-dvh px-4 pb-40 pt-28 sm:px-6 sm:pb-36 sm:pt-28">
@@ -233,7 +241,10 @@ export default function MatrixMultiplicationSlide() {
           </p>
         </motion.div>
 
-        <motion.div variants={item} className="flex flex-wrap justify-center gap-3">
+        <motion.div
+          variants={item}
+          className="flex flex-wrap justify-center gap-3"
+        >
           {modes.map((entry) => {
             const isActive = entry.id === activeMode;
             return (
@@ -256,7 +267,10 @@ export default function MatrixMultiplicationSlide() {
           })}
         </motion.div>
 
-        <motion.div variants={item} className="grid w-full gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+        <motion.div
+          variants={item}
+          className="grid w-full gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]"
+        >
           <div className="min-w-0 space-y-4">
             <AnimatePresence mode="wait">
               <motion.div
@@ -282,43 +296,12 @@ export default function MatrixMultiplicationSlide() {
                     Rumus Utama
                   </p>
                   <div className="mt-3 overflow-x-auto">
-                    <MathBlock tex={mode.formula} display className="text-stone-950" />
+                    <MathBlock
+                      tex={mode.formula}
+                      display
+                      className="text-stone-950"
+                    />
                   </div>
-                </div>
-
-                <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-                  <p className="text-xs font-bold uppercase tracking-widest text-stone-600">
-                    Sumber Entri Terpilih
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-stone-600">
-                    Pilih baris {selectedRow + 1} dari A dan kolom {selectedCol + 1}
-                    {" "}
-                    dari B untuk menghitung
-                    {" "}
-                    <span className="font-semibold text-stone-900">
-                      c{selectedRow + 1}{selectedCol + 1}
-                    </span>
-                    {" "}
-                    dengan aturan
-                    {" "}
-                    <span className="font-semibold text-stone-900">{mode.label}</span>.
-                  </p>
-                </div>
-
-                <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-                  <p className="text-xs font-bold uppercase tracking-widest text-stone-600">
-                    Ekspresi yang Berubah Mengikuti Klik
-                  </p>
-                  <div className="mt-3 overflow-x-auto">
-                    <MathBlock tex={expression} display className="text-stone-950" />
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-stone-600">
-                    Hasil entri terpilih sekarang adalah
-                    {" "}
-                    <span className="font-semibold text-stone-900">{selectedValue}</span>.
-                    {" "}
-                    {mode.note}
-                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -328,24 +311,31 @@ export default function MatrixMultiplicationSlide() {
             <p className="text-xs font-bold uppercase tracking-widest text-stone-600">
               Ilustrasi Interaktif
             </p>
+            <div className="mt-3 overflow-x-auto">
+              <MathBlock tex={expression} display className="text-stone-950" />
+            </div>
             <div className="mt-4 overflow-x-auto overflow-y-hidden">
-              <div className="flex min-w-max items-center justify-center gap-6 px-1 py-2">
+              <div className="flex min-w-max items-center justify-center gap-2 px-1 py-2 sm:gap-3">
                 <MatrixView
-                  title="Matriks A"
+                  title="A"
                   accent="amber"
                   matrix={matrixA}
                   activeRow={selectedRow}
                 />
-                <span className="text-3xl font-semibold text-stone-900">×</span>
+                <div className="shrink-0 px-0.5 text-stone-900 [&_.katex]:text-[1.7rem] sm:[&_.katex]:text-[2rem]">
+                  <MathBlock tex={productOperator} />
+                </div>
                 <MatrixView
-                  title="Matriks B"
+                  title="B"
                   accent="sky"
                   matrix={matrixB}
                   activeCol={selectedCol}
                 />
-                <span className="text-3xl font-semibold text-stone-900">=</span>
+                <div className="shrink-0 px-0.5 text-stone-900 [&_.katex]:text-[1.7rem] sm:[&_.katex]:text-[2rem]">
+                  <MathBlock tex="=" />
+                </div>
                 <MatrixView
-                  title="Hasil C"
+                  title="C"
                   accent="emerald"
                   matrix={mode.result}
                   selectedCell={selectedEntry}
@@ -354,16 +344,11 @@ export default function MatrixMultiplicationSlide() {
               </div>
             </div>
             <p className="mt-4 text-center text-sm leading-relaxed text-stone-600">
-              Klik salah satu entri pada matriks
-              {" "}
-              <span className="font-semibold text-emerald-700">C</span>.
-              Baris di
-              {" "}
-              <span className="font-semibold text-amber-700">A</span>,
-              kolom di
-              {" "}
-              <span className="font-semibold text-sky-700">B</span>,
-              dan ekspresi hitungnya akan ikut berubah.
+              Klik salah satu entri pada matriks{" "}
+              <span className="font-semibold text-emerald-700">C</span>. Baris
+              di <span className="font-semibold text-amber-700">A</span>, kolom
+              di <span className="font-semibold text-sky-700">B</span>, dan
+              ekspresi hitungnya akan ikut berubah.
             </p>
           </div>
         </motion.div>
