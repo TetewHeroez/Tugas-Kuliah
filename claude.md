@@ -43,6 +43,7 @@
 - Codex update: atas permintaan rollback, rangkaian perubahan setelah revisi logic puzzle dibatalkan. Puzzle Sudoku dan Latin square dikembalikan ke perilaku conflict sebelumnya, sementara `page.tsx` dan `next.config.ts` juga dipulangkan ke versi sebelum eksperimen bootstrap/hidrasi/HMR belakangan.
 - Codex update: repo git lokal baru diinisialisasi langsung di folder `Pameran TA` dan snapshot awal proyek sudah dikomit agar perubahan berikutnya bisa di-undo dengan rapi dari level folder ini.
 - Codex update: visual slide 1-3 dirapikan tanpa mengubah tipografi inti. Masalah utamanya bukan Tailwind/global CSS rusak, melainkan ruang atas-bawah slide terlalu mepet terhadap navbar fixed dan tombol navigasi fixed. Wrapper slide 1-3 sekarang diberi `pt` dan `pb` lebih lega serta `gap` antarblok dikembalikan agar konten tidak tampak rapet atau tertindih.
+- Codex update: visual conflict Sudoku disetel lagi. Sel input pemain yang benar-benar bentrok sekarang tetap merah walau feedback cluster sekitarnya sudah memudar, sedangkan highlight biru untuk clue bawaan yang ikut tersorot dibuat sedikit lebih gelap agar lebih gampang dibedakan dari sel biasa.
 
 ## Design Philosophy
 - Warm academic palette: parchment, ink, gold, emerald.

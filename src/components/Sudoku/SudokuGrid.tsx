@@ -85,8 +85,10 @@ function getCellStyle(
   options: {
     isSelected: boolean;
     highlighted: boolean;
+    highlightedGiven: boolean;
     conflict: boolean;
     givenConflict: boolean;
+    persistentConflict: boolean;
   },
 ): React.CSSProperties {
   const thinBorder = "1px solid var(--color-stone-300)";
@@ -111,7 +113,14 @@ function getCellStyle(
   if (options.isSelected) {
     style.backgroundColor = "var(--color-indigo-300)";
   } else if (options.highlighted) {
-    style.backgroundColor = "var(--color-sky-200)";
+    style.backgroundColor = options.highlightedGiven
+      ? "var(--color-sky-300)"
+      : "var(--color-sky-200)";
+  }
+
+  if (options.persistentConflict) {
+    style.backgroundColor = "var(--color-rose-200)";
+    style.color = "var(--color-rose-700)";
   }
 
   if (options.conflict) {
@@ -349,13 +358,17 @@ export default function SudokuGrid({ onSolved }: SudokuGridProps) {
             const isLocked = lockedCells[r][c];
             const isSelected = selected?.[0] === r && selected?.[1] === c;
             const highlighted = !isSelected && isHighlighted(r, c);
+            const highlightedGiven = highlighted && isOriginallyGiven;
             const conflict = conflictKeys.has(`${r}-${c}`);
             const givenConflict = conflict && isOriginallyGiven;
+            const actualConflict = cellHasConflict(grid, r, c);
+            const persistentConflict =
+              !isLocked && cell !== null && actualConflict;
             const isCorrectPlayerEntry =
               !isLocked &&
               cell !== null &&
               cell === mainPuzzle.solution[r][c] &&
-              !cellHasConflict(grid, r, c);
+              !actualConflict;
             const isHintedCell = isLocked && !isOriginallyGiven;
 
             const cellClass = [
@@ -370,7 +383,7 @@ export default function SudokuGrid({ onSolved }: SudokuGridProps) {
               isCorrectPlayerEntry
                 ? "font-extrabold text-emerald-700"
                 : "font-extrabold",
-              conflict ? "font-extrabold text-rose-700" : "",
+              conflict || persistentConflict ? "font-extrabold text-rose-700" : "",
             ].join(" ");
 
             return (
@@ -379,8 +392,10 @@ export default function SudokuGrid({ onSolved }: SudokuGridProps) {
                 style={getCellStyle(r, c, {
                   isSelected,
                   highlighted,
+                  highlightedGiven,
                   conflict,
                   givenConflict,
+                  persistentConflict,
                 })}
                 onClick={() => {
                   if (isLocked || solved) return;
