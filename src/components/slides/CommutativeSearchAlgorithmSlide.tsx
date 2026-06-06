@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import MathBlock from "@/components/ui/MathBlock";
 
@@ -21,51 +22,40 @@ const container = {
   },
 };
 
-type MatrixValue = number | ".";
+type CellValue = 1 | 2 | 3 | 4;
+type MatrixValue = CellValue | ".";
 type Matrix = readonly (readonly MatrixValue[])[];
+type EditableMatrix = CellValue[][];
+type Permutation = readonly [1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4];
 
-const constructionSteps = [
+const defaultA: EditableMatrix = [
+  [1, 2, 3, 4],
+  [2, 1, 4, 3],
+  [3, 4, 1, 2],
+  [4, 3, 2, 1],
+];
+
+const baseSteps = [
   {
     id: "start",
     short: "1",
     title: "Mulai dari matriks kandidat B*",
     focus: "Kerangka awal",
-    note: "Pencarian tidak menebak seluruh B sekaligus. Kita mulai dari matriks kandidat parsial B* yang masih kosong, lalu diisi simbol demi simbol.",
-    matrix: [
-      [".", ".", ".", "."],
-      [".", ".", ".", "."],
-      [".", ".", ".", "."],
-      [".", ".", ".", "."],
-    ] as const satisfies Matrix,
+    note: "Kita mulai dari B* yang masih kosong. Algoritma belum mengisi apa-apa, tetapi struktur pencariannya sudah siap.",
   },
   {
     id: "sigma4",
     short: "2",
     title: "Pilih posisi simbol maksimum",
     focus: "Tentukan sigma_4^B",
-    note: "Langkah pertama adalah memilih posisi simbol 4. Pilihan ini dibatasi oleh centralizer dari simbol maksimum pada A, jadi cabangnya belum liar sejak awal.",
-    matrix: [
-      [".", ".", ".", 4],
-      [".", ".", 4, "."],
-      [".", 4, ".", "."],
-      [4, ".", ".", "."],
-    ] as const satisfies Matrix,
-    formula: "\\sigma_4^B",
-    centralizer:
-      "C_{S_4}(\\sigma_4^A) = \\{(1),\\ (1\\ 4)(2\\ 3),\\ (1\\ 3)(2\\ 4),\\ (1\\ 2)(3\\ 4)\\}",
+    note: "Dari centralizer inilah kandidat awal untuk sigma_4^B dipilih. Begitu satu kandidat dipilih, posisi semua angka 4 pada B* langsung terbentuk.",
   },
   {
     id: "sigma3",
     short: "3",
     title: "Tambahkan simbol berikutnya dan cek level",
     focus: "Isi simbol 3",
-    note: "Setelah simbol 4 dipilih, simbol 3 dimasukkan ke posisi yang masih mungkin. Di titik ini pemeriksaan superlevel mulai bisa menolak cabang yang salah sebelum B* lengkap.",
-    matrix: [
-      [".", ".", 3, 4],
-      [".", 3, 4, "."],
-      [3, 4, ".", "."],
-      [4, ".", ".", 3],
-    ] as const satisfies Matrix,
+    note: "Simbol 3 mulai dimasukkan ke posisi yang masih mungkin. Setelah itu pemeriksaan level tinggi bisa menolak cabang yang sudah tidak konsisten.",
     formula: "\\mathcal{U}_{\\ge 7}^{AB} = \\mathcal{U}_{\\ge 7}^{BA}",
   },
   {
@@ -73,13 +63,7 @@ const constructionSteps = [
     short: "4",
     title: "Lengkapi B* sedikit demi sedikit",
     focus: "Isi simbol 2",
-    note: "Kalau level sebelumnya lolos, simbol 2 bisa ditambahkan. Sekarang bentuk B* sudah makin terlihat, tetapi masih ada satu simbol yang belum ditentukan.",
-    matrix: [
-      [".", 2, 3, 4],
-      [2, 3, 4, "."],
-      [3, 4, ".", 2],
-      [4, ".", 2, 3],
-    ] as const satisfies Matrix,
+    note: "Jika level sebelumnya lolos, bentuk B* makin lengkap. Di tahap ini biasanya struktur Latin square-nya sudah mulai terlihat jelas.",
     formula: "\\mathcal{U}_{\\ge 6}^{AB} = \\mathcal{U}_{\\ge 6}^{BA}",
   },
   {
@@ -87,18 +71,141 @@ const constructionSteps = [
     short: "5",
     title: "Dari B* menjadi B",
     focus: "Isi simbol 1",
-    note: "Kalau semua level lolos, sel yang tersisa otomatis diisi simbol 1. Pada titik itu kandidat parsial B* berubah menjadi Latin square penuh B.",
-    matrix: [
-      [1, 2, 3, 4],
-      [2, 3, 4, 1],
-      [3, 4, 1, 2],
-      [4, 1, 2, 3],
-    ] as const satisfies Matrix,
+    note: "Kalau semua pemeriksaan lolos, sel yang tersisa diisi simbol 1. Kandidat parsial B* pun berubah menjadi Latin square penuh B.",
     formula: "B",
   },
 ] as const;
 
-function MatrixPreview({ matrix }: { matrix: Matrix }) {
+function permutationToTex(perm: Permutation) {
+  const visited = new Set<number>();
+  const cycles: string[] = [];
+
+  for (let start = 1; start <= 4; start += 1) {
+    if (visited.has(start)) continue;
+
+    const cycle: number[] = [];
+    let current = start;
+    while (!visited.has(current)) {
+      visited.add(current);
+      cycle.push(current);
+      current = perm[current - 1];
+    }
+    cycles.push(`(${cycle.join("\\ ")})`);
+  }
+
+  return cycles.join("");
+}
+
+function matrixToSigma4(matrix: EditableMatrix): Permutation | null {
+  const columns: number[] = [];
+  const seenCols = new Set<number>();
+
+  for (let row = 0; row < 4; row += 1) {
+    const matches = matrix[row]
+      .map((value, col) => ({ value, col }))
+      .filter((entry) => entry.value === 4);
+    if (matches.length !== 1) return null;
+    const colIndex = matches[0].col + 1;
+    if (seenCols.has(colIndex)) return null;
+    seenCols.add(colIndex);
+    columns.push(colIndex);
+  }
+
+  if (seenCols.size !== 4) return null;
+  return columns as Permutation;
+}
+
+function composePermutations(left: Permutation, right: Permutation): Permutation {
+  return right.map((value) => left[value - 1]) as Permutation;
+}
+
+function centralizerOf(perm: Permutation): Permutation[] {
+  const nums = [1, 2, 3, 4] as const;
+  const result: Permutation[] = [];
+
+  const build = (prefix: number[], rest: number[]) => {
+    if (rest.length === 0) {
+      const candidate = prefix as Permutation;
+      const ab = composePermutations(perm, candidate);
+      const ba = composePermutations(candidate, perm);
+      if (ab.every((value, index) => value === ba[index])) {
+        result.push(candidate);
+      }
+      return;
+    }
+
+    rest.forEach((value, index) => {
+      const nextRest = [...rest.slice(0, index), ...rest.slice(index + 1)];
+      build([...prefix, value], nextRest);
+    });
+  };
+
+  build([], [...nums]);
+  return result;
+}
+
+function solveLatinSquareWithFixedFours(perm: Permutation): EditableMatrix | null {
+  const board: number[][] = Array.from({ length: 4 }, () => Array(4).fill(0));
+  const rowUsed = Array.from({ length: 4 }, () => new Set<number>());
+  const colUsed = Array.from({ length: 4 }, () => new Set<number>());
+
+  for (let row = 0; row < 4; row += 1) {
+    const col = perm[row] - 1;
+    board[row][col] = 4;
+    rowUsed[row].add(4);
+    colUsed[col].add(4);
+  }
+
+  const empties: Array<[number, number]> = [];
+  for (let row = 0; row < 4; row += 1) {
+    for (let col = 0; col < 4; col += 1) {
+      if (board[row][col] === 0) empties.push([row, col]);
+    }
+  }
+
+  const backtrack = (index: number): boolean => {
+    if (index >= empties.length) return true;
+    const [row, col] = empties[index];
+
+    for (const candidate of [1, 2, 3, 4] as const) {
+      if (rowUsed[row].has(candidate) || colUsed[col].has(candidate)) {
+        continue;
+      }
+
+      board[row][col] = candidate;
+      rowUsed[row].add(candidate);
+      colUsed[col].add(candidate);
+
+      if (backtrack(index + 1)) return true;
+
+      board[row][col] = 0;
+      rowUsed[row].delete(candidate);
+      colUsed[col].delete(candidate);
+    }
+
+    return false;
+  };
+
+  return backtrack(0) ? (board as EditableMatrix) : null;
+}
+
+function maskMatrix(matrix: EditableMatrix, visibleSymbols: number[]): Matrix {
+  return matrix.map((row) =>
+    row.map((value) => (visibleSymbols.includes(value) ? value : ".")),
+  );
+}
+
+function MatrixPreview({
+  matrix,
+  editable = false,
+  onCellClick,
+  highlightValue,
+}: {
+  matrix: Matrix | EditableMatrix;
+  editable?: boolean;
+  onCellClick?: (row: number, col: number) => void;
+  highlightValue?: number | null;
+}) {
   const columns = matrix[0]?.length ?? 1;
 
   return (
@@ -109,16 +216,34 @@ function MatrixPreview({ matrix }: { matrix: Matrix }) {
       {matrix.flatMap((row, rowIndex) =>
         row.map((value, colIndex) => {
           const isEmpty = value === ".";
+          const isHighlighted = highlightValue !== null && value === highlightValue;
+          const baseClass = isEmpty
+            ? "bg-stone-50 text-stone-300"
+            : isHighlighted
+              ? "bg-amber-100 text-amber-950 ring-1 ring-amber-400"
+              : "bg-emerald-50 text-stone-900";
+
+          const className = [
+            "flex h-11 w-11 items-center justify-center border border-stone-200 text-sm font-semibold transition-colors sm:h-12 sm:w-12 sm:text-base",
+            baseClass,
+            editable ? "cursor-pointer hover:bg-stone-100" : "",
+          ].join(" ");
+
+          if (editable && onCellClick) {
+            return (
+              <button
+                key={`${rowIndex}-${colIndex}`}
+                type="button"
+                onClick={() => onCellClick(rowIndex, colIndex)}
+                className={className}
+              >
+                {value}
+              </button>
+            );
+          }
+
           return (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className={[
-                "flex h-11 w-11 items-center justify-center border border-stone-200 text-sm font-semibold sm:h-12 sm:w-12 sm:text-base",
-                isEmpty
-                  ? "bg-stone-50 text-stone-300"
-                  : "bg-emerald-50 text-stone-900",
-              ].join(" ")}
-            >
+            <div key={`${rowIndex}-${colIndex}`} className={className}>
               {value}
             </div>
           );
@@ -129,13 +254,65 @@ function MatrixPreview({ matrix }: { matrix: Matrix }) {
 }
 
 export default function CommutativeSearchAlgorithmSlide() {
+  const [matrixA, setMatrixA] = useState<EditableMatrix>(defaultA);
+
+  const sigma4A = useMemo(() => matrixToSigma4(matrixA), [matrixA]);
+  const centralizerCandidates = useMemo(
+    () => (sigma4A ? centralizerOf(sigma4A) : []),
+    [sigma4A],
+  );
+
+  const [selectedCandidateIndex, setSelectedCandidateIndex] = useState(0);
+  const selectedCandidate =
+    centralizerCandidates[selectedCandidateIndex] ?? null;
+
+  const completedB = useMemo(
+    () => (selectedCandidate ? solveLatinSquareWithFixedFours(selectedCandidate) : null),
+    [selectedCandidate],
+  );
+
+  const handleEditA = (row: number, col: number) => {
+    setMatrixA((current) =>
+      current.map((currentRow, rowIndex) =>
+        currentRow.map((value, colIndex) => {
+          if (rowIndex !== row || colIndex !== col) return value as CellValue;
+          return ((value % 4) + 1) as CellValue;
+        }),
+      ),
+    );
+    setSelectedCandidateIndex(0);
+  };
+
+  const steps = useMemo(() => {
+    const partialB = completedB
+      ? {
+          start: maskMatrix(completedB, []),
+          sigma4: maskMatrix(completedB, [4]),
+          sigma3: maskMatrix(completedB, [3, 4]),
+          sigma2: maskMatrix(completedB, [2, 3, 4]),
+          finish: completedB as Matrix,
+        }
+      : {
+          start: maskMatrix(defaultA, []),
+          sigma4: maskMatrix(defaultA, []),
+          sigma3: maskMatrix(defaultA, []),
+          sigma2: maskMatrix(defaultA, []),
+          finish: maskMatrix(defaultA, []),
+        };
+
+    return baseSteps.map((step) => ({
+      ...step,
+      matrix: partialB[step.id as keyof typeof partialB],
+    }));
+  }, [completedB]);
+
   return (
     <div className="w-full min-h-dvh px-4 pb-24 pt-24 sm:px-6">
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="mx-auto flex w-full max-w-4xl flex-col gap-6"
+        className="mx-auto flex w-full max-w-5xl flex-col gap-6"
       >
         <motion.div variants={item} className="space-y-2 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
@@ -144,18 +321,118 @@ export default function CommutativeSearchAlgorithmSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Pencarian dimulai dari B* lalu dilengkapi sampai menjadi B.
+            Pencarian dimulai dari A, memilih centralizer, lalu membangun B* sampai B.
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
-            Jadi algoritma ini bukan menebak seluruh Latin square sekaligus.
-            Ia membangun kandidat parsial <span className="font-semibold text-stone-800">B*</span>,
-            memeriksa level-level penting di tengah jalan, lalu hanya
-            melanjutkan cabang yang masih konsisten.
+            Di slide ini A bisa diubah langsung. Posisi simbol 4 pada A akan
+            menentukan <span className="font-semibold text-stone-800">sigma_4^A</span>,
+            lalu centralizer-nya menjadi sumber kandidat awal untuk{" "}
+            <span className="font-semibold text-stone-800">sigma_4^B</span>.
           </p>
         </motion.div>
 
+        <motion.div
+          variants={item}
+          className="grid gap-5 rounded-[1.75rem] border border-stone-200 bg-white p-5 shadow-sm lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]"
+        >
+          <div className="space-y-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
+                Latin Square A
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                Klik sel untuk mengganti simbol. Yang dibaca untuk centralizer
+                di sini adalah posisi simbol 4.
+              </p>
+            </div>
+
+            <div className="flex justify-center">
+              <MatrixPreview
+                matrix={matrixA}
+                editable
+                onCellClick={handleEditA}
+                highlightValue={4}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
+                Sigma maksimum dari A
+              </p>
+              {sigma4A ? (
+                <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  <MathBlock
+                    tex={`\\sigma_4^A = ${permutationToTex(sigma4A)}`}
+                    display
+                    className="text-stone-950"
+                  />
+                </div>
+              ) : (
+                <p className="mt-3 text-sm leading-relaxed text-rose-700">
+                  Supaya sigma_4^A terbaca, setiap baris dan kolom harus punya
+                  tepat satu angka 4.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
+                Pilih kandidat dari centralizer
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                Tiap pilihan centralizer memberi alur pembentukan B* yang
+                berbeda, lalu berujung ke Latin square B yang berbeda juga.
+              </p>
+            </div>
+
+            {sigma4A ? (
+              <>
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
+                  <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                    <MathBlock
+                      tex={`C_{S_4}(\\sigma_4^A) = \\{${centralizerCandidates
+                        .map((candidate) => permutationToTex(candidate))
+                        .join(",\\ ") }\\}`}
+                      display
+                      className="text-amber-950"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  {centralizerCandidates.map((candidate, index) => {
+                    const isActive = index === selectedCandidateIndex;
+                    return (
+                      <button
+                        key={`${candidate.join("-")}`}
+                        type="button"
+                        onClick={() => setSelectedCandidateIndex(index)}
+                        className={[
+                          "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                          isActive
+                            ? "border-amber-500 bg-amber-500 text-white"
+                            : "border-stone-300 bg-white text-stone-700 hover:border-amber-400 hover:text-stone-950",
+                        ].join(" ")}
+                      >
+                        {permutationToTex(candidate)}
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-5 py-4 text-sm leading-relaxed text-stone-500">
+                Centralizer baru bisa ditampilkan setelah posisi simbol 4 pada A
+                membentuk permutasi yang valid.
+              </div>
+            )}
+          </div>
+        </motion.div>
+
         <motion.div variants={item} className="space-y-3">
-          {constructionSteps.map((step, index) => (
+          {steps.map((step, index) => (
             <details
               key={step.id}
               open={index === 0}
@@ -195,25 +472,12 @@ export default function CommutativeSearchAlgorithmSlide() {
                     {step.formula ? (
                       <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
                         <MathBlock
-                          tex={step.formula}
+                          tex={step.id === "sigma4" && selectedCandidate
+                            ? `\\sigma_4^B = ${permutationToTex(selectedCandidate)}`
+                            : step.formula}
                           display
                           className="text-stone-950"
                         />
-                      </div>
-                    ) : null}
-
-                    {"centralizer" in step && step.centralizer ? (
-                      <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
-                        <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
-                          Centralizer kandidat awal
-                        </p>
-                        <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                          <MathBlock
-                            tex={step.centralizer}
-                            display
-                            className="text-amber-950"
-                          />
-                        </div>
                       </div>
                     ) : null}
 
@@ -223,14 +487,14 @@ export default function CommutativeSearchAlgorithmSlide() {
                       </p>
                       <p className="mt-3 text-sm leading-relaxed text-sky-950">
                         {step.id === "start"
-                          ? "Di tahap ini belum ada komitmen terhadap permutasi penyusun B. Bentuk kosong ini hanya menandai bahwa pencarian masih berada di titik awal."
+                          ? "Di tahap ini B* masih kosong. Yang sedang diputuskan baru data awal dari A dan centralizer yang akan dipakai."
                           : step.id === "sigma4"
-                            ? "Di sinilah centralizer dipakai. Artinya sigma_4^B tidak boleh dipilih sembarang, melainkan hanya dari permutasi yang komutatif dengan sigma_4^A. Dari himpunan inilah bentuk awal B* mulai dibangun."
+                            ? "Pilihan centralizer yang sedang aktif langsung menentukan bentuk awal B*. Kalau kamu ganti kandidat di atas, bentuk angka 4 pada tahap ini ikut berubah."
                             : step.id === "sigma3"
-                              ? "Sekarang B* mulai punya struktur. Pemeriksaan level tinggi bekerja sebagai filter supaya kita tidak melanjutkan kandidat yang sudah jelas gagal."
+                              ? "Sesudah sigma_4^B dipilih, simbol 3 ditambahkan pada cabang yang sama. Jadi visual ini memang mengikuti pilihan centralizer yang kamu klik."
                               : step.id === "sigma2"
-                                ? "Pada tahap ini B* sudah hampir menjadi Latin square penuh. Tinggal satu simbol tersisa, tetapi konsistensi level tetap harus dijaga."
-                                : "Begitu semua syarat lolos, kekosongan yang tersisa diisi otomatis. Kandidat parsial B* pun resmi menjadi Latin square B."}
+                                ? "Di sini B* sudah hampir lengkap. Kalau kandidat centralizer tadi berbeda, pola yang kamu lihat di tahap ini juga bisa berbeda."
+                                : "Setelah semua pemeriksaan lolos, B* ditutup menjadi B penuh. Jadi pengunjung bisa lihat bahwa pilihan centralizer memang menghasilkan keluaran akhir yang berbeda."}
                       </p>
                     </div>
                   </div>
