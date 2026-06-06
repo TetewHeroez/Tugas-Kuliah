@@ -105,9 +105,10 @@ function getSymbolAccent(symbol: SymbolId) {
   }[symbol];
 }
 
-function matrixCellBase(value: MatrixValue) {
+function matrixCellBase(value: MatrixValue, symbol: SymbolId | null) {
   if (value === "eps") return "bg-stone-50 text-stone-400";
-  if (value === 0) return "bg-sky-100 font-bold text-sky-900";
+  if (value === 0 && symbol) return `${getSymbolAccent(symbol).muted} font-bold`;
+  if (value === 0) return "bg-stone-100 font-bold text-stone-700";
   return "bg-white text-stone-900";
 }
 
@@ -117,7 +118,7 @@ function LatinSquareCard({
   onSelectSymbol,
 }: {
   matrix: readonly (readonly SymbolId[])[];
-  activeSymbol: SymbolId;
+  activeSymbol: SymbolId | null;
   onSelectSymbol: (symbol: SymbolId) => void;
 }) {
   const columns = matrix[0]?.length ?? 1;
@@ -135,7 +136,7 @@ function LatinSquareCard({
           {matrix.flatMap((row, rowIndex) =>
             row.map((value, colIndex) => {
               const accent = getSymbolAccent(value);
-              const isActive = value === activeSymbol;
+              const isActive = activeSymbol !== null && value === activeSymbol;
 
               return (
                 <button
@@ -143,8 +144,10 @@ function LatinSquareCard({
                   type="button"
                   onClick={() => onSelectSymbol(value)}
                   className={[
-                    "flex h-10 w-10 items-center justify-center border border-stone-200 text-sm font-semibold transition-colors sm:h-12 sm:w-12 sm:text-base",
-                    isActive ? accent.active : accent.muted,
+                    "flex h-12 w-12 items-center justify-center border border-stone-200 text-base font-semibold transition-colors sm:h-14 sm:w-14 sm:text-lg",
+                    isActive
+                      ? accent.active
+                      : "bg-white text-stone-900 hover:bg-stone-50",
                   ].join(" ")}
                 >
                   {value}
@@ -161,15 +164,17 @@ function LatinSquareCard({
 function PermutationMatrixCard({
   titleTex,
   matrix,
+  symbol,
 }: {
   titleTex: string;
   matrix: Matrix;
+  symbol: SymbolId | null;
 }) {
   const columns = matrix[0]?.length ?? 1;
 
   return (
     <section className="shrink-0">
-      <div className="text-center text-xs font-bold uppercase tracking-[0.24em] text-sky-800 [&_.katex]:text-current">
+      <div className="text-center text-xs font-bold tracking-[0.24em] text-stone-700 [&_.katex]:text-current">
         <MathBlock tex={titleTex} />
       </div>
       <div className="mt-2 flex justify-center">
@@ -182,8 +187,8 @@ function PermutationMatrixCard({
               <div
                 key={`${titleTex}-${rowIndex}-${colIndex}`}
                 className={[
-                  "flex h-10 w-10 items-center justify-center border border-stone-200 text-sm font-semibold sm:h-12 sm:w-12 sm:text-base",
-                  matrixCellBase(value),
+                  "flex h-12 w-12 items-center justify-center border border-stone-200 text-base font-semibold sm:h-14 sm:w-14 sm:text-lg",
+                  matrixCellBase(value, symbol),
                 ].join(" ")}
               >
                 {value === "eps" ? "ε" : value}
@@ -197,28 +202,26 @@ function PermutationMatrixCard({
 }
 
 export default function LatinSquareDecompositionSlide() {
-  const [activeSymbol, setActiveSymbol] = useState<SymbolId>(1);
+  const [activeSymbol, setActiveSymbol] = useState<SymbolId | null>(null);
 
   const currentLayer = useMemo(
     () =>
-      decompositionLayers.find((layer) => layer.symbol === activeSymbol) ??
-      decompositionLayers[0],
+      activeSymbol === null
+        ? null
+        : decompositionLayers.find((layer) => layer.symbol === activeSymbol) ??
+          null,
     [activeSymbol],
   );
 
-  const accent = getSymbolAccent(activeSymbol);
+  const accent = activeSymbol ? getSymbolAccent(activeSymbol) : null;
   const decompositionFormula = useMemo(
-    () =>
-      [
-        "A = 1P_{\\sigma_1} \\oplus 2P_{\\sigma_2} \\oplus 3P_{\\sigma_3}",
-        `\\quad\\text{dan untuk simbol ${currentLayer.symbol},}\\quad ${currentLayer.permutationName} = ${currentLayer.permutationLabel}`,
-      ].join(" "),
-    [currentLayer],
+    () => "A = \\bigoplus_{i=1}^n a_i P_{\\sigma_i}, \\quad i = 1, 2, \\ldots, n",
+    [],
   );
 
-  const positionText = currentLayer.positions
-    .map(([row, col]) => `(${row + 1}, ${col + 1})`)
-    .join(", ");
+  const positionText = currentLayer
+    ? currentLayer.positions.map(([row, col]) => `(${row + 1}, ${col + 1})`).join(", ")
+    : "";
 
   return (
     <div className="w-full min-h-dvh px-4 pb-40 pt-28 sm:px-6 sm:pb-36 sm:pt-28">
@@ -226,7 +229,7 @@ export default function LatinSquareDecompositionSlide() {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8"
+        className="mx-auto flex w-full max-w-4xl flex-col items-center gap-8"
       >
         <motion.div variants={item} className="space-y-2 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
@@ -235,12 +238,13 @@ export default function LatinSquareDecompositionSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Setiap simbol pada Latin square menunjukkan satu permutasi.
+            Matriks Permutasi
           </h2>
           <p className="text-left text-sm leading-relaxed text-stone-600">
-            Jadi sekarang simbolnya tidak kita pisah dulu lewat tombol. Klik
-            saja salah satu angka pada Latin square, lalu slide ini akan
-            menunjukkan simbol itu membentuk permutasi yang mana.
+            Pada Latin square, setiap simbol muncul tepat satu kali di setiap
+            baris dan kolom. Karena itu, posisi kemunculan satu simbol dapat
+            dibaca sebagai pemetaan dari himpunan baris ke himpunan kolom, dan
+            pemetaan itulah yang direpresentasikan oleh matriks permutasi.
           </p>
         </motion.div>
 
@@ -257,64 +261,65 @@ export default function LatinSquareDecompositionSlide() {
               />
             </div>
 
-            <div className="rounded-2xl border border-stone-200 bg-white p-4">
-              <div className="flex flex-wrap items-center gap-3">
-                <span
-                  className={[
-                    "inline-flex items-center rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-[0.24em]",
-                    accent.badge,
-                  ].join(" ")}
-                >
-                  Simbol {currentLayer.symbol}
-                </span>
-                <p className="text-sm leading-relaxed text-stone-600">
-                  Posisinya ada di {positionText}, sehingga simbol ini
-                  menunjukkan{" "}
-                  <span className={`inline-flex align-middle font-semibold ${accent.text}`}>
-                    <MathBlock tex={currentLayer.permutationName} />
-                  </span>{" "}
-                  dengan siklus{" "}
-                  <span className={`inline-flex align-middle font-semibold ${accent.text}`}>
-                    <MathBlock tex={currentLayer.permutationLabel} />
-                  </span>
-                  .
-                </p>
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="space-y-4 rounded-2xl border border-stone-200 bg-white p-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
-                    Klik simbol pada contoh
+            <div className="rounded-2xl border border-stone-200 bg-white p-4 sm:p-5">
+              <div className="space-y-4">
+                {currentLayer && accent ? (
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span
+                      className={[
+                        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-[0.24em]",
+                        accent.badge,
+                      ].join(" ")}
+                    >
+                      Simbol {currentLayer.symbol}
+                    </span>
+                    <p className="text-sm leading-relaxed text-stone-600">
+                      Simbol {currentLayer.symbol} muncul pada posisi{" "}
+                      <span className="font-semibold text-stone-800">
+                        {positionText}
+                      </span>
+                      . Karena pada setiap baris simbol ini muncul tepat satu
+                      kali, daftar posisi tersebut menentukan permutasi{" "}
+                      <span
+                        className={`inline-flex align-middle font-semibold ${accent.text}`}
+                      >
+                        <MathBlock tex={currentLayer.permutationName} />
+                      </span>{" "}
+                      dengan bentuk siklus{" "}
+                      <span
+                        className={`inline-flex align-middle font-semibold ${accent.text}`}
+                      >
+                        <MathBlock tex={currentLayer.permutationLabel} />
+                      </span>
+                      .
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-sm leading-relaxed text-stone-600">
+                    Klik salah satu simbol pada Latin square untuk melihat
+                    bagaimana kemunculannya di tiap baris membentuk sebuah
+                    permutasi.
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                    Setiap angka sudah dibedakan warnanya. Saat kamu klik satu
-                    simbol, semua kemunculan simbol itu langsung dibaca sebagai
-                    satu pola permutasi.
-                  </p>
+                )}
+                <div className="grid gap-6 min-[520px]:grid-cols-2 min-[520px]:items-start">
+                  <LatinSquareCard
+                    matrix={latinSquare}
+                    activeSymbol={activeSymbol}
+                    onSelectSymbol={setActiveSymbol}
+                  />
+                  {currentLayer ? (
+                    <PermutationMatrixCard
+                      titleTex={`P_{${currentLayer.permutationName}}`}
+                      matrix={currentLayer.permutationMatrix}
+                      symbol={currentLayer.symbol}
+                    />
+                  ) : (
+                    <div className="flex min-h-[14.5rem] items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-6 text-center text-sm leading-relaxed text-stone-500 sm:min-h-[16rem]">
+                      Matriks permutasi akan ditampilkan di sini setelah satu
+                      simbol dipilih.
+                    </div>
+                  )}
                 </div>
-                <LatinSquareCard
-                  matrix={latinSquare}
-                  activeSymbol={activeSymbol}
-                  onSelectSymbol={setActiveSymbol}
-                />
-              </div>
-
-              <div className="space-y-4 rounded-2xl border border-stone-200 bg-white p-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
-                    Matriks permutasi max-plus
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                    Nilai 0 muncul tepat pada posisi hasil permutasi simbol
-                    terpilih, sedangkan entri lain bernilai ε.
-                  </p>
-                </div>
-                <PermutationMatrixCard
-                  titleTex={`P_{${currentLayer.permutationName}}`}
-                  matrix={currentLayer.permutationMatrix}
-                />
               </div>
             </div>
 
@@ -323,9 +328,11 @@ export default function LatinSquareDecompositionSlide() {
                 Inti ide
               </p>
               <p className="mt-3 text-sm leading-relaxed text-emerald-950">
-                Jadi dekomposisi itu bukan memisahkan simbol secara acak, tetapi
-                membaca setiap simbol sebagai jejak posisi yang persis
-                membentuk satu matriks permutasi.
+                Jadi dekomposisi Latin square dikerjakan dengan membaca satu
+                simbol demi satu simbol. Dari tiap simbol kita peroleh satu
+                matriks permutasi, lalu seluruh matriks permutasi itu digabung
+                kembali melalui operasi max-plus untuk merepresentasikan Latin
+                square semula.
               </p>
             </div>
           </div>

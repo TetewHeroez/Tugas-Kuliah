@@ -210,3 +210,4 @@ src/
 - Implementasi slide system dengan lock mechanism.
 - Codex update: merapatkan jarak antar matriks di slide perbandingan operasi dan membuat operator produk berganti dinamis antara `\times` dan `\otimes` di `src/components/slides/MatrixMultiplicationSlide.tsx`.
 - Codex update: merevisi slide dekomposisi agar interaksi pindah ke contoh Latin square langsung; simbol kini dibedakan warnanya dan saat diklik baru dijelaskan permutasi yang ditunjukkan di `src/components/slides/LatinSquareDecompositionSlide.tsx`.
+- Codex update: menyempurnakan slide dekomposisi dengan narasi yang lebih tepat secara konsep, state awal Latin square yang netral sebelum dipilih, warna matriks permutasi yang mengikuti simbol aktif, layout dua kolom, ukuran matriks yang diperbesar, dan perbaikan judul `P_{\sigma_i}` agar tidak berubah jadi Sigma kapital di `src/components/slides/LatinSquareDecompositionSlide.tsx`.
