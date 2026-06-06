@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import MathBlock from "@/components/ui/MathBlock";
 
 const headingClass = "font-[family:var(--font-heading)]";
@@ -42,10 +42,16 @@ const matrixB = [
   [4, 1, 2, 3],
 ] as const satisfies Matrix;
 
-const compactFullFormula = "A \\otimes B = \\bigoplus_{k=2}^{2n} k \\otimes M_k";
-const compactReducedFormula =
-  "A \\otimes B = \\bigoplus_{k=n+1}^{2n} k \\otimes M_k";
-const compactDefinition = "M_k = \\bigoplus_{i+j=k} P_{\\sigma_j^B \\circ \\sigma_i^A}";
+const fullFormula =
+  "A \\otimes B = \\bigoplus_{k=2}^{2n} k \\otimes \\left( \\bigoplus_{\\substack{i,j \\in \\underline{n} \\\\ i+j=k}} P_{\\sigma_j^B \\circ \\sigma_i^A} \\right)";
+
+const reducedFormula =
+  "A \\otimes B = \\bigoplus_{k=n+1}^{2n} k \\otimes \\left( \\bigoplus_{\\substack{i,j \\in \\underline{n} \\\\ i+j=k}} P_{\\sigma_j^B \\circ \\sigma_i^A} \\right)";
+
+const lowerBoundFormula = "[A \\otimes B]_{rs} \\ge n + 1";
+
+const sampleEntryFormula =
+  "[A \\otimes B]_{rs} = \\max_t\\left(A_{rt} + B_{ts}\\right) \\ge n + 1";
 
 function MatrixView({
   title,
@@ -109,26 +115,18 @@ function MatrixView({
 export default function LatinSquareProductReductionSlide() {
   const [selectedRow, setSelectedRow] = useState(0);
   const [selectedCol, setSelectedCol] = useState(0);
+  const entryTerms = matrixA[selectedRow].map((aValue, index) => {
+    const bValue = matrixB[index][selectedCol];
+    const sum = aValue + bValue;
+    return {
+      index,
+      aValue,
+      bValue,
+      sum,
+    };
+  });
 
-  const entryTerms = useMemo(
-    () =>
-      matrixA[selectedRow].map((aValue, index) => {
-        const bValue = matrixB[index][selectedCol];
-        const sum = aValue + bValue;
-        return {
-          index,
-          aValue,
-          bValue,
-          sum,
-        };
-      }),
-    [selectedRow, selectedCol],
-  );
-
-  const maxValue = useMemo(
-    () => Math.max(...entryTerms.map((term) => term.sum)),
-    [entryTerms],
-  );
+  const maxValue = Math.max(...entryTerms.map((term) => term.sum));
 
   const entryTex = `[(A \\otimes B)]_{${selectedRow + 1}${selectedCol + 1}}`;
 
@@ -147,13 +145,18 @@ export default function LatinSquareProductReductionSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Level kecil bisa dibuang karena hasil perkalian selalu minimal n+1.
+            Hasil perkalian dua Latin square tidak perlu dihitung dari level 2.
           </h2>
           <p className="text-left text-sm leading-relaxed text-stone-600">
-            Jadi intinya bukan semua level harus dicek. Karena setiap entri
-            hasil perkalian sudah pasti bernilai minimal{" "}
-            <span className="font-semibold text-stone-800">{lowerBound}</span>,
-            maka level 2 sampai n tidak akan menentukan hasil akhir.
+            Di bab 4, dekomposisi hasil kali awalnya memang muncul dari semua
+            level <span className="font-semibold text-stone-800">2</span>{" "}
+            sampai <span className="font-semibold text-stone-800">2n</span>.
+            Tetapi karena setiap entri pada{" "}
+            <span className="font-semibold text-stone-800">A ⊗ B</span> selalu
+            bernilai minimal{" "}
+            <span className="font-semibold text-stone-800">n+1</span>, maka
+            suku-suku dengan level di bawah itu tidak pernah menentukan nilai
+            akhir.
           </p>
         </motion.div>
 
@@ -163,42 +166,44 @@ export default function LatinSquareProductReductionSlide() {
         >
           <div className="space-y-4 rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
-              Bentuk Ringkas
+              Rumus Sebelum dan Sesudah Reduksi
             </p>
 
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-5">
-              <MathBlock
-                tex={compactFullFormula}
-                display
-                className="text-stone-950 [&_.katex]:text-[0.95rem] sm:[&_.katex]:text-base"
-              />
+            <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <MathBlock tex={fullFormula} display className="text-stone-950" />
             </div>
 
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-5">
               <MathBlock
-                tex={compactReducedFormula}
+                tex={reducedFormula}
                 display
-                className="text-emerald-950 [&_.katex]:text-[0.95rem] sm:[&_.katex]:text-base"
-              />
-            </div>
-
-            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
-              <MathBlock
-                tex={compactDefinition}
-                display
-                className="text-stone-950 [&_.katex]:text-[0.9rem] sm:[&_.katex]:text-[0.96rem]"
+                className="text-emerald-950"
               />
             </div>
 
             <div className="rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">
-                Kenapa boleh direduksi?
+                Kenapa boleh direduksi
               </p>
+              <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <MathBlock
+                  tex={lowerBoundFormula}
+                  display
+                  className="text-sky-950"
+                />
+              </div>
+              <div className="mt-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <MathBlock
+                  tex={sampleEntryFormula}
+                  display
+                  className="text-sky-950 [&_.katex]:text-[0.92rem] sm:[&_.katex]:text-base"
+                />
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-sky-950">
-                Pada setiap baris Latin square A selalu ada simbol maksimum n,
-                sedangkan pada setiap entri Latin square B nilainya minimal 1.
-                Maka untuk entri apa pun pada hasil perkalian, pasti ada satu
-                penjumlahan yang nilainya mencapai minimal n+1.
+                Pada setiap baris A selalu ada simbol maksimum n. Di sisi lain,
+                setiap entri B minimal bernilai 1. Jadi, apa pun kolom yang
+                diambil, hasilnya pasti tidak akan turun di bawah n+1. Karena
+                itu, level 2 sampai n tidak pernah ikut menentukan nilai akhir.
               </p>
             </div>
           </div>
