@@ -107,7 +107,8 @@ export default function CommutativeExamplesSlide() {
   const [activeCase, setActiveCase] = useState("ordo4");
 
   const currentCase = useMemo(
-    () => exampleCases.find((item) => item.id === activeCase) ?? exampleCases[0],
+    () =>
+      exampleCases.find((item) => item.id === activeCase) ?? exampleCases[0],
     [activeCase],
   );
 
@@ -123,12 +124,15 @@ export default function CommutativeExamplesSlide() {
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
             Contoh Hasil
           </p>
-          <h2 className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}>
-            Pilih ordo, lalu lihat pasangan komutatif yang benar-benar muncul di laporan.
+          <h2
+            className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
+          >
+            Pilih ordo, lalu lihat pasangan komutatif yang benar-benar muncul di
+            laporan.
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
-            Bagian ini paling cocok buat pengunjung yang ingin bukti visual bahwa
-            hasil teorinya memang menghasilkan contoh konkret.
+            Bagian ini paling cocok buat pengunjung yang ingin bukti visual
+            bahwa hasil teorinya memang menghasilkan contoh konkret.
           </p>
         </motion.div>
 
@@ -153,13 +157,18 @@ export default function CommutativeExamplesSlide() {
           })}
         </motion.div>
 
-        <motion.div variants={item} className="rounded-[1.75rem] border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
+        <motion.div
+          variants={item}
+          className="rounded-[1.75rem] border border-stone-200 bg-white p-6 shadow-sm sm:p-8"
+        >
           <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-rose-700">
                 {currentCase.tag}
               </p>
-              <h3 className={`${headingClass} mt-2 text-3xl font-bold text-stone-950`}>
+              <h3
+                className={`${headingClass} mt-2 text-3xl font-bold text-stone-950`}
+              >
                 {currentCase.label}
               </h3>
             </div>
@@ -189,7 +198,7 @@ export default function CommutativeExamplesSlide() {
             />
           </div>
 
-          <div className="mt-6 rounded-[1.5rem] border border-sky-200 bg-sky-50 p-5">
+          <div className="mt-6 rounded-3xl border border-sky-200 bg-sky-50 p-5">
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">
               Apa yang bisa dipetik pengunjung
             </p>

@@ -28,7 +28,7 @@ const container = {
 
 export default function SudokuPuzzleSlide({ onSolved }: SudokuSlideProps) {
   return (
-    <div className="w-full min-h-dvh px-4 pb-40 pt-28 sm:px-6 sm:pb-36 sm:pt-28">
+    <div className="w-full min-h-dvh px-4 pb-40 pt-20 sm:px-6 sm:pb-36 sm:pt-28">
       <motion.div
         variants={container}
         initial="hidden"

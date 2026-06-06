@@ -69,7 +69,9 @@ export default function CommutativeSearchAlgorithmSlide() {
   const [activeStep, setActiveStep] = useState("decompose");
 
   const currentStep = useMemo(
-    () => algorithmSteps.find((step) => step.id === activeStep) ?? algorithmSteps[0],
+    () =>
+      algorithmSteps.find((step) => step.id === activeStep) ??
+      algorithmSteps[0],
     [activeStep],
   );
 
@@ -85,16 +87,23 @@ export default function CommutativeSearchAlgorithmSlide() {
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
             Prosedur Konstruksi
           </p>
-          <h2 className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}>
-            Dari satu Latin square A, algoritma ini mencari pasangan B yang komutatif.
+          <h2
+            className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
+          >
+            Dari satu Latin square A, algoritma ini mencari pasangan B yang
+            komutatif.
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
-            Ini bagian yang paling enak dibikin interaktif karena pengunjung bisa
-            mengikuti logika pencariannya seperti sedang melihat decision path.
+            Ini bagian yang paling enak dibikin interaktif karena pengunjung
+            bisa mengikuti logika pencariannya seperti sedang melihat decision
+            path.
           </p>
         </motion.div>
 
-        <motion.div variants={item} className="grid gap-6 lg:grid-cols-[0.52fr_0.48fr]">
+        <motion.div
+          variants={item}
+          className="grid gap-6 lg:grid-cols-[0.52fr_0.48fr]"
+        >
           <div className="space-y-4">
             {algorithmSteps.map((step) => {
               const isActive = step.id === activeStep;
@@ -104,7 +113,7 @@ export default function CommutativeSearchAlgorithmSlide() {
                   type="button"
                   onClick={() => setActiveStep(step.id)}
                   className={[
-                    "flex w-full items-start gap-4 rounded-[1.5rem] border px-5 py-4 text-left transition-colors",
+                    "flex w-full items-start gap-4 rounded-3xl border px-5 py-4 text-left transition-colors",
                     isActive
                       ? "border-amber-500 bg-amber-50"
                       : "border-stone-200 bg-white hover:border-amber-300",
@@ -121,7 +130,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                     {step.short}
                   </span>
                   <div>
-                    <p className="text-lg font-bold text-stone-950">{step.title}</p>
+                    <p className="text-lg font-bold text-stone-950">
+                      {step.title}
+                    </p>
                     <p className="mt-2 text-sm leading-relaxed text-stone-600">
                       {step.detail}
                     </p>
@@ -142,7 +153,9 @@ export default function CommutativeSearchAlgorithmSlide() {
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
                 Step aktif
               </p>
-              <h3 className={`${headingClass} text-3xl font-bold text-stone-950`}>
+              <h3
+                className={`${headingClass} text-3xl font-bold text-stone-950`}
+              >
                 {currentStep.title}
               </h3>
               <p className="text-base leading-relaxed text-stone-600">
@@ -150,7 +163,7 @@ export default function CommutativeSearchAlgorithmSlide() {
               </p>
             </div>
 
-            <div className="mt-8 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-5">
+            <div className="mt-8 rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-700">
                 Kenapa algoritma ini penting
               </p>

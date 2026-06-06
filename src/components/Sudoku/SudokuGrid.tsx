@@ -61,7 +61,11 @@ function buildConflictKeys(
 
   const startRow = Math.floor(row / BLOCK_SIZE) * BLOCK_SIZE;
   const startCol = Math.floor(col / BLOCK_SIZE) * BLOCK_SIZE;
-  for (let currentRow = startRow; currentRow < startRow + BLOCK_SIZE; currentRow++) {
+  for (
+    let currentRow = startRow;
+    currentRow < startRow + BLOCK_SIZE;
+    currentRow++
+  ) {
     for (
       let currentCol = startCol;
       currentCol < startCol + BLOCK_SIZE;
@@ -383,7 +387,9 @@ export default function SudokuGrid({ onSolved }: SudokuGridProps) {
               isCorrectPlayerEntry
                 ? "font-extrabold text-emerald-700"
                 : "font-extrabold",
-              conflict || persistentConflict ? "font-extrabold text-rose-700" : "",
+              conflict || persistentConflict
+                ? "font-extrabold text-rose-700"
+                : "",
             ].join(" ");
 
             return (
@@ -485,7 +491,7 @@ export default function SudokuGrid({ onSolved }: SudokuGridProps) {
                   ease: "easeIn",
                   delay: p.delay,
                 }}
-                className={`pointer-events-none fixed top-[-12px] z-[300] rounded-sm ${p.colorClass}`}
+                className={`pointer-events-none fixed -top-3 z-300 rounded-sm ${p.colorClass}`}
                 style={{
                   left: `${p.left}%`,
                   width: p.size,
@@ -498,7 +504,7 @@ export default function SudokuGrid({ onSolved }: SudokuGridProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={dismissSuccess}
-              className="fixed inset-0 z-[200] flex items-center justify-center bg-stone-950/45 backdrop-blur-sm"
+              className="fixed inset-0 z-200 flex items-center justify-center bg-stone-950/45 backdrop-blur-sm"
             >
               <motion.div
                 initial={{ scale: 0.75, opacity: 0, y: 30 }}

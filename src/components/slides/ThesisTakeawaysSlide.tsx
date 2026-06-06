@@ -25,7 +25,8 @@ const panels = [
   {
     id: "kontribusi",
     label: "Kontribusi",
-    title: "Penelitian ini memberi struktur pada masalah komutativitas Latin square max-plus.",
+    title:
+      "Penelitian ini memberi struktur pada masalah komutativitas Latin square max-plus.",
     items: [
       "Syarat perlu dari elemen maksimum mempersempit kandidat sejak awal.",
       "Syarat cukup melalui subgrup abelian memberi jalur konstruksi yang bersih.",
@@ -35,7 +36,8 @@ const panels = [
   {
     id: "manfaat",
     label: "Manfaat",
-    title: "Pengunjung bisa melihat bahwa hasil TA ini bukan cuma teori abstrak.",
+    title:
+      "Pengunjung bisa melihat bahwa hasil TA ini bukan cuma teori abstrak.",
     items: [
       "Ada cara memvisualkan dekomposisi Latin square menjadi permutasi.",
       "Ada algoritma yang bisa diikuti logikanya langkah demi langkah.",
@@ -74,8 +76,11 @@ export default function ThesisTakeawaysSlide() {
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
             Penutup
           </p>
-          <h2 className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}>
-            Yang dibawa pulang pengunjung: bukan cuma definisi, tapi cara berpikirnya.
+          <h2
+            className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
+          >
+            Yang dibawa pulang pengunjung: bukan cuma definisi, tapi cara
+            berpikirnya.
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
             Bagian akhir ini menutup presentasi dengan manfaat nyata dari tugas
@@ -116,7 +121,9 @@ export default function ThesisTakeawaysSlide() {
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-500">
               Fokus aktif
             </p>
-            <h3 className={`${headingClass} mt-4 text-3xl font-bold text-stone-950`}>
+            <h3
+              className={`${headingClass} mt-4 text-3xl font-bold text-stone-950`}
+            >
               {currentPanel.title}
             </h3>
           </div>
@@ -125,7 +132,7 @@ export default function ThesisTakeawaysSlide() {
             {currentPanel.items.map((item) => (
               <div
                 key={item}
-                className="rounded-[1.5rem] border border-stone-200 bg-white p-5 shadow-sm"
+                className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm"
               >
                 <p className="text-sm leading-relaxed text-stone-700 sm:text-base">
                   {item}

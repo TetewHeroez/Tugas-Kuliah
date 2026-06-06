@@ -114,12 +114,11 @@ function MatrixView({
   return (
     <section className="shrink-0">
       <h3
-        className={`text-center text-xs font-bold uppercase tracking-[0.24em] ${titleClass}`}
+        className={`text-center text-xl font-bold uppercase tracking-[0.24em] ${titleClass}`}
       >
         {title}
       </h3>
       <div className="mt-1.5 flex items-center justify-center gap-1 sm:gap-1.5">
-        <span className={`text-4xl leading-none sm:text-5xl ${titleClass}`}>[</span>
         <div
           className="grid overflow-hidden rounded-md border border-stone-300 bg-white"
           style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
@@ -168,34 +167,34 @@ function MatrixView({
             }),
           )}
         </div>
-        <span className={`text-4xl leading-none sm:text-5xl ${titleClass}`}>]</span>
       </div>
     </section>
   );
+}
+function buildMaxPlusExpression(row: number, col: number) {
+  const sums = matrixA[row].map(
+    (a, index) => `{\\color{orange}${a}}+{\\color{blue}${matrixB[index][col]}}`,
+  );
+  const values = matrixA[row].map((a, index) => a + matrixB[index][col]);
+  const total = Math.max(...values);
+
+  return [
+    `c_{${row + 1}${col + 1}} = \\max\\left(${sums.join(",\\ ")}\\right)`,
+    `\\max\\left({\\color{green}${values.join("{\\color{black},}\\ ")}}\\right) = {\\color{green}${total}}`,
+  ].join(" = ");
 }
 
 function buildOrdinaryExpression(row: number, col: number) {
   const terms = matrixA[row].map((a, index) => {
     const b = matrixB[index][col];
-    return `(${a}\\times${b})`;
+    return `({\\color{orange}${a}}\\times{\\color{blue}${b}})`;
   });
   const values = matrixA[row].map((a, index) => a * matrixB[index][col]);
   const total = values.reduce((sum, value) => sum + value, 0);
 
   return [
     `c_{${row + 1}${col + 1}} = ${terms.join(" + ")}`,
-    `${values.join(" + ")} = ${total}`,
-  ].join(" = ");
-}
-
-function buildMaxPlusExpression(row: number, col: number) {
-  const sums = matrixA[row].map((a, index) => `${a}+${matrixB[index][col]}`);
-  const values = matrixA[row].map((a, index) => a + matrixB[index][col]);
-  const total = Math.max(...values);
-
-  return [
-    `c_{${row + 1}${col + 1}} = \\max\\left(${sums.join(",\\ ")}\\right)`,
-    `\\max\\left(${values.join(",\\ ")}\\right) = ${total}`,
+    `{\\color{green}${values.join(" {\\color{black}\\ +\\ } ")}} = {\\color{green}${total}}`,
   ].join(" = ");
 }
 
@@ -230,7 +229,7 @@ export default function MatrixMultiplicationSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Aljabar Biasa vs Aljabar Max-Plus
+            Aljabar Max-Plus
           </h2>
           <p className="text-left text-sm leading-relaxed text-stone-600">
             Sebelum masuk ke hasil penelitian, kita bandingkan dulu dua cara
@@ -322,7 +321,7 @@ export default function MatrixMultiplicationSlide() {
                   matrix={matrixA}
                   activeRow={selectedRow}
                 />
-                <div className="shrink-0 px-0.5 text-stone-900 [&_.katex]:text-[1.7rem] sm:[&_.katex]:text-[2rem]">
+                <div className="pt-4 shrink-0 px-0.5 text-stone-900 text-[1.5rem] sm:text-[2rem]">
                   <MathBlock tex={productOperator} />
                 </div>
                 <MatrixView
@@ -331,7 +330,7 @@ export default function MatrixMultiplicationSlide() {
                   matrix={matrixB}
                   activeCol={selectedCol}
                 />
-                <div className="shrink-0 px-0.5 text-stone-900 [&_.katex]:text-[1.7rem] sm:[&_.katex]:text-[2rem]">
+                <div className="pt-4shrink-0 px-0.5 text-stone-900 text-[1.5rem] sm:text-[2rem]">
                   <MathBlock tex="=" />
                 </div>
                 <MatrixView
