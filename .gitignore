@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+dist/
+coverage/
+dev-server.log
+*.log
+.DS_Store
