@@ -7,7 +7,6 @@ import LatinSquareProductReductionSlide from "@/components/slides/LatinSquarePro
 import SlideController from "@/components/SlideController";
 import CommutativeSearchAlgorithmSlide from "@/components/slides/CommutativeSearchAlgorithmSlide";
 import CommutativityCriteriaSlide from "@/components/slides/CommutativityCriteriaSlide";
-import CommutativeExamplesSlide from "@/components/slides/CommutativeExamplesSlide";
 import ThesisTakeawaysSlide from "@/components/slides/ThesisTakeawaysSlide";
 import LatinSquareConceptSlide from "@/components/slides/LatinSquareConceptSlide";
 import SudokuPuzzleSlide from "@/components/slides/SudokuPuzzleSlide";
@@ -21,7 +20,6 @@ const SLIDE_LABELS = [
   "Reduksi",
   "Kriteria",
   "Algoritma",
-  "Contoh",
   "Manfaat",
 ];
 const OPENING_STORAGE_KEY = "pameran-ta-opening-last-seen";
@@ -262,8 +260,6 @@ export default function Home() {
       case 6:
         return <CommutativeSearchAlgorithmSlide />;
       case 7:
-        return <CommutativeExamplesSlide />;
-      case 8:
         return <ThesisTakeawaysSlide />;
       default:
         return null;
