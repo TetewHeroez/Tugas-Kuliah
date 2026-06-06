@@ -217,3 +217,4 @@ src/
 - Codex update: slide reduksi dirombak jadi lebih ringkas dan web-like; KaTeX kini hanya dipakai untuk simbol/rumus singkat, ditambah visualisasi interaktif ordo 4 untuk memilih baris A dan kolom B lalu menampilkan penjumlahan per entri yang selalu memberi nilai minimal n+1, serta scrollbar visual viewport utama disembunyikan di `page.tsx`.
 - Codex update: membersihkan teks slide reduksi dari karakter rusak hasil encoding dan merapikan penulisan batas bawah agar aman dipakai di HTML biasa.
 - Codex update: mengembalikan bagian atas slide reduksi ke versi rumus sebelumnya sesuai arah user, sambil mempertahankan visualisasi interaktif ordo 4 di bagian bawah.
+- Codex update: slide prosedur konstruksi diubah menjadi accordion yang memvisualisasikan pembentukan kandidat parsial `B*` hingga menjadi Latin square `B` secara bertahap di `src/components/slides/CommutativeSearchAlgorithmSlide.tsx`.

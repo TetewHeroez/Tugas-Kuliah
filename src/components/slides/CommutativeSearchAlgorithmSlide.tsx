@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import MathBlock from "@/components/ui/MathBlock";
 
 const headingClass = "font-[family:var(--font-heading)]";
 const item = {
@@ -21,67 +21,119 @@ const container = {
   },
 };
 
-const algorithmSteps = [
+type MatrixValue = number | ".";
+type Matrix = readonly (readonly MatrixValue[])[];
+
+const constructionSteps = [
   {
-    id: "decompose",
+    id: "start",
     short: "1",
-    title: "Dekomposisi A",
-    detail:
-      "Ambil posisi tiap simbol di A, lalu ubah menjadi permutasi penyusun. Di titik ini persoalan matriks diubah menjadi persoalan susunan permutasi.",
+    title: "Mulai dari matriks kandidat B*",
+    focus: "Kerangka awal",
+    note: "Pencarian tidak menebak seluruh B sekaligus. Kita mulai dari matriks kandidat parsial B* yang masih kosong, lalu diisi simbol demi simbol.",
+    matrix: [
+      [".", ".", ".", "."],
+      [".", ".", ".", "."],
+      [".", ".", ".", "."],
+      [".", ".", ".", "."],
+    ] as const satisfies Matrix,
   },
   {
-    id: "alternative",
+    id: "sigma4",
     short: "2",
-    title: "Cek jalur cepat",
-    detail:
-      "Kalau semua permutasi penyusun A saling komutatif, ada jalur alternatif: susun ulang permutasi A untuk membentuk kandidat B yang otomatis komutatif.",
+    title: "Pilih posisi simbol maksimum",
+    focus: "Tentukan sigma_4^B",
+    note: "Langkah pertama adalah memilih posisi simbol 4. Pilihan ini dibatasi oleh centralizer dari simbol maksimum pada A, jadi cabangnya belum liar sejak awal.",
+    matrix: [
+      [".", ".", ".", 4],
+      [".", ".", 4, "."],
+      [".", 4, ".", "."],
+      [4, ".", ".", "."],
+    ] as const satisfies Matrix,
+    formula: "\\sigma_4^B",
   },
   {
-    id: "centralizer",
+    id: "sigma3",
     short: "3",
-    title: "Mulai dari simbol maksimum",
-    detail:
-      "Jika jalur cepat gagal, pencarian dimulai dari permutasi simbol maksimum pada B. Kandidatnya dibatasi oleh centralizer dari simbol maksimum pada A.",
+    title: "Tambahkan simbol berikutnya dan cek level",
+    focus: "Isi simbol 3",
+    note: "Setelah simbol 4 dipilih, simbol 3 dimasukkan ke posisi yang masih mungkin. Di titik ini pemeriksaan superlevel mulai bisa menolak cabang yang salah sebelum B* lengkap.",
+    matrix: [
+      [".", ".", 3, 4],
+      [".", 3, 4, "."],
+      [3, 4, ".", "."],
+      [4, ".", ".", 3],
+    ] as const satisfies Matrix,
+    formula: "\\mathcal{U}_{\\ge 7}^{AB} = \\mathcal{U}_{\\ge 7}^{BA}",
   },
   {
-    id: "superlevel",
+    id: "sigma2",
     short: "4",
-    title: "Turun per level",
-    detail:
-      "Setelah simbol n dipilih, algoritma mengisi simbol n-1, n-2, dan seterusnya sambil memeriksa kesamaan himpunan superlevel dari level tertinggi ke bawah.",
+    title: "Lengkapi B* sedikit demi sedikit",
+    focus: "Isi simbol 2",
+    note: "Kalau level sebelumnya lolos, simbol 2 bisa ditambahkan. Sekarang bentuk B* sudah makin terlihat, tetapi masih ada satu simbol yang belum ditentukan.",
+    matrix: [
+      [".", 2, 3, 4],
+      [2, 3, 4, "."],
+      [3, 4, ".", 2],
+      [4, ".", 2, 3],
+    ] as const satisfies Matrix,
+    formula: "\\mathcal{U}_{\\ge 6}^{AB} = \\mathcal{U}_{\\ge 6}^{BA}",
   },
   {
     id: "finish",
     short: "5",
-    title: "Lengkapi dan verifikasi",
-    detail:
-      "Jika semua level lolos, sisa posisi diisi simbol 1. Hasil akhirnya adalah kandidat B yang memenuhi A ⊗ B = B ⊗ A.",
+    title: "Dari B* menjadi B",
+    focus: "Isi simbol 1",
+    note: "Kalau semua level lolos, sel yang tersisa otomatis diisi simbol 1. Pada titik itu kandidat parsial B* berubah menjadi Latin square penuh B.",
+    matrix: [
+      [1, 2, 3, 4],
+      [2, 3, 4, 1],
+      [3, 4, 1, 2],
+      [4, 1, 2, 3],
+    ] as const satisfies Matrix,
+    formula: "B",
   },
 ] as const;
 
-const algorithmWins = [
-  "Cabang yang gagal bisa dipotong lebih awal.",
-  "Tidak perlu menebak seluruh B dari awal.",
-  "Contoh ordo 3, 4, dan 5 menunjukkan prosedurnya benar-benar bekerja.",
-];
+function MatrixPreview({ matrix }: { matrix: Matrix }) {
+  const columns = matrix[0]?.length ?? 1;
+
+  return (
+    <div
+      className="grid overflow-hidden rounded-xl border border-stone-300 bg-white"
+      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+    >
+      {matrix.flatMap((row, rowIndex) =>
+        row.map((value, colIndex) => {
+          const isEmpty = value === ".";
+          return (
+            <div
+              key={`${rowIndex}-${colIndex}`}
+              className={[
+                "flex h-11 w-11 items-center justify-center border border-stone-200 text-sm font-semibold sm:h-12 sm:w-12 sm:text-base",
+                isEmpty
+                  ? "bg-stone-50 text-stone-300"
+                  : "bg-emerald-50 text-stone-900",
+              ].join(" ")}
+            >
+              {value}
+            </div>
+          );
+        }),
+      )}
+    </div>
+  );
+}
 
 export default function CommutativeSearchAlgorithmSlide() {
-  const [activeStep, setActiveStep] = useState("decompose");
-
-  const currentStep = useMemo(
-    () =>
-      algorithmSteps.find((step) => step.id === activeStep) ??
-      algorithmSteps[0],
-    [activeStep],
-  );
-
   return (
     <div className="w-full min-h-dvh px-4 pb-24 pt-24 sm:px-6">
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="mx-auto flex w-full max-w-6xl flex-col gap-6"
+        className="mx-auto flex w-full max-w-4xl flex-col gap-6"
       >
         <motion.div variants={item} className="space-y-2 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
@@ -90,95 +142,85 @@ export default function CommutativeSearchAlgorithmSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Dari satu Latin square A, algoritma ini mencari pasangan B yang
-            komutatif.
+            Pencarian dimulai dari B* lalu dilengkapi sampai menjadi B.
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
-            Ini bagian yang paling enak dibikin interaktif karena pengunjung
-            bisa mengikuti logika pencariannya seperti sedang melihat decision
-            path.
+            Jadi algoritma ini bukan menebak seluruh Latin square sekaligus.
+            Ia membangun kandidat parsial <span className="font-semibold text-stone-800">B*</span>,
+            memeriksa level-level penting di tengah jalan, lalu hanya
+            melanjutkan cabang yang masih konsisten.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={item}
-          className="grid gap-6 lg:grid-cols-[0.52fr_0.48fr]"
-        >
-          <div className="space-y-4">
-            {algorithmSteps.map((step) => {
-              const isActive = step.id === activeStep;
-              return (
-                <button
-                  key={step.id}
-                  type="button"
-                  onClick={() => setActiveStep(step.id)}
-                  className={[
-                    "flex w-full items-start gap-4 rounded-3xl border px-5 py-4 text-left transition-colors",
-                    isActive
-                      ? "border-amber-500 bg-amber-50"
-                      : "border-stone-200 bg-white hover:border-amber-300",
-                  ].join(" ")}
-                >
-                  <span
-                    className={[
-                      "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold",
-                      isActive
-                        ? "bg-amber-500 text-white"
-                        : "bg-stone-100 text-stone-700",
-                    ].join(" ")}
-                  >
+        <motion.div variants={item} className="space-y-3">
+          {constructionSteps.map((step, index) => (
+            <details
+              key={step.id}
+              open={index === 0}
+              className="group rounded-lg border border-stone-200 bg-white shadow-sm open:border-emerald-400"
+            >
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-4">
+                <div className="flex items-start gap-4 text-left">
+                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">
                     {step.short}
                   </span>
-                  <div>
-                    <p className="text-lg font-bold text-stone-950">
-                      {step.title}
+                  <div className="space-y-2">
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-700">
+                      {step.focus}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                      {step.detail}
-                    </p>
+                    <div>
+                      <p className="text-lg font-bold text-stone-950">
+                        {step.title}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-stone-600">
+                        {step.note}
+                      </p>
+                    </div>
                   </div>
-                </button>
-              );
-            })}
-          </div>
+                </div>
+                <span className="mt-1 shrink-0 text-xl font-semibold text-stone-400 transition-transform duration-200 group-open:rotate-45 group-open:text-emerald-700">
+                  +
+                </span>
+              </summary>
 
-          <motion.div
-            key={currentStep.id}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="flex h-full flex-col justify-between rounded-[1.75rem] border border-stone-200 bg-white p-6 shadow-sm sm:p-8"
-          >
-            <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
-                Step aktif
-              </p>
-              <h3
-                className={`${headingClass} text-3xl font-bold text-stone-950`}
-              >
-                {currentStep.title}
-              </h3>
-              <p className="text-base leading-relaxed text-stone-600">
-                {currentStep.detail}
-              </p>
-            </div>
-
-            <div className="mt-8 rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-700">
-                Kenapa algoritma ini penting
-              </p>
-              <div className="mt-4 space-y-3">
-                {algorithmWins.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl bg-white/80 px-4 py-3 text-sm leading-relaxed text-emerald-950"
-                  >
-                    {item}
+              <div className="border-t border-stone-200 px-5 py-5">
+                <div className="grid gap-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-start">
+                  <div className="flex justify-center">
+                    <MatrixPreview matrix={step.matrix} />
                   </div>
-                ))}
+
+                  <div className="space-y-4">
+                    {step.formula ? (
+                      <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                        <MathBlock
+                          tex={step.formula}
+                          display
+                          className="text-stone-950"
+                        />
+                      </div>
+                    ) : null}
+
+                    <div className="rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4">
+                      <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">
+                        Cara membacanya
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-sky-950">
+                        {step.id === "start"
+                          ? "Di tahap ini belum ada komitmen terhadap permutasi penyusun B. Bentuk kosong ini hanya menandai bahwa pencarian masih berada di titik awal."
+                          : step.id === "sigma4"
+                            ? "Begitu simbol maksimum dipilih, kita langsung tahu sebagian bentuk B*. Kalau pilihan ini salah, cabang pencarian bisa dihentikan lebih awal."
+                            : step.id === "sigma3"
+                              ? "Sekarang B* mulai punya struktur. Pemeriksaan level tinggi bekerja sebagai filter supaya kita tidak melanjutkan kandidat yang sudah jelas gagal."
+                              : step.id === "sigma2"
+                                ? "Pada tahap ini B* sudah hampir menjadi Latin square penuh. Tinggal satu simbol tersisa, tetapi konsistensi level tetap harus dijaga."
+                                : "Begitu semua syarat lolos, kekosongan yang tersisa diisi otomatis. Kandidat parsial B* pun resmi menjadi Latin square B."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </details>
+          ))}
         </motion.div>
       </motion.div>
     </div>
