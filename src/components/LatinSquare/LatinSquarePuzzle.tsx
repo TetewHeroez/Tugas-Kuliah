@@ -28,6 +28,24 @@ const confettiColors = [
   "bg-indigo-400",
 ];
 
+const puzzleSizeClasses: Record<
+  number,
+  { gridWidth: string; cellText: string }
+> = {
+  3: {
+    gridWidth: "max-w-[210px] sm:max-w-[240px]",
+    cellText: "text-base sm:text-lg",
+  },
+  4: {
+    gridWidth: "max-w-[236px] sm:max-w-[276px]",
+    cellText: "text-sm sm:text-base",
+  },
+  5: {
+    gridWidth: "max-w-[255px] sm:max-w-[300px]",
+    cellText: "text-sm sm:text-base",
+  },
+};
+
 type PuzzleId = "ordo3" | "ordo4" | "ordo5";
 
 interface LatinSquarePuzzleData {
@@ -208,6 +226,15 @@ function buildConfetti() {
     size: 7 + Math.random() * 7,
     duration: 2.1 + Math.random(),
   }));
+}
+
+function getPuzzleSizeClass(order: number) {
+  return (
+    puzzleSizeClasses[order] ?? {
+      gridWidth: "max-w-[255px] sm:max-w-[300px]",
+      cellText: "text-sm sm:text-base",
+    }
+  );
 }
 
 export default function LatinSquarePuzzle() {
@@ -436,10 +463,12 @@ export default function LatinSquarePuzzle() {
     [activePuzzleId, resetPuzzle],
   );
 
+  const puzzleSize = getPuzzleSizeClass(activePuzzle.order);
+
   return (
     <div className="flex w-full flex-col items-center gap-5">
       <div className="w-full rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-        <div className="sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-2">
             <p className="text-xs font-bold uppercase tracking-wider text-stone-600">
               Coba Susun Latin Square
@@ -476,11 +505,7 @@ export default function LatinSquarePuzzle() {
       <div
         className={[
           gridClass,
-          activePuzzle.order === 3
-            ? "max-w-[240px] sm:max-w-[280px]"
-            : activePuzzle.order === 4
-              ? "max-w-[270px] sm:max-w-[320px]"
-              : "max-w-[300px] sm:max-w-[360px]",
+          puzzleSize.gridWidth,
         ].join(" ")}
         style={{
           gridTemplateColumns: `repeat(${activePuzzle.order}, minmax(0, 1fr))`,
@@ -504,11 +529,7 @@ export default function LatinSquarePuzzle() {
 
             const cellClass = [
               baseCellClass,
-              activePuzzle.order === 3
-                ? "text-lg sm:text-xl"
-                : activePuzzle.order === 4
-                  ? "text-base sm:text-xl"
-                  : "text-base sm:text-lg",
+              puzzleSize.cellText,
               isOriginallyGiven
                 ? "cursor-default bg-stone-200 font-extrabold text-stone-950"
                 : isHintedCell
