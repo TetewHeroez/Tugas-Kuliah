@@ -390,18 +390,19 @@ export default function CommutativeSearchAlgorithmSlide() {
             {sigma4A ? (
               <>
                 <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
-                  <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
+                    Centralizer kandidat awal
+                  </p>
+                  <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                     <MathBlock
-                      tex={`C_{S_4}(\\sigma_4^A) = \\{${centralizerCandidates
-                        .map((candidate) => permutationToTex(candidate))
-                        .join(",\\ ") }\\}`}
+                      tex={"C_{S_4}(\\sigma_4^A)"}
                       display
-                      className="text-amber-950"
+                      className="text-amber-950 [&_.katex-display]:my-0"
                     />
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {centralizerCandidates.map((candidate, index) => {
                     const isActive = index === selectedCandidateIndex;
                     return (
@@ -410,13 +411,18 @@ export default function CommutativeSearchAlgorithmSlide() {
                         type="button"
                         onClick={() => setSelectedCandidateIndex(index)}
                         className={[
-                          "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                          "rounded-2xl border px-4 py-3 text-left transition-colors",
                           isActive
                             ? "border-amber-500 bg-amber-500 text-white"
                             : "border-stone-300 bg-white text-stone-700 hover:border-amber-400 hover:text-stone-950",
                         ].join(" ")}
                       >
-                        {permutationToTex(candidate)}
+                        <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                          <MathBlock
+                            tex={permutationToTex(candidate)}
+                            className={isActive ? "text-white" : "text-stone-900"}
+                          />
+                        </div>
                       </button>
                     );
                   })}
