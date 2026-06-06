@@ -271,7 +271,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-dvh bg-stone-50">
+    <main className="relative h-dvh overflow-y-auto bg-stone-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
       {showOpening === null ? null : showOpening ? (
         <AnimatePresence mode="wait">
           <OpeningScreen key="opening" onEnter={handleEnterPresentation} />
