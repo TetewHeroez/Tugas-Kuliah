@@ -23,35 +23,35 @@ const container = {
 
 const panels = [
   {
+    id: "tujuan",
+    label: "Tujuan",
+    title:
+      "Arah besarnya adalah menyiapkan fondasi aljabar untuk skema mirip Diffie-Hellman Key Exchange.",
+    items: [
+      "Pada pertukaran kunci, dua pihak butuh operasi yang bisa dijalankan dari sisi masing-masing tetapi tetap bertemu pada hasil bersama.",
+      "Di sini elemen yang ingin dioperasikan bukan bilangan biasa, melainkan Latin square dengan operasi perkalian max-plus.",
+      "Karena itu, persoalan utamanya bukan sekadar membuat Latin square, tetapi mencari pasangan yang komutatif agar mekanisme pertukaran kuncinya masuk akal.",
+    ],
+  },
+  {
     id: "kontribusi",
     label: "Kontribusi",
     title:
-      "Penelitian ini memberi struktur pada masalah komutativitas Latin square max-plus.",
+      "Kontribusi TA ini adalah memberi cara sistematis untuk membangun dan memeriksa pasangan Latin square komutatif.",
     items: [
-      "Syarat perlu dari elemen maksimum mempersempit kandidat sejak awal.",
-      "Syarat cukup melalui subgrup abelian memberi jalur konstruksi yang bersih.",
-      "Kriteria superlevel memberi uji perlu-cukup yang benar-benar operasional.",
+      "Dekomposisi ke matriks permutasi max-plus membuat struktur Latin square lebih mudah dibaca dan dimanipulasi.",
+      "Syarat perlu, syarat cukup, dan uji superlevel memperkecil ruang pencarian kandidat komutatif.",
+      "Prosedur konstruksi memberi jalur praktis dari A menuju kandidat B, jadi pencarian tidak lagi murni brute force.",
     ],
   },
   {
     id: "manfaat",
     label: "Manfaat",
-    title:
-      "Pengunjung bisa melihat bahwa hasil TA ini bukan cuma teori abstrak.",
+    title: "Kalau diteruskan, hasil ini bisa jadi batu pijakan untuk desain protokol berbasis struktur max-plus.",
     items: [
-      "Ada cara memvisualkan dekomposisi Latin square menjadi permutasi.",
-      "Ada algoritma yang bisa diikuti logikanya langkah demi langkah.",
-      "Ada contoh nyata pada ordo 3, 4, dan 5 yang memperlihatkan hasilnya.",
-    ],
-  },
-  {
-    id: "lanjutan",
-    label: "Arah lanjut",
-    title: "Masih banyak ruang untuk pengembangan setelah TA ini.",
-    items: [
-      "Implementasi komputasional untuk ordo yang lebih besar.",
-      "Pemeriksaan superlevel yang lebih efisien agar pencarian lebih cepat.",
-      "Generalisasi syarat cukup lewat centralizer atau subgrup yang lebih luas.",
+      "Ia memberi bahasa dan alat awal untuk merancang operasi pertukaran kunci dengan objek Latin square, bukan hanya matriks numerik biasa.",
+      "Ia menunjukkan kapan komutativitas bisa diharapkan, yang penting kalau dua pihak ingin sampai ke shared key yang sama.",
+      "Penelitian lanjut bisa masuk ke implementasi algoritmik, efisiensi komputasi, dan perumusan skema Diffie-Hellman yang benar-benar operasional.",
     ],
   },
 ] as const;
@@ -79,12 +79,14 @@ export default function ThesisTakeawaysSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Yang dibawa pulang pengunjung: bukan cuma definisi, tapi cara
-            berpikirnya.
+            Kenapa hasil ini penting: ia membuka jalan ke pertukaran kunci
+            berbasis Latin square max-plus.
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
-            Bagian akhir ini menutup presentasi dengan manfaat nyata dari tugas
-            akhir kamu, sekaligus membuka ruang untuk penelitian lanjut.
+            Jadi penutupnya bukan cuma rangkuman. Di sini pengunjung diajak
+            lihat bahwa komutativitas yang kamu bangun itu relevan kalau nanti
+            Latin square dipakai sebagai elemen dalam skema mirip
+            Diffie-Hellman Key Exchange.
           </p>
         </motion.div>
 

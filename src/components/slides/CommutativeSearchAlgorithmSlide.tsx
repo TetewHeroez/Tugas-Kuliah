@@ -82,9 +82,21 @@ const allPermutations: Permutation[] = (() => {
   const base = [1, 2, 3, 4] as const;
   const result: Permutation[] = [];
 
+  const toPermutation = (values: number[]): Permutation | null => {
+    if (
+      values.length !== 4 ||
+      !values.every((value) => Number.isInteger(value) && value >= 1 && value <= 4)
+    ) {
+      return null;
+    }
+
+    return values as unknown as Permutation;
+  };
+
   const build = (prefix: number[], rest: number[]) => {
     if (rest.length === 0) {
-      result.push(prefix as Permutation);
+      const permutation = toPermutation(prefix);
+      if (permutation) result.push(permutation);
       return;
     }
 
@@ -139,7 +151,8 @@ function matrixToSigma4(matrix: EditableMatrix): Permutation | null {
     columns.push(colIndex);
   }
 
-  return seenCols.size === 4 ? (columns as Permutation) : null;
+  if (seenCols.size !== 4 || columns.length !== 4) return null;
+  return columns as unknown as Permutation;
 }
 
 function composePermutations(left: Permutation, right: Permutation): Permutation {
