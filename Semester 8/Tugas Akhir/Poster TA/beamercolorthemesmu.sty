@@ -1,0 +1,64 @@
+% A modification of Beamer seagull color theme
+% Origin: http://mirrors.ctan.org/macros/latex/contrib/beamer/base/themes/color/beamercolorthemeseagull.sty
+
+\definecolor{smuBlue}{RGB}{21, 28, 85}
+\definecolor{smuGold}{RGB}{138, 112, 76}
+\definecolor{scisGold}{RGB}{198, 146, 0}
+\definecolor{smuLightGold}{RGB}{240, 238, 231}
+
+\definecolor{lightgray}{RGB}{240, 240, 240}
+\definecolor{darkspringgreen}{RGB}{9, 45, 27}
+
+\setbeamercolor*{normal text}{fg=smuBlue,bg=white}
+\setbeamercolor*{alerted text}{fg=smuBlue}
+\setbeamercolor*{example text}{fg=smuBlue}
+\setbeamercolor*{structure}{fg=smuBlue}
+
+\providecommand*{\beamer@bftext@only}{%
+  \relax
+  \ifmmode
+    \expandafter\beamer@bftext@warning
+  \else
+    \expandafter\bfseries
+  \fi
+}
+\providecommand*{\beamer@bftext@warning}{%
+  \ClassWarning{beamer}
+    {Cannot use bold for alerted text in math mode}%
+}
+
+\setbeamerfont{alerted text}{series=\beamer@bftext@only}
+
+% ====================
+% Theme
+% ====================
+
+% Basic colors
+\setbeamercolor*{palette primary}{fg=smuBlue,bg=smuBlue!20}
+\setbeamercolor*{palette secondary}{fg=smuBlue,bg=smuBlue!25}
+\setbeamercolor*{palette tertiary}{fg=smuBlue,bg=smuBlue!30}
+\setbeamercolor*{palette quaternary}{fg=smuBlue,bg=smuBlue!35}
+%\setbeamercolor{structure}{fg=mitred}
+
+% Headline
+\setbeamercolor{headline}{fg=white,bg=smuBlue}
+
+\setbeamercolor{sidebar}{bg=smuBlue!20}
+
+\setbeamercolor*{palette sidebar primary}{fg=smuBlue}
+\setbeamercolor*{palette sidebar secondary}{fg=smuBlue}
+\setbeamercolor*{palette sidebar tertiary}{fg=smuBlue}
+\setbeamercolor*{palette sidebar quaternary}{fg=smuBlue}
+
+\setbeamercolor*{item projected}{fg=smuBlue,bg=smuBlue!20}
+
+\setbeamercolor*{block title}{fg=white,bg=smuBlue}
+\setbeamercolor*{block alerted title}{fg=white,bg=smuGold}
+\setbeamercolor*{block example title}{fg=darkspringgreen,bg=darkspringgreen!20}
+
+\setbeamercolor*{block body}{fg=smuBlue,bg=smuLightGold}
+\setbeamercolor*{block alerted body}{fg=smuBlue,bg=smuLightGold}
+\setbeamercolor*{block example body}{fg=darkspringgreen,bg=darkspringgreen!10}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}

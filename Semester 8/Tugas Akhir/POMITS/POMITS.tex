@@ -1,0 +1,392 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% File ini ditujukan untuk menulis
+%%% Paper POMITS menggunakan LaTeX untuk program sarjana
+%%% di Institut Teknologi Sepuluh Nopember, Surabaya.
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[journal]{IEEEtran}
+\hyphenation{op-tical net-works semi-conduc-tor}
+\usepackage{amssymb,amsmath,amsthm,graphicx}
+\usepackage{caption,tabularx,multicol,multirow}
+\usepackage{listings,color,booktabs}
+\usepackage{float}
+\usepackage{algpseudocode}
+\usepackage{array}
+\usepackage{scrfontsizes}
+\usepackage{afterpage}
+\usepackage{subfig}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage[ruled,vlined]{algorithm2e}
+\captionsetup[figure]{labelsep=period}
+\captionsetup[figure]{name={Gambar}}
+\captionsetup[table]{labelsep=newline}
+\captionsetup[table]{name={Tabel}}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+\setlength{\parindent}{0.36cm}
+
+\newtheorem{defn}{Definisi}[section]
+\newtheorem{teo}[defn]{Teorema}
+\newtheorem{thm}{Teorema}
+\newtheorem{lemma}{Lemma}
+\newtheorem{lemmas}[defn]{Lemma}
+\newtheorem{cor}[defn]{Akibat}
+\newtheorem{asumsi}[defn]{Asumsi}
+\theoremstyle{definition}
+\newtheorem{con}{Contoh}[section]
+\theoremstyle{plain}
+\newtheorem{prop}{Proposisi}
+\renewcommand{\proofname}{Bukti}
+\renewcommand{\thedefn}{\arabic{section}.\arabic{defn}}
+\renewcommand{\thecon}{\arabic{section}.\arabic{con}}
+
+\newcommand{\katakunci}[1]{%
+    \noindent\\
+    \textit{\textbf{Kata Kunci---}}{\textbf{#1}}
+}
+
+\renewcommand{\listfigurename}{\hfill\normalsize\textbf{DAFTAR GAMBAR}\hfill}
+\renewcommand{\listtablename}{\hfill\normalsize\textbf{DAFTAR TABEL}\hfill}
+\renewcommand{\contentsname}{\hfill\normalsize\textbf{DAFTAR ISI}\hfill}
+\renewcommand{\refname}{}
+\renewcommand{\arraystretch}{1.2}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{ITSblue}{rgb}{0.08,0.38,0.74}
+
+\lstdefinestyle{mypseudo}{
+commentstyle=\bfseries,
+keywordstyle=\bfseries,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+literate={\ \ }{{\ }}2
+}
+\lstset{basicstyle=\sffamily\scriptsize,style=mypseudo}
+\def\abstractname{Abstrak}
+
+\newcommand{\Rmax}{\mathbb{R}_{\max}}
+\newcommand{\LS}{L_S(n)}
+\newcommand{\Sn}{S_n}
+\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+
+\title{\changefontsizes{24}\textit{Latin Square} Komutatif atas Aljabar Max-Plus\\ \vspace{12pt}}
+
+\author{\changefontsizes{11}Teosofi Hidayah Agung\\
+Departemen Matematika, Fakultas Sains dan Analitika Data\\
+Institut Teknologi Sepuluh Nopember (ITS), Surabaya, Indonesia\\ \vspace{-1em}}
+
+\markboth{\small JURNAL TEKNIK ITS Vol. X, No. Y, (2026) ISSN: 2337-3539 (2301-9271 Print)}{}
+
+\maketitle
+
+\begin{abstract}
+\small \noindent Aljabar max-plus adalah struktur aljabar pada himpunan
+$\Rmax=\mathbb{R}\cup\{\eps\}$ dengan operasi
+$a\oplus b=\max\{a,b\}$ dan $a\otimes b=a+b$.
+Penelitian ini mengkaji komutativitas dua \textit{Latin square}
+terhadap perkalian max-plus, yaitu kondisi
+$A\otimes B=B\otimes A$.
+Setiap \textit{Latin square} direpresentasikan sebagai kombinasi max-plus
+dari matriks permutasi, sehingga komutativitas dapat dianalisis melalui
+komposisi permutasi penyusunnya.
+Hasil utama penelitian ini meliputi rumus dekomposisi hasil perkalian
+\textit{Latin square}, syarat perlu komutativitas melalui simbol maksimum,
+syarat cukup melalui subgrup abelian dari $\Sn$, serta kriteria perlu dan
+cukup melalui kesamaan himpunan superlevel.
+Berdasarkan kriteria tersebut disusun algoritma untuk mengonstruksi pasangan
+\textit{Latin square} komutatif dari suatu \textit{Latin square} yang
+diberikan.
+Penerapan algoritma pada ordo $3$, $4$, dan $5$ menunjukkan bahwa prosedur
+yang diperoleh dapat digunakan baik pada kasus ketika permutasi penyusun
+berada dalam subgrup abelian yang sama maupun pada kasus umum melalui
+\textit{centralizer} dan pemeriksaan superlevel.
+\end{abstract}
+
+\katakunci{\small Aljabar max-plus, \textit{Latin square}, komutativitas, \textit{centralizer}, himpunan superlevel.}
+
+\IEEEpeerreviewmaketitle
+
+\section{PENDAHULUAN}
+\normalsize \IEEEPARstart{A}{LJABAR} max-plus merupakan salah satu struktur
+dasar dalam aljabar tropikal dengan operasi penjumlahan berupa maksimum dan
+operasi perkalian berupa penjumlahan biasa \cite{subiono2015minmaxplus}.
+Struktur ini banyak digunakan dalam pemodelan sistem kejadian diskret,
+optimasi, dan kajian kriptografi tropikal \cite{huang2024newsemiring,
+durcheva2025cryptographyidempotent}.
+
+\textit{Latin square} adalah matriks berordo $n$ yang setiap baris dan
+kolomnya merupakan permutasi dari himpunan simbol yang sama
+\cite{george2017introductioncombinatorics}.
+Dalam konteks aljabar max-plus, \textit{Latin square} telah dikaji dari sisi
+nilai eigen, vektor eigen, dan algoritma komputasi
+\cite{mufid2014eigenvalues}.
+Di sisi lain, matriks komutatif pada aljabar tropikal juga menarik karena
+berkaitan dengan konstruksi protokol pertukaran kunci berbasis matriks
+\cite{alhussaini2024securityinitialtropical,
+alhussaini2024tropicaltwosided,muanalifah2020modifyingtropical,
+buchinskiy2024analysisfour}. Kajian mengenai matriks yang komutatif dengan
+matriks tropikal tertentu juga telah muncul, misalnya pada matriks normal
+tropikal \cite{linde2014matricescommutinggivennormal}.
+
+Berangkat dari latar belakang tersebut, penelitian ini berfokus pada tiga
+persoalan, yaitu menentukan syarat perlu komutativitas dua
+\textit{Latin square}, menentukan syarat cukup serta kriteria perlu-cukupnya,
+dan menyusun algoritma untuk mengonstruksi pasangan \textit{Latin square}
+komutatif.
+Pembahasan dibatasi pada \textit{Latin square} dengan simbol
+$\{1,2,\ldots,n\}$ dan penerapan algoritma diberikan untuk ordo $n\leq 5$.
+
+\section{METODE PENELITIAN}
+Metode penelitian diawali dengan studi literatur mengenai aljabar max-plus,
+grup permutasi, matriks permutasi, \textit{centralizer}, dan
+\textit{Latin square}. Selanjutnya dilakukan representasi
+\textit{Latin square} ke dalam matriks-matriks permutasi max-plus, penurunan
+kriteria komutativitas, penyusunan algoritma konstruksi pasangan komutatif,
+dan pengujian hasil pada beberapa contoh berordo kecil.
+
+Untuk $A=(a_{ij})$ dan $B=(b_{ij})$ di $\Rmax^{n\times n}$, perkalian
+max-plus didefinisikan oleh
+\begin{equation}
+    [A\otimes B]_{rs}=\max_{1\leq t\leq n}(a_{rt}+b_{ts}).
+\end{equation}
+
+Jika $A\in \LS$ dengan himpunan simbol $\{1,2,\ldots,n\}$, maka posisi
+kemunculan simbol $i$ pada setiap baris membentuk suatu permutasi
+$\sigma_i^A\in \Sn$. Dengan demikian, setiap \textit{Latin square}
+dapat ditulis sebagai
+\begin{equation}
+    A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}.
+\end{equation}
+Representasi yang sama berlaku untuk $B\in \LS$.
+
+Dari representasi tersebut diperoleh dekomposisi hasil perkalian berikut.
+\begin{cor}
+Misalkan $A,B\in \LS$ dengan dekomposisi
+$A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan
+$B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$.
+Maka
+\begin{equation}
+    A\otimes B=
+    \bigoplus_{k=n+1}^{2n}
+    k\otimes
+    \left(
+    \bigoplus_{\substack{i,j\in\{1,\ldots,n\}\\i+j=k}}
+    P_{\sigma_j^B\circ\sigma_i^A}
+    \right).
+\end{equation}
+\end{cor}
+
+Rumus tersebut menunjukkan bahwa komutativitas dua \textit{Latin square}
+ditentukan oleh hubungan antara komposisi
+$\sigma_j^B\circ\sigma_i^A$ dan $\sigma_j^A\circ\sigma_i^B$.
+Atas dasar itu, penelitian dilanjutkan dengan menurunkan syarat perlu,
+syarat cukup, dan kriteria perlu-cukup yang kemudian digunakan untuk
+menyusun algoritma konstruksi pasangan komutatif.
+
+\section{HASIL DAN PEMBAHASAN}
+\subsection{Syarat Perlu Komutativitas}
+Syarat perlu pertama diperoleh dari simbol maksimum pada
+\textit{Latin square}.
+
+\begin{teo}
+Misalkan $A,B\in \LS$ dengan himpunan simbol $\{1,2,\ldots,n\}$.
+Jika $A\otimes B=B\otimes A$, maka permutasi yang bersesuaian dengan simbol
+maksimum memenuhi
+\begin{equation}
+    \sigma_n^A\circ\sigma_n^B=\sigma_n^B\circ\sigma_n^A.
+\end{equation}
+\end{teo}
+
+Teorema ini memberikan penyaring awal pada proses pencarian kandidat.
+Artinya, kandidat $\sigma_n^B$ hanya perlu dipilih dari
+$C_{\Sn}(\sigma_n^A)$, yaitu \textit{centralizer} dari $\sigma_n^A$ di
+$\Sn$.
+
+\subsection{Syarat Cukup Komutativitas}
+Selain syarat perlu, diperoleh pula syarat cukup berbasis subgrup abelian.
+
+\begin{teo}
+Misalkan $A,B\in \LS$ dengan dekomposisi
+$A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan
+$B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$.
+Jika terdapat subgrup abelian $H\leq \Sn$ sedemikian sehingga
+$\sigma_i^A\in H$ dan $\sigma_j^B\in H$ untuk setiap
+$i,j\in\{1,\ldots,n\}$, maka
+\begin{equation}
+    A\otimes B=B\otimes A.
+\end{equation}
+\end{teo}
+
+Hasil ini penting karena langsung menghasilkan keluarga pasangan
+\textit{Latin square} komutatif. Sebagai contoh, dua \textit{Latin square}
+sirkulan selalu komutatif karena seluruh permutasi penyusunnya merupakan
+pangkat-pangkat dari generator siklik yang sama.
+
+\subsection{Kriteria Perlu dan Cukup}
+Untuk memperoleh kriteria yang lengkap, digunakan himpunan superlevel.
+Untuk setiap $v\in\{n+1,n+2,\ldots,2n\}$, didefinisikan
+\begin{equation}
+    \mathcal{U}_{\geq v}^{AB}=
+    \bigcup_{\substack{i,j\in\{1,\ldots,n\}\\i+j\geq v}}
+    \left\{(r,(\sigma_j^B\circ\sigma_i^A)(r))\mid r\in\{1,\ldots,n\}\right\}.
+\end{equation}
+Secara analog, didefinisikan pula $\mathcal{U}_{\geq v}^{BA}$.
+
+\begin{teo}
+Misalkan $A,B\in \LS$ dengan himpunan simbol $\{1,2,\ldots,n\}$.
+Matriks $A$ dan $B$ komutatif terhadap perkalian max-plus jika dan hanya jika
+\begin{equation}
+    \mathcal{U}_{\geq v}^{AB}=\mathcal{U}_{\geq v}^{BA}
+\end{equation}
+untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
+\end{teo}
+
+Kriteria ini mengubah persoalan kesamaan hasil kali matriks menjadi
+pemeriksaan kesamaan himpunan posisi pada setiap level ambang.
+Keuntungan utamanya adalah pemeriksaan dapat dilakukan secara bertahap dari
+level tertinggi ke level yang lebih rendah.
+
+\subsection{Algoritma Konstruksi Pasangan Komutatif}
+Berdasarkan hasil sebelumnya, disusun algoritma untuk mencari semua kandidat
+$B\in \LS$ yang memenuhi $A\otimes B=B\otimes A$ untuk suatu
+$A\in \LS$ yang diberikan.
+Secara ringkas, langkah-langkah algoritma adalah sebagai berikut.
+\begin{enumerate}
+    \item Dekomposisikan $A$ menjadi permutasi-permutasi penyusun
+    $\sigma_1^A,\ldots,\sigma_n^A$.
+    \item Jika seluruh permutasi penyusun $A$ saling komutatif, bentuk
+    kandidat $B$ dengan menyusun ulang permutasi-permutasi tersebut.
+    \item Pada tahap umum, pilih $\sigma_n^B$ dari
+    $C_{\Sn}(\sigma_n^A)$ sebagai kandidat simbol maksimum.
+    \item Bangun matriks parsial $B^*$ dan pilih $\sigma_m^B$ secara menurun
+    untuk $m=n-1,n-2,\ldots,2$.
+    \item Setiap kali sebuah permutasi dipilih, periksa apakah
+    $\mathcal{U}_{\geq n+m}^{AB}=\mathcal{U}_{\geq n+m}^{BA}$.
+    Jika tidak, cabang pencarian langsung ditolak.
+    \item Setelah seluruh simbol selain $1$ terpasang, isi entri tersisa
+    dengan simbol $1$ dan verifikasi bahwa posisinya membentuk matriks
+    permutasi.
+\end{enumerate}
+
+Strategi ini memungkinkan pencarian dihentikan lebih awal ketika suatu
+kandidat gagal pada level tertentu, sehingga tidak perlu melengkapi seluruh
+permutasi penyusun $B$.
+
+\subsection{Contoh Penerapan}
+Berikut diberikan contoh dari tahap alternatif dan tahap umum pada algoritma.
+
+\begin{con}
+Misalkan
+\begin{equation}
+    A=
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        3 & 1 & 2\\
+        2 & 3 & 1
+    \end{pmatrix}.
+\end{equation}
+Permutasi penyusun $A$ saling komutatif, sehingga tahap alternatif dapat
+digunakan. Salah satu pasangan komutatif yang diperoleh adalah
+\begin{equation}
+    B=
+    \begin{pmatrix}
+        1 & 3 & 2\\
+        2 & 1 & 3\\
+        3 & 2 & 1
+    \end{pmatrix}.
+\end{equation}
+Perhitungan langsung memberikan
+\begin{equation}
+    A\otimes B=B\otimes A=
+    \begin{pmatrix}
+        6 & 5 & 5\\
+        5 & 6 & 5\\
+        5 & 5 & 6
+    \end{pmatrix}.
+\end{equation}
+\end{con}
+
+\begin{con}
+Misalkan
+\begin{equation}
+    A=
+    \begin{pmatrix}
+        1 & 2 & 4 & 3\\
+        3 & 1 & 2 & 4\\
+        2 & 4 & 3 & 1\\
+        4 & 3 & 1 & 2
+    \end{pmatrix}.
+\end{equation}
+Permutasi penyusun $A$ tidak saling komutatif, sehingga pencarian dilakukan
+melalui \textit{centralizer} dan pemeriksaan superlevel. Salah satu pasangan
+yang diperoleh adalah
+\begin{equation}
+    B=
+    \begin{pmatrix}
+        4 & 1 & 3 & 2\\
+        1 & 4 & 2 & 3\\
+        2 & 3 & 4 & 1\\
+        3 & 2 & 1 & 4
+    \end{pmatrix}.
+\end{equation}
+Hasil perkaliannya adalah
+\begin{equation}
+    A\otimes B=B\otimes A=
+    \begin{pmatrix}
+        6 & 7 & 8 & 7\\
+        7 & 6 & 6 & 8\\
+        6 & 8 & 7 & 7\\
+        8 & 7 & 7 & 6
+    \end{pmatrix}.
+\end{equation}
+\end{con}
+
+Penerapan pada ordo $5$ menunjukkan pola yang serupa. Pada contoh sirkulan,
+tahap alternatif menghasilkan pasangan komutatif dari penyusunan ulang
+permutasi penyusun. Pada contoh nonsirkulan, tahap umum melalui
+\textit{centralizer} dan kesamaan superlevel juga menghasilkan kandidat yang
+memenuhi $A\otimes B=B\otimes A$.
+
+\section{KESIMPULAN}
+Penelitian ini menunjukkan bahwa komutativitas dua \textit{Latin square}
+pada aljabar max-plus dapat dipelajari secara sistematis melalui representasi
+permutasi penyusunnya. Syarat perlu diperoleh dari simbol maksimum, syarat
+cukup diperoleh dari keberadaan subgrup abelian yang memuat seluruh
+permutasi penyusun, dan kriteria perlu-cukup diperoleh dari kesamaan
+himpunan superlevel pada setiap level yang relevan. Berdasarkan hasil
+tersebut, disusun algoritma konstruksi pasangan komutatif yang dapat
+diterapkan baik pada kasus abelian maupun kasus umum.
+
+Secara praktis, hasil ini memberikan prosedur yang lebih terarah untuk
+membangun matriks komutatif berbentuk \textit{Latin square} dalam aljabar
+max-plus. Penerapan pada ordo $3$, $4$, dan $5$ menunjukkan bahwa algoritma
+yang diperoleh dapat digunakan untuk menghasilkan pasangan yang memenuhi
+$A\otimes B=B\otimes A$.
+
+\section*{UCAPAN TERIMA KASIH}
+Penulis mengucapkan terima kasih kepada Muhammad Syifa'ul Mufid,
+S.Si., M.Si., D.Phil. selaku dosen pembimbing yang telah memberikan arahan
+dan masukan selama penyusunan penelitian ini.
+
+\section*{DAFTAR PUSTAKA}
+\bibliographystyle{IEEEtran}
+\bibliography{file/daftarPustaka}
+
+\end{document}

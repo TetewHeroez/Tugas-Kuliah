@@ -1,0 +1,472 @@
+\documentclass[final]{beamer}
+%% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
+%% Possible orientations: portrait, landscape
+%% Font sizes can be changed using the scale option.
+\usepackage[size=a2,orientation=portrait,scale=1.08]{beamerposter}
+
+\usetheme{gemini}
+\usecolortheme{smu}
+\useinnertheme{rectangles}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta,positioning,matrix,fit,calc}
+\pgfplotsset{compat=1.18}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.03\paperwidth}
+\setlength{\colwidth}{0.45\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Logo (optional)
+% ====================
+
+\logoright{\includegraphics[height=4.5cm]{logos/logo-right.png}}
+\logoleft{\includegraphics[height=4.5cm]{logos/logo-left.png}}
+
+% ====================
+% Footer (optional)
+% ====================
+
+\footercontent{
+	Tugas Akhir Sarjana Matematika ITS \hfill
+	\insertdate \hfill
+	NRP 5002221132
+}
+
+% ====================
+% My own customization
+% - BibLaTeX
+% - Boxes with tcolorbox
+% - User-defined commands
+% ====================
+\input{custom-defs.tex}
+
+%% Reference Sources
+\addbibresource{refs.bib}
+\ExecuteBibliographyOptions{hyperref=false}
+\renewcommand{\pgfuseimage}[1]{\includegraphics[scale=2.0]{#1}}
+
+% ====================
+% Poster block styling
+% ====================
+
+\setbeamertemplate{block begin}{
+	\vskip.75ex
+	\begin{tcolorbox}[
+			enhanced,
+			colback=black!3!white,
+			colframe=black,
+			colbacktitle=smuBlue,
+			coltitle=white,
+			boxrule=0.9pt,
+			arc=2pt,
+			left=1em,right=1em,top=0.8ex,bottom=0.8ex,
+			title={\insertblocktitle},
+			fonttitle=\usebeamerfont{block title},
+			before upper={\usebeamerfont{block body}}
+		]
+}
+\setbeamertemplate{block end}{
+	\end{tcolorbox}
+	\vskip0.6ex
+}
+
+\setbeamertemplate{block alerted begin}{
+	\vskip.75ex
+	\begin{tcolorbox}[
+			enhanced,
+			colback=brown!5!white,
+			colframe=black,
+			colbacktitle=brown!75!black,
+			coltitle=white,
+			boxrule=0.9pt,
+			arc=2pt,
+			left=1em,right=1em,top=0.8ex,bottom=0.8ex,
+			title={\insertblocktitle},
+			fonttitle=\usebeamerfont{block title},
+			before upper={\usebeamerfont{block body}}
+		]
+}
+\setbeamertemplate{block alerted end}{
+	\end{tcolorbox}
+	\vskip0.6ex
+}
+
+\setbeamertemplate{block example begin}{
+	\vskip.75ex
+	\begin{tcolorbox}[
+			enhanced,
+			colback=green!5!white,
+			colframe=black,
+			colbacktitle=green!45!black,
+			coltitle=white,
+			boxrule=0.9pt,
+			arc=2pt,
+			left=1em,right=1em,top=0.8ex,bottom=0.8ex,
+			title={\insertblocktitle},
+			fonttitle=\usebeamerfont{block title},
+			before upper={\usebeamerfont{block body}}
+		]
+}
+\setbeamertemplate{block example end}{
+	\end{tcolorbox}
+	\vskip0.6ex
+}
+
+\newcommand{\Rmax}{\mathbb{R}_{\max}}
+\newcommand{\LS}{L_S(n)}
+\newcommand{\Sn}{S_n}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\permnode}[4]{\node[circle, draw=black, fill=#1, minimum size=0.55cm, inner sep=0pt] (#2) at #4 {#3};}
+\newcommand{\drawgridmatrix}[5]{%
+	\foreach \r/\c/\v in {#5}{%
+		\node[draw=black, fill=white, minimum size=#4cm, inner sep=0pt] (#1-\r-\c)
+		at ($ (#2,#3)+({(\c-1)*#4},{-(\r-1)*#4}) $) {\v};
+	}%
+	\node[fit=(#1-1-1)(#1-3-3), inner sep=0pt] (#1) {};%
+}
+
+\title{Latin Square Komutatif atas Aljabar Max-Plus}
+
+\author{Teosofi Hidayah Agung}
+
+\institute[shortinst]{Departemen Matematika, Fakultas Sains dan Analitika Data, Institut Teknologi Sepuluh Nopember\\
+Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
+
+\date{Januari 2026}
+
+\begin{document}
+
+\begin{frame}[t]
+
+	\begin{columns}[t]
+		\separatorcolumn
+
+		\begin{column}{0.39\paperwidth}
+			\begin{block}{Abstrak}
+				Aljabar max-plus adalah struktur aljabar pada $\Rmax=\mathbb{R}\cup\{\eps\}$ dengan operasi
+				$a\oplus b=\max\{a,b\}$ dan $a\otimes b=a+b$. Penelitian ini mengkaji
+				komutativitas dua \textit{Latin square} terhadap perkalian max-plus, yaitu
+				$A\otimes B=B\otimes A$. Setiap \textit{Latin square} direpresentasikan
+				sebagai kombinasi max-plus dari matriks permutasi, sehingga masalah
+				komutativitas dapat dianalisis melalui komposisi permutasi penyusunnya.
+				Hasil utama penelitian meliputi syarat perlu dari simbol maksimum, syarat
+				cukup melalui subgrup abelian dari $\Sn$, kriteria perlu dan cukup melalui
+				himpunan superlevel, serta algoritma untuk mengonstruksi pasangan
+				\textit{Latin square} komutatif. Algoritma tersebut diterapkan pada ordo
+				$n\leq 5$ dan divalidasi kembali secara komputasi dengan menghitung langsung
+				hasil perkalian max-plus pada setiap pasangan yang ditemukan.
+			\end{block}
+		\end{column}
+
+		\begin{column}{0.27\paperwidth}
+			\begin{block}{Latar Belakang}
+				\begin{itemize}
+					\item Aljabar max-plus merupakan salah satu struktur penting dalam aljabar tropikal.
+					\item \textit{Latin square} adalah matriks $n\times n$ yang setiap baris dan kolomnya merupakan permutasi dari himpunan simbol yang sama.
+					\item Matriks komutatif pada aljabar max-plus berpotensi digunakan dalam kajian aljabar dan kriptografi tropikal.
+					\item Penelitian ini berfokus pada syarat komutativitas dan konstruksi pasangan \textit{Latin square} komutatif.
+				\end{itemize}
+
+				\vspace{0.4em}
+				\textbf{Kontribusi penelitian}
+				\begin{itemize}
+					\item Menyatakan komutativitas dalam bentuk komposisi permutasi.
+					\item Memberikan penyaring awal melalui simbol maksimum dan \textit{centralizer}.
+					\item Menyusun algoritma pencarian yang memangkas cabang pencarian sedini mungkin.
+				\end{itemize}
+			\end{block}
+		\end{column}
+
+		\begin{column}{0.25\paperwidth}
+			\begin{block}{Tujuan Penelitian}
+				\begin{enumerate}
+					\item Menentukan syarat perlu komutativitas dua \textit{Latin square}.
+					\item Menentukan syarat cukup dan kriteria komutativitas.
+					\item Mengonstruksi \textit{Latin square} $B$ sehingga
+					      $A\otimes B=B\otimes A$ untuk suatu $A$.
+				\end{enumerate}
+			\end{block}
+
+			\begin{block}{Batasan Penelitian}
+				\begin{itemize}
+					\item Simbol yang digunakan adalah $\underline{n}=\{1,2,\ldots,n\}$.
+					\item Posisi setiap simbol direpresentasikan sebagai matriks permutasi.
+					\item Penerapan algoritma dibatasi pada ordo $n\leq 5$.
+				\end{itemize}
+			\end{block}
+		\end{column}
+
+		\separatorcolumn
+	\end{columns}
+
+	\begin{columns}[t]
+		\separatorcolumn
+
+		\begin{column}{0.31\paperwidth}
+
+			\begin{block}{Metodologi Penelitian}
+				\begin{center}
+					\begin{tikzpicture}[
+							node distance=0.42cm,
+							langkah/.style={
+									draw=black, rounded corners=3pt, fill=blue!4,
+									align=center, minimum width=11.2cm, minimum height=1.05cm,
+									font=\small
+								},
+							arrow/.style={-{Latex[length=2.2mm]}, thick}
+						]
+						\node[langkah] (s1) {Studi Literatur};
+						\node[langkah, below=of s1] (s2) {Identifikasi \textit{Latin Square} Komutatif};
+						\node[langkah, below=of s2] (s3) {Investigasi Sifat \textit{Latin Square} Komutatif};
+						\node[langkah, below=of s3] (s4) {Penyusunan Algoritma \textit{Latin Square} Komutatif};
+						\node[langkah, below=of s4] (s5) {Penarikan Kesimpulan};
+						\node[langkah, below=of s5] (s6) {Penulisan Tugas Akhir};
+
+						\draw[arrow] (s1) -- (s2);
+						\draw[arrow] (s2) -- (s3);
+						\draw[arrow] (s3) -- (s4);
+						\draw[arrow] (s4) -- (s5);
+						\draw[arrow] (s5) -- (s6);
+					\end{tikzpicture}
+				\end{center}
+
+				\heading{Batasan penelitian}
+				Simbol yang digunakan adalah $\underline{n}=\{1,2,\ldots,n\}$ dan
+				penerapan algoritma dibatasi pada ordo $n\leq 5$.
+			\end{block}
+
+			\begin{block}{Representasi Permutasi}
+				Setiap \textit{Latin square} $A\in\LS$ dapat didekomposisi menjadi
+				\[
+					A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}.
+				\]
+				Jika $B\in\LS$, maka
+				\[
+					B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}.
+				\]
+				Dengan demikian, hasil perkalian max-plus dianalisis melalui komposisi
+				permutasi
+				\[
+					\sigma_j^B\circ\sigma_i^A
+					\quad\text{dan}\quad
+					\sigma_i^A\circ\sigma_j^B.
+				\]
+
+				\begin{center}
+					\begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
+						\drawgridmatrix{Aex}{0}{0}{0.62}{1/1/1,1/2/2,1/3/3,2/1/3,2/2/1,2/3/2,3/1/2,3/2/3,3/3/1}
+						\node[above=0.12cm of Aex] {$A$};
+
+						\node[right=0.8cm of Aex] (arrowone) {$\Longrightarrow$};
+
+						\begin{scope}[xshift=4.25cm,yshift=-0.25cm]
+							\node[draw=black, fill=cyan!7, rounded corners=2pt, align=center,
+								minimum width=4.8cm, minimum height=1.2cm]
+							{$\sigma_1^A=(1)$\\
+								$\sigma_2^A=(1\;2\;3)$\\
+								$\sigma_3^A=(1\;3\;2)$};
+						\end{scope}
+					\end{tikzpicture}
+				\end{center}
+			\end{block}
+
+			\begin{block}{Kata Kunci}
+				Aljabar Max-Plus, \textit{Latin Square}, Matriks Permutasi, Centralizer,
+				Himpunan Superlevel.
+			\end{block}
+
+			\begin{thm}{Syarat Perlu}{}
+				Jika $A\otimes B=B\otimes A$, maka permutasi yang bersesuaian dengan
+				simbol maksimum harus saling komutatif, yaitu
+				\[
+					\sigma_n^A\circ\sigma_n^B=\sigma_n^B\circ\sigma_n^A.
+				\]
+				Akibatnya, kandidat awal $\sigma_n^B$ harus dipilih dari
+				$C_{S_n}(\sigma_n^A)$.
+			\end{thm}
+
+			\begin{thm}{Syarat Cukup}{}
+				Jika seluruh permutasi penyusun $A$ dan $B$ berada dalam satu subgrup
+				abelian $H\leq S_n$, maka
+				\[
+					A\otimes B=B\otimes A.
+				\]
+				Pasangan \textit{Latin square} sirkulan merupakan contoh khusus dari kondisi ini.
+			\end{thm}
+
+		\end{column}
+
+		\separatorcolumn
+
+		\begin{column}{0.62\paperwidth}
+
+			\begin{block}{Hasil dan Pembahasan}
+				\begin{columns}[t]
+					\begin{column}{0.32\linewidth}
+						\begin{defbox}{Syarat Perlu}
+							Jika $A\otimes B=B\otimes A$, maka permutasi simbol maksimum
+							harus memenuhi
+							\[
+								\sigma_n^A\circ\sigma_n^B
+								=
+								\sigma_n^B\circ\sigma_n^A.
+							\]
+							Akibatnya, kandidat $\sigma_n^B$ harus berada pada
+							$C_{\Sn}(\sigma_n^A)$.
+						\end{defbox}
+					\end{column}
+
+					\begin{column}{0.32\linewidth}
+						\begin{defbox}{Syarat Cukup}
+							Jika terdapat subgrup abelian $H\leq \Sn$ sehingga
+							\[
+								\sigma_i^A\in H
+								\quad\text{dan}\quad
+								\sigma_j^B\in H
+							\]
+							untuk setiap $i,j\in\underline{n}$, maka
+							\[
+								A\otimes B=B\otimes A.
+							\]
+						\end{defbox}
+					\end{column}
+
+					\begin{column}{0.32\linewidth}
+						\begin{defbox}{Kriteria Perlu dan Cukup}
+							Dua \textit{Latin square} $A,B\in\LS$ komutatif jika dan hanya jika
+							\[
+								\mathcal{U}_{\ge v}^{AB}
+								=
+								\mathcal{U}_{\ge v}^{BA}
+							\]
+							untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
+						\end{defbox}
+					\end{column}
+				\end{columns}
+
+				\vspace{0.5em}
+
+				\begin{columns}[t]
+					\begin{column}{0.48\linewidth}
+						\begin{exampleblock}{Algoritma Pencarian Pasangan}
+							Untuk suatu $A\in\LS$, kandidat $B$ dibangun sebagai berikut.
+							\begin{enumerate}
+								\item Dekomposisikan $A$ ke permutasi penyusun.
+								\item Jika permutasi penyusun $A$ saling komutatif, gunakan tahap alternatif.
+								\item Jika tidak, pilih kandidat $\sigma_n^B$ dari $C_{\Sn}(\sigma_n^A)$.
+								\item Bentuk matriks kandidat parsial $B^*$.
+								\item Pilih permutasi berikutnya secara menurun dan periksa superlevel.
+								\item Simpan kandidat valid sebagai pasangan komutatif.
+							\end{enumerate}
+
+							\[
+								B^*=
+								\begin{pmatrix}
+									1    & 3    & \eps \\
+									\eps & 1    & 3    \\
+									3    & \eps & 1
+								\end{pmatrix}
+							\]
+							Entri $\eps$ menyatakan posisi yang belum ditentukan.
+						\end{exampleblock}
+					\end{column}
+
+					\begin{column}{0.48\linewidth}
+						\begin{exampleblock}{Contoh Ordo 3}
+							\[
+								A=
+								\begin{pmatrix}
+									1 & 2 & 3 \\
+									3 & 1 & 2 \\
+									2 & 3 & 1
+								\end{pmatrix},
+								\qquad
+								B=
+								\begin{pmatrix}
+									1 & 3 & 2 \\
+									2 & 1 & 3 \\
+									3 & 2 & 1
+								\end{pmatrix}.
+							\]
+							Dengan perkalian max-plus diperoleh
+							\[
+								A\otimes B
+								=
+								B\otimes A
+								=
+								\begin{pmatrix}
+									6 & 5 & 5 \\
+									5 & 6 & 5 \\
+									5 & 5 & 6
+								\end{pmatrix}.
+							\]
+							Algoritma juga diterapkan pada ordo $4$ dan $5$.
+						\end{exampleblock}
+					\end{column}
+				\end{columns}
+			\end{block}
+
+			\begin{alertblock}{Kesimpulan}
+				\begin{enumerate}
+					\item Syarat perlu komutativitas diperoleh dari simbol maksimum.
+					\item Syarat cukup diberikan oleh subgrup abelian, sedangkan kriteria lengkap diberikan oleh himpunan superlevel.
+					\item Algoritma yang disusun dapat digunakan untuk mencari pasangan \textit{Latin square} komutatif untuk $n\leq 5$.
+				\end{enumerate}
+			\end{alertblock}
+
+			\begin{block}{Validasi Komputasi}
+				\begin{center}
+					\begin{tabular}{crrl}
+						\toprule
+						Ordo & Banyak $A$ & Total pasangan $B$ & Status \\
+						\midrule
+						3    & 12         & 42                 & valid  \\
+						4    & 576        & 10080              & valid  \\
+						5    & 161280     & 1081560            & valid  \\
+						\bottomrule
+					\end{tabular}
+				\end{center}
+
+				Seluruh pasangan yang dihasilkan algoritma diverifikasi kembali dengan
+				perkalian max-plus langsung, dan semuanya memenuhi
+				$A\otimes B=B\otimes A$.
+			\end{block}
+
+			\begin{block}{Referensi}
+				\footnotesize
+				\begin{itemize}
+					\item Subiono (2015). \textit{Aljabar Max-Plus: Teori dan Aplikasi}. ITS Press, Surabaya.
+					\item George dan Wallis (2017). \textit{Introduction to Combinatorics}.
+					\item Mufid dan Subiono (2014). ``Eigenvalues and Eigenvectors of Latin Squares in Max-Plus Algebra''.
+					\item Muanalifah dan Sergeev (2020). ``Modifying the Tropical Version of Stickel's Key Exchange Protocol''.
+					\item Buchinskiy, Kotov, dan Treier (2024). ``Analysis of Four Protocols Based on Tropical Circulant Matrices''.
+					\item Alhussaini dan Sergeev (2024). ``On the Security of the Initial Tropical Stickel Protocol''.
+				\end{itemize}
+			\end{block}
+
+		\end{column}
+
+		\separatorcolumn
+	\end{columns}
+
+\end{frame}
+\end{document}
