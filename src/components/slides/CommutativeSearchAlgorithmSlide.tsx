@@ -210,6 +210,10 @@ function buildPartialMatrix(
 function completeMatrix(
   selected: Partial<Record<SymbolStep, Permutation | null>>,
 ): Matrix {
+  if (!selected[4] || !selected[3] || !selected[2]) {
+    return buildPartialMatrix(selected, [4, 3, 2]);
+  }
+
   const board: MatrixValue[][] = buildPartialMatrix(selected, [4, 3, 2]).map(
     (row) => [...row],
   );
@@ -291,8 +295,8 @@ function PermutationChoices({
 }: {
   title: string;
   candidates: Permutation[];
-  activeIndex: number;
-  onSelect: (index: number) => void;
+  activeIndex: number | null;
+  onSelect: (index: number | null) => void;
 }) {
   if (candidates.length === 0) {
     return (
@@ -314,7 +318,7 @@ function PermutationChoices({
             <button
               key={`${title}-${candidate.join("-")}`}
               type="button"
-              onClick={() => onSelect(index)}
+              onClick={() => onSelect(isActive ? null : index)}
               className={[
                 "rounded-2xl border px-4 py-3 text-left transition-colors",
                 isActive
@@ -345,8 +349,8 @@ export default function CommutativeSearchAlgorithmSlide() {
     [sigma4A],
   );
 
-  const [sigma4Index, setSigma4Index] = useState(0);
-  const sigma4B = sigma4Candidates[sigma4Index] ?? null;
+  const [sigma4Index, setSigma4Index] = useState<number | null>(null);
+  const sigma4B = sigma4Index === null ? null : sigma4Candidates[sigma4Index] ?? null;
 
   const sigma3Candidates = useMemo(
     () =>
@@ -355,8 +359,8 @@ export default function CommutativeSearchAlgorithmSlide() {
         : [],
     [sigma4B],
   );
-  const [sigma3Index, setSigma3Index] = useState(0);
-  const sigma3B = sigma3Candidates[sigma3Index] ?? null;
+  const [sigma3Index, setSigma3Index] = useState<number | null>(null);
+  const sigma3B = sigma3Index === null ? null : sigma3Candidates[sigma3Index] ?? null;
 
   const sigma2Candidates = useMemo(
     () =>
@@ -365,8 +369,8 @@ export default function CommutativeSearchAlgorithmSlide() {
         : [],
     [sigma4B, sigma3B],
   );
-  const [sigma2Index, setSigma2Index] = useState(0);
-  const sigma2B = sigma2Candidates[sigma2Index] ?? null;
+  const [sigma2Index, setSigma2Index] = useState<number | null>(null);
+  const sigma2B = sigma2Index === null ? null : sigma2Candidates[sigma2Index] ?? null;
 
   const selectedPermutations = useMemo(
     () => ({ 4: sigma4B, 3: sigma3B, 2: sigma2B }),
@@ -393,18 +397,18 @@ export default function CommutativeSearchAlgorithmSlide() {
         }),
       ),
     );
-    setSigma4Index(0);
-    setSigma3Index(0);
-    setSigma2Index(0);
+    setSigma4Index(null);
+    setSigma3Index(null);
+    setSigma2Index(null);
   };
 
   const resetFollowing = (step: SymbolStep) => {
     if (step === 4) {
-      setSigma3Index(0);
-      setSigma2Index(0);
+      setSigma3Index(null);
+      setSigma2Index(null);
     }
     if (step === 3) {
-      setSigma2Index(0);
+      setSigma2Index(null);
     }
   };
 
@@ -516,45 +520,51 @@ export default function CommutativeSearchAlgorithmSlide() {
                       <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-500">
                         Sigma 4
                       </p>
-                      <MathBlock
-                        tex={
-                          sigma4B
-                            ? `\\sigma_4^B = ${permutationToTex(sigma4B)}`
-                            : "\\sigma_4^B"
-                        }
-                        display
-                        className="text-stone-950 [&_.katex-display]:my-1"
-                      />
+                      {sigma4B ? (
+                        <MathBlock
+                          tex={`\\sigma_4^B = ${permutationToTex(sigma4B)}`}
+                          display
+                          className="text-stone-950 [&_.katex-display]:my-1"
+                        />
+                      ) : (
+                        <p className="mt-3 text-sm leading-relaxed text-stone-500">
+                          Belum dipilih.
+                        </p>
+                      )}
                     </div>
 
                     <div className="rounded-2xl border border-white/80 bg-white px-4 py-4">
                       <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-500">
                         Sigma 3
                       </p>
-                      <MathBlock
-                        tex={
-                          sigma3B
-                            ? `\\sigma_3^B = ${permutationToTex(sigma3B)}`
-                            : "\\sigma_3^B"
-                        }
-                        display
-                        className="text-stone-950 [&_.katex-display]:my-1"
-                      />
+                      {sigma3B ? (
+                        <MathBlock
+                          tex={`\\sigma_3^B = ${permutationToTex(sigma3B)}`}
+                          display
+                          className="text-stone-950 [&_.katex-display]:my-1"
+                        />
+                      ) : (
+                        <p className="mt-3 text-sm leading-relaxed text-stone-500">
+                          Belum dipilih.
+                        </p>
+                      )}
                     </div>
 
                     <div className="rounded-2xl border border-white/80 bg-white px-4 py-4">
                       <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-500">
                         Sigma 2
                       </p>
-                      <MathBlock
-                        tex={
-                          sigma2B
-                            ? `\\sigma_2^B = ${permutationToTex(sigma2B)}`
-                            : "\\sigma_2^B"
-                        }
-                        display
-                        className="text-stone-950 [&_.katex-display]:my-1"
-                      />
+                      {sigma2B ? (
+                        <MathBlock
+                          tex={`\\sigma_2^B = ${permutationToTex(sigma2B)}`}
+                          display
+                          className="text-stone-950 [&_.katex-display]:my-1"
+                        />
+                      ) : (
+                        <p className="mt-3 text-sm leading-relaxed text-stone-500">
+                          Belum dipilih.
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -608,15 +618,21 @@ export default function CommutativeSearchAlgorithmSlide() {
                   </div>
 
                   <div className="space-y-4">
-                    {step.id === "sigma4" && sigma4B ? (
+                    {step.id === "sigma4" ? (
                       <>
-                        <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
-                          <MathBlock
-                            tex={`\\sigma_4^B = ${permutationToTex(sigma4B)}`}
-                            display
-                            className="text-stone-950"
-                          />
-                        </div>
+                        {sigma4B ? (
+                          <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                            <MathBlock
+                              tex={`\\sigma_4^B = ${permutationToTex(sigma4B)}`}
+                              display
+                              className="text-stone-950"
+                            />
+                          </div>
+                        ) : (
+                          <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
+                            Tahap ini masih kosong. Pilih dulu salah satu kandidat untuk mulai mengisi simbol 4 pada B*.
+                          </div>
+                        )}
                         <div className="space-y-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
                           <div className="space-y-2">
                             <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
@@ -648,15 +664,21 @@ export default function CommutativeSearchAlgorithmSlide() {
                       </>
                     ) : null}
 
-                    {step.id === "sigma3" && sigma3B ? (
+                    {step.id === "sigma3" ? (
                       <>
-                        <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
-                          <MathBlock
-                            tex={`\\sigma_3^B = ${permutationToTex(sigma3B)}`}
-                            display
-                            className="text-stone-950"
-                          />
-                        </div>
+                        {sigma3B ? (
+                          <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                            <MathBlock
+                              tex={`\\sigma_3^B = ${permutationToTex(sigma3B)}`}
+                              display
+                              className="text-stone-950"
+                            />
+                          </div>
+                        ) : (
+                          <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
+                            Tahap ini belum punya pilihan aktif. Setelah sigma_4^B dipilih, kamu bisa memilih salah satu kandidat sigma_3^B di bawah.
+                          </div>
+                        )}
                         <div className="space-y-4 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-5">
                           <div className="space-y-2">
                             <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">
@@ -683,15 +705,21 @@ export default function CommutativeSearchAlgorithmSlide() {
                       </>
                     ) : null}
 
-                    {step.id === "sigma2" && sigma2B ? (
+                    {step.id === "sigma2" ? (
                       <>
-                        <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
-                          <MathBlock
-                            tex={`\\sigma_2^B = ${permutationToTex(sigma2B)}`}
-                            display
-                            className="text-stone-950"
-                          />
-                        </div>
+                        {sigma2B ? (
+                          <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                            <MathBlock
+                              tex={`\\sigma_2^B = ${permutationToTex(sigma2B)}`}
+                              display
+                              className="text-stone-950"
+                            />
+                          </div>
+                        ) : (
+                          <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
+                            Tahap ini belum punya pilihan aktif. Ia baru mulai kebaca setelah sigma_4^B dan sigma_3^B sudah ditentukan.
+                          </div>
+                        )}
                         <div className="space-y-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-5">
                           <div className="space-y-2">
                             <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-700">
