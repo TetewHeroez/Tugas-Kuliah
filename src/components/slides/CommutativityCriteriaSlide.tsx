@@ -60,12 +60,12 @@ const criteriaPanels = [
 
 export default function CommutativityCriteriaSlide() {
   return (
-    <div className="w-full min-h-dvh px-4 pb-24 pt-24 sm:px-6">
+    <div className="h-dvh w-full overflow-hidden px-4 pb-24 pt-24 sm:px-6">
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="mx-auto flex w-full max-w-3xl flex-col gap-6"
+        className="mx-auto flex h-full w-full max-w-3xl flex-col gap-6 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <motion.div variants={item} className="space-y-2 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
