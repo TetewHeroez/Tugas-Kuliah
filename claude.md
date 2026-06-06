@@ -209,3 +209,4 @@ src/
 - Setup fonts: Plus Jakarta Sans + Libre Baskerville.
 - Implementasi slide system dengan lock mechanism.
 - Codex update: merapatkan jarak antar matriks di slide perbandingan operasi dan membuat operator produk berganti dinamis antara `\times` dan `\otimes` di `src/components/slides/MatrixMultiplicationSlide.tsx`.
+- Codex update: merevisi slide dekomposisi agar interaksi pindah ke contoh Latin square langsung; simbol kini dibedakan warnanya dan saat diklik baru dijelaskan permutasi yang ditunjukkan di `src/components/slides/LatinSquareDecompositionSlide.tsx`.
