@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LatinSquareDecompositionSlide from "@/components/slides/LatinSquareDecompositionSlide";
-import PermutationMatrixActionSlide from "@/components/slides/PermutationMatrixActionSlide";
+import LatinSquareProductReductionSlide from "@/components/slides/LatinSquareProductReductionSlide";
 import SlideController from "@/components/SlideController";
 import CommutativeSearchAlgorithmSlide from "@/components/slides/CommutativeSearchAlgorithmSlide";
 import CommutativityCriteriaSlide from "@/components/slides/CommutativityCriteriaSlide";
@@ -18,7 +18,7 @@ const SLIDE_LABELS = [
   "Latin Square",
   "Perkalian",
   "Dekomposisi",
-  "Aksi Permutasi",
+  "Reduksi",
   "Kriteria",
   "Algoritma",
   "Contoh",
@@ -256,7 +256,7 @@ export default function Home() {
       case 3:
         return <LatinSquareDecompositionSlide />;
       case 4:
-        return <PermutationMatrixActionSlide />;
+        return <LatinSquareProductReductionSlide />;
       case 5:
         return <CommutativityCriteriaSlide />;
       case 6:
