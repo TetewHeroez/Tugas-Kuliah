@@ -28,6 +28,15 @@ type Matrix = readonly (readonly MatrixValue[])[];
 type EditableMatrix = CellValue[][];
 type Permutation = readonly [1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4];
 type SymbolStep = 4 | 3 | 2;
+type StepId = "start" | "sigma4" | "sigma3" | "sigma2" | "finish";
+type StepMeta = {
+  id: StepId;
+  short: string;
+  title: string;
+  focus: string;
+  note: string;
+  formula?: string;
+};
 
 const defaultA: EditableMatrix = [
   [1, 2, 3, 4],
@@ -36,7 +45,7 @@ const defaultA: EditableMatrix = [
   [4, 3, 2, 1],
 ];
 
-const stepsMeta = [
+const stepsMeta: readonly StepMeta[] = [
   {
     id: "start",
     short: "1",
@@ -76,7 +85,7 @@ const stepsMeta = [
     note: "Kalau semua pilihan sebelumnya lolos, posisi yang tersisa otomatis menentukan simbol 1. Pada titik ini kandidat parsial B* berubah menjadi Latin square penuh B.",
     formula: "B",
   },
-] as const;
+];
 
 function toPermutation(values: readonly number[]): Permutation | null {
   if (
