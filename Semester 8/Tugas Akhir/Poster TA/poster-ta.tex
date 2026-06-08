@@ -17,6 +17,7 @@
 \usepackage{booktabs}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{qrcode}
 \usetikzlibrary{arrows.meta,positioning,matrix,fit,calc}
 \pgfplotsset{compat=1.18}
 
@@ -134,6 +135,12 @@
 \newcommand{\LS}{L_S(n)}
 \newcommand{\Sn}{S_n}
 \newcommand{\eps}{\varepsilon}
+% Data kontak untuk blok QR poster.
+\newcommand{\PosterWebURL}{https://tugas-akhir-tetew.vercel.app/}
+\newcommand{\PosterPhone}{0858-5370-8597}
+\newcommand{\PosterInstagram}{@tetewheroez}
+\newcommand{\PosterLinkedIn}{linkedin.com/in/teosofihidayahagung}
+\newcommand{\PosterGithub}{github.com/TetewHeroez}
 
 \newcommand{\permnode}[4]{\node[circle, draw=black, fill=#1, minimum size=0.55cm, inner sep=0pt] (#2) at #4 {#3};}
 \newcommand{\drawgridmatrix}[5]{%
@@ -151,7 +158,7 @@
 \institute[shortinst]{Departemen Matematika, Fakultas Sains dan Analitika Data, Institut Teknologi Sepuluh Nopember\\
 Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 
-\date{Januari 2026}
+\date{11 Juni 2026}
 
 \begin{document}
 
@@ -160,7 +167,7 @@ Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 	\begin{columns}[t]
 		\separatorcolumn
 
-		\begin{column}{0.39\paperwidth}
+		\begin{column}{0.35\paperwidth}
 			\begin{block}{Abstrak}
 				Aljabar max-plus adalah struktur aljabar pada $\Rmax=\mathbb{R}\cup\{\eps\}$ dengan operasi
 				$a\oplus b=\max\{a,b\}$ dan $a\otimes b=a+b$. Penelitian ini mengkaji
@@ -177,7 +184,7 @@ Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 			\end{block}
 		\end{column}
 
-		\begin{column}{0.27\paperwidth}
+		\begin{column}{0.25\paperwidth}
 			\begin{block}{Latar Belakang}
 				\begin{itemize}
 					\item Aljabar max-plus merupakan salah satu struktur penting dalam aljabar tropikal.
@@ -186,17 +193,17 @@ Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 					\item Penelitian ini berfokus pada syarat komutativitas dan konstruksi pasangan \textit{Latin square} komutatif.
 				\end{itemize}
 
-				\vspace{0.4em}
-				\textbf{Kontribusi penelitian}
-				\begin{itemize}
-					\item Menyatakan komutativitas dalam bentuk komposisi permutasi.
-					\item Memberikan penyaring awal melalui simbol maksimum dan \textit{centralizer}.
-					\item Menyusun algoritma pencarian yang memangkas cabang pencarian sedini mungkin.
-				\end{itemize}
+				% \vspace{0.4em}
+				% \textbf{Kontribusi penelitian}
+				% \begin{itemize}
+				% 	\item Menyatakan komutativitas dalam bentuk komposisi permutasi.
+				% 	\item Memberikan penyaring awal melalui simbol maksimum dan \textit{centralizer}.
+				% 	\item Menyusun algoritma pencarian yang memangkas cabang pencarian sedini mungkin.
+				% \end{itemize}
 			\end{block}
 		\end{column}
 
-		\begin{column}{0.25\paperwidth}
+		\begin{column}{0.3\paperwidth}
 			\begin{block}{Tujuan Penelitian}
 				\begin{enumerate}
 					\item Menentukan syarat perlu komutativitas dua \textit{Latin square}.
@@ -209,7 +216,6 @@ Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 			\begin{block}{Batasan Penelitian}
 				\begin{itemize}
 					\item Simbol yang digunakan adalah $\underline{n}=\{1,2,\ldots,n\}$.
-					\item Posisi setiap simbol direpresentasikan sebagai matriks permutasi.
 					\item Penerapan algoritma dibatasi pada ordo $n\leq 5$.
 				\end{itemize}
 			\end{block}
@@ -276,11 +282,11 @@ Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 						\drawgridmatrix{Aex}{0}{0}{0.62}{1/1/1,1/2/2,1/3/3,2/1/3,2/2/1,2/3/2,3/1/2,3/2/3,3/3/1}
 						\node[above=0.12cm of Aex] {$A$};
 
-						\node[right=0.8cm of Aex] (arrowone) {$\Longrightarrow$};
+						\node[right=0.1cm of Aex] (arrowone) {$\Longrightarrow$};
 
-						\begin{scope}[xshift=4.25cm,yshift=-0.25cm]
+						\begin{scope}[xshift=4.25cm,yshift=-0.5cm]
 							\node[draw=black, fill=cyan!7, rounded corners=2pt, align=center,
-								minimum width=4.8cm, minimum height=1.2cm]
+								minimum width=2cm, minimum height=1.2cm]
 							{$\sigma_1^A=(1)$\\
 								$\sigma_2^A=(1\;2\;3)$\\
 								$\sigma_3^A=(1\;3\;2)$};
@@ -461,6 +467,24 @@ Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.}
 					\item Buchinskiy, Kotov, dan Treier (2024). ``Analysis of Four Protocols Based on Tropical Circulant Matrices''.
 					\item Alhussaini dan Sergeev (2024). ``On the Security of the Initial Tropical Stickel Protocol''.
 				\end{itemize}
+			\end{block}
+
+			\begin{block}{Akses Materi Interaktif}
+				\noindent
+				\begin{minipage}[c]{0.32\linewidth}
+					\centering
+					\qrcode[height=2cm]{\PosterWebURL}\\[0.2em]
+					\fbox{\textsf{Scan me!}}
+				\end{minipage}
+				\hfill
+				\begin{minipage}[c]{0.63\linewidth}
+					\begin{tabular}{@{}lp{0.68\linewidth}@{}}
+						Telp/WA   & : \PosterPhone     \\
+						Instagram & : \PosterInstagram \\
+						LinkedIn  & : \PosterLinkedIn  \\
+						GitHub    & : \PosterGithub
+					\end{tabular}
+				\end{minipage}
 			\end{block}
 
 		\end{column}
