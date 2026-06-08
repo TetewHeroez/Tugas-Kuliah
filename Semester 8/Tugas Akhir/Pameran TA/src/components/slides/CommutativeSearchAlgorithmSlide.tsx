@@ -28,6 +28,15 @@ type Matrix = readonly (readonly MatrixValue[])[];
 type EditableMatrix = CellValue[][];
 type Permutation = readonly [1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4];
 type SymbolStep = 4 | 3 | 2;
+type StepId = "start" | "sigma4" | "sigma3" | "sigma2" | "finish";
+type StepMeta = {
+  id: StepId;
+  short: string;
+  title: string;
+  focus: string;
+  note: string;
+  formula?: string;
+};
 
 const defaultA: EditableMatrix = [
   [1, 2, 3, 4],
@@ -36,7 +45,7 @@ const defaultA: EditableMatrix = [
   [4, 3, 2, 1],
 ];
 
-const stepsMeta = [
+const stepsMeta: readonly StepMeta[] = [
   {
     id: "start",
     short: "1",
@@ -76,22 +85,27 @@ const stepsMeta = [
     note: "Kalau semua pilihan sebelumnya lolos, posisi yang tersisa otomatis menentukan simbol 1. Pada titik ini kandidat parsial B* berubah menjadi Latin square penuh B.",
     formula: "B",
   },
-] as const;
+];
+
+function toPermutation(values: readonly number[]): Permutation | null {
+  if (
+    values.length !== 4 ||
+    !values.every((value) => Number.isInteger(value) && value >= 1 && value <= 4)
+  ) {
+    return null;
+  }
+
+  return [
+    values[0] as 1 | 2 | 3 | 4,
+    values[1] as 1 | 2 | 3 | 4,
+    values[2] as 1 | 2 | 3 | 4,
+    values[3] as 1 | 2 | 3 | 4,
+  ];
+}
 
 const allPermutations: Permutation[] = (() => {
   const base = [1, 2, 3, 4] as const;
   const result: Permutation[] = [];
-
-  const toPermutation = (values: number[]): Permutation | null => {
-    if (
-      values.length !== 4 ||
-      !values.every((value) => Number.isInteger(value) && value >= 1 && value <= 4)
-    ) {
-      return null;
-    }
-
-    return values as unknown as Permutation;
-  };
 
   const build = (prefix: number[], rest: number[]) => {
     if (rest.length === 0) {
@@ -152,11 +166,15 @@ function matrixToSigma4(matrix: EditableMatrix): Permutation | null {
   }
 
   if (seenCols.size !== 4 || columns.length !== 4) return null;
-  return columns as unknown as Permutation;
+  return toPermutation(columns);
 }
 
 function composePermutations(left: Permutation, right: Permutation): Permutation {
-  return right.map((value) => left[value - 1]) as Permutation;
+  const composed = toPermutation(right.map((value) => left[value - 1]));
+  if (!composed) {
+    throw new Error("Invalid permutation composition.");
+  }
+  return composed;
 }
 
 function centralizerOf(perm: Permutation): Permutation[] {
