@@ -25,7 +25,7 @@ export default function SlideController({
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="fixed left-0 right-0 top-0 z-50 flex items-center justify-center border-b border-stone-200 bg-stone-50/85 px-6 py-4 backdrop-blur-lg"
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {Array.from({ length: totalSlides }).map((_, i) => {
             const isActive = i === currentSlide;
             const isCompleted = i < unlockedSlides && i < currentSlide;
@@ -37,7 +37,9 @@ export default function SlideController({
                 <button
                   onClick={() => isUnlocked && onNavigate(i)}
                   disabled={isLocked}
-                  title={isLocked ? "Selesaikan slide sebelumnya" : slideLabels[i]}
+                  title={
+                    isLocked ? "Selesaikan slide sebelumnya" : slideLabels[i]
+                  }
                   className={[
                     "group relative h-3 w-3 rounded-full border-2 transition-all duration-300",
                     isActive
@@ -74,15 +76,27 @@ export default function SlideController({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-3"
+          className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-3 bg-transparent"
         >
           {currentSlide > 0 && (
             <button
               onClick={() => onNavigate(currentSlide - 1)}
               className="flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold tracking-wide text-stone-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-400 hover:shadow-md active:scale-95"
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 12L6 8L10 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
               Kembali
             </button>
@@ -94,8 +108,20 @@ export default function SlideController({
               className="flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold tracking-wide text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/20 active:scale-95"
             >
               Lanjut
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 12L10 8L6 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}

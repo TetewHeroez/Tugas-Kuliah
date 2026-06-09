@@ -69,24 +69,24 @@ export default function CommutativityCriteriaSlide() {
       >
         <motion.div variants={item} className="space-y-2 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-amber-600">
-            Tiga Lapis Hasil
+            Syarat Kekomutatifan
           </p>
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Syarat Kekomutatifan
+            Teorema Kekomutatifan
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
-            Slide ini enaknya dibaca sambil buka satu per satu. Setiap bagian
-            merangkum satu kontribusi teoretis utama yang muncul di laporanmu.
+            Dengan memperhatikan struktur permutasi pembangun entri pada A dan
+            B, kita bisa merumuskan tiga kriteria yang harus dipenuhi.
           </p>
         </motion.div>
 
         <motion.div variants={item} className="space-y-3">
-          {criteriaPanels.map((panel, index) => (
+          {criteriaPanels.map((panel) => (
             <details
               key={panel.id}
-              open={index === 0}
+              // open={index === 0}
               className="group rounded-lg border border-stone-200 bg-white shadow-sm open:border-emerald-400"
             >
               <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-4">

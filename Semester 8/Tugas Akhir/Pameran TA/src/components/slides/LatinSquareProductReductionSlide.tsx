@@ -36,10 +36,10 @@ const matrixA = [
 ] as const satisfies Matrix;
 
 const matrixB = [
+  [4, 1, 2, 3],
+  [3, 4, 1, 2],
   [1, 2, 3, 4],
   [2, 3, 4, 1],
-  [3, 4, 1, 2],
-  [4, 1, 2, 3],
 ] as const satisfies Matrix;
 
 const fullFormula =
@@ -132,7 +132,7 @@ export default function LatinSquareProductReductionSlide() {
   const entryTex = `[(A \\otimes B)]_{${selectedRow + 1}${selectedCol + 1}}`;
 
   return (
-    <div className="w-full min-h-dvh px-4 pb-40 pt-28 sm:px-6 sm:pb-36 sm:pt-28">
+    <div className="w-full min-h-dvh px-4 pb-40 pt-20 sm:px-6 sm:pb-36 sm:pt-28">
       <motion.div
         variants={container}
         initial="hidden"
@@ -146,7 +146,7 @@ export default function LatinSquareProductReductionSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Reduksi Perkalian Latin Square
+            Entri Minimum Hasil Kali
           </h2>
           <p className="text-left text-sm leading-relaxed text-stone-600">
             Di bab 4, dekomposisi hasil kali awalnya memang muncul dari semua
@@ -280,8 +280,10 @@ export default function LatinSquareProductReductionSlide() {
                   <span className="font-semibold">
                     {maxValue} &gt;= {lowerBound}
                   </span>
-                  . Contoh ini menunjukkan kenapa semua entri pada A x B selalu
-                  punya batas bawah n+1.
+                  . Pada contoh pilihan ini bahkan didapat tepat{" "}
+                  <span className="font-semibold">{lowerBound}</span>, jadi
+                  kelihatan lebih jelas kombinasi baris A dan kolom B seperti
+                  apa yang menghasilkan batas minimum n+1 itu sendiri.
                 </p>
               </div>
             </div>

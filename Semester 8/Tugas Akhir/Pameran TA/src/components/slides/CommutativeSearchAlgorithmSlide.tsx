@@ -176,6 +176,29 @@ function matrixToSigma4(matrix: EditableMatrix): Permutation | null {
   return toPermutation(columns);
 }
 
+function isLatinSquare(matrix: EditableMatrix) {
+  const required = new Set([1, 2, 3, 4]);
+
+  for (let row = 0; row < 4; row += 1) {
+    const rowSet = new Set(matrix[row]);
+    if (rowSet.size !== 4 || matrix[row].some((value) => !required.has(value))) {
+      return false;
+    }
+  }
+
+  for (let col = 0; col < 4; col += 1) {
+    const colSet = new Set<number>();
+    for (let row = 0; row < 4; row += 1) {
+      colSet.add(matrix[row][col]);
+    }
+    if (colSet.size !== 4) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function composePermutations(
   left: Permutation,
   right: Permutation,
@@ -385,10 +408,11 @@ function PermutationChoices({
 export default function CommutativeSearchAlgorithmSlide() {
   const [matrixA, setMatrixA] = useState<EditableMatrix>(defaultA);
 
+  const isValidLatinSquare = useMemo(() => isLatinSquare(matrixA), [matrixA]);
   const sigma4A = useMemo(() => matrixToSigma4(matrixA), [matrixA]);
   const sigma4Candidates = useMemo(
-    () => (sigma4A ? centralizerOf(sigma4A) : []),
-    [sigma4A],
+    () => (isValidLatinSquare && sigma4A ? centralizerOf(sigma4A) : []),
+    [isValidLatinSquare, sigma4A],
   );
 
   const [sigma4Index, setSigma4Index] = useState<number | null>(null);
@@ -503,28 +527,37 @@ export default function CommutativeSearchAlgorithmSlide() {
               />
             </div>
 
-            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
-                Sigma maksimum dari A
-              </p>
-              {sigma4A ? (
-                <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  <MathBlock
-                    tex={`\\sigma_4^A = ${permutationToTex(sigma4A)}`}
-                    display
-                    className="text-stone-950"
-                  />
-                </div>
-              ) : (
-                <p className="mt-3 text-sm leading-relaxed text-rose-700">
-                  Supaya sigma_4^A valid, setiap baris dan kolom harus punya
-                  tepat satu angka 4.
+            {isValidLatinSquare ? (
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
+                  Sigma maksimum dari A
                 </p>
-              )}
-            </div>
+                {sigma4A ? (
+                  <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                    <MathBlock
+                      tex={`\\sigma_4^A = ${permutationToTex(sigma4A)}`}
+                      display
+                      className="text-stone-950"
+                    />
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-5">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-rose-700">
+                  Latin Square Belum Valid
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-rose-800">
+                  Pastikan dulu setiap baris dan setiap kolom memuat simbol 1,
+                  2, 3, dan 4 tepat satu kali. Setelah itu barulah pencarian
+                  pasangan komutatif B bisa ditampilkan.
+                </p>
+              </div>
+            )}
           </div>
 
-          <div className="space-y-4">
+          {isValidLatinSquare ? (
+            <div className="space-y-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
                 Kandidat permutasi yang sedang dipakai
@@ -617,10 +650,12 @@ export default function CommutativeSearchAlgorithmSlide() {
                 setelah posisi simbol 4 pada A membentuk permutasi yang valid.
               </div>
             )}
-          </div>
+            </div>
+          ) : null}
         </motion.div>
 
-        <motion.div variants={item} className="space-y-3">
+        {isValidLatinSquare ? (
+          <motion.div variants={item} className="space-y-3">
           {stepsMeta.map((step, index) => (
             <details
               key={step.id}
@@ -823,7 +858,8 @@ export default function CommutativeSearchAlgorithmSlide() {
               </div>
             </details>
           ))}
-        </motion.div>
+          </motion.div>
+        ) : null}
       </motion.div>
     </div>
   );
