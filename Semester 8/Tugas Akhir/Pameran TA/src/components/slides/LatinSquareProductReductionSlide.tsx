@@ -84,12 +84,13 @@ function MatrixView({
       <div className="mt-3 flex justify-center">
         <div
           className="grid overflow-hidden rounded-xl border border-stone-300 bg-white"
-          style={{ gridTemplateColumns: `repeat(${matrix[0]?.length ?? 1}, minmax(0, 1fr))` }}
+          style={{
+            gridTemplateColumns: `repeat(${matrix[0]?.length ?? 1}, minmax(0, 1fr))`,
+          }}
         >
           {matrix.flatMap((row, rowIndex) =>
             row.map((value, colIndex) => {
-              const isActive =
-                activeRow === rowIndex || activeCol === colIndex;
+              const isActive = activeRow === rowIndex || activeCol === colIndex;
 
               return (
                 <button
@@ -145,13 +146,13 @@ export default function LatinSquareProductReductionSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Hasil perkalian dua Latin square tidak perlu dihitung dari level 2.
+            Reduksi Perkalian Latin Square
           </h2>
           <p className="text-left text-sm leading-relaxed text-stone-600">
             Di bab 4, dekomposisi hasil kali awalnya memang muncul dari semua
-            level <span className="font-semibold text-stone-800">2</span>{" "}
-            sampai <span className="font-semibold text-stone-800">2n</span>.
-            Tetapi karena setiap entri pada{" "}
+            level <span className="font-semibold text-stone-800">2</span> sampai{" "}
+            <span className="font-semibold text-stone-800">2n</span>. Tetapi
+            karena setiap entri pada{" "}
             <span className="font-semibold text-stone-800">A ⊗ B</span> selalu
             bernilai minimal{" "}
             <span className="font-semibold text-stone-800">n+1</span>, maka
@@ -216,9 +217,9 @@ export default function LatinSquareProductReductionSlide() {
               Klik satu sel pada A untuk memilih{" "}
               <span className="font-semibold text-amber-700">baris</span>, lalu
               klik satu sel pada B untuk memilih{" "}
-              <span className="font-semibold text-sky-700">kolom</span>.
-              Setelah itu, kita lihat semua penjumlahan yang mungkin untuk
-              entri hasil tersebut.
+              <span className="font-semibold text-sky-700">kolom</span>. Setelah
+              itu, kita lihat semua penjumlahan yang mungkin untuk entri hasil
+              tersebut.
             </p>
 
             <div className="grid gap-5 min-[560px]:grid-cols-2">

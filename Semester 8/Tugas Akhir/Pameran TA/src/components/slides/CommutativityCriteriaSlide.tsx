@@ -74,8 +74,7 @@ export default function CommutativityCriteriaSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Dari penyaring awal sampai uji final, komutativitas punya peta yang
-            jelas.
+            Syarat Kekomutatifan
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
             Slide ini enaknya dibaca sambil buka satu per satu. Setiap bagian
@@ -96,7 +95,9 @@ export default function CommutativityCriteriaSlide() {
                     {panel.eyebrow}
                   </p>
                   <div>
-                    <p className="text-lg font-bold text-stone-950">{panel.label}</p>
+                    <p className="text-lg font-bold text-stone-950">
+                      {panel.label}
+                    </p>
                     <p className="mt-1 text-sm leading-relaxed text-stone-600">
                       {panel.title}
                     </p>

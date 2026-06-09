@@ -26,7 +26,12 @@ type CellValue = 1 | 2 | 3 | 4;
 type MatrixValue = CellValue | ".";
 type Matrix = readonly (readonly MatrixValue[])[];
 type EditableMatrix = CellValue[][];
-type Permutation = readonly [1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4];
+type Permutation = readonly [
+  1 | 2 | 3 | 4,
+  1 | 2 | 3 | 4,
+  1 | 2 | 3 | 4,
+  1 | 2 | 3 | 4,
+];
 type SymbolStep = 4 | 3 | 2;
 type StepId = "start" | "sigma4" | "sigma3" | "sigma2" | "finish";
 type StepMeta = {
@@ -90,7 +95,9 @@ const stepsMeta: readonly StepMeta[] = [
 function toPermutation(values: readonly number[]): Permutation | null {
   if (
     values.length !== 4 ||
-    !values.every((value) => Number.isInteger(value) && value >= 1 && value <= 4)
+    !values.every(
+      (value) => Number.isInteger(value) && value >= 1 && value <= 4,
+    )
   ) {
     return null;
   }
@@ -169,7 +176,10 @@ function matrixToSigma4(matrix: EditableMatrix): Permutation | null {
   return toPermutation(columns);
 }
 
-function composePermutations(left: Permutation, right: Permutation): Permutation {
+function composePermutations(
+  left: Permutation,
+  right: Permutation,
+): Permutation {
   const composed = toPermutation(right.map((value) => left[value - 1]));
   if (!composed) {
     throw new Error("Invalid permutation composition.");
@@ -281,7 +291,8 @@ function MatrixPreview({
       {matrix.flatMap((row, rowIndex) =>
         row.map((value, colIndex) => {
           const isEmpty = value === ".";
-          const isHighlighted = highlightValue !== null && value === highlightValue;
+          const isHighlighted =
+            highlightValue !== null && value === highlightValue;
           const baseClass = isEmpty
             ? "bg-stone-50 text-stone-300"
             : isHighlighted
@@ -381,17 +392,16 @@ export default function CommutativeSearchAlgorithmSlide() {
   );
 
   const [sigma4Index, setSigma4Index] = useState<number | null>(null);
-  const sigma4B = sigma4Index === null ? null : sigma4Candidates[sigma4Index] ?? null;
+  const sigma4B =
+    sigma4Index === null ? null : (sigma4Candidates[sigma4Index] ?? null);
 
   const sigma3Candidates = useMemo(
-    () =>
-      sigma4B
-        ? candidatePermutations({ 4: sigma4B })
-        : [],
+    () => (sigma4B ? candidatePermutations({ 4: sigma4B }) : []),
     [sigma4B],
   );
   const [sigma3Index, setSigma3Index] = useState<number | null>(null);
-  const sigma3B = sigma3Index === null ? null : sigma3Candidates[sigma3Index] ?? null;
+  const sigma3B =
+    sigma3Index === null ? null : (sigma3Candidates[sigma3Index] ?? null);
 
   const sigma2Candidates = useMemo(
     () =>
@@ -401,7 +411,8 @@ export default function CommutativeSearchAlgorithmSlide() {
     [sigma4B, sigma3B],
   );
   const [sigma2Index, setSigma2Index] = useState<number | null>(null);
-  const sigma2B = sigma2Index === null ? null : sigma2Candidates[sigma2Index] ?? null;
+  const sigma2B =
+    sigma2Index === null ? null : (sigma2Candidates[sigma2Index] ?? null);
 
   const selectedPermutations = useMemo(
     () => ({ 4: sigma4B, 3: sigma3B, 2: sigma2B }),
@@ -458,7 +469,7 @@ export default function CommutativeSearchAlgorithmSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Pencarian dimulai dari A, memilih permutasi kandidat, lalu membangun B* sampai B.
+            Algoritma Pasangan Komutatif
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
             Jadi bukan cuma sigma_4^B yang punya pilihan. Setelah centralizer
@@ -519,10 +530,10 @@ export default function CommutativeSearchAlgorithmSlide() {
                 Kandidat permutasi yang sedang dipakai
               </p>
               <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                Yang aku tampilkan di sini bukan tebakan acak. Algoritma
-                memilih kandidat per tahap: sigma_4^B dari centralizer, lalu
-                sigma_3^B dan sigma_2^B dari permutasi yang masih muat di B*
-                sambil dicek di level U&gt;=7 dan U&gt;=6.
+                Yang aku tampilkan di sini bukan tebakan acak. Algoritma memilih
+                kandidat per tahap: sigma_4^B dari centralizer, lalu sigma_3^B
+                dan sigma_2^B dari permutasi yang masih muat di B* sambil dicek
+                di level U&gt;=7 dan U&gt;=6.
               </p>
             </div>
 
@@ -644,7 +655,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                 <div className="grid gap-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-start">
                   <div className="flex justify-center">
                     <MatrixPreview
-                      matrix={stepMatrices[step.id as keyof typeof stepMatrices]}
+                      matrix={
+                        stepMatrices[step.id as keyof typeof stepMatrices]
+                      }
                     />
                   </div>
 
@@ -661,7 +674,8 @@ export default function CommutativeSearchAlgorithmSlide() {
                           </div>
                         ) : (
                           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
-                            Tahap ini masih kosong. Pilih dulu salah satu kandidat untuk mulai mengisi simbol 4 pada B*.
+                            Tahap ini masih kosong. Pilih dulu salah satu
+                            kandidat untuk mulai mengisi simbol 4 pada B*.
                           </div>
                         )}
                         <div className="space-y-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
@@ -707,7 +721,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                           </div>
                         ) : (
                           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
-                            Tahap ini belum punya pilihan aktif. Setelah sigma_4^B dipilih, kamu bisa memilih salah satu kandidat sigma_3^B di bawah.
+                            Tahap ini belum punya pilihan aktif. Setelah
+                            sigma_4^B dipilih, kamu bisa memilih salah satu
+                            kandidat sigma_3^B di bawah.
                           </div>
                         )}
                         <div className="space-y-4 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-5">
@@ -748,7 +764,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                           </div>
                         ) : (
                           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
-                            Tahap ini belum punya pilihan aktif. Ia baru mulai kebaca setelah sigma_4^B dan sigma_3^B sudah ditentukan.
+                            Tahap ini belum punya pilihan aktif. Ia baru mulai
+                            kebaca setelah sigma_4^B dan sigma_3^B sudah
+                            ditentukan.
                           </div>
                         )}
                         <div className="space-y-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-5">

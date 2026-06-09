@@ -47,7 +47,8 @@ const panels = [
   {
     id: "manfaat",
     label: "Manfaat",
-    title: "Kalau diteruskan, hasil ini bisa jadi batu pijakan untuk desain protokol berbasis struktur max-plus.",
+    title:
+      "Kalau diteruskan, hasil ini bisa jadi batu pijakan untuk desain protokol berbasis struktur max-plus.",
     items: [
       "Ia memberi bahasa dan alat awal untuk merancang operasi pertukaran kunci dengan objek Latin square, bukan hanya matriks numerik biasa.",
       "Ia menunjukkan kapan komutativitas bisa diharapkan, yang penting kalau dua pihak ingin sampai ke shared key yang sama.",
@@ -79,14 +80,13 @@ export default function ThesisTakeawaysSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Kenapa hasil ini penting: ia membuka jalan ke pertukaran kunci
-            berbasis Latin square max-plus.
+            Kontribusi Masa Depan?
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
             Jadi penutupnya bukan cuma rangkuman. Di sini pengunjung diajak
             lihat bahwa komutativitas yang kamu bangun itu relevan kalau nanti
-            Latin square dipakai sebagai elemen dalam skema mirip
-            Diffie-Hellman Key Exchange.
+            Latin square dipakai sebagai elemen dalam skema mirip Diffie-Hellman
+            Key Exchange.
           </p>
         </motion.div>
 
