@@ -1,0 +1,318 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+  \geometry{
+    left = 25mm,
+    right = 25mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{r c}
+    \includegraphics[width=2cm]{ITS.png}
+     & \begin{tabular}{lcll}
+         \multicolumn{4}{l}{\begin{tabular}{c}
+             \MakeUppercase{evaluasi tengah semester gasal 2024/2025} \\
+             \MakeUppercase{departemen matematika fsad its}           \\
+             \MakeUppercase{program sarjana}                          \\
+           \end{tabular}}                                                                                                              \\
+         \\
+         Matakuliah    & : & \multicolumn{2}{l}{Aljabar Linear}                                                                                                                    \\
+         Hari, Tanggal & : & \multicolumn{2}{l}{Kamis, 17 Oktober 2024}                                                                                                            \\
+         Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Tertutup}}                                                                                                     \\
+         Kelas, Dosen  & : & A.                                                & Prof. Dr. Subiono, M.Sc.                                                                          \\
+                       &   & B.                                                & Dr. Dian Winda Setyawati, S.Si., M.Si.                                                            \\
+                       &   & C.                                                & Soleha, S.Si., M.Si.                                                                              \\
+                       &   & D.                                                & Muhammad Syifaul Mufid, S.Si., M.Si., D.Phil.                                                     \\
+                       &   & Q.                                                & Dr.mont. Kistosil Fahim, S.Si., M.Si.     \multirow{-16}{1cm}{\includegraphics[width=2cm]{M.png}} \\
+       \end{tabular}
+
+    \\ \hline
+    \multicolumn{2}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}                                                                                                        \\
+    \multicolumn{2}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}                                                         \\
+    \multicolumn{2}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}                                                               \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\noindent \textbf{EAS mengukur kemampuan}
+\vspace*{-0.4cm}
+\begin{center}
+  \begin{tabular}{|c|m{7cm}|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{\multirow{2}{*}{\textbf{CPMK}}} & \multirow{2}{*}{\textbf{\begin{tabular}{c} BOBOT CPMK \\ (\%) \end{tabular}}}                                                      & \multicolumn{3}{c|}{\textbf{CPL}}                                              \\ \cline{4-6}
+    \multicolumn{2}{|c|}{}                               &                                                                                                                                    & \textbf{4}                        & \textbf{8}   & \textbf{9}                  \\ \hline
+    \textbf{CPMK-2}                                      & Mahasiswa mampu menghitung fungsi integral kompleks dengan menggunakan sifat dan teorema yang sesuai                               & \textbf{5}                        &              & $\checkmark$ & $\checkmark$ \\ \hline
+    \textbf{CPMK-4}                                      & Mahasiswa mampu menjelaskan teorema residual dan kegunaannya untuk menghitung fungsi kompleks integral                             & \textbf{10}                       & $\checkmark$ &              & $\checkmark$ \\ \hline
+    \textbf{CPMK-5}                                      & Mahasiswa mampu menyelidiki konvergensi deret, menguraikan fungsi kompleks pada deret pangkat, deret Taylor, Maclaurin dan Laurent & \textbf{10}                       &              & $\checkmark$ & $\checkmark$ \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{\textbf{SOAL}}                  & \multirow{2}{*}{\textbf{BOBOT SOAL (\%)}} & \multicolumn{3}{c|}{\textbf{BOBOT CPMK (\%)}}                                     \\ \cline{3-5}
+                                                    &                                           & \textbf{CPMK-2}                               & \textbf{CPMK-4} & \textbf{CPMK-5} \\ \hline
+    \textbf{1}                                      & \textbf{25}                               & \textbf{2}                                    &                 &                 \\ \hline
+    \textbf{2}                                      & \textbf{25}                               &                                               & \textbf{10}     &                 \\ \hline
+    \textbf{3}                                      & \textbf{25}                               &                                               &                 & \textbf{10}     \\ \hline
+    \textbf{4}                                      & \textbf{25}                               & \textbf{3}                                    &                 &                 \\ \hline
+    \multicolumn{2}{|c|}{\textbf{TOTAL BOBOT CPMK}} & \textbf{5}                                & \textbf{10}                                   & \textbf{10}                       \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \textbf{SOAL}
+\end{center}
+
+\begin{enumerate}
+  \item Hitung
+        $\displaystyle
+          \oint_C \frac{dz}{z^2 - (1+i)z + i}
+        $
+        dengan lintasan $C : |z| = 3$ berorientasi positif.
+
+  \item Hitung residu dari fungsi
+        $
+          f(z) = \dfrac{z^2 - 2z}{(z+1)^2(z+4)}.
+        $
+
+  \item
+        \begin{enumerate}
+          \item Ekspansikan fungsi
+                $\displaystyle
+                  f(z) = \frac{1}{2+4z}
+                $
+                ke deret Maclaurin.
+          \item Tentukan daerah konvergensi deret pangkat
+                $\displaystyle
+                  \sum_{k=0}^{\infty} e^k(z-2i)^k.
+                $
+        \end{enumerate}
+
+  \item Nyatakan integral berikut ke bentuk Integral Cauchy dan selesaikan:
+        \[
+          \int_0^{2\pi} \left(\frac{\pi}{4} + 2e^{i\theta}\right)
+          \sqrt{\tan\left(\frac{\pi}{4} + 2e^{i\theta}\right)}\, d\theta
+        \]
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{center}
+  \raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}
+\end{center}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item \jawab
+        Faktorkan penyebut:
+        \[
+          z^2 - (1+i)z + i = (z-1)(z-i).
+        \]
+        Karena $z=1$ dan $z=i$ keduanya berada di dalam lintasan $|z|=3$, maka
+        \[
+          \oint_C \frac{dz}{(z-1)(z-i)}
+          = 2\pi i \left( \operatorname{Res}_{z=1} f(z) + \operatorname{Res}_{z=i} f(z) \right).
+        \]
+        Residunya:
+        \[
+          \operatorname{Res}_{z=1} f(z) = \lim_{z \to 1} \frac{1}{z-i} = \frac{1}{1-i},
+        \]
+        \[
+          \operatorname{Res}_{z=i} f(z) = \lim_{z \to i} \frac{1}{z-1} = \frac{1}{i-1} = -\frac{1}{1-i}.
+        \]
+        Jadi jumlah residunya nol, sehingga
+        \[
+          \oint_C \frac{dz}{z^2 - (1+i)z + i} = 0.
+        \]
+
+  \item \jawab
+        Titik singular fungsi adalah $z=-1$ (pole orde $2$) dan $z=-4$ (pole sederhana).
+
+        Untuk $z=-4$,
+        \[
+          \operatorname{Res}_{z=-4} f(z)
+          = \lim_{z \to -4} (z+4)\frac{z^2-2z}{(z+1)^2(z+4)}
+          = \frac{(-4)^2 - 2(-4)}{(-3)^2}
+          = \frac{24}{9}
+          = \frac{8}{3}.
+        \]
+
+        Untuk $z=-1$, gunakan rumus residu pada pole orde $2$:
+        \[
+          \operatorname{Res}_{z=-1} f(z)
+          = \left.\frac{d}{dz}\left((z+1)^2 \frac{z^2-2z}{(z+1)^2(z+4)}\right)\right|_{z=-1}
+          = \left.\frac{d}{dz}\left(\frac{z^2-2z}{z+4}\right)\right|_{z=-1}.
+        \]
+        Misalkan
+        \[
+          g(z) = \frac{z^2-2z}{z+4}.
+        \]
+        Maka
+        \[
+          g'(z) = \frac{(2z-2)(z+4) - (z^2-2z)}{(z+4)^2}.
+        \]
+        Substitusi $z=-1$ memberi
+        \[
+          \operatorname{Res}_{z=-1} f(z)
+          = \frac{(-4)(3) - 3}{3^2}
+          = \frac{-15}{9}
+          = -\frac{5}{3}.
+        \]
+
+        Jadi,
+        \[
+          \operatorname{Res}_{z=-1} f(z) = -\frac{5}{3},
+          \qquad
+          \operatorname{Res}_{z=-4} f(z) = \frac{8}{3}.
+        \]
+
+  \item
+        \begin{enumerate}[label=\alph*)]
+          \item \jawab
+                Tulis
+                \[
+                  \frac{1}{2+4z} = \frac{1}{2}\cdot \frac{1}{1+2z}.
+                \]
+                Dengan deret geometri
+                \[
+                  \frac{1}{1-w} = \sum_{n=0}^{\infty} w^n, \qquad |w|<1,
+                \]
+                ambil $w=-2z$, sehingga
+                \[
+                  \frac{1}{1+2z} = \sum_{n=0}^{\infty} (-2z)^n, \qquad |z| < \frac{1}{2}.
+                \]
+                Maka deret Maclaurin-nya adalah
+                \[
+                  \frac{1}{2+4z}
+                  = \frac{1}{2}\sum_{n=0}^{\infty} (-2z)^n
+                  = \sum_{n=0}^{\infty} (-1)^n 2^{n-1} z^n,
+                  \qquad |z| < \frac{1}{2}.
+                \]
+                Beberapa suku awal:
+                \[
+                  \frac{1}{2+4z} = \frac{1}{2} - z + 2z^2 - 4z^3 + 8z^4 - \cdots
+                \]
+
+          \item \jawab
+                Untuk deret
+                \[
+                  \sum_{k=0}^{\infty} e^k(z-2i)^k,
+                \]
+                tulis sebagai
+                \[
+                  \sum_{k=0}^{\infty} \bigl(e(z-2i)\bigr)^k.
+                \]
+                Ini adalah deret geometri dengan rasio
+                \[
+                  r=e(z-2i).
+                \]
+                Deret geometri konvergen jika dan hanya jika
+                \[
+                  |r|<1.
+                \]
+                Jadi
+                \[
+                  |e(z-2i)|<1
+                  \iff
+                  |z-2i|<\frac{1}{e}.
+                \]
+                Dengan demikian, daerah konvergensinya adalah
+                \[
+                  \{z\in\mathbb{C}: |z-2i|<\tfrac{1}{e}\},
+                \]
+                dengan jari-jari konvergensi
+                \[
+                  R=\frac{1}{e}.
+                \]
+        \end{enumerate}
+
+  \item \jawab
+        Ambil substitusi
+        \[
+          z = \frac{\pi}{4} + 2e^{i\theta}.
+        \]
+        Maka
+        \[
+          z - \frac{\pi}{4} = 2e^{i\theta}.
+        \]
+        Karena itu,
+        \[
+          d\theta = \frac{dz}{i\left(z-\frac{\pi}{4}\right)}.
+        \]
+        Integral berubah menjadi
+        \[
+          I
+          =
+          \oint_C
+          \frac{z\sqrt{\tan z}}{i\left(z-\frac{\pi}{4}\right)}\,dz
+          =
+          \frac{1}{i}
+          \oint_C
+          \frac{z\sqrt{\tan z}}{z-\frac{\pi}{4}}\,dz,
+        \]
+        dengan $C$ adalah lingkaran
+        \[
+          \left|z-\frac{\pi}{4}\right|=2.
+        \]
+        Menggunakan Rumus Integral Cauchy,
+        \[
+          \oint_C \frac{f(z)}{z-a}\,dz = 2\pi i\,f(a),
+        \]
+        dengan
+        \[
+          f(z)=z\sqrt{\tan z},
+          \qquad
+          a=\frac{\pi}{4},
+        \]
+        diperoleh
+        \[
+          I
+          =
+          \frac{1}{i}
+          \left(2\pi i\,f\left(\frac{\pi}{4}\right)\right)
+          =
+          2\pi \left(\frac{\pi}{4}\sqrt{\tan\frac{\pi}{4}}\right).
+        \]
+        Karena
+        \[
+          \tan\frac{\pi}{4}=1,
+          \qquad
+          \sqrt{1}=1,
+        \]
+        maka
+        \[
+          I = 2\pi \cdot \frac{\pi}{4} = \frac{\pi^2}{2}.
+        \]
+\end{enumerate}
+
+\end{document}

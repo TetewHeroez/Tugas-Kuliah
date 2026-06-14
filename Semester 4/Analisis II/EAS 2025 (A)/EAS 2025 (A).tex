@@ -1,0 +1,298 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{
+  left = 25mm,
+  right = 25mm,
+  top = 20mm,
+  bottom = 30mm,
+}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}{D:/Hada Touya/Template-Math-Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{r c}
+    \includegraphics[width=2cm]{ITS.png}
+     & \begin{tabular}{lcll}
+         \multicolumn{4}{l}{\begin{tabular}{c}
+             \MakeUppercase{evaluasi akhir semester genap 2024/2025} \\
+             \MakeUppercase{departemen matematika fsad its}          \\
+             \MakeUppercase{program sarjana}                         \\
+           \end{tabular}}                                                                                                        \\
+         \\
+         Matakuliah / Kode & : & \multicolumn{2}{l}{Analisis 2 / SM234402}                                                                                                  \\
+         Hari, Tanggal     & : & \multicolumn{2}{l}{Senin, 23 Juni 2025}                                                                                                    \\
+         Waktu / Sifat     & : & \multicolumn{2}{l}{100 menit / \textit{Closed Book}}                                                                                       \\
+         Kelas, Dosen      & : & D.                                                   & Dr. Mahmud Yunus, M.Si.                                                             \\
+                           &   & E.                                                   & Dr. Sunarsini, S.Si., M.Si. \multirow{-13}{1cm}{\includegraphics[width=2cm]{M.png}} \\
+       \end{tabular}
+
+    \\ \hline
+    \multicolumn{2}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}                                                                                                 \\
+    \multicolumn{2}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ETS/EAS}                                                  \\
+    \multicolumn{2}{|l|}{\color{red}akan dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}                                                        \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{enumerate}
+  \item Diberikan barisan fungsi $f_n : [0,1] \to \R$ yang didefinisikan dengan
+        $
+          f_n(x) = \frac{x}{1+nx^2}.
+        $
+        \begin{enumerate}
+          \item Dapatkan limit titik-demi-titik dari barisan tersebut.
+          \item Apakah benar bahwa
+                \[
+                  \lim_{n\to\infty} \int_0^1 f_n(x)\,dx
+                  =
+                  \int_0^1 \lim_{n\to\infty} f_n(x)\,dx.
+                \]
+                \textit{Petunjuk: Selidiki jenis konvergensinya.}
+        \end{enumerate}
+
+  \item Diberikan deret fungsi
+        $
+          \sum_{n=1}^{\infty} f_n(x),
+          \qquad
+          f_n(x) = \frac{x^n}{n},
+          \qquad x \in [0,1].
+        $
+        Tentukan: apakah deret konvergen secara uniform di $[0,1]$; dan apakah fungsi limitnya kontinu di $[0,1]$?
+
+  \item Tunjukkan bahwa
+        $
+          A := \left\{\frac{n+1}{n} : n \in \N \right\}
+        $
+        bukan himpunan tertutup, tetapi $A \cup \{1\}$ tertutup di $\R$.
+
+  \item Diberikan $X := \R^2$, dan suatu fungsi $d : X \times X \to \R$ yang didefinisikan dengan
+        $
+          d(P_1,P_2) = \sup \{ |x_1-x_2|, |y_1-y_2| \}
+        $
+        untuk setiap $P_1(x_1,y_1), P_2(x_2,y_2) \in \R^2$. Tunjukkan bahwa $d$ mendefinisikan metrik pada $\R^2$.
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{center}
+  \raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}
+\end{center}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item
+        \begin{enumerate}[label=\alph*)]
+          \item \jawab
+                Untuk setiap $x \in [0,1]$,
+                \[
+                  f_n(x) = \frac{x}{1+nx^2}.
+                \]
+                Jika $x=0$, maka $f_n(0)=0$ untuk semua $n$.
+                Jika $x>0$, maka
+                \[
+                  \lim_{n\to\infty} \frac{x}{1+nx^2} = 0
+                \]
+                karena penyebut menuju tak hingga.
+                Jadi limit titik-demi-titiknya adalah
+                \[
+                  f(x) = \lim_{n\to\infty} f_n(x) = 0
+                \]
+                untuk semua $x \in [0,1]$.
+
+          \item \jawab
+                Kita hitung dulu integralnya:
+                \[
+                  \int_0^1 \frac{x}{1+nx^2}\,dx.
+                \]
+                Substitusi $u=1+nx^2$, maka $du=2nx\,dx$, sehingga
+                \[
+                  \int_0^1 \frac{x}{1+nx^2}\,dx
+                  =
+                  \frac{1}{2n}\int_1^{1+n} \frac{1}{u}\,du
+                  =
+                  \frac{1}{2n}\ln(1+n).
+                \]
+                Jadi
+                \[
+                  \lim_{n\to\infty}\int_0^1 f_n(x)\,dx
+                  =
+                  \lim_{n\to\infty}\frac{\ln(1+n)}{2n}
+                  = 0.
+                \]
+                Di sisi lain, dari bagian (a) diperoleh $\lim_{n\to\infty}f_n(x)=0$, maka
+                \[
+                  \int_0^1 \lim_{n\to\infty} f_n(x)\,dx
+                  =
+                  \int_0^1 0\,dx
+                  = 0.
+                \]
+                Jadi memang benar bahwa
+                \[
+                  \lim_{n\to\infty} \int_0^1 f_n(x)\,dx
+                  =
+                  \int_0^1 \lim_{n\to\infty} f_n(x)\,dx.
+                \]
+
+                Sekarang kita periksa jenis konvergensinya. Untuk $x \in [0,1]$,
+                \[
+                  f_n'(x)=\frac{1-nx^2}{(1+nx^2)^2}.
+                \]
+                Titik kritis terjadi saat $1-nx^2=0$, yaitu $x=\frac{1}{\sqrt{n}}$, dan
+                \[
+                  f_n\left(\frac{1}{\sqrt{n}}\right)
+                  =
+                  \frac{1/\sqrt{n}}{1+n(1/n)}
+                  =
+                  \frac{1}{2\sqrt{n}}.
+                \]
+                Karena $f_n(x)\ge 0$ di $[0,1]$, maka
+                \[
+                  \sup_{x\in[0,1]} |f_n(x)-0|
+                  =
+                  \sup_{x\in[0,1]} f_n(x)
+                  =
+                  \frac{1}{2\sqrt{n}}
+                  \to 0.
+                \]
+                Jadi $f_n \to 0$ secara uniform di $[0,1]$, sehingga pertukaran limit dan integral memang sah.
+        \end{enumerate}
+
+  \item \jawab
+        Deret yang diberikan adalah
+        \[
+          \sum_{n=1}^{\infty} \frac{x^n}{n}.
+        \]
+        Untuk $x=1$, deret ini menjadi
+        \[
+          \sum_{n=1}^{\infty} \frac{1}{n},
+        \]
+        yaitu deret harmonik yang divergen. Jadi deret tidak konvergen titik-demi-titik pada seluruh $[0,1]$.
+
+        Akibatnya, deret tentu tidak mungkin konvergen secara uniform pada $[0,1]$.
+
+        Untuk $0\le x<1$, deret ini memang konvergen dan jumlahnya adalah
+        \[
+          \sum_{n=1}^{\infty} \frac{x^n}{n} = -\ln(1-x),
+        \]
+        tetapi pada $x=1$ deret divergen. Jadi tidak ada fungsi limit yang terdefinisi pada seluruh $[0,1]$.
+
+        Dengan demikian:
+        \begin{itemize}
+          \item deret tidak konvergen uniform pada $[0,1]$;
+          \item tidak ada fungsi limit kontinu pada $[0,1]$, karena di $x=1$ deret bahkan tidak konvergen.
+        \end{itemize}
+
+  \item \jawab
+        Perhatikan bahwa
+        \[
+          \frac{n+1}{n} = 1+\frac{1}{n}.
+        \]
+        Jadi
+        \[
+          A = \left\{1+\frac{1}{n} : n\in\N\right\}.
+        \]
+        Karena
+        \[
+          1+\frac{1}{n} \to 1 \qquad \text{ketika } n\to\infty,
+        \]
+        maka $1$ adalah titik limit dari $A$.
+        Namun $1 \notin A$, sehingga $A$ tidak memuat semua titik limitnya. Maka $A$ bukan himpunan tertutup.
+
+        Sekarang tinjau
+        \[
+          A\cup\{1\} = \left\{1+\frac{1}{n} : n\in\N\right\}\cup\{1\}.
+        \]
+        Himpunan ini memuat satu-satunya titik limit dari $A$, yaitu $1$.
+        Setiap titik $1+\frac{1}{n}$ adalah titik terisolasi, sedangkan titik limitnya hanya $1$, dan titik itu sudah dimasukkan.
+        Jadi $A\cup\{1\}$ memuat semua titik limitnya, sehingga tertutup di $\R$.
+
+  \item \jawab
+        Misalkan
+        \[
+          P_1=(x_1,y_1), \qquad P_2=(x_2,y_2), \qquad P_3=(x_3,y_3).
+        \]
+        Kita tunjukkan empat aksioma metrik.
+
+        \begin{enumerate}[label=\arabic*.]
+          \item Karena nilai mutlak selalu tak-negatif, maka
+                \[
+                  d(P_1,P_2)=\sup\{|x_1-x_2|,|y_1-y_2|\}\ge 0.
+                \]
+
+          \item Jika $P_1=P_2$, maka $x_1=x_2$ dan $y_1=y_2$, sehingga
+                \[
+                  d(P_1,P_2)=\sup\{0,0\}=0.
+                \]
+                Sebaliknya, jika $d(P_1,P_2)=0$, maka
+                \[
+                  \sup\{|x_1-x_2|,|y_1-y_2|\}=0.
+                \]
+                Ini hanya mungkin jika
+                \[
+                  |x_1-x_2|=0 \quad \text{dan} \quad |y_1-y_2|=0,
+                \]
+                sehingga $x_1=x_2$ dan $y_1=y_2$. Jadi $P_1=P_2$.
+
+          \item Simetri:
+                \[
+                  d(P_1,P_2)
+                  =
+                  \sup\{|x_1-x_2|,|y_1-y_2|\}
+                  =
+                  \sup\{|x_2-x_1|,|y_2-y_1|\}
+                  =
+                  d(P_2,P_1).
+                \]
+
+          \item Ketaksamaan segitiga:
+                \[
+                  |x_1-x_2|
+                  \le
+                  |x_1-x_3|+|x_3-x_2|,
+                \]
+                \[
+                  |y_1-y_2|
+                  \le
+                  |y_1-y_3|+|y_3-y_2|.
+                \]
+                Maka
+                \[
+                  \sup\{|x_1-x_2|,|y_1-y_2|\}
+                  \le
+                  \sup\{|x_1-x_3|+|x_3-x_2|,\ |y_1-y_3|+|y_3-y_2|\}.
+                \]
+                Gunakan fakta
+                \[
+                  \sup\{a+c,b+d\}\le \sup\{a,b\}+\sup\{c,d\},
+                \]
+                maka
+                \[
+                  d(P_1,P_2)\le d(P_1,P_3)+d(P_3,P_2).
+                \]
+        \end{enumerate}
+
+        Jadi $d$ mendefinisikan metrik pada $\R^2$.
+\end{enumerate}
+
+\end{document}
