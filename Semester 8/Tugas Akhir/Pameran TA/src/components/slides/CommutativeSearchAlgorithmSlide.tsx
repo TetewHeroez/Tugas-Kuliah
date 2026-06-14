@@ -26,7 +26,12 @@ type CellValue = 1 | 2 | 3 | 4;
 type MatrixValue = CellValue | ".";
 type Matrix = readonly (readonly MatrixValue[])[];
 type EditableMatrix = CellValue[][];
-type Permutation = readonly [1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4, 1 | 2 | 3 | 4];
+type Permutation = readonly [
+  1 | 2 | 3 | 4,
+  1 | 2 | 3 | 4,
+  1 | 2 | 3 | 4,
+  1 | 2 | 3 | 4,
+];
 type SymbolStep = 4 | 3 | 2;
 type StepId = "start" | "sigma4" | "sigma3" | "sigma2" | "finish";
 type StepMeta = {
@@ -90,7 +95,9 @@ const stepsMeta: readonly StepMeta[] = [
 function toPermutation(values: readonly number[]): Permutation | null {
   if (
     values.length !== 4 ||
-    !values.every((value) => Number.isInteger(value) && value >= 1 && value <= 4)
+    !values.every(
+      (value) => Number.isInteger(value) && value >= 1 && value <= 4,
+    )
   ) {
     return null;
   }
@@ -169,7 +176,33 @@ function matrixToSigma4(matrix: EditableMatrix): Permutation | null {
   return toPermutation(columns);
 }
 
-function composePermutations(left: Permutation, right: Permutation): Permutation {
+function isLatinSquare(matrix: EditableMatrix) {
+  const required = new Set([1, 2, 3, 4]);
+
+  for (let row = 0; row < 4; row += 1) {
+    const rowSet = new Set(matrix[row]);
+    if (rowSet.size !== 4 || matrix[row].some((value) => !required.has(value))) {
+      return false;
+    }
+  }
+
+  for (let col = 0; col < 4; col += 1) {
+    const colSet = new Set<number>();
+    for (let row = 0; row < 4; row += 1) {
+      colSet.add(matrix[row][col]);
+    }
+    if (colSet.size !== 4) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function composePermutations(
+  left: Permutation,
+  right: Permutation,
+): Permutation {
   const composed = toPermutation(right.map((value) => left[value - 1]));
   if (!composed) {
     throw new Error("Invalid permutation composition.");
@@ -281,7 +314,8 @@ function MatrixPreview({
       {matrix.flatMap((row, rowIndex) =>
         row.map((value, colIndex) => {
           const isEmpty = value === ".";
-          const isHighlighted = highlightValue !== null && value === highlightValue;
+          const isHighlighted =
+            highlightValue !== null && value === highlightValue;
           const baseClass = isEmpty
             ? "bg-stone-50 text-stone-300"
             : isHighlighted
@@ -374,24 +408,24 @@ function PermutationChoices({
 export default function CommutativeSearchAlgorithmSlide() {
   const [matrixA, setMatrixA] = useState<EditableMatrix>(defaultA);
 
+  const isValidLatinSquare = useMemo(() => isLatinSquare(matrixA), [matrixA]);
   const sigma4A = useMemo(() => matrixToSigma4(matrixA), [matrixA]);
   const sigma4Candidates = useMemo(
-    () => (sigma4A ? centralizerOf(sigma4A) : []),
-    [sigma4A],
+    () => (isValidLatinSquare && sigma4A ? centralizerOf(sigma4A) : []),
+    [isValidLatinSquare, sigma4A],
   );
 
   const [sigma4Index, setSigma4Index] = useState<number | null>(null);
-  const sigma4B = sigma4Index === null ? null : sigma4Candidates[sigma4Index] ?? null;
+  const sigma4B =
+    sigma4Index === null ? null : (sigma4Candidates[sigma4Index] ?? null);
 
   const sigma3Candidates = useMemo(
-    () =>
-      sigma4B
-        ? candidatePermutations({ 4: sigma4B })
-        : [],
+    () => (sigma4B ? candidatePermutations({ 4: sigma4B }) : []),
     [sigma4B],
   );
   const [sigma3Index, setSigma3Index] = useState<number | null>(null);
-  const sigma3B = sigma3Index === null ? null : sigma3Candidates[sigma3Index] ?? null;
+  const sigma3B =
+    sigma3Index === null ? null : (sigma3Candidates[sigma3Index] ?? null);
 
   const sigma2Candidates = useMemo(
     () =>
@@ -401,7 +435,8 @@ export default function CommutativeSearchAlgorithmSlide() {
     [sigma4B, sigma3B],
   );
   const [sigma2Index, setSigma2Index] = useState<number | null>(null);
-  const sigma2B = sigma2Index === null ? null : sigma2Candidates[sigma2Index] ?? null;
+  const sigma2B =
+    sigma2Index === null ? null : (sigma2Candidates[sigma2Index] ?? null);
 
   const selectedPermutations = useMemo(
     () => ({ 4: sigma4B, 3: sigma3B, 2: sigma2B }),
@@ -458,7 +493,7 @@ export default function CommutativeSearchAlgorithmSlide() {
           <h2
             className={`${headingClass} text-3xl font-bold text-stone-900 sm:text-4xl`}
           >
-            Pencarian dimulai dari A, memilih permutasi kandidat, lalu membangun B* sampai B.
+            Algoritma Pasangan Komutatif
           </h2>
           <p className="mx-auto max-w-4xl text-left text-sm leading-relaxed text-stone-600">
             Jadi bukan cuma sigma_4^B yang punya pilihan. Setelah centralizer
@@ -492,37 +527,46 @@ export default function CommutativeSearchAlgorithmSlide() {
               />
             </div>
 
-            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
-                Sigma maksimum dari A
-              </p>
-              {sigma4A ? (
-                <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  <MathBlock
-                    tex={`\\sigma_4^A = ${permutationToTex(sigma4A)}`}
-                    display
-                    className="text-stone-950"
-                  />
-                </div>
-              ) : (
-                <p className="mt-3 text-sm leading-relaxed text-rose-700">
-                  Supaya sigma_4^A valid, setiap baris dan kolom harus punya
-                  tepat satu angka 4.
+            {isValidLatinSquare ? (
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-5">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
+                  Sigma maksimum dari A
                 </p>
-              )}
-            </div>
+                {sigma4A ? (
+                  <div className="mt-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                    <MathBlock
+                      tex={`\\sigma_4^A = ${permutationToTex(sigma4A)}`}
+                      display
+                      className="text-stone-950"
+                    />
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-5">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-rose-700">
+                  Latin Square Belum Valid
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-rose-800">
+                  Pastikan dulu setiap baris dan setiap kolom memuat simbol 1,
+                  2, 3, dan 4 tepat satu kali. Setelah itu barulah pencarian
+                  pasangan komutatif B bisa ditampilkan.
+                </p>
+              </div>
+            )}
           </div>
 
-          <div className="space-y-4">
+          {isValidLatinSquare ? (
+            <div className="space-y-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-stone-600">
                 Kandidat permutasi yang sedang dipakai
               </p>
               <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                Yang aku tampilkan di sini bukan tebakan acak. Algoritma
-                memilih kandidat per tahap: sigma_4^B dari centralizer, lalu
-                sigma_3^B dan sigma_2^B dari permutasi yang masih muat di B*
-                sambil dicek di level U&gt;=7 dan U&gt;=6.
+                Yang aku tampilkan di sini bukan tebakan acak. Algoritma memilih
+                kandidat per tahap: sigma_4^B dari centralizer, lalu sigma_3^B
+                dan sigma_2^B dari permutasi yang masih muat di B* sambil dicek
+                di level U&gt;=7 dan U&gt;=6.
               </p>
             </div>
 
@@ -606,10 +650,12 @@ export default function CommutativeSearchAlgorithmSlide() {
                 setelah posisi simbol 4 pada A membentuk permutasi yang valid.
               </div>
             )}
-          </div>
+            </div>
+          ) : null}
         </motion.div>
 
-        <motion.div variants={item} className="space-y-3">
+        {isValidLatinSquare ? (
+          <motion.div variants={item} className="space-y-3">
           {stepsMeta.map((step, index) => (
             <details
               key={step.id}
@@ -644,7 +690,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                 <div className="grid gap-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-start">
                   <div className="flex justify-center">
                     <MatrixPreview
-                      matrix={stepMatrices[step.id as keyof typeof stepMatrices]}
+                      matrix={
+                        stepMatrices[step.id as keyof typeof stepMatrices]
+                      }
                     />
                   </div>
 
@@ -661,7 +709,8 @@ export default function CommutativeSearchAlgorithmSlide() {
                           </div>
                         ) : (
                           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
-                            Tahap ini masih kosong. Pilih dulu salah satu kandidat untuk mulai mengisi simbol 4 pada B*.
+                            Tahap ini masih kosong. Pilih dulu salah satu
+                            kandidat untuk mulai mengisi simbol 4 pada B*.
                           </div>
                         )}
                         <div className="space-y-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-5">
@@ -707,7 +756,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                           </div>
                         ) : (
                           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
-                            Tahap ini belum punya pilihan aktif. Setelah sigma_4^B dipilih, kamu bisa memilih salah satu kandidat sigma_3^B di bawah.
+                            Tahap ini belum punya pilihan aktif. Setelah
+                            sigma_4^B dipilih, kamu bisa memilih salah satu
+                            kandidat sigma_3^B di bawah.
                           </div>
                         )}
                         <div className="space-y-4 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-5">
@@ -748,7 +799,9 @@ export default function CommutativeSearchAlgorithmSlide() {
                           </div>
                         ) : (
                           <div className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-5 text-sm leading-relaxed text-stone-500">
-                            Tahap ini belum punya pilihan aktif. Ia baru mulai kebaca setelah sigma_4^B dan sigma_3^B sudah ditentukan.
+                            Tahap ini belum punya pilihan aktif. Ia baru mulai
+                            kebaca setelah sigma_4^B dan sigma_3^B sudah
+                            ditentukan.
                           </div>
                         )}
                         <div className="space-y-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-5">
@@ -805,7 +858,8 @@ export default function CommutativeSearchAlgorithmSlide() {
               </div>
             </details>
           ))}
-        </motion.div>
+          </motion.div>
+        ) : null}
       </motion.div>
     </div>
   );
