@@ -1,0 +1,448 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=3cm]{geometry}
+\usepackage[indonesian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,shapes.geometric}
+
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{proposisi}{Proposisi}
+\newtheorem{lema}{Lema}
+\newtheorem{akibat}{Akibat}
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}
+\newtheorem{contoh}{Contoh}
+
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\one}{\mathbf{1}}
+
+\title{\textbf{Spektrum Matriks Monofonik Terpanjang pada Graf Roda}}
+\author{Teosofi Hidayah Agung - 5002221132}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Laporan ini membahas spektrum matriks yang berhubungan dengan konsep monofonik pada graf roda. Karena frasa ``matriks monofonik paling panjang'' tidak sepenuhnya baku, laporan ini mengambil interpretasi utama sebagai matriks jarak monofonik $M(W_n)$, yaitu matriks yang entri-entrinya adalah panjang lintasan monofonik terpanjang antara dua simpul. Dengan konvensi $W_n=K_1+C_{n-1}$ dan $r=n-1$, diperoleh bentuk blok untuk $M(W_n)$, dengan blok rim berupa matriks sirkulan. Dari bentuk tersebut, spektrum $M(W_n)$ dapat diturunkan melalui basis Fourier. Sebagai pembanding, laporan ini juga membahas dua interpretasi alternatif, yaitu adjacency matrix dan distance matrix dari lintasan monofonik terpanjang pada $W_n$.
+\end{abstract}
+
+\tableofcontents
+
+\section{Pendahuluan}
+
+Dalam teori graf, lintasan monofonik adalah lintasan tanpa chord atau lintasan terinduksi. Untuk dua simpul $u$ dan $v$ pada graf terhubung $G$, jarak monofonik $d_m(u,v)$ didefinisikan sebagai panjang lintasan monofonik terpanjang dari $u$ ke $v$ \citep{titus2017monophonic}. Dengan demikian, matriks jarak monofonik dari $G$ adalah matriks
+\[
+  M(G)=\bigl(d_m(v_i,v_j)\bigr)_{1\le i,j\le |V(G)|}.
+\]
+Definisi ini juga digunakan dalam literatur energi jarak monofonik dan indeks topologis berbasis jarak monofonik \citep{diana2022monophonic,kaladevi2019monophonic}.
+
+Frasa ``spektrum dari matriks monofonik paling panjang pada graf roda'' perlu diperjelas karena istilah tersebut tidak sepenuhnya baku. Interpretasi yang paling dekat dengan literatur adalah spektrum dari matriks jarak monofonik $M(W_n)$. Akan tetapi, jika frasa ``paling panjang'' dibaca sebagai lintasan monofonik terpanjang di dalam graf roda, maka ada dua interpretasi tambahan yang juga masuk akal, yaitu spektrum adjacency matrix dari lintasan tersebut dan spektrum distance matrix dari lintasan tersebut.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+      node distance=1.7cm,
+      box/.style={draw, rounded corners, align=center, minimum width=3.4cm, minimum height=1cm, fill=blue!5},
+      main/.style={draw, rounded corners, align=center, minimum width=4.8cm, minimum height=1cm, fill=orange!10},
+      arr/.style={-{Latex[length=2.5mm]}, thick}
+    ]
+    \node[main] (q) {Frasa: matriks monofonik\\paling panjang pada $W_n$};
+    \node[box, below left=1.5cm and 1.1cm of q] (a) {Interpretasi utama\\matriks jarak monofonik\\$M(W_n)$};
+    \node[box, below right=1.5cm and 1.1cm of q] (b) {Interpretasi alternatif\\matriks dari longest\\monophonic path};
+    \node[box, below=1.3cm of b, xshift=-2.0cm] (b1) {Adjacency matrix\\$A(P_{n-2})$};
+    \node[box, below=1.3cm of b, xshift=2.0cm] (b2) {Distance matrix\\$D(P_{n-2})$};
+
+    \draw[arr] (q) -- (a);
+    \draw[arr] (q) -- (b);
+    \draw[arr] (b) -- (b1);
+    \draw[arr] (b) -- (b2);
+  \end{tikzpicture}
+  \caption{Tiga interpretasi yang dibahas dalam laporan.}
+  \label{fig:interpretasi}
+\end{figure}
+
+\section{Definisi Dasar}
+
+\begin{definisi}[Graf roda]
+  Untuk $n\ge 4$, graf roda $W_n$ didefinisikan sebagai join antara satu simpul pusat dengan siklus $C_{n-1}$, yaitu
+  \[
+    W_n=K_1+C_{n-1}.
+  \]
+  Simpul pusat disebut \emph{hub}, sedangkan simpul-simpul pada siklus disebut \emph{rim}. Dalam laporan ini ditulis $r=n-1$, sehingga banyaknya simpul rim adalah $r$ \citep{mathworldWheel,li2020steiner}.
+\end{definisi}
+
+Ambil
+\[
+  V(W_n)=\{h,v_0,v_1,\ldots,v_{r-1}\},
+\]
+dengan $h$ sebagai hub dan $(v_0,v_1,\ldots,v_{r-1})$ membentuk siklus $C_r$. Setiap simpul rim bertetangga dengan $h$.
+
+\begin{definisi}[Lintasan monofonik dan jarak monofonik]
+  Lintasan $P$ pada graf $G$ disebut lintasan monofonik apabila $P$ tidak mempunyai chord. Dengan kata lain, $P$ adalah lintasan terinduksi. Untuk dua simpul $u,v\in V(G)$, jarak monofonik $d_m(u,v)$ adalah panjang lintasan monofonik terpanjang dari $u$ ke $v$ \citep{titus2017monophonic}.
+\end{definisi}
+
+\begin{definisi}[Matriks jarak monofonik]
+  Misalkan $G$ graf terhubung dengan $V(G)=\{v_1,v_2,\ldots,v_p\}$. Matriks jarak monofonik dari $G$ adalah
+  \[
+    M(G)=\bigl(m_{ij}\bigr)_{p\times p},\qquad m_{ij}=d_m(v_i,v_j).
+  \]
+  Spektrum matriks jarak monofonik adalah himpunan semua eigenvalue dari $M(G)$ beserta multiplisitasnya.
+\end{definisi}
+
+\section{Lintasan Monofonik Terpanjang pada Graf Roda}
+
+\begin{proposisi}
+  Untuk $n\ge 5$, lintasan monofonik terpanjang pada $W_n$ isomorfik dengan $P_{n-2}$. Jadi lintasan tersebut mempunyai $n-2$ simpul dan $n-3$ sisi.
+  \label{prop:longest-path}
+\end{proposisi}
+
+\begin{proof}
+  Jika suatu lintasan monofonik memakai hub $h$ dan panjangnya lebih dari $2$, maka ada simpul rim yang tidak berurutan pada lintasan tetapi tetap bertetangga dengan $h$. Akibatnya, muncul chord, sehingga lintasan tersebut tidak lagi monofonik. Jadi lintasan monofonik yang memakai hub tidak dapat menjadi sangat panjang.
+
+  Sebaliknya, ambil siklus rim $C_r$ dan hapus satu simpul rim. Subgraf terinduksi yang tersisa adalah lintasan $P_{r-1}=P_{n-2}$. Karena lintasan ini merupakan subgraf terinduksi dari $W_n$, lintasan tersebut monofonik. Maka lintasan monofonik terpanjang pada $W_n$ isomorfik dengan $P_{n-2}$.
+\end{proof}
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
+    \def\radius{2.1}
+    \coordinate (h) at (0,0);
+
+    \foreach \i in {0,...,7}{
+        \coordinate (v\i) at ({90-45*\i}:\radius);
+      }
+
+    % rim edges
+    \foreach \i/\j in {0/1,1/2,2/3,3/4,4/5,5/6,6/7,7/0}{
+        \draw[gray!70, line width=0.8pt] (v\i) -- (v\j);
+      }
+
+    % spokes
+    \foreach \i in {0,...,7}{
+        \draw[gray!40, line width=0.7pt] (h) -- (v\i);
+      }
+
+    % highlighted path: v1-v2-v3-v4-v5-v6-v7, leaving out v0
+    \foreach \i/\j in {1/2,2/3,3/4,4/5,5/6,6/7}{
+        \draw[red!75!black, line width=2.2pt] (v\i) -- (v\j);
+      }
+
+    % vertices
+    \node[circle, fill=black, inner sep=2pt, label=below:$h$] at (h) {};
+    \foreach \i in {0,...,7}{
+        \node[circle, fill=black, inner sep=2pt] at (v\i) {};
+      }
+
+    \node[above] at (v0) {$v_0$};
+    \node[above right] at (v1) {$v_1$};
+    \node[right] at (v2) {$v_2$};
+    \node[below right] at (v3) {$v_3$};
+    \node[below] at (v4) {$v_4$};
+    \node[below left] at (v5) {$v_5$};
+    \node[left] at (v6) {$v_6$};
+    \node[above left] at (v7) {$v_7$};
+
+    \node[align=center, below=2.45cm] at (0,0)
+    {Contoh pada $W_9$: lintasan merah adalah $P_7=P_{9-2}$,\\
+      yaitu salah satu lintasan monofonik terpanjang.};
+  \end{tikzpicture}
+  \caption{Graf roda dan salah satu lintasan monofonik terpanjang.}
+  \label{fig:wheel-path}
+\end{figure}
+
+\begin{akibat}
+  Untuk $n\ge 5$, diameter monofonik graf roda adalah
+  \[
+    \diam_m(W_n)=n-3.
+  \]
+\end{akibat}
+
+\begin{proof}
+  Berdasarkan Proposisi \ref{prop:longest-path}, lintasan monofonik terpanjang pada $W_n$ adalah $P_{n-2}$. Panjang lintasan tersebut adalah $n-3$.
+\end{proof}
+
+\section{Matriks Jarak Monofonik Graf Roda}
+
+Urutkan simpul $W_n$ sebagai $(h,v_0,v_1,\ldots,v_{r-1})$. Untuk dua simpul rim $v_i$ dan $v_j$, tuliskan
+\[
+  \delta(i,j)=\min\{|i-j|,r-|i-j|\}.
+\]
+Nilai $\delta(i,j)$ adalah jarak siklik pada rim.
+
+Untuk hub dan simpul rim berlaku $d_m(h,v_i)=1$, karena setiap lintasan yang lebih panjang dan melibatkan hub akan memunculkan chord. Untuk dua simpul rim, berlaku
+\[
+  d_m(v_i,v_j)=
+  \begin{cases}
+    0,             & i=j,                                    \\
+    1,             & \delta(i,j)=1,                          \\
+    r-\delta(i,j), & 2\le \delta(i,j)\le \lfloor r/2\rfloor.
+  \end{cases}
+\]
+Dengan demikian, matriks jarak monofonik $M(W_n)$ mempunyai bentuk blok
+\[
+  M(W_n)=
+  \begin{pmatrix}
+    0    & \one^\top \\
+    \one & B_r
+  \end{pmatrix},
+\]
+dengan $\one\in\R^r$ vektor semua-satu dan
+\[
+  (B_r)_{ij}=
+  \begin{cases}
+    0,             & i=j,                                    \\
+    1,             & \delta(i,j)=1,                          \\
+    r-\delta(i,j), & 2\le \delta(i,j)\le \lfloor r/2\rfloor.
+  \end{cases}
+\]
+Blok $B_r$ adalah matriks sirkulan. Karena itu, $B_r$ dapat didiagonalisasi menggunakan basis Fourier.
+
+\begin{teorema}
+  Misalkan $W_n=K_1+C_{n-1}$, $r=n-1$, dan $M(W_n)$ adalah matriks jarak monofonik graf roda. Maka
+  \[
+    \spec(M(W_n))=\{\lambda_+,\lambda_-\}\cup\{\beta_1,\beta_2,\ldots,\beta_{r-1}\},
+  \]
+  dengan
+  \[
+    \lambda_\pm=\frac{\beta_0\pm\sqrt{\beta_0^2+4r}}{2}.
+  \]
+  Nilai $\beta_0$ diberikan oleh
+  \[
+    \beta_0=
+    \begin{cases}
+      \dfrac{3r^2-12r+16}{4}, & r\text{ genap},  \\[6pt]
+      \dfrac{3r^2-12r+17}{4}, & r\text{ ganjil}.
+    \end{cases}
+  \]
+  Untuk $j=1,2,\ldots,r-1$, jika $r$ genap, maka
+  \[
+    \beta_j
+    =
+    -r-2(r-2)\cos\frac{2\pi j}{r}
+    +
+    \begin{cases}
+      \csc^2\left(\dfrac{\pi j}{r}\right), & j\text{ ganjil}, \\[6pt]
+      0,                                   & j\text{ genap}.
+    \end{cases}
+  \]
+  Jika $r$ ganjil, maka
+  \[
+    \beta_j
+    =
+    -r-2(r-2)\cos\frac{2\pi j}{r}
+    +
+    \begin{cases}
+      \dfrac14\csc^2\left(\dfrac{\pi j}{2r}\right), & j\text{ ganjil}, \\[8pt]
+      \dfrac14\sec^2\left(\dfrac{\pi j}{2r}\right), & j\text{ genap}.
+    \end{cases}
+  \]
+  \label{thm:spektrum-monofonik-roda}
+\end{teorema}
+
+\begin{proof}
+  Blok $B_r$ adalah matriks sirkulan, sehingga eigenvektornya adalah vektor Fourier
+  \[
+    f_j=(1,\omega_r^j,\omega_r^{2j},\ldots,\omega_r^{(r-1)j})^\top,\qquad
+    \omega_r=e^{-2\pi i/r}.
+  \]
+  Untuk $j=1,\ldots,r-1$, berlaku $\one^\top f_j=0$. Maka $(0,f_j)^\top$ adalah eigenvektor $M(W_n)$ dengan eigenvalue yang sama dengan eigenvalue $B_r$, yaitu $\beta_j$.
+
+  Dua eigenvalue sisanya berasal dari subruang yang dibangun oleh $e_h$ dan $(0,\one)^\top$. Pada subruang ini, aksi $M(W_n)$ direpresentasikan oleh matriks
+  \[
+    \begin{pmatrix}
+      0 & r       \\
+      1 & \beta_0
+    \end{pmatrix}.
+  \]
+  Persamaan karakteristiknya adalah $\lambda^2-\beta_0\lambda-r=0$, sehingga diperoleh
+  \[
+    \lambda_\pm=\frac{\beta_0\pm\sqrt{\beta_0^2+4r}}{2}.
+  \]
+  Formula untuk $\beta_j$ diperoleh dari spektrum matriks jarak siklus dan fakta bahwa blok rim dapat ditulis sebagai kombinasi matriks sirkulan. Secara khusus, hasil klasik tentang spektrum matriks jarak siklus digunakan untuk mengekspresikan komponen Fourier dari $B_r$ \citep{graovac1985distance,stevanovic2012distance}.
+\end{proof}
+
+\subsection{Perilaku Asimtotik}
+
+Dari rumus pada Teorema \ref{thm:spektrum-monofonik-roda}, eigenvalue terbesar memenuhi
+\[
+  \lambda_+=\beta_0+O(r^{-1})\sim \frac34r^2.
+\]
+Sementara itu,
+\[
+  \lambda_-=-\frac{r}{\lambda_+}\sim -\frac{4}{3r}.
+\]
+Untuk mode Fourier tertentu, ekor negatifnya bertumbuh secara linear, yaitu
+\[
+  \lambda_{\min}(M(W_n))=-3r+O(1)=-3(n-1)+O(1).
+\]
+Jadi matriks jarak monofonik graf roda mempunyai satu outlier positif berorde kuadratik, sedangkan bagian negatif terjauhnya hanya berorde linear.
+
+\section{Interpretasi Alternatif: Adjacency Matrix dari Lintasan Monofonik Terpanjang}
+
+Dari Proposisi \ref{prop:longest-path}, lintasan monofonik terpanjang pada $W_n$ adalah $P_{n-2}$. Jika matriks yang dimaksud adalah adjacency matrix dari lintasan ini, maka objeknya adalah $A(P_{n-2})$.
+
+\begin{teorema}
+  Spektrum adjacency matrix dari lintasan monofonik terpanjang pada $W_n$ adalah
+  \[
+    \spec(A(P_{n-2}))=
+    \left\{
+    2\cos\frac{\pi s}{n-1}:s=1,2,\ldots,n-2
+    \right\}.
+  \]
+  \label{thm:adj-path}
+\end{teorema}
+
+\begin{proof}
+  Adjacency matrix lintasan $P_{n-2}$ adalah matriks tridiagonal dengan entri $1$ pada diagonal atas dan diagonal bawah. Ambil vektor
+  \[
+    x_k^{(s)}=\sin\frac{ks\pi}{n-1},\qquad k=1,\ldots,n-2.
+  \]
+  Dengan identitas trigonometri standar, berlaku
+  \[
+    x_{k-1}^{(s)}+x_{k+1}^{(s)}
+    =
+    2\cos\frac{s\pi}{n-1}\,x_k^{(s)}.
+  \]
+  Maka eigenvalue-nya adalah $2\cos\frac{s\pi}{n-1}$ untuk $s=1,2,\ldots,n-2$.
+\end{proof}
+
+Spektrum ini selalu berada di interval $[-2,2]$. Karena itu, berbeda dengan $M(W_n)$, spektrum $A(P_{n-2})$ tidak bertumbuh menuju tak hingga ketika $n$ membesar.
+
+\section{Interpretasi Alternatif: Distance Matrix dari Lintasan Monofonik Terpanjang}
+
+Jika yang dimaksud adalah matriks jarak pada lintasan monofonik terpanjang, maka objeknya adalah
+\[
+  D(P_p)=\bigl(|i-j|\bigr)_{1\le i,j\le p},\qquad p=n-2.
+\]
+Karena $P_p$ adalah pohon, jarak biasa dan jarak monofonik pada $P_p$ berimpit \citep{titus2017monophonic}.
+
+Spektrum distance matrix lintasan telah dikaji oleh \citet{ruzieh1990distance}. Karakterisasi lengkapnya dapat ditulis secara implisit sebagai berikut. Eigenvalue terbesar berbentuk
+\[
+  \rho_1=\frac{1}{\cosh\theta_0-1},
+\]
+dengan $\theta_0>0$ memenuhi
+\[
+  \tanh\frac{\theta_0}{2}\tanh\frac{p\theta_0}{2}=\frac1p.
+\]
+Eigenvalue lainnya bernilai negatif dan berbentuk
+\[
+  \rho=\frac{1}{\cos\theta-1}.
+\]
+Nilai $\theta$ berasal dari keluarga persamaan
+\[
+  \tan\frac{\theta}{2}\tan\frac{p\theta}{2}=-\frac1p
+\]
+atau dari keluarga eksplisit
+\[
+  \theta=\frac{(2m-1)\pi}{p},\qquad m=1,\ldots,\left\lfloor\frac p2\right\rfloor.
+\]
+
+Secara asimtotik, jika $a_*$ adalah solusi positif unik dari $a\tanh a=1$, maka
+\[
+  \rho_1\sim \frac{p^2}{2a_*^2}\approx 0.347249p^2.
+\]
+Selain itu,
+\[
+  \rho_{\min}\sim -\frac{2p^2}{\pi^2}.
+\]
+Jadi distance matrix dari lintasan monofonik terpanjang mempunyai ekor positif dan negatif yang sama-sama berorde kuadratik.
+
+\section{Perbandingan dengan Spektrum Adjacency dan Laplacian Graf Roda}
+
+Untuk pembanding, adjacency matrix graf roda $A(W_n)$ memiliki spektrum
+\[
+  \spec(A(W_n))=
+  \{1+\sqrt n,1-\sqrt n\}\cup
+  \left\{
+  2\cos\frac{2\pi j}{r}:j=1,\ldots,r-1
+  \right\}.
+\]
+Sementara itu, combinatorial Laplacian $L(W_n)$ memiliki spektrum
+\[
+  \spec(L(W_n))=
+  \{0,n\}\cup
+  \left\{
+  3-2\cos\frac{2\pi j}{r}:j=1,\ldots,r-1
+  \right\}.
+\]
+Definisi Laplacian yang digunakan adalah definisi standar $L=\Delta-A$ \citep{chung1997spectral}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{>{\raggedright\arraybackslash}p{3.2cm}p{3.7cm}p{5.3cm}}
+    \toprule
+    Objek        & Ukuran             & Skala dominan spektrum                                                \\
+    \midrule
+    $M(W_n)$     & $n\times n$        & $\lambda_{\max}\sim \frac34(n-1)^2$ dan $\lambda_{\min}=-3(n-1)+O(1)$ \\
+    $A(P_{n-2})$ & $(n-2)\times(n-2)$ & Tetap berada di $[-2,2]$                                              \\
+    $D(P_{n-2})$ & $(n-2)\times(n-2)$ & Ekor positif dan negatif berorde $(n-2)^2$                            \\
+    $A(W_n)$     & $n\times n$        & Outlier berorde $\sqrt n$                                             \\
+    $L(W_n)$     & $n\times n$        & Satu outlier linear tepat $n$                                         \\
+    \bottomrule
+  \end{tabular}
+  \caption{Perbandingan skala spektrum beberapa matriks yang terkait dengan graf roda.}
+  \label{tab:perbandingan}
+\end{table}
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1.0]
+    \draw[->, thick] (0,0) -- (11,0) node[right] {$n$};
+    \draw[->, thick] (0,0) -- (0,5.2) node[above] {skala};
+
+    \draw[thick, blue] (0.7,0.7) -- (10,0.7);
+    \node[right, blue] at (10,0.7) {$A(P_{n-2})$: terbatas};
+
+    \draw[thick, orange!80!black] (0.7,0.3) -- (10,4.2);
+    \node[right, orange!80!black] at (10,4.2) {$L(W_n)$: linear};
+
+    \draw[thick, red!75!black, domain=0.7:10, samples=100] plot (\x,{0.03*\x*\x+0.6});
+    \node[right, red!75!black] at (10,3.6) {$M(W_n)$ dan $D(P_{n-2})$: kuadratik};
+
+    \node[below] at (0.7,0) {$4$};
+    \node[below] at (10,0) {besar};
+  \end{tikzpicture}
+  \caption{Ilustrasi kasar perbedaan skala pertumbuhan spektrum.}
+  \label{fig:skala}
+\end{figure}
+
+\section{Kesimpulan}
+
+Interpretasi yang paling sesuai dengan literatur untuk frasa ``matriks monofonik paling panjang pada graf roda'' adalah matriks jarak monofonik $M(W_n)$. Dengan $W_n=K_1+C_{n-1}$ dan $r=n-1$, matriks $M(W_n)$ mempunyai bentuk blok
+\[
+  M(W_n)=
+  \begin{pmatrix}
+    0    & \one^\top \\
+    \one & B_r
+  \end{pmatrix},
+\]
+dengan $B_r$ matriks sirkulan. Karena itu, spektrumnya dapat diturunkan menggunakan basis Fourier. Hasil akhirnya adalah
+\[
+  \spec(M(W_n))=\{\lambda_+,\lambda_-\}\cup\{\beta_1,\ldots,\beta_{r-1}\},
+\]
+dengan $\lambda_\pm$ dan $\beta_j$ sebagaimana dinyatakan dalam Teorema \ref{thm:spektrum-monofonik-roda}.
+
+Jika istilah tersebut dimaksudkan sebagai matriks dari lintasan monofonik terpanjang, maka lintasan yang dimaksud adalah $P_{n-2}$. Dalam hal ini, adjacency matrix-nya mempunyai spektrum kosinus klasik, sedangkan distance matrix-nya mempunyai spektrum jarak lintasan dengan karakterisasi implisit. Perbandingan ini menunjukkan bahwa konsep monofonik pada graf roda lebih dipengaruhi oleh struktur rim daripada oleh keberadaan hub. Hub membuat jarak biasa menjadi kecil, tetapi justru membatasi lintasan monofonik yang melaluinya karena mudah memunculkan chord.
+
+\bibliographystyle{plainnat}
+\bibliography{referensi}
+
+\end{document}
