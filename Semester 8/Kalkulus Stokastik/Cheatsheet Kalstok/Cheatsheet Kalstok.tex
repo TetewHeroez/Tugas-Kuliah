@@ -25,8 +25,10 @@
 \setlength{\parindent}{0pt}
 \renewcommand{\arraystretch}{1.5}
 
-\newtheorem{kalstok}{Teorema}
-\renewcommand{\thekalstok}{1.\arabic{kalstok}}
+\renewcommand{\thesection}{\arabic{section}}
+
+\newtheorem{kalstok}{Teorema}[section]
+\renewcommand{\thekalstok}{\thesection.\arabic{kalstok}}
 
 \theoremstyle{definition}
 \newtheorem{definisi}[kalstok]{Definisi}
@@ -56,7 +58,7 @@
 \begin{document}
 \footnotesize \textbf{{Cheatsheet -- Kalkulus Stokastik}} \hfill \textit{Teosofi Hidayah Agung/5002221132}
 \begin{multicols}{2}
-  \section*{\small Teori Ukuran untuk Kalkulus Stokastik}
+  \section{\small Teori Ukuran}
 
   \begin{definisi}[Aljabar Himpunan]
     Misalkan $X$ adalah suatu himpunan tak kosong. Aljabar dari himpunan $X$ adalah suatu koleksi $\mathcal{A}$ dari himpunan-himpunan bagian $X$ yang memenuhi:
@@ -454,7 +456,7 @@
     \[\lim_{|\omega|\to\infty}\int_{\mathbb{R}}f(x)\sin(\omega x)\,dx=0.\]
   \end{teorema}
 
-  \section*{\small 2.1 Ruang Probabilitas}
+  \section{\small Probabilitas}
 
   \begin{definisi}
     Misalkan $\mathcal{F}$ suatu sigma-aljabar pada himpunan $\Omega$. Suatu fungsi
@@ -475,14 +477,12 @@
   \begin{lemma}[Borel-Cantelli I]
     Misalkan $\{A_n\}_{n=1}^{\infty}$ barisan kejadian dalam ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$
     yang memenuhi
-    \[\sum_{n=1}^{\infty}\mathbb{P}(A_n)<\infty.\]
+    \[\displaystyle\sum_{n=1}^{\infty}\mathbb{P}(A_n)<\infty.\]
     Jika
-    \[B_n=\bigcup_{k=n}^{\infty}A_k,\]
+    $\displaystyle B_n=\bigcup_{k=n}^{\infty}A_k,$
     maka
-    \[\mathbb{P}\!\left(\bigcap_{n=1}^{\infty}B_n\right)=0.\]
+    $\displaystyle \mathbb{P}\!\left(\bigcap_{n=1}^{\infty}B_n\right)=0.$
   \end{lemma}
-
-  \section*{\small 2.2 Variabel Acak}
 
   \begin{definisi}
     Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ suatu ruang probabilitas.
@@ -695,8 +695,6 @@
     \[\mathbb{E}(\eta^2)=2\int_0^{\infty}t\,\mathbb{P}(\eta>t)\,dt.\]
   \end{lemma}
 
-  \section*{\small 2.3 Peluang Bersyarat dan Independensi}
-
   \begin{definisi}
     Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ ruang probabilitas, dan $A,B\in\mathcal{F}$.
     Jika $\mathbb{P}(B)>0$, maka probabilitas bersyarat dari $A$ terhadap $B$ didefinisikan sebagai
@@ -814,5 +812,763 @@
     Dengan kata lain, nilai variabel acak $\xi$ tidak dipengaruhi oleh informasi yang terkandung
     dalam sigma-aljabar $\mathcal{G}$.
   \end{definisi}
+
+  \section{\small Ekspektasi Bersyarat}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas, dan
+    $\xi:\Omega\to\mathbb{R}$ merupakan variabel acak yang terintegralkan, yaitu memenuhi
+    \[\int_{\Omega}|\xi|\,d\mathbb{P}<\infty.\]
+    Diberikan suatu kejadian $B\in\mathcal{F}$ dengan syarat $\mathbb{P}(B)>0$, ekspektasi
+    bersyarat dari $\xi$ terhadap kejadian $B$ didefinisikan sebagai
+    \[\mathbb{E}(\xi\mid B)=\frac{1}{\mathbb{P}(B)}\int_B \xi\,d\mathbb{P}.\]
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas. Diberikan
+    variabel acak $\xi:\Omega\to\mathbb{R}$ yang terintegralkan, dan variabel acak diskrit
+    $\eta:\Omega\to\mathbb{R}$ dengan
+    \[S:=\eta(\Omega)=\{y_1,y_2,\ldots\},\]
+    di mana $y_1,y_2,\ldots$ saling berbeda dan
+    \[\mathbb{P}(\{\eta=y_n\})>0,\qquad \text{untuk setiap }n.\]
+    Ekspektasi bersyarat dari $\xi$ dengan syarat $\eta$ didefinisikan sebagai variabel acak
+    $\mathbb{E}(\xi\mid\eta)$ yang diberikan oleh
+    \[\mathbb{E}(\xi\mid\eta)
+      =\sum_{n=1}^{\infty}\mathbb{E}(\xi\mid\{\eta=y_n\})\mathbf{1}_{\{\eta=y_n\}}.\]
+    Secara ekuivalen, ekspektasi bersyarat tersebut dapat dituliskan sebagai
+    \[\mathbb{E}(\xi\mid\eta)(\omega)=\mathbb{E}(\xi\mid\{\eta=\eta(\omega)\}),\qquad \omega\in\Omega.\]
+  \end{definisi}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas.
+    Jika $\eta$ adalah variabel acak diskrit dan $\xi$ adalah variabel acak yang dapat
+    diintegralkan, maka berlaku
+    \[\mathbb{E}\bigl(\mathbb{E}(\xi\mid\eta)\bigr)=\mathbb{E}(\xi).\]
+  \end{lemma}
+
+  \begin{proposisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas.
+    Jika $\xi$ adalah variabel acak yang terintegralkan dan $\eta$ adalah variabel acak diskrit,
+    maka berlaku:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $\mathbb{E}(\xi\mid\eta)$ adalah $\sigma(\eta)$-terukur.
+      \item Untuk setiap $A\in\sigma(\eta)$, berlaku
+            \[\int_A \mathbb{E}(\xi\mid\eta)\,d\mathbb{P}=\int_A \xi\,d\mathbb{P}.\]
+    \end{enumerate}
+  \end{proposisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas. Diberikan
+    variabel acak $\xi$ yang terintegralkan dan variabel acak $\eta$ dengan nilai yang umum
+    (tidak harus diskrit). Ekspektasi bersyarat dari $\xi$ dengan syarat $\eta$, yang
+    dinotasikan dengan $\mathbb{E}(\xi\mid\eta)$, didefinisikan sebagai suatu variabel acak
+    yang memenuhi sifat-sifat berikut:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $\mathbb{E}(\xi\mid\eta)$ adalah $\sigma(\eta)$-terukur.
+      \item Untuk setiap himpunan $A\in\sigma(\eta)$, berlaku
+            \[\int_A \mathbb{E}(\xi\mid\eta)\,d\mathbb{P}=\int_A \xi\,d\mathbb{P}.\]
+    \end{enumerate}
+  \end{definisi}
+
+  \begin{catatan}
+    Selain itu, probabilitas bersyarat dari suatu kejadian $A\in\mathcal{F}$ dengan syarat
+    variabel acak $\eta$ dapat didefinisikan melalui ekspektasi bersyarat, yaitu
+    \[\mathbb{P}(A\mid\eta)=\mathbb{E}(\mathbf{1}_A\mid\eta).\]
+    Perhatikan bahwa $\mathbb{P}(A\mid\eta)$ merupakan variabel acak yang $\sigma(\eta)$-terukur,
+    sehingga nilainya hanya bergantung pada informasi yang dikandung oleh $\eta$. Sebagai kasus
+    khusus, jika $\eta$ adalah variabel acak diskrit, maka untuk setiap nilai $y_n$ diperoleh
+    \[\mathbb{P}(A\mid\eta)(\omega)=\mathbb{P}(A\mid\{\eta=y_n\}),\]
+    untuk setiap $\omega$ dengan $\eta(\omega)=y_n$.
+  \end{catatan}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas, dan
+    $\mathcal{G}\subseteq\mathcal{F}$ adalah suatu sigma-aljabar. Jika $\zeta$ adalah variabel
+    acak yang $\mathcal{G}$-terukur dan untuk setiap $B\in\mathcal{G}$ berlaku
+    \[\int_B \zeta\,d\mathbb{P}=0,\]
+    maka diperoleh
+    \[\zeta=0\qquad \text{hampir pasti}.\]
+  \end{lemma}
+
+  \begin{lemma}
+    Jika $\xi$ dan $\eta$ adalah variabel acak terintegral yang memiliki PDF bersama
+    $f_{\xi,\eta}(x,y)$, maka berlaku
+    \[\mathbb{E}(\xi\mid\eta)
+      =\frac{\int_{\mathbb{R}}x\,f_{\xi,\eta}(x,\eta)\,dx}
+      {\int_{\mathbb{R}}f_{\xi,\eta}(x,\eta)\,dx},
+      \qquad \text{hampir pasti},\]
+    pada himpunan di mana penyebut bernilai positif.
+  \end{lemma}
+
+  \begin{proposisi}
+    Jika $\sigma(\eta)=\sigma(\eta')$, maka berlaku
+    \[\mathbb{E}(\xi\mid\eta)=\mathbb{E}(\xi\mid\eta')\qquad \text{hampir pasti}.\]
+  \end{proposisi}
+
+
+  \begin{definisi}
+    Misalkan $\xi$ adalah variabel acak terintegral pada ruang probabilitas
+    $(\Omega,\mathcal{F},\mathbb{P})$, yaitu $\mathbb{E}(|\xi|)<\infty$, dan misalkan
+    $\mathcal{G}\subseteq\mathcal{F}$ adalah suatu sigma-aljabar. Ekspektasi bersyarat dari
+    $\xi$ terhadap $\mathcal{G}$ didefinisikan sebagai suatu variabel acak
+    $\mathbb{E}(\xi\mid\mathcal{G})$ yang memenuhi dua kondisi berikut:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $\mathbb{E}(\xi\mid\mathcal{G})$ terukur terhadap $\mathcal{G}$.
+      \item Untuk setiap $A\in\mathcal{G}$ berlaku
+            \[\int_A \mathbb{E}(\xi\mid\mathcal{G})\,d\mathbb{P}=\int_A \xi\,d\mathbb{P}.\]
+    \end{enumerate}
+    Secara intuitif, $\mathbb{E}(\xi\mid\mathcal{G})$ dapat dipandang sebagai "rata-rata terbaik"
+    dari $\xi$ yang hanya bergantung pada informasi yang tersedia dalam sigma-aljabar
+    $\mathcal{G}$.
+  \end{definisi}
+
+  \begin{proposisi}
+    Jika $\xi$ adalah variabel acak terintegral pada ruang probabilitas
+    $(\Omega,\mathcal{F},\mathbb{P})$, dan $\mathcal{G}\subseteq\mathcal{F}$ adalah suatu
+    sigma-aljabar, maka ekspektasi bersyarat $\mathbb{E}(\xi\mid\mathcal{G})$ selalu ada dan
+    tunggal hingga hampir pasti. Lebih lanjut, jika $\xi$ dan $\xi'$ adalah dua variabel acak
+    terintegral yang memenuhi
+    \[\xi=\xi'\qquad \text{hampir pasti},\]
+    maka berlaku
+    \[\mathbb{E}(\xi\mid\mathcal{G})=\mathbb{E}(\xi'\mid\mathcal{G})\qquad \text{hampir pasti}.\]
+  \end{proposisi}
+
+  \begin{teorema}[Teorema Proyeksi pada Ruang Hilbert]
+    Misalkan $H$ adalah ruang Hilbert dengan hasil kali dalam $\langle\cdot,\cdot\rangle$, dan
+    misalkan $M\subseteq H$ adalah subruang linear tertutup. Maka untuk setiap $X\in H$ terdapat
+    elemen unik $\zeta\in M$ sedemikian sehingga
+    \[\langle X-\zeta,Z\rangle=0,\qquad \text{untuk setiap }Z\in M.\]
+  \end{teorema}
+
+  \begin{akibat}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah ruang probabilitas dan
+    $\mathcal{G}\subseteq\mathcal{F}$ adalah suatu sigma-aljabar. Untuk setiap $A\in\mathcal{F}$,
+    terdapat suatu variabel acak $\zeta$ yang $\mathcal{G}$-terukur sehingga
+    \[\int_B \zeta\,d\mathbb{P}=\mathbb{P}(A\cap B),\qquad \text{untuk setiap }B\in\mathcal{G}.\]
+    Variabel acak $\zeta$ tersebut disebut sebagai ekspektasi bersyarat dari $\mathbf{1}_A$
+    terhadap $\mathcal{G}$ dan dinotasikan dengan
+    \[\zeta=\mathbb{E}(\mathbf{1}_A\mid\mathcal{G}).\]
+  \end{akibat}
+
+  \begin{lemma}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah ruang probabilitas dan
+    $\mathcal{G}\subseteq\mathcal{F}$ adalah suatu sigma-aljabar. Jika $\{\xi_n\}$ adalah
+    barisan variabel acak terintegral tak-negatif yang memenuhi
+    \[\xi_n\uparrow \xi\qquad \text{hampir pasti},\]
+    dan $\{\zeta_n\}$ adalah barisan variabel acak terintegral yang $\mathcal{G}$-terukur yang
+    memenuhi
+    \[\int_A \zeta_n\,d\mathbb{P}=\int_A \xi_n\,d\mathbb{P},\qquad \text{untuk setiap }A\in\mathcal{G},\]
+    maka berlaku
+    \[\zeta_n\uparrow \zeta\qquad \text{hampir pasti}\]
+    untuk suatu variabel acak $\zeta$ yang $\mathcal{G}$-terukur dan terintegral.
+  \end{lemma}
+
+  \begin{teorema}[Radon-Nikodym]
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah ruang probabilitas, dan
+    $\mathcal{G}\subseteq\mathcal{F}$ adalah suatu sigma-aljabar. Jika $\xi$ adalah variabel
+    acak terintegralkan, maka terdapat suatu variabel acak $\zeta$ yang $\mathcal{G}$-terukur
+    sehingga
+    \[\int_A \xi\,d\mathbb{P}=\int_A \zeta\,d\mathbb{P},\]
+    untuk setiap $A\in\mathcal{G}$.
+  \end{teorema}
+
+  \begin{proposisi}
+    Ekspektasi bersyarat memiliki beberapa sifat berikut. Misalkan $\xi$ dan $\zeta$ adalah
+    variabel acak terintegral pada ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$, dan
+    $\mathcal{G},\mathcal{H}\subseteq\mathcal{F}$ adalah sigma-aljabar.
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item (Linearitas) Untuk setiap $a,b\in\mathbb{R}$ berlaku
+            \[\mathbb{E}(a\xi+b\zeta\mid\mathcal{G})
+              =a\,\mathbb{E}(\xi\mid\mathcal{G})+b\,\mathbb{E}(\zeta\mid\mathcal{G}).\]
+      \item (Konsistensi ekspektasi)
+            \[\mathbb{E}\bigl(\mathbb{E}(\xi\mid\mathcal{G})\bigr)=\mathbb{E}(\xi).\]
+      \item (Faktorisasi) Jika $\xi$ adalah $\mathcal{G}$-terukur dan $\xi\zeta$ terintegral, maka
+            \[\mathbb{E}(\xi\zeta\mid\mathcal{G})=\xi\,\mathbb{E}(\zeta\mid\mathcal{G}).\]
+      \item (Independensi) Jika $\xi$ independen terhadap $\mathcal{G}$, maka
+            \[\mathbb{E}(\xi\mid\mathcal{G})=\mathbb{E}(\xi).\]
+      \item (Sifat menara) Jika $\mathcal{H}\subseteq\mathcal{G}$, maka
+            \[\mathbb{E}\bigl(\mathbb{E}(\xi\mid\mathcal{G})\mid\mathcal{H}\bigr)
+              =\mathbb{E}(\xi\mid\mathcal{H}).\]
+      \item (Monotonisitas) Jika $\xi\ge 0$ hampir pasti, maka
+            \[\mathbb{E}(\xi\mid\mathcal{G})\ge 0\qquad \text{hampir pasti}.\]
+    \end{enumerate}
+  \end{proposisi}
+
+  \begin{teorema}[Ketidaksamaan Jensen]
+    Misalkan $\varphi:\mathbb{R}\to\mathbb{R}$ adalah fungsi konveks. Misalkan $\xi$ adalah
+    variabel acak terintegral pada ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$, dan
+    diasumsikan bahwa $\varphi(\xi)$ juga terintegral. Jika $\mathcal{G}\subseteq\mathcal{F}$
+    adalah suatu sigma-aljabar, maka berlaku
+    \[\varphi\bigl(\mathbb{E}(\xi\mid\mathcal{G})\bigr)\le
+      \mathbb{E}\bigl(\varphi(\xi)\mid\mathcal{G}\bigr)\qquad \text{hampir pasti}.\]
+  \end{teorema}
+
+  \section{\small Proses Stokastik Waktu Kontinu}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas. Suatu proses
+    stokastik didefinisikan sebagai keluarga variabel acak
+    \[\{X_t:t\in T\},\]
+    yang didefinisikan pada ruang probabilitas tersebut, dengan $T$ merupakan himpunan indeks
+    (parameter waktu). Selanjutnya, konsep-konsep berikut didefinisikan:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Jika $T=\{1,2,3,\ldots\}$, maka proses $\{X_t\}$ disebut sebagai proses stokastik
+            waktu diskrit.
+      \item Jika $T$ merupakan suatu interval dalam $\mathbb{R}$ (misalnya $T=[0,\infty)$), maka
+            proses $\{X_t\}$ disebut sebagai proses stokastik waktu kontinu.
+      \item Jika untuk setiap $t\in T$ berlaku
+            \[X_t:\Omega\to S,\]
+            maka himpunan $S$ disebut sebagai ruang keadaan (state space) dari proses stokastik
+            tersebut.
+      \item Untuk setiap $\omega\in\Omega$, fungsi
+            \[T\ni t\mapsto X_t(\omega)\]
+            disebut sebagai lintasan sampel (sample path) dari proses stokastik.
+    \end{enumerate}
+  \end{definisi}
+
+  \begin{definisi}
+    Misalkan $(\Omega,\mathcal{F},\mathbb{P})$ adalah suatu ruang probabilitas dan $T$ adalah
+    himpunan indeks (waktu). Suatu keluarga sigma-aljabar $\{\mathcal{F}_t\}_{t\in T}$ pada
+    $\Omega$ disebut sebagai filtrasi jika memenuhi
+    \[\mathcal{F}_s\subseteq\mathcal{F}_t\subseteq\mathcal{F},\qquad
+      \text{untuk setiap }s,t\in T\text{ dengan }s\le t.\]
+    Keluarga $\{\mathcal{F}_t\}$ menginterpretasikan informasi yang tersedia hingga waktu $t$,
+    sehingga kondisi $\mathcal{F}_s\subseteq\mathcal{F}_t$ menyatakan bahwa informasi tidak
+    berkurang seiring bertambahnya waktu.
+  \end{definisi}
+
+  \begin{definisi}
+    Suatu proses stokastik $\{X_t\}_{t\in T}$ dikatakan sebagai martingale
+    (masing-masing submartingale atau supermartingale) terhadap suatu filtrasi
+    $\{\mathcal{F}_t\}_{t\in T}$ jika kondisi-kondisi berikut dipenuhi:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Untuk setiap $t\in T$, variabel acak $X_t$ terintegralkan, yaitu
+            \[\mathbb{E}(|X_t|)<\infty.\]
+      \item Untuk setiap $t\in T$, variabel acak $X_t$ adalah $\mathcal{F}_t$-terukur. Dengan
+            kata lain, proses $\{X_t\}$ bersifat adapted terhadap filtrasi $\{\mathcal{F}_t\}$.
+      \item Untuk setiap $s,t\in T$ dengan $s\le t$, berlaku
+            \[\mathbb{E}(X_t\mid\mathcal{F}_s)=X_s,\]
+            untuk martingale, sedangkan untuk submartingale dan supermartingale masing-masing
+            berlaku
+            \[\mathbb{E}(X_t\mid\mathcal{F}_s)\ge X_s,\qquad
+              \text{atau}\qquad \mathbb{E}(X_t\mid\mathcal{F}_s)\le X_s.\]
+    \end{enumerate}
+  \end{definisi}
+
+  \begin{definisi}
+    Suatu proses stokastik $\{W(t)\}_{t\ge 0}$ yang bernilai dalam $\mathbb{R}$ disebut sebagai
+    proses Wiener (atau gerak Brown) apabila memenuhi sifat-sifat berikut:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Kondisi awal dipenuhi, yaitu hampir pasti berlaku
+            \[W(0)=0.\]
+      \item Lintasan sampel dari proses $\{W(t)\}_{t\ge 0}$ bersifat kontinu, yaitu untuk hampir
+            setiap $\omega$, fungsi $t\mapsto W(t,\omega)$ kontinu pada $[0,\infty)$.
+      \item Untuk setiap barisan waktu $0<t_1<t_2<\cdots<t_n$ dan setiap himpunan Borel
+            $A_1,A_2,\ldots,A_n\subseteq\mathbb{R}$, distribusi bersama dari
+            $(W(t_1),W(t_2),\ldots,W(t_n))$ diberikan oleh
+            \begin{align*}
+               & \mathbb{P}(W(t_1)\in A_1,\ldots,W(t_n)\in A_n) \\
+               & \qquad =\int_{A_1}\cdots\int_{A_n}
+              p(t_1,0,x_1)\,p(t_2-t_1,x_1,x_2)\cdots p(t_n-t_{n-1},x_{n-1},x_n)\,
+              dx_1\cdots dx_n,
+            \end{align*}
+            dengan PDF transisi diberikan oleh
+            \[p(t,x,y)=\frac{1}{\sqrt{2\pi t}}
+              \exp\!\left(-\frac{(y-x)^2}{2t}\right),\]
+            untuk setiap $x,y\in\mathbb{R}$ dan $t>0$. Fungsi $p(t,x,y)$ tersebut disebut
+            sebagai PDF transisi.
+    \end{enumerate}
+  \end{definisi}
+
+  \begin{lemma}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka untuk setiap $t\ge 0$, variabel acak
+    $W(t)$ memiliki PDF
+    \[p(t,0,x)=\frac{1}{\sqrt{2\pi t}}\exp\!\left(-\frac{x^2}{2t}\right),\]
+    yang artinya berdistribusi normal dengan ekspektasi $0$ dan variansi $t$, yaitu
+    \[W(t)\sim\mathcal{N}(0,t).\]
+  \end{lemma}
+
+  \begin{lemma}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka untuk setiap $s,t\in[0,\infty)$ berlaku
+    \[\mathbb{E}(W(s)W(t))=\min\{s,t\}.\]
+  \end{lemma}
+
+  \begin{akibat}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka untuk setiap $s,t\in[0,\infty)$ berlaku
+    \[\mathbb{E}\bigl((W(t)-W(s))^2\bigr)=|t-s|.\]
+  \end{akibat}
+
+  \begin{lemma}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka fungsi karakteristik dari variabel acak
+    $W(t)$ diberikan oleh
+    \[\varphi_{W(t)}(\lambda)=\mathbb{E}\bigl(e^{i\lambda W(t)}\bigr)
+      =e^{-\lambda^2 t/2},\qquad \lambda\in\mathbb{R}.\]
+  \end{lemma}
+
+  \begin{definisi}
+    Suatu proses stokastik $\{W(t)\}_{t\ge 0}$ dengan nilai pada $\mathbb{R}^n$ yang dinyatakan
+    sebagai
+    \[W(t)=\bigl(W^1(t),W^2(t),\ldots,W^n(t)\bigr)\]
+    disebut sebagai proses Wiener berdimensi-$n$ apabila setiap komponen
+    $\{W^1(t)\}_{t\ge 0},\ldots,\{W^n(t)\}_{t\ge 0}$ merupakan proses Wiener bernilai real dan
+    saling bebas, yaitu untuk setiap $t\ge 0$, variabel acak
+    $W^1(t),\ldots,W^n(t)$ saling bebas.
+  \end{definisi}
+
+  \begin{definisi}
+    Suatu proses stokastik $\{\xi(t)\}_{t\in T}$ dikatakan memiliki inkremen yang stasioner
+    apabila untuk setiap $s,t\in T$ dan setiap $h$ sedemikian sehingga $s+h,t+h\in T$, berlaku
+    \[\xi(t+h)-\xi(s+h)\overset{d}{=}\xi(t)-\xi(s),\]
+    di mana $\overset{d}{=}$ menyatakan kesamaan distribusi. Dengan kata lain, distribusi
+    probabilitas dari inkremen $\xi(t)-\xi(s)$ hanya bergantung pada selisih waktu $t-s$, dan
+    tidak bergantung pada posisi waktu absolut.
+  \end{definisi}
+
+  \begin{proposisi}
+    Proses stokastik Wiener $\{W(t)\}_{t\ge 0}$ memiliki inkremen yang stasioner, yaitu untuk
+    setiap $0\le s<t$, inkremen $W(t)-W(s)$ berdistribusi normal dengan nilai rata-rata $0$ dan
+    variansi $t-s$, yaitu
+    \[W(t)-W(s)\sim\mathcal{N}(0,t-s).\]
+  \end{proposisi}
+
+  \begin{definisi}
+    Suatu proses stokastik $\{\xi(t)\}_{t\in T}$ dikatakan memiliki inkremen yang independen
+    apabila untuk setiap barisan waktu
+    \[t_0<t_1<\cdots<t_n,\qquad t_0,t_1,\ldots,t_n\in T,\]
+    variabel acak
+    \[\xi(t_1)-\xi(t_0),\ \xi(t_2)-\xi(t_1),\ \ldots,\ \xi(t_n)-\xi(t_{n-1})\]
+    saling independen. Dengan kata lain, untuk setiap himpunan Borel
+    $A_1,\ldots,A_n\subseteq\mathbb{R}$ berlaku
+    \begin{align*}
+       & \mathbb{P}\bigl(\xi(t_1)-\xi(t_0)\in A_1,\ldots,\xi(t_n)-\xi(t_{n-1})\in A_n\bigr) \\
+       & \qquad =\prod_{k=1}^{n}\mathbb{P}\bigl(\xi(t_k)-\xi(t_{k-1})\in A_k\bigr).
+    \end{align*}
+  \end{definisi}
+
+  \begin{teorema}
+    Jika $\xi$ dan $\eta$ adalah variabel acak yang memiliki distribusi normal bersama
+    (joint normal) pada ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$, maka berlaku
+    ekuivalensi
+    \[\xi\text{ dan }\eta\text{ independen}
+      \iff \mathbb{E}(\xi\eta)=\mathbb{E}(\xi)\mathbb{E}(\eta).\]
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $\xi_1,\xi_2,\ldots,\xi_n$ adalah variabel acak yang memiliki distribusi normal
+    bersama (joint normal) pada ruang probabilitas $(\Omega,\mathcal{F},\mathbb{P})$. Maka
+    berlaku ekuivalensi:
+    \[\{\xi_1,\ldots,\xi_n\}\text{ saling independen}
+      \iff \mathbb{E}(\xi_i\xi_j)=\mathbb{E}(\xi_i)\mathbb{E}(\xi_j)
+      \text{ untuk setiap }i\ne j.\]
+  \end{teorema}
+
+  \begin{proposisi}
+    Proses Wiener $\{W(t)\}_{t\ge 0}$ memiliki inkremen yang independen, yaitu untuk setiap
+    $0=t_0<t_1<\cdots<t_n$, berlaku inkremen
+    \[W(t_1)-W(t_0),\ W(t_2)-W(t_1),\ \ldots,\ W(t_n)-W(t_{n-1})\]
+    saling independen.
+  \end{proposisi}
+
+  \begin{akibat}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka untuk setiap
+    $0=t_0<t_1<\cdots<t_n\le s<t$, berlaku bahwa $W(t)-W(s)$ independen terhadap vektor variabel
+    acak
+    \[\bigl(W(t_1)-W(t_0),\ W(t_2)-W(t_1),\ \ldots,\ W(t_n)-W(t_{n-1})\bigr).\]
+  \end{akibat}
+
+  \begin{akibat}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka untuk setiap
+    $0=t_0<t_1<\cdots<t_n\le s<t$, berlaku bahwa $W(t)-W(s)$ independen terhadap vektor variabel
+    acak
+    \[\bigl(W(t_1),W(t_2),\ldots,W(t_n)\bigr).\]
+  \end{akibat}
+
+  \begin{akibat}
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka untuk setiap $0\le s<t$, inkremen
+    $W(t)-W(s)$ independen terhadap sigma-aljabar
+    \[\mathcal{F}_s=\sigma\{W(r):0\le r\le s\}.\]
+  \end{akibat}
+
+  \begin{lemma}
+    Proses Wiener $\{W(t)\}_{t\ge 0}$ merupakan martingale terhadap filtrasi alami
+    $\{\mathcal{F}_t\}_{t\ge 0}$, yaitu
+    \[\mathcal{F}_t=\sigma\{W(r):0\le r\le t\}.\]
+  \end{lemma}
+
+  \begin{lemma}
+    Proses $\{|W(t)|^2-t\}_{t\ge 0}$ merupakan martingale terhadap filtrasi alami
+    $\{\mathcal{F}_t\}_{t\ge 0}$, yaitu
+    \[\mathcal{F}_t=\sigma\{W(r):0\le r\le t\}.\]
+  \end{lemma}
+
+  \begin{lemma}
+    Proses
+    \[M(t)=e^{W(t)-t/2},\qquad t\ge 0,\]
+    adalah martingale terhadap filtrasi alami
+    \[\mathcal{F}_t=\sigma\{W(s):0\le s\le t\}.\]
+  \end{lemma}
+
+  \begin{teorema}
+    Suatu proses stokastik $W(t)$, dengan $t\ge 0$, merupakan proses Wiener jika dan hanya jika
+    kondisi berikut terpenuhi:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item hampir pasti $W(0)=0$;
+      \item lintasan sampel $t\mapsto W(t)$ adalah hampir pasti kontinu;
+      \item $W(t)$ memiliki inkremen yang stasioner dan saling independen;
+      \item inkremen $W(t)-W(s)$ memiliki distribusi normal dengan rata-rata $0$ dan variansi
+            $t-s$, untuk setiap $0\le s<t$.
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{lemma}
+    Misalkan $X$ adalah variabel acak dengan $\mathbb{E}(X)=0$ dan
+    $\mathbb{E}(X^2)=\sigma^2$. Jika untuk setiap $\lambda\in\mathbb{R}$ berlaku
+    \[\mathbb{E}\bigl(e^{i\lambda X}\bigr)=\exp\!\left(-\frac{1}{2}\lambda^2\sigma^2\right),\]
+    maka $X$ berdistribusi normal $\mathcal{N}(0,\sigma^2)$.
+  \end{lemma}
+
+  \begin{teorema}[Karakterisasi Martingale Levy]
+    Misalkan $W(t)$, dengan $t\ge 0$, adalah proses stokastik, dan
+    $\mathcal{F}_t=\sigma\bigl(W(s),s\le t\bigr)$ merupakan filtrasi yang dihasilkan oleh proses
+    tersebut. Proses $\{W(t)\}_{t\ge 0}$ adalah proses Wiener jika dan hanya jika kondisi berikut
+    dipenuhi:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item hampir pasti $W(0)=0$;
+      \item lintasan sampel $t\mapsto W(t)$ hampir pasti kontinu;
+      \item $W(t)$ merupakan martingale terhadap filtrasi $\mathcal{F}_t$;
+      \item $W(t)^2-t$ merupakan martingale terhadap filtrasi $\mathcal{F}_t$.
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{lemma}
+    Misalkan diberikan partisi waktu
+    \[0=t_0<t_1<\cdots<t_n=T,\]
+    dengan $t_i=\dfrac{iT}{n}$ untuk setiap $i=0,1,\ldots,n$, dan didefinisikan inkremen
+    \[\Delta_i^n W=W(t_{i+1})-W(t_i).\]
+    Jika $\{W(t)\}_{t\ge 0}$ adalah proses Wiener, maka berlaku
+    \[\lim_{n\to\infty}\sum_{i=0}^{n-1}(\Delta_i^n W)^2=T
+      \qquad \text{dalam }L^2.\]
+  \end{lemma}
+
+  \begin{definisi}
+    Variasi total dari suatu fungsi $f:[0,T]\to\mathbb{R}$ pada interval $[0,T]$ didefinisikan
+    sebagai
+    \[V_T(f)=\sup_{\Pi}\sum_{i=0}^{n-1}|f(t_{i+1})-f(t_i)|,\]
+    dengan supremum diambil terhadap semua partisi $\Pi$ dari interval $[0,T]$, yaitu
+    \[\Pi:0=t_0<t_1<\cdots<t_n=T.\]
+    Besaran
+    \[\|\Pi\|=\max_{0\le i\le n-1}(t_{i+1}-t_i)\]
+    disebut sebagai norma partisi. Dalam pengertian limit, variasi total juga dapat dipandang
+    sebagai
+    \[V_T(f)=\lim_{\|\Pi\|\to 0}\sum_{i=0}^{n-1}|f(t_{i+1})-f(t_i)|,\]
+    apabila limit tersebut ada. Suatu fungsi $f$ dikatakan memiliki variasi terbatas pada
+    $[0,T]$ jika $V_T(f)<\infty$.
+  \end{definisi}
+
+  \begin{teorema}
+    Misalkan $\{X_n\}$ adalah suatu barisan variabel acak yang didefinisikan pada ruang
+    probabilitas $(\Omega,\mathcal{F},\mathbb{P})$. Jika $X_n\to X$ dalam $L^2$, maka terdapat
+    suatu subsekuens $\{X_{n_k}\}$ sedemikian sehingga
+    \[X_{n_k}\to X\qquad \text{hampir pasti}.\]
+  \end{teorema}
+
+  \begin{teorema}
+    Variasi total dari lintasan proses Wiener $W(t)$ pada interval $[0,T]$ adalah tak hingga
+    hampir pasti, yaitu
+    \[V_T(W)=\infty\qquad \text{hampir pasti}.\]
+  \end{teorema}
+
+  \begin{lemma}
+    Proses Wiener $\{W(t)\}_{t\ge 0}$ tidak dapat didiferensialkan pada $t=0$ hampir pasti.
+  \end{lemma}
+
+  \begin{lemma}
+    Untuk setiap $t\ge 0$, proses Wiener $W(t)$ tidak dapat didiferensialkan pada titik $t$
+    hampir pasti.
+  \end{lemma}
+
+  \begin{teorema}
+    Dengan probabilitas $1$, lintasan proses Wiener $W(t)$ tidak terdiferensialkan untuk setiap
+    $t\ge 0$.
+  \end{teorema}
+
+  \section{\small Kalkulus Ito}
+
+  \begin{catatan}
+    Dalam kasus stokastik, penjumlahan pendekatan integral
+    \[\sum_{j=0}^{n-1} f(s_j)\bigl(W(t_{j+1})-W(t_j)\bigr)\]
+    sangat bergantung pada pemilihan titik $s_j$. Pada integral It\^o, dipilih titik kiri
+    $s_j=t_j$ agar integran hanya bergantung pada informasi masa lalu.
+  \end{catatan}
+
+  \begin{definisi}
+    Suatu fungsi stokastik $f(t)$, dengan $t\ge 0$, disebut sebagai proses sederhana acak jika
+    terdapat partisi berhingga
+    \[0=t_0<t_1<\cdots<t_n,\]
+    dan variabel acak $\eta_0,\eta_1,\ldots,\eta_{n-1}$ yang terintegralkan kuadrat, yaitu
+    $\mathbb{E}(|\eta_j|^2)<\infty$, sehingga
+    \[f(t)=\sum_{j=0}^{n-1}\eta_j\mathbf{1}_{[t_j,t_{j+1})}(t),\qquad t\ge 0,\]
+    dengan setiap $\eta_j$ merupakan variabel acak yang $\mathcal{F}_{t_j}$-terukur.
+    Himpunan semua proses sederhana acak tersebut dilambangkan dengan $M_{\text{step}}^2$.
+  \end{definisi}
+
+  \begin{definisi}
+    Integral stokastik dari suatu proses sederhana acak $f\in M_{\text{step}}^2$, yang memiliki
+    representasi
+    \[f(t)=\sum_{j=0}^{n-1}\eta_j\mathbf{1}_{[t_j,t_{j+1})}(t),\]
+    didefinisikan sebagai
+    \[I^*(f)=\sum_{j=0}^{n-1}\eta_j\bigl(W(t_{j+1})-W(t_j)\bigr).\]
+  \end{definisi}
+
+  \begin{proposisi}
+    Untuk setiap proses sederhana acak $f\in M_{\text{step}}^2$, integral stokastik
+    $I^*(f)\in L^2$ dan berlaku isometri It\^o
+    \[\mathbb{E}\bigl((I^*(f))^2\bigr)=\mathbb{E}\left(\int_0^\infty f(t)^2\,dt\right).\]
+  \end{proposisi}
+
+  \begin{lemma}
+    Untuk setiap proses sederhana acak $f,g\in M_{\text{step}}^2$, berlaku
+    \[\mathbb{E}\bigl(I^*(f)I^*(g)\bigr)=\mathbb{E}\left(\int_0^\infty f(t)g(t)\,dt\right).\]
+  \end{lemma}
+
+  \begin{lemma}
+    Pemetaan $I^*:M_{\text{step}}^2\to L^2$ adalah linear, yaitu untuk setiap
+    $f,g\in M_{\text{step}}^2$ dan $\alpha,\beta\in\mathbb{R}$ berlaku
+    \[I^*(\alpha f+\beta g)=\alpha I^*(f)+\beta I^*(g).\]
+  \end{lemma}
+
+  \begin{definisi}
+    Didefinisikan $M^2$ sebagai kelas proses stokastik $f(t)$, dengan $t\ge 0$, yang memenuhi:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item
+            \[\mathbb{E}\left(\int_0^\infty f(t)^2\,dt\right)<\infty.\]
+      \item Terdapat barisan proses sederhana acak $\{f_n\}\subset M_{\text{step}}^2$
+            sedemikian sehingga
+            \[\lim_{n\to\infty}\mathbb{E}\left(\int_0^\infty (f(t)-f_n(t))^2\,dt\right)=0.\]
+    \end{enumerate}
+  \end{definisi}
+
+  \begin{definisi}
+    Diberikan suatu proses stokastik $f\in M^2$. Integral stokastik It\^o dari $f$ didefinisikan
+    sebagai suatu variabel acak $I(f)\in L^2$ yang memenuhi
+    \[\lim_{n\to\infty}\mathbb{E}\bigl(|I(f)-I^*(f_n)|^2\bigr)=0,\]
+    untuk setiap barisan proses sederhana acak $\{f_n\}\subset M_{\text{step}}^2$ yang
+    mendekati $f$ dalam $M^2$. Integral ini dilambangkan dengan
+    \[I(f)=\int_0^\infty f(t)\,dW(t).\]
+  \end{definisi}
+
+  \begin{proposisi}
+    Untuk setiap $f\in M^2$, integral stokastik $I(f)\in L^2$ ada, bersifat unik hingga hampir
+    pasti, dan memenuhi
+    \[\mathbb{E}\bigl((I(f))^2\bigr)=\mathbb{E}\left(\int_0^\infty f(t)^2\,dt\right).\]
+  \end{proposisi}
+
+  \begin{definisi}
+    Untuk $T>0$, didefinisikan $M_T^2$ sebagai himpunan proses stokastik $f(t)$ sehingga
+    $\mathbf{1}_{[0,T]}f\in M^2$. Integral stokastik It\^o pada interval $[0,T]$ untuk
+    $f\in M_T^2$ didefinisikan sebagai
+    \[I_T(f)=I(\mathbf{1}_{[0,T]}f)=\int_0^T f(t)\,dW(t).\]
+  \end{definisi}
+
+  \begin{lemma}
+    Setiap proses sederhana acak $f\in M_{\text{step}}^2$ termasuk ke dalam $M_T^2$ untuk
+    sembarang $T>0$, dan
+    \[I_T(f)=\int_0^T f(s)\,dW(s)\]
+    adalah martingale.
+  \end{lemma}
+
+  \begin{teorema}
+    Misalkan $f(t)$, $t\ge 0$, adalah proses stokastik dengan lintasan kontinu hampir pasti,
+    yang teradaptasi terhadap filtrasi $\{\mathcal{F}_t\}$. Maka:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $f\in M^2$, sehingga integral It\^o $I(f)$ ada, jika
+            \[\mathbb{E}\left(\int_0^\infty |f(t)|^2\,dt\right)<\infty.\]
+      \item $f\in M_T^2$, sehingga integral It\^o $I_T(f)$ ada, jika
+            \[\mathbb{E}\left(\int_0^T |f(t)|^2\,dt\right)<\infty.\]
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{definisi}
+    Suatu proses stokastik $f(t)$, $t\ge 0$, disebut progresif terukur jika untuk setiap
+    $t\ge 0$, pemetaan
+    \[(s,\omega)\mapsto f(s,\omega)\]
+    merupakan fungsi yang terukur dari ruang ukur
+    \[([0,t]\times\Omega,\mathcal{B}([0,t])\otimes\mathcal{F})\]
+    ke $\mathbb{R}$.
+  \end{definisi}
+
+  \begin{teorema}
+    Berlaku pernyataan berikut:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item Ruang $M^2$ terdiri dari semua proses stokastik $f(t)$, $t\ge 0$, yang progresif
+            terukur dan memenuhi
+            \[\mathbb{E}\left(\int_0^\infty |f(t)|^2\,dt\right)<\infty.\]
+      \item Ruang $M_T^2$ terdiri dari semua proses stokastik $f(t)$, $t\ge 0$, yang progresif
+            terukur dan memenuhi
+            \[\mathbb{E}\left(\int_0^T |f(t)|^2\,dt\right)<\infty.\]
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{lemma}
+    Proses Wiener $W(t)$ termasuk dalam $M_T^2$ untuk setiap $T>0$.
+  \end{lemma}
+
+  \begin{teorema}
+    Misalkan $T>0$, $f,g\in M_T^2$, $\alpha,\beta\in\mathbb{R}$, dan $0\le s<t\le T$.
+    Maka berlaku:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item (Linearitas)
+            \[\int_0^t (\alpha f(r)+\beta g(r))\,dW(r)
+              =\alpha\int_0^t f(r)\,dW(r)+\beta\int_0^t g(r)\,dW(r).\]
+      \item (Isometri)
+            \[\mathbb{E}\left(\left(\int_0^t f(r)\,dW(r)\right)^2\right)
+              =\mathbb{E}\left(\int_0^t |f(r)|^2\,dr\right).\]
+      \item (Sifat martingale)
+            \[\mathbb{E}\left(\left.\int_0^t f(r)\,dW(r)\right|\mathcal{F}_s\right)
+              =\int_0^s f(r)\,dW(r).\]
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{lemma}
+    Jika $\xi,\xi_1,\xi_2,\ldots$ adalah variabel acak yang terintegrasi kuadrat dan memenuhi
+    $\xi_n\to\xi$ di $L^2$ saat $n\to\infty$, maka
+    \[\mathbb{E}(\xi_n\mid\mathcal{G})\to\mathbb{E}(\xi\mid\mathcal{G})
+      \quad \text{di }L^2 \text{ saat }n\to\infty,\]
+    untuk setiap sigma-aljabar $\mathcal{G}\subseteq\mathcal{F}$.
+  \end{lemma}
+
+  \begin{definisi}
+    Misalkan $\eta(t)$ dan $\zeta(t)$ adalah proses stokastik yang didefinisikan untuk setiap
+    $t\in T$, dengan $T\subseteq\mathbb{R}$. Kedua proses tersebut dikatakan saling modifikasi
+    (atau versi satu sama lain) jika
+    \[\mathbb{P}(\{\eta(t)=\zeta(t)\})=1,\qquad \text{untuk semua }t\in T.\]
+  \end{definisi}
+
+  \begin{teorema}
+    Jika $f(s)$ adalah proses yang termasuk dalam $M_T^2$ dan didefinisikan
+    \[\xi(t)=\int_0^t f(s)\,dW(s),\qquad t\ge 0,\]
+    maka terdapat modifikasi teradaptasi dari $\xi(t)$ yang memiliki lintasan kontinu hampir
+    pasti. Modifikasi ini unik hampir pasti.
+  \end{teorema}
+
+  \begin{definisi}
+    Suatu proses stokastik $\xi(t)$ untuk $t\ge 0$ disebut proses It\^o jika memiliki lintasan
+    kontinu hampir pasti, dan dapat direpresentasikan sebagai
+    \[\xi(T)=\xi(0)+\int_0^T a(t)\,dt+\int_0^T b(t)\,dW(t)\qquad \text{hampir pasti},\]
+    di mana $b(t)$ adalah proses yang termasuk dalam $M_T^2$ untuk semua $T\ge 0$, dan $a(t)$
+    adalah proses yang teradaptasi terhadap filtrasi $\mathcal{F}_t$ sehingga
+    \[\int_0^T |a(t)|\,dt<\infty\qquad \text{hampir pasti},\]
+    untuk semua $T\ge 0$. Kelas semua proses teradaptasi $a(t)$ yang memenuhi syarat ini
+    dilambangkan dengan $L_T^1$.
+  \end{definisi}
+
+  \begin{teorema}[Rumus Ito, Versi Sederhana]
+    Misalkan $F(t,x)$ adalah fungsi bernilai real dengan turunan parsial kontinu
+    $F_t(t,x)$, $F_x(t,x)$, dan $F_{xx}(t,x)$ untuk semua $t\ge 0$ dan $x\in\mathbb{R}$.
+    Diasumsikan juga bahwa proses $F_x(t,W(t))$ termasuk dalam $M_T^2$ untuk semua $T\ge 0$.
+    Maka $F(t,W(t))$ adalah proses It\^o yang memenuhi
+    \begin{align*}
+      F(T,W(T))-F(0,W(0))
+       & =
+      \int_0^T \left(F_t(t,W(t))+\frac{1}{2}F_{xx}(t,W(t))\right)\,dt \\
+       & \quad +
+      \int_0^T F_x(t,W(t))\,dW(t)
+      \qquad \text{hampir pasti}.
+    \end{align*}
+    Dalam notasi diferensial,
+    \[dF(t,W(t))
+      =\left(F_t(t,W(t))+\frac{1}{2}F_{xx}(t,W(t))\right)dt+F_x(t,W(t))\,dW(t).\]
+  \end{teorema}
+
+  \begin{teorema}[Rumus Ito, Kasus Umum]
+    Misalkan $\xi(t)$ adalah proses It\^o yang memenuhi
+    \[d\xi(t)=a(t)\,dt+b(t)\,dW(t).\]
+    Andaikan $F(t,x)$ adalah fungsi bernilai real dengan turunan parsial kontinu
+    $F_t(t,x)$, $F_x(t,x)$, dan $F_{xx}(t,x)$ untuk semua $t\ge 0$ dan $x\in\mathbb{R}$.
+    Jika proses $b(t)F_x(t,\xi(t))$ termasuk dalam $M_T^2$ untuk setiap $T\ge 0$, maka
+    $F(t,\xi(t))$ merupakan proses It\^o dan memenuhi
+    \begin{align*}
+      dF(t,\xi(t))
+       & =
+      \left(F_t(t,\xi(t))+F_x(t,\xi(t))a(t)+\frac{1}{2}F_{xx}(t,\xi(t))b(t)^2\right)\,dt \\
+       & \quad +F_x(t,\xi(t))b(t)\,dW(t).
+    \end{align*}
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan
+    \[dX_t=\mu(t,X_t)\,dt+\sigma(t,X_t)\,dW_t,\]
+    dengan:
+    \begin{itemize}[leftmargin=*, itemsep=0.5mm]
+      \item $X_t=(X_t^1,\ldots,X_t^n)^{\mathsf T}\in\mathbb{R}^n$ adalah proses It\^o
+            berdimensi $n$,
+      \item $\mu(t,X_t)=(\mu_1(t,X_t),\ldots,\mu_n(t,X_t))^{\mathsf T}\in\mathbb{R}^n$ adalah
+            vektor drift,
+      \item $\sigma(t,X_t)=[\sigma_{ij}(t,X_t)]_{n\times m}\in\mathbb{R}^{n\times m}$ adalah
+            matriks volatilitas,
+      \item $W_t=(W_t^1,\ldots,W_t^m)^{\mathsf T}\in\mathbb{R}^m$ adalah proses Wiener
+            berdimensi $m$.
+    \end{itemize}
+    Jika $f\in C^{1,2}([0,\infty)\times\mathbb{R}^n)$, maka berlaku
+    \begin{align*}
+      df(t,X_t)
+       & =
+      \frac{\partial f}{\partial t}(t,X_t)\,dt+(\nabla f(t,X_t))^{\mathsf T}\mu(t,X_t)\,dt \\
+       & \quad +
+      (\nabla f(t,X_t))^{\mathsf T}\sigma(t,X_t)\,dW_t
+      +\frac{1}{2}\operatorname{Tr}\!\bigl(\sigma(t,X_t)\sigma(t,X_t)^{\mathsf T}D^2f(t,X_t)\bigr)\,dt.
+    \end{align*}
+  \end{teorema}
+
+  \begin{definisi}
+    Suatu proses It\^o $\xi(t)$, $t\ge 0$, disebut solusi dari masalah nilai awal
+    \[d\xi(t)=f(\xi(t))\,dt+g(\xi(t))\,dW(t),\qquad \xi(0)=\xi_{\mathrm{init}},\]
+    jika $\xi_{\mathrm{init}}$ adalah variabel acak $\mathcal{F}_0$-terukur,
+    proses $f(\xi(t))$ dan $g(\xi(t))$ masing-masing termasuk dalam $L_T^1$ dan $M_T^2$,
+    serta
+    \[\xi(T)=\xi_{\mathrm{init}}+\int_0^T f(\xi(t))\,dt+\int_0^T g(\xi(t))\,dW(t)
+      \qquad \text{hampir pasti}\]
+    untuk semua $T\ge 0$.
+  \end{definisi}
+
+  \begin{teorema}
+    Misalkan $f$ dan $g$ adalah fungsi Lipschitz kontinu dari $\mathbb{R}$ ke $\mathbb{R}$,
+    yaitu terdapat konstanta $C>0$ sehingga untuk semua $x,y\in\mathbb{R}$ berlaku
+    \[|f(x)-f(y)|\le C|x-y|,\qquad |g(x)-g(y)|\le C|x-y|.\]
+    Selain itu, misalkan $\xi_{\mathrm{init}}$ adalah variabel acak $\mathcal{F}_0$-terukur
+    yang terintegral kuadrat. Maka masalah nilai awal
+    \[d\xi(t)=f(\xi(t))\,dt+g(\xi(t))\,dW(t),\qquad \xi(0)=\xi_{\mathrm{init}},\]
+    memiliki solusi $\xi(t)$, $t\ge 0$, dalam kelas proses It\^o. Solusi ini unik dalam arti
+    bahwa jika $\eta(t)$, $t\ge 0$, adalah solusi lain, maka
+    \[\mathbb{P}(\xi(t)=\eta(t),\ \forall t\ge 0)=1.\]
+    Lebih lanjut, diperoleh bahwa $\xi(t)\in L^2$ untuk semua $t\in[0,T]$, yaitu
+    \[\mathbb{E}|\xi(t)|^2\le
+      e^{C^2t(3t+6)}\Bigl(3\mathbb{E}|\xi_{\mathrm{init}}|^2+6t(|f(0)|^2+|g(0)|^2)\Bigr).\]
+  \end{teorema}
+
+  \begin{teorema}[Titik Tetap Banach]
+    Misalkan $(X,d)$ adalah ruang metrik lengkap dan $T:X\to X$ adalah suatu pemetaan kontraksi,
+    yaitu terdapat konstanta $0\le \alpha<1$ sehingga
+    \[d(T(x),T(y))\le \alpha\, d(x,y)\qquad \text{untuk semua }x,y\in X.\]
+    Maka:
+    \begin{enumerate}[leftmargin=*, itemsep=0.5mm]
+      \item $T$ memiliki tepat satu titik tetap $x^*\in X$, yaitu $T(x^*)=x^*$.
+      \item Untuk setiap $x_0\in X$, barisan yang didefinisikan dengan iterasi
+            \[x_{n+1}=T(x_n)\]
+            konvergen ke $x^*$.
+      \item Selain itu, terdapat taksiran konvergensi
+            \[d(x_n,x^*)\le \frac{\alpha^n}{1-\alpha}d(x_1,x_0).\]
+    \end{enumerate}
+  \end{teorema}
+
+  \begin{teorema}
+    Misalkan $\xi(t)$ adalah solusi eksak dari persamaan diferensial stokastik
+    \[d\xi(t)=f(\xi(t))\,dt+g(\xi(t))\,dW(t),\qquad \xi(0)=\xi_{\mathrm{init}},\]
+    dan $\xi_k^n$ adalah solusi numerik dari metode Euler-Maruyama dengan partisi waktu.
+    Jika $f$ dan $g$ memenuhi kondisi Lipschitz global dan linear growth, maka terdapat
+    konstanta $K>0$ yang bergantung pada $C,f(0),g(0),\xi_{\mathrm{init}}$, dan $T$, sehingga
+    \[\|\xi(t_k^n)-\xi_k^n\|_{L^2}
+      \le K\left(\sup_{i=0,1,\ldots,k-1}\Delta_i^n t\right)^{1/2}.\]
+  \end{teorema}
 \end{multicols}
 \end{document}
