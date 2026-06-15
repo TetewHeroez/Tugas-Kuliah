@@ -1123,6 +1123,77 @@ Dengan demikian, pembahasan selanjutnya diarahkan pada posisi-posisi entri matri
   Karena $C_{rs}=D_{rs}$ untuk setiap $(r,s)\in \underline{n}\times \underline{n}$, maka $C=D$. Dengan kata lain, $A\otimes B=B\otimes A$.
 \end{proof}
 
+\begin{contoh}\label{contoh:kriteria_komutatif_superlevel}
+  Misalkan diberikan dua Latin square
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 \\
+      3 & 1 & 2 \\
+      2 & 3 & 1
+    \end{pmatrix},
+    \qquad
+    B=
+    \begin{pmatrix}
+      1 & 3 & 2 \\
+      2 & 1 & 3 \\
+      3 & 2 & 1
+    \end{pmatrix}.
+  \]
+  Karena $n=3$, berdasarkan \autoref{thm:kriteria_komutatif_superlevel}
+  level yang perlu diperiksa adalah $v\in\{5,6\}$.
+
+  Dengan perkalian max-plus, diperoleh
+  \[
+    A\otimes B
+    =
+    \begin{pmatrix}
+      6 & 5 & 5 \\
+      5 & 6 & 5 \\
+      5 & 5 & 6
+    \end{pmatrix}
+  \]
+  dan
+  \[
+    B\otimes A
+    =
+    \begin{pmatrix}
+      6 & 5 & 5 \\
+      5 & 6 & 5 \\
+      5 & 5 & 6
+    \end{pmatrix}.
+  \]
+  Selanjutnya, himpunan superlevel untuk level $v=6$ adalah
+  \[
+    \mathcal{U}_{\ge 6}^{AB}
+    =
+    \{(1,1),(2,2),(3,3)\}
+    =
+    \mathcal{U}_{\ge 6}^{BA}.
+  \]
+  Untuk level $v=5$, semua entri pada kedua hasil perkalian bernilai
+  sekurang-kurangnya $5$. Oleh karena itu,
+  \[
+    \mathcal{U}_{\ge 5}^{AB}
+    =
+    \underline{3}\times\underline{3}
+    =
+    \mathcal{U}_{\ge 5}^{BA}.
+  \]
+  Jadi,
+  \[
+    \mathcal{U}_{\ge v}^{AB}
+    =
+    \mathcal{U}_{\ge v}^{BA}
+  \]
+  untuk setiap $v\in\{5,6\}$. Berdasarkan
+  \autoref{thm:kriteria_komutatif_superlevel}, diperoleh
+  $A\otimes B=B\otimes A$. Dengan demikian, $A$ dan $B$ komutatif terhadap
+  perkalian max-plus.
+\end{contoh}
+
+Walaupun sebenarnya semua penjelasan dan teorema yang diberikan itu sudah \textit{obvious} dari awal, namun disini tetap perlu diberikan agar pada bab selanjutnya yaitu tentang algoritma pencarian pasangan Latin square komutatif, kita dapat menggunakan kriteria tersebut untuk menyusun prosedur pencarian secara bertahap.
+
 \section{Pasangan Latin Square Komutatif}
 
 Pada bagian sebelumnya telah diperoleh kriteria komutativitas dua Latin square max-plus melalui kesamaan himpunan superlevel. Kriteria tersebut menyatakan bahwa dua Latin square $A$ dan $B$ komutatif terhadap perkalian max-plus jika dan hanya jika $\mathcal{U}_{\ge v}^{AB}=\mathcal{U}_{\ge v}^{BA}$ untuk setiap $v\in\{n+2,n+3,\ldots,2n\}$.
