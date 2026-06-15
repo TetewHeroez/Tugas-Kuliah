@@ -1,0 +1,313 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[indonesian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{
+  left=20mm,
+  right=20mm,
+  top=20mm,
+  bottom=25mm
+}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+  {\Large \textbf{EVALUASI AKHIR SEMESTER GENAP 2025/2026}}\\
+  {\Large \textbf{PROGRAM STUDI MAGISTER MATEMATIKA}}\\
+  {\Large \textbf{DEPARTEMEN MATEMATIKA FSAD ITS}}
+\end{center}
+
+\vspace{0.4cm}
+
+\begin{tabular}{@{}ll@{}}
+  Mata kuliah / Kode & : Kalkulus Stokastik, SM235312 \\
+  Hari / Tanggal     & : Senin, 15 Juni 2026 \\
+  Waktu / Sifat      & : 100 menit / Buka Buku \\
+  Kelas / Dosen      & : Dr. mont. Kistosil Fahim, M.Si.
+\end{tabular}
+
+\vspace{0.6cm}
+
+\begin{center}
+  \textbf{SOAL}
+\end{center}
+
+\begin{enumerate}[leftmargin=*, itemsep=0.5cm]
+  \item Suatu eksperimen terdiri dari pelemparan dua dadu bersisi delapan. Didefinisikan
+        variabel acak $\xi$ dan $\eta$ secara berturut-turut sebagai modulo $5$ dan $4$
+        dari jumlah nilai dua dadu yang dilempar. Tentukan ekspektasi bersyarat
+        $\E(\xi\mid\eta)$.
+
+  \item Misalkan $\theta\in\R$ dan $(W_t)_{t\ge 0}$ adalah proses Wiener standar pada
+        ruang probabilitas $(\Omega,\F,\PP)$ yang dilengkapi dengan filtrasi alami
+        $(\F_t)_{t\ge 0}=\sigma(\{W(r):0\le r\le t\})$. Didefinisikan proses
+        \[
+          M_t=\exp\left(\theta W_t-\frac{\theta^2}{2}t\right),\qquad t\ge 0.
+        \]
+        \begin{enumerate}[label=\alph*)]
+          \item Buktikan bahwa $\E[M_t]=1$ untuk setiap $t\ge 0$.
+          \item Tunjukkan bahwa $\E(M_t\mid\F_s)=M_s$ untuk $0\le s<t$.
+          \item Apakah $(M_t)_{t\ge 0}$ adalah martingale terhadap filtrasi $(\F_t)_{t\ge 0}$?
+                Jelaskan.
+        \end{enumerate}
+
+  \item Misal $W(t)$ proses Wiener dan $Y(t)=\ln S(t)$ dengan
+        \[
+          dS(t)=\mu S(t)\,dt+\sigma S(t)\,dW(t),
+        \]
+        dengan $\mu,\sigma\in\R$. Dengan menggunakan formula It\^o, buktikan bahwa
+        \[
+          Y(t)=Y(0)+\left(\mu-\frac{\sigma^2}{2}\right)t+\sigma W_t.
+        \]
+
+  \item Misalkan $f$ dan $g$ adalah fungsi dari $\R$ ke $\R$ yang turunan pertamanya
+        terbatas, yakni ada bilangan real positif $M$ sehingga untuk setiap $x,y\in\R$
+        berlaku
+        \[
+          |f'(x)|\le M,\qquad |g'(x)|\le M.
+        \]
+        Lebih lanjut $\xi_0$ adalah variabel acak terintegral kuadrat $\F_0$-terukur.
+        Tunjukkan bahwa masalah nilai awal
+        \[
+          d\xi(t)=f(\xi(t))\,dt+g(\xi(t))\,dW(t),\qquad \xi(0)=\xi_0
+        \]
+        mempunyai solusi tunggal.
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+  \textbf{PENYELESAIAN}
+\end{center}
+
+\begin{enumerate}[leftmargin=*, itemsep=0.6cm]
+  \item Misalkan $X_1$ dan $X_2$ menyatakan hasil dua dadu bersisi delapan, sehingga
+        $X_1,X_2\in\{1,2,\ldots,8\}$ dan
+        \[
+          S:=X_1+X_2\in\{2,3,\ldots,16\}.
+        \]
+        Karena semua $64$ pasangan hasil lemparan ekuipeluang, banyaknya pasangan yang
+        menghasilkan jumlah $s$ adalah
+        \[
+          c_s=
+          \begin{cases}
+            s-1, & 2\le s\le 9,\\
+            17-s, & 10\le s\le 16.
+          \end{cases}
+        \]
+        Didefinisikan
+        \[
+          \xi=S \pmod 5,\qquad \eta=S \pmod 4.
+        \]
+
+        Untuk setiap nilai $\eta$, kita hitung $\E(\xi\mid \eta=j)$.
+
+        Jika $\eta=0$, maka $S\in\{4,8,12,16\}$, dengan bobot berturut-turut
+        $3,7,5,1$, sedangkan nilai $\xi$ berturut-turut $4,3,2,1$. Jadi
+        \[
+          \E(\xi\mid\eta=0)
+          =\frac{3\cdot 4+7\cdot 3+5\cdot 2+1\cdot 1}{3+7+5+1}
+          =\frac{44}{16}
+          =\frac{11}{4}.
+        \]
+
+        Jika $\eta=1$, maka $S\in\{5,9,13\}$, dengan bobot $4,8,4$, dan nilai
+        $\xi$ adalah $0,4,3$. Jadi
+        \[
+          \E(\xi\mid\eta=1)
+          =\frac{4\cdot 0+8\cdot 4+4\cdot 3}{4+8+4}
+          =\frac{44}{16}
+          =\frac{11}{4}.
+        \]
+
+        Jika $\eta=2$, maka $S\in\{2,6,10,14\}$, dengan bobot $1,5,7,3$, dan nilai
+        $\xi$ adalah $2,1,0,4$. Jadi
+        \[
+          \E(\xi\mid\eta=2)
+          =\frac{1\cdot 2+5\cdot 1+7\cdot 0+3\cdot 4}{1+5+7+3}
+          =\frac{19}{16}.
+        \]
+
+        Jika $\eta=3$, maka $S\in\{3,7,11,15\}$, dengan bobot $2,6,6,2$, dan nilai
+        $\xi$ adalah $3,2,1,0$. Jadi
+        \[
+          \E(\xi\mid\eta=3)
+          =\frac{2\cdot 3+6\cdot 2+6\cdot 1+2\cdot 0}{2+6+6+2}
+          =\frac{24}{16}
+          =\frac{3}{2}.
+        \]
+
+        Dengan demikian,
+        \[
+          \E(\xi\mid\eta)=
+          \begin{cases}
+            \dfrac{11}{4}, & \eta=0,\\[1mm]
+            \dfrac{11}{4}, & \eta=1,\\[1mm]
+            \dfrac{19}{16}, & \eta=2,\\[1mm]
+            \dfrac{3}{2}, & \eta=3.
+          \end{cases}
+        \]
+        Atau secara ringkas,
+        \[
+          \E(\xi\mid\eta)
+          =\frac{11}{4}\mathbf{1}_{\{\eta=0\}}
+          +\frac{11}{4}\mathbf{1}_{\{\eta=1\}}
+          +\frac{19}{16}\mathbf{1}_{\{\eta=2\}}
+          +\frac{3}{2}\mathbf{1}_{\{\eta=3\}}.
+        \]
+
+  \item \begin{enumerate}[label=\alph*)]
+          \item Karena $W_t\sim\mathcal{N}(0,t)$, maka fungsi pembangkit momen peubah normal
+                memberi
+                \[
+                  \E\bigl(e^{\theta W_t}\bigr)=e^{\theta^2 t/2}.
+                \]
+                Akibatnya
+                \[
+                  \E[M_t]
+                  =\E\left[\exp\left(\theta W_t-\frac{\theta^2}{2}t\right)\right]
+                  =e^{-\theta^2 t/2}\E(e^{\theta W_t})
+                  =e^{-\theta^2 t/2}e^{\theta^2 t/2}
+                  =1.
+                \]
+
+          \item Untuk $0\le s<t$, tulis
+                \[
+                  W_t=W_s+(W_t-W_s).
+                \]
+                Maka
+                \begin{align*}
+                  M_t
+                   & =\exp\left(\theta W_t-\frac{\theta^2}{2}t\right)\\
+                   & =\exp\left(\theta W_s-\frac{\theta^2}{2}s\right)
+                  \exp\left(\theta(W_t-W_s)-\frac{\theta^2}{2}(t-s)\right)\\
+                   & =M_s\exp\left(\theta(W_t-W_s)-\frac{\theta^2}{2}(t-s)\right).
+                \end{align*}
+                Karena inkremen Wiener $W_t-W_s$ independen terhadap $\F_s$, maka
+                \begin{align*}
+                  \E(M_t\mid\F_s)
+                   & =M_s\,
+                  \E\left(
+                  \left.
+                  \exp\left(\theta(W_t-W_s)-\frac{\theta^2}{2}(t-s)\right)
+                  \right|\F_s
+                  \right)\\
+                   & =M_s\,
+                  \E\left[
+                  \exp\left(\theta(W_t-W_s)-\frac{\theta^2}{2}(t-s)\right)
+                  \right].
+                \end{align*}
+                Sekarang $W_t-W_s\sim\mathcal{N}(0,t-s)$, sehingga dengan cara yang sama
+                seperti pada butir (a),
+                \[
+                  \E\left[
+                  \exp\left(\theta(W_t-W_s)-\frac{\theta^2}{2}(t-s)\right)
+                  \right]
+                  =1.
+                \]
+                Jadi
+                \[
+                  \E(M_t\mid\F_s)=M_s.
+                \]
+
+          \item Ya, $(M_t)_{t\ge 0}$ adalah martingale terhadap filtrasi
+                $(\F_t)_{t\ge 0}$, sebab:
+                \begin{enumerate}[label=\roman*)]
+                  \item $M_t$ adalah $\F_t$-terukur karena merupakan fungsi dari $W_t$,
+                  \item $M_t$ terintegralkan karena $\E|M_t|=\E[M_t]=1<\infty$,
+                  \item dari butir (b) berlaku $\E(M_t\mid\F_s)=M_s$ untuk setiap $0\le s<t$.
+                \end{enumerate}
+                Jadi definisi martingale terpenuhi.
+        \end{enumerate}
+
+  \item Ambil fungsi
+        \[
+          F(x)=\ln x,\qquad x>0.
+        \]
+        Maka
+        \[
+          F'(x)=\frac{1}{x},\qquad F''(x)=-\frac{1}{x^2}.
+        \]
+        Karena $Y(t)=F(S(t))=\ln S(t)$ dan
+        \[
+          dS(t)=\mu S(t)\,dt+\sigma S(t)\,dW(t),
+        \]
+        maka menurut rumus It\^o,
+        \[
+          dY(t)=F'(S(t))\,dS(t)+\frac{1}{2}F''(S(t))(dS(t))^2.
+        \]
+        Selanjutnya,
+        \[
+          (dS(t))^2=(\sigma S(t)\,dW(t))^2=\sigma^2 S(t)^2\,dt,
+        \]
+        karena $(dW(t))^2=dt$ dan suku orde lebih tinggi diabaikan. Jadi
+        \begin{align*}
+          dY(t)
+           & =\frac{1}{S(t)}\bigl(\mu S(t)\,dt+\sigma S(t)\,dW(t)\bigr)
+          +\frac{1}{2}\left(-\frac{1}{S(t)^2}\right)\sigma^2 S(t)^2\,dt\\
+           & =\mu\,dt+\sigma\,dW(t)-\frac{1}{2}\sigma^2\,dt\\
+           & =\left(\mu-\frac{\sigma^2}{2}\right)dt+\sigma\,dW(t).
+        \end{align*}
+        Integralkan dari $0$ sampai $t$:
+        \begin{align*}
+          Y(t)-Y(0)
+           & =\int_0^t \left(\mu-\frac{\sigma^2}{2}\right)\,ds
+          +\sigma\int_0^t dW_s\\
+           & =\left(\mu-\frac{\sigma^2}{2}\right)t+\sigma W_t.
+        \end{align*}
+        Dengan demikian,
+        \[
+          Y(t)=Y(0)+\left(\mu-\frac{\sigma^2}{2}\right)t+\sigma W_t.
+        \]
+
+  \item Karena $|f'(x)|\le M$ dan $|g'(x)|\le M$ untuk semua $x\in\R$, maka dengan teorema
+        nilai tengah diperoleh, untuk setiap $x,y\in\R$,
+        \[
+          |f(x)-f(y)|\le M|x-y|,
+          \qquad
+          |g(x)-g(y)|\le M|x-y|.
+        \]
+        Jadi $f$ dan $g$ memenuhi kondisi \textit{global Lipschitz}.
+
+        Selanjutnya, masih dari teorema nilai tengah,
+        \begin{align*}
+          |f(x)|
+           & \le |f(x)-f(0)|+|f(0)|
+          \le M|x|+|f(0)|,\\
+          |g(x)|
+           & \le |g(x)-g(0)|+|g(0)|
+          \le M|x|+|g(0)|.
+        \end{align*}
+        Jadi terdapat konstanta $C>0$ sehingga
+        \[
+          |f(x)|+|g(x)|\le C(1+|x|),\qquad x\in\R,
+        \]
+        yaitu $f$ dan $g$ juga memenuhi kondisi \textit{linear growth}.
+
+        Karena $\xi_0$ adalah variabel acak $\F_0$-terukur dan terintegral kuadrat, maka semua
+        hipotesis teorema eksistensi dan ketunggalan untuk persamaan diferensial stokastik
+        \[
+          d\xi(t)=f(\xi(t))\,dt+g(\xi(t))\,dW(t),\qquad \xi(0)=\xi_0
+        \]
+        terpenuhi.
+
+        Oleh karena itu, masalah nilai awal tersebut mempunyai solusi yang ada untuk semua
+        $t\ge 0$ dan solusi itu tunggal (unik hampir pasti). Dengan kata lain, terdapat tepat
+        satu proses It\^o $\xi(t)$ yang memenuhi
+        \[
+          \xi(t)=\xi_0+\int_0^t f(\xi(s))\,ds+\int_0^t g(\xi(s))\,dW_s,
+          \qquad t\ge 0.
+        \]
+        Jadi terbukti bahwa masalah nilai awal tersebut mempunyai solusi tunggal.
+\end{enumerate}
+
+\end{document}
