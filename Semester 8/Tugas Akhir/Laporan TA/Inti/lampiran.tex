@@ -1,3 +1,167 @@
+\Lampiran{Perbandingan Waktu Pencarian Pasangan}
+
+\noindent
+Tabel berikut membandingkan waktu pencarian semua pasangan \textit{Latin square}
+komutatif terhadap perkalian max-plus dengan dua pendekatan, yaitu
+\textit{brute force} penuh dan pencarian yang lebih dahulu menyaring kandidat
+berdasarkan syarat perlu bahwa permutasi untuk simbol maksimum harus
+komutatif. Nilai pada ordo $3$ dan $4$ diperoleh secara eksak dari notebook
+\texttt{benchmark\_bruteforce\_vs\_teorema.ipynb}, sedangkan nilai pada ordo
+$5$ berupa estimasi karena pemeriksaan \textit{brute force} penuh memerlukan
+waktu yang sangat besar.
+
+\begin{center}
+    \scriptsize
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c|r|r|r|c|c|c|}
+        \hline
+        Ordo & Banyak Latin square & Total pasangan & Kandidat teorema & Tanpa teorema & Dengan teorema & Percepatan    \\
+        \hline
+        $3$  & 12                  & 144            & 72               & 0.004 detik   & 0.002 detik    & 2.11$\times$  \\
+        \hline
+        $4$  & 576                 & 331.776        & 69.120           & 8.193 detik   & 1.807 detik    & 4.53$\times$  \\
+        \hline
+        $5$  & 161.280             & 26.011.238.400 & 1.517.322.240    & 12.27 hari    & 17.34 jam      & 16.99$\times$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\noindent
+Pada ordo $5$, estimasi waktu diperoleh dari rata-rata waktu uji satu pasangan
+sebesar $4.08 \times 10^{-5}$ detik dan rata-rata waktu penyaringan syarat
+nilai maksimum sebesar $2.20 \times 10^{-8}$ detik. Hasil ini menunjukkan
+bahwa penggunaan syarat perlu dari simbol maksimum secara praktis menurunkan
+ruang pencarian secara signifikan.
+
+\Lampiran{Hasil Pasangan Latin Square Komutatif}
+
+\noindent
+Lampiran ini memuat hasil pasangan \textit{Latin square} komutatif untuk
+beberapa ordo yang masih layak ditampilkan langsung pada laporan.
+
+\subsection*{Ordo 3}
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|c|p{2.7cm}|p{2.5cm}|p{2.7cm}|p{2.5cm}|p{2.7cm}|}
+    \hline
+    No.                                                                         & Pasangan              & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endfirsthead
+    \hline
+    No.                                                                         & Pasangan              & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endhead
+    1                                                                           & $L_2 \circ L_3$       &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}6&5&5\\5&6&5\\5&5&6\end{pmatrix}$                                                                                                                               \\
+    \hline
+    2                                                                           & $L_2 \circ L_6$       &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}5&6&5\\5&5&6\\6&5&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    3                                                                           & $L_2 \circ L_7$       &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}6&4&5\\5&6&4\\4&5&6\end{pmatrix}$                                                                                                                               \\
+    \hline
+    4                                                                           & $L_2 \circ L_{10}$    &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}4&5&6\\6&4&5\\5&6&4\end{pmatrix}$                                                                                                                               \\
+    \hline
+    5                                                                           & $L_2 \circ L_{11}$    &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&5&6\\6&5&5\\5&6&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    6                                                                           & $L_3 \circ L_6$       &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}6&5&4\\4&6&5\\5&4&6\end{pmatrix}$                                                                                                                               \\
+    \hline
+    7                                                                           & $L_3 \circ L_7$       &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}5&5&6\\6&5&5\\5&6&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    8                                                                           & $L_3 \circ L_{10}$    &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&6&5\\5&5&6\\6&5&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    9                                                                           & $L_3 \circ L_{11}$    &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}4&6&5\\5&4&6\\6&5&4\end{pmatrix}$                                                                                                                               \\
+    \hline
+    10                                                                          & $L_6 \circ L_7$       &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}6&5&5\\5&6&5\\5&5&6\end{pmatrix}$                                                                                                                               \\
+    \hline
+    11                                                                          & $L_6 \circ L_{10}$    &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&5&6\\6&5&5\\5&6&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    12                                                                          & $L_6 \circ L_{11}$    &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&4&6\\6&5&4\\4&6&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    13                                                                          & $L_7 \circ L_{10}$    &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&6&4\\4&5&6\\6&4&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    14                                                                          & $L_7 \circ L_{11}$    &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&6&5\\5&5&6\\6&5&5\end{pmatrix}$                                                                                                                               \\
+    \hline
+    15                                                                          & $L_{10} \circ L_{11}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}6&5&5\\5&6&5\\5&5&6\end{pmatrix}$                                                                                                                               \\
+    \hline
+\end{longtable}
+\endgroup
+
 \Lampiran{Sintaks Program Python}
 
 \inputminted[

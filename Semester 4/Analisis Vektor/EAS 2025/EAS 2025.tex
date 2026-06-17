@@ -113,14 +113,14 @@
 \end{center}
 
 \begin{enumerate}
-    \item \textbf{Solusi:}
+    \item
           Untuk menunjukkan bahwa medan vektor $\mathbf{F} = (2xy + z^3)\mathbf{i} + x^2\mathbf{j} + 3xz^2\mathbf{k}$ adalah medan konservatif, kita perlu menunjukkan bahwa $\curl \mathbf{F} = \mathbf{0}$.
           \begin{flalign*}
               \curl \mathbf{F} & = \begin{vmatrix}
                                        \mathbf{i}                  & \mathbf{j}                  & \mathbf{k}                  \\
                                        \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
                                        2xy+z^3                     & x^2                         & 3xz^2
-                                   \end{vmatrix}                                                                                                                                                                                                               &                                                                            \\
+                                   \end{vmatrix}                                                                                                                                                                                                           &                                                                                \\
                                & = \mathbf{i}\left( \frac{\partial}{\partial y}(3xz^2) - \frac{\partial}{\partial z}(x^2) \right) - \mathbf{j}\left( \frac{\partial}{\partial x}(3xz^2) - \frac{\partial}{\partial z}(2xy+z^3) \right) + \mathbf{k}\left( \frac{\partial}{\partial x}(x^2) - \frac{\partial}{\partial y}(2xy+z^3) \right) & \\
                                & = \mathbf{i}(0 - 0) - \mathbf{j}(3z^2 - 3z^2) + \mathbf{k}(2x - 2x) = \mathbf{0}
           \end{flalign*}
@@ -136,7 +136,7 @@
 
           \noindent Kerja yang dilakukan dari titik $(1,-2,1)$ ke $(3,1,4)$ adalah:
           \[ W = \int_{(1,-2,1)}^{(3,1,4)} \mathbf{F} \cdot d\mathbf{r} = f(3,1,4) - f(1,-2,1) \]
-          \[ W = [ (3)^2(1) + (3)(4)^3 ] - [ (1)^2(-2) + (1)(1)^3 ] = [ 9 + 192 ] - [ -2 + 1 ] = 201 - (-1) = \mathbf{202} \]
+          \[ W = [ (3)^2(1) + (3)(4)^3 ] - [ (1)^2(-2) + (1)(1)^3 ] = [ 9 + 192 ] - [ -2 + 1 ] = 201 - (-1) = \boxed{202} \]
 
     \item
           \begin{enumerate}[label=\alph*.]
@@ -152,8 +152,7 @@
                             (1,0,0) -- (3,0,0)
                             plot[domain=0:180,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0)
                             -- (-1,0,0)
-                            plot[domain=180:0,smooth,variable=\t] ({cos(\t)},{sin(\t)},0)
-                            -- cycle;
+                            plot[domain=180:0,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
 
                             \draw[blue,thick,-Latex] plot[domain=0:45,smooth,variable=\t] ({3*cos(\t)},{3*sin(\t)},0);
                             \draw[blue,thick,-Latex] plot[domain=180:135,smooth,variable=\t] ({cos(\t)},{sin(\t)},0);
@@ -186,15 +185,15 @@
                                                                           & = \int_\pi^0 \sin t (4\cos^2 t - 1) dt = \left[ -\frac{4}{3}\cos^3 t + \cos t \right]_\pi^0 = \left( -\frac{4}{3} + 1 \right) - \left( \frac{4}{3} - 1 \right) = -\frac{2}{3} &
                               \end{flalign*}
                     \end{itemize}
-                    Total Usaha $W = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4} = 0 + 18 + 0 - \frac{2}{3} = \mathbf{\frac{52}{3}}$.
-                    \vspace{0.2cm}
+                    Total Usaha $W = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4} = 0 + 18 + 0 - \frac{2}{3} = \boxed{\frac{52}{3}}$.
+
 
               \item Hitung Usaha dengan Teorema Green:\\
                     $P = y^2, Q = 3xy \implies \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 3y - 2y = y$.
                     Dengan $D$ adalah daerah $1 \le r \le 3$, $0 \le \theta \le \pi$.
                     \begin{flalign*}
-                        W & = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA = \int_0^\pi \int_1^3 (r\sin\theta) r \, dr \, d\theta                                                                    & \\
-                          & = \left( \int_0^\pi \sin\theta \, d\theta \right) \left( \int_1^3 r^2 dr \right) = \left[ -\cos\theta \right]_0^\pi \left[ \frac{1}{3}r^3 \right]_1^3 = (2) \left( \frac{27 - 1}{3} \right) = \mathbf{\frac{52}{3}} &
+                        W & = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA = \int_0^\pi \int_1^3 (r\sin\theta) r \, dr \, d\theta                                                                   & \\
+                          & = \left( \int_0^\pi \sin\theta \, d\theta \right) \left( \int_1^3 r^2 dr \right) = \left[ -\cos\theta \right]_0^\pi \left[ \frac{1}{3}r^3 \right]_1^3 = (2) \left( \frac{27 - 1}{3} \right) = \boxed{\frac{52}{3}} &
                     \end{flalign*}
           \end{enumerate}
 
@@ -256,9 +255,9 @@
                     \[ \divergence \mathbf{A} = \frac{\partial}{\partial x}(z^2-x) + \frac{\partial}{\partial y}(-xy) + \frac{\partial}{\partial z}(3z) = -1 - x + 3 = 2 - x \]
                     Volume $V$ dibatasi oleh $0 \le x \le 3$, $0 \le z \le 4 - y^2 \implies -2 \le y \le 2$.
                     \begin{flalign*}
-                        \iint_S \mathbf{A} \cdot \mathbf{n} \, dS & = \iiint_V \divergence \mathbf{A} \, dV = \int_0^3 \int_{-2}^2 \int_0^{4-y^2} (2-x) dz\,dy\,dx                                                                                                                                                        & \\
-                                                                  & = \int_0^3 (2-x) dx \int_{-2}^2 (4-y^2) dy = \left[ 2x - \frac{1}{2}x^2 \right]_0^3 \left[ 4y - \frac{1}{3}y^3 \right]_{-2}^2                                                                                                                         & \\
-                                                                  & = \left( 6 - \frac{9}{2} \right) \left[ \left( 8 - \frac{8}{3} \right) - \left( -8 + \frac{8}{3} \right) \right] = \left( \frac{3}{2} \right) \left( 16 - \frac{16}{3} \right) = \left( \frac{3}{2} \right) \left( \frac{32}{3} \right) = \mathbf{16} &
+                        \iint_S \mathbf{A} \cdot \mathbf{n} \, dS & = \iiint_V \divergence \mathbf{A} \, dV = \int_0^3 \int_{-2}^2 \int_0^{4-y^2} (2-x) dz\,dy\,dx                                                                                                                                                       & \\
+                                                                  & = \int_0^3 (2-x) dx \int_{-2}^2 (4-y^2) dy = \left[ 2x - \frac{1}{2}x^2 \right]_0^3 \left[ 4y - \frac{1}{3}y^3 \right]_{-2}^2                                                                                                                        & \\
+                                                                  & = \left( 6 - \frac{9}{2} \right) \left[ \left( 8 - \frac{8}{3} \right) - \left( -8 + \frac{8}{3} \right) \right] = \left( \frac{3}{2} \right) \left( 16 - \frac{16}{3} \right) = \left( \frac{3}{2} \right) \left( \frac{32}{3} \right) = \boxed{16} &
                     \end{flalign*}
           \end{enumerate}
 \end{enumerate}
