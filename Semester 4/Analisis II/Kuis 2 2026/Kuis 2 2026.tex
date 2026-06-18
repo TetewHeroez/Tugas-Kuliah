@@ -1,0 +1,186 @@
+\documentclass[12pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{geometry}
+	\geometry{
+        left=10mm,
+        right=22mm,
+        top=20mm,
+        bottom=20mm,
+    }
+\usepackage{fancyhdr}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Template-Math-Depart}}
+
+\newtheorem*{teorema}{Teorema}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\jawab}{\textbf{Jawab}:}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\begin{tabular}{r c l}
+    \includegraphics[width=2.5cm]{ITS.png}
+     & \begin{tabular}{lcll}
+           \multicolumn{4}{c}{\begin{tabular}{c}
+                                   \MakeUppercase{evaluasi kedua semester genap 2025/2026} \\
+                                   \MakeUppercase{departemen matematika fsad its}           \\
+                                   \MakeUppercase{program sarjana}                          \\
+                               \end{tabular}}                               \\
+           \\
+           Matakuliah    & : & \multicolumn{2}{l}{Analisis II}                                                       \\
+           Hari, Tanggal & : & \multicolumn{2}{l}{Jum'at, 12 Juni 2026}                                                \\
+           Waktu / Sifat & : & \multicolumn{2}{l}{100 menit / \textit{Closed Book}}                                  \\
+           Kelas, Dosen  & : & A.                                                   & Dr. Sunarsini, S.Si., M.Si.         \\
+                         &   & C.                                                   & Dr. Dra. Rinurwati, M.Si.           \\
+                         &   & D.                                                   & Dr.mont. Kistosil Fahim, M.Si. \\
+       \end{tabular}
+     &
+    \includegraphics[width=2.5cm]{M.png}
+    \\ \hline
+    \multicolumn{3}{|l|}{\color{red}\MakeUppercase{harap diperhatikan !!!}}                                                \\
+    \multicolumn{3}{|l|}{\color{red}Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan pada saat ujian akan} \\
+    \multicolumn{3}{|l|}{\color{red}dikenakan sanksi pembatalan matakuliah pada semester yang sedang berjalan.}       \\
+    \hline
+\end{tabular}\\
+\vspace{0.5cm}
+
+\textbf{SOAL}
+\begin{enumerate}
+    \item Diberikan barisan fungsi $(f_n)$ dengan $f_n(x) = \frac{x}{x+n}$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Untuk setiap $\varepsilon > 0$ dan $x \in \R$, dapatkan bilangan asli $M(\varepsilon, x)$ sehingga untuk setiap $m \ge M(\varepsilon, x)$ berlaku $|f_m(x)| < \varepsilon$.
+        \item Dari hasil yang didapat pada bagian (a), apakah barisan $(f_n)$ konvergen? kalau konvergen dapatkan fungsi $f = \lim(f_n)$ dan domainnya.
+    \end{enumerate}
+    
+    \item Misalkan
+    \[f_n(x) = \frac{1}{1+x^n},\quad x \in [0,1].\]
+    Tentukan limit titik demi titik $f$ dari $(f_n)$ pada $[0,1]$. Apakah $(f_n)$ konvergen seragam ke $f$?
+    
+    \item Tunjukkan bahwa barisan
+    \[f_n(x) = xe^{-nx},\quad x \ge 0,\]
+    konvergen secara seragam pada $[0,\infty)$.
+    
+    \item Misalkan $g_n(x) := e^{-nx}$ untuk $x \ge 0, n \in \N$. Periksa hubungan antara $\lim g_n(x)$ dan $\lim g'_n(x)$.
+\end{enumerate}
+
+\newpage
+\textbf{SOLUSI}
+\begin{enumerate}
+    \item 
+    \begin{enumerate}[label=(\alph*)]
+        \item Diberikan sebarang $x \in \R$ dan $\varepsilon > 0$. 
+        Menurut Sifat Archimedes, terdapat bilangan asli $M(\varepsilon, x)$ sedemikian sehingga 
+        \[ M(\varepsilon, x) > \frac{|x|}{\varepsilon} + |x| \]
+        Maka untuk setiap $m \ge M(\varepsilon, x)$, kita memiliki $m > \frac{|x|}{\varepsilon} + |x|$. 
+        Hal ini mengakibatkan $m - |x| > \frac{|x|}{\varepsilon} \ge 0$. 
+        Berdasarkan ketaksamaan segitiga, kita tahu bahwa $|x+m| \ge m - |x|$. Karena $m - |x| > 0$, maka $x+m \neq 0$ dan
+        \[ |f_m(x)| = \left| \frac{x}{x+m} \right| \le \frac{|x|}{m - |x|} \]
+        Karena $m - |x| > \frac{|x|}{\varepsilon}$, maka $\frac{|x|}{m - |x|} < \varepsilon$ (berlaku untuk kasus $x \ne 0$). Jika $x=0$, $|f_m(0)| = 0 < \varepsilon$ otomatis memenuhi.
+        Jadi, terbukti bahwa $|f_m(x)| < \varepsilon$ dan bukti selesai.
+        
+        \item Dari hasil yang didapat pada bagian (a), kita memiliki bahwa untuk setiap $\varepsilon > 0$ dan setiap $x \in \R$ asalkan penyebutnya tidak nol, terdapat bilangan asli $M(\varepsilon, x)$ sehingga untuk setiap $n \ge M(\varepsilon, x)$ berlaku
+        \[|f_n(x) - 0| = |f_n(x)| < \varepsilon\]
+        Hal ini tepat merupakan definisi dari kekonvergenan titik demi titik (pointwise) barisan fungsi $(f_n)$ ke fungsi limit bernilai $0$. 
+        Jadi, barisan $(f_n)$ konvergen dengan fungsi limit $f(x) = \lim_{n\to\infty} f_n(x) = 0$.
+        
+        Syarat agar $f_n(x)$ terdefinisi adalah penyebutnya $x+n \neq 0 \iff x \neq -n$ untuk semua $n \in \N$.
+        Maka, domain dari fungsi $f$ adalah seluruh bilangan real kecuali bilangan bulat negatif, yaitu $D_f = \R \setminus \{-n \mid n \in \N\}$.
+    \end{enumerate}
+    
+    \item 
+    \begin{itemize}
+        \item \textbf{Mencari limit titik demi titik $f$}:\\
+        Tinjau untuk $x \in [0,1)$. Karena $0 \le x < 1$, maka $\lim_{n \to \infty} x^n = 0$. Akibatnya,
+        \[\lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \frac{1}{1+x^n} = \frac{1}{1+0} = 1\]
+        Tinjau untuk $x = 1$. Karena $x^n = 1^n = 1$, maka
+        \[\lim_{n \to \infty} f_n(1) = \lim_{n \to \infty} \frac{1}{1+1} = \frac{1}{2}\]
+        Jadi, limit titik demi titik $f$ dari $(f_n)$ pada $[0,1]$ adalah
+        \[f(x) = \begin{cases} 1 & \text{jika } 0 \le x < 1 \\ \frac{1}{2} & \text{jika } x = 1 \end{cases}\]
+        
+        \item \textbf{Mengecek konvergensi seragam}:
+        \begin{teorema}
+            Misalkan $f_n$ barisan fungsi kontinu pada himpunan $A$. Jika $(f_n)$ konvergen seragam ke fungsi $f$ pada $A$, maka fungsi limit $f$ juga kontinu pada $A$.
+        \end{teorema}
+        Berdasarkan teorema di atas, kita dapat menguji konvergensi seragam dengan cara yang lebih mudah: jika fungsi limit $f$ \textbf{tidak kontinu}, maka pasti $(f_n)$ \textbf{tidak konvergen seragam} (menggunakan prinsip kontraposisi).\\
+        Perhatikan bahwa tiap $f_n(x) = \frac{1}{1+x^n}$ adalah fungsi kontinu pada interval $[0,1]$.
+        Namun, fungsi limit $f(x)$ tidak kontinu pada $[0,1]$ (khususnya terputus di $x=1$, karena $\lim_{x \to 1^-} f(x) = 1 \neq f(1) = \frac{1}{2}$).
+        Karena fungsi limit $f$ tidak kontinu, maka dengan kontraposisi dapat disimpulkan bahwa barisan $(f_n)$ \textbf{tidak konvergen seragam} ke $f$ pada $[0,1]$.
+    \end{itemize}
+    
+    \item 
+    Pertama, kita tentukan fungsi limit titik demi titiknya, yaitu $f(x) = \lim_{n \to \infty} f_n(x)$.
+    \begin{itemize}
+        \item Untuk $x = 0$, $f_n(0) = 0 \cdot e^0 = 0$, sehingga $\lim_{n\to\infty} f_n(0) = 0$.
+        \item Untuk $x > 0$, $\lim_{n\to\infty} xe^{-nx} = x \lim_{n\to\infty} \frac{1}{e^{nx}} = x \cdot 0 = 0$.
+    \end{itemize}
+    Jadi, fungsi limitnya adalah $f(x) = 0$ untuk setiap $x \ge 0$.
+    
+    \begin{teorema}
+        Barisan fungsi $(f_n)$ konvergen seragam ke $f$ pada $A$ jika dan hanya jika $\lim_{n \to \infty} M_n = 0$, dengan $M_n = \sup_{x \in A} |f_n(x) - f(x)|$.
+    \end{teorema}
+    Untuk menunjukkan konvergensi seragam berdasarkan definisi tersebut, kita perlu meninjau nilai supremum dari selisih $|f_n(x) - f(x)|$ pada interval $[0,\infty)$.
+    \[M_n = \sup_{x \ge 0} |xe^{-nx} - 0| = \sup_{x \ge 0} (xe^{-nx})\]
+    Untuk mencari supremum, kita dapat menggunakan alat kalkulus dasar, yaitu mencari nilai maksimum fungsi dengan meninjau turunan pertamanya. Misalkan $g_n(x) = xe^{-nx}$, kita akan cari titik kritis dimana turunannya bernilai $0$:
+    \[g_n'(x) = e^{-nx} + x(-n)e^{-nx} = e^{-nx}(1-nx)\]
+    Nilai stasioner dicapai saat $g_n'(x) = 0$:
+    \[e^{-nx}(1-nx) = 0 \implies 1-nx = 0 \implies x = \frac{1}{n}\]
+    Karena $g_n'(x) > 0$ untuk $0 \le x < \frac{1}{n}$ dan $g_n'(x) < 0$ untuk $x > \frac{1}{n}$, maka terbukti bahwa $g_n(x)$ mencapai nilai maksimum global di titik $x = \frac{1}{n}$.
+    Nilai maksimumnya adalah
+    \[M_n = g_n\left(\frac{1}{n}\right) = \left(\frac{1}{n}\right) e^{-n(1/n)} = \frac{1}{ne}\]
+    Selanjutnya, kita evaluasi limit dari $M_n$ saat $n \to \infty$:
+    \[\lim_{n \to \infty} M_n = \lim_{n \to \infty} \frac{1}{ne} = 0\]
+    Karena $\lim_{n \to \infty} M_n = 0$, maka terbukti bahwa barisan fungsi $(f_n)$ \textbf{konvergen secara seragam} ke $f(x)=0$ pada $[0,\infty)$.
+    
+    \item 
+    Pertama, kita cari fungsi limit $g(x) = \lim_{n \to \infty} g_n(x)$ untuk $x \ge 0$.
+    \begin{itemize}
+        \item Jika $x = 0$, maka $g_n(0) = e^0 = 1$, sehingga $\lim_{n \to \infty} g_n(0) = 1$.
+        \item Jika $x > 0$, maka $\lim_{n \to \infty} g_n(x) = \lim_{n \to \infty} e^{-nx} = 0$.
+    \end{itemize}
+    Jadi, fungsi limit dari $g_n(x)$ adalah
+    \[g(x) = \lim_{n \to \infty} g_n(x) = \begin{cases} 1 & \text{jika } x = 0 \\ 0 & \text{jika } x > 0 \end{cases}\]
+    Selanjutnya, kita cari turunan dari $g_n(x)$:
+    \[g'_n(x) = -n e^{-nx}\]
+    Kemudian kita cari fungsi limit $\lim_{n \to \infty} g'_n(x)$:
+    \begin{itemize}
+        \item Jika $x = 0$, maka $g'_n(0) = -n e^0 = -n$. Sehingga $\lim_{n \to \infty} g'_n(0) = \lim_{n \to \infty} (-n) = -\infty$.
+        \item Jika $x > 0$, maka $\lim_{n \to \infty} g'_n(x) = \lim_{n \to \infty} \frac{-n}{e^{nx}} = 0$ (karena laju pertumbuhan eksponensial jauh lebih cepat dari polinomial).
+    \end{itemize}
+    Sekarang kita tinjau turunan dari fungsi limit $g(x)$.
+    Untuk $x > 0$, $g(x) = 0$, sehingga turunannya adalah $g'(x) = 0$.
+    Untuk $x = 0$, $g(x)$ memiliki loncatan diskontinuitas, sehingga $g(x)$ tidak memiliki turunan (tidak diferensiabel) di $x = 0$.
+    
+    \textbf{Penjelasan dan Hubungan:}
+    \begin{teorema}
+        Kekonvergenan titik-demi-titik saja tidak cukup untuk menjamin operasi limit dan turunan dapat dipertukarkan, yakni $\lim_{n \to \infty} g'_n(x) = \left(\lim_{n \to \infty} g_n(x)\right)'$. Syarat yang lebih kuat diperlukan, yaitu barisan turunan $(g'_n)$ harus konvergen seragam.
+    \end{teorema}
+    Berdasarkan hasil di atas, kita dapat membandingkan limit dari turunan dengan turunan dari limit, untuk memeriksa apakah teorema pertukaran limit dan turunan berlaku.
+    \begin{itemize}
+        \item Pada interval interval buka $(0, \infty)$, kita dapati bahwa $\lim_{n \to \infty} g'_n(x) = 0$ dan turunan dari limitnya $\left( \lim_{n \to \infty} g_n(x) \right)' = g'(x) = 0$. Jadi, \textbf{pertukaran limit dan diferensial berlaku} untuk $x > 0$.
+        \item Sebaliknya di $x = 0$, $\lim_{n \to \infty} g'_n(0) = -\infty$, sedangkan turunan dari fungsi limit di $x=0$ \textbf{tidak terdefinisi}. Jadi, \textbf{pertukaran limit dan diferensial gagal (tidak berlaku)} di $x=0$.
+    \end{itemize}
+    Kegagalan sifat pertukaran di $x=0$ ini terjadi secara spesifik karena barisan fungsi turunan $(g'_n)$ tidak konvergen secara seragam pada interval mana pun yang memuat $x=0$.
+\end{enumerate}
+\end{document}

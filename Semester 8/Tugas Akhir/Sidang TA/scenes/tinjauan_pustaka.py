@@ -24,6 +24,8 @@ def tinjauan_pustaka(s):
     next_slide_count(s)
     permutasi(s)
     next_slide_count(s)
+    centralizer(s)
+    next_slide_count(s)
     derangement(s)
     next_slide_count(s)
     S4_derangement(s)
@@ -511,6 +513,136 @@ def permutasi(s):
     s.wait(2)
     s.next_slide()
     s.play(FadeOut(VGroup(p_sigma_label, matrix_mobj, sigma_full, final_box, judul_bab, deskripsi_baru), shift=LEFT), run_time=1)
+
+def centralizer(s):
+    title_c = Title("Centralizer", color=BLACK, font_size=48, include_underline=True)
+    title_c[-1].set_color(BLACK)
+
+    definisi = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{Misalkan $G$ grup dan $a \in G$. \emph{Centralizer} dari $a$ di dalam $G$ adalah himpunan semua elemen yang komutatif dengan $a$, yaitu $C_G(a)=\{g \in G \mid ga=ag\}$.}",
+        color=BLACK,
+        font_size=30,
+    ).next_to(title_c, DOWN, buff=0.45)
+    formula = MathTex(
+        r"C_G(a)=\{g \in G \mid ga=ag\}=\{g \in G \mid gag^{-1}=a\}",
+        color=DARK_BROWN,
+        font_size=34,
+    ).next_to(definisi, DOWN, buff=0.4)
+
+    s.play(Write(title_c), Write(definisi), Write(formula), run_time=1.2)
+    s.wait(0.5)
+    s.next_slide()
+
+    sigma = (3, 2, 1)
+    labels = {
+        (1, 2, 3): r"(1)",
+        (2, 1, 3): r"(1\;2)",
+        (3, 2, 1): r"(1\;3)",
+        (1, 3, 2): r"(2\;3)",
+        (2, 3, 1): r"(1\;2\;3)",
+        (3, 1, 2): r"(1\;3\;2)",
+    }
+
+    def compose(left_perm, right_perm):
+        return tuple(left_perm[val - 1] for val in right_perm)
+
+    contoh_label = MathTex(
+        r"\sigma = (1\;3), \quad C_{S_3}(\sigma)=\{\tau \in S_3 \mid \tau \circ \sigma = \sigma \circ \tau\}",
+        color=BLACK,
+        font_size=34,
+    )
+    contoh_label.move_to(VGroup(definisi, formula).get_center())
+    s.play(ReplacementTransform(VGroup(definisi, formula), contoh_label), run_time=1)
+
+    cards = VGroup()
+    card_meta = []
+    for perm in labels:
+        bg = RoundedRectangle(
+            corner_radius=0.15,
+            width=2.5,
+            height=1.5,
+            fill_color=WHITE,
+            fill_opacity=1,
+            stroke_color=GRAY,
+            stroke_width=1.5,
+        )
+        tau_label = MathTex(r"\tau = " + labels[perm], color=BLACK, font_size=30)
+        status = Text("", color=BLACK, font_size=18)
+        group = VGroup(bg, tau_label, status)
+        tau_label.move_to(bg.get_center() + UP * 0.18)
+        status.move_to(bg.get_center() + DOWN * 0.38)
+        cards.add(group)
+        card_meta.append((perm, group, status))
+    cards.arrange_in_grid(rows=2, cols=3, buff=0.35)
+    cards.scale(0.95)
+    cards.next_to(contoh_label, DOWN, buff=0.55)
+
+    calc_box = RoundedRectangle(
+        corner_radius=0.18,
+        width=6.2,
+        height=1.35,
+        fill_color=GRAY_E,
+        fill_opacity=0.85,
+        stroke_color=BLACK,
+        stroke_width=1.5,
+    )
+    calc_box.to_edge(DOWN, buff=0.45)
+    left_expr = MathTex(r"\tau \circ \sigma", color=BLUE_E, font_size=30)
+    right_expr = MathTex(r"\sigma \circ \tau", color=RED_E, font_size=30)
+    equals_expr = MathTex(r"=", color=BLACK, font_size=30)
+    calc_group = VGroup(left_expr, equals_expr, right_expr).arrange(RIGHT, buff=0.2).move_to(calc_box)
+
+    s.play(FadeIn(cards, shift=UP * 0.2), FadeIn(calc_box), Write(calc_group), run_time=1)
+    s.next_slide(loop=True)
+
+    accepted_cards = VGroup()
+    rejected_cards = VGroup()
+    for perm, card, status in card_meta:
+        left_result = labels[compose(perm, sigma)]
+        right_result = labels[compose(sigma, perm)]
+        commute = left_result == right_result
+
+        hasil_kiri = MathTex(left_result, color=BLUE_E, font_size=30).move_to(left_expr)
+        hasil_kanan = MathTex(right_result, color=RED_E, font_size=30).move_to(right_expr)
+        badge_text = "Commute" if commute else "Reject"
+        badge_color = GREEN_E if commute else RED_E
+
+        status_target = Text(badge_text, color=badge_color, font_size=18, weight=BOLD).move_to(status)
+        outline = SurroundingRectangle(card[0], color=badge_color, buff=0.05, stroke_width=3)
+
+        s.play(
+            card[0].animate.set_stroke(badge_color, width=3),
+            card[1].animate.set_color(ORANGE),
+            Transform(left_expr, hasil_kiri),
+            Transform(right_expr, hasil_kanan),
+            run_time=0.6,
+        )
+        s.play(Transform(status, status_target), Create(outline), run_time=0.5)
+        s.play(FadeOut(outline), card[1].animate.set_color(BLACK), run_time=0.3)
+
+        if commute:
+            accepted_cards.add(card)
+        else:
+            rejected_cards.add(card)
+
+    s.wait(0.5)
+    s.next_slide()
+
+    hasil_final = MathTex(
+        r"C_{S_3}((1\;3)) = \{(1),(1\;3)\}",
+        color=DARK_BROWN,
+        font_size=38,
+    ).next_to(contoh_label, DOWN, buff=0.55)
+    s.play(
+        rejected_cards.animate.set_opacity(0.2),
+        accepted_cards.animate.arrange(RIGHT, buff=0.6).move_to(DOWN * 0.3),
+        FadeOut(VGroup(calc_box, calc_group)),
+        run_time=1,
+    )
+    s.play(Write(hasil_final), Circumscribe(accepted_cards, color=GREEN_E), run_time=1)
+    s.wait(1)
+    s.next_slide()
+    s.play(FadeOut(VGroup(title_c, contoh_label, cards, hasil_final), shift=LEFT), run_time=1)
 
 def S4_derangement(s):
     check_sym = "✓"

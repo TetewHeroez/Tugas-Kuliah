@@ -6,6 +6,8 @@ from scenes.content import *
 from scenes.pendahuluan import *
 from scenes.tinjauan_pustaka import *
 from scenes.metodologi import *
+from scenes.pembahasan import *
+from scenes.kesimpulan_saran import *
 from scenes.penutup import *
 
 from lib.slide_tracker import *
@@ -14,7 +16,7 @@ config.background_color = "#EAEAEA"
 
 class MainPresentation(MovingCameraScene, Slide):
     def construct(self):
-        self.total_slides = 12
+        self.total_slides = 15
 
         self.num = Integer(1, color=GRAY, font_size=24)
         self.text_total = Text(f"/{self.total_slides}", color=GRAY, font_size=24)
@@ -51,6 +53,14 @@ class MainPresentation(MovingCameraScene, Slide):
             content,
             lambda s: zoom_section(s,3),
             metodologi,
+            lambda s: unzoom_section(s,3),
+            content,
+            lambda s: zoom_section(s,4),
+            pembahasan,
+            lambda s: unzoom_section(s,4),
+            content,
+            lambda s: zoom_section(s,5),
+            kesimpulan_saran,
         ]
 
         judul(self)
