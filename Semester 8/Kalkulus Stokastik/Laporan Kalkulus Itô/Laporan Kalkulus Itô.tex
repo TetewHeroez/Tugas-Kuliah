@@ -1,0 +1,1281 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[indonesian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{array}
+
+\geometry{
+  left=30mm,
+  right=25mm,
+  top=25mm,
+  bottom=30mm
+}
+
+\onehalfspacing
+\setlength{\parindent}{1.2cm}
+\setlength{\parskip}{0.3em}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.6em}{}
+
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}[section]
+\newtheorem{contoh}[definisi]{Contoh}
+\newtheorem{remark}[definisi]{Catatan}
+\newtheorem{latihan}[definisi]{Latihan}
+
+\theoremstyle{plain}
+\newtheorem{teorema}[definisi]{Teorema}
+\newtheorem{proposisi}[definisi]{Proposisi}
+\newtheorem{lema}[definisi]{Lema}
+\newtheorem{akibat}[definisi]{Akibat}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\ind}{\mathbf{1}}
+
+\begin{document}
+
+\begin{center}
+  {\Large \textbf{LAPORAN KALKULUS IT\^O}}\\[0.3cm]
+  {\large Mata Kuliah Kalkulus Stokastik}\\[0.5cm]
+  Teosofi Hidayah Agung\\
+  Departemen Matematika ITS\\
+  Juni 2026
+\end{center}
+
+\section{Pendahuluan}
+
+\subsection{Latar Belakang}
+
+Kalkulus klasik dibangun di atas fungsi-fungsi yang cukup teratur, misalnya
+kontinu, terdiferensialkan, atau setidaknya memiliki variasi terbatas.
+Dalam banyak persoalan nyata, terutama pada pemodelan keuangan, fisika, dan
+biologi, besaran yang diamati justru berubah secara acak terhadap waktu.
+Contoh paling penting adalah proses Wiener $W(t)$ atau gerak Brown, yang
+memiliki lintasan kontinu hampir pasti tetapi tidak terdiferensialkan di titik
+manapun.
+
+Ketidakteraturan lintasan proses Wiener menyebabkan integral Riemann atau
+Riemann--Stieltjes klasik tidak dapat langsung dipakai. Pada kalkulus biasa,
+untuk integral
+\[
+  \int_0^t H(s)\,dA(s),
+\]
+integrator $A$ umumnya diminta memiliki variasi terbatas. Akan tetapi, dengan
+probabilitas satu, lintasan proses Wiener tidak mempunyai variasi terbatas.
+Karena itu, diperlukan kerangka baru yang dapat menjelaskan arti integral
+terhadap $dW(t)$ dan sekaligus menghasilkan aturan perubahan variabel yang
+konsisten. Kerangka inilah yang dikenal sebagai kalkulus It\^o.
+
+Selain penting secara teoretis, kalkulus It\^o juga merupakan dasar bagi
+persamaan diferensial stokastik
+\[
+  dX(t)=\mu(t)\,dt+\sigma(t)\,dW(t),
+\]
+yang dipakai untuk memodelkan sistem dengan komponen deterministik dan acak
+secara simultan.
+
+\subsection{Sejarah Singkat}
+
+Perkembangan kalkulus It\^o tidak lepas dari sejarah gerak Brown. Pada tahun
+1900, Louis Bachelier menggunakan gerak acak untuk memodelkan harga aset.
+Pada tahun 1905, Albert Einstein menjelaskan gerak partikel kecil dalam fluida
+melalui model Brownian motion. Pada tahun 1923, Norbert Wiener memberikan
+konstruksi matematis yang ketat bagi Brownian motion, sehingga proses ini juga
+disebut proses Wiener. Selanjutnya pada dekade 1940-an, Kiyosi It\^o
+mengembangkan integral stokastik dan aturan perubahan variabel yang sekarang
+menjadi fondasi kalkulus stokastik modern.
+
+\section{Landasan Teori}
+
+\subsection{Proses Wiener}
+
+Dalam laporan ini, $(\Omega,\F,\PP)$ menyatakan ruang probabilitas lengkap
+dengan filtrasi $\{\F_t\}_{t\ge 0}$. Proses stokastik $\{W(t)\}_{t\ge 0}$
+disebut \textbf{proses Wiener} apabila memenuhi sifat-sifat berikut.
+\begin{enumerate}[label=\alph*.]
+  \item $W(0)=0$ hampir pasti.
+  \item Untuk setiap $0\le s<t$, inkremen $W(t)-W(s)$ berdistribusi normal
+        dengan rataan $0$ dan variansi $t-s$.
+  \item Inkremen pada interval-interval saling lepas adalah independen.
+  \item Lintasan $t\mapsto W(t,\omega)$ kontinu hampir pasti.
+\end{enumerate}
+
+Sifat kedua dan ketiga sangat penting dalam hampir semua pembuktian pada
+kalkulus It\^o. Secara khusus, untuk $\Delta_jW:=W(t_{j+1})-W(t_j)$ berlaku
+\[
+  \E(\Delta_jW)=0,
+  \qquad
+  \E((\Delta_jW)^2)=t_{j+1}-t_j.
+\]
+
+\subsection{Ekspektasi Bersyarat}
+
+Karena pembuktian integral It\^o banyak menggunakan ekspektasi bersyarat,
+beberapa sifat yang akan dipakai dirangkum berikut.
+
+\begin{proposisi}
+  Misalkan $\mathcal{G}\subseteq\F$ sub-$\sigma$-aljabar dan $\xi,\zeta$ adalah
+  peubah acak terintegralkan. Maka berlaku:
+  \begin{enumerate}[label=\arabic*.]
+    \item \textbf{Linearitas:}
+          \[
+            \E(\alpha\xi+\beta\zeta\mid\mathcal{G})
+            =
+            \alpha\E(\xi\mid\mathcal{G})+\beta\E(\zeta\mid\mathcal{G}).
+          \]
+    \item \textbf{Sifat menara:} jika $\mathcal{H}\subseteq\mathcal{G}$, maka
+          \[
+            \E(\E(\xi\mid\mathcal{G})\mid\mathcal{H})=\E(\xi\mid\mathcal{H}).
+          \]
+    \item \textbf{Mengeluarkan faktor terukur:} jika $\xi$ $\mathcal{G}$-terukur
+          dan $\xi\zeta$ terintegralkan, maka
+          \[
+            \E(\xi\zeta\mid\mathcal{G})=\xi\,\E(\zeta\mid\mathcal{G}).
+          \]
+    \item \textbf{Independensi:} jika $\xi$ independen terhadap $\mathcal{G}$,
+          maka
+          \[
+            \E(\xi\mid\mathcal{G})=\E(\xi).
+          \]
+    \item \textbf{Mengambil ekspektasi penuh:}
+          \[
+            \E(\E(\xi\mid\mathcal{G}))=\E(\xi).
+          \]
+  \end{enumerate}
+\end{proposisi}
+
+\subsection{Motivasi Matematis}
+
+Dalam integral Riemann--Stieltjes klasik, konvergensi
+\[
+  \sum_{j=0}^{n-1} H(s_j)\bigl(A(t_{j+1})-A(t_j)\bigr)
+\]
+bergantung pada keteraturan fungsi $A$. Untuk proses Wiener, situasinya
+berbeda karena lintasannya sangat kasar. Bahkan secara informal,
+\[
+  \sum_{j=0}^{n-1}|W(t_{j+1})-W(t_j)|
+  \longrightarrow \infty
+\]
+saat ukuran partisi menuju nol. Akibatnya, pendekatan integral klasik tidak
+bisa langsung dipakai.
+
+Dalam konteks stokastik, jumlahan
+\[
+  \sum_{j=0}^{n-1} f(s_j)\bigl(W(t_{j+1})-W(t_j)\bigr)
+\]
+juga sensitif terhadap pilihan titik $s_j$. Pada integral It\^o, titik yang
+dipilih adalah titik kiri $s_j=t_j$. Pilihan ini memastikan integrand hanya
+menggunakan informasi yang tersedia sampai waktu $t_j$, sehingga sesuai dengan
+gagasan non-antisipatif dalam pemodelan stokastik.
+
+\section{Integral Stokastik It\^o untuk Proses Sederhana}
+
+\subsection{Proses Sederhana Acak}
+
+\begin{definisi}
+  Proses stokastik $f(t)$ disebut \textbf{proses sederhana acak} jika terdapat
+  partisi berhingga
+  \[
+    0=t_0<t_1<\cdots<t_n
+  \]
+  dan peubah acak $\eta_0,\eta_1,\ldots,\eta_{n-1}$ sedemikian sehingga
+  \[
+    f(t)=\sum_{j=0}^{n-1}\eta_j\ind_{[t_j,t_{j+1})}(t),
+  \]
+  dengan setiap $\eta_j$ adalah $\F_{t_j}$-terukur dan
+  $\E(|\eta_j|^2)<\infty$. Himpunan semua proses sederhana acak dilambangkan
+  dengan $M_{\mathrm{step}}^2$.
+\end{definisi}
+
+\begin{contoh}
+  Pada interval $[0,2]$, definisikan
+  \[
+    f(t)=2\ind_{[0,1)}(t)+W(1)\ind_{[1,2)}(t).
+  \]
+  Proses ini merupakan proses sederhana acak karena:
+  \begin{enumerate}[label=\alph*.]
+    \item koefisien pertama $\eta_0=2$ adalah peubah acak konstan, sehingga
+          $\F_0$-terukur;
+    \item koefisien kedua $\eta_1=W(1)$ adalah $\F_1$-terukur;
+    \item $\E(|\eta_0|^2)=4<\infty$ dan $\E(|\eta_1|^2)=\E(W(1)^2)=1<\infty$.
+  \end{enumerate}
+  Dengan demikian, semua syarat dalam definisi terpenuhi.
+\end{contoh}
+
+\subsection{Definisi Integral It\^o pada Proses Sederhana}
+
+\begin{definisi}
+  Jika
+  \[
+    f(t)=\sum_{j=0}^{n-1}\eta_j\ind_{[t_j,t_{j+1})}(t)
+    \in M_{\mathrm{step}}^2,
+  \]
+  maka \textbf{integral stokastik It\^o} dari $f$ didefinisikan oleh
+  \[
+    I^\ast(f)
+    :=
+    \sum_{j=0}^{n-1}\eta_j\bigl(W(t_{j+1})-W(t_j)\bigr).
+  \]
+\end{definisi}
+
+\begin{contoh}
+  Misalkan
+  \[
+    f(t)=3\ind_{[0,1)}(t)+W(1)\ind_{[1,2)}(t).
+  \]
+  Berdasarkan definisi, diperoleh
+  \[
+    I^\ast(f)
+    =
+    3\bigl(W(1)-W(0)\bigr)+W(1)\bigl(W(2)-W(1)\bigr).
+  \]
+  Karena $W(0)=0$, maka
+  \[
+    I^\ast(f)=3W(1)+W(1)\bigl(W(2)-W(1)\bigr).
+  \]
+  Contoh ini menunjukkan bahwa integral It\^o suatu proses sederhana acak
+  menghasilkan peubah acak yang bergantung pada lintasan proses Wiener.
+\end{contoh}
+
+\subsection{Sifat Dasar Integral It\^o}
+
+\begin{proposisi}[Isometri It\^o untuk proses sederhana]
+  Jika $f\in M_{\mathrm{step}}^2$, maka $I^\ast(f)\in L^2$ dan
+  \[
+    \E\bigl((I^\ast(f))^2\bigr)
+    =
+    \E\left(\int_0^\infty f(t)^2\,dt\right).
+  \]
+\end{proposisi}
+
+\begin{proof}
+  Misalkan
+  \[
+    f(t)=\sum_{j=0}^{n-1}\eta_j\ind_{[t_j,t_{j+1})}(t)
+  \]
+  dan tulis
+  \[
+    \Delta_jW:=W(t_{j+1})-W(t_j),
+    \qquad
+    \Delta_jt:=t_{j+1}-t_j.
+  \]
+  Maka
+  \[
+    I^\ast(f)=\sum_{j=0}^{n-1}\eta_j\Delta_jW.
+  \]
+
+  Langkah pertama adalah mengkuadratkan bentuk di atas:
+  \[
+    (I^\ast(f))^2
+    =
+    \sum_{j=0}^{n-1}\eta_j^2(\Delta_jW)^2
+    +
+    2\sum_{0\le k<j\le n-1}\eta_j\eta_k\,\Delta_jW\,\Delta_kW.
+  \]
+  Ambil ekspektasi pada kedua ruas. Kita peroleh
+  \begin{equation}
+    \label{eq:isometri-awal}
+    \E\bigl((I^\ast(f))^2\bigr)
+    =
+    \sum_{j=0}^{n-1}\E\bigl(\eta_j^2(\Delta_jW)^2\bigr)
+    +
+    2\sum_{0\le k<j\le n-1}\E\bigl(\eta_j\eta_k\Delta_jW\Delta_kW\bigr).
+  \end{equation}
+
+  Sekarang kita hitung suku diagonal. Karena $\eta_j$ adalah
+  $\F_{t_j}$-terukur dan $\Delta_jW$ independen terhadap $\F_{t_j}$, maka
+  dengan sifat menara dan sifat mengeluarkan faktor terukur diperoleh
+  \begin{align*}
+    \E\bigl(\eta_j^2(\Delta_jW)^2\bigr)
+     & =
+    \E\left(
+    \E\bigl(\eta_j^2(\Delta_jW)^2\mid\F_{t_j}\bigr)
+    \right)                                                \\
+     & =
+    \E\left(
+    \eta_j^2\E\bigl((\Delta_jW)^2\mid\F_{t_j}\bigr)
+    \right)                                                \\
+     & =
+    \E\left(
+    \eta_j^2\E\bigl((\Delta_jW)^2\bigr)
+    \right)
+    \qquad
+    \text{(karena $\Delta_jW$ independen dari $\F_{t_j}$)} \\
+     & =
+    \E(\eta_j^2)\,\Delta_jt.
+  \end{align*}
+
+  Berikutnya, kita periksa suku silang. Ambil $k<j$. Karena
+  $\eta_k,\eta_j,\Delta_kW$ semuanya $\F_{t_j}$-terukur dan $\Delta_jW$
+  independen terhadap $\F_{t_j}$, maka
+  \begin{align*}
+    \E(\eta_j\eta_k\Delta_jW\Delta_kW)
+     & =
+    \E\left(
+    \E(\eta_j\eta_k\Delta_jW\Delta_kW\mid\F_{t_j})
+    \right) \\
+     & =
+    \E\left(
+    \eta_j\eta_k\Delta_kW\,\E(\Delta_jW\mid\F_{t_j})
+    \right) \\
+     & =
+    \E\left(
+    \eta_j\eta_k\Delta_kW\,\E(\Delta_jW)
+    \right) \\
+     & =0,
+  \end{align*}
+  sebab $\E(\Delta_jW)=0$.
+
+  Dengan hasil ini, semua suku silang pada \eqref{eq:isometri-awal} hilang,
+  sehingga
+  \[
+    \E\bigl((I^\ast(f))^2\bigr)
+    =
+    \sum_{j=0}^{n-1}\E(\eta_j^2)\Delta_jt.
+  \]
+
+  Di sisi lain, karena $f$ konstan pada setiap interval partisi, maka
+  \[
+    \int_0^\infty f(t)^2\,dt
+    =
+    \sum_{j=0}^{n-1}\eta_j^2\Delta_jt.
+  \]
+  Mengambil ekspektasi menghasilkan
+  \[
+    \E\left(\int_0^\infty f(t)^2\,dt\right)
+    =
+    \sum_{j=0}^{n-1}\E(\eta_j^2)\Delta_jt.
+  \]
+  Jadi
+  \[
+    \E\bigl((I^\ast(f))^2\bigr)
+    =
+    \E\left(\int_0^\infty f(t)^2\,dt\right).
+  \]
+  Karena ruas kanan berhingga, maka $I^\ast(f)\in L^2$.
+\end{proof}
+
+\begin{lema}
+  Untuk setiap $f,g\in M_{\mathrm{step}}^2$ berlaku
+  \[
+    \E\bigl(I^\ast(f)I^\ast(g)\bigr)
+    =
+    \E\left(\int_0^\infty f(t)g(t)\,dt\right).
+  \]
+\end{lema}
+
+\begin{proof}
+  Ambil partisi bersama sehingga
+  \[
+    f(t)=\sum_{j=0}^{n-1}\eta_j\ind_{[t_j,t_{j+1})}(t),
+    \qquad
+    g(t)=\sum_{j=0}^{n-1}\zeta_j\ind_{[t_j,t_{j+1})}(t).
+  \]
+  Maka
+  \[
+    I^\ast(f)I^\ast(g)
+    =
+    \sum_{j=0}^{n-1}\sum_{k=0}^{n-1}\eta_j\zeta_k\Delta_jW\Delta_kW.
+  \]
+  Dengan argumen yang sama seperti pada proposisi sebelumnya:
+  \begin{enumerate}[label=\arabic*.]
+    \item jika $j=k$, maka
+          \[
+            \E(\eta_j\zeta_j(\Delta_jW)^2)=\E(\eta_j\zeta_j)\Delta_jt;
+          \]
+    \item jika $j\ne k$, maka suku silang bernilai nol karena salah satu
+          inkremen memiliki mean nol dan independen terhadap informasi masa lalu.
+  \end{enumerate}
+  Akibatnya,
+  \[
+    \E\bigl(I^\ast(f)I^\ast(g)\bigr)
+    =
+    \sum_{j=0}^{n-1}\E(\eta_j\zeta_j)\Delta_jt.
+  \]
+  Sementara itu,
+  \[
+    \int_0^\infty f(t)g(t)\,dt
+    =
+    \sum_{j=0}^{n-1}\eta_j\zeta_j\Delta_jt,
+  \]
+  sehingga setelah diambil ekspektasi diperoleh hasil yang sama.
+\end{proof}
+
+\begin{lema}
+  Pemetaan $I^\ast:M_{\mathrm{step}}^2\to L^2$ bersifat linear, yaitu
+  \[
+    I^\ast(\alpha f+\beta g)=\alpha I^\ast(f)+\beta I^\ast(g)
+  \]
+  untuk setiap $f,g\in M_{\mathrm{step}}^2$ dan $\alpha,\beta\in\R$.
+\end{lema}
+
+\begin{proof}
+  Tulis $f$ dan $g$ pada partisi yang sama. Maka koefisien dari
+  $\alpha f+\beta g$ adalah $\alpha\eta_j+\beta\zeta_j$. Dengan memakai definisi
+  integral It\^o untuk proses sederhana,
+  \begin{align*}
+    I^\ast(\alpha f+\beta g)
+     & =
+    \sum_{j=0}^{n-1}(\alpha\eta_j+\beta\zeta_j)\Delta_jW \\
+     & =
+    \alpha\sum_{j=0}^{n-1}\eta_j\Delta_jW
+    +
+    \beta\sum_{j=0}^{n-1}\zeta_j\Delta_jW                \\
+     & =
+    \alpha I^\ast(f)+\beta I^\ast(g).
+  \end{align*}
+\end{proof}
+
+\section{Perluasan Integral It\^o}
+
+\subsection{Ruang M2}
+
+\begin{definisi}
+  Ruang $M^2$ adalah himpunan semua proses stokastik $f(t)$ yang memenuhi:
+  \begin{enumerate}[label=\arabic*.]
+    \item
+          \[
+            \E\left(\int_0^\infty |f(t)|^2\,dt\right)<\infty;
+          \]
+    \item terdapat barisan $\{f_n\}\subset M_{\mathrm{step}}^2$ sehingga
+          \[
+            \lim_{n\to\infty}
+            \E\left(\int_0^\infty |f(t)-f_n(t)|^2\,dt\right)=0.
+          \]
+  \end{enumerate}
+\end{definisi}
+
+\begin{contoh}
+  Proses deterministik $f(t)=e^{-t}$, $t\ge 0$, termasuk dalam $M^2$.
+\end{contoh}
+
+\begin{proof}
+  Pertama,
+  \[
+    \int_0^\infty e^{-2t}\,dt=\frac12,
+  \]
+  sehingga syarat integrabilitas kuadrat terpenuhi.
+
+  Kedua, untuk setiap $n\in\N$ definisikan aproksimasi tangga
+  \[
+    f_n(t)
+    =
+    \sum_{j=0}^{n^2-1}e^{-j/n}\ind_{[j/n,(j+1)/n)}(t).
+  \]
+  Proses $f_n$ adalah proses sederhana deterministik, maka $f_n\in
+    M_{\mathrm{step}}^2$. Karena $e^{-t}$ kontinu dan menurun, diperoleh
+  $f_n(t)\to f(t)$ untuk setiap $t\ge 0$. Selain itu,
+  \[
+    |f_n(t)-f(t)|^2\le 4e^{-2t},
+  \]
+  dan fungsi pembatas $4e^{-2t}$ terintegralkan pada $[0,\infty)$. Dengan
+  teorema konvergensi terdominasi,
+  \[
+    \int_0^\infty |f_n(t)-f(t)|^2\,dt\to 0.
+  \]
+  Karena semua fungsi deterministik, mengambil ekspektasi tidak mengubah hasil.
+  Jadi $f\in M^2$.
+\end{proof}
+
+\subsection{Definisi Integral It\^o pada Ruang M2}
+
+\begin{definisi}
+  Jika $f\in M^2$, maka integral It\^o dari $f$ didefinisikan sebagai peubah
+  acak $I(f)\in L^2$ yang memenuhi
+  \[
+    I^\ast(f_n)\xrightarrow{L^2}I(f),
+  \]
+  untuk setiap barisan $\{f_n\}\subset M_{\mathrm{step}}^2$ yang mendekati $f$
+  dalam norma $M^2$.
+\end{definisi}
+
+\begin{proposisi}
+  Untuk setiap $f\in M^2$, integral stokastik $I(f)$ ada, unik dalam $L^2$, dan
+  memenuhi
+  \[
+    \E\bigl((I(f))^2\bigr)
+    =
+    \E\left(\int_0^\infty f(t)^2\,dt\right).
+  \]
+\end{proposisi}
+
+\begin{proof}
+  Definisikan norma
+  \[
+    \|f\|_{M^2}
+    :=
+    \left(
+    \E\left(\int_0^\infty |f(t)|^2\,dt\right)
+    \right)^{1/2},
+    \qquad
+    \|\xi\|_{L^2}:=\bigl(\E(\xi^2)\bigr)^{1/2}.
+  \]
+
+  Ambil barisan aproksimasi $\{h_n\}\subset M_{\mathrm{step}}^2$ sehingga
+  $\|f-h_n\|_{M^2}\to 0$. Kita tunjukkan bahwa $\{I^\ast(h_n)\}$ adalah barisan
+  Cauchy di $L^2$. Dengan linearitas $I^\ast$ dan isometri It\^o untuk proses
+  sederhana,
+  \begin{align*}
+    \|I^\ast(h_n)-I^\ast(h_m)\|_{L^2}^2
+     & =
+    \|I^\ast(h_n-h_m)\|_{L^2}^2 \\
+     & =
+    \|h_n-h_m\|_{M^2}^2.
+  \end{align*}
+  Karena $\{h_n\}$ konvergen dalam $M^2$, barisan tersebut Cauchy. Maka
+  $\{I^\ast(h_n)\}$ juga Cauchy di $L^2$.
+
+  Ruang $L^2$ lengkap, sehingga terdapat $Y\in L^2$ dengan
+  \[
+    I^\ast(h_n)\xrightarrow{L^2}Y.
+  \]
+  Kita definisikan $I(f):=Y$.
+
+  Berikutnya, kita buktikan bahwa definisi ini tidak bergantung pada pemilihan
+  barisan aproksimasi. Misalkan $\{g_n\}\subset M_{\mathrm{step}}^2$ juga
+  memenuhi $g_n\to f$ dalam $M^2$. Maka
+  \begin{align*}
+    \|I^\ast(h_n)-I^\ast(g_n)\|_{L^2}
+     & =
+    \|I^\ast(h_n-g_n)\|_{L^2} \\
+     & =
+    \|h_n-g_n\|_{M^2}         \\
+     & \le
+    \|h_n-f\|_{M^2}+\|g_n-f\|_{M^2}\to 0.
+  \end{align*}
+  Jadi kedua barisan integral mempunyai limit $L^2$ yang sama. Dengan demikian,
+  $I(f)$ terdefinisi dengan baik dan unik.
+
+  Terakhir, dari isometri untuk $h_n$ diperoleh
+  \[
+    \|I^\ast(h_n)\|_{L^2}=\|h_n\|_{M^2}.
+  \]
+  Ambil limit ketika $n\to\infty$. Karena norma kontinu terhadap limit $L^2$,
+  didapat
+  \[
+    \|I(f)\|_{L^2}=\|f\|_{M^2}.
+  \]
+  Dengan mengkuadratkan kedua ruas, hasil yang diinginkan diperoleh:
+  \[
+    \E\bigl((I(f))^2\bigr)
+    =
+    \E\left(\int_0^\infty f(t)^2\,dt\right).
+  \]
+\end{proof}
+
+\begin{lema}
+  Jika $f\in M_{\mathrm{step}}^2$, maka integral pada ruang $M^2$ konsisten
+  dengan definisi awal, yaitu $I(f)=I^\ast(f)$.
+\end{lema}
+
+\begin{proof}
+  Ambil sebarang barisan $\{f_n\}\subset M_{\mathrm{step}}^2$ yang mendekati $f$
+  dalam $M^2$. Dengan isometri It\^o untuk proses sederhana,
+  \[
+    \E\bigl(|I^\ast(f)-I^\ast(f_n)|^2\bigr)
+    =
+    \E\left(\int_0^\infty |f(t)-f_n(t)|^2\,dt\right)\to 0.
+  \]
+  Jadi $I^\ast(f_n)\xrightarrow{L^2}I^\ast(f)$. Berdasarkan definisi integral
+  pada $M^2$, limit ini harus sama dengan $I(f)$. Maka $I(f)=I^\ast(f)$.
+\end{proof}
+
+\subsection{Integral pada Interval Berhingga}
+
+\begin{definisi}
+  Untuk $T>0$, didefinisikan
+  \[
+    M_T^2:=\{f:\ind_{[0,T]}f\in M^2\}.
+  \]
+  Integral It\^o pada interval berhingga didefinisikan oleh
+  \[
+    I_T(f):=I(\ind_{[0,T]}f)=\int_0^T f(t)\,dW(t).
+  \]
+\end{definisi}
+
+\begin{lema}
+  Jika $f\in M_{\mathrm{step}}^2$, maka proses
+  \[
+    M_t:=\int_0^t f(s)\,dW(s), \qquad t\ge 0,
+  \]
+  merupakan martingale.
+\end{lema}
+
+\begin{proof}
+  Ambil $0\le s<t$ dan perhalus partisi sehingga $s$ dan $t$ menjadi titik
+  partisi. Maka ada indeks $k<m$ dengan
+  \[
+    s=t_k,\qquad t=t_m,
+  \]
+  dan
+  \[
+    M_t=\sum_{j=0}^{m-1}\eta_j\Delta_jW,
+    \qquad
+    M_s=\sum_{j=0}^{k-1}\eta_j\Delta_jW.
+  \]
+  Hitung ekspektasi bersyarat terhadap $\F_s$:
+  \[
+    \E(M_t\mid\F_s)
+    =
+    \sum_{j=0}^{m-1}\E(\eta_j\Delta_jW\mid\F_s).
+  \]
+  Untuk $j<k$, peubah $\eta_j\Delta_jW$ sudah $\F_s$-terukur, sehingga
+  \[
+    \E(\eta_j\Delta_jW\mid\F_s)=\eta_j\Delta_jW.
+  \]
+  Untuk $j\ge k$, karena $\F_s\subseteq \F_{t_j}$, sifat menara memberi
+  \[
+    \E(\eta_j\Delta_jW\mid\F_s)
+    =
+    \E\bigl(\E(\eta_j\Delta_jW\mid\F_{t_j})\mid\F_s\bigr).
+  \]
+  Selanjutnya $\eta_j$ adalah $\F_{t_j}$-terukur dan $\Delta_jW$ independen
+  terhadap $\F_{t_j}$ dengan mean nol, maka
+  \[
+    \E(\eta_j\Delta_jW\mid\F_{t_j})
+    =
+    \eta_j\E(\Delta_jW\mid\F_{t_j})
+    =
+    \eta_j\E(\Delta_jW)=0.
+  \]
+  Jadi semua suku dengan $j\ge k$ hilang, sehingga
+  \[
+    \E(M_t\mid\F_s)=\sum_{j=0}^{k-1}\eta_j\Delta_jW=M_s.
+  \]
+  Dengan demikian, $\{M_t\}_{t\ge 0}$ adalah martingale.
+\end{proof}
+
+\section{Kriteria Eksistensi Integral It\^o}
+
+\subsection{Proses Teradaptasi dengan Lintasan Kontinu}
+
+\begin{teorema}
+  Misalkan $f(t)$ proses stokastik yang teradaptasi terhadap filtrasi
+  $\{\F_t\}_{t\ge 0}$ dan memiliki lintasan kontinu hampir pasti. Maka:
+  \begin{enumerate}[label=\arabic*.]
+    \item jika
+          \[
+            \E\left(\int_0^\infty |f(t)|^2\,dt\right)<\infty,
+          \]
+          maka $f\in M^2$;
+    \item jika untuk suatu $T>0$ berlaku
+          \[
+            \E\left(\int_0^T |f(t)|^2\,dt\right)<\infty,
+          \]
+          maka $f\in M_T^2$.
+  \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+  Kita buktikan butir pertama terlebih dahulu. Untuk setiap $n\in\N$,
+  konstruksikan proses sederhana acak
+  \[
+    f_n(t)=
+    \begin{cases}
+      n\displaystyle\int_{\frac{k-1}{n}}^{\frac{k}{n}} f(s)\,ds,
+         & \text{jika }\frac{k}{n}\le t<\frac{k+1}{n},\ k=1,2,\ldots,n^2-1, \\[3mm]
+      0, & \text{jika }t\ge n \text{ atau } 0\le t<\frac1n.
+    \end{cases}
+  \]
+  Koefisien pada interval $\left[\frac{k}{n},\frac{k+1}{n}\right)$ adalah
+  \[
+    \eta_{k,n}:=
+    n\int_{\frac{k-1}{n}}^{\frac{k}{n}} f(s)\,ds.
+  \]
+  Karena $f(s)$ teradaptasi, maka untuk $s\le \frac{k}{n}$ peubah $f(s)$
+  terukur terhadap $\F_{k/n}$. Integralnya juga $\F_{k/n}$-terukur. Jadi
+  $\eta_{k,n}$ adalah koefisien yang boleh dipakai pada interval itu.
+
+  Selanjutnya, kita periksa bahwa $f_n$ terintegralkan kuadrat. Dengan
+  ketaksamaan Cauchy--Schwarz,
+  \[
+    \left|
+    \int_{\frac{k-1}{n}}^{\frac{k}{n}}f(s)\,ds
+    \right|^2
+    \le
+    \frac1n\int_{\frac{k-1}{n}}^{\frac{k}{n}}|f(s)|^2\,ds.
+  \]
+  Kalikan kedua ruas dengan $n^2$, lalu integralkan terhadap $t$ pada interval
+  yang panjangnya $\frac1n$. Kita memperoleh
+  \[
+    \int_{\frac{k}{n}}^{\frac{k+1}{n}}|f_n(t)|^2\,dt
+    \le
+    \int_{\frac{k-1}{n}}^{\frac{k}{n}}|f(s)|^2\,ds.
+  \]
+  Menjumlahkan untuk semua $k$ memberi
+  \[
+    \int_0^\infty |f_n(t)|^2\,dt
+    \le
+    \int_0^\infty |f(t)|^2\,dt
+    \qquad \text{hampir pasti.}
+  \]
+  Setelah diambil ekspektasi, ruas kanan berhingga menurut hipotesis, sehingga
+  $f_n\in M_{\mathrm{step}}^2$.
+
+  Berikutnya, kita buktikan bahwa $f_n\to f$ dalam norma $M^2$. Ambil $N>0$.
+  Pecah integral galat menjadi bagian kompak dan bagian ekor:
+  \begin{align*}
+    \int_0^\infty |f(t)-f_n(t)|^2\,dt
+     & =
+    \int_0^N |f(t)-f_n(t)|^2\,dt
+    +
+    \int_N^\infty |f(t)-f_n(t)|^2\,dt \\
+     & \le
+    \int_0^N |f(t)-f_n(t)|^2\,dt
+    +
+    2\int_N^\infty |f(t)|^2\,dt
+    +
+    2\int_N^\infty |f_n(t)|^2\,dt.
+  \end{align*}
+  Dari estimasi sebelumnya, integral ketiga dibatasi oleh
+  \[
+    \int_N^\infty |f_n(t)|^2\,dt
+    \le
+    \int_{N-1}^\infty |f(t)|^2\,dt.
+  \]
+  Jadi
+  \begin{equation}
+    \label{eq:tail-bound}
+    \int_0^\infty |f(t)-f_n(t)|^2\,dt
+    \le
+    \int_0^N |f(t)-f_n(t)|^2\,dt
+    +
+    4\int_{N-1}^\infty |f(t)|^2\,dt.
+  \end{equation}
+
+  Karena lintasan $f$ kontinu hampir pasti, maka pada setiap interval kompak
+  $[0,N]$ lintasannya seragam kontinu hampir pasti. Rataan lokal pada definisi
+  $f_n$ karena itu konvergen ke nilai fungsi, sehingga
+  \[
+    \int_0^N |f(t)-f_n(t)|^2\,dt\to 0
+    \qquad \text{hampir pasti.}
+  \]
+  Sementara itu, karena $\int_0^\infty |f(t)|^2\,dt<\infty$ hampir pasti, maka
+  \[
+    \int_{N-1}^\infty |f(t)|^2\,dt\to 0
+    \qquad \text{ketika }N\to\infty.
+  \]
+  Dengan \eqref{eq:tail-bound} kita peroleh
+  \[
+    \int_0^\infty |f(t)-f_n(t)|^2\,dt\to 0
+    \qquad \text{hampir pasti.}
+  \]
+
+  Selain itu,
+  \[
+    |f(t)-f_n(t)|^2\le 2|f(t)|^2+2|f_n(t)|^2\le 4|f(t)|^2,
+  \]
+  dan $4\int_0^\infty |f(t)|^2\,dt$ terintegralkan. Maka, dengan teorema
+  konvergensi terdominasi,
+  \[
+    \E\left(\int_0^\infty |f(t)-f_n(t)|^2\,dt\right)\to 0.
+  \]
+  Jadi $f\in M^2$.
+
+  Untuk butir kedua, cukup terapkan butir pertama pada proses
+  $\ind_{[0,T]}f$. Proses ini tetap teradaptasi dan memenuhi
+  \[
+    \E\left(\int_0^\infty |\ind_{[0,T]}(t)f(t)|^2\,dt\right)
+    =
+    \E\left(\int_0^T |f(t)|^2\,dt\right)<\infty.
+  \]
+  Jadi $\ind_{[0,T]}f\in M^2$, atau ekuivalen dengan $f\in M_T^2$.
+\end{proof}
+
+\subsection{Contoh Keanggotaan pada Ruang MT2}
+
+\begin{lema}
+  Proses Wiener $W(t)$ termasuk dalam $M_T^2$ untuk setiap $T>0$.
+\end{lema}
+
+\begin{proof}
+  Proses Wiener jelas teradaptasi terhadap filtrasi alaminya dan memiliki
+  lintasan kontinu hampir pasti. Maka, berdasarkan teorema sebelumnya, cukup
+  diperiksa bahwa
+  \[
+    \E\left(\int_0^T W(t)^2\,dt\right)<\infty.
+  \]
+  Dengan teorema Fubini--Tonelli,
+  \[
+    \E\left(\int_0^T W(t)^2\,dt\right)
+    =
+    \int_0^T \E(W(t)^2)\,dt.
+  \]
+  Karena $W(t)\sim\mathcal{N}(0,t)$, maka $\E(W(t)^2)=t$. Akibatnya,
+  \[
+    \E\left(\int_0^T W(t)^2\,dt\right)
+    =
+    \int_0^T t\,dt
+    =
+    \frac{T^2}{2}
+    <\infty.
+  \]
+  Jadi $W\in M_T^2$.
+\end{proof}
+
+\begin{lema}
+  Proses $W(t)^2$ termasuk dalam $M_T^2$ untuk setiap $T>0$.
+\end{lema}
+
+\begin{proof}
+  Karena $W(t)$ adalah $\F_t$-terukur, maka $W(t)^2$ juga $\F_t$-terukur. Karena
+  lintasan $W(t)$ kontinu hampir pasti, maka lintasan $W(t)^2$ juga kontinu
+  hampir pasti.
+
+  Jadi, berdasarkan teorema kriteria eksistensi, cukup dibuktikan bahwa
+  \[
+    \E\left(\int_0^T |W(t)^2|^2\,dt\right)
+    =
+    \E\left(\int_0^T W(t)^4\,dt\right)<\infty.
+  \]
+  Dengan Fubini--Tonelli,
+  \[
+    \E\left(\int_0^T W(t)^4\,dt\right)
+    =
+    \int_0^T \E(W(t)^4)\,dt.
+  \]
+  Karena $W(t)\sim\mathcal{N}(0,t)$, momen keempat peubah normal bernilai
+  \[
+    \E(W(t)^4)=3t^2.
+  \]
+  Maka
+  \[
+    \E\left(\int_0^T W(t)^4\,dt\right)
+    =
+    \int_0^T 3t^2\,dt
+    =
+    T^3
+    <\infty.
+  \]
+  Jadi $W(t)^2\in M_T^2$.
+\end{proof}
+
+\section{Proses Progresif Terukur}
+
+\begin{definisi}
+  Proses stokastik $f(t,\omega)$ disebut \textbf{progresif terukur} jika untuk
+  setiap $T>0$, pemetaan
+  \[
+    (t,\omega)\longmapsto f(t,\omega),
+    \qquad 0\le t\le T,
+  \]
+  terukur terhadap $\B([0,T])\otimes\F_T$.
+\end{definisi}
+
+\begin{contoh}
+  Proses Wiener $\{W(t)\}_{t\ge 0}$ adalah proses progresif terukur.
+\end{contoh}
+
+\begin{proof}
+  Ambil $T>0$. Untuk hampir setiap $\omega$, lintasan
+  $t\mapsto W(t,\omega)$ kontinu pada $[0,T]$, sehingga terukur terhadap
+  $\B([0,T])$ sebagai fungsi dari $t$. Selain itu, untuk setiap $t\le T$, peubah
+  acak $W(t)$ adalah $\F_t$-terukur, dan karena $\F_t\subseteq \F_T$, maka
+  $W(t)$ juga $\F_T$-terukur.
+
+  Jadi pemetaan $(t,\omega)\mapsto W(t,\omega)$ terukur terhadap
+  $\B([0,T])\otimes\F_T$. Karena $T$ dipilih sebarang, proses Wiener progresif
+  terukur.
+\end{proof}
+
+\begin{teorema}
+  Berlaku karakterisasi berikut.
+  \begin{enumerate}[label=\arabic*.]
+    \item Ruang $M^2$ terdiri dari semua proses progresif terukur yang memenuhi
+          \[
+            \E\left(\int_0^\infty |f(t)|^2\,dt\right)<\infty.
+          \]
+    \item Ruang $M_T^2$ terdiri dari semua proses progresif terukur yang memenuhi
+          \[
+            \E\left(\int_0^T |f(t)|^2\,dt\right)<\infty.
+          \]
+  \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+  Pembuktian untuk $M_T^2$ serupa, sehingga cukup dibahas $M^2$.
+
+  $(\Rightarrow)$ Misalkan $f\in M^2$. Menurut definisi, ada barisan
+  $\{f_n\}\subset M_{\mathrm{step}}^2$ yang mendekati $f$ dalam norma $M^2$.
+  Setiap proses sederhana acak adalah progresif terukur karena pada tiap
+  interval partisi ia berbentuk hasil kali fungsi indikator waktu dengan
+  koefisien yang $\F_{t_j}$-terukur. Dari konvergensi $L^2$ pada ruang produk,
+  dapat diambil subsekuen yang konvergen hampir di mana-mana; limit hampir di
+  mana-mana dari fungsi progresif terukur tetap progresif terukur. Jadi $f$
+  progresif terukur. Syarat integrabilitas kuadrat sudah terdapat dalam definisi
+  $M^2$.
+
+  $(\Leftarrow)$ Misalkan $f$ progresif terukur dan
+  \[
+    \E\left(\int_0^\infty |f(t)|^2\,dt\right)<\infty.
+  \]
+  Secara umum, fungsi terukur pada ruang produk dapat didekati dalam norma
+  $L^2$ oleh fungsi sederhana terukur. Karena $f$ progresif terukur, aproksimasi
+  sederhana dapat dipilih konsisten dengan struktur progresif, sehingga
+  menghasilkan barisan proses sederhana acak $\{f_n\}\subset M_{\mathrm{step}}^2$
+  dengan
+  \[
+    \E\left(\int_0^\infty |f(t)-f_n(t)|^2\,dt\right)\to 0.
+  \]
+  Dengan demikian, $f\in M^2$.
+\end{proof}
+
+\section{Contoh Perhitungan Integral It\^o}
+
+\subsection{Verifikasi Integral It\^o untuk Proses Wiener}
+
+\begin{proposisi}
+  Untuk setiap $T>0$ berlaku
+  \[
+    \int_0^T W(t)\,dW(t)
+    =
+    \frac12 W(T)^2-\frac12 T.
+  \]
+\end{proposisi}
+
+\begin{proof}
+  Menurut lema sebelumnya, $W(t)\in M_T^2$, sehingga integral di atas
+  terdefinisi. Ambil partisi seragam
+  \[
+    t_j=\frac{jT}{n},
+    \qquad
+    j=0,1,\ldots,n.
+  \]
+  Definisikan proses sederhana
+  \[
+    h_n(t)=\sum_{j=0}^{n-1}W(t_j)\ind_{[t_j,t_{j+1})}(t).
+  \]
+  Maka $h_n\to W$ dalam $M_T^2$, dan
+  \[
+    I^\ast(h_n)=\sum_{j=0}^{n-1}W(t_j)\Delta_jW.
+  \]
+
+  Gunakan identitas aljabar
+  \[
+    a(b-a)=\frac12\bigl(b^2-a^2-(b-a)^2\bigr).
+  \]
+  Dengan $a=W(t_j)$ dan $b=W(t_{j+1})$, kita peroleh
+  \[
+    W(t_j)\Delta_jW
+    =
+    \frac12\left(
+    W(t_{j+1})^2-W(t_j)^2-(\Delta_jW)^2
+    \right).
+  \]
+  Jumlahkan dari $j=0$ sampai $n-1$:
+  \[
+    I^\ast(h_n)
+    =
+    \frac12\sum_{j=0}^{n-1}\bigl(W(t_{j+1})^2-W(t_j)^2\bigr)
+    -
+    \frac12\sum_{j=0}^{n-1}(\Delta_jW)^2.
+  \]
+
+  Suku pertama adalah jumlah teleskopik, sehingga
+  \[
+    \sum_{j=0}^{n-1}\bigl(W(t_{j+1})^2-W(t_j)^2\bigr)
+    =
+    W(T)^2-W(0)^2
+    =
+    W(T)^2.
+  \]
+  Jadi
+  \[
+    I^\ast(h_n)
+    =
+    \frac12W(T)^2-\frac12\sum_{j=0}^{n-1}(\Delta_jW)^2.
+  \]
+
+  Sekarang dipakai fakta variasi kuadrat proses Wiener:
+  \[
+    \sum_{j=0}^{n-1}(\Delta_jW)^2\xrightarrow{L^2}T.
+  \]
+  Karena $I^\ast(h_n)\xrightarrow{L^2}\int_0^T W(t)\,dW(t)$, maka dengan
+  mengambil limit $L^2$ diperoleh
+  \[
+    \int_0^T W(t)\,dW(t)
+    =
+    \frac12W(T)^2-\frac12T.
+  \]
+\end{proof}
+
+\subsection{Verifikasi Integral It\^o untuk Fungsi Deterministik t}
+
+\begin{proposisi}
+  Untuk setiap $T>0$ berlaku
+  \[
+    \int_0^T t\,dW(t)=TW(T)-\int_0^T W(t)\,dt.
+  \]
+\end{proposisi}
+
+\begin{proof}
+  Ambil partisi seragam $t_j=\frac{jT}{n}$ dan definisikan
+  \[
+    h_n(t)=\sum_{j=0}^{n-1} t_j\ind_{[t_j,t_{j+1})}(t).
+  \]
+  Maka
+  \[
+    I^\ast(h_n)=\sum_{j=0}^{n-1} t_j\Delta_jW.
+  \]
+  Gunakan identitas
+  \[
+    c(b-a)=(db-ca)-b(d-c).
+  \]
+  Dengan $c=t_j$, $d=t_{j+1}$, $a=W(t_j)$, dan $b=W(t_{j+1})$, diperoleh
+  \[
+    t_j\Delta_jW
+    =
+    \bigl(t_{j+1}W(t_{j+1})-t_jW(t_j)\bigr)-W(t_{j+1})\Delta_jt.
+  \]
+  Jumlahkan seluruh suku:
+  \[
+    I^\ast(h_n)
+    =
+    \sum_{j=0}^{n-1}\bigl(t_{j+1}W(t_{j+1})-t_jW(t_j)\bigr)
+    -
+    \sum_{j=0}^{n-1}W(t_{j+1})\Delta_jt.
+  \]
+  Jumlah pertama teleskopik, sehingga
+  \[
+    I^\ast(h_n)=TW(T)-\sum_{j=0}^{n-1}W(t_{j+1})\Delta_jt.
+  \]
+  Karena lintasan Wiener kontinu hampir pasti, jumlah Riemann di ruas kanan
+  konvergen ke integral Riemann biasa:
+  \[
+    \sum_{j=0}^{n-1}W(t_{j+1})\Delta_jt\to \int_0^T W(t)\,dt.
+  \]
+  Ambil limit dan gunakan $h_n\to t$ dalam $M_T^2$ untuk memperoleh
+  \[
+    \int_0^T t\,dW(t)=TW(T)-\int_0^T W(t)\,dt.
+  \]
+\end{proof}
+
+\subsection{Verifikasi Integral It\^o untuk Kuadrat Proses Wiener}
+
+\begin{proposisi}
+  Untuk setiap $T>0$ berlaku
+  \[
+    \int_0^T W(t)^2\,dW(t)
+    =
+    \frac13 W(T)^3-\int_0^T W(t)\,dt.
+  \]
+\end{proposisi}
+
+\begin{proof}
+  Dari hasil sebelumnya, $W(t)^2\in M_T^2$. Ambil partisi
+  \[
+    0=t_0<t_1<\cdots<t_n=T,
+  \]
+  dan tulis $\Delta_jW=W(t_{j+1})-W(t_j)$ serta $\Delta_jt=t_{j+1}-t_j$. Untuk
+  aproksimasi kiri diperoleh
+  \[
+    I^\ast(h_n)=\sum_{j=0}^{n-1}W(t_j)^2\Delta_jW.
+  \]
+
+  Gunakan identitas aljabar
+  \[
+    a^2(b-a)
+    =
+    \frac13(b^3-a^3)-a(b-a)^2-\frac13(b-a)^3.
+  \]
+  Substitusi $a=W(t_j)$ dan $b=W(t_{j+1})$ memberi
+  \[
+    W(t_j)^2\Delta_jW
+    =
+    \frac13\bigl(W(t_{j+1})^3-W(t_j)^3\bigr)
+    -
+    W(t_j)(\Delta_jW)^2
+    -
+    \frac13(\Delta_jW)^3.
+  \]
+  Setelah dijumlahkan, kita peroleh
+  \[
+    I^\ast(h_n)
+    =
+    \frac13 W(T)^3
+    -
+    \sum_{j=0}^{n-1}W(t_j)(\Delta_jW)^2
+    -
+    \frac13\sum_{j=0}^{n-1}(\Delta_jW)^3.
+  \]
+
+  Sekarang kita analisis dua jumlah terakhir.
+
+  \textbf{Langkah 1:} Tunjukkan bahwa
+  \[
+    \sum_{j=0}^{n-1}(\Delta_jW)^3\xrightarrow{L^2}0.
+  \]
+  Misalkan
+  \[
+    S_n:=\sum_{j=0}^{n-1}(\Delta_jW)^3.
+  \]
+  Karena $\Delta_jW\sim\mathcal{N}(0,\Delta_jt)$, maka
+  \[
+    \E((\Delta_jW)^3)=0,
+    \qquad
+    \E((\Delta_jW)^6)=15(\Delta_jt)^3.
+  \]
+  Dengan independensi inkremen Wiener, semua suku silang dalam $\E(S_n^2)$
+  bernilai nol, sehingga
+  \[
+    \E(S_n^2)=15\sum_{j=0}^{n-1}(\Delta_jt)^3.
+  \]
+  Jika $\|\Pi\|:=\max_j\Delta_jt$, maka
+  \[
+    \sum_{j=0}^{n-1}(\Delta_jt)^3
+    \le
+    \|\Pi\|^2\sum_{j=0}^{n-1}\Delta_jt
+    =
+    T\|\Pi\|^2.
+  \]
+  Jadi
+  \[
+    \E(S_n^2)\le 15T\|\Pi\|^2\to 0.
+  \]
+  Ini membuktikan $S_n\to 0$ dalam $L^2$.
+
+  \textbf{Langkah 2:} Tunjukkan bahwa
+  \[
+    \sum_{j=0}^{n-1}W(t_j)(\Delta_jW)^2
+    \xrightarrow{L^2}
+    \int_0^T W(t)\,dt.
+  \]
+  Pecah jumlah tersebut menjadi
+  \[
+    \sum_{j=0}^{n-1}W(t_j)(\Delta_jW)^2
+    =
+    \sum_{j=0}^{n-1}W(t_j)\bigl((\Delta_jW)^2-\Delta_jt\bigr)
+    +
+    \sum_{j=0}^{n-1}W(t_j)\Delta_jt.
+  \]
+
+  Jumlah kedua adalah jumlah Riemann dari fungsi kontinu $W(t)$, sehingga
+  \[
+    \sum_{j=0}^{n-1}W(t_j)\Delta_jt
+    \to
+    \int_0^T W(t)\,dt
+  \]
+  hampir pasti.
+
+  Untuk jumlah pertama, misalkan
+  \[
+    R_n:=\sum_{j=0}^{n-1}W(t_j)\bigl((\Delta_jW)^2-\Delta_jt\bigr).
+  \]
+  Kita hitung momen keduanya. Karena $W(t_j)$ adalah $\F_{t_j}$-terukur dan
+  $\Delta_jW$ independen terhadap $\F_{t_j}$, serta
+  \[
+    \E\bigl((\Delta_jW)^2-\Delta_jt\bigr)=0,
+  \]
+  suku silang kembali hilang. Maka
+  \begin{align*}
+    \E(R_n^2)
+     & =
+    \sum_{j=0}^{n-1}
+    \E\left(
+    W(t_j)^2\bigl((\Delta_jW)^2-\Delta_jt\bigr)^2
+    \right) \\
+     & =
+    \sum_{j=0}^{n-1}
+    \E\bigl(W(t_j)^2\bigr)\,
+    \E\left(\bigl((\Delta_jW)^2-\Delta_jt\bigr)^2\right).
+  \end{align*}
+  Karena $\E(W(t_j)^2)=t_j$ dan untuk peubah normal terpusat berlaku
+  \[
+    \E\left(\bigl((\Delta_jW)^2-\Delta_jt\bigr)^2\right)=2(\Delta_jt)^2,
+  \]
+  diperoleh
+  \[
+    \E(R_n^2)=2\sum_{j=0}^{n-1}t_j(\Delta_jt)^2.
+  \]
+  Karena $t_j\le T$, maka
+  \[
+    \E(R_n^2)
+    \le
+    2T\sum_{j=0}^{n-1}(\Delta_jt)^2
+    \le
+    2T^2\|\Pi\|\to 0.
+  \]
+  Jadi $R_n\to 0$ dalam $L^2$. Akibatnya,
+  \[
+    \sum_{j=0}^{n-1}W(t_j)(\Delta_jW)^2
+    \xrightarrow{L^2}
+    \int_0^T W(t)\,dt.
+  \]
+
+  Mengambil limit pada rumus untuk $I^\ast(h_n)$ menghasilkan
+  \[
+    \int_0^T W(t)^2\,dW(t)
+    =
+    \frac13W(T)^3-\int_0^T W(t)\,dt.
+  \]
+\end{proof}
+
+\section{Penutup}
+
+\subsection{Kesimpulan}
+
+Berdasarkan pembahasan yang telah disusun, dapat disimpulkan beberapa hal
+berikut.
+\begin{enumerate}[label=\arabic*.]
+  \item Kalkulus It\^o muncul karena kalkulus klasik tidak memadai untuk
+        menangani proses Wiener yang lintasannya kontinu tetapi sangat tidak
+        teratur.
+  \item Integral It\^o mula-mula didefinisikan pada proses sederhana acak dengan
+        mengambil koefisien di titik kiri interval partisi.
+  \item Sifat terpenting integral It\^o adalah isometri
+        \[
+          \E\bigl((I(f))^2\bigr)=\E\left(\int f(t)^2\,dt\right),
+        \]
+        yang menjadi dasar perluasan integral dari $M_{\mathrm{step}}^2$ ke
+        ruang $M^2$.
+  \item Untuk proses yang teradaptasi, berlintasan kontinu hampir pasti, dan
+        memenuhi integrabilitas kuadrat, integral It\^o pasti ada.
+  \item Identitas seperti
+        \[
+          \int_0^T W(t)\,dW(t)=\frac12W(T)^2-\frac12T
+        \]
+        menunjukkan adanya koreksi tambahan yang tidak muncul dalam kalkulus
+        biasa, yaitu akibat variasi kuadrat proses Wiener.
+\end{enumerate}
+
+\subsection{Saran}
+
+Sebagai kelanjutan dari laporan ini, materi dapat diperluas ke formula It\^o
+multidimensi, persamaan diferensial stokastik, martingale representation
+theorem, dan penerapan pada model Black--Scholes maupun proses difusi lain.
+
+\begin{thebibliography}{9}
+
+  \bibitem{karatzas}
+  Ioannis Karatzas dan Steven E. Shreve,
+  \textit{Brownian Motion and Stochastic Calculus},
+  2nd ed., Springer, 1991.
+
+  \bibitem{oksendal}
+  Bernt {\O}ksendal,
+  \textit{Stochastic Differential Equations: An Introduction with Applications},
+  6th ed., Springer, 2003.
+
+  \bibitem{revuz}
+  Daniel Revuz dan Marc Yor,
+  \textit{Continuous Martingales and Brownian Motion},
+  3rd ed., Springer, 1999.
+
+\end{thebibliography}
+
+\end{document}
