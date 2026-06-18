@@ -1,0 +1,339 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{array}
+
+\geometry{
+    left=20mm,
+    right=20mm,
+    top=20mm,
+    bottom=25mm,
+}
+
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Img}{\operatorname{Im}}
+\newcommand{\Tor}{\operatorname{Tor}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+  Evaluasi Akhir, Semester Genap 2023/2024, Program S2, Departemen Matematika FSAD-ITS
+
+  \vspace{0.3cm}
+  \begin{tabular}{l c l}
+    Matakuliah & : & Teori Modul  \\
+    Tanggal    & : & 19 Juni 2024 \\
+    Waktu      & : & 100 menit    \\
+    Sifat      & : & Tutup buku   \\
+    Dosen      & : & Subiono
+  \end{tabular}
+
+  \vspace{0.3cm}
+  \rule{0.45\textwidth}{0.4pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+  \item Bila $M$ adalah suatu modul-$R$ dan bila $A,B,C$ adalah submodul $M$ dengan $C \subseteq A$, maka tunjukkan bahwa
+        $
+          \boxed{A \cap (B+C) = (A \cap B) + C}.
+        $
+
+  \item Misalkan $M$ adalah suatu modul atas suatu ring $R$. Bila $\underline{n}=\{1,2,3,\ldots,n\}$ dan
+        $
+          M = \bigoplus_{i \in \underline{n}} M_i
+        $
+        dengan $M_i$ adalah submodul bebas dari $M$ untuk semua $i \in \underline{n}$. Maka tunjukkan bahwa $M$ adalah modul bebas.
+
+  \item Misalkan $M$ adalah suatu modul atas suatu Daerah Ideal Utama $R$ yang dibangun secara berhingga. Bila $M \neq M_t$ dengan $M_t$ adalah modul torsi, maka tunjukkan bahwa ada submodul bebas $N$ dari $M$ yang memenuhi
+        $
+          M = M_t \oplus N.
+        $
+
+  \item Bila
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} M_3 \xrightarrow{f_3} M_4
+        \]
+        adalah barisan eksak dari modul atas ring $R$. Maka tunjukkan bahwa dua barisan berikut
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} N \to 0
+          \qquad \text{dan} \qquad
+          0 \to N \xrightarrow{i} M_3 \xrightarrow{f_3} M_4
+          \tag{$A$}
+        \]
+        juga merupakan barisan eksak, dimana $N = \Img(f_2) = \Ker(f_3)$ dan $i$ adalah pemetaan inklusi.
+
+        Sebaliknya bila dua barisan
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} N \to 0
+          \qquad \text{dan} \qquad
+          0 \to N \xrightarrow{i} M_3 \xrightarrow{f_3} M_4
+          \tag{$A$}
+        \]
+        adalah barisan eksak dengan $N \leq M_3$ dan $i$ adalah pemetaan inklusi, maka tunjukkan bahwa barisan
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} M_3 \xrightarrow{f_3} M_4
+          \tag{$B$}
+        \]
+        adalah eksak.
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item Akan ditunjukkan dua inklusi.
+
+        Pertama, ambil $x \in A \cap (B+C)$. Maka $x \in A$ dan $x \in B+C$, sehingga terdapat $b \in B$ dan $c \in C$ dengan
+        \[
+          x=b+c.
+        \]
+        Karena $C \subseteq A$, maka $c \in A$. Selain itu $x \in A$, sehingga
+        \[
+          b=x-c \in A.
+        \]
+        Karena juga $b \in B$, diperoleh $b \in A \cap B$. Jadi
+        \[
+          x=b+c \in (A \cap B)+C.
+        \]
+        Maka
+        \[
+          A \cap (B+C) \subseteq (A \cap B)+C.
+        \]
+
+        Sebaliknya, ambil $x \in (A \cap B)+C$. Maka terdapat $y \in A \cap B$ dan $c \in C$ sehingga
+        \[
+          x=y+c.
+        \]
+        Karena $y \in A$ dan $c \in C \subseteq A$, maka $x \in A$. Karena $y \in B$ dan $c \in C$, maka $x \in B+C$. Jadi
+        \[
+          x \in A \cap (B+C).
+        \]
+        Maka
+        \[
+          (A \cap B)+C \subseteq A \cap (B+C).
+        \]
+        Dari dua inklusi tersebut,
+        \[
+          \boxed{A \cap (B+C) = (A \cap B)+C}.
+        \]
+
+  \item Untuk setiap $i \in \underline{n}$, karena $M_i$ adalah modul bebas, ambil basis $S_i$ dari $M_i$. Akan ditunjukkan bahwa
+        \[
+          S=\bigcup_{i=1}^{n} S_i
+        \]
+        adalah basis bagi $M$.
+
+        Karena
+        \[
+          M=\bigoplus_{i=1}^{n} M_i,
+        \]
+        setiap $m \in M$ dapat ditulis secara tunggal sebagai
+        \[
+          m=m_1+m_2+\cdots+m_n,
+        \]
+        dengan $m_i \in M_i$. Karena $S_i$ basis dari $M_i$, setiap $m_i$ merupakan kombinasi linear berhingga dari elemen-elemen $S_i$. Maka $m$ merupakan kombinasi linear berhingga dari elemen-elemen $S$. Jadi $S$ membangun $M$.
+
+        Selanjutnya, misalkan terdapat relasi linear berhingga
+        \[
+          r_1s_1+r_2s_2+\cdots+r_ks_k=0,
+        \]
+        dengan $r_j \in R$ dan $s_j \in S$. Kelompokkan suku-suku tersebut berdasarkan submodul $M_i$. Maka relasi itu dapat ditulis sebagai
+        \[
+          u_1+u_2+\cdots+u_n=0,
+        \]
+        dengan $u_i \in M_i$ dan masing-masing $u_i$ merupakan kombinasi linear dari elemen-elemen $S_i$. Karena jumlahnya adalah jumlah langsung, representasi nol bersifat tunggal, sehingga
+        \[
+          u_i=0
+          \quad \text{untuk setiap } i.
+        \]
+        Karena $S_i$ bebas linear di $M_i$, semua koefisien pada $u_i$ bernilai nol. Jadi semua $r_j=0$. Maka $S$ bebas linear.
+
+        Dengan demikian $S$ membangun $M$ dan bebas linear, sehingga $S$ adalah basis dari $M$. Jadi
+        \[
+          \boxed{M \text{ adalah modul bebas}.}
+        \]
+
+  \item Misalkan
+        \[
+          M_t=\{m \in M \mid \text{terdapat }0 \neq r \in R \text{ sehingga } rm=0\}
+        \]
+        adalah submodul torsi dari $M$. Karena $M$ dibangun secara berhingga atas Daerah Ideal Utama $R$, maka $M/M_t$ juga dibangun secara berhingga. Selain itu $M/M_t$ adalah modul bebas torsi. Memang, jika
+        \[
+          0 \neq r \in R
+          \quad \text{dan} \quad
+          r(m+M_t)=M_t,
+        \]
+        maka $rm \in M_t$. Jadi terdapat $0 \neq s \in R$ sehingga
+        \[
+          s(rm)=0.
+        \]
+        Karena $R$ domain integral, $sr \neq 0$, sehingga $m \in M_t$. Maka $m+M_t=M_t$, sehingga $M/M_t$ bebas torsi.
+
+        Karena modul yang dibangun secara berhingga dan bebas torsi atas Daerah Ideal Utama adalah modul bebas, maka $M/M_t$ bebas. Karena $M \neq M_t$, basis $M/M_t$ tidak kosong. Misalkan
+        \[
+          \{x_1+M_t,x_2+M_t,\ldots,x_k+M_t\}
+        \]
+        adalah basis dari $M/M_t$, dengan $x_i \in M$. Definisikan
+        \[
+          N=Rx_1+Rx_2+\cdots+Rx_k.
+        \]
+
+        Akan ditunjukkan bahwa $N$ bebas. Jika
+        \[
+          a_1x_1+a_2x_2+\cdots+a_kx_k=0,
+        \]
+        maka dalam $M/M_t$ berlaku
+        \[
+          a_1(x_1+M_t)+a_2(x_2+M_t)+\cdots+a_k(x_k+M_t)=M_t.
+        \]
+        Karena $\{x_i+M_t\}_{i=1}^{k}$ basis, diperoleh $a_1=a_2=\cdots=a_k=0$. Jadi $N$ bebas dengan basis $\{x_1,x_2,\ldots,x_k\}$.
+
+        Selanjutnya, untuk setiap $m \in M$, karena $\{x_i+M_t\}_{i=1}^{k}$ membangun $M/M_t$, terdapat $a_1,\ldots,a_k \in R$ sehingga
+        \[
+          m+M_t=a_1(x_1+M_t)+\cdots+a_k(x_k+M_t).
+        \]
+        Maka
+        \[
+          m-(a_1x_1+\cdots+a_kx_k) \in M_t.
+        \]
+        Jadi $m \in M_t+N$, sehingga
+        \[
+          M=M_t+N.
+        \]
+
+        Terakhir, jika $y \in M_t \cap N$, maka
+        \[
+          y=a_1x_1+\cdots+a_kx_k
+        \]
+        untuk suatu $a_1,\ldots,a_k \in R$. Karena $y \in M_t$, dalam $M/M_t$ diperoleh
+        \[
+          a_1(x_1+M_t)+\cdots+a_k(x_k+M_t)=M_t.
+        \]
+        Karena basis bebas linear, semua $a_i=0$, sehingga $y=0$. Jadi
+        \[
+          M_t \cap N=\{0\}.
+        \]
+
+        Dengan demikian
+        \[
+          \boxed{M=M_t \oplus N}
+        \]
+        dengan $N$ submodul bebas dari $M$.
+
+  \item Misalkan
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} M_3 \xrightarrow{f_3} M_4
+        \]
+        eksak. Artinya
+        \[
+          \Img(f_1)=\Ker(f_2)
+          \quad \text{dan} \quad
+          \Img(f_2)=\Ker(f_3).
+        \]
+        Ambil
+        \[
+          N=\Img(f_2)=\Ker(f_3)
+        \]
+        dan $i:N \to M_3$ pemetaan inklusi.
+
+        Untuk barisan pertama
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} N \to 0,
+        \]
+        pemetaan $f_2$ dipandang sebagai pemetaan dari $M_2$ ke $N=\Img(f_2)$. Maka $f_2:M_2 \to N$ surjektif. Jadi
+        \[
+          \Img(f_2)=N=\Ker(N \to 0).
+        \]
+        Selain itu, karena barisan semula eksak,
+        \[
+          \Img(f_1)=\Ker(f_2).
+        \]
+        Maka
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} N \to 0
+        \]
+        adalah eksak.
+
+        Untuk barisan kedua
+        \[
+          0 \to N \xrightarrow{i} M_3 \xrightarrow{f_3} M_4,
+        \]
+        karena $i$ adalah inklusi, maka $i$ injektif, sehingga
+        \[
+          \Img(0 \to N)=0=\Ker(i).
+        \]
+        Selain itu
+        \[
+          \Img(i)=N=\Ker(f_3).
+        \]
+        Jadi
+        \[
+          0 \to N \xrightarrow{i} M_3 \xrightarrow{f_3} M_4
+        \]
+        adalah eksak. Dengan demikian dua barisan pada (A) eksak.
+
+        Sebaliknya, misalkan dua barisan
+        \[
+          M_1 \xrightarrow{f_1} M_2 \xrightarrow{g} N \to 0
+          \qquad \text{dan} \qquad
+          0 \to N \xrightarrow{i} M_3 \xrightarrow{f_3} M_4
+        \]
+        eksak, dengan $N \leq M_3$ dan $i$ pemetaan inklusi. Karena barisan pertama eksak,
+        \[
+          \Img(f_1)=\Ker(g)
+          \quad \text{dan} \quad
+          g \text{ surjektif ke } N.
+        \]
+        Karena barisan kedua eksak,
+        \[
+          i \text{ injektif}
+          \quad \text{dan} \quad
+          \Img(i)=N=\Ker(f_3).
+        \]
+        Definisikan pemetaan pada barisan (B) dari $M_2$ ke $M_3$ sebagai
+        \[
+          f_2=i \circ g.
+        \]
+        Karena $i$ inklusi, $\Ker(i)=0$, sehingga
+        \[
+          \Ker(f_2)
+          =\Ker(i \circ g)
+          =\Ker(g)
+          =\Img(f_1).
+        \]
+        Jadi barisan (B) eksak di $M_2$.
+
+        Selanjutnya,
+        \[
+          \Img(f_2)
+          =\Img(i \circ g)
+          =i(\Img(g)).
+        \]
+        Karena $g$ surjektif ke $N$, maka $\Img(g)=N$. Jadi
+        \[
+          \Img(f_2)=i(N)=N.
+        \]
+        Dari eksaknya barisan kedua, $N=\Ker(f_3)$. Maka
+        \[
+          \Img(f_2)=\Ker(f_3).
+        \]
+        Jadi barisan (B) eksak di $M_3$.
+
+        Dengan demikian
+        \[
+          \boxed{
+            M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} M_3 \xrightarrow{f_3} M_4
+            \text{ adalah barisan eksak}.
+          }
+        \]
+\end{enumerate}
+
+\end{document}

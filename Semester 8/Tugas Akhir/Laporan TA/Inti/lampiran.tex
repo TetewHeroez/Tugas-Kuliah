@@ -1,3 +1,895 @@
+\Lampiran{Perbandingan Waktu Pencarian Pasangan}
+
+\noindent
+Tabel berikut membandingkan waktu pencarian semua pasangan \textit{Latin square}
+komutatif terhadap perkalian max-plus dengan dua pendekatan, yaitu
+\textit{brute force} penuh dan pencarian yang lebih dahulu menyaring kandidat
+berdasarkan syarat perlu bahwa permutasi untuk simbol maksimum harus
+komutatif.
+
+\begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c|r|r|r|c|c|}
+        \hline
+        Ordo & Latin square & Total pasangan & Komutatif Berbeda & Tanpa teorema & Dengan teorema \\
+        \hline
+        $3$  & 12           & 144            & 15               & 0.004 detik   & 0.002 detik    \\
+        \hline
+        $4$  & 576          & 331.776        & 4.752           & 8.193 detik   & 1.807 detik    \\
+        \hline
+        $5$  & 161.280      & 26.011.238.400 & 460.160    & 12.27 hari    & 17.34 jam      \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\Lampiran{Hasil Pasangan Latin Square Komutatif}
+
+\noindent
+Lampiran ini memuat hasil pasangan \textit{Latin square} komutatif untuk
+beberapa ordo.
+
+\subsection*{Ordo 3}
+
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{2.7cm}|p{2.5cm}|p{2.7cm}|p{2.5cm}|p{2.7cm}|}
+    \hline
+    No.                                                                         & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endfirsthead
+    \hline
+    No.                                                                         & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endhead
+    1                                                                           &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}6&5&5\\5&6&5\\5&5&6\end{pmatrix}$                                                                                                       \\
+    \hline
+    2                                                                           &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}5&6&5\\5&5&6\\6&5&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    3                                                                           &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}6&4&5\\5&6&4\\4&5&6\end{pmatrix}$                                                                                                       \\
+    \hline
+    4                                                                           &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}4&5&6\\6&4&5\\5&6&4\end{pmatrix}$                                                                                                       \\
+    \hline
+    5                                                                           &
+    $\begin{pmatrix}1&2&3\\3&1&2\\2&3&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(123)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&5&6\\6&5&5\\5&6&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    6                                                                           &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}6&5&4\\4&6&5\\5&4&6\end{pmatrix}$                                                                                                       \\
+    \hline
+    7                                                                           &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}5&5&6\\6&5&5\\5&6&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    8                                                                           &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&6&5\\5&5&6\\6&5&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    9                                                                           &
+    $\begin{pmatrix}1&3&2\\2&1&3\\3&2&1\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(1)(2)(3)\\ \tau_2=(132)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}4&6&5\\5&4&6\\6&5&4\end{pmatrix}$                                                                                                       \\
+    \hline
+    10                                                                          &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}6&5&5\\5&6&5\\5&5&6\end{pmatrix}$                                                                                                       \\
+    \hline
+    11                                                                          &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&5&6\\6&5&5\\5&6&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    12                                                                          &
+    $\begin{pmatrix}2&1&3\\3&2&1\\1&3&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(1)(2)(3)\\ \tau_3=(132)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&4&6\\6&5&4\\4&6&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    13                                                                          &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&6&4\\4&5&6\\6&4&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    14                                                                          &
+    $\begin{pmatrix}2&3&1\\1&2&3\\3&1&2\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(1)(2)(3)\\ \tau_3=(123)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}5&6&5\\5&5&6\\6&5&5\end{pmatrix}$                                                                                                       \\
+    \hline
+    15                                                                          &
+    $\begin{pmatrix}3&1&2\\2&3&1\\1&2&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(123)\\ \tau_2=(132)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}3&2&1\\1&3&2\\2&1&3\end{pmatrix}$                           &
+    $\begin{array}{l}\tau_1=(132)\\ \tau_2=(123)\\ \tau_3=(1)(2)(3)\end{array}$ &
+    $\begin{pmatrix}6&5&5\\5&6&5\\5&5&6\end{pmatrix}$                                                                                                       \\
+    \hline
+\end{longtable}
+\endgroup
+
+\subsection*{Ordo 4}
+Tabel berikut memuat 50 sampel pasangan dari 4752 pasangan komutatif ordo 4 yang diperoleh.
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{2.7cm}|p{2.7cm}|p{2.7cm}|p{2.7cm}|p{2.7cm}|}
+    \hline
+    No.                                                                                                            & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endfirsthead
+    \hline
+    No.                                                                                                            & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endhead
+    1                                                                                                              &
+    $\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \\ 3 & 4 & 1 & 2 \\ 4 & 3 & 2 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 1 & 4 & 2 & 3 \\ 4 & 3 & 1 & 2 \\ 2 & 1 & 3 & 4 \\ 3 & 2 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(23)(4)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(14)(2)(3)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 7 & 6 & 8 & 7 \\ 6 & 6 & 7 & 8 \\ 8 & 7 & 6 & 6 \\ 7 & 8 & 6 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    2                                                                                                              &
+    $\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4 & 1 & 2 & 3 \\ 3 & 4 & 1 & 2 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(1234)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 4 & 2 & 3 & 1 \\ 2 & 4 & 1 & 3 \\ 3 & 1 & 4 & 2 \\ 1 & 3 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 6 & 7 & 7 & 8 \\ 8 & 6 & 7 & 7 \\ 7 & 8 & 6 & 7 \\ 7 & 7 & 8 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    3                                                                                                              &
+    $\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4 & 3 & 2 & 1 \\ 3 & 4 & 1 & 2 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(24)(3)\\ \tau_{2}=(1234)\\ \tau_{3}=(13)(2)(4)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 3 & 1 & 4 & 2 \\ 2 & 3 & 1 & 4 \\ 4 & 2 & 3 & 1 \\ 1 & 4 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(1432)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(13)(24)\end{array}$     &
+    $\begin{pmatrix} 7 & 8 & 6 & 7 \\ 7 & 6 & 8 & 7 \\ 6 & 7 & 7 & 8 \\ 8 & 7 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    4                                                                                                              &
+    $\begin{pmatrix} 1 & 3 & 2 & 4 \\ 3 & 1 & 4 & 2 \\ 2 & 4 & 3 & 1 \\ 4 & 2 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(12)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 1 & 4 & 2 & 3 \\ 4 & 1 & 3 & 2 \\ 2 & 3 & 1 & 4 \\ 3 & 2 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(14)(23)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 7 & 6 & 8 & 6 \\ 6 & 7 & 6 & 8 \\ 8 & 6 & 7 & 7 \\ 6 & 8 & 7 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    5                                                                                                              &
+    $\begin{pmatrix} 1 & 3 & 2 & 4 \\ 3 & 1 & 4 & 2 \\ 2 & 4 & 3 & 1 \\ 4 & 2 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(12)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 1 & 4 & 3 & 2 \\ 4 & 2 & 1 & 3 \\ 3 & 1 & 2 & 4 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(23)(4)\\ \tau_{2}=(14)(2)(3)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 7 & 7 & 8 & 6 \\ 7 & 7 & 6 & 8 \\ 8 & 6 & 5 & 7 \\ 6 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    6                                                                                                              &
+    $\begin{pmatrix} 1 & 3 & 2 & 4 \\ 3 & 1 & 4 & 2 \\ 2 & 4 & 1 & 3 \\ 4 & 2 & 3 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 1 & 3 & 4 & 2 \\ 3 & 2 & 1 & 4 \\ 4 & 1 & 2 & 3 \\ 2 & 4 & 3 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(23)(4)\\ \tau_{2}=(14)(2)(3)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(13)(24)\end{array}$ &
+    $\begin{pmatrix} 6 & 8 & 7 & 7 \\ 8 & 6 & 7 & 7 \\ 7 & 7 & 6 & 8 \\ 7 & 7 & 8 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    7                                                                                                              &
+    $\begin{pmatrix} 1 & 3 & 2 & 4 \\ 4 & 1 & 3 & 2 \\ 3 & 2 & 4 & 1 \\ 2 & 4 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)\\ \tau_{2}=(1324)\\ \tau_{3}=(123)(4)\\ \tau_{4}=(142)(3)\end{array}$     &
+    $\begin{pmatrix} 2 & 3 & 1 & 4 \\ 4 & 1 & 3 & 2 \\ 3 & 2 & 4 & 1 \\ 1 & 4 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(134)(2)\\ \tau_{2}=(1)(243)\\ \tau_{3}=(123)(4)\\ \tau_{4}=(142)(3)\end{array}$     &
+    $\begin{pmatrix} 7 & 8 & 6 & 7 \\ 6 & 7 & 7 & 8 \\ 7 & 6 & 8 & 7 \\ 8 & 7 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    8                                                                                                              &
+    $\begin{pmatrix} 1 & 3 & 2 & 4 \\ 4 & 2 & 3 & 1 \\ 2 & 4 & 1 & 3 \\ 3 & 1 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(24)(3)\\ \tau_{2}=(13)(2)(4)\\ \tau_{3}=(1234)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 4 & 3 & 2 & 1 \\ 1 & 4 & 3 & 2 \\ 2 & 1 & 4 & 3 \\ 3 & 2 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1432)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1234)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 7 & 7 & 6 & 8 \\ 8 & 7 & 7 & 6 \\ 6 & 8 & 7 & 7 \\ 7 & 6 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    9                                                                                                              &
+    $\begin{pmatrix} 1 & 3 & 4 & 2 \\ 4 & 2 & 1 & 3 \\ 2 & 4 & 3 & 1 \\ 3 & 1 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(234)\\ \tau_{2}=(143)(2)\\ \tau_{3}=(124)(3)\\ \tau_{4}=(132)(4)\end{array}$     &
+    $\begin{pmatrix} 2 & 3 & 4 & 1 \\ 4 & 2 & 1 & 3 \\ 1 & 4 & 3 & 2 \\ 3 & 1 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1)(2)(34)\\ \tau_{3}=(124)(3)\\ \tau_{4}=(132)(4)\end{array}$     &
+    $\begin{pmatrix} 7 & 8 & 7 & 6 \\ 6 & 7 & 8 & 7 \\ 8 & 7 & 6 & 7 \\ 7 & 6 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    10                                                                                                             &
+    $\begin{pmatrix} 1 & 4 & 2 & 3 \\ 4 & 1 & 3 & 2 \\ 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(1324)\\ \tau_{3}=(1423)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 2 & 4 & 3 & 1 \\ 4 & 2 & 1 & 3 \\ 1 & 3 & 2 & 4 \\ 3 & 1 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1)(2)(3)(4)\\ \tau_{3}=(1324)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 8 & 6 & 7 & 7 \\ 6 & 8 & 7 & 7 \\ 7 & 7 & 8 & 6 \\ 7 & 7 & 6 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    11                                                                                                             &
+    $\begin{pmatrix} 1 & 4 & 3 & 2 \\ 4 & 1 & 2 & 3 \\ 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 2 & 4 & 3 & 1 \\ 4 & 2 & 1 & 3 \\ 1 & 3 & 2 & 4 \\ 3 & 1 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1)(2)(3)(4)\\ \tau_{3}=(1324)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 8 & 6 & 6 & 7 \\ 6 & 8 & 7 & 6 \\ 7 & 7 & 8 & 6 \\ 7 & 7 & 6 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    12                                                                                                             &
+    $\begin{pmatrix} 1 & 4 & 3 & 2 \\ 4 & 1 & 2 & 3 \\ 2 & 3 & 1 & 4 \\ 3 & 2 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)\\ \tau_{2}=(1423)\\ \tau_{3}=(1324)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 2 & 1 & 3 & 4 \\ 1 & 2 & 4 & 3 \\ 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(3)(4)\\ \tau_{2}=(1)(2)(34)\\ \tau_{3}=(1324)\\ \tau_{4}=(1423)\end{array}$     &
+    $\begin{pmatrix} 7 & 6 & 8 & 7 \\ 6 & 7 & 7 & 8 \\ 7 & 8 & 7 & 6 \\ 8 & 7 & 6 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    13                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 3 & 4 \\ 1 & 2 & 4 & 3 \\ 4 & 3 & 2 & 1 \\ 3 & 4 & 1 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1)(2)(3)(4)\\ \tau_{3}=(1324)\\ \tau_{4}=(1423)\end{array}$     &
+    $\begin{pmatrix} 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \\ 2 & 1 & 4 & 3 \\ 1 & 2 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1324)\\ \tau_{2}=(1423)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 6 & 6 & 7 & 8 \\ 6 & 6 & 8 & 7 \\ 8 & 7 & 6 & 6 \\ 7 & 8 & 6 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    14                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 3 & 4 \\ 1 & 2 & 4 & 3 \\ 3 & 4 & 1 & 2 \\ 4 & 3 & 2 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(3)(4)\\ \tau_{2}=(1)(2)(34)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 1 & 3 & 4 & 2 \\ 2 & 4 & 3 & 1 \\ 4 & 2 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \\ 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    15                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 3 & 4 \\ 1 & 3 & 4 & 2 \\ 3 & 4 & 2 & 1 \\ 4 & 2 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1)(24)(3)\\ \tau_{3}=(13)(2)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 3 & 4 & 1 & 2 \\ 4 & 1 & 2 & 3 \\ 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(2)(4)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(1)(24)(3)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    16                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 3 & 4 \\ 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \\ 1 & 2 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(1)(24)(3)\\ \tau_{3}=(13)(2)(4)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 3 & 4 & 1 & 2 \\ 1 & 2 & 4 & 3 \\ 2 & 1 & 3 & 4 \\ 4 & 3 & 2 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(132)(4)\\ \tau_{2}=(143)(2)\\ \tau_{3}=(1)(24)(3)\\ \tau_{4}=(1234)\end{array}$     &
+    $\begin{pmatrix} 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \\ 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    17                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 3 & 4 \\ 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \\ 1 & 2 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(1)(24)(3)\\ \tau_{3}=(13)(2)(4)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 4 & 3 & 2 & 1 \\ 1 & 4 & 3 & 2 \\ 2 & 1 & 4 & 3 \\ 3 & 2 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1432)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1234)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 6 \\ 7 & 8 & 7 & 6 \\ 6 & 6 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    18                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 4 & 3 \\ 4 & 3 & 2 & 1 \\ 3 & 2 & 1 & 4 \\ 1 & 4 & 3 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(124)(3)\\ \tau_{2}=(1)(23)(4)\\ \tau_{3}=(143)(2)\\ \tau_{4}=(1342)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 3 & 2 \\ 3 & 4 & 2 & 1 \\ 1 & 2 & 4 & 3 \\ 2 & 3 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1243)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(1342)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 6 & 6 & 8 & 7 \\ 8 & 7 & 7 & 6 \\ 7 & 7 & 6 & 8 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    19                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 4 & 3 \\ 1 & 3 & 2 & 4 \\ 4 & 2 & 3 & 1 \\ 3 & 4 & 1 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1)(23)(4)\\ \tau_{3}=(14)(2)(3)\\ \tau_{4}=(13)(24)\end{array}$ &
+    $\begin{pmatrix} 4 & 3 & 1 & 2 \\ 2 & 4 & 3 & 1 \\ 1 & 2 & 4 & 3 \\ 3 & 1 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(1432)\\ \tau_{3}=(1234)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 6 & 6 & 8 & 7 \\ 7 & 7 & 6 & 8 \\ 8 & 7 & 7 & 6 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    20                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 4 & 3 \\ 1 & 2 & 3 & 4 \\ 3 & 4 & 2 & 1 \\ 4 & 3 & 1 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1)(2)(3)(4)\\ \tau_{3}=(1423)\\ \tau_{4}=(1324)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 3 & 2 \\ 1 & 4 & 2 & 3 \\ 2 & 3 & 4 & 1 \\ 3 & 2 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1423)\\ \tau_{3}=(1324)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \\ 7 & 8 & 6 & 7 \\ 8 & 7 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    21                                                                                                             &
+    $\begin{pmatrix} 2 & 1 & 4 & 3 \\ 3 & 4 & 1 & 2 \\ 4 & 3 & 2 & 1 \\ 1 & 2 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(1)(24)(3)\\ \tau_{3}=(1432)\\ \tau_{4}=(13)(2)(4)\end{array}$     &
+    $\begin{pmatrix} 4 & 3 & 1 & 2 \\ 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \\ 3 & 4 & 2 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(132)(4)\\ \tau_{2}=(143)(2)\\ \tau_{3}=(1234)\\ \tau_{4}=(1)(24)(3)\end{array}$     &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    22                                                                                                             &
+    $\begin{pmatrix} 2 & 3 & 1 & 4 \\ 1 & 2 & 4 & 3 \\ 3 & 4 & 2 & 1 \\ 4 & 1 & 3 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1342)\\ \tau_{2}=(1)(2)(3)(4)\\ \tau_{3}=(1243)\\ \tau_{4}=(14)(23)\end{array}$     &
+    $\begin{pmatrix} 3 & 2 & 4 & 1 \\ 4 & 3 & 1 & 2 \\ 2 & 1 & 3 & 4 \\ 1 & 4 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(1243)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1342)\end{array}$     &
+    $\begin{pmatrix} 7 & 8 & 6 & 7 \\ 6 & 7 & 7 & 8 \\ 8 & 7 & 7 & 6 \\ 7 & 6 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    23                                                                                                             &
+    $\begin{pmatrix} 2 & 3 & 4 & 1 \\ 1 & 4 & 3 & 2 \\ 4 & 2 & 1 & 3 \\ 3 & 1 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(142)(3)\\ \tau_{2}=(1)(243)\\ \tau_{3}=(1234)\\ \tau_{4}=(13)(2)(4)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 2 & 3 \\ 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \\ 1 & 4 & 3 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(13)(2)(4)\\ \tau_{3}=(1432)\\ \tau_{4}=(1)(24)(3)\end{array}$     &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    24                                                                                                             &
+    $\begin{pmatrix} 2 & 3 & 4 & 1 \\ 1 & 4 & 3 & 2 \\ 4 & 2 & 1 & 3 \\ 3 & 1 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(142)(3)\\ \tau_{2}=(1)(243)\\ \tau_{3}=(1234)\\ \tau_{4}=(13)(2)(4)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 3 & 2 \\ 1 & 4 & 2 & 3 \\ 3 & 2 & 4 & 1 \\ 2 & 3 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 7 & 7 & 8 & 6 \\ 6 & 8 & 7 & 7 \\ 8 & 6 & 7 & 7 \\ 7 & 7 & 6 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    25                                                                                                             &
+    $\begin{pmatrix} 2 & 3 & 4 & 1 \\ 3 & 4 & 1 & 2 \\ 4 & 1 & 2 & 3 \\ 1 & 2 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(1)(24)(3)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(13)(2)(4)\end{array}$ &
+    $\begin{pmatrix} 4 & 1 & 3 & 2 \\ 1 & 4 & 2 & 3 \\ 3 & 2 & 4 & 1 \\ 2 & 3 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 7 & 7 & 8 & 6 \\ 7 & 8 & 6 & 7 \\ 8 & 6 & 7 & 7 \\ 6 & 7 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    26                                                                                                             &
+    $\begin{pmatrix} 2 & 3 & 4 & 1 \\ 3 & 2 & 1 & 4 \\ 1 & 4 & 3 & 2 \\ 4 & 1 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1)(2)(34)\\ \tau_{3}=(12)(3)(4)\\ \tau_{4}=(1324)\end{array}$     &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 1 & 3 & 4 & 2 \\ 4 & 2 & 1 & 3 \\ 2 & 4 & 3 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(3)(4)\\ \tau_{2}=(1324)\\ \tau_{3}=(1)(2)(34)\\ \tau_{4}=(1423)\end{array}$     &
+    $\begin{pmatrix} 8 & 6 & 7 & 7 \\ 6 & 8 & 7 & 7 \\ 7 & 7 & 8 & 6 \\ 7 & 7 & 6 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    27                                                                                                             &
+    $\begin{pmatrix} 2 & 4 & 3 & 1 \\ 1 & 3 & 4 & 2 \\ 3 & 2 & 1 & 4 \\ 4 & 1 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(142)(3)\\ \tau_{2}=(1)(243)\\ \tau_{3}=(13)(2)(4)\\ \tau_{4}=(1234)\end{array}$     &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 4 & 2 & 1 & 3 \\ 1 & 4 & 3 & 2 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(123)(4)\\ \tau_{2}=(134)(2)\\ \tau_{3}=(1)(24)(3)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \\ 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    28                                                                                                             &
+    $\begin{pmatrix} 2 & 4 & 3 & 1 \\ 3 & 1 & 2 & 4 \\ 4 & 2 & 1 & 3 \\ 1 & 3 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(2)(3)\\ \tau_{2}=(1)(23)(4)\\ \tau_{3}=(1342)\\ \tau_{4}=(1243)\end{array}$     &
+    $\begin{pmatrix} 3 & 2 & 1 & 4 \\ 1 & 3 & 4 & 2 \\ 2 & 4 & 3 & 1 \\ 4 & 1 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1342)\\ \tau_{2}=(1243)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$     &
+    $\begin{pmatrix} 5 & 7 & 8 & 6 \\ 8 & 6 & 6 & 7 \\ 7 & 6 & 6 & 8 \\ 6 & 8 & 7 & 5 \end{pmatrix}$                                                                                           \\
+    \hline
+    29                                                                                                             &
+    $\begin{pmatrix} 2 & 4 & 3 & 1 \\ 3 & 1 & 2 & 4 \\ 4 & 2 & 1 & 3 \\ 1 & 3 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(2)(3)\\ \tau_{2}=(1)(23)(4)\\ \tau_{3}=(1342)\\ \tau_{4}=(1243)\end{array}$     &
+    $\begin{pmatrix} 3 & 4 & 2 & 1 \\ 2 & 3 & 1 & 4 \\ 4 & 1 & 3 & 2 \\ 1 & 2 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(1342)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1243)\end{array}$     &
+    $\begin{pmatrix} 7 & 7 & 6 & 8 \\ 6 & 7 & 8 & 7 \\ 7 & 8 & 7 & 6 \\ 8 & 6 & 7 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    30                                                                                                             &
+    $\begin{pmatrix} 2 & 4 & 3 & 1 \\ 4 & 1 & 2 & 3 \\ 3 & 2 & 1 & 4 \\ 1 & 3 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(2)(3)\\ \tau_{2}=(1)(23)(4)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 3 & 1 & 4 & 2 \\ 2 & 3 & 1 & 4 \\ 4 & 2 & 3 & 1 \\ 1 & 4 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(1432)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(13)(24)\end{array}$     &
+    $\begin{pmatrix} 7 & 7 & 6 & 8 \\ 7 & 7 & 8 & 6 \\ 6 & 8 & 7 & 7 \\ 8 & 6 & 7 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    31                                                                                                             &
+    $\begin{pmatrix} 2 & 4 & 1 & 3 \\ 4 & 2 & 3 & 1 \\ 3 & 1 & 2 & 4 \\ 1 & 3 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1324)\\ \tau_{2}=(1)(2)(3)(4)\\ \tau_{3}=(1423)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 3 & 4 & 2 & 1 \\ 4 & 3 & 1 & 2 \\ 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1324)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 8 & 7 & 7 & 6 \\ 7 & 8 & 6 & 7 \\ 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    32                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \\ 4 & 1 & 3 & 2 \\ 1 & 4 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1324)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1423)\end{array}$     &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 1 & 3 & 4 & 2 \\ 4 & 2 & 3 & 1 \\ 2 & 4 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1324)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1423)\end{array}$     &
+    $\begin{pmatrix} 6 & 8 & 6 & 7 \\ 8 & 6 & 7 & 6 \\ 7 & 6 & 6 & 8 \\ 6 & 7 & 8 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    33                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \\ 1 & 4 & 3 & 2 \\ 4 & 1 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 3 & 4 & 1 & 2 \\ 4 & 3 & 2 & 1 \\ 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    34                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \\ 1 & 4 & 3 & 2 \\ 4 & 1 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \\ 2 & 1 & 4 & 3 \\ 1 & 2 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1324)\\ \tau_{2}=(1423)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 7 & 6 & 7 & 8 \\ 6 & 7 & 8 & 7 \\ 7 & 8 & 7 & 6 \\ 8 & 7 & 6 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    35                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 1 & 4 \\ 4 & 3 & 2 & 1 \\ 1 & 4 & 3 & 2 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(1234)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1432)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 2 & 3 \\ 3 & 4 & 1 & 2 \\ 2 & 3 & 4 & 1 \\ 1 & 2 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1234)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1432)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 7 \\ 7 & 8 & 7 & 6 \\ 6 & 7 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    36                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 4 & 1 \\ 2 & 1 & 3 & 4 \\ 4 & 3 & 1 & 2 \\ 1 & 4 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(2)(3)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(1)(23)(4)\\ \tau_{4}=(13)(24)\end{array}$ &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 2 & 3 & 4 & 1 \\ 1 & 4 & 3 & 2 \\ 4 & 2 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1243)\\ \tau_{2}=(1342)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$     &
+    $\begin{pmatrix} 6 & 8 & 7 & 7 \\ 8 & 7 & 6 & 7 \\ 7 & 6 & 7 & 8 \\ 7 & 7 & 8 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    37                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 4 & 1 \\ 2 & 3 & 1 & 4 \\ 4 & 1 & 2 & 3 \\ 1 & 4 & 3 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(12)(3)(4)\\ \tau_{3}=(1)(2)(34)\\ \tau_{4}=(13)(24)\end{array}$ &
+    $\begin{pmatrix} 4 & 2 & 1 & 3 \\ 2 & 4 & 3 & 1 \\ 1 & 3 & 4 & 2 \\ 3 & 1 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(14)(23)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 7 & 7 & 8 & 6 \\ 7 & 7 & 6 & 8 \\ 8 & 6 & 6 & 7 \\ 6 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    38                                                                                                             &
+    $\begin{pmatrix} 3 & 2 & 4 & 1 \\ 1 & 3 & 2 & 4 \\ 4 & 1 & 3 & 2 \\ 2 & 4 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1432)\\ \tau_{2}=(1234)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(13)(24)\end{array}$     &
+    $\begin{pmatrix} 3 & 4 & 1 & 2 \\ 2 & 3 & 4 & 1 \\ 1 & 2 & 3 & 4 \\ 4 & 1 & 2 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(1432)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1234)\end{array}$     &
+    $\begin{pmatrix} 6 & 7 & 7 & 8 \\ 8 & 6 & 7 & 7 \\ 7 & 8 & 6 & 7 \\ 7 & 7 & 8 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    39                                                                                                             &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 1 & 3 & 4 & 2 \\ 2 & 4 & 3 & 1 \\ 4 & 2 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(14)(23)\end{array}$ &
+    $\begin{pmatrix} 3 & 4 & 1 & 2 \\ 1 & 2 & 3 & 4 \\ 4 & 3 & 2 & 1 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1342)\\ \tau_{2}=(14)(2)(3)\\ \tau_{3}=(1)(23)(4)\\ \tau_{4}=(1243)\end{array}$     &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 8 & 7 & 6 & 7 \\ 7 & 6 & 7 & 8 \\ 7 & 8 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    40                                                                                                             &
+    $\begin{pmatrix} 3 & 1 & 2 & 4 \\ 1 & 3 & 4 & 2 \\ 4 & 2 & 3 & 1 \\ 2 & 4 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(1324)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(1423)\end{array}$     &
+    $\begin{pmatrix} 3 & 4 & 2 & 1 \\ 4 & 3 & 1 & 2 \\ 2 & 1 & 3 & 4 \\ 1 & 2 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 6 & 7 & 8 & 7 \\ 7 & 6 & 7 & 8 \\ 7 & 8 & 6 & 7 \\ 8 & 7 & 7 & 6 \end{pmatrix}$                                                                                           \\
+    \hline
+    41                                                                                                             &
+    $\begin{pmatrix} 3 & 1 & 4 & 2 \\ 1 & 3 & 2 & 4 \\ 4 & 2 & 3 & 1 \\ 2 & 4 & 1 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(13)(24)\end{array}$ &
+    $\begin{pmatrix} 4 & 3 & 2 & 1 \\ 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \\ 3 & 4 & 1 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1432)\\ \tau_{2}=(13)(2)(4)\\ \tau_{3}=(1234)\\ \tau_{4}=(1)(24)(3)\end{array}$     &
+    $\begin{pmatrix} 7 & 6 & 8 & 7 \\ 7 & 8 & 6 & 7 \\ 8 & 7 & 7 & 6 \\ 6 & 7 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    42                                                                                                             &
+    $\begin{pmatrix} 3 & 4 & 1 & 2 \\ 4 & 3 & 2 & 1 \\ 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 4 & 3 & 2 & 1 \\ 3 & 4 & 1 & 2 \\ 2 & 1 & 4 & 3 \\ 1 & 2 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 7 & 8 & 5 & 6 \\ 8 & 7 & 6 & 5 \\ 5 & 6 & 7 & 8 \\ 6 & 5 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    43                                                                                                             &
+    $\begin{pmatrix} 3 & 4 & 2 & 1 \\ 4 & 3 & 1 & 2 \\ 2 & 1 & 3 & 4 \\ 1 & 2 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(12)(34)\end{array}$ &
+    $\begin{pmatrix} 4 & 1 & 2 & 3 \\ 2 & 4 & 3 & 1 \\ 1 & 3 & 4 & 2 \\ 3 & 2 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1243)\\ \tau_{2}=(1342)\\ \tau_{3}=(14)(23)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 7 & 8 & 7 & 6 \\ 8 & 7 & 6 & 7 \\ 7 & 6 & 7 & 8 \\ 6 & 7 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    44                                                                                                             &
+    $\begin{pmatrix} 3 & 4 & 2 & 1 \\ 4 & 3 & 1 & 2 \\ 1 & 2 & 3 & 4 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1324)\\ \tau_{3}=(1)(2)(3)(4)\\ \tau_{4}=(12)(34)\end{array}$     &
+    $\begin{pmatrix} 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \\ 1 & 2 & 4 & 3 \\ 2 & 1 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 7 & 8 & 6 & 5 \\ 8 & 7 & 5 & 6 \\ 6 & 6 & 7 & 8 \\ 6 & 6 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    45                                                                                                             &
+    $\begin{pmatrix} 3 & 4 & 2 & 1 \\ 1 & 2 & 3 & 4 \\ 4 & 3 & 1 & 2 \\ 2 & 1 & 4 & 3 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(142)(3)\\ \tau_{2}=(134)(2)\\ \tau_{3}=(1)(23)(4)\\ \tau_{4}=(1243)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 2 & 3 \\ 1 & 4 & 3 & 2 \\ 2 & 3 & 4 & 1 \\ 3 & 2 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(34)\\ \tau_{2}=(13)(24)\\ \tau_{3}=(14)(23)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 7 & 8 & 7 & 6 \\ 7 & 6 & 7 & 8 \\ 8 & 7 & 6 & 7 \\ 6 & 7 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    46                                                                                                             &
+    $\begin{pmatrix} 4 & 3 & 1 & 2 \\ 3 & 4 & 2 & 1 \\ 1 & 2 & 4 & 3 \\ 2 & 1 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(13)(24)\\ \tau_{2}=(14)(23)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 4 & 2 & 3 & 1 \\ 1 & 4 & 2 & 3 \\ 3 & 1 & 4 & 2 \\ 2 & 3 & 1 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1432)\\ \tau_{2}=(1234)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 8 & 7 & 7 & 6 \\ 7 & 8 & 6 & 7 \\ 7 & 6 & 8 & 7 \\ 6 & 7 & 7 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+    47                                                                                                             &
+    $\begin{pmatrix} 4 & 3 & 2 & 1 \\ 2 & 1 & 3 & 4 \\ 1 & 2 & 4 & 3 \\ 3 & 4 & 1 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(143)(2)\\ \tau_{2}=(132)(4)\\ \tau_{3}=(1234)\\ \tau_{4}=(1)(24)(3)\end{array}$     &
+    $\begin{pmatrix} 4 & 2 & 3 & 1 \\ 2 & 4 & 1 & 3 \\ 3 & 1 & 4 & 2 \\ 1 & 3 & 2 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(14)(23)\\ \tau_{2}=(12)(34)\\ \tau_{3}=(13)(24)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$ &
+    $\begin{pmatrix} 8 & 7 & 7 & 6 \\ 6 & 7 & 7 & 8 \\ 7 & 6 & 8 & 7 \\ 7 & 8 & 6 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    48                                                                                                             &
+    $\begin{pmatrix} 4 & 3 & 2 & 1 \\ 3 & 4 & 1 & 2 \\ 1 & 2 & 4 & 3 \\ 2 & 1 & 3 & 4 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(1423)\\ \tau_{2}=(1324)\\ \tau_{3}=(12)(34)\\ \tau_{4}=(1)(2)(3)(4)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 3 & 2 \\ 1 & 4 & 2 & 3 \\ 2 & 3 & 1 & 4 \\ 3 & 2 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(3)(4)\\ \tau_{2}=(1423)\\ \tau_{3}=(1324)\\ \tau_{4}=(1)(2)(34)\end{array}$     &
+    $\begin{pmatrix} 8 & 7 & 7 & 6 \\ 7 & 8 & 6 & 7 \\ 6 & 7 & 7 & 8 \\ 7 & 6 & 8 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    49                                                                                                             &
+    $\begin{pmatrix} 4 & 2 & 3 & 1 \\ 1 & 3 & 2 & 4 \\ 2 & 4 & 1 & 3 \\ 3 & 1 & 4 & 2 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(142)(3)\\ \tau_{2}=(123)(4)\\ \tau_{3}=(134)(2)\\ \tau_{4}=(1)(243)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 3 & 2 \\ 2 & 3 & 1 & 4 \\ 1 & 4 & 2 & 3 \\ 3 & 2 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(123)(4)\\ \tau_{2}=(142)(3)\\ \tau_{3}=(134)(2)\\ \tau_{4}=(1)(243)\end{array}$     &
+    $\begin{pmatrix} 8 & 7 & 7 & 6 \\ 7 & 6 & 8 & 7 \\ 6 & 7 & 7 & 8 \\ 7 & 8 & 6 & 7 \end{pmatrix}$                                                                                           \\
+    \hline
+    50                                                                                                             &
+    $\begin{pmatrix} 4 & 2 & 1 & 3 \\ 1 & 4 & 3 & 2 \\ 3 & 1 & 2 & 4 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(132)(4)\\ \tau_{2}=(124)(3)\\ \tau_{3}=(1423)\\ \tau_{4}=(1)(2)(34)\end{array}$     &
+    $\begin{pmatrix} 4 & 1 & 2 & 3 \\ 1 & 4 & 3 & 2 \\ 3 & 2 & 1 & 4 \\ 2 & 3 & 4 & 1 \end{pmatrix}$               &
+    $\begin{array}{l}\tau_{1}=(12)(3)(4)\\ \tau_{2}=(1324)\\ \tau_{3}=(1423)\\ \tau_{4}=(1)(2)(34)\end{array}$     &
+    $\begin{pmatrix} 8 & 6 & 7 & 7 \\ 6 & 8 & 7 & 7 \\ 7 & 7 & 8 & 6 \\ 7 & 7 & 6 & 8 \end{pmatrix}$                                                                                           \\
+    \hline
+\end{longtable}
+\endgroup
+
+\subsection*{Ordo 5}
+Tabel berikut memuat 50 sampel pasangan komutatif ordo 5 yang diperoleh dari hasil pencarian algoritmik.
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{2.7cm}|p{2.7cm}|p{2.7cm}|p{2.7cm}|p{3.3cm}|}
+    \hline
+    No.                                                                                                                                         & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endfirsthead
+    \hline
+    No.                                                                                                                                         & Matriks $A$ & Permutasi $A$ & Matriks $B$ & Permutasi $B$ & $A \otimes B$ \\
+    \hline
+    \endhead
+    1                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&4&5&1&2\\4&5&2&3&1\\5&3&1&2&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(345)\\ \tau_{2}=(12)(354)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14)(23)(5)\\ \tau_{5}=(15)(24)(3)\end{array}$ &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&4&5&2&1\\4&5&1&3&2\\5&3&2&1&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(354)\\ \tau_{2}=(12)(345)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14)(23)(5)\\ \tau_{5}=(15)(24)(3)\end{array}$ &
+    $\begin{pmatrix}10&9&8&7&9\\9&10&9&8&7\\8&9&10&9&8\\7&8&9&10&9\\9&7&8&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    2                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&4&5&1&2\\4&5&2&3&1\\5&3&1&2&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(345)\\ \tau_{2}=(12)(354)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14)(23)(5)\\ \tau_{5}=(15)(24)(3)\end{array}$ &
+    $\begin{pmatrix}2&1&3&4&5\\1&2&4&5&3\\3&4&5&1&2\\4&5&2&3&1\\5&3&1&2&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12)(345)\\ \tau_{2}=(1)(2)(354)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14)(23)(5)\\ \tau_{5}=(15)(24)(3)\end{array}$ &
+    $\begin{pmatrix}10&9&8&7&9\\9&10&9&8&7\\8&9&10&9&8\\7&8&9&10&9\\9&7&8&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    3                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&4&5&2&1\\4&5&1&3&2\\5&3&2&1&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(354)\\ \tau_{2}=(12)(345)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14)(23)(5)\\ \tau_{5}=(15)(24)(3)\end{array}$ &
+    $\begin{pmatrix}2&1&3&4&5\\1&2&4&5&3\\3&4&5&1&2\\4&5&2&3&1\\5&3&1&2&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12)(345)\\ \tau_{2}=(1)(2)(354)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14)(23)(5)\\ \tau_{5}=(15)(24)(3)\end{array}$ &
+    $\begin{pmatrix}10&9&8&7&9\\9&10&9&8&7\\8&9&10&9&8\\7&8&9&10&9\\9&7&8&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    4                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\4&3&5&1&2\\5&4&2&3&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)(5)\\ \tau_{2}=(12)(345)\\ \tau_{3}=(13)(254)\\ \tau_{4}=(14)(235)\\ \tau_{5}=(15)(243)\end{array}$   &
+    $\begin{pmatrix}5&2&1&3&4\\2&5&3&4&1\\1&4&5&2&3\\3&1&4&5&2\\4&3&2&1&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13)(254)\\ \tau_{2}=(12)(345)\\ \tau_{3}=(14)(235)\\ \tau_{4}=(15)(243)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$   &
+    $\begin{pmatrix}9&8&8&9&10\\8&8&9&10&8\\8&10&8&9&9\\9&9&10&7&8\\10&9&7&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    5                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}9&8&10&7&7\\10&9&8&8&8\\8&7&9&10&8\\8&7&8&9&10\\8&10&7&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    6                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}1&3&4&2&5\\4&1&2&5&3\\3&5&1&4&2\\5&2&3&1&4\\2&4&5&3&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)(5)\\ \tau_{2}=(14235)\\ \tau_{3}=(12543)\\ \tau_{4}=(13452)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&9&10&8&8\\10&9&8&8&9\\9&8&9&10&8\\8&8&9&9&10\\8&10&8&9&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    7                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}1&4&5&3&2\\5&1&3&2&4\\4&2&1&5&3\\2&3&4&1&5\\3&5&2&4&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)(5)\\ \tau_{2}=(15324)\\ \tau_{3}=(14235)\\ \tau_{4}=(12543)\\ \tau_{5}=(13452)\end{array}$           &
+    $\begin{pmatrix}8&10&8&9&9\\8&8&9&9&10\\10&9&8&8&9\\9&9&10&8&8\\9&8&9&10&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    8                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&3&4&1&5\\4&2&1&5&3\\3&5&2&4&1\\5&1&3&2&4\\1&4&5&3&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(1)(2)(3)(4)(5)\\ \tau_{3}=(12543)\\ \tau_{4}=(13452)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&9&10&8&8\\10&9&8&8&9\\9&8&9&10&8\\8&8&9&9&10\\8&10&8&9&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    9                                                                                                                                           &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&3&5&1&4\\5&2&1&4&3\\3&4&2&5&1\\4&1&3&2&5\\1&5&4&3&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(1)(2)(3)(4)(5)\\ \tau_{3}=(12543)\\ \tau_{4}=(15324)\\ \tau_{5}=(13452)\end{array}$           &
+    $\begin{pmatrix}8&10&9&8&9\\9&8&8&9&10\\10&9&8&9&8\\9&8&10&8&9\\8&9&9&10&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    10                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&4&5&3&1\\5&2&3&1&4\\4&1&2&5&3\\1&3&4&2&5\\3&5&1&4&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(1)(2)(3)(4)(5)\\ \tau_{3}=(14235)\\ \tau_{4}=(12543)\\ \tau_{5}=(13452)\end{array}$           &
+    $\begin{pmatrix}8&10&8&9&9\\8&8&9&9&10\\10&9&8&8&9\\9&9&10&8&8\\9&8&9&10&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    11                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}3&4&1&5&2\\1&3&5&2&4\\4&2&3&1&5\\2&5&4&3&1\\5&1&2&4&3\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(15324)\\ \tau_{3}=(1)(2)(3)(4)(5)\\ \tau_{4}=(12543)\\ \tau_{5}=(14235)\end{array}$           &
+    $\begin{pmatrix}10&9&8&9&8\\8&10&9&8&9\\9&8&10&8&9\\8&9&9&10&8\\9&8&8&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    12                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}3&4&2&5&1\\2&3&5&1&4\\4&1&3&2&5\\1&5&4&3&2\\5&2&1&4&3\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(1)(2)(3)(4)(5)\\ \tau_{4}=(12543)\\ \tau_{5}=(14235)\end{array}$           &
+    $\begin{pmatrix}10&9&8&9&8\\8&10&9&8&9\\9&8&10&8&9\\8&9&9&10&8\\9&8&8&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    13                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}3&5&1&4&2\\1&3&4&2&5\\5&2&3&1&4\\2&4&5&3&1\\4&1&2&5&3\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(15324)\\ \tau_{3}=(1)(2)(3)(4)(5)\\ \tau_{4}=(14235)\\ \tau_{5}=(12543)\end{array}$           &
+    $\begin{pmatrix}9&8&9&10&8\\9&9&10&8&8\\8&8&9&9&10\\8&10&8&9&9\\10&9&8&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    14                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}3&5&2&4&1\\2&3&4&1&5\\5&1&3&2&4\\1&4&5&3&2\\4&2&1&5&3\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(1)(2)(3)(4)(5)\\ \tau_{4}=(14235)\\ \tau_{5}=(12543)\end{array}$           &
+    $\begin{pmatrix}9&8&9&10&8\\9&9&10&8&8\\8&8&9&9&10\\8&10&8&9&9\\10&9&8&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    15                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}4&1&2&5&3\\2&4&5&3&1\\1&3&4&2&5\\3&5&1&4&2\\5&2&3&1&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(13452)\\ \tau_{3}=(15324)\\ \tau_{4}=(1)(2)(3)(4)(5)\\ \tau_{5}=(14235)\end{array}$           &
+    $\begin{pmatrix}10&9&8&8&9\\8&10&8&9&9\\9&9&10&8&8\\9&8&9&10&8\\8&8&9&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    16                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}4&1&3&2&5\\3&4&2&5&1\\1&5&4&3&2\\5&2&1&4&3\\2&3&5&1&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(14235)\\ \tau_{3}=(13452)\\ \tau_{4}=(1)(2)(3)(4)(5)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&8&10&8&9\\10&9&8&9&8\\8&9&9&10&8\\9&8&8&9&10\\8&10&9&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    17                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}4&2&1&5&3\\1&4&5&3&2\\2&3&4&1&5\\3&5&2&4&1\\5&1&3&2&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(12543)\\ \tau_{3}=(15324)\\ \tau_{4}=(1)(2)(3)(4)(5)\\ \tau_{5}=(14235)\end{array}$           &
+    $\begin{pmatrix}10&9&8&8&9\\8&10&8&9&9\\9&9&10&8&8\\9&8&9&10&8\\8&8&9&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    18                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&1&3&2&4\\3&5&2&4&1\\1&4&5&3&2\\4&2&1&5&3\\2&3&4&1&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(14235)\\ \tau_{3}=(13452)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&8&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&8&8&9\\9&9&10&8&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    19                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&1&4&2&3\\4&5&2&3&1\\1&3&5&4&2\\3&2&1&5&4\\2&4&3&1&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(14235)\\ \tau_{3}=(15324)\\ \tau_{4}=(13452)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}7&9&8&9&10\\8&7&9&10&9\\9&10&7&8&9\\10&9&9&8&8\\9&8&10&9&7\end{pmatrix}$                                                                                                                                \\
+    \hline
+    20                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&2&1&3&4\\1&5&3&4&2\\2&4&5&1&3\\4&3&2&5&1\\3&1&4&2&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(12543)\\ \tau_{3}=(14235)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&7&8&9\\9&9&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    21                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&1&4&2\\1&5&4&2&3\\3&2&5&1&4\\2&4&3&5&1\\4&1&2&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(15324)\\ \tau_{3}=(12543)\\ \tau_{4}=(14235)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}9&8&8&9&10\\7&9&9&10&8\\8&10&9&7&9\\10&9&8&9&7\\9&8&10&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    22                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&1&4&2\\3&5&4&2&1\\2&1&5&3&4\\1&4&2&5&3\\4&2&3&1&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13254)\\ \tau_{2}=(15243)\\ \tau_{3}=(12)(345)\\ \tau_{4}=(14235)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$         &
+    $\begin{pmatrix}9&8&8&9&10\\7&9&9&10&8\\8&10&9&7&9\\10&9&8&9&7\\9&8&10&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    23                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&2&1&4\\2&5&1&4&3\\3&4&5&2&1\\4&1&3&5&2\\1&2&4&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(13452)\\ \tau_{3}=(12543)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&7&8&9\\9&9&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    24                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&2&4&1\\2&5&4&1&3\\3&1&5&2&4\\1&4&3&5&2\\4&2&1&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(12543)\\ \tau_{4}=(14235)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}9&8&8&9&10\\7&9&9&10&8\\8&10&9&7&9\\10&9&8&9&7\\9&8&10&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    25                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&4&2&1\\4&5&2&1&3\\3&1&5&4&2\\1&2&3&5&4\\2&4&1&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(14235)\\ \tau_{3}=(12543)\\ \tau_{4}=(13452)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}7&9&8&9&10\\7&7&9&10&9\\9&10&7&7&9\\10&9&9&8&7\\9&8&10&9&7\end{pmatrix}$                                                                                                                                \\
+    \hline
+    26                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&1&2&4\\5&4&2&3&1\\4&3&5&1&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(45)\\ \tau_{2}=(12)(34)(5)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&4&2&3&1\\2&5&3&1&4\\4&1&5&2&3\\1&3&4&5&2\\3&2&1&4&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(14235)\\ \tau_{4}=(12543)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&8&9&10\\8&8&9&10&8\\8&10&8&8&9\\10&9&7&8&8\\9&8&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    27                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\4&3&5&2&1\\5&4&1&3&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(345)\\ \tau_{2}=(12)(3)(4)(5)\\ \tau_{3}=(13)(254)\\ \tau_{4}=(14)(235)\\ \tau_{5}=(15)(243)\end{array}$   &
+    $\begin{pmatrix}5&1&2&3&4\\1&5&3&4&2\\2&4&5&1&3\\3&2&4&5&1\\4&3&1&2&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12)(345)\\ \tau_{2}=(13)(254)\\ \tau_{3}=(14)(235)\\ \tau_{4}=(15)(243)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$   &
+    $\begin{pmatrix}9&8&8&9&10\\8&8&9&10&8\\8&10&8&9&9\\9&9&10&7&8\\10&9&7&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    28                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}1&3&4&2&5\\4&1&2&5&3\\3&5&1&4&2\\5&2&3&1&4\\2&4&5&3&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)(5)\\ \tau_{2}=(14235)\\ \tau_{3}=(12543)\\ \tau_{4}=(13452)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&9&10&8&8\\10&9&8&8&9\\9&8&9&10&8\\8&8&9&9&10\\8&10&8&9&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    29                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}1&5&4&3&2\\4&1&3&2&5\\5&2&1&4&3\\2&3&5&1&4\\3&4&2&5&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(3)(4)(5)\\ \tau_{2}=(15324)\\ \tau_{3}=(14235)\\ \tau_{4}=(13452)\\ \tau_{5}=(12543)\end{array}$           &
+    $\begin{pmatrix}8&9&9&10&8\\9&8&10&8&9\\9&8&8&9&10\\8&10&9&8&9\\10&9&8&9&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    30                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&1&3&4&5\\1&2&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12)(34)(5)\\ \tau_{2}=(1)(2)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}9&8&10&7&7\\10&9&8&8&8\\8&7&9&10&8\\8&7&8&9&10\\8&10&7&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    31                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&3&4&1&5\\4&2&1&5&3\\3&5&2&4&1\\5&1&3&2&4\\1&4&5&3&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(1)(2)(3)(4)(5)\\ \tau_{3}=(12543)\\ \tau_{4}=(13452)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&9&10&8&8\\10&9&8&8&9\\9&8&9&10&8\\8&8&9&9&10\\8&10&8&9&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    32                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&3&5&1&4\\5&2&1&4&3\\3&4&2&5&1\\4&1&3&2&5\\1&5&4&3&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(1)(2)(3)(4)(5)\\ \tau_{3}=(12543)\\ \tau_{4}=(15324)\\ \tau_{5}=(13452)\end{array}$           &
+    $\begin{pmatrix}8&10&9&8&9\\9&8&8&9&10\\10&9&8&9&8\\9&8&10&8&9\\8&9&9&10&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    33                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}2&5&4&3&1\\4&2&3&1&5\\5&1&2&4&3\\1&3&5&2&4\\3&4&1&5&2\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(1)(2)(3)(4)(5)\\ \tau_{3}=(14235)\\ \tau_{4}=(13452)\\ \tau_{5}=(12543)\end{array}$           &
+    $\begin{pmatrix}8&9&9&10&8\\9&8&10&8&9\\9&8&8&9&10\\8&10&9&8&9\\10&9&8&9&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    34                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}3&4&2&5&1\\2&3&5&1&4\\4&1&3&2&5\\1&5&4&3&2\\5&2&1&4&3\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(1)(2)(3)(4)(5)\\ \tau_{4}=(12543)\\ \tau_{5}=(14235)\end{array}$           &
+    $\begin{pmatrix}10&9&8&9&8\\8&10&9&8&9\\9&8&10&8&9\\8&9&9&10&8\\9&8&8&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    35                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}3&5&2&4&1\\2&3&4&1&5\\5&1&3&2&4\\1&4&5&3&2\\4&2&1&5&3\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(1)(2)(3)(4)(5)\\ \tau_{4}=(14235)\\ \tau_{5}=(12543)\end{array}$           &
+    $\begin{pmatrix}9&8&9&10&8\\9&9&10&8&8\\8&8&9&9&10\\8&10&8&9&9\\10&9&8&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    36                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}4&1&2&5&3\\2&4&5&3&1\\1&3&4&2&5\\3&5&1&4&2\\5&2&3&1&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(13452)\\ \tau_{3}=(15324)\\ \tau_{4}=(1)(2)(3)(4)(5)\\ \tau_{5}=(14235)\end{array}$           &
+    $\begin{pmatrix}10&9&8&8&9\\8&10&8&9&9\\9&9&10&8&8\\9&8&9&10&8\\8&8&9&9&10\end{pmatrix}$                                                                                                                                \\
+    \hline
+    37                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}4&1&3&2&5\\3&4&2&5&1\\1&5&4&3&2\\5&2&1&4&3\\2&3&5&1&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(14235)\\ \tau_{3}=(13452)\\ \tau_{4}=(1)(2)(3)(4)(5)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&8&10&8&9\\10&9&8&9&8\\8&9&9&10&8\\9&8&8&9&10\\8&10&9&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    38                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}4&2&3&1&5\\3&4&1&5&2\\2&5&4&3&1\\5&1&2&4&3\\1&3&5&2&4\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(12543)\\ \tau_{3}=(13452)\\ \tau_{4}=(1)(2)(3)(4)(5)\\ \tau_{5}=(15324)\end{array}$           &
+    $\begin{pmatrix}9&8&10&8&9\\10&9&8&9&8\\8&9&9&10&8\\9&8&8&9&10\\8&10&9&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    39                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&1&2&3&4\\2&5&3&4&1\\1&4&5&2&3\\4&3&1&5&2\\3&2&4&1&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(13452)\\ \tau_{3}=(14235)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&7&8&9\\9&9&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    40                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&1&4&3&2\\4&5&3&2&1\\1&2&5&4&3\\2&3&1&5&4\\3&4&2&1&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(12543)\\ \tau_{2}=(15324)\\ \tau_{3}=(14235)\\ \tau_{4}=(13452)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&9&8&9&10\\7&8&9&10&9\\9&10&8&7&9\\10&9&9&8&7\\9&8&10&9&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    41                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&2&1&3&4\\1&5&3&4&2\\2&4&5&1&3\\4&3&2&5&1\\3&1&4&2&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(12543)\\ \tau_{3}=(14235)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&7&8&9\\9&9&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    42                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&2&1&4&3\\1&5&4&3&2\\2&3&5&1&4\\3&4&2&5&1\\4&1&3&2&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(12543)\\ \tau_{3}=(15324)\\ \tau_{4}=(14235)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}9&8&8&9&10\\8&9&9&10&8\\8&10&9&8&9\\10&9&8&9&8\\9&8&10&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    43                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&1&4&2\\1&5&4&2&3\\3&2&5&1&4\\2&4&3&5&1\\4&1&2&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(15324)\\ \tau_{3}=(12543)\\ \tau_{4}=(14235)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}9&8&8&9&10\\7&9&9&10&8\\8&10&9&7&9\\10&9&8&9&7\\9&8&10&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    44                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&2&1&4\\2&5&1&4&3\\3&4&5&2&1\\4&1&3&5&2\\1&2&4&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14235)\\ \tau_{2}=(13452)\\ \tau_{3}=(12543)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&7&8&9\\9&9&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    45                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&2&1&4\\3&5&1&4&2\\1&4&5&2&3\\4&2&3&5&1\\2&1&4&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(14523)\\ \tau_{2}=(13425)\\ \tau_{3}=(12)(354)\\ \tau_{4}=(15324)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$         &
+    $\begin{pmatrix}8&7&9&9&10\\9&8&9&10&8\\8&10&8&9&9\\10&9&7&8&9\\9&9&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    46                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&2&4&1\\2&5&4&1&3\\3&1&5&2&4\\1&4&3&5&2\\4&2&1&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(12543)\\ \tau_{4}=(14235)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}9&8&8&9&10\\7&9&9&10&8\\8&10&9&7&9\\10&9&8&9&7\\9&8&10&8&9\end{pmatrix}$                                                                                                                                \\
+    \hline
+    47                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&3&4&2&1\\4&5&2&1&3\\3&1&5&4&2\\1&2&3&5&4\\2&4&1&3&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(14235)\\ \tau_{3}=(12543)\\ \tau_{4}=(13452)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}7&9&8&9&10\\7&7&9&10&9\\9&10&7&7&9\\10&9&9&8&7\\9&8&10&9&7\end{pmatrix}$                                                                                                                                \\
+    \hline
+    48                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&4&1&3&2\\1&5&3&2&4\\4&2&5&1&3\\2&3&4&5&1\\3&1&2&4&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(13452)\\ \tau_{2}=(15324)\\ \tau_{3}=(14235)\\ \tau_{4}=(12543)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&8&9&10\\8&8&9&10&8\\8&10&8&8&9\\10&9&7&8&8\\9&8&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    49                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&4&2&3&1\\2&5&3&1&4\\4&1&5&2&3\\1&3&4&5&2\\3&2&1&4&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(13452)\\ \tau_{3}=(14235)\\ \tau_{4}=(12543)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}8&7&8&9&10\\8&8&9&10&8\\8&10&8&8&9\\10&9&7&8&8\\9&8&10&7&8\end{pmatrix}$                                                                                                                                \\
+    \hline
+    50                                                                                                                                          &
+    $\begin{pmatrix}1&2&3&4&5\\2&1&4&5&3\\3&5&2&1&4\\5&4&1&3&2\\4&3&5&2&1\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(1)(2)(34)(5)\\ \tau_{2}=(12)(3)(45)\\ \tau_{3}=(13)(25)(4)\\ \tau_{4}=(14235)\\ \tau_{5}=(15324)\end{array}$     &
+    $\begin{pmatrix}5&4&3&2&1\\3&5&2&1&4\\4&1&5&3&2\\1&2&4&5&3\\2&3&1&4&5\end{pmatrix}$                                                         &
+    $\begin{array}{l}\tau_{1}=(15324)\\ \tau_{2}=(14235)\\ \tau_{3}=(13452)\\ \tau_{4}=(12543)\\ \tau_{5}=(1)(2)(3)(4)(5)\end{array}$           &
+    $\begin{pmatrix}7&8&8&9&10\\8&7&9&10&8\\8&10&7&8&9\\10&9&8&8&8\\9&8&10&8&7\end{pmatrix}$                                                                                                                                \\
+    \hline
+\end{longtable}
+\endgroup
+
 \Lampiran{Sintaks Program Python}
 
 \inputminted[

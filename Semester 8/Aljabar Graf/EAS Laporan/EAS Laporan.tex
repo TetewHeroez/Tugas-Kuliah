@@ -1,0 +1,663 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[indonesian]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=1.5cm}
+
+\title{Analisis Spektral dan Polinomial Karakteristik Matriks Jarak pada Beberapa Keluarga Graf Dasar}
+\author{Teosofi Hidayah Agung - 5002221132}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Pendahuluan}
+
+Dalam teori graf spektral, sebuah graf tidak hanya dipelajari melalui banyaknya sisi atau derajat simpulnya, tetapi juga melalui spektrum dari matriks yang merepresentasikan graf tersebut. Selain matriks ketetanggaan dan matriks Laplacian, matriks jarak merupakan objek penting karena memuat informasi metrik global dari graf \cite{aouchiche2014distance, stevanovic2012spectral}. Jika $G$ adalah graf terhubung dengan himpunan simpul
+\[
+  V(G)=\{v_1,v_2,\dots,v_n\},
+\]
+maka matriks jaraknya didefinisikan sebagai
+\[
+  D(G)=[d_{ij}]_{n\times n},
+  \qquad
+  d_{ij}=d_G(v_i,v_j),
+\]
+dengan $d_G(v_i,v_j)$ menyatakan panjang lintasan terpendek dari $v_i$ ke $v_j$. Karena $G$ tak berarah, matriks $D(G)$ selalu simetris, sehingga semua nilai eigennya riil.
+
+Polinomial karakteristik matriks jarak didefinisikan oleh
+\[
+  P_{D(G)}(\lambda)=\det(\lambda I_n-D(G)).
+\]
+Akar-akar polinomial ini disebut nilai eigen jarak dan akan ditulis sebagai
+\[
+  \partial_1 \ge \partial_2 \ge \cdots \ge \partial_n.
+\]
+Nilai eigen terbesar $\partial_1$ disebut jari-jari spektral jarak. Karena $D(G)$ adalah matriks simetris tak-negatif dan tak-tereduksi untuk graf terhubung, Teorema Perron-Frobenius menjamin bahwa $\partial_1$ bernilai positif dan mempunyai vektor eigen dengan komponen positif \cite{bapat2010graphs, godsil2001algebraic}.
+
+Dua besaran global yang sering digunakan bersama matriks jarak adalah indeks Wiener dan energi jarak. Indeks Wiener diberikan oleh
+\[
+  W(G)=\sum_{1\le i<j\le n} d_G(v_i,v_j)
+  =\frac12 \sum_{i=1}^n \sum_{j=1}^n d_{ij},
+\]
+sedangkan energi jarak didefinisikan sebagai
+\[
+  E_D(G)=\sum_{i=1}^n |\partial_i|.
+\]
+Karena diagonal utama $D(G)$ bernilai nol, maka
+\[
+  \operatorname{tr}(D(G))=0
+  \qquad\Longrightarrow\qquad
+  \sum_{i=1}^n \partial_i=0.
+\]
+Laporan ini membahas lima keluarga graf dasar, yaitu graf lengkap $K_n$, graf bintang $S_n$, graf bipartit lengkap $K_{a,b}$, graf siklus $C_n$, dan graf lintasan $P_n$. Untuk setiap keluarga, fokus pembahasan diarahkan pada bentuk matriks jarak, spektrum, polinomial karakteristik, serta beberapa parameter turunannya.
+
+\section{Perangkat Teori yang Digunakan}
+
+\subsection{Partisi Berkeadilan dan Matriks Hasil Bagi}
+
+Jika himpunan simpul $V(G)$ dipartisi menjadi
+\[
+  V(G)=V_1\cup V_2\cup \cdots \cup V_k,
+\]
+maka partisi tersebut disebut \textit{berkeadilan} untuk matriks $M$ apabila, untuk setiap pasangan $i,j$, jumlah entri pada setiap baris blok $M[V_i,V_j]$ selalu konstan. Konstanta itu ditulis sebagai $q_{ij}$ dan membentuk matriks hasil bagi
+\[
+  Q=(q_{ij})_{k\times k}.
+\]
+Untuk partisi berkeadilan pada matriks simetris, setiap nilai eigen dari $Q$ juga merupakan nilai eigen dari $M$ \cite{godsil2001algebraic}. Secara konseptual, teknik ini mereduksi persoalan spektral berukuran $n\times n$ menjadi persoalan orde kecil. Metode ini sangat efektif untuk graf bintang dan graf bipartit lengkap.
+
+\subsection{Matriks Sirkulan}
+
+Untuk graf siklus, matriks jaraknya merupakan matriks sirkulan. Jika baris pertama matriks sirkulan adalah
+\[
+  (c_0,c_1,\dots,c_{n-1}),
+\]
+maka nilai eigennya dapat dituliskan dengan bantuan akar satuan
+\[
+  \omega_n=e^{2\pi i/n}
+\]
+sebagai
+\[
+  \lambda_r=\sum_{j=0}^{n-1} c_j \omega_n^{rj},
+  \qquad
+  r=0,1,\dots,n-1.
+\]
+Karena matriks jarak graf siklus simetris, bentuk ini juga dapat ditulis dalam bentuk kosinus yang riil. Pendekatan ini memberi rumus spektral yang sistematis untuk $C_n$.
+
+\subsection{Teorema Graham-Pollack}
+
+Untuk setiap pohon $T$ berorde $n\ge 2$, Graham dan Pollack menunjukkan bahwa determinan matriks jarak hanya bergantung pada banyaknya simpul, bukan pada bentuk pohonnya \cite{graham1971addressing, graham1978distance}. Secara khusus,
+\[
+  \det D(T)=(-1)^{n-1}(n-1)2^{n-2}.
+\]
+Hasil ini akan dipakai sebagai pemeriksaan konsistensi pada graf bintang dan graf lintasan, karena keduanya merupakan pohon.
+
+\section{Graf Lengkap $K_n$}
+
+\subsection{Bentuk Matriks Jarak}
+
+Pada graf lengkap, setiap dua simpul berbeda berjarak $1$. Oleh karena itu,
+\[
+  D(K_n)=J_n-I_n,
+\]
+dengan $J_n$ matriks semua-satu dan $I_n$ matriks identitas.
+
+Karena
+\[
+  J_n\mathbf{1}=n\mathbf{1},
+\]
+maka $\mathbf{1}$ adalah vektor eigen dari $J_n$ dengan nilai eigen $n$. Sementara itu, setiap vektor yang ortogonal terhadap $\mathbf{1}$ merupakan vektor eigen dengan nilai eigen $0$. Dari sini diperoleh spektrum matriks jarak:
+\[
+  \partial_1=n-1,
+  \qquad
+  \partial_2=\cdots=\partial_n=-1.
+\]
+
+\subsection{Polinomial Karakteristik dan Parameter Turunan}
+
+Polinomial karakteristiknya langsung menjadi
+\[
+  P_{D(K_n)}(\lambda)
+  =\bigl(\lambda-(n-1)\bigr)(\lambda+1)^{n-1}.
+\]
+Determinannya adalah
+\[
+  \det D(K_n)=(-1)^{n-1}(n-1),
+\]
+dan energi jaraknya
+\[
+  E_D(K_n)=|n-1|+(n-1)|-1|=2(n-1).
+\]
+Karena semua pasangan simpul berjarak $1$, indeks Wienernya adalah
+\[
+  W(K_n)=\binom{n}{2}=\frac{n(n-1)}{2}.
+\]
+
+\subsection{Ilustrasi $K_5$}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=1.5, thick,
+      every node/.style={circle, draw=black, fill=blue!10, inner sep=3pt, minimum size=0.6cm, font=\small\bfseries}]
+
+    \foreach \i in {1,...,5} {
+        \node (V\i) at ({-90 + 360/5 * (\i - 1)}:1.5) {$v_\i$};
+      }
+
+    \foreach \i in {1,...,4} {
+        \pgfmathtruncatemacro{\start}{\i + 1}
+        \foreach \j in {\start,...,5} {
+            \draw (V\i) -- (V\j);
+          }
+      }
+  \end{tikzpicture}
+  \caption{Ilustrasi graf lengkap $K_5$}
+  \label{fig:k5}
+\end{figure}
+
+\section{Graf Bintang $S_n=K_{1,n-1}$}
+
+\subsection{Struktur Matriks dan Partisi Berkeadilan}
+
+Graf bintang memiliki satu simpul pusat dan $n-1$ simpul daun. Jika simpul pusat diletakkan pada partisi $V_1$ dan semua daun pada partisi $V_2$, maka jumlah jarak dari sebuah simpul dalam $V_i$ ke semua simpul dalam $V_j$ bersifat konstan. Matriks hasil bagi yang diperoleh adalah
+\[
+  Q(S_n)=
+  \begin{pmatrix}
+    0 & n-1    \\
+    1 & 2(n-2)
+  \end{pmatrix}.
+\]
+Entri-entri tersebut berasal dari fakta berikut:
+\[
+  \sum_{u\in V_1} d(v,u)=0,
+  \qquad
+  \sum_{u\in V_2} d(v,u)=n-1
+  \quad (v\in V_1),
+\]
+dan
+\[
+  \sum_{u\in V_1} d(v,u)=1,
+  \qquad
+  \sum_{u\in V_2} d(v,u)=2(n-2)
+  \quad (v\in V_2).
+\]
+
+\subsection{Spektrum dan Polinomial Karakteristik}
+
+Polinomial karakteristik matriks hasil bagi adalah
+\[
+  \det(\lambda I_2-Q)
+  =
+  \lambda^2-2(n-2)\lambda-(n-1).
+\]
+Dengan demikian, dua nilai eigen utama matriks jarak adalah
+\[
+  \lambda_{\pm}=n-2\pm \sqrt{n^2-3n+3}.
+\]
+
+Nilai eigen sisanya dapat diperoleh dari subruang yang dibangkitkan oleh selisih antardaun. Jika $x$ adalah vektor yang bernilai $0$ pada pusat dan jumlah komponennya pada daun sama dengan nol, maka
+\[
+  D(S_n)x=-2x.
+\]
+Akibatnya,
+\[
+  \partial_3=\partial_4=\cdots=\partial_n=-2.
+\]
+Jadi polinomial karakteristik lengkapnya adalah
+\[
+  P_{D(S_n)}(\lambda)
+  =
+  (\lambda+2)^{n-2}
+  \bigl(\lambda^2-2(n-2)\lambda-(n-1)\bigr).
+\]
+
+Dengan mensubstitusikan $\lambda=0$, diperoleh
+\[
+  \det D(S_n)=(-1)^{n-1}(n-1)2^{n-2},
+\]
+sesuai dengan Teorema Graham-Pollack.
+
+\subsection{Indeks Wiener dan Energi Jarak}
+
+Jumlah semua jarak pada graf bintang adalah
+\[
+  W(S_n)
+  =(n-1)\cdot 1+\binom{n-1}{2}\cdot 2
+  =(n-1)^2.
+\]
+Karena hanya ada satu nilai eigen positif, energi jaraknya dapat ditulis sebagai
+\[
+  E_D(S_n)=2\lambda_+
+  =2\Bigl(n-2+\sqrt{n^2-3n+3}\Bigr).
+\]
+
+\subsection{Ilustrasi $S_6$}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=1.5, thick,
+      every node/.style={circle, draw=black, fill=green!10, inner sep=3pt, minimum size=0.6cm, font=\small\bfseries}]
+
+    \node[fill=red!20] (C) at (0,0) {$v_1$};
+
+    \foreach \i/\ang in {2/90, 3/162, 4/234, 5/306, 6/18} {
+        \node (L\i) at (\ang:1.5) {$v_\i$};
+        \draw (C) -- (L\i);
+      }
+  \end{tikzpicture}
+  \caption{Ilustrasi graf bintang $S_6$}
+  \label{fig:s6}
+\end{figure}
+
+\section{Graf Bipartit Lengkap $K_{a,b}$}
+
+\subsection{Bentuk Matriks Jarak}
+
+Misalkan partisi bipartit graf adalah $V_1$ dan $V_2$ dengan $|V_1|=a$, $|V_2|=b$, dan $n=a+b$. Dua simpul yang berada pada partisi berbeda berjarak $1$, sedangkan dua simpul pada partisi yang sama berjarak $2$. Dengan urutan simpul yang sesuai, matriks jaraknya dapat ditulis sebagai
+\[
+  D(K_{a,b})=
+  \begin{pmatrix}
+    2(J_a-I_a)    & J_{a\times b} \\
+    J_{b\times a} & 2(J_b-I_b)
+  \end{pmatrix}.
+\]
+
+\subsection{Matriks Hasil Bagi dan Spektrum}
+
+Partisi alami $\{V_1,V_2\}$ menghasilkan matriks hasil bagi
+\[
+  Q(K_{a,b})=
+  \begin{pmatrix}
+    2(a-1) & b      \\
+    a      & 2(b-1)
+  \end{pmatrix}.
+\]
+Polinomial karakteristiknya adalah
+\[
+  \det(\lambda I_2-Q)
+  =
+  \lambda^2-2(n-2)\lambda+(3ab-4n+4).
+\]
+Jadi dua nilai eigen utama adalah
+\[
+  \lambda_{\pm}
+  =
+  n-2\pm \sqrt{a^2-ab+b^2}.
+\]
+
+Untuk setiap vektor yang jumlah komponennya nol pada salah satu partisi dan nol pada partisi lain, berlaku
+\[
+  D(K_{a,b})x=-2x.
+\]
+Akibatnya, $-2$ muncul sebagai nilai eigen dengan multiplisitas
+\[
+  (a-1)+(b-1)=n-2.
+\]
+Maka
+\[
+  P_{D(K_{a,b})}(\lambda)
+  =
+  (\lambda+2)^{n-2}
+  \bigl(\lambda^2-2(n-2)\lambda+(3ab-4n+4)\bigr).
+\]
+
+\subsection{Determinan dan Indeks Wiener}
+
+Menilai polinomial di $\lambda=0$ menghasilkan
+\[
+  \det D(K_{a,b})
+  =
+  (-1)^n 2^{n-2}(3ab-4n+4).
+\]
+Matriks jarak menjadi singular jika dan hanya jika
+\[
+  3ab=4a+4b-4.
+\]
+Persamaan ini ekuivalen dengan
+\[
+  (3a-4)(3b-4)=4,
+\]
+sehingga satu-satunya solusi bilangan bulat positif adalah
+\[
+  a=b=2.
+\]
+Dengan kata lain, $K_{2,2}\cong C_4$ adalah satu-satunya graf bipartit lengkap yang mempunyai determinan nol.
+
+Indeks Wiener graf ini adalah
+\[
+  W(K_{a,b})
+  =ab+2\binom{a}{2}+2\binom{b}{2}
+  =a^2+b^2+ab-a-b.
+\]
+
+\subsection{Ilustrasi $K_{3,3}$}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=1.5, thick,
+      every node/.style={circle, draw=black, inner sep=3pt, minimum size=0.6cm, font=\small\bfseries}]
+
+    \foreach \i in {1,2,3} {
+        \node[fill=orange!20] (U\i) at (\i, 2) {$u_\i$};
+      }
+
+    \foreach \j in {1,2,3} {
+        \node[fill=cyan!20] (W\j) at (\j, 0) {$w_\j$};
+      }
+
+    \foreach \i in {1,2,3} {
+        \foreach \j in {1,2,3} {
+            \draw (U\i) -- (W\j);
+          }
+      }
+  \end{tikzpicture}
+  \caption{Ilustrasi graf bipartit lengkap $K_{3,3}$}
+  \label{fig:k33}
+\end{figure}
+
+\section{Graf Siklus $C_n$}
+
+\subsection{Deskripsi Metrik}
+
+Jika simpul-simpul pada $C_n$ dilabeli berurutan sebagai $v_1,v_2,\dots,v_n$, maka
+\[
+  d_{ij}=\min\{|i-j|,\, n-|i-j|\}.
+\]
+Akibatnya, $D(C_n)$ adalah matriks sirkulan. Bentuk spektralnya bergantung pada paritas $n$.
+
+\subsection{Kasus $n=2p+1$ Ganjil}
+
+Untuk $n=2p+1$, baris pertama matriks jarak adalah
+\[
+  (0,1,2,\dots,p,p,\dots,2,1).
+\]
+Dari teori matriks sirkulan, nilai eigennya adalah
+\[
+  \partial_r
+  =
+  2\sum_{k=1}^{p} k \cos\left(\frac{2\pi rk}{2p+1}\right),
+  \qquad
+  r=0,1,\dots,2p.
+\]
+Karena setiap simpul mempunyai transmisi yang sama,
+\[
+  \operatorname{Tr}(v_i)=2\sum_{k=1}^{p} k=p(p+1),
+\]
+maka
+\[
+  \partial_0=p(p+1)=\frac{n^2-1}{4}
+\]
+adalah jari-jari spektral jarak. Simetri sirkulan memberi
+\[
+  \partial_r=\partial_{n-r},
+\]
+sehingga polinomial karakteristik dapat ditulis sebagai
+\[
+  P_{D(C_{2p+1})}(\lambda)
+  =
+  \bigl(\lambda-p(p+1)\bigr)
+  \prod_{r=1}^{p}
+  \left(
+  \lambda-2\sum_{k=1}^{p} k \cos\left(\frac{2\pi rk}{2p+1}\right)
+  \right)^2.
+\]
+Determinan matriks jaraknya diketahui bernilai
+\[
+  \det D(C_{2p+1})=p(p+1)=\frac{n^2-1}{4} \cite{fowler2001distance}.
+\]
+Indeks Wienernya adalah
+\[
+  W(C_{2p+1})
+  =\frac{n}{2}\,p(p+1)
+  =\frac{n(n^2-1)}{8}.
+\]
+
+\subsection{Kasus $n=2p$ Genap}
+
+Untuk $n=2p$, baris pertama matriks jarak adalah
+\[
+  (0,1,2,\dots,p,p-1,\dots,2,1),
+\]
+dan nilai eigennya menjadi
+\[
+  \partial_r
+  =
+  2\sum_{k=1}^{p-1} k \cos\left(\frac{\pi rk}{p}\right)+p(-1)^r,
+  \qquad
+  r=0,1,\dots,2p-1.
+\]
+Setiap simpul mempunyai transmisi
+\[
+  \operatorname{Tr}(v_i)=2\sum_{k=1}^{p-1}k+p=p^2,
+\]
+sehingga
+\[
+  \partial_0=p^2=\frac{n^2}{4}.
+\]
+
+Untuk $r=2s$ dengan $s=1,2,\dots,p-1$, diperoleh
+\[
+  \partial_{2s}=0.
+\]
+Akibatnya, matriks jarak $C_{2p}$ selalu singular dan
+\[
+  \det D(C_{2p})=0.
+\]
+Dengan mempertimbangkan simetri $\partial_r=\partial_{n-r}$, polinomial karakteristiknya dapat ditulis sebagai
+\[
+  P_{D(C_{2p})}(\lambda)
+  =
+  \lambda^{p-1}(\lambda-p^2)
+  \prod_{r=1}^{p-1}(\lambda-\partial_{2r-1})^2.
+\]
+Indeks Wienernya adalah
+\[
+  W(C_{2p})=\frac{n}{2}\,p^2=\frac{n^3}{8}.
+\]
+
+\subsection{Ilustrasi $C_6$}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=1.5, thick,
+      every node/.style={circle, draw=black, fill=yellow!20, inner sep=3pt, minimum size=0.6cm, font=\small\bfseries}]
+
+    \foreach \i in {1,...,6} {
+        \node (N\i) at ({-90 + 360/6 * (\i - 1)}:1.5) {$v_\i$};
+      }
+
+    \foreach \i in {1,...,5} {
+        \pgfmathtruncatemacro{\next}{\i + 1}
+        \draw (N\i) -- (N\next);
+      }
+    \draw (N6) -- (N1);
+  \end{tikzpicture}
+  \caption{Ilustrasi graf siklus $C_6$}
+  \label{fig:c6}
+\end{figure}
+
+\section{Graf Lintasan $P_n$}
+
+\subsection{Bentuk Matriks dan Transmisi Simpul}
+
+Jika simpul-simpul dilabeli berurutan sepanjang lintasan, maka
+\[
+  d_{ij}=|i-j|,
+\]
+sehingga
+\[
+  D(P_n)=
+  \begin{pmatrix}
+    0      & 1      & 2      & \cdots & n-1    \\
+    1      & 0      & 1      & \cdots & n-2    \\
+    2      & 1      & 0      & \cdots & n-3    \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    n-1    & n-2    & n-3    & \cdots & 0
+  \end{pmatrix}.
+\]
+Berbeda dari $K_n$ dan $C_n$, graf lintasan tidak transisi-regular. Transmisi pada simpul ke-$i$ adalah
+\[
+  \operatorname{Tr}(v_i)
+  =
+  \sum_{j=1}^n |i-j|
+  =
+  \frac{(i-1)i}{2}+\frac{(n-i)(n-i+1)}{2}.
+\]
+Rumus ini menjelaskan mengapa simpul tengah dan simpul ujung memainkan peran spektral yang berbeda.
+
+\subsection{Deskripsi Spektral}
+
+Untuk graf lintasan, tidak ada faktorisasi polinomial karakteristik yang sesederhana keluarga sebelumnya. Hasil klasik Ruzieh dan Powers \cite{ruzieh1990distance} menyatakan bahwa jari-jari spektral dapat ditulis sebagai
+\[
+  \partial_1(P_n)=\frac{1}{\cosh\theta-1},
+\]
+dengan $\theta>0$ memenuhi persamaan
+\[
+  \tanh\left(\frac{\theta}{2}\right)
+  \tanh\left(\frac{n\theta}{2}\right)=\frac{1}{n}.
+\]
+Sementara itu, setiap nilai eigen negatif dapat ditulis dalam bentuk
+\[
+  \partial_k(P_n)=\frac{1}{\cos\phi_k-1},
+  \qquad
+  k=2,3,\dots,n,
+\]
+dengan $\phi_k\in(0,\pi)$ memenuhi
+\[
+  \tan\left(\frac{\phi_k}{2}\right)
+  \tan\left(\frac{n\phi_k}{2}\right)=-\frac{1}{n}.
+\]
+Maka secara formal polinomial karakteristiknya dapat dinyatakan sebagai
+\[
+  P_{D(P_n)}(\lambda)
+  =
+  \left(\lambda-\frac{1}{\cosh\theta-1}\right)
+  \prod_{k=2}^{n}
+  \left(\lambda-\frac{1}{\cos\phi_k-1}\right).
+\]
+Walaupun bentuk ini tidak sesingkat kasus $K_n$ atau $S_n$, ia tetap memberikan deskripsi eksak terhadap spektrum $D(P_n)$.
+
+\subsection{Determinan dan Indeks Wiener}
+
+Karena $P_n$ adalah pohon, Teorema Graham-Pollack langsung memberi
+\[
+  \det D(P_n)=(-1)^{n-1}(n-1)2^{n-2}.
+\]
+Indeks Wiener graf lintasan dapat dihitung secara elementer:
+\[
+  W(P_n)
+  =\sum_{1\le i<j\le n}(j-i)
+  =\sum_{k=1}^{n-1}k(n-k)
+  =\frac{n^3-n}{6}.
+\]
+Di antara semua pohon berorde $n$, graf lintasan cenderung mempunyai penyebaran jarak paling besar, sehingga menjadi kandidat alami untuk nilai energi jarak yang besar \cite{merris1990distance, ruzieh1990distance}.
+
+\subsection{Ilustrasi $P_5$}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=1.5, thick,
+      every node/.style={circle, draw=black, fill=purple!10, inner sep=3pt, minimum size=0.6cm, font=\small\bfseries}]
+
+    \foreach \i in {1,...,5} {
+        \node (P\i) at (\i, 0) {$v_\i$};
+      }
+
+    \foreach \i in {1,...,4} {
+        \pgfmathtruncatemacro{\next}{\i + 1}
+        \draw (P\i) -- (P\next);
+      }
+  \end{tikzpicture}
+  \caption{Ilustrasi graf lintasan $P_5$}
+  \label{fig:p5}
+\end{figure}
+
+\section{Ringkasan Hasil}
+
+Tabel berikut merangkum rumus-rumus utama yang diperoleh.
+
+\begin{table}[h!]
+  \centering
+  \small
+  \caption{Ringkasan hasil untuk beberapa keluarga graf}
+  \label{tab:perbandingan}
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Graf} & \textbf{Jari-jari Spektral} & \textbf{Determinan}        & \textbf{Indeks Wiener} \\ \hline
+    $K_n$         & $n-1$                       & $(-1)^{n-1}(n-1)$          & $\frac{n(n-1)}{2}$     \\ \hline
+    $S_n$         & $n-2+\sqrt{n^2-3n+3}$       & $(-1)^{n-1}(n-1)2^{n-2}$   & $(n-1)^2$              \\ \hline
+    $K_{a,b}$     & $n-2+\sqrt{a^2-ab+b^2}$     & $(-1)^n 2^{n-2}(3ab-4n+4)$ & $a^2+b^2+ab-a-b$       \\ \hline
+    $C_{2p+1}$    & $p(p+1)$                    & $p(p+1)$                   & $\frac{n(n^2-1)}{8}$   \\ \hline
+    $C_{2p}$      & $p^2$                       & $0$                        & $\frac{n^3}{8}$        \\ \hline
+    $P_n$         & $\frac{1}{\cosh\theta-1}$   & $(-1)^{n-1}(n-1)2^{n-2}$   & $\frac{n^3-n}{6}$      \\ \hline
+  \end{tabular}
+\end{table}
+
+\section{Kesimpulan}
+
+Analisis di atas menunjukkan bahwa perilaku spektral matriks jarak sangat dipengaruhi oleh struktur global graf. Pada graf dengan simetri tinggi seperti $K_n$, $S_n$, dan $K_{a,b}$, partisi berkeadilan memungkinkan polinomial karakteristik diperoleh secara langsung dari matriks hasil bagi. Pada graf siklus, struktur sirkulan memberi deskripsi eksplisit melalui transformasi Fourier diskrit. Sementara itu, graf lintasan memiliki bentuk spektral yang lebih halus dan melibatkan persamaan transendental.
+
+Ada dua pola umum yang tampak jelas. Pertama, graf yang sangat teratur cenderung memiliki rumus spektral yang ringkas. Kedua, meskipun graf bintang dan graf lintasan sangat berbeda secara bentuk, keduanya tetap memiliki determinan matriks jarak yang sama karena sama-sama merupakan pohon. Hal ini menegaskan bahwa beberapa invariant spektral sensitif terhadap bentuk global graf, sedangkan invariant lain hanya bergantung pada kelas struktur yang lebih luas.
+
+\begin{thebibliography}{11}
+  \bibitem{aouchiche2014distance}
+  M.~Aouchiche and P.~Hansen.
+  \newblock Distance spectra of graphs: a survey.
+  \newblock {\em Linear Algebra and its Applications}, 458:301--386, 2014.
+
+  \bibitem{bapat2010graphs}
+  R.~B. Bapat.
+  \newblock {\em Graphs and matrices}.
+  \newblock Springer, 2010.
+
+  \bibitem{godsil2001algebraic}
+  C.~Godsil and G.~Royle.
+  \newblock {\em Algebraic graph theory}.
+  \newblock Springer Science \& Business Media, 2001.
+
+  \bibitem{graham1971addressing}
+  R.~L. Graham and H.~O. Pollack.
+  \newblock On the addressing problem for loop switching.
+  \newblock {\em Bell System Technical Journal}, 50(8):2495--2519, 1971.
+
+  \bibitem{graham1978distance}
+  R.~L. Graham and L.~Lov{\'a}sz.
+  \newblock Distance matrix conjectures.
+  \newblock {\em Journal of Graph Theory}, 2(1):81--88, 1978.
+
+  \bibitem{ruzieh1990distance}
+  S.~N. Ruzieh and D.~L. Powers.
+  \newblock The distance spectrum of the path $P_n$ and the first distance eigenvector of connected graphs.
+  \newblock {\em Linear and Multilinear Algebra}, 28(1-2):75--81, 1990.
+
+  \bibitem{indulal2008distance}
+  G.~Indulal, I.~Gutman, and A.~Vijayakumar.
+  \newblock On distance energy of graphs.
+  \newblock {\em MATCH Communications in Mathematical and in Computer Chemistry}, 60(2):461--472, 2008.
+
+  \bibitem{fowler2001distance}
+  P.~W. Fowler, G.~Sabidussi, and S.~Shpectorov.
+  \newblock The distance matrix of a cycle and its eigenvalues.
+  \newblock {\em MATCH Communications in Mathematical and in Computer Chemistry}, 44:819--830, 2001.
+
+  \bibitem{stevanovic2012spectral}
+  D.~Stevanovi{\'c} and A.~Ili{\'c}.
+  \newblock Spectral properties of the distance matrix of graphs.
+  \newblock In {\em Distance in Graphs: Theory and Applications}, pages 139--176, 2012.
+
+  \bibitem{wiener1947structural}
+  H.~Wiener.
+  \newblock Structural determination of paraffin boiling points.
+  \newblock {\em Journal of the American Chemical Society}, 69(1):17--20, 1947.
+
+  \bibitem{merris1990distance}
+  R.~Merris.
+  \newblock The distance spectrum of a tree.
+  \newblock {\em Journal of Graph Theory}, 14(3):365--369, 1990.
+\end{thebibliography}
+
+\end{document}
