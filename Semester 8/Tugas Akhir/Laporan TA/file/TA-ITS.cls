@@ -34,7 +34,7 @@
 %
 \ProvidesClass{file/TA-ITS}[12/12/2010 v1.01]
 \NeedsTeXFormat{LaTeX2e}
-\LoadClass[a4paper,12pt,oneside,openright,final]{book}
+\LoadClass[a4paper,12pt,twoside,openright,final]{book}
 \RequirePackage[hmargin={3cm,2cm},vmargin={3cm,2.5cm}]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{amssymb,amsmath,amsthm,amsfonts,indentfirst,
@@ -378,7 +378,7 @@
     {\color{blue}\makebox[\textwidth]{\rule{200cm}{10mm}}}\\ 
     \vspace{10mm}\setstretch{1.5}\noindent
     \textsf{
-    {\fontsize{14}{2}\selectfont{\textbf{PROPOSAL TUGAS AKHIR~ - ~SM234801}}}\\
+    {\fontsize{14}{2}\selectfont{\textbf{TUGAS AKHIR~ - ~SM234801}}}\\
     \vspace{2cm}
     {\fontsize{18}{2}\selectfont{\textbf{\MakeUppercase{\@judul}}}}\\
     \vspace{2cm}
@@ -415,7 +415,7 @@
     {\color{blue}\makebox[\textwidth]{\rule{200cm}{10mm}}}\\
     \vspace{10mm}\setstretch{1.5}\noindent
     \textsf{
-    {\fontsize{14}{2}\selectfont{\textbf{FINAL PROJECT PROPOSAL~ - ~SM234801}}}\\
+    {\fontsize{14}{2}\selectfont{\textbf{FINAL PROJECT ~ - ~SM234801}}}\\
     \vspace{2cm}
     {\fontsize{18}{2}\selectfont{\textbf{\MakeUppercase{\@juduleng}}}}\\
     \vspace{2cm}
@@ -452,12 +452,12 @@
 \begin{center}
 {\fontsize{14}{2}\selectfont{\textbf{LEMBAR PENGESAHAN}}}\vspace{1cm}\\
 \textbf{\@judul}\vspace{0.75cm}\\
-\textbf{PROPOSAL TUGAS AKHIR}\vspace{0.25cm}\\
+\textbf{TUGAS AKHIR}\vspace{0.25cm}\\
 Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika pada\\ Program Studi S-1 Matematika\\Departemen \@jur\\Fakultas \@fak\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
         Oleh: \textbf{\@nama}\\
         NRP.~\@NRP\vspace{0.5cm}\\
        	Surabaya, \@bulan~\@thn\\
-       	Disetujui oleh Tim Penguji Proposal Tugas Akhir:\\
+       	Disetujui oleh Tim Penguji Tugas Akhir:\\
        \vspace{0.5cm}
       \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
         {
@@ -503,7 +503,7 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
 \addcontentsline{toc}{chapter}{LEMBAR PENGESAHAN}
 }
 
-%% Lembar Pengesahan Proposal
+%% Lembar Pengesahan 
 \newcommand\LembarPengesahanProposal{%
 \cleardoublepage
 \setcounter{page}{1}
@@ -515,7 +515,7 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
 {\fontsize{14}{2}\selectfont{\textbf{LEMBAR PENGESAHAN}}}\vspace{1cm}\\
 \textbf{\@judul}\vspace{0.75cm}\\
 \textbf{\textit{\@juduleng}}\vspace{0.75cm}\\
-\textbf{PROPOSAL TUGAS AKHIR}\vspace{0.25cm}\\
+\textbf{TUGAS AKHIR}\vspace{0.25cm}\\
 Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika pada\\ Program Studi S-1 Matematika\\Departemen \@jur\\Fakultas \@fak\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
         Oleh: \textbf{\@nama}\\
         NRP.~\@NRP\vspace{0.5cm}\\
