@@ -1,0 +1,226 @@
+\documentclass[12pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\usepackage{soul}
+\usepackage{cancel}
+\usepackage{geometry}
+	\geometry{
+        left=10mm,
+        right=22mm,
+        top=20mm,
+        bottom=20mm,
+    }
+\usepackage{fancyhdr}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+
+\newtheorem*{teorema}{Teorema}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\jawab}{\textbf{Jawab}:}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+\fancyfoot[C]{\raisebox{.5ex}{\rule{0.5cm}{.4pt}}o0o\raisebox{.5ex}{\rule{0.5cm}{.4pt}}}
+
+\noindent\textbf{\Large Kuis 2 Metode Matematika (A)}
+\vspace{0.5cm}
+
+\begin{enumerate}
+  \item Dapatkan invers Transformasi $Z$ (barisan $y_n$) jika diberikan
+        \[F(z) = \frac{z}{(z+1)(z+3)}.\]
+        \textit{Petunjuk}: Gunakan tabel Transformasi $Z$ berikut
+
+        \begin{table}[h]
+          \centering
+          \renewcommand{\arraystretch}{1.5}
+          \caption{Beberapa Pasangan Transformasi $Z$}
+          \begin{tabular}{clc}
+            \hline
+            No. & Barisan $f(n)$ & Transformasi $Z$, $F(z)$  \\
+            \hline
+            1   & $1$            & $\dfrac{z}{z-1}$          \\[1ex]
+            2   & $n$            & $\dfrac{z}{(z-1)^2}$      \\[1ex]
+            3   & $n^2$          & $\dfrac{z(z+1)}{(z-1)^3}$ \\[1ex]
+            4   & $a^n$          & $\dfrac{z}{z-a}$          \\[1ex]
+            5   & $n a^n$        & $\dfrac{az}{(z-a)^2}$     \\[1ex]
+            \hline
+          \end{tabular}
+        \end{table}
+
+  \item Selesaikan persamaan diferensial berikut dengan metode deret pangkat di sekitar $x = 1$. Tentukan solusi dalam bentuk deret hingga suku $(x - 1)^5$.
+        \[y'' - (x - 1)y' = 0.\]
+
+  \item Kembangkan fungsi berikut ke dalam deret polinomial Legendre pada interval $[-1, 1]$. Tentukan tiga suku pertama yang tidak nol.
+        \[f(x) = \begin{cases} 2, & -1 \le x < 0, \\ 1, & 0 \le x < 1. \end{cases}\]
+        \textit{Petunjuk}: Gunakan rumus koefisien deret Legendre
+        \[a_n = \frac{2n + 1}{2} \int_{-1}^{1} f(x)P_n(x) \, dx,\]
+        dengan beberapa polinomial Legendre pertama
+        \[P_0(x) = 1, \quad P_1(x) = x, \quad P_2(x) = \frac{1}{2}(3x^2 - 1), \quad P_3(x) = \frac{1}{2}(5x^3 - 3x).\]
+
+  \item Dengan menggunakan integrasi parsial berulang dan rumus rekurensi fungsi Bessel
+        \[\frac{d}{dx} (x^n J_n(x)) = x^n J_{n-1}(x),\]
+        buktikan bahwa
+        \[\int x^5 J_2(x) \, dx = x^5 J_3(x) - 2x^4 J_4(x) + C.\]
+        \textit{Petunjuk}: Gunakan integrasi parsial
+        \[\int u \, dv = uv - \int v \, du,\]
+        dengan
+        \[u = x^2, \quad dv = x^3 J_2(x) \, dx.\]
+\end{enumerate}
+
+\newpage
+\textbf{SOLUSI}
+\begin{enumerate}
+  \item Kita akan mencari invers transformasi $Z$ dari fungsi
+        \[F(z) = \frac{z}{(z+1)(z+3)}.\]
+        Kita dapat menuliskan kembali fungsi tersebut menjadi
+        \[\frac{F(z)}{z} = \frac{1}{(z+1)(z+3)}.\]
+        Dengan menggunakan dekomposisi pecahan parsial,
+        \[\frac{1}{(z+1)(z+3)} = \frac{A}{z+1} + \frac{B}{z+3}.\]
+        Maka $A(z+3) + B(z+1) = 1$.
+        \begin{itemize}
+          \item Substitusi $z = -1 \implies A(-1+3) = 1 \implies 2A = 1 \implies A = \frac{1}{2}$.
+          \item Substitusi $z = -3 \implies B(-3+1) = 1 \implies -2B = 1 \implies B = -\frac{1}{2}$.
+        \end{itemize}
+        Sehingga kita peroleh
+        \[\frac{F(z)}{z} = \frac{\frac{1}{2}}{z+1} - \frac{\frac{1}{2}}{z+3}\]
+        \[F(z) = \frac{1}{2}\frac{z}{z-(-1)} - \frac{1}{2}\frac{z}{z-(-3)}.\]
+        Berdasarkan tabel transformasi $Z$ nomor 4, kita mengetahui bahwa $a^n \leftrightarrow \dfrac{z}{z-a}$.
+        Dengan demikian, invers transformasi $Z$ dari $\dfrac{z}{z-(-1)}$ adalah $(-1)^n$ dan invers dari $\dfrac{z}{z-(-3)}$ adalah $(-3)^n$.
+        Jadi, barisan $y_n$ adalah
+        \[y_n = \frac{1}{2}(-1)^n - \frac{1}{2}(-3)^n, \quad \text{untuk } n \ge 0.\]
+
+  \item Diberikan persamaan diferensial
+        \[y'' - (x - 1)y' = 0.\]
+        Kita akan menyelesaikannya dengan metode deret pangkat di sekitar $x = 1$.
+        Misalkan $t = x - 1$, maka $y(x) = y(t+1) = Y(t)$. Persamaan menjadi
+        \[Y''(t) - tY'(t) = 0.\]
+        Asumsikan solusi berupa deret pangkat:
+        \[Y(t) = \sum_{n=0}^{\infty} c_n t^n.\]
+        Maka turunan pertama dan keduanya adalah:
+        \[Y'(t) = \sum_{n=1}^{\infty} n c_n t^{n-1},\]
+        \[Y''(t) = \sum_{n=2}^{\infty} n(n-1) c_n t^{n-2}.\]
+        Substitusi deret-deret ini ke dalam persamaan diferensial $Y'' - tY' = 0$:
+        \[\sum_{n=2}^{\infty} n(n-1) c_n t^{n-2} - t\sum_{n=1}^{\infty} n c_n t^{n-1} = 0,\]
+        \[\sum_{n=2}^{\infty} n(n-1) c_n t^{n-2} - \sum_{n=1}^{\infty} n c_n t^n = 0.\]
+        Agar pangkat dari $t$ sama, kita geser indeks pada jumlahan pertama dengan memisalkan $k = n-2 \implies n = k+2$:
+        \[\sum_{k=0}^{\infty} (k+2)(k+1) c_{k+2} t^k - \sum_{k=1}^{\infty} k c_k t^k = 0.\]
+        Kita pisahkan suku untuk $k=0$:
+        \[(2)(1) c_2 + \sum_{k=1}^{\infty} \left[ (k+2)(k+1) c_{k+2} - k c_k \right] t^k = 0.\]
+        Dari persamaan di atas, dengan menyamakan koefisien untuk setiap pangkat $t$, kita peroleh:
+        \begin{itemize}
+          \item Untuk konstanta ($k=0$): $2 c_2 = 0 \implies c_2 = 0$.
+          \item Untuk $k \ge 1$: $(k+2)(k+1) c_{k+2} - k c_k = 0 \implies c_{k+2} = \frac{k}{(k+2)(k+1)} c_k$.
+        \end{itemize}
+        Kita akan mencari nilai koefisien $c_n$ hingga pangkat $t^5$:
+        \begin{itemize}
+          \item $k = 1$: $c_3 = \frac{1}{(3)(2)} c_1 = \frac{1}{6} c_1$.
+          \item $k = 2$: $c_4 = \frac{2}{(4)(3)} c_2 = 0$ (karena $c_2 = 0$).
+          \item $k = 3$: $c_5 = \frac{3}{(5)(4)} c_3 = \frac{3}{20} \left(\frac{1}{6} c_1\right) = \frac{1}{40} c_1$.
+        \end{itemize}
+        Solusi deret hingga suku $t^5$ adalah:
+        \[Y(t) = c_0 + c_1 t + c_2 t^2 + c_3 t^3 + c_4 t^4 + c_5 t^5 + \dots\]
+        \[Y(t) = c_0 + c_1 t + \frac{1}{6} c_1 t^3 + \frac{1}{40} c_1 t^5 + \dots\]
+        Dengan mengembalikan $t = x - 1$, kita dapatkan solusi $y(x)$:
+        \[y(x) = c_0 + c_1 (x-1) + \frac{1}{6} c_1 (x-1)^3 + \frac{1}{40} c_1 (x-1)^5 + \dots\]
+        dengan $c_0, c_1$ adalah konstanta sebarang.
+
+  \item Fungsi $f(x)$ diberikan oleh
+        \[f(x) = \begin{cases} 2, & -1 \le x < 0, \\ 1, & 0 \le x < 1. \end{cases}\]
+        Kita akan mengembangkan fungsi ini ke dalam deret polinomial Legendre:
+        \[f(x) = \sum_{n=0}^{\infty} a_n P_n(x).\]
+        Koefisien deret dihitung dengan rumus:
+        \[a_n = \frac{2n + 1}{2} \int_{-1}^{1} f(x)P_n(x) \, dx.\]
+        Kita akan menghitung koefisien-koefisien awal untuk mendapatkan tiga suku pertama yang tidak nol.
+        \begin{itemize}
+          \item \textbf{Suku ke-0 ($n=0$)}:\\
+                $P_0(x) = 1$.
+                \begin{align*}
+                  a_0 & = \frac{1}{2} \int_{-1}^{1} f(x)(1) \, dx = \frac{1}{2} \left[ \int_{-1}^{0} 2 \, dx + \int_{0}^{1} 1 \, dx \right] \\
+                      & = \frac{1}{2} \left[ 2(x)\Big|_{-1}^0 + x\Big|_0^1 \right] = \frac{1}{2} \left[ 2(0 - (-1)) + (1 - 0) \right]       \\
+                      & = \frac{1}{2} [2 + 1] = \frac{3}{2}.
+                \end{align*}
+                Suku pertama yang tidak nol: $\frac{3}{2}P_0(x)$.
+
+          \item \textbf{Suku ke-1 ($n=1$)}:\\
+                $P_1(x) = x$.
+                \begin{align*}
+                  a_1 & = \frac{3}{2} \int_{-1}^{1} f(x)(x) \, dx = \frac{3}{2} \left[ \int_{-1}^{0} 2x \, dx + \int_{0}^{1} x \, dx \right]                       \\
+                      & = \frac{3}{2} \left[ x^2\Big|_{-1}^0 + \frac{1}{2}x^2\Big|_0^1 \right] = \frac{3}{2} \left[ (0 - 1) + \left(\frac{1}{2} - 0\right) \right] \\
+                      & = \frac{3}{2} \left[ -1 + \frac{1}{2} \right] = \frac{3}{2} \left[ -\frac{1}{2} \right] = -\frac{3}{4}.
+                \end{align*}
+                Suku kedua yang tidak nol: $-\frac{3}{4}P_1(x)$.
+
+          \item \textbf{Suku ke-2 ($n=2$)}:\\
+                $P_2(x) = \frac{1}{2}(3x^2 - 1)$.
+                \begin{align*}
+                  a_2 & = \frac{5}{2} \int_{-1}^{1} f(x) P_2(x) \, dx = \frac{5}{2} \left[ \int_{-1}^{0} 2 P_2(x) \, dx + \int_{0}^{1} P_2(x) \, dx \right]
+                \end{align*}
+                Kita ketahui bahwa $P_2(x)$ adalah fungsi genap, sehingga $\int_{-1}^{0} P_2(x) \, dx = \int_{0}^{1} P_2(x) \, dx$.
+                Mari kita hitung integral $\int_{0}^{1} P_2(x) \, dx$:
+                \[\int_{0}^{1} \frac{1}{2}(3x^2 - 1) \, dx = \frac{1}{2} \left[ x^3 - x \right]_0^1 = \frac{1}{2} (1 - 1) = 0.\]
+                Karena integral di selang $[0,1]$ bernilai $0$, maka integral di selang $[-1,0]$ juga $0$. Sehingga:
+                \[a_2 = \frac{5}{2} [ 2(0) + 0 ] = 0.\]
+
+          \item \textbf{Suku ke-3 ($n=3$)}:\\
+                $P_3(x) = \frac{1}{2}(5x^3 - 3x)$.
+                \begin{align*}
+                  a_3 & = \frac{7}{2} \int_{-1}^{1} f(x) P_3(x) \, dx = \frac{7}{2} \left[ \int_{-1}^{0} 2 P_3(x) \, dx + \int_{0}^{1} P_3(x) \, dx \right]
+                \end{align*}
+                Fungsi $P_3(x)$ adalah fungsi ganjil, sehingga $\int_{-1}^{0} P_3(x) \, dx = -\int_{0}^{1} P_3(x) \, dx$.
+                Mari kita hitung integral $\int_{0}^{1} P_3(x) \, dx$:
+                \[\int_{0}^{1} \frac{1}{2}(5x^3 - 3x) \, dx = \frac{1}{2} \left[ \frac{5}{4}x^4 - \frac{3}{2}x^2 \right]_0^1 = \frac{1}{2} \left( \frac{5}{4} - \frac{6}{4} \right) = \frac{1}{2} \left( -\frac{1}{4} \right) = -\frac{1}{8}.\]
+                Maka,
+                \[\int_{-1}^{0} P_3(x) \, dx = -\left(-\frac{1}{8}\right) = \frac{1}{8}.\]
+                Sehingga:
+                \begin{align*}
+                  a_3 & = \frac{7}{2} \left[ 2\left(\frac{1}{8}\right) + \left(-\frac{1}{8}\right) \right] = \frac{7}{2} \left[ \frac{2}{8} - \frac{1}{8} \right] = \frac{7}{2} \left[ \frac{1}{8} \right] = \frac{7}{16}.
+                \end{align*}
+                Suku ketiga yang tidak nol: $\frac{7}{16}P_3(x)$.
+        \end{itemize}
+        Jadi, ekspansi deret polinomial Legendre hingga tiga suku pertama yang tidak nol adalah:
+        \[f(x) \approx \frac{3}{2}P_0(x) - \frac{3}{4}P_1(x) + \frac{7}{16}P_3(x).\]
+
+  \item Akan dibuktikan bahwa
+        \[\int x^5 J_2(x) \, dx = x^5 J_3(x) - 2x^4 J_4(x) + C.\]
+        Kita gunakan rumus rekurensi $\frac{d}{dx} (x^n J_n(x)) = x^n J_{n-1}(x)$. Dari sini, kita peroleh
+        \[\int x^n J_{n-1}(x) \, dx = x^n J_n(x).\]
+        Gunakan metode integrasi parsial $\int u \, dv = uv - \int v \, du$ dengan pemisalan:
+        \[u = x^2 \quad \implies \quad du = 2x \, dx\]
+        \[dv = x^3 J_2(x) \, dx \quad \implies \quad v = \int x^3 J_2(x) \, dx.\]
+        Berdasarkan rumus integral rekurensi dengan $n=3$, kita dapatkan:
+        \[v = \int x^3 J_{3-1}(x) \, dx = x^3 J_3(x).\]
+        Maka integrasi parsialnya menjadi:
+        \begin{align*}
+          \int x^5 J_2(x) \, dx & = \int (x^2) \left( x^3 J_2(x) \, dx \right)                 \\
+                                & = \int u \, dv                                               \\
+                                & = uv - \int v \, du                                          \\
+                                & = x^2 \left( x^3 J_3(x) \right) - \int x^3 J_3(x) (2x \, dx) \\
+                                & = x^5 J_3(x) - 2 \int x^4 J_3(x) \, dx.
+        \end{align*}
+        Selanjutnya, untuk menyelesaikan integral $\int x^4 J_3(x) \, dx$, kita gunakan kembali rumus integral rekurensi untuk $n=4$:
+        \[\int x^4 J_{4-1}(x) \, dx = x^4 J_4(x).\]
+        Maka persamaan sebelumnya menjadi:
+        \begin{align*}
+          \int x^5 J_2(x) \, dx & = x^5 J_3(x) - 2 \left( x^4 J_4(x) \right) + C \\
+                                & = x^5 J_3(x) - 2x^4 J_4(x) + C.
+        \end{align*}
+        Terbukti.
+\end{enumerate}
+
+\end{document}
