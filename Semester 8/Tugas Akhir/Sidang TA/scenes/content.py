@@ -62,10 +62,12 @@ b1 = bikin_bab("Pendahuluan", BLUE, "vid/bab1.mp4")
 b2 = bikin_bab("Tinjauan Pustaka", TEAL, "vid/bab2.mp4")
 b3 = bikin_bab("Metodologi", GREEN, "vid/bab3.mp4")
 b4 = bikin_bab("Pembahasan", ORANGE)
-b5 = bikin_bab("Kesimpulan\nDan Saran", MAROON_B)
+b5 = bikin_bab("Kesimpulan & Saran", MAROON_B)
 bab = [b1, b2, b3, b4, b5]
 
-grup_utama = Group(*bab).arrange(RIGHT, buff=1.0)
+baris_atas = Group(b1, b2, b3).arrange(RIGHT, buff=1.0)
+baris_bawah = Group(b4, b5).arrange(RIGHT, buff=1.0)
+grup_utama = Group(baris_atas, baris_bawah).arrange(DOWN, buff=1.0)
 
 bg_baru = Rectangle(
   width=config.frame_width *3, # Lebihin dikit biar aman
