@@ -53,8 +53,9 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
   \begin{align}\label{eq:perkalian_latin_square_gabung}
     A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
   \end{align}
-  Pada \eqref{eq:perkalian_latin_square_gabung}, jumlahan ganda sebelumnya telah dikelompokkan berdasarkan nilai skalar hasil operasi max-plus $i \otimes j = i + j$. Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$. Bentuk di dalam tanda kurung besar merupakan jumlahan matriks (operasi maksimum pada setiap entri) dari seluruh matriks permutasi yang bersesuaian dengan pasangan indeks $i$ dan $j$ yang memenuhi $i+j=k$.
 \end{akibat}
+
+Pada \eqref{eq:perkalian_latin_square_gabung}, jumlahan ganda sebelumnya telah dikelompokkan berdasarkan nilai skalar hasil operasi max-plus $i \otimes j = i + j$. Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$. Bentuk di dalam tanda kurung besar merupakan jumlahan matriks (operasi maksimum pada setiap entri) dari seluruh matriks permutasi yang bersesuaian dengan pasangan indeks $i$ dan $j$ yang memenuhi $i+j=k$.
 
 \begin{contoh}\label{ex:hasil_iterasi_semua}
   Misalkan $A, B \in L_S(3)$ dengan himpunan simbol $\{1, 2, 3\}$, maka
