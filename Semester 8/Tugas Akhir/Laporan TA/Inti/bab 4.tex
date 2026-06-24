@@ -55,7 +55,18 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
   \end{align}
 \end{akibat}
 
-Pada \eqref{eq:perkalian_latin_square_gabung}, jumlahan ganda sebelumnya telah dikelompokkan berdasarkan nilai skalar hasil operasi max-plus $i \otimes j = i + j$. Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$. Bentuk di dalam tanda kurung besar merupakan jumlahan matriks (operasi maksimum pada setiap entri) dari seluruh matriks permutasi yang bersesuaian dengan pasangan indeks $i$ dan $j$ yang memenuhi $i+j=k$.
+\begin{proof}
+  Pada \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n}, nilai skalar hasil operasi max-plus $i \otimes j$ bernilai sama dengan $i + j$.
+  Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$.
+  Oleh karena itu, jumlahan ganda pada \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n} dapat dikelompokkan berdasarkan nilai $k = i+j$.
+  Dengan melakukan substitusi nilai $k$ dan menggunakan sifat distributif perkalian skalar terhadap penjumlahan matriks max-plus, persamaan \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n} dapat dijabarkan sebagai berikut:
+  \begin{align*}
+    A \otimes B &= \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i + j) \otimes P_{\sigma_j^B \circ \sigma_i^A} \\
+    &= \bigoplus_{k=2}^{2n} \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} k \otimes P_{\sigma_j^B \circ \sigma_i^A} \right) \\
+    &= \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
+  \end{align*}
+  Bentuk penjabaran terakhir tersebut ekuivalen dengan \eqref{eq:perkalian_latin_square_gabung}.
+\end{proof}
 
 \begin{contoh}\label{ex:hasil_iterasi_semua}
   Misalkan $A, B \in L_S(3)$ dengan himpunan simbol $\{1, 2, 3\}$, maka
