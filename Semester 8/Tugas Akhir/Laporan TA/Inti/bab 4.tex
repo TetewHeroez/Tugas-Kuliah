@@ -61,9 +61,7 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
   Oleh karena itu, jumlahan ganda pada \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n} dapat dikelompokkan berdasarkan nilai $k = i+j$.
   Dengan melakukan substitusi nilai $k$ dan menggunakan sifat distributif perkalian skalar terhadap penjumlahan matriks max-plus, persamaan \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n} dapat dijabarkan sebagai berikut:
   \begin{align*}
-    A \otimes B &= \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i + j) \otimes P_{\sigma_j^B \circ \sigma_i^A} \\
-    &= \bigoplus_{k=2}^{2n} \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} k \otimes P_{\sigma_j^B \circ \sigma_i^A} \right) \\
-    &= \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
+    A \otimes B & = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i + j) \otimes P_{\sigma_j^B \circ \sigma_i^A} = \bigoplus_{k=2}^{2n} \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} k \otimes P_{\sigma_j^B \circ \sigma_i^A} \right) = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
   \end{align*}
   Bentuk penjabaran terakhir tersebut ekuivalen dengan \eqref{eq:perkalian_latin_square_gabung}.
 \end{proof}
@@ -735,8 +733,7 @@ komutativitas dua Latin square juga dipertahankan oleh konjugasi yang sama.
 \begin{proof}
   Berdasarkan \autoref{thm:perkalian_permutasi_menjaga_latin_square},
   $P_\rho^{-1}\otimes A\otimes P_\rho$ dan
-  $P_\rho^{-1}\otimes B\otimes P_\rho$ merupakan Latin square.\\
-  Misalkan $A'=P_\rho^{-1}\otimes A\otimes P_\rho$ dan
+  $P_\rho^{-1}\otimes B\otimes P_\rho$ merupakan Latin square. Misalkan $A'=P_\rho^{-1}\otimes A\otimes P_\rho$ dan
   $B'=P_\rho^{-1}\otimes B\otimes P_\rho$. Dengan menggunakan asosiativitas
   perkalian max-plus, diperoleh
   \begin{align}\label{eq:konjugasi_AB}
