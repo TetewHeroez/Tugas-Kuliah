@@ -282,6 +282,21 @@ Secara ekuivalen, \eqref{eq:orbit_stabilizer} dapat dituliskan sebagai $|G|=|O_a
 
 Pada \autoref{def:produk_semidirek}, grup $H$ bertindak pada $N$ melalui automorfisma sebagaimana dinyatakan pada \eqref{eq:aksi_semidirek_ke_automorfisma}. Oleh karena itu, operasi pada produk semidirek tidak hanya mengalikan komponen pertama dan kedua secara terpisah, tetapi juga melibatkan aksi elemen $h_1$ terhadap elemen $n_2$, sebagaimana terlihat pada \eqref{eq:operasi_produk_semidirek}.
 
+Selain dari definisi di atas, suatu grup dapat dikenali sebagai produk semidirek dari dua subgrupnya apabila memenuhi kriteria tertentu. Teorema berikut memberikan syarat cukup bagi sebuah grup agar dapat dipandang sebagai produk semidirek secara internal.
+
+\begin{teorema}[\cite{dummit2004abstract}]\label{thm:pengenalan_produk_semidirek}
+  Misalkan $G$ adalah suatu grup dengan subgrup $H$ dan $K$ sedemikian sehingga
+  \begin{enumerate}[label=(\arabic*)]
+    \item $H \unlhd G$, dan
+    \item $H \cap K = 1$.
+  \end{enumerate}
+  Misalkan $\varphi : K \to \operatorname{Aut}(H)$ adalah homomorfisma yang didefinisikan dengan memetakan $k \in K$ ke automorfisma konjugasi kiri oleh $k$ pada $H$. Maka $HK \cong H \rtimes K$. Khususnya, jika $G = HK$ dengan $H$ dan $K$ memenuhi (1) dan (2), maka $G$ adalah produk semidirek dari $H$ dan $K$.
+\end{teorema}
+
+\begin{contoh}
+  Sebagai contoh, tinjau grup simetri $S_3$. Grup $S_3$ memiliki subgrup normal $H = A_3 = \{(1), (1\;2\;3), (1\;3\;2)\} \cong \mathbb{Z}_3$ dan subgrup $K = \{(1), (1\;2)\} \cong \mathbb{Z}_2$. Karena $H \unlhd S_3$ dan perpotongan $H \cap K = \{(1)\}$, serta $S_3 = HK$, maka menurut \autoref{thm:pengenalan_produk_semidirek}, $S_3$ merupakan produk semidirek dari $H$ dan $K$. Dengan kata lain, $S_3 \cong \mathbb{Z}_3 \rtimes \mathbb{Z}_2$.
+\end{contoh}
+
 \subsection{Konjugasi dan \emph{Centralizer}}
 
 Konsep tindakan grup dapat diterapkan pada grup itu sendiri. Salah satu tindakan yang penting adalah tindakan konjugasi, yaitu tindakan $G$ pada dirinya sendiri yang didefinisikan oleh
