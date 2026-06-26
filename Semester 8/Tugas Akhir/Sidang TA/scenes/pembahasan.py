@@ -6,15 +6,887 @@ from lib.slide_tracker import *
 def pembahasan(s):
     # SifatPerkalian(s)
     # next_slide_count(s)
-    InvariansiLatinSquare(s)
+    # InvariansiLatinSquare(s)
+    # next_slide_count(s)
+    # SyaratPerlu(s)
+    # next_slide_count(s)
+    # SyaratCukup(s)
+    # next_slide_count(s)
+    # RepresentasiKoordinat(s)
+    # next_slide_count(s)
+    # HimpunanSuperlevel(s)
+    # next_slide_count(s)
+    TeoremaSuperlevel(s)
     next_slide_count(s)
 
+def TeoremaSuperlevel(s):
+    Mobject.set_default(color=BLACK)
+    judul = Title("Kriteria Komutatif Superlevel", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+    
+    teorema = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Teorema 4.} Matriks $A, B \in L_S(n)$ saling komutatif ($A\otimes B = B\otimes A$) "
+        r"$\iff \mathcal{U}_{\ge v}^{AB} = \mathcal{U}_{\ge v}^{BA} \quad \forall v \in \{n+2,\ldots,2n\}$.}",
+        color=BLACK, font_size=30
+    ).next_to(judul, DOWN, buff=0.4)
+    
+    s.play(Write(judul), Write(teorema))
+    s.wait(1)
+    s.next_slide()
+    
+    mat_C = Matrix([["8","7","6","7"],["7","8","7","6"],["6","7","8","7"],["7","6","7","8"]]).scale(0.5).set_color(BLACK)
+    mat_D = Matrix([["8","7","6","7"],["7","8","7","6"],["6","7","8","7"],["7","6","7","8"]]).scale(0.5).set_color(BLACK)
+    
+    lbl_C = MathTex("A \otimes B =").scale(0.7).next_to(mat_C, LEFT)
+    lbl_D = MathTex("B \otimes A =").scale(0.7).next_to(mat_D, LEFT)
+    
+    grp_C = VGroup(lbl_C, mat_C)
+    grp_D = VGroup(lbl_D, mat_D)
+    
+    grp_CD = VGroup(grp_C, grp_D).arrange(RIGHT, buff=1.0).next_to(teorema, DOWN, buff=0.4)
+    
+    grid_AB = VGroup()
+    grid_BA = VGroup()
+    for i in range(4):
+        for j in range(4):
+            box1 = Square(side_length=0.3).set_stroke(color=DARK_GRAY, width=1)
+            box2 = Square(side_length=0.3).set_stroke(color=DARK_GRAY, width=1)
+            grid_AB.add(box1)
+            grid_BA.add(box2)
+            
+    grid_AB.arrange_in_grid(rows=4, cols=4, buff=0).next_to(mat_C, DOWN, buff=0.5)
+    grid_BA.arrange_in_grid(rows=4, cols=4, buff=0).next_to(mat_D, DOWN, buff=0.5)
+    
+    lbl_gAB = MathTex(r"\mathcal{U}_{\ge v}^{AB}").scale(0.6).next_to(grid_AB, DOWN, buff=0.1)
+    lbl_gBA = MathTex(r"\mathcal{U}_{\ge v}^{BA}").scale(0.6).next_to(grid_BA, DOWN, buff=0.1)
+    
+    s.play(Create(grid_AB), Create(grid_BA), Write(lbl_gAB), Write(lbl_gBA), Write(grp_CD))
+    s.wait(1)
+    s.next_slide()
+    
+    levels = [(8, RED), (7, BLUE)]
+    
+    prev_hi_C = None
+    prev_hi_D = None
+    
+    for v, col in levels:
+        new_lbl_gAB = MathTex(r"\mathcal{U}_{\ge ", str(v), r"}^{AB}").scale(0.6).next_to(grid_AB, DOWN, buff=0.1)
+        new_lbl_gAB[1].set_color(col)
+        
+        new_lbl_gBA = MathTex(r"\mathcal{U}_{\ge ", str(v), r"}^{BA}").scale(0.6).next_to(grid_BA, DOWN, buff=0.1)
+        new_lbl_gBA[1].set_color(col)
+        
+        if prev_hi_C:
+            s.play(
+                Transform(lbl_gAB, new_lbl_gAB),
+                Transform(lbl_gBA, new_lbl_gBA),
+                FadeOut(prev_hi_C), FadeOut(prev_hi_D),
+                *[f.animate.set_fill(opacity=0) for f in grid_AB],
+                *[f.animate.set_fill(opacity=0) for f in grid_BA]
+            )
+        else:
+            s.play(
+                Transform(lbl_gAB, new_lbl_gAB),
+                Transform(lbl_gBA, new_lbl_gBA)
+            )
+            
+        highlights_C = VGroup()
+        highlights_D = VGroup()
+        fills_AB = VGroup()
+        fills_BA = VGroup()
+        
+        mat_vals = [
+            [8, 7, 6, 7],
+            [7, 8, 7, 6],
+            [6, 7, 8, 7],
+            [7, 6, 7, 8]
+        ]
+        
+        for i in range(4):
+            for j in range(4):
+                if mat_vals[i][j] >= v:
+                    idx = i * 4 + j
+                    highlights_C.add(SurroundingRectangle(mat_C.get_entries()[idx], color=col, buff=0.05))
+                    highlights_D.add(SurroundingRectangle(mat_D.get_entries()[idx], color=col, buff=0.05))
+                    fills_AB.add(grid_AB[idx])
+                    fills_BA.add(grid_BA[idx])
+                    
+        s.play(Create(highlights_C), Create(highlights_D), run_time=0.8)
+        s.play(
+            LaggedStart(*[f.animate.set_fill(col, opacity=0.8) for f in fills_AB], lag_ratio=0.1),
+            LaggedStart(*[f.animate.set_fill(col, opacity=0.8) for f in fills_BA], lag_ratio=0.1),
+            run_time=1
+        )
+        
+        s.wait(1)
+        s.next_slide()
+        
+        prev_hi_C = highlights_C
+        prev_hi_D = highlights_D
+        
+    concl_text = Tex(r"Elemen $n+1$ (yaitu $6$) pasti akan muncul dan posisinya pasti akan selalu sama.", font_size=32, color=PURPLE_E).to_edge(DOWN, buff=0.8)
+    s.play(Write(concl_text))
+    s.wait(1)
+    s.next_slide()
+    
+    s.play(FadeOut(VGroup(judul, teorema, grp_CD, grid_AB, grid_BA, lbl_gAB, lbl_gBA, prev_hi_C, prev_hi_D, concl_text), shift=LEFT))
+
+
+def HimpunanSuperlevel(s):
+    Mobject.set_default(color=BLACK)
+    judul = Title("Himpunan Superlevel", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+    
+    deskripsi = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Definisi 5.} Himpunan superlevel dari hasil perkalian $A\otimes B$ pada level $v$, yang dinotasikan dengan $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai \[\mathcal{U}_{\ge v}^{AB}=\bigcup_{\substack{x,y\in \underline{n}\\x+y\ge v}}\Gamma(\sigma_y^B\circ\sigma_x^A).\]}", 
+        color=BLACK, font_size=30).next_to(judul, DOWN, buff=0.2)
+    s.play(Write(judul), Write(deskripsi), run_time=1)
+    s.wait(1)
+    s.next_slide()
+    
+    mat_A = Matrix([["1","2","3","4","5"],["2","1","4","5","3"],["3","5","1","2","4"],["4","3","5","1","2"],["5","4","2","3","1"]], v_buff=0.6, h_buff=0.8).scale(0.55).set_color(BLACK)
+    mat_B = Matrix([["1","2","3","4","5"],["2","1","4","5","3"],["3","5","1","2","4"],["4","3","5","1","2"],["5","4","2","3","1"]], v_buff=0.6, h_buff=0.8).scale(0.55).set_color(BLACK)
+    
+    for ent in mat_A.get_entries(): ent.set_color(BLACK)
+    for ent in mat_B.get_entries(): ent.set_color(BLACK)
+    
+    lbl_A = MathTex("A =").scale(0.7).next_to(mat_A, LEFT)
+    lbl_B = MathTex("B =").scale(0.7).next_to(mat_B, LEFT)
+    
+    grp_A = VGroup(lbl_A, mat_A)
+    grp_B = VGroup(lbl_B, mat_B)
+    grp_matrices = VGroup(grp_A, grp_B).arrange(RIGHT, buff=1.0).next_to(deskripsi, DOWN, buff=0.5)
+    
+    s.play(Write(grp_matrices))
+    s.wait(1)
+    s.next_slide()
+
+
+    s.play(grp_A.animate.to_edge(LEFT, buff=0.5).scale(0.6), grp_B.animate.to_edge(LEFT, buff=0.5).shift(DOWN*1.5).scale(0.6), run_time=1)
+    
+    mat_AB = Matrix([
+        ["10", "9", "9", "8", "7"],
+        ["9", "9", "10", "6", "8"],
+        ["9", "8", "9", "10", "8"],
+        ["8", "10", "7", "8", "9"],
+        ["7", "7", "8", "9", "10"]
+    ],element_alignment_corner=ORIGIN, v_buff=0.6, h_buff=0.8).scale(0.65).set_color(BLACK)
+    for ent in mat_AB.get_entries(): ent.set_color(BLACK)
+    lbl_AB = MathTex("A \otimes B =").scale(0.8).next_to(mat_AB, LEFT)
+    grp_AB = VGroup(lbl_AB, mat_AB)
+    
+    grid = VGroup()
+    for i in range(5):
+        for j in range(5):
+            box = Square(side_length=0.6).set_stroke(color=DARK_GRAY, width=1)
+            lbl = MathTex(f"({i+1},{j+1})", font_size=16, color=DARK_GRAY).move_to(box)
+            grid.add(VGroup(box, lbl))
+    grid.arrange_in_grid(rows=5, cols=5, buff=0)
+    grp_grid = grid
+    
+    grp_bottom = VGroup(grp_AB, grp_grid).arrange(RIGHT, buff=1.5).next_to(grp_matrices, RIGHT, buff=1)
+    
+    s.play(Write(grp_AB), Create(grid))
+    s.wait(0.5)
+    s.next_slide()
+    
+    levels = [
+        (10, PURE_GREEN), 
+        (9, TEAL), 
+        (8, PURE_RED), 
+        (7, ORANGE), 
+        (6, PURE_BLUE)
+    ]
+    
+    forms = {
+        10: r"\mathcal{U}_{\ge 10}^{AB} &= \Gamma(\sigma_5^B \circ \sigma_5^A)",
+        9: r"\mathcal{U}_{\ge 9}^{AB} &= \Gamma(\sigma_5^B \circ \sigma_5^A) \cup \Gamma(\sigma_4^B \circ \sigma_5^A) \cup \Gamma(\sigma_5^B \circ \sigma_4^A)",
+        8: r"\mathcal{U}_{\ge 8}^{AB} &= \bigcup_{x+y \ge 8} \Gamma(\sigma_y^B \circ \sigma_x^A)",
+        7: r"\mathcal{U}_{\ge 7}^{AB} &= \bigcup_{x+y \ge 7} \Gamma(\sigma_y^B \circ \sigma_x^A)",
+        6: r"\mathcal{U}_{\ge 6}^{AB} &= \bigcup_{x+y \ge 6} \Gamma(\sigma_y^B \circ \sigma_x^A)"
+    }
+    
+    prev_hi = None
+    prev_form = None
+    
+    for v, col in levels:
+        form_tex = MathTex(forms[v], font_size=28, color=col).to_edge(DOWN, buff=0.4)
+        
+        if prev_form:
+            s.play(
+                Transform(prev_form, form_tex),
+                FadeOut(prev_hi),
+                *[f[0].animate.set_fill(opacity=0) for f in grid]
+            )
+        else:
+            s.play(Write(form_tex))
+            prev_form = form_tex
+            
+        highlights = VGroup()
+        fills = VGroup()
+        
+        mat_vals = [
+            [10, 9, 9, 8, 7],
+            [9, 9, 10, 6, 8],
+            [9, 8, 9, 10, 8],
+            [8, 10, 7, 8, 9],
+            [7, 7, 8, 9, 10]
+        ]
+        
+        for i in range(5):
+            for j in range(5):
+                if mat_vals[i][j] >= v:
+                    idx = i * 5 + j
+                    highlights.add(SurroundingRectangle(mat_AB[0][idx], color=col, buff=0.05))
+                    fills.add(grid[idx][0])
+                    
+        s.play(Create(highlights),
+            LaggedStart(*[f.animate.set_fill(col, opacity=0.8) for f in fills], lag_ratio=0.1),
+            run_time=1
+        )
+        s.wait(1)
+        s.next_slide()
+
+        
+        prev_hi = highlights
+    
+    s.play(FadeOut(VGroup(judul, deskripsi, grp_matrices, grp_AB, grid, prev_hi, prev_form), shift=LEFT), run_time=1)
+
+def RepresentasiKoordinat(s):
+    Mobject.set_default(color=BLACK)
+    judul = Title("Representasi Koordinat", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+    
+    deskripsi = Tex(
+        r"\parbox{" + str(config.frame_width-1) + r"cm}{"
+        r"\textbf{Definisi 4.} Representasi koordinat dari permutasi $\sigma$, dinotasikan $\Gamma(\sigma)$, didefinisikan sebagai himpunan pasangan nilai input dan outputnya. ($\Gamma(\sigma) = \{(r,\sigma(r))\mid r=1,\ldots,n\}$)}", 
+        color=BLACK, font_size=32
+    ).next_to(judul, DOWN, buff=0.5)
+    
+    s.play(Write(judul), Write(deskripsi), run_time=1)
+    s.wait(0.5)
+    s.next_slide()
+
+    sigma_lbl = MathTex(r"\sigma =", font_size=40)
+    cycle = VGroup(
+        MathTex("(", font_size=40),
+        MathTex("1", font_size=40),
+        MathTex("4", font_size=40),
+        MathTex("2", font_size=40),
+        MathTex(")", font_size=40),
+        MathTex("(", font_size=40),
+        MathTex("3", font_size=40),
+        MathTex("5", font_size=40),
+        MathTex(")", font_size=40)
+    ).arrange(RIGHT, buff=0.1)
+    
+    sigma_group = VGroup(sigma_lbl, cycle).arrange(RIGHT, buff=0.3).next_to(deskripsi, DOWN, buff=0.5).shift(LEFT*2)
+    
+    n = 5
+    matrix_data = [[r"\varepsilon" for _ in range(n)] for _ in range(n)]
+    mat_mobj = Matrix(matrix_data, v_buff=0.55, h_buff=0.55).scale(0.6).next_to(sigma_group, DOWN, buff=0.5)
+    mat_mobj.set_color(BLACK)
+    for ent in mat_mobj.get_entries(): ent.set_color(GRAY_C)
+    
+    row_labels = VGroup()
+    col_labels = VGroup()
+    for i in range(n):
+        row_ref = mat_mobj.get_rows()[i]
+        lbl_r = MathTex(str(i+1), color=BLUE_E, font_size=24)
+        lbl_r.next_to(row_ref, RIGHT, buff=0.3)
+        row_labels.add(lbl_r)
+        col_ref = mat_mobj.get_columns()[i]
+        lbl_c = MathTex(str(i+1), color=RED_E, font_size=24)
+        lbl_c.next_to(col_ref, DOWN, buff=0.2)
+        col_labels.add(lbl_c)
+    
+    mat_lbl = MathTex("P_\sigma =").scale(0.7).next_to(mat_mobj, LEFT)
+    mat_group = VGroup(mat_lbl, mat_mobj, row_labels, col_labels).next_to(sigma_group, DOWN, buff=0.5)
+    
+    s.play(Write(mat_lbl), Create(mat_mobj), Write(row_labels), Write(col_labels), Write(sigma_group))
+    
+    gamma_text = MathTex(r"\Gamma(\sigma)", font_size=32).next_to(sigma_group, RIGHT, buff=2.0)
+
+    s.play(Write(gamma_text))
+    s.next_slide(loop=True)
+    
+    coords = VGroup()
+    entries = mat_mobj.get_entries()
+    last_coord = None
+
+    mappings = [
+        (1, 4, cycle[1], cycle[2]), 
+        (4, 2, cycle[2], cycle[3]), 
+        (2, 1, cycle[3], cycle[1]),
+        (3, 5, cycle[6], cycle[7]),
+        (5, 3, cycle[7], cycle[6])
+    ]
+    
+    for i, (r, c, mob_in, mob_out) in enumerate(mappings):
+        s.play(
+            mob_in.animate.set_color(BLUE).scale(1.2), 
+            mob_out.animate.set_color(RED).scale(1.2),  
+            row_labels[r-1].animate.set_color(BLUE).set_weight(BOLD).scale(1.2),
+            col_labels[c-1].animate.set_color(RED).set_weight(BOLD).scale(1.2),
+            run_time=0.2
+        )
+        
+        coord_tex = MathTex("(", str(r), ",", str(c), ")", font_size=32)
+        coord_tex[1].set_color(BLUE_E)
+        coord_tex[3].set_color(RED_E)
+        
+        if last_coord is None:
+            coord_tex.next_to(gamma_text, DOWN, buff=0.3)
+        else:
+            coord_tex.next_to(last_coord, DOWN, buff=0.2).align_to(last_coord, LEFT)
+        
+        idx = (r-1)*n + (c-1)
+        target_entry = entries[idx]
+        new_val = MathTex("0", color=BLACK, font_size=28).move_to(target_entry)
+        
+        sr_target = SurroundingRectangle(target_entry, color=PURPLE, buff=0.1)
+        
+        s.play(
+            TransformFromCopy(VGroup(mob_in, mob_out), coord_tex),
+            Transform(target_entry, new_val),
+            Create(sr_target),
+            run_time=0.4
+        )
+        s.play(FadeOut(sr_target), run_time=0.2)
+            
+        coords.add(coord_tex)
+        last_coord = coord_tex
+        
+        s.play(
+            mob_in.animate.set_color(BLACK).scale(1/1.2),
+            mob_out.animate.set_color(BLACK).scale(1/1.2),
+            row_labels[r-1].animate.set_color(BLUE_E).set_weight(NORMAL).scale(1/1.2),
+            col_labels[c-1].animate.set_color(RED_E).set_weight(NORMAL).scale(1/1.2),
+            run_time=0.4
+        )
+
+    gamma_box = SurroundingRectangle(VGroup(gamma_text, coords), color=PURPLE_E, buff=0.2)
+    s.play(Create(gamma_box))
+    s.wait(1)
+    s.next_slide()
+    
+    s.play(FadeOut(VGroup(judul, deskripsi, sigma_group, mat_group, gamma_text, coords, gamma_box), shift=LEFT), run_time=1)
+
+def SyaratCukup(s):
+    s.next_slide()
+    Mobject.set_default(color=BLACK)
+    judul = Title("Syarat Cukup Latin Square Komutatif", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+    
+    teorema = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Teorema 5.} Misalkan $A,B\in L_S(n)$ dengan dekomposisi $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan $B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$. Jika terdapat subgrup abelian $H\le S_n$ sedemikian sehingga $\sigma_i^A\in H$ dan $\sigma_j^B\in H$ untuk setiap $i,j\in \underline{n}$, maka ",r"$A\otimes B=B\otimes A$.}",
+        color=BLACK, font_size=30
+    ).next_to(judul, DOWN, buff=0.4)
+    s.play(Write(judul),Write(teorema), run_time=1)
+    s.wait(1)
+    s.next_slide()
+    
+    text_pos = teorema.get_bottom() + DOWN * 0.5
+    eq_pos = text_pos + DOWN * 0.8
+    
+    dek_teks = Tex(r"*Tinjau perkalian dekomposisi $A$ dan $B$:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_ab = MathTex(
+        "A", r"\otimes", "B", r"=", 
+        r"\left( \bigoplus_{i=1}^n ", "i", r"\otimes", "P_{\sigma_i^A}", r" \right)", 
+        r"\otimes", 
+        r"\left( \bigoplus_{j=1}^n ", "j", r"\otimes", "P_{\sigma_j^B}", r" \right)",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_ab[0].set_color(PURE_BLUE)
+    eq_ab[2].set_color(PURE_RED)
+    eq_ab[5].set_color(PURE_BLUE)
+    eq_ab[7].set_color(PURE_BLUE)
+    eq_ab[11].set_color(PURE_RED)
+    eq_ab[13].set_color(PURE_RED)
+    
+    s.play(Write(eq_ab),Write(dek_teks))
+    s.wait(1)
+    s.next_slide()
+    
+    dist_teks = Tex(r"*Distribusikan perkalian max-plus:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_dist = MathTex(
+        "A", r"\otimes", "B", r"=",
+        r"\bigoplus_{i=1}^n \bigoplus_{j=1}^n (", "i", "+", "j", r") \otimes (", "P_{\sigma_i^A}", r"\otimes", "P_{\sigma_j^B}", ")",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_dist[0].set_color(PURE_BLUE)
+    eq_dist[2].set_color(PURE_RED)
+    eq_dist[5].set_color(PURE_BLUE)
+    eq_dist[7].set_color(PURE_RED)
+    eq_dist[9].set_color(PURE_BLUE)
+    eq_dist[11].set_color(PURE_RED)
+    
+    s.play(
+        ReplacementTransform(dek_teks, dist_teks),
+        ReplacementTransform(eq_ab, eq_dist)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    kom_teks = Tex(r"*Karena $H$ abelian, $\sigma_i^A$ dan $\sigma_j^B$ komutatif, sehingga:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_kom = MathTex(
+        "A", r"\otimes", "B", r"=",
+        r"\bigoplus_{i=1}^n \bigoplus_{j=1}^n (", "i", "+", "j", r") \otimes (", "P_{\sigma_j^B}", r"\otimes", "P_{\sigma_i^A}", ")",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_kom[0].set_color(PURE_BLUE)
+    eq_kom[2].set_color(PURE_RED)
+    eq_kom[5].set_color(PURE_BLUE)
+    eq_kom[7].set_color(PURE_RED)
+    eq_kom[9].set_color(PURE_RED)
+    eq_kom[11].set_color(PURE_BLUE)
+    
+    s.play(
+        ReplacementTransform(dist_teks, kom_teks),
+        ReplacementTransform(eq_dist, eq_kom)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    rev_teks = Tex(r"*Kembalikan bentuk distribusi menjadi perkalian dua dekomposisi:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_rev = MathTex(
+        "A", r"\otimes", "B", r"=", 
+        r"\left( \bigoplus_{j=1}^n ", "j", r"\otimes", "P_{\sigma_j^B}", r" \right)", 
+        r"\otimes", 
+        r"\left( \bigoplus_{i=1}^n ", "i", r"\otimes", "P_{\sigma_i^A}", r" \right)",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_rev[0].set_color(PURE_BLUE)
+    eq_rev[2].set_color(PURE_RED)
+    eq_rev[5].set_color(PURE_RED)
+    eq_rev[7].set_color(PURE_RED)
+    eq_rev[11].set_color(PURE_BLUE)
+    eq_rev[13].set_color(PURE_BLUE)
+    
+    s.play(
+        ReplacementTransform(kom_teks, rev_teks),
+        ReplacementTransform(eq_kom, eq_rev)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    final_teks = Tex(r"*Yang tidak lain adalah definisi dekomposisi untuk $B \otimes A$:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_final = MathTex(
+        "A", r"\otimes", "B", "=", "B", r"\otimes", "A",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_final[0].set_color(PURE_BLUE)
+    eq_final[2].set_color(PURE_RED)
+    eq_final[4].set_color(PURE_RED)
+    eq_final[6].set_color(PURE_BLUE)
+    
+    s.play(
+        ReplacementTransform(rev_teks, final_teks),
+        ReplacementTransform(eq_rev, eq_final)
+    )
+    
+    box_teo = SurroundingRectangle(teorema[1], color=PURPLE_E)
+    s.play(
+        ReplacementTransform(eq_final, teorema[1]),
+        teorema[1][0].animate.set_color(PURE_BLUE),
+        teorema[1][2].animate.set_color(PURE_RED),
+        teorema[1][4].animate.set_color(PURE_RED),
+        teorema[1][6].animate.set_color(PURE_BLUE),
+        FadeOut(final_teks)
+    )
+    s.play(Indicate(box_teo, color=PURPLE_E), run_time=0.5)
+    s.wait(1)
+    s.next_slide()
+    
+    s.play(FadeOut(box_teo))
+    
+    akibat = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Akibat 2.} Misalkan $A,B\in L_S(n)$ adalah Latin square sirkulan, maka",r" $A\otimes B=B\otimes A$",r" (komutatif).}",
+        color=BLACK, font_size=30
+    ).next_to(teorema, DOWN, buff=0.8)
+    
+    s.play(Write(akibat))
+    s.wait(1)
+    s.next_slide()
+    
+    text_pos2 = akibat.get_bottom() + DOWN * 0.5
+    eq_pos2 = text_pos2 + DOWN * 0.8
+    
+    bukti_akibat_title = Tex(r"*Karena $A$ dan $B$ sirkulan, permutasinya dibangkitkan oleh sikel", color=DARK_GRAY, font_size=30).move_to(text_pos2)
+    
+    eq_siklus = MathTex(
+        r"H = \langle (1\ 2\ \dots\ n) \rangle",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos2)
+    s.play(Write(bukti_akibat_title), Write(eq_siklus))
+    s.wait(1)
+    s.next_slide()
+    
+    abelian_teks = Tex(r"*Setiap subgrup siklik pasti merupakan subgrup abelian, sehingga:", color=DARK_GRAY, font_size=30).move_to(text_pos2)
+    
+    eq_abelian = MathTex(
+        r"H \text{ adalah subgrup abelian dari } S_n",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos2)
+    
+    s.play(
+        ReplacementTransform(bukti_akibat_title, abelian_teks),
+        ReplacementTransform(eq_siklus, eq_abelian)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    syarat_teks = Tex(r"*Berdasarkan \textbf{Teorema 5}, karena syarat subgrup abelian terpenuhi, maka:", color=DARK_GRAY, font_size=30).move_to(text_pos2)
+    
+    eq_akhir = MathTex(
+        "A", r"\otimes", "B", "=", "B", r"\otimes", "A",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos2)
+    eq_akhir[0].set_color(PURE_BLUE)
+    eq_akhir[2].set_color(PURE_RED)
+    eq_akhir[4].set_color(PURE_RED)
+    eq_akhir[6].set_color(PURE_BLUE)
+    
+    s.play(
+        ReplacementTransform(abelian_teks, syarat_teks),
+        ReplacementTransform(eq_abelian, eq_akhir)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    box_akibat = SurroundingRectangle(akibat[1], color=PURPLE_E)
+    s.play(
+        ReplacementTransform(eq_akhir, akibat[1]),
+        akibat[1][0].animate.set_color(PURE_BLUE),
+        akibat[1][2].animate.set_color(PURE_RED),
+        akibat[1][4].animate.set_color(PURE_RED),
+        akibat[1][6].animate.set_color(PURE_BLUE),
+        FadeOut(syarat_teks)
+    )
+    s.play(Indicate(box_akibat, color=PURPLE_E), run_time=0.5)
+    s.wait(0.5)
+    s.play(Uncreate(box_akibat))
+    s.next_slide()
+
+    
+    s.play(FadeOut(VGroup(box_akibat, akibat, teorema, judul), shift=LEFT))
+
+def SyaratPerlu(s):
+    s.next_slide()
+    Mobject.set_default(color=BLACK)
+    judul = Title("Syarat Perlu Latin Square Komutatif", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+    
+    deskripsi = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Akibat 1.} Misalkan $A,B\in L_S(n)$ dan misalkan $P_\rho$ adalah matriks permutasi max-plus yang bersesuaian dengan permutasi $\rho\in S_n$. Jika $A\otimes B=B\otimes A$, maka}",
+        color=BLACK, font_size=30
+    ).next_to(judul, DOWN, buff=0.4)
+    
+    s.play(Write(deskripsi),Write(judul), run_time=1)
+    s.wait(1)
+    s.next_slide()
+
+    full_eq = MathTex(
+        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
+        r"\otimes",
+        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
+        "=",
+        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
+        r"\otimes",
+        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
+        font_size=32
+    ).next_to(deskripsi, DOWN, buff=0.4)
+    full_eq[3].set_color(PURE_BLUE)
+    full_eq[11].set_color(PURE_RED)
+    full_eq[19].set_color(PURE_RED)
+    full_eq[27].set_color(PURE_BLUE)
+
+    s.play(Write(full_eq), run_time=0.75)
+    s.wait(1)
+    s.next_slide(auto_next=True)
+
+    eq1 = MathTex(
+        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
+        r"\otimes",
+        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
+        font_size=42
+    )
+    eq1[3].set_color(PURE_BLUE)
+    eq1[11].set_color(PURE_RED)
+    eq1.next_to(full_eq, DOWN, buff=0.8)
+    
+    s.play(ReplacementTransform(full_eq[0:15].copy(), eq1), run_time=0.75)
+
+    eq2 = MathTex(
+        r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho",
+        r"\otimes",
+        r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho",
+        font_size=42
+    )
+    eq2[2].set_color(PURE_BLUE)
+    eq2[8].set_color(PURE_RED)
+    eq2.move_to(eq1)
+
+    s.play(
+        FadeOut(eq1[0], shift=UP), FadeOut(eq1[6], shift=UP),
+        FadeOut(eq1[8], shift=UP), FadeOut(eq1[14], shift=UP),
+        ReplacementTransform(eq1[1], eq2[0]),
+        ReplacementTransform(eq1[2], eq2[1]),
+        ReplacementTransform(eq1[3], eq2[2]),
+        ReplacementTransform(eq1[4], eq2[3]),
+        ReplacementTransform(eq1[5], eq2[4]),
+        ReplacementTransform(eq1[7], eq2[5]),
+        ReplacementTransform(eq1[9], eq2[6]),
+        ReplacementTransform(eq1[10], eq2[7]),
+        ReplacementTransform(eq1[11], eq2[8]),
+        ReplacementTransform(eq1[12], eq2[9]),
+        ReplacementTransform(eq1[13], eq2[10])
+    )
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+
+    box = SurroundingRectangle(eq2[4:7], color=GREEN_E, buff=0.1)
+    s.play(Create(box))
+    ident = MathTex("I", color=GREEN_E, font_size=42).move_to(box)
+    s.play(ReplacementTransform(eq2[4:7], ident), FadeOut(box))
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+
+    eq3 = MathTex(r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", "B", r"\otimes", r"P_\rho", font_size=42)
+    eq3[2].set_color(PURE_BLUE)
+    eq3[4].set_color(PURE_RED)
+    eq3.move_to(eq2)
+
+    s.play(
+        FadeOut(ident, scale=0),
+        FadeOut(eq2[7]),
+        ReplacementTransform(eq2[0:3], eq3[0:3]),
+        ReplacementTransform(eq2[3], eq3[3]),
+        ReplacementTransform(eq2[8:11], eq3[4:7])
+    )
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+
+
+    box2 = SurroundingRectangle(eq3[2:5], color=DARK_GRAY, buff=0.1)
+    s.play(Create(box2))
+    
+    asumsi_popup = MathTex("A", r"\otimes", "B", "=", "B", r"\otimes", "A", color=BLACK, font_size=36)
+    asumsi_popup[0].set_color(PURE_BLUE)
+    asumsi_popup[2].set_color(PURE_RED)
+    asumsi_popup[4].set_color(PURE_RED)
+    asumsi_popup[6].set_color(PURE_BLUE)
+    asumsi_popup.next_to(box2, DOWN, buff=0.3)
+    
+    s.play(FadeIn(asumsi_popup, shift=UP))
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+    
+    eq4 = MathTex(r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", "A", r"\otimes", r"P_\rho", font_size=42)
+    eq4[2].set_color(PURE_RED)
+    eq4[4].set_color(PURE_BLUE)
+    eq4.move_to(eq3)
+
+    s.play(
+        eq3[2].animate(path_arc=PI/2).move_to(eq4[4]),
+        eq3[4].animate(path_arc=PI/2).move_to(eq4[2]),
+        eq3[0:2].animate.move_to(eq4[0:2]),
+        eq3[3].animate.move_to(eq4[3]),
+        eq3[5:7].animate.move_to(eq4[5:7]),
+        run_time=0.75
+    )
+    s.remove(*eq3)
+    s.add(eq4)
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+    s.play(FadeOut(box2), FadeOut(asumsi_popup, shift=DOWN))
+
+    ident2 = MathTex("I", color=GREEN_E, font_size=42).move_to(eq4[3])
+    s.play(
+        eq4[0:3].animate.shift(LEFT*1.2),
+        eq4[4:7].animate.shift(RIGHT*1.2),
+        ReplacementTransform(eq4[3], ident2)
+    )
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+
+    eq5 = MathTex(
+        r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho",
+        r"\otimes",
+        r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho",
+        font_size=42
+    )
+    eq5[2].set_color(PURE_RED)
+    eq5[8].set_color(PURE_BLUE)
+    eq5.move_to(eq1)
+
+    s.play(
+        ReplacementTransform(ident2, eq5[4:7]),
+        ReplacementTransform(eq4[0:3], eq5[0:3]),
+        ReplacementTransform(eq4[3], eq5[3]),
+        FadeIn(eq5[7]),
+        ReplacementTransform(eq4[4:7], eq5[8:11])
+    )
+    s.wait(0.5)
+    s.next_slide(auto_next=True)
+
+    eq6 = MathTex(
+        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
+        r"\otimes",
+        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
+        font_size=42
+    )
+    eq6[3].set_color(PURE_RED)
+    eq6[11].set_color(PURE_BLUE)
+    eq6.move_to(eq5)
+
+    s.play(
+        ReplacementTransform(eq5[0:5], eq6[1:6]),
+        ReplacementTransform(eq5[5], eq6[7]),
+        ReplacementTransform(eq5[6:11], eq6[9:14]),
+        FadeIn(eq6[0], shift=DOWN), FadeIn(eq6[6], shift=DOWN),
+        FadeIn(eq6[8], shift=DOWN), FadeIn(eq6[14], shift=DOWN)
+    )
+    s.wait(0.5)
+    s.next_slide()
+
+    s.play(
+        eq6.animate.scale(32/42).move_to(full_eq[16:31]),
+        run_time=0.75
+    )
+    box_rhs = SurroundingRectangle(full_eq, color=BLACK, buff=0.1)
+    s.play(Write(box_rhs),FadeOut(eq6))
+    s.wait(1)
+    s.next_slide()
+
+    teorema = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Teorema 4.} Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\underline{n}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus, yaitu $A \otimes B = B \otimes A$, maka permutasi yang bersesuaian dengan simbol maksimum $n$ dari kedua matriks tersebut saling komutatif, yaitu:}",
+        color=BLACK, font_size=30
+    ).next_to(full_eq, DOWN, buff=0.4)
+    
+    eq_teo = MathTex(r"\sigma_n^A", r"\circ", r"\sigma_n^B", r"=", r"\sigma_n^B", r"\circ", r"\sigma_n^A", color=BLACK, font_size=36)
+    eq_teo.next_to(teorema, DOWN, buff=0.3)
+    
+    s.play(Write(eq_teo), Write(teorema))
+    s.wait(1)
+    s.next_slide()
+    
+    text_pos = eq_teo.get_bottom() + DOWN * 0.5
+    eq_pos = text_pos + DOWN * 0.8
+    
+    dek_teks = Tex(r"*Tinjau dekomposisi Latin square untuk $A$ dan $B$:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    s.play(Write(dek_teks))
+    
+    dek_A = MathTex(r"A", r"=", r"\bigoplus_{k=1}^n (k \otimes P_k^A)", color=BLACK, font_size=32)
+    dek_B = MathTex(r"B", r"=", r"\bigoplus_{k=1}^n (k \otimes P_k^B)", color=BLACK, font_size=32)
+    dek_A[0].set_color(PURE_BLUE)
+    dek_B[0].set_color(PURE_RED)
+    dek_group = VGroup(dek_A, dek_B).arrange(RIGHT, buff=0.5).move_to(eq_pos)
+    s.play(Write(dek_group))
+    s.wait(1)
+    s.next_slide()
+    
+    subst_teks = Tex(r"*Substitusi ke asumsi $A \otimes B = B \otimes A$:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_subst = MathTex(
+        r"\left( \bigoplus_{i=1}^n (i \otimes P_i^A) \right)", r"\otimes", r"\left( \bigoplus_{j=1}^n (j \otimes P_j^B) \right)",
+        r"=",
+        r"\left( \bigoplus_{i=1}^n (i \otimes P_i^B) \right)", r"\otimes", r"\left( \bigoplus_{j=1}^n (j \otimes P_j^A) \right)",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_subst[0].set_color(PURE_BLUE)
+    eq_subst[2].set_color(PURE_RED)
+    eq_subst[4].set_color(PURE_RED)
+    eq_subst[6].set_color(PURE_BLUE)
+    
+    s.play(
+        FadeOut(dek_teks),
+        FadeIn(subst_teks),
+        ReplacementTransform(dek_group, eq_subst)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    kalimat_2n = Tex(r"*Karena nilai maksimum $2n$ pasti muncul dari $n \otimes n$, maka:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_2n = MathTex(
+        r"(n \otimes P_n^A)", r"\otimes", r"(n \otimes P_n^B)",
+        r"=",
+        r"(n \otimes P_n^B)", r"\otimes", r"(n \otimes P_n^A)",
+        color=BLACK, font_size=32
+    ).move_to(eq_pos)
+    eq_2n[0].set_color(PURE_BLUE)
+    eq_2n[2].set_color(PURE_RED)
+    eq_2n[4].set_color(PURE_RED)
+    eq_2n[6].set_color(PURE_BLUE)
+    
+    s.play(
+        FadeOut(subst_teks),
+        FadeIn(kalimat_2n),
+        ReplacementTransform(eq_subst, eq_2n)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    kalimat_komutatif = Tex(r"*Sehingga matriks permutasinya pun harus komutatif:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_P = MathTex(r"P_n^A", r"\otimes", r"P_n^B", r"=", r"P_n^B", r"\otimes", r"P_n^A", color=BLACK, font_size=36).move_to(eq_pos)
+    eq_P[0].set_color(PURE_BLUE)
+    eq_P[2].set_color(PURE_RED)
+    eq_P[4].set_color(PURE_RED)
+    eq_P[6].set_color(PURE_BLUE)
+    
+    s.play(
+        FadeOut(kalimat_2n),
+        FadeIn(kalimat_komutatif),
+        ReplacementTransform(eq_2n, eq_P)
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    kalimat_final = Tex(r"*Akibatnya, permutasinya juga saling komutatif:", color=DARK_GRAY, font_size=30).move_to(text_pos)
+    
+    eq_final = MathTex(r"\sigma_n^A", r"\circ", r"\sigma_n^B", r"=", r"\sigma_n^B", r"\circ", r"\sigma_n^A", color=BLACK, font_size=36).move_to(eq_pos)
+    eq_final[0].set_color(PURE_BLUE)
+    eq_final[2].set_color(PURE_RED)
+    eq_final[4].set_color(PURE_RED)
+    eq_final[6].set_color(PURE_BLUE)
+    
+    s.play(
+        FadeOut(kalimat_komutatif),
+        FadeIn(kalimat_final),
+        ReplacementTransform(eq_P, eq_final)
+    )
+    s.play(Transform(eq_final, eq_teo))
+    eq_teo[0].set_color(PURE_BLUE)
+    eq_teo[2].set_color(PURE_RED)
+    eq_teo[4].set_color(PURE_RED)
+    eq_teo[6].set_color(PURE_BLUE)
+
+    final_box_teo = SurroundingRectangle(eq_teo, color=PURPLE_E, buff=0.2)
+    s.play(Create(final_box_teo))
+    s.wait(1)
+    s.next_slide()
+    s.play(Uncreate(final_box_teo))
+    s.play(FadeOut(VGroup(full_eq,box_rhs,deskripsi,judul),shift=LEFT), FadeOut(VGroup(teorema,eq_teo,final_box_teo,kalimat_final,eq_final),shift=LEFT))
+
 def InvariansiLatinSquare(s):
-    judul = Title("Invariansi Latin Square", color=BLACK, font_size=40, include_underline=True)
+    judul = Title("Invariansi Latin Square", color=BLACK, font_size=48, include_underline=True)
     judul[-1].set_color(BLACK)
     teorema_tex = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Misalkan $A\in L_S(n)$ dan misalkan $P_\sigma$, $P_\tau$ adalah matriks permutasi max-plus yang bersesuaian dengan permutasi $\sigma,\tau\in S_n$. Maka $P_\sigma\otimes A$, $A\otimes P_\tau$, dan $P_\sigma\otimes A\otimes P_\tau$ juga merupakan \textit{Latin square}.""", color=BLACK, font_size=30)
     teorema_tex.next_to(judul, DOWN, buff=0.3)
-    s.play(Write(judul), Write(teorema_tex), run_time=1.5)
+    s.play(Write(judul), Write(teorema_tex), run_time=0.75)
     s.wait(1)
     s.next_slide()
     teks_kiri = MathTex(r"\text{Perkalian Kiri: } P_\sigma \otimes A \implies \text{Permutasi Baris}", color=DARK_GRAY, font_size=32)
@@ -45,7 +917,7 @@ def InvariansiLatinSquare(s):
     op_eq1.shift(UP*0.25)
     mat_Res1.shift(UP*0.25)
 
-    s.play(Write(teks_kiri), Write(group_P), Write(op_times1), Write(group_A), Write(op_eq1), run_time=1.5)
+    s.play(Write(teks_kiri), Write(group_P), Write(op_times1), Write(group_A), Write(op_eq1), run_time=0.75)
     s.wait()
     s.next_slide()
     rows_A = mat_A.get_rows()

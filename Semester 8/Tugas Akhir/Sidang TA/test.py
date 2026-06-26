@@ -6,200 +6,140 @@ config.background_color = WHITE
 
 class RevisionScene(Slide):
     def construct(self):
-        SyaratPerlu(self)
+        animasi_pemilihan_B_star(self)
 
-def SyaratPerlu(s):
-    s.next_slide()
+def animasi_pemilihan_B_star(s):
     Mobject.set_default(color=BLACK)
-    judul = Title("Akibat: Konjugasi Menjaga Komutatif", color=BLACK, font_size=40, include_underline=True)
-    judul[-1].set_color(BLACK)
     
-    deskripsi = Tex(
+    # SLIDE 1: TAHAP ALTERNATIF
+    judul_algo = Title("Algoritma Pencarian Pasangan Komutatif", color=BLACK, font_size=40, include_underline=True)
+    judul_algo[-1].set_color(BLACK)
+    s.play(Write(judul_algo))
+    
+    tex_alt = Tex(
         r"\parbox{" + str(config.frame_width) + r"cm}{"
-        r"\texbf{Akibat 1.} Misalkan $A,B\in L_S(n)$ dan misalkan $P_\rho$ adalah matriks permutasi max-plus yang bersesuaian dengan permutasi $\rho\in S_n$. Jika $A\otimes B=B\otimes A$, maka}",
+        r"\textbf{Tahap 1: Pencarian Alternatif (Subgrup Abelian)}\\[0.3cm]"
+        r"1. Dekomposisikan matriks $A$ menjadi himpunan permutasi penyusun $\Sigma_A = \{\sigma_1^A, \dots, \sigma_n^A\}$.\\[0.1cm]"
+        r"2. Periksa apakah seluruh elemen $\Sigma_A$ saling komutatif. Jika saling komutatif, maka $\Sigma_A$ membangkitkan subgrup Abelian $H_A$.\\[0.1cm]"
+        r"3. Untuk setiap permutasi pengacakan indeks $\pi \in S_n$, bentuk permutasi baru $\sigma_i^B = \sigma_{\pi(i)}^A$ untuk setiap $i \in \underline{n}$.\\[0.1cm]"
+        r"4. Bentuk kandidat matriks $B$ dari kumpulan permutasi $\sigma_i^B$ tersebut.\\[0.1cm]"
+        r"5. Simpan $B$ ke dalam himpunan solusi. Berdasarkan Teorema Subgrup Abelian, kandidat $B$ ini dijamin saling komutatif dengan $A$."
+        r"}",
         color=BLACK, font_size=30
-    ).next_to(judul, DOWN, buff=0.4)
+    ).next_to(judul_algo, DOWN, buff=0.5)
     
-    s.play(Write(judul))
-    s.play(Write(deskripsi), run_time=1.5)
-    s.wait(1)
-    s.next_slide()
-
-    full_eq = MathTex(
-        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
-        r"\otimes",
-        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
-        "=",
-        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
-        r"\otimes",
-        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
-        font_size=32
-    ).next_to(deskripsi, DOWN, buff=0.4)
-    full_eq[3].set_color(PURE_BLUE)
-    full_eq[11].set_color(PURE_RED)
-    full_eq[19].set_color(PURE_RED)
-    full_eq[27].set_color(PURE_BLUE)
-
-    s.play(Write(full_eq), run_time=2)
-    s.wait(1)
-    s.next_slide()
-
-    eq1 = MathTex(
-        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
-        r"\otimes",
-        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
-        font_size=42
-    )
-    eq1[3].set_color(PURE_BLUE)
-    eq1[11].set_color(PURE_RED)
-    eq1.next_to(full_eq, DOWN, buff=0.8)
-    
-    s.play(ReplacementTransform(full_eq[0:15].copy(), eq1), run_time=1.5)
-    s.wait(1)
-    s.next_slide()
-
-    eq2 = MathTex(
-        r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho",
-        r"\otimes",
-        r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho",
-        font_size=42
-    )
-    eq2[2].set_color(PURE_BLUE)
-    eq2[8].set_color(PURE_RED)
-    eq2.move_to(eq1)
-
-    s.play(
-        FadeOut(eq1[0], shift=UP), FadeOut(eq1[6], shift=UP),
-        FadeOut(eq1[8], shift=UP), FadeOut(eq1[14], shift=UP),
-        ReplacementTransform(eq1[1], eq2[0]),
-        ReplacementTransform(eq1[2], eq2[1]),
-        ReplacementTransform(eq1[3], eq2[2]),
-        ReplacementTransform(eq1[4], eq2[3]),
-        ReplacementTransform(eq1[5], eq2[4]),
-        ReplacementTransform(eq1[7], eq2[5]),
-        ReplacementTransform(eq1[9], eq2[6]),
-        ReplacementTransform(eq1[10], eq2[7]),
-        ReplacementTransform(eq1[11], eq2[8]),
-        ReplacementTransform(eq1[12], eq2[9]),
-        ReplacementTransform(eq1[13], eq2[10])
-    )
-    s.wait(0.5)
-    s.next_slide()
-
-    box = SurroundingRectangle(eq2[4:7], color=GREEN_E, buff=0.1)
-    s.play(Create(box))
-    ident = MathTex("I", color=GREEN_E, font_size=42).move_to(box)
-    s.play(ReplacementTransform(eq2[4:7], ident), FadeOut(box))
-    s.wait(0.5)
-
-    eq3 = MathTex(r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", "B", r"\otimes", r"P_\rho", font_size=42)
-    eq3[2].set_color(PURE_BLUE)
-    eq3[4].set_color(PURE_RED)
-    eq3.move_to(eq2)
-
-    s.play(
-        FadeOut(ident, scale=0),
-        FadeOut(eq2[7]),
-        ReplacementTransform(eq2[0:3], eq3[0:3]),
-        ReplacementTransform(eq2[3], eq3[3]),
-        ReplacementTransform(eq2[8:11], eq3[4:7])
-    )
-    s.wait(1)
-    s.next_slide()
-
-    box2 = SurroundingRectangle(eq3[2:5], color=DARK_GRAY, buff=0.1)
-    s.play(Create(box2))
-    
-    asumsi_popup = MathTex("A", r"\otimes", "B", "=", "B", r"\otimes", "A", color=BLACK, font_size=36)
-    asumsi_popup[0].set_color(PURE_BLUE)
-    asumsi_popup[2].set_color(PURE_RED)
-    asumsi_popup[4].set_color(PURE_RED)
-    asumsi_popup[6].set_color(PURE_BLUE)
-    asumsi_popup.next_to(box2, UP, buff=0.3)
-    
-    s.play(FadeIn(asumsi_popup, shift=DOWN))
+    s.play(Write(tex_alt), run_time=2.5)
     s.wait(1)
     
-    eq4 = MathTex(r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", "A", r"\otimes", r"P_\rho", font_size=42)
-    eq4[2].set_color(PURE_RED)
-    eq4[4].set_color(PURE_BLUE)
-    eq4.move_to(eq3)
-
-    s.play(
-        eq3[2].animate(path_arc=PI/2).move_to(eq4[4]),
-        eq3[4].animate(path_arc=PI/2).move_to(eq4[2]),
-        eq3[0:2].animate.move_to(eq4[0:2]),
-        eq3[3].animate.move_to(eq4[3]),
-        eq3[5:7].animate.move_to(eq4[5:7]),
-        run_time=1.5
-    )
-    s.remove(*eq3)
-    s.add(eq4)
-    s.wait(0.5)
-    s.play(FadeOut(box2), FadeOut(asumsi_popup, shift=UP))
-    s.wait(0.5)
-    s.next_slide()
-
-    ident2 = MathTex("I", color=GREEN_E, font_size=42).move_to(eq4[3])
-    s.play(
-        eq4[0:3].animate.shift(LEFT*1.2),
-        eq4[4:7].animate.shift(RIGHT*1.2),
-        FadeIn(ident2, scale=0)
-    )
-    s.wait(0.5)
-
-    eq5 = MathTex(
-        r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho",
-        r"\otimes",
-        r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho",
-        font_size=42
-    )
-    eq5[2].set_color(PURE_RED)
-    eq5[8].set_color(PURE_BLUE)
-    eq5.move_to(eq1)
-
-    s.play(
-        ReplacementTransform(ident2, eq5[4:7]),
-        ReplacementTransform(eq4[0:3], eq5[0:3]),
-        ReplacementTransform(eq4[3], eq5[3]),
-        FadeIn(eq5[7]),
-        ReplacementTransform(eq4[4:7], eq5[8:11])
-    )
-    s.wait(0.5)
-    s.next_slide()
-
-    eq6 = MathTex(
-        r"(", r"P_\rho^{-1}", r"\otimes", "B", r"\otimes", r"P_\rho", r")",
-        r"\otimes",
-        r"(", r"P_\rho^{-1}", r"\otimes", "A", r"\otimes", r"P_\rho", r")",
-        font_size=42
-    )
-    eq6[3].set_color(PURE_RED)
-    eq6[11].set_color(PURE_BLUE)
-    eq6.move_to(eq5)
-
-    s.play(
-        ReplacementTransform(eq5[0:5], eq6[1:6]),
-        ReplacementTransform(eq5[5], eq6[7]),
-        ReplacementTransform(eq5[6:11], eq6[9:14]),
-        FadeIn(eq6[0], shift=DOWN), FadeIn(eq6[6], shift=DOWN),
-        FadeIn(eq6[8], shift=DOWN), FadeIn(eq6[14], shift=DOWN)
-    )
+    try: s.next_slide()
+    except: pass
     
+    # SLIDE 2: TAHAP UMUM
+    tex_umum = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Tahap 2: Pencarian Umum (Metode Backtrack)}\\[0.3cm]"
+        r"1. Tentukan himpunan \textit{centralizer} $C_{S_n}(\sigma_n^A)$.\\[0.1cm]"
+        r"2. Untuk setiap $\tau \in C_{S_n}(\sigma_n^A)$, tetapkan kandidat permutasi maksimum $\sigma_n^B = \tau$.\\[0.1cm]"
+        r"3. Inisialisasi matriks parsial $B^*$ dengan menempatkan simbol $n$ sesuai permutasi $\sigma_n^B$.\\[0.1cm]"
+        r"4. Lakukan penelusuran menurun secara \textit{backtrack} untuk $m = n-1, \dots, 2$:\\[0.1cm]"
+        r"\hspace*{0.5cm}a. Uji setiap kandidat $\sigma_m^B \in S_n$ pada entri yang masih kosong di $B^*$.\\[0.1cm]"
+        r"\hspace*{0.5cm}b. Jika syarat superlevel $\mathcal{U}_{\ge n+m}^{AB} = \mathcal{U}_{\ge n+m}^{BA}$ terpenuhi, simpan simbol $m$ dan lanjutkan ke langkah $m-1$.\\[0.1cm]"
+        r"\hspace*{0.5cm}c. Jika ditolak, hapus kembali simbol $m$ dari $B^*$ dan uji $\sigma_m^B$ selanjutnya.\\[0.1cm]"
+        r"5. Untuk tahap $m=1$, isi entri yang tersisa pada $B^*$ dengan simbol $1$ dan simpan ke himpunan solusi apabila matriks tersebut valid."
+        r"}",
+        color=BLACK, font_size=30
+    ).next_to(judul_algo, DOWN, buff=0.5)
+    
+    s.play(FadeOut(tex_alt, shift=LEFT))
+    s.play(FadeIn(tex_umum, shift=RIGHT))
     s.wait(1)
-    s.next_slide()
     
-    # "Substitusi ke sisi kanan" -> terbang dan gabung ke RHS
-    s.play(
-        eq6.animate.scale(32/42).move_to(full_eq[16:31]),
-        run_time=1.5
-    )
-    box_rhs = SurroundingRectangle(full_eq, color=BLACK, buff=0.1)
-    s.play(FadeIn(box_rhs))
-    s.play(FadeOut(eq6))
+    try: s.next_slide()
+    except: pass
     
+    s.play(FadeOut(tex_umum, shift=LEFT))
+    
+    # SLIDE 3: ANIMASI PEMILIHAN B*
+    judul_bstar = Title(r"Tahap Umum: Ilustrasi \textit{Backtrack}", color=BLACK, font_size=40, include_underline=True)
+    judul_bstar[-1].set_color(BLACK)
+    
+    s.play(Transform(judul_algo, judul_bstar))
+    
+    b_star_mat = Matrix([
+        [r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon"],
+        [r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon"],
+        [r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon"],
+        [r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon"],
+        [r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon", r"\varepsilon"]
+    ], v_buff=0.7, h_buff=0.7).scale(0.7).set_color(BLACK).next_to(judul_bstar, DOWN, buff=1)
+    
+    for ent in b_star_mat.get_entries():
+        ent.set_color(GRAY)
+        
+    lbl_B = MathTex("B^* =").scale(0.8).next_to(b_star_mat, LEFT)
+    grp_mat = VGroup(lbl_B, b_star_mat).shift(DOWN*0.5)
+    
+    s.play(Write(lbl_B), Create(b_star_mat))
+    
+    tahapan = [
+        {
+            "m": 5,
+            "teks": r"Kandidat $m=5$: Misal $\sigma_5^B = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 5 & 4 & 3 & 2 & 1 \end{pmatrix} \in C_{S_5}(\sigma_5^A)$",
+            "pos": [(0, 4), (1, 3), (2, 2), (3, 1), (4, 0)],
+            "col": PURE_RED
+        },
+        {
+            "m": 4,
+            "teks": r"Evaluasi $m=4$: Lolos syarat superlevel untuk $\sigma_4^B = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 4 & 3 & 2 & 1 & 5 \end{pmatrix}$",
+            "pos": [(0, 3), (1, 2), (2, 1), (3, 0), (4, 4)],
+            "col": ORANGE
+        },
+        {
+            "m": 3,
+            "teks": r"Evaluasi $m=3$: Lolos syarat superlevel untuk $\sigma_3^B = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 3 & 2 & 1 & 5 & 4 \end{pmatrix}$",
+            "pos": [(0, 2), (1, 1), (2, 0), (3, 4), (4, 3)],
+            "col": TEAL
+        },
+        {
+            "m": 2,
+            "teks": r"Evaluasi $m=2$: Lolos syarat superlevel untuk $\sigma_2^B = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 2 & 1 & 5 & 4 & 3 \end{pmatrix}$",
+            "pos": [(0, 1), (1, 0), (2, 4), (3, 3), (4, 2)],
+            "col": PURE_BLUE
+        },
+        {
+            "m": 1,
+            "teks": r"Evaluasi $m=1$: Sisa entri matriks otomatis membentuk permutasi $\sigma_1^B$.",
+            "pos": [(0, 0), (1, 4), (2, 3), (3, 2), (4, 1)],
+            "col": PURE_GREEN
+        }
+    ]
+    
+    prev_teks = None
+    for step in tahapan:
+        m = step["m"]
+        teks_mob = Tex(step["teks"], font_size=32, color=BLACK).next_to(judul_bstar, DOWN, buff=0.4)
+        
+        if prev_teks:
+            s.play(Transform(prev_teks, teks_mob))
+        else:
+            s.play(Write(teks_mob))
+            prev_teks = teks_mob
+            
+        posisi = step["pos"]
+        updates = []
+        for r, c in posisi:
+            idx = r * 5 + c
+            target_entry = b_star_mat.get_entries()[idx]
+            new_entry = MathTex(str(m), font_size=36).set_color(step["col"]).move_to(target_entry)
+            updates.append(Transform(target_entry, new_entry))
+            
+        boxes = VGroup(*[SurroundingRectangle(b_star_mat.get_entries()[r*5+c], color=step["col"], buff=0.1) for r,c in posisi])
+        
+        s.play(LaggedStart(*[Create(b) for b in boxes], lag_ratio=0.1), run_time=0.6)
+        s.play(LaggedStart(*updates, lag_ratio=0.2), run_time=1)
+        s.play(FadeOut(boxes), run_time=0.4)
+        s.wait(0.5)
+        
+    teks_final = Tex(r"Seluruh entri matriks telah terisi valid, kandidat $B^*$ disimpan ke $\mathcal{P}(A)$.", font_size=32, color=PURPLE_E).next_to(grp_mat, DOWN, buff=0.4)
+    s.play(Write(teks_final))
     s.wait(2)
-    s.next_slide()
-    
-    s.play(*[FadeOut(m) for m in s.mobjects])
-    
