@@ -44,7 +44,7 @@ class MainPresentation(MovingCameraScene, Slide):
         urutan = [
             # content,
             # lambda s: zoom_section(s,1),
-            pendahuluan,
+            # pendahuluan,
             # lambda s: unzoom_section(s,1),
             # content,
             # lambda s: zoom_section(s,2),
@@ -56,7 +56,7 @@ class MainPresentation(MovingCameraScene, Slide):
             # lambda s: unzoom_section(s,3),
             # content,
             # lambda s: zoom_section(s,4),
-            # pembahasan,
+            pembahasan,
             # lambda s: unzoom_section(s,4),
             # content,
             # lambda s: zoom_section(s,5),

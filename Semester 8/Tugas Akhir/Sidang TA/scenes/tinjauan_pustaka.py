@@ -32,6 +32,132 @@ def tinjauan_pustaka(s):
     next_slide_count(s)
     latin_square(s)
 
+def centralizer(s):
+    judul = Title("Centralizer", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+    
+    teks_atas = Tex(
+    r"\parbox{"
+    + str(config.frame_width)
+    + r"cm}{\textbf{Definisi 3}. Centralizer dari suatu permutasi $\sigma \in S_n$ didefinisikan sebagai himpunan semua permutasi $\tau \in S_n$ yang komutatif dengan $\sigma$.}",
+    color=BLACK,
+    font_size=30).next_to(judul, DOWN, buff=0.5)
+
+    definisi = MathTex(
+    r"C_{S_n}(\sigma)=\{\tau\in S_n\mid\tau\sigma=\sigma\tau\}",
+    color=BLACK,
+    font_size=30).next_to(teks_atas, DOWN, buff=0.5)
+
+    teks_bawah = Tex(
+    r"\parbox{"
+    + str(config.frame_width)
+    + r"cm}{\textbf{Teorema 3}. Misalkan $\sigma\in S_n$ memiliki $a_k$ sikel berpanjang $k$ untuk setiap $k=1,2,\ldots,n$. Maka}",
+    color=BLACK,
+    font_size=30).next_to(definisi, DOWN, buff=0.5)
+
+    teorema = MathTex(
+        r"C_{S_n}(\sigma) \cong \prod_{k=1}^{n} \left( \mathbb{Z}_k^{a_k} \rtimes S_{a_k} \right)",
+        color=BLACK, font_size=30
+    ).next_to(teks_bawah, DOWN, buff=0.5)
+
+    s.play(Write(judul), Write(teks_atas), Write(definisi),
+    Write(teks_bawah), Write(teorema), run_time=1)
+    s.wait(2)
+    s.next_slide()
+    next_slide_count(s)
+
+    sigma_tex = MathTex(
+        r"\sigma =", r"(1\;3\;4)", r"(2\;7\;8)", r"(5\;6\;9)", r"\in S_9",
+        color=BLACK, font_size=42
+    ).next_to(judul, DOWN, buff=0.5)
+
+    subst_final = MathTex(
+    r"C_{S_9}(\sigma)", 
+    r"\cong", 
+    r"\mathbb{Z}_3^3 \rtimes S_3",
+    color=BLACK, font_size=42
+    ).next_to(sigma_tex, DOWN, buff=0.8)
+    s.play(
+        ReplacementTransform(VGroup(teks_atas, definisi, teks_bawah),sigma_tex),
+        ReplacementTransform(teorema, subst_final),
+        run_time=1
+    )
+    s.wait(2)
+    s.next_slide()
+
+    grup_kiri = MathTex(r"C_{S_9}(\sigma)", color=BLUE, font_size=40).move_to(LEFT * 3.5 + UP * 0.8)
+    grup_kanan = MathTex(r"\mathbb{Z}_3^3 \rtimes S_3", color=RED, font_size=40).move_to(RIGHT * 3.5 + UP * 0.8)
+
+    s.play(
+        FadeOut(subst_final[1]), 
+        ReplacementTransform(subst_final[0], grup_kiri),
+        ReplacementTransform(subst_final[2], grup_kanan),
+        run_time=1
+    )
+
+    panah_atas = CurvedArrow(grup_kiri.get_right() + RIGHT*0.2 + UP*0.2, grup_kanan.get_left() + LEFT*0.2 + UP*0.2, angle=-TAU/12, color=GRAY)
+    panah_bawah = CurvedArrow(grup_kanan.get_left() + LEFT*0.2 + DOWN*0.2, grup_kiri.get_right() + RIGHT*0.2 + DOWN*0.2, angle=-TAU/12, color=GRAY)
+
+    label_phi = MathTex(r"\Phi", color=BLACK, font_size=32).next_to(panah_atas, UP, buff=0.1)
+    label_phi_inv = MathTex(r"\Phi^{-1}", color=BLACK, font_size=32).next_to(panah_bawah, DOWN, buff=0.1)
+
+    s.play(Create(panah_atas), Write(label_phi), Create(panah_bawah), Write(label_phi_inv))
+    s.wait(1)
+    s.next_slide(auto_next=True)
+
+    kiri_group = VGroup()
+    kanan_group = VGroup()
+
+    examples = [
+        (r"id", r"((0,0,0), id)"),
+        (r"(1\;3\;4)", r"((1,0,0), id)"),
+        (r"(2\;8\;7)", r"((0,2,0), id)"),
+        (r"(1\;3\;4)(5\;6\;9)", r"((1,0,1), id)"),
+        (r"(1\;2)(3\;7)(4\;8)", r"((0,0,0), (1\;2))"),
+        (r"(1\;5\;3\;6\;4\;9)(2\;8\;7)", r"((1,2,0), (1\;3))"),
+        (r"(1\;4\;3)(2\;9\;7\;5\;8\;6)", r"((2,2,2), (2\;3))"),
+    ]
+
+    kiri_y_start = grup_kiri.get_bottom()[1] - 0.5
+    for i, (eks_kiri, eks_kanan) in enumerate(examples):
+        center_kiri = MathTex(eks_kiri, color=BLUE_E, font_size=36).move_to(LEFT*2 + DOWN*1.0)
+        panah_tengah = MathTex(r"\longleftrightarrow", color=BLACK, font_size=36).move_to(DOWN*1.0)
+        center_kanan = MathTex(eks_kanan, color=RED_E, font_size=36).move_to(RIGHT*2 + DOWN*1.0)
+        
+        s.play(FadeIn(center_kiri, shift=UP), FadeIn(panah_tengah), FadeIn(center_kanan, shift=UP), run_time=0.6)
+        s.wait(0.5)
+
+        target_kiri = MathTex(eks_kiri, color=BLUE_E, font_size=28).move_to(grup_kiri.get_x() * RIGHT + (kiri_y_start - i*0.45) * UP)
+        target_kanan = MathTex(eks_kanan, color=RED_E, font_size=28).move_to(grup_kanan.get_x() * RIGHT + (kiri_y_start - i*0.45) * UP)
+        
+        target_kiri.set_color(GRAY).set_opacity(0.3)
+        target_kanan.set_color(GRAY).set_opacity(0.3)
+
+        s.play(
+            FadeOut(panah_tengah),
+            Transform(center_kiri, target_kiri),
+            Transform(center_kanan, target_kanan),
+            run_time=0.4
+        )
+        kiri_group.add(center_kiri)
+        kanan_group.add(center_kanan)
+        s.wait(0.3)
+        s.next_slide(auto_next=True)
+
+    s.next_slide()
+    vdots_kiri = MathTex(r"\vdots", color=BLUE_E, font_size=28).move_to(grup_kiri.get_x() * RIGHT + (kiri_y_start - len(examples)*0.45) * UP)
+    vdots_kanan = MathTex(r"\vdots", color=RED_E, font_size=28).move_to(grup_kanan.get_x() * RIGHT + (kiri_y_start - len(examples)*0.45) * UP)
+    kiri_group.add(vdots_kiri)
+    kanan_group.add(vdots_kanan)
+    
+    kotak_kiri = SurroundingRectangle(VGroup(grup_kiri, kiri_group), color=BLUE_E, buff=0.3)
+    kotak_kanan = SurroundingRectangle(VGroup(grup_kanan, kanan_group), color=RED_E, buff=0.3)
+
+    s.play(Write(vdots_kiri), Write(vdots_kanan), Create(kotak_kiri), Create(kotak_kanan),kiri_group.animate.set_color(BLUE_E).set_opacity(1),kanan_group.animate.set_color(RED_E).set_opacity(1), run_time=1.5)
+    s.wait(2)
+    s.next_slide()
+    s.play(FadeOut(VGroup(judul, sigma_tex, grup_kiri, grup_kanan, panah_atas, panah_bawah, label_phi, label_phi_inv, kiri_group, kanan_group, kotak_kiri, kotak_kanan), shift=LEFT))
+
 def latin_square(s):
     judul_bab = Title("Latin Square", color=BLACK, font_size=48, include_underline=True)
     judul_bab[-1].set_color(BLACK)
@@ -512,137 +638,217 @@ def permutasi(s):
     s.play(Create(final_box))
     s.wait(2)
     s.next_slide()
-    s.play(FadeOut(VGroup(p_sigma_label, matrix_mobj, sigma_full, final_box, judul_bab, deskripsi_baru), shift=LEFT), run_time=1)
+    s.play(FadeOut(VGroup(p_sigma_label, matrix_mobj, sigma_full, final_box, deskripsi_baru), shift=LEFT), run_time=1)
 
-def centralizer(s):
-    title_c = Title("Centralizer", color=BLACK, font_size=48, include_underline=True)
-    title_c[-1].set_color(BLACK)
+    next_slide_count(s)
 
-    definisi = Tex(
-        r"\parbox{" + str(config.frame_width) + r"cm}{Misalkan $G$ grup dan $a \in G$. \emph{Centralizer} dari $a$ di dalam $G$ adalah himpunan semua elemen yang komutatif dengan $a$, yaitu $C_G(a)=\{g \in G \mid ga=ag\}$.}",
-        color=BLACK,
-        font_size=30,
-    ).next_to(title_c, DOWN, buff=0.45)
-    formula = MathTex(
-        r"C_G(a)=\{g \in G \mid ga=ag\}=\{g \in G \mid gag^{-1}=a\}",
-        color=DARK_BROWN,
-        font_size=34,
-    ).next_to(definisi, DOWN, buff=0.4)
-
-    s.play(Write(title_c), Write(definisi), Write(formula), run_time=1.2)
-    s.wait(0.5)
-    s.next_slide()
-
-    sigma = (3, 2, 1)
-    labels = {
-        (1, 2, 3): r"(1)",
-        (2, 1, 3): r"(1\;2)",
-        (3, 2, 1): r"(1\;3)",
-        (1, 3, 2): r"(2\;3)",
-        (2, 3, 1): r"(1\;2\;3)",
-        (3, 1, 2): r"(1\;3\;2)",
-    }
-
-    def compose(left_perm, right_perm):
-        return tuple(left_perm[val - 1] for val in right_perm)
-
-    contoh_label = MathTex(
-        r"\sigma = (1\;3), \quad C_{S_3}(\sigma)=\{\tau \in S_3 \mid \tau \circ \sigma = \sigma \circ \tau\}",
-        color=BLACK,
-        font_size=34,
-    )
-    contoh_label.move_to(VGroup(definisi, formula).get_center())
-    s.play(ReplacementTransform(VGroup(definisi, formula), contoh_label), run_time=1)
-
-    cards = VGroup()
-    card_meta = []
-    for perm in labels:
-        bg = RoundedRectangle(
-            corner_radius=0.15,
-            width=2.5,
-            height=1.5,
-            fill_color=WHITE,
-            fill_opacity=1,
-            stroke_color=GRAY,
-            stroke_width=1.5,
-        )
-        tau_label = MathTex(r"\tau = " + labels[perm], color=BLACK, font_size=30)
-        status = Text("", color=BLACK, font_size=18)
-        group = VGroup(bg, tau_label, status)
-        tau_label.move_to(bg.get_center() + UP * 0.18)
-        status.move_to(bg.get_center() + DOWN * 0.38)
-        cards.add(group)
-        card_meta.append((perm, group, status))
-    cards.arrange_in_grid(rows=2, cols=3, buff=0.35)
-    cards.scale(0.95)
-    cards.next_to(contoh_label, DOWN, buff=0.55)
-
-    calc_box = RoundedRectangle(
-        corner_radius=0.18,
-        width=6.2,
-        height=1.35,
-        fill_color=GRAY_E,
-        fill_opacity=0.85,
-        stroke_color=BLACK,
-        stroke_width=1.5,
-    )
-    calc_box.to_edge(DOWN, buff=0.45)
-    left_expr = MathTex(r"\tau \circ \sigma", color=BLUE_E, font_size=30)
-    right_expr = MathTex(r"\sigma \circ \tau", color=RED_E, font_size=30)
-    equals_expr = MathTex(r"=", color=BLACK, font_size=30)
-    calc_group = VGroup(left_expr, equals_expr, right_expr).arrange(RIGHT, buff=0.2).move_to(calc_box)
-
-    s.play(FadeIn(cards, shift=UP * 0.2), FadeIn(calc_box), Write(calc_group), run_time=1)
-    s.next_slide(loop=True)
-
-    accepted_cards = VGroup()
-    rejected_cards = VGroup()
-    for perm, card, status in card_meta:
-        left_result = labels[compose(perm, sigma)]
-        right_result = labels[compose(sigma, perm)]
-        commute = left_result == right_result
-
-        hasil_kiri = MathTex(left_result, color=BLUE_E, font_size=30).move_to(left_expr)
-        hasil_kanan = MathTex(right_result, color=RED_E, font_size=30).move_to(right_expr)
-        badge_text = "Commute" if commute else "Reject"
-        badge_color = GREEN_E if commute else RED_E
-
-        status_target = Text(badge_text, color=badge_color, font_size=18, weight=BOLD).move_to(status)
-        outline = SurroundingRectangle(card[0], color=badge_color, buff=0.05, stroke_width=3)
-
-        s.play(
-            card[0].animate.set_stroke(badge_color, width=3),
-            card[1].animate.set_color(ORANGE),
-            Transform(left_expr, hasil_kiri),
-            Transform(right_expr, hasil_kanan),
-            run_time=0.6,
-        )
-        s.play(Transform(status, status_target), Create(outline), run_time=0.5)
-        s.play(FadeOut(outline), card[1].animate.set_color(BLACK), run_time=0.3)
-
-        if commute:
-            accepted_cards.add(card)
-        else:
-            rejected_cards.add(card)
-
-    s.wait(0.5)
-    s.next_slide()
-
-    hasil_final = MathTex(
-        r"C_{S_3}((1\;3)) = \{(1),(1\;3)\}",
-        color=DARK_BROWN,
-        font_size=38,
-    ).next_to(contoh_label, DOWN, buff=0.55)
-    s.play(
-        rejected_cards.animate.set_opacity(0.2),
-        accepted_cards.animate.arrange(RIGHT, buff=0.6).move_to(DOWN * 0.3),
-        FadeOut(VGroup(calc_box, calc_group)),
-        run_time=1,
-    )
-    s.play(Write(hasil_final), Circumscribe(accepted_cards, color=GREEN_E), run_time=1)
+    teks_awal = Tex(r"\parbox{" + str(config.frame_width-1) + r"cm}{Misalkan $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi max-plus berukuran $n \times n$. Untuk setiap permutasi $\alpha, \beta \in S_n$, berlaku sifat perkalian:}", color=BLACK, font_size=32).next_to(judul_bab, DOWN, buff=0.4)
+    
+    rumus_awal = MathTex(
+        r"P_\alpha", r"\otimes", r"P_\beta", r"=", r"P_{\beta \circ \alpha}",
+        color=BLACK, font_size=40
+    ).next_to(teks_awal, DOWN, buff=0.4)
+    s.play(Write(teks_awal))
+    s.play(Write(rumus_awal))
     s.wait(1)
     s.next_slide()
-    s.play(FadeOut(VGroup(title_c, contoh_label, cards, hasil_final), shift=LEFT), run_time=1)
+    e = r"\varepsilon"
+    A_entries = [[e]*4 for _ in range(4)]
+    A_entries[0][3] = "0"; A_entries[1][2] = "0"; A_entries[2][0] = "0"; A_entries[3][1] = "0"
+    mat_A = Matrix(A_entries, element_to_mobject_config={"color": BLACK}).scale(0.6)
+    mat_A.get_brackets().set_color(BLACK)
+    B_entries = [[e]*4 for _ in range(4)]
+    B_entries[0][1] = "0"; B_entries[1][0] = "0"; B_entries[2][3] = "0"; B_entries[3][2] = "0"
+    mat_B = Matrix(B_entries, element_to_mobject_config={"color": BLACK}).scale(0.6)
+    mat_B.get_brackets().set_color(BLACK)
+    C_entries = [[e]*4 for _ in range(4)]
+    C_entries[0][2] = "0"; C_entries[1][3] = "0"; C_entries[2][1] = "0"; C_entries[3][0] = "0"
+    mat_C = Matrix(C_entries, element_to_mobject_config={"color": BLACK}).scale(0.6)
+    mat_C.get_brackets().set_color(BLACK)
+
+    lbl_A = MathTex(r"P_\alpha", color=BLACK, font_size=36)
+    lbl_B = MathTex(r"P_\beta", color=BLACK, font_size=36)
+    lbl_C = MathTex(r"P_{\beta \circ \alpha}", color=BLACK, font_size=36)
+    otimes_target = MathTex(r"\otimes", color=BLACK, font_size=40)
+    eq_target = MathTex(r"=", color=BLACK, font_size=40)
+
+    group_matrices = VGroup(mat_A, otimes_target, mat_B, eq_target, mat_C).arrange(RIGHT, buff=0.2).next_to(judul_bab, DOWN, buff=1.0)
+    
+    lbl_A.next_to(mat_A, UP, buff=0.2)
+    lbl_B.next_to(mat_B, UP, buff=0.2)
+    lbl_C.next_to(mat_C, UP, buff=0.2)
+
+    s.play(
+        ReplacementTransform(teks_awal, VGroup(mat_A, mat_B, mat_C)),
+        ReplacementTransform(rumus_awal[0], lbl_A),
+        ReplacementTransform(rumus_awal[1], otimes_target),
+        ReplacementTransform(rumus_awal[2], lbl_B),
+        ReplacementTransform(rumus_awal[3], eq_target),
+        ReplacementTransform(rumus_awal[4], lbl_C),
+        run_time=1
+    )
+    s.wait(1)
+    s.next_slide(auto_next=True)
+
+    mappings = [
+        (1, 4, 3), 
+        (2, 3, 4), 
+        (3, 1, 2), 
+        (4, 2, 1)  
+    ]
+
+    i_val, k_val, j_val = mappings[0]
+    i_idx, k_idx, j_idx = i_val - 1, k_val - 1, j_val - 1
+
+    eq_1 = MathTex(
+        r"[P_\alpha]_{", str(i_val), r",", str(k_val), r"} = 0 \iff \alpha(", str(i_val), r") = ", str(k_val), 
+        color=BLACK, font_size=32
+    )
+    eq_1[1].set_color(RED_E); eq_1[3].set_color(BLUE_E); eq_1[5].set_color(RED_E); eq_1[7].set_color(BLUE_E)
+    eq_2 = MathTex(
+        r"[P_\beta]_{", str(k_val), r",", str(j_val), r"} = 0 \iff \beta(", str(k_val), r") = ", str(j_val), 
+        color=BLACK, font_size=32
+    )
+    eq_2[1].set_color(BLUE_E); eq_2[3].set_color(GREEN_E); eq_2[5].set_color(BLUE_E); eq_2[7].set_color(GREEN_E)
+    group_eq = VGroup(eq_1, eq_2).arrange(RIGHT, buff=1.0).next_to(group_matrices, DOWN, buff=1.0)
+    
+    eq_3 = MathTex(
+        r"(\beta \circ \alpha)(", str(i_val), r") = \beta(\alpha(", str(i_val), r")) = \beta(", str(k_val), r") = ", str(j_val), 
+        color=BLACK, font_size=32
+    )
+    eq_3[1].set_color(RED_E); eq_3[3].set_color(RED_E); eq_3[5].set_color(BLUE_E); eq_3[7].set_color(GREEN_E)
+    eq_4 = MathTex(
+        r"\Longrightarrow [P_{\beta \circ \alpha}]_{", str(i_val), r",", str(j_val), r"} = 0", 
+        color=BLACK, font_size=32
+    )
+    eq_4[1].set_color(RED_E); eq_4[3].set_color(GREEN_E)
+    
+    group_eq2 = VGroup(eq_3, eq_4).arrange(RIGHT, buff=0.2).next_to(group_eq, DOWN, buff=0.4)
+    
+    box_row_A = SurroundingRectangle(mat_A.get_rows()[i_idx], color=RED_E, buff=0.1)
+    box_col_B = SurroundingRectangle(mat_B.get_columns()[j_idx], color=GREEN_E, buff=0.1)
+    
+    label_i = MathTex(f"i={i_val}", color=RED_E, font_size=20).next_to(mat_A, LEFT, buff=0.15).match_y(mat_A.get_rows()[i_idx])
+    label_k1 = MathTex(f"k={k_val}", color=BLUE_E, font_size=20).next_to(mat_A, DOWN, buff=0.15).match_x(mat_A.get_columns()[k_idx])
+    
+    label_k2 = MathTex(f"k={k_val}", color=BLUE_E, font_size=20).next_to(mat_B, LEFT, buff=0.1).match_y(mat_B.get_rows()[k_idx])
+    label_j = MathTex(f"j={j_val}", color=GREEN_E, font_size=20).next_to(mat_B, DOWN, buff=0.15).match_x(mat_B.get_columns()[j_idx])
+    elem_A = mat_A.get_entries()[i_idx * 4 + k_idx]
+    elem_B = mat_B.get_entries()[k_idx * 4 + j_idx]
+    elem_C = mat_C.get_entries()[i_idx * 4 + j_idx]
+    
+    box_row_C = SurroundingRectangle(mat_C.get_rows()[i_idx], color=RED_E, buff=0.1)
+    box_col_C = SurroundingRectangle(mat_C.get_columns()[j_idx], color=GREEN_E, buff=0.1)
+    label_i_C = MathTex(f"i={i_val} ", color=RED_E, font_size=20).next_to(mat_C, RIGHT, buff=0.15).match_y(mat_C.get_rows()[i_idx])
+    label_j_C = MathTex(f"j={j_val}", color=GREEN_E, font_size=20).next_to(mat_C, DOWN, buff=0.15).match_x(mat_C.get_columns()[j_idx])
+
+    rt = 0.6
+    s.play(Write(label_i), Create(box_row_A),Write(label_k1),elem_A.animate.set_color(BLUE_E), TransformFromCopy(elem_A, eq_1), run_time=rt)
+    s.play(Write(label_j), Create(box_col_B), Write(label_k2), elem_B.animate.set_color(BLUE_E), TransformFromCopy(elem_B, eq_2), run_time=rt)
+    s.play(Write(group_eq2), run_time=rt)
+    s.play(Write(label_i_C), Write(label_j_C), Create(box_row_C), Create(box_col_C),elem_C.animate.set_color(BLUE_D), run_time=rt)
+    s.play(Indicate(eq_4, color=BLUE_D), run_time=rt)
+    s.wait(1)
+
+    prev_label_i, prev_box_row_A, prev_label_k1, prev_eq_1 = label_i, box_row_A, label_k1, eq_1
+    prev_label_k2, prev_box_col_B, prev_label_j, prev_eq_2 = label_k2, box_col_B, label_j, eq_2
+    prev_eq_3, prev_eq_4 = eq_3, eq_4
+    prev_label_i_C, prev_label_j_C, prev_box_row_C, prev_box_col_C = label_i_C, label_j_C, box_row_C, box_col_C
+    prev_elem_A, prev_elem_B, prev_elem_C = elem_A, elem_B, elem_C
+
+    s.next_slide(loop=True)
+
+    ping_pong_sequence = [1, 2, 3, 2, 1, 0]
+    rt_shift = 0.6
+
+    for p_idx in ping_pong_sequence:
+        i_val, k_val, j_val = mappings[p_idx]
+        i_idx, k_idx, j_idx = i_val - 1, k_val - 1, j_val - 1
+
+        # Target Objects
+        t_eq_1 = MathTex(r"[P_\alpha]_{", str(i_val), r",", str(k_val), r"} = 0 \iff \alpha(", str(i_val), r") = ", str(k_val), color=BLACK, font_size=32)
+        t_eq_1[1].set_color(RED_E); t_eq_1[3].set_color(BLUE_E); t_eq_1[5].set_color(RED_E); t_eq_1[7].set_color(BLUE_E)
+        t_eq_2 = MathTex(r"[P_\beta]_{", str(k_val), r",", str(j_val), r"} = 0 \iff \beta(", str(k_val), r") = ", str(j_val), color=BLACK, font_size=32)
+        t_eq_2[1].set_color(BLUE_E); t_eq_2[3].set_color(GREEN_E); t_eq_2[5].set_color(BLUE_E); t_eq_2[7].set_color(GREEN_E)
+        t_group_eq = VGroup(t_eq_1, t_eq_2).arrange(RIGHT, buff=1.0).next_to(group_matrices, DOWN, buff=1.0)
+        
+        t_eq_3 = MathTex(r"(\beta \circ \alpha)(", str(i_val), r") = \beta(\alpha(", str(i_val), r")) = \beta(", str(k_val), r") = ", str(j_val), color=BLACK, font_size=32)
+        t_eq_3[1].set_color(RED_E); t_eq_3[3].set_color(RED_E); t_eq_3[5].set_color(BLUE_E); t_eq_3[7].set_color(GREEN_E)
+        t_eq_4 = MathTex(r"\Longrightarrow [P_{\beta \circ \alpha}]_{", str(i_val), r",", str(j_val), r"} = 0", color=BLACK, font_size=32)
+        t_eq_4[1].set_color(RED_E); t_eq_4[3].set_color(GREEN_E)
+        t_group_eq2 = VGroup(t_eq_3, t_eq_4).arrange(RIGHT, buff=0.2).next_to(t_group_eq, DOWN, buff=0.4)
+        
+        t_box_row_A = SurroundingRectangle(mat_A.get_rows()[i_idx], color=RED_E, buff=0.1)
+        t_box_col_B = SurroundingRectangle(mat_B.get_columns()[j_idx], color=GREEN_E, buff=0.1)
+        
+        t_label_i = MathTex(f"i={i_val}", color=RED_E, font_size=20).next_to(mat_A, LEFT, buff=0.15).match_y(mat_A.get_rows()[i_idx])
+        t_label_k1 = MathTex(f"k={k_val}", color=BLUE_E, font_size=20).next_to(mat_A, DOWN, buff=0.15).match_x(mat_A.get_columns()[k_idx])
+        
+        t_label_k2 = MathTex(f"k={k_val}", color=BLUE_E, font_size=20).next_to(mat_B, LEFT, buff=0.1).match_y(mat_B.get_rows()[k_idx])
+        t_label_j = MathTex(f"j={j_val}", color=GREEN_E, font_size=20).next_to(mat_B, DOWN, buff=0.15).match_x(mat_B.get_columns()[j_idx])
+        
+        elem_A = mat_A.get_entries()[i_idx * 4 + k_idx]
+        elem_B = mat_B.get_entries()[k_idx * 4 + j_idx]
+        elem_C = mat_C.get_entries()[i_idx * 4 + j_idx]
+        
+        t_box_row_C = SurroundingRectangle(mat_C.get_rows()[i_idx], color=RED_E, buff=0.1)
+        t_box_col_C = SurroundingRectangle(mat_C.get_columns()[j_idx], color=GREEN_E, buff=0.1)
+        t_label_i_C = MathTex(f"i={i_val} ", color=RED_E, font_size=20).next_to(mat_C, RIGHT, buff=0.15).match_y(mat_C.get_rows()[i_idx])
+        t_label_j_C = MathTex(f"j={j_val}", color=GREEN_E, font_size=20).next_to(mat_C, DOWN, buff=0.15).match_x(mat_C.get_columns()[j_idx])
+
+        # Matikan highlight warna sebelumnya
+        s.play(
+            prev_elem_A.animate.set_color(BLACK),
+            prev_elem_B.animate.set_color(BLACK),
+            prev_elem_C.animate.set_color(BLACK), # Reset C juga agar loop bisa mulus ke posisi awal
+            run_time=0.2
+        )
+        
+        s.play(
+            Transform(prev_label_i, t_label_i),
+            Transform(prev_box_row_A, t_box_row_A),
+            Transform(prev_label_k1, t_label_k1),
+            Transform(prev_eq_1, t_eq_1),
+            
+            Transform(prev_label_k2, t_label_k2),
+            Transform(prev_box_col_B, t_box_col_B),
+            Transform(prev_label_j, t_label_j),
+            Transform(prev_eq_2, t_eq_2),
+            
+            Transform(prev_eq_3, t_eq_3),
+            Transform(prev_eq_4, t_eq_4),
+            
+            Transform(prev_label_i_C, t_label_i_C),
+            Transform(prev_box_row_C, t_box_row_C),
+            Transform(prev_label_j_C, t_label_j_C),
+            Transform(prev_box_col_C, t_box_col_C),
+            
+            run_time=rt_shift
+        )
+        
+        s.play(
+            elem_A.animate.set_color(BLUE_E),
+            elem_B.animate.set_color(BLUE_E),
+            elem_C.animate.set_color(BLUE_D),
+            Indicate(prev_eq_4, color=BLUE_D), 
+            run_time=0.4
+        )
+        s.wait(0.5)
+
+        prev_elem_A, prev_elem_B, prev_elem_C = elem_A, elem_B, elem_C
+    
+    s.wait(1)
+    s.next_slide()
+    
+    s.play(FadeOut(VGroup(
+        judul_bab, lbl_A, mat_A, otimes_target, lbl_B, mat_B, 
+        eq_target, lbl_C, mat_C, 
+        prev_label_i, prev_label_k1, prev_box_row_A,
+        prev_label_k2, prev_label_j, prev_box_col_B,
+        prev_eq_1, prev_eq_2, prev_eq_3, prev_eq_4,
+        prev_label_i_C, prev_label_j_C, prev_box_row_C, prev_box_col_C
+    ), shift=LEFT, run_time=1))
+    
 
 def S4_derangement(s):
     check_sym = "✓"
@@ -761,7 +967,7 @@ def S4_derangement(s):
     s.play(Write(final_lbl), Create(final_box), run_time=0.5)
     s.wait()
     s.next_slide()
-    s.play(FadeOut(VGroup(good_cards, final_lbl, final_box, title_d)), run_time=0.5)
+    s.play(FadeOut(VGroup(good_cards, final_lbl, final_box, title_d), shift=LEFT), run_time=0.5)
 
 def derangement(s):
     COL_TEXT = BLACK

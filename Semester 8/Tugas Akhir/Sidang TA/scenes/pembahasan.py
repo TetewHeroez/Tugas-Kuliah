@@ -4,258 +4,302 @@ from lib.slide_tracker import *
 
 
 def pembahasan(s):
-    kriteria_komutativitas(s)
+    # SifatPerkalian(s)
+    # next_slide_count(s)
+    InvariansiLatinSquare(s)
     next_slide_count(s)
-    algoritma_pencarian(s)
-    next_slide_count(s)
-    hasil_penerapan(s)
 
-
-def make_text_box(title, body, color, width=4.2, font_size=25):
-    title_tex = Tex(title, color=BLACK, font_size=30)
-    body_tex = Tex(
-        r"\parbox{" + str(width) + r"cm}{" + body + r"}",
-        color=BLACK,
-        font_size=font_size,
-    )
-    body_tex.next_to(title_tex, DOWN, buff=0.2)
-    frame = RoundedRectangle(
-        corner_radius=0.2,
-        width=max(title_tex.width, body_tex.width) + 0.6,
-        height=title_tex.height + body_tex.height + 0.8,
-        stroke_color=color,
-        fill_color=color,
-        fill_opacity=0.18,
-        stroke_width=2,
-    )
-    content = VGroup(title_tex, body_tex)
-    content.move_to(frame.get_center())
-    return VGroup(frame, content)
-
-
-def kriteria_komutativitas(s):
-    title = Title("Pembahasan", color=BLACK, font_size=48, include_underline=True)
-    title[-1].set_color(BLACK)
-
-    persamaan = MathTex(r"A \otimes B = B \otimes A", color=DARK_BROWN, font_size=42)
-    persamaan.next_to(title, DOWN, buff=0.5)
-
-    card_perlu = make_text_box(
-        r"\textbf{Syarat perlu}",
-        r"Jika $A$ dan $B$ komutatif, maka $\sigma_n^B \in C_{S_n}(\sigma_n^A)$.",
-        BLUE_E,
-    )
-    card_cukup = make_text_box(
-        r"\textbf{Syarat cukup}",
-        r"Komutativitas dijamin bila seluruh permutasi penyusun berada pada subgrup abelian yang sama.",
-        GREEN_E,
-    )
-    card_superlevel = make_text_box(
-        r"\textbf{Kriteria perlu-cukup}",
-        r"$\mathcal{U}_{\ge v}^{AB}=\mathcal{U}_{\ge v}^{BA}$ untuk setiap level $v=n+2,\ldots,2n$.",
-        ORANGE,
-    )
-    cards = VGroup(card_perlu, card_cukup, card_superlevel).arrange(RIGHT, buff=0.45)
-    cards.scale(0.9)
-    cards.next_to(persamaan, DOWN, buff=0.7)
-
-    arrows = VGroup()
-    for card in cards:
-        arrow = Arrow(
-            start=persamaan.get_bottom(),
-            end=card.get_top(),
-            buff=0.15,
-            stroke_width=2,
-            max_tip_length_to_length_ratio=0.18,
-            color=GRAY_B,
-        )
-        arrows.add(arrow)
-
-    summary = Tex(
-        r"\parbox{12cm}{Kriteria pada Bab 4 dipakai untuk menyaring kandidat $B$ sejak level tertinggi, lalu diverifikasi bertahap sampai membentuk \textit{Latin square} lengkap.}",
-        color=BLACK,
-        font_size=28,
-    ).to_edge(DOWN, buff=0.5)
-
-    s.play(Write(title), Write(persamaan), run_time=1)
-    for card, arrow in zip(cards, arrows):
-        s.play(GrowArrow(arrow), FadeIn(card, shift=UP * 0.2), run_time=0.8)
-    s.play(Write(summary), run_time=0.8)
+def InvariansiLatinSquare(s):
+    judul = Title("Invariansi Latin Square", color=BLACK, font_size=40, include_underline=True)
+    judul[-1].set_color(BLACK)
+    teorema_tex = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Misalkan $A\in L_S(n)$ dan misalkan $P_\sigma$, $P_\tau$ adalah matriks permutasi max-plus yang bersesuaian dengan permutasi $\sigma,\tau\in S_n$. Maka $P_\sigma\otimes A$, $A\otimes P_\tau$, dan $P_\sigma\otimes A\otimes P_\tau$ juga merupakan \textit{Latin square}.""", color=BLACK, font_size=30)
+    teorema_tex.next_to(judul, DOWN, buff=0.3)
+    s.play(Write(judul), Write(teorema_tex), run_time=1.5)
     s.wait(1)
     s.next_slide()
-    s.play(FadeOut(VGroup(title, persamaan, cards, arrows, summary), shift=LEFT), run_time=1)
+    teks_kiri = MathTex(r"\text{Perkalian Kiri: } P_\sigma \otimes A \implies \text{Permutasi Baris}", color=DARK_GRAY, font_size=32)
+    teks_kiri.next_to(teorema_tex, DOWN, buff=0.8)
+    mat_P = Matrix([
+        [r"\varepsilon", "0", r"\varepsilon"],
+        ["0", r"\varepsilon", r"\varepsilon"],
+        [r"\varepsilon", r"\varepsilon", "0"]
+    ], v_buff=0.8, h_buff=0.8).set_color(BLACK)
+    mat_P_label = MathTex("P_\sigma", color=BLACK).next_to(mat_P, DOWN, buff=0.3)
+    group_P = VGroup(mat_P, mat_P_label)
+    mat_A = Matrix([
+        ["1", "2", "3"],
+        ["2", "3", "1"],
+        ["3", "1", "2"]
+    ], v_buff=0.8, h_buff=0.8).set_color(BLACK)
+    mat_A_label = MathTex("A", color=BLACK).next_to(mat_A, DOWN, buff=0.3)
+    group_A = VGroup(mat_A, mat_A_label)
+    mat_Res1 = Matrix([
+        ["2", "3", "1"],
+        ["1", "2", "3"],
+        ["3", "1", "2"]
+    ], v_buff=0.8, h_buff=0.8).set_color(BLACK)
+    op_times1 = MathTex(r"\otimes", color=BLACK)
+    op_eq1 = MathTex("=", color=BLACK)
+    eq_kiri = VGroup(group_P, op_times1, group_A, op_eq1, mat_Res1).arrange(RIGHT, buff=0.5).next_to(teks_kiri, DOWN, buff=0.1).scale(0.7)
+    op_times1.shift(UP*0.25)
+    op_eq1.shift(UP*0.25)
+    mat_Res1.shift(UP*0.25)
 
+    s.play(Write(teks_kiri), Write(group_P), Write(op_times1), Write(group_A), Write(op_eq1), run_time=1.5)
+    s.wait()
+    s.next_slide()
+    rows_A = mat_A.get_rows()
+    rows_Res1 = mat_Res1.get_rows()
+    box_P_r1 = SurroundingRectangle(mat_P.get_rows()[0], color=ORANGE, buff=0.1)
+    box_P_0_1 = SurroundingRectangle(mat_P.get_entries()[1], color=RED_E, buff=0.05)
 
-def algoritma_pencarian(s):
-    title = Title("Algoritma Pencarian", color=BLACK, font_size=48, include_underline=True)
-    title[-1].set_color(BLACK)
+    row_copy_2 = rows_A[1].copy()
+    s.play(Create(box_P_r1), Create(box_P_0_1),row_copy_2.animate.set_color(RED_E), run_time=0.8)
+    s.play(Transform(row_copy_2, rows_Res1[0].copy().set_color(RED_E)), run_time=0.3)
+    box_P_r2 = SurroundingRectangle(mat_P.get_rows()[1], color=ORANGE, buff=0.1)
+    box_P_0_2 = SurroundingRectangle(mat_P.get_entries()[3], color=BLUE_E, buff=0.05)
 
-    def process_box(text, width=3.5, height=1.1, color=YELLOW_E):
-        box = RoundedRectangle(
-            corner_radius=0.15,
-            width=width,
-            height=height,
-            stroke_color=BLACK,
-            fill_color=color,
-            fill_opacity=0.8,
-        )
-        label = Text(text, color=BLACK, font_size=22, line_spacing=0.9).move_to(box)
-        return VGroup(box, label)
+    row_copy_1 = rows_A[0].copy()
+    s.play(
+        Transform(box_P_r1, box_P_r2),
+        Transform(box_P_0_1, box_P_0_2),
+        row_copy_1.animate.set_color(BLUE_E),
+        run_time=0.5
+    )
+    
+    s.play(Transform(row_copy_1, rows_Res1[1].copy().set_color(BLUE_E)), run_time=0.3)
+    box_P_r3 = SurroundingRectangle(mat_P.get_rows()[2], color=ORANGE, buff=0.1)
+    box_P_0_3 = SurroundingRectangle(mat_P.get_entries()[8], color=GREEN_E, buff=0.05)
 
-    input_box = process_box("Input Latin square A", width=3.8, color=BLUE_B)
-    dekomposisi = process_box("Dekomposisi\nA = sum i otimes P_sigma_i^A", width=3.8, height=1.25)
-    decision_shape = Square(side_length=1.8, color=BLACK, fill_color=GRAY_E, fill_opacity=1).rotate(PI / 4)
-    decision_text = Text("Permutasi\nA saling\nkomutatif?", color=BLACK, font_size=20, line_spacing=0.8)
-    decision = VGroup(decision_shape, decision_text)
-
-    alt_1 = process_box("Tahap alternatif:\nbentuk H_A", width=3.4, height=1.2, color=GREEN_B)
-    alt_2 = process_box("Susun ulang\nperm. penyusun A", width=3.4, height=1.2, color=GREEN_C)
-
-    gen_1 = process_box("Tahap umum:\npilih dari centralizer", width=3.6, height=1.2, color=ORANGE)
-    gen_2 = process_box("Isi B* lalu cek\nsuperlevel", width=3.6, height=1.2, color=ORANGE)
-
-    hasil = process_box("Kandidat B in P(A)", width=4.0, color=TEAL_B)
-
-    input_box.move_to(UP * 2.8)
-    dekomposisi.next_to(input_box, DOWN, buff=0.55)
-    decision.next_to(dekomposisi, DOWN, buff=0.6)
-    alt_1.move_to(LEFT * 3.2 + DOWN * 1.4)
-    alt_2.next_to(alt_1, DOWN, buff=0.45)
-    gen_1.move_to(RIGHT * 3.2 + DOWN * 1.4)
-    gen_2.next_to(gen_1, DOWN, buff=0.45)
-    hasil.move_to(DOWN * 3.45)
-
-    arrows = VGroup(
-        Arrow(input_box.get_bottom(), dekomposisi.get_top(), buff=0.1, color=BLACK),
-        Arrow(dekomposisi.get_bottom(), decision.get_top(), buff=0.1, color=BLACK),
-        Arrow(decision.get_bottom() + LEFT * 0.6, alt_1.get_top(), buff=0.1, color=BLACK),
-        Arrow(alt_1.get_bottom(), alt_2.get_top(), buff=0.1, color=BLACK),
-        Arrow(decision.get_bottom() + RIGHT * 0.6, gen_1.get_top(), buff=0.1, color=BLACK),
-        Arrow(gen_1.get_bottom(), gen_2.get_top(), buff=0.1, color=BLACK),
-        Arrow(alt_2.get_bottom(), hasil.get_top() + LEFT * 0.9, buff=0.1, color=BLACK),
-        Arrow(gen_2.get_bottom(), hasil.get_top() + RIGHT * 0.9, buff=0.1, color=BLACK),
+    row_copy_3 = rows_A[2].copy()
+    s.play(
+        Transform(box_P_r1, box_P_r3),
+        Transform(box_P_0_1, box_P_0_3),
+        row_copy_3.animate.set_color(GREEN_E),
+        run_time=0.5
     )
 
-    yes_label = Text("Ya", color=GREEN_E, font_size=22).next_to(arrows[2], LEFT, buff=0.1)
-    no_label = Text("Tidak", color=RED_E, font_size=22).next_to(arrows[4], RIGHT, buff=0.1)
-
-    note = Tex(
-        r"\parbox{12.5cm}{Tahap alternatif memanfaatkan subgrup abelian. Jika kondisi itu gagal, algoritma berpindah ke tahap umum melalui \emph{centralizer} simbol maksimum dan pemeriksaan himpunan superlevel secara menurun.}",
-        color=BLACK,
-        font_size=27,
-    ).to_edge(DOWN, buff=0.25)
-
-    s.play(Write(title), run_time=0.8)
-    s.play(FadeIn(input_box), GrowArrow(arrows[0]), FadeIn(dekomposisi), run_time=1)
-    s.play(GrowArrow(arrows[1]), FadeIn(decision), run_time=0.8)
+    s.play(Transform(row_copy_3, rows_Res1[2].copy().set_color(GREEN_E)), run_time=0.3)
+    s.wait(1)
     s.play(
-        GrowArrow(arrows[2]),
-        Write(yes_label),
-        FadeIn(alt_1, shift=LEFT * 0.2),
-        GrowArrow(arrows[3]),
-        FadeIn(alt_2, shift=LEFT * 0.2),
-        run_time=1,
+        FadeOut(box_P_r1), FadeOut(box_P_0_1),
+        row_copy_1.animate.set_color(BLACK),
+        row_copy_2.animate.set_color(BLACK),
+        row_copy_3.animate.set_color(BLACK),
+        run_time=0.5
     )
-    s.play(Circumscribe(VGroup(alt_1, alt_2), color=GREEN_E), run_time=0.8)
+    mat_Res1_final = mat_Res1.copy()
+    s.add(mat_Res1_final)
+    s.remove(row_copy_1, row_copy_2, row_copy_3)
+    box_LS1 = SurroundingRectangle(mat_Res1_final, color=PURPLE_E, buff=0.2)
+    teks_LS1 = MathTex(r"\in L_S(n)", color=PURPLE_E).next_to(box_LS1, DOWN)
+    s.play(Create(box_LS1), Write(teks_LS1))
+    s.wait(1.5)
+    s.next_slide()
+    teks_kanan = MathTex(r"\text{Perkalian Kanan: } A \otimes P_\tau \implies \text{Permutasi Kolom}", color=DARK_GRAY, font_size=32)
+    teks_kanan.next_to(teorema_tex, DOWN, buff=0.8)
+    mat_A2 = Matrix([
+        ["1", "2", "3"],
+        ["2", "3", "1"],
+        ["3", "1", "2"]
+    ], v_buff=0.8, h_buff=0.8).set_color(BLACK)
+    mat_A2_label = MathTex("A", color=BLACK).next_to(mat_A2, DOWN, buff=0.3)
+    group_A2 = VGroup(mat_A2, mat_A2_label)
+    mat_P2 = Matrix([
+        ["0", r"\varepsilon", r"\varepsilon"],
+        [r"\varepsilon", r"\varepsilon", "0"],
+        [r"\varepsilon", "0", r"\varepsilon"]
+    ], v_buff=0.8, h_buff=0.8).set_color(BLACK)
+    mat_P2_label = MathTex(r"P_\tau", color=BLACK).next_to(mat_P2, DOWN, buff=0.3)
+    group_P2 = VGroup(mat_P2, mat_P2_label)
+    mat_Res2 = Matrix([
+        ["1", "3", "2"],
+        ["2", "1", "3"],
+        ["3", "2", "1"]
+    ], v_buff=0.8, h_buff=0.8).set_color(BLACK)
+    op_times2 = MathTex(r"\otimes", color=BLACK)
+    op_eq2 = MathTex("=", color=BLACK)
+    eq_kanan = VGroup(group_A2, op_times2, group_P2, op_eq2, mat_Res2).arrange(RIGHT, buff=0.5).next_to(teks_kanan, DOWN, buff=0.1).scale(0.7)
+    op_times2.shift(UP*0.25)
+    op_eq2.shift(UP*0.25)
+    mat_Res2.shift(UP*0.25)
+
     s.play(
-        GrowArrow(arrows[4]),
-        Write(no_label),
-        FadeIn(gen_1, shift=RIGHT * 0.2),
-        GrowArrow(arrows[5]),
-        FadeIn(gen_2, shift=RIGHT * 0.2),
-        run_time=1,
+        Transform(teks_kiri, teks_kanan), 
+        Transform(group_P, group_A2),
+        Transform(op_times1, op_times2),
+        Transform(group_A, group_P2),
+        Transform(op_eq1, op_eq2),
+        FadeOut(box_LS1), FadeOut(teks_LS1), FadeOut(mat_Res1_final),
+        run_time=1
     )
-    s.play(Circumscribe(VGroup(gen_1, gen_2), color=ORANGE), run_time=0.8)
+    s.wait()
+    s.next_slide()
+    cols_A2 = mat_A2.get_columns()
+    cols_Res2 = mat_Res2.get_columns()
+    box_P2_c1 = SurroundingRectangle(mat_P2.get_columns()[0], color=ORANGE, buff=0.1)
+    box_P2_0_1 = SurroundingRectangle(mat_P2.get_entries()[0], color=GREEN_E, buff=0.05)
+
+    col_copy_1 = cols_A2[0].copy()
+    s.play(Create(box_P2_c1), Create(box_P2_0_1),col_copy_1.animate.set_color(GREEN_E), run_time=0.8)
+    
+    s.play(Transform(col_copy_1, cols_Res2[0].copy().set_color(GREEN_E)), run_time=0.3)
+    box_P2_c2 = SurroundingRectangle(mat_P2.get_columns()[1], color=ORANGE, buff=0.1)
+    box_P2_0_2 = SurroundingRectangle(mat_P2.get_entries()[7], color=RED_E, buff=0.05)
+
+    col_copy_3 = cols_A2[2].copy()
     s.play(
-        GrowArrow(arrows[6]),
-        GrowArrow(arrows[7]),
-        FadeIn(hasil, shift=UP * 0.2),
-        Write(note),
-        run_time=1,
+        Transform(box_P2_c1, box_P2_c2),
+        Transform(box_P2_0_1, box_P2_0_2),
+        col_copy_3.animate.set_color(RED_E),
+        run_time=0.3
+    )
+    
+    s.play(Transform(col_copy_3, cols_Res2[1].copy().set_color(RED_E)), run_time=0.3)
+    box_P2_c3 = SurroundingRectangle(mat_P2.get_columns()[2], color=ORANGE, buff=0.1)
+    box_P2_0_3 = SurroundingRectangle(mat_P2.get_entries()[5], color=BLUE_E, buff=0.05)
+
+    col_copy_2 = cols_A2[1].copy()
+    s.play(
+        Transform(box_P2_c1, box_P2_c3),
+        Transform(box_P2_0_1, box_P2_0_3),
+        col_copy_2.animate.set_color(BLUE_E),
+        run_time=0.5
+    )
+    
+    s.play(Transform(col_copy_2, cols_Res2[2].copy().set_color(BLUE_E)), run_time=0.3)
+    s.wait(1)
+    s.play(
+        FadeOut(box_P2_c1), FadeOut(box_P2_0_1),
+        col_copy_1.animate.set_color(BLACK),
+        col_copy_2.animate.set_color(BLACK),
+        col_copy_3.animate.set_color(BLACK),
+        run_time=0.5
+    )
+    mat_Res2_final = mat_Res2.copy()
+    s.add(mat_Res2_final)
+    s.remove(col_copy_1, col_copy_2, col_copy_3)
+    box_LS2 = SurroundingRectangle(mat_Res2_final, color=PURPLE_E, buff=0.2)
+    teks_LS2 = MathTex(r"\in L_S(n)", color=PURPLE_E).next_to(box_LS2, DOWN)
+    s.play(Create(box_LS2), Write(teks_LS2))
+    s.wait()
+    s.next_slide()
+    s.play(FadeOut(VGroup(teks_kiri, group_P, op_times1, group_A, op_eq1, box_LS2, teks_LS2, mat_Res2_final, judul, teorema_tex), shift=LEFT), run_time=1)
+
+def SifatPerkalian(s):
+    Mobject.set_default(color=BLACK)
+    judul = Title("Perkalian Matriks Latin Square", color=BLACK, font_size=48, include_underline=True)
+    judul[-1].set_color(BLACK)
+
+    deskripsi = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol""", r"""$\{a_1, a_2, \ldots, a_n\}$ dan $\{b_1, b_2, \ldots, b_n\}$ di dalam $\mathbb{R}_{\max}$""",r""". Hasil kali max-plus dari $A$ dan $B$ diberikan oleh}""", font_size=30, color=BLACK).next_to(judul, DOWN, buff=0.5)
+
+    eq1 = VGroup(
+        MathTex(r"A \otimes B =", font_size=32),
+        MathTex(r"\bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n}", font_size=32),
+        MathTex(r"(a_i \otimes b_j)", font_size=32),
+        MathTex(r"\otimes", font_size=32),
+        MathTex(r"P_{\sigma_j^B \circ \sigma_i^A}", font_size=32)
+    ).arrange(RIGHT, buff=0.15).next_to(deskripsi, DOWN, buff=0.5)
+    s.play(Write(eq1), Write(judul), Write(deskripsi))
+    s.wait(1)
+    s.next_slide()
+
+    deskripsi2 = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol """, r"""$\{1, 2, \ldots, n\}$""",r""". Hasil kali max-plus dari $A$ dan $B$ diberikan oleh}""", font_size=30, color=BLACK).next_to(judul, DOWN, buff=0.5)
+
+    eq1_new_part2 = MathTex(r"(i \otimes j)", font_size=32, color=PURE_BLUE).move_to(eq1[2])
+
+    deskripsi2[1].set_color(PURE_BLUE)
+    s.play(
+        Transform(deskripsi[0], deskripsi2[0]),
+        Transform(deskripsi[1], deskripsi2[1]),
+        Transform(deskripsi[2], deskripsi2[2]),
+        Transform(eq1[2], eq1_new_part2)
     )
     s.wait(1)
     s.next_slide()
-    s.play(
-        FadeOut(
-            VGroup(
-                title,
-                input_box,
-                dekomposisi,
-                decision,
-                alt_1,
-                alt_2,
-                gen_1,
-                gen_2,
-                hasil,
-                arrows,
-                yes_label,
-                no_label,
-                note,
-            ),
-            shift=LEFT,
-        ),
-        run_time=1,
-    )
-
-
-def hasil_penerapan(s):
-    title = Title("Penerapan Pada Ordo 3, 4, dan 5", color=BLACK, font_size=44, include_underline=True)
-    title[-1].set_color(BLACK)
-
-    card_3 = make_text_box(
-        r"\textbf{Ordo 3}",
-        r"$C_{S_3}((1\;3))=\{(1),(1\;3)\}$ sehingga kandidat awal untuk simbol maksimum langsung menyempit.",
-        BLUE_D,
-        width=3.7,
-        font_size=23,
-    )
-    card_4 = make_text_box(
-        r"\textbf{Ordo 4}",
-        r"Muncul dua pola: tahap alternatif saat permutasi membentuk grup Klein, dan tahap umum saat perlu \emph{centralizer} serta superlevel.",
-        GREEN_D,
-        width=3.9,
-        font_size=23,
-    )
-    card_5 = make_text_box(
-        r"\textbf{Ordo 5}",
-        r"Kasus siklik memakai tahap alternatif, sedangkan contoh non-abelian tetap dapat ditangani lewat penyaringan bertahap.",
-        ORANGE,
-        width=3.8,
-        font_size=23,
-    )
-    cards = VGroup(card_3, card_4, card_5).arrange(RIGHT, buff=0.4)
-    cards.scale(0.92)
-    cards.next_to(title, DOWN, buff=0.7)
-
-    badges = VGroup(
-        Text("Tahap umum", color=WHITE, font_size=20, weight=BOLD),
-        Text("Alternatif + umum", color=WHITE, font_size=20, weight=BOLD),
-        Text("Alternatif + umum", color=WHITE, font_size=20, weight=BOLD),
-    )
-    badge_boxes = VGroup()
-    for badge, card, color in zip(badges, cards, [BLUE_E, GREEN_E, ORANGE]):
-        pill = RoundedRectangle(
-            corner_radius=0.2,
-            width=badge.width + 0.45,
-            height=0.5,
-            stroke_width=0,
-            fill_color=color,
-            fill_opacity=1,
-        )
-        badge.move_to(pill)
-        badge_group = VGroup(pill, badge).next_to(card, UP, buff=0.18)
-        badge_boxes.add(badge_group)
-
-    takeaway = Tex(
-        r"\parbox{11.5cm}{Dari seluruh contoh pada Bab 4, pola yang konsisten adalah: \emph{centralizer} memberi penyaringan awal untuk simbol maksimum, sedangkan himpunan superlevel memastikan kandidat yang tersisa benar-benar komutatif.}",
-        color=BLACK,
-        font_size=28,
-    ).to_edge(DOWN, buff=0.45)
-
-    s.play(Write(title), run_time=0.8)
-    for badge, card in zip(badge_boxes, cards):
-        s.play(FadeIn(badge, shift=UP * 0.1), FadeIn(card, shift=UP * 0.2), run_time=0.8)
-    s.play(Write(takeaway), run_time=0.8)
+    eq1_new_part2_plus = MathTex(r"(i + j)", font_size=32, color=PURE_BLUE).move_to(eq1[2])
+    s.play(Transform(eq1[2], eq1_new_part2_plus))
     s.wait(1)
-    s.next_slide(auto_next=True)
-    s.play(FadeOut(VGroup(title, cards, badge_boxes, takeaway), scale=0.5), run_time=1)
+    s.next_slide()
+
+    eq2 = VGroup(
+        MathTex(r"A \otimes B =", font_size=32),
+        MathTex(r"\bigoplus_{k=2}^{2n}", font_size=32),
+        MathTex(r"\Bigg(", font_size=32),
+        MathTex(r"\bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}}", font_size=32, color=PURE_BLUE),
+        MathTex(r"k", font_size=32, color=PURE_BLUE),
+        MathTex(r"\otimes", font_size=32),
+        MathTex(r"P_{\sigma_j^B \circ \sigma_i^A}", font_size=32),
+        MathTex(r"\Bigg)", font_size=32)
+    ).arrange(RIGHT, buff=0.15).move_to(eq1)
+    s.play(
+        ReplacementTransform(eq1[0], eq2[0]),
+        ReplacementTransform(eq1[1], VGroup(eq2[1], eq2[2], eq2[3])),
+        ReplacementTransform(eq1[2], eq2[4]),                         
+        ReplacementTransform(eq1[3], eq2[5]),                         
+        ReplacementTransform(eq1[4], VGroup(eq2[6], eq2[7]))         
+    )
+    s.wait(1)
+    s.next_slide()
+
+    eq3 = VGroup(
+        MathTex(r"A \otimes B =", font_size=32),
+        MathTex(r"\bigoplus_{k=2}^{2n}", font_size=32),
+        MathTex(r"k", font_size=32, color=PURE_BLUE),
+        MathTex(r"\otimes", font_size=32),
+        MathTex(r"\Bigg(", font_size=32),
+        MathTex(r"\bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}}", font_size=32, color=PURE_BLUE),
+        MathTex(r"P_{\sigma_j^B \circ \sigma_i^A}", font_size=32),
+        MathTex(r"\Bigg)", font_size=32)
+    ).arrange(RIGHT, buff=0.15).move_to(eq2)
+    s.play(
+        ReplacementTransform(eq2[0], eq3[0]),
+        ReplacementTransform(eq2[1], eq3[1]),
+        ReplacementTransform(eq2[2], eq3[4]), 
+        ReplacementTransform(eq2[3], eq3[5]), 
+        ReplacementTransform(eq2[4], eq3[2]), 
+        ReplacementTransform(eq2[5], eq3[3]),
+        ReplacementTransform(eq2[6], eq3[6]),
+        ReplacementTransform(eq2[7], eq3[7])
+    )
+    s.wait(1)
+    s.next_slide()
+
+    catatan = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Namun setelah dianalisa lebih lanjut, hasil perkalian max-plus dari $A$ dan $B$ memiliki entri terkecil yang mungkin (minimum) sebesar $n+1$ }""", font_size=30, color=PURE_RED).next_to(eq3, DOWN, buff=0.5)
+
+    deskripsi3 = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol """, 
+        r"""$\{1, 2, \ldots, n\}$""",
+        r""". Hasil kali max-plus dari $A$ dan $B$ """,
+        r"""setelah direduksi""",
+        r""" diberikan oleh}""", 
+        font_size=30, color=BLACK).next_to(judul, DOWN, buff=0.5)
+
+    deskripsi3[1].set_color(PURE_BLUE)
+    deskripsi3[3].set_color(PURE_RED)
+
+    eq_reduction = VGroup(
+        MathTex(r"A \otimes B =", font_size=32),
+        MathTex(r"\bigoplus_{k=n+1}^{2n}", font_size=32, color=PURE_RED),
+        MathTex(r"k", font_size=32, color=PURE_BLUE),
+        MathTex(r"\otimes", font_size=32),
+        MathTex(r"\Bigg(", font_size=32),
+        MathTex(r"\bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}}", font_size=32, color=PURE_BLUE),
+        MathTex(r"P_{\sigma_j^B \circ \sigma_i^A}", font_size=32),
+        MathTex(r"\Bigg)", font_size=32)
+    ).arrange(RIGHT, buff=0.15).move_to(eq3)
+
+    s.play(Write(catatan))
+    s.play(Transform(deskripsi[0], deskripsi3[0]),
+           Transform(deskripsi[1], deskripsi3[1]),
+           Transform(deskripsi[2], VGroup(deskripsi3[2], deskripsi3[3], deskripsi3[4])),
+           Transform(eq3[1], eq_reduction[1]))
+    s.wait(1)
+    s.next_slide()
+    
+    box = SurroundingRectangle(eq3, color=BLACK, buff=0.25)
+    s.play(Create(box))
+    s.wait(1)
+    s.next_slide()
+    s.play(FadeOut(VGroup(judul, box, catatan, deskripsi, eq3),shift=LEFT))
+    
