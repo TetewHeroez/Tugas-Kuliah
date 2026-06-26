@@ -394,6 +394,53 @@ Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif t
   \]
   Dengan demikian, syarat perlu pada elemen maksimum terpenuhi.
 \end{contoh}
+
+Walaupun \autoref{thm:komutatif_elemen_maksimum} memberikan syarat perlu untuk komutativitas dua buah matriks \emph{Latin Square} terhadap perkalian max-plus, konvers dari teorema tersebut tidak berlaku. Artinya, jika dua matriks \emph{Latin Square} memiliki permutasi simbol maksimum yang saling komutatif, kedua matriks tersebut belum tentu komutatif terhadap perkalian max-plus. Berikut adalah contoh penyangkal (\emph{counterexample}) untuk menunjukkan hal tersebut.
+
+\begin{contoh}\label{contoh:konvers_elemen_maksimum_tidak_berlaku}
+  Misalkan diberikan matriks $A, B \in L_S(3)$ sebagai berikut:
+  \[
+    A=
+    \begin{pmatrix}
+      1 & 2 & 3 \\
+      2 & 3 & 1 \\
+      3 & 1 & 2
+    \end{pmatrix}
+    \quad \text{dan} \quad
+    B=
+    \begin{pmatrix}
+      2 & 1 & 3 \\
+      1 & 3 & 2 \\
+      3 & 2 & 1
+    \end{pmatrix}.
+  \]
+  Dekomposisi permutasi dari simbol maksimum $3$ untuk kedua matriks tersebut adalah sama, yaitu
+  \[
+    \sigma_3^A = \sigma_3^B = (1\;3).
+  \]
+  Karena permutasi yang bersesuaian sama, jelas bahwa keduanya saling komutatif, yaitu
+  \[
+    \sigma_3^A \circ \sigma_3^B = \sigma_3^B \circ \sigma_3^A = (1).
+  \]
+  Namun, jika kita hitung hasil perkalian max-plus dari $A$ dan $B$, kita peroleh:
+  \[
+    A \otimes B =
+    \begin{pmatrix}
+      6 & 5 & 4 \\
+      4 & 6 & 5 \\
+      5 & 4 & 6
+    \end{pmatrix}
+    \quad \text{dan} \quad
+    B \otimes A =
+    \begin{pmatrix}
+      6 & 4 & 5 \\
+      5 & 6 & 4 \\
+      4 & 5 & 6
+    \end{pmatrix}.
+  \]
+  Terlihat bahwa $A \otimes B \neq B \otimes A$. Dengan demikian, konvers dari \autoref{thm:komutatif_elemen_maksimum} tidak berlaku.
+\end{contoh}
+
 Setelah diperoleh syarat perlu pada nilai maksimum $2n$, muncul pertanyaan
 apakah pola yang sama dapat diterapkan pada nilai maksimum kedua, yaitu
 $2n-1$. Pada nilai maksimum $2n$, hanya terdapat satu pasangan indeks yang
