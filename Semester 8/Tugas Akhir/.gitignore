@@ -82,7 +82,8 @@ media/
 slides/
 *.mp4
 *.svg
-!assets/*.svg
+!Sidang TA/assets/*.svg
+!Seminar Proposal/assets/*.svg
 
 # Manim caches
 partial_movie_files/
