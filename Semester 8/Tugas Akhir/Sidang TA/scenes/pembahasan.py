@@ -4,20 +4,368 @@ from lib.slide_tracker import *
 
 
 def pembahasan(s):
-    # SifatPerkalian(s)
-    # next_slide_count(s)
-    # InvariansiLatinSquare(s)
-    # next_slide_count(s)
-    # SyaratPerlu(s)
-    # next_slide_count(s)
-    # SyaratCukup(s)
-    # next_slide_count(s)
-    # RepresentasiKoordinat(s)
-    # next_slide_count(s)
-    # HimpunanSuperlevel(s)
-    # next_slide_count(s)
+    SifatPerkalian(s)
+    next_slide_count(s)
+    InvariansiLatinSquare(s)
+    next_slide_count(s)
+    SyaratPerlu(s)
+    next_slide_count(s)
+    SyaratCukup(s)
+    next_slide_count(s)
+    RepresentasiKoordinat(s)
+    next_slide_count(s)
+    HimpunanSuperlevel(s)
+    next_slide_count(s)
     TeoremaSuperlevel(s)
     next_slide_count(s)
+    AlgoritmaKomutatif(s)
+    next_slide_count(s)
+
+def AlgoritmaKomutatif(s):
+    Mobject.set_default(color=BLACK)
+
+    judul_algo = Title("Algoritma Pencarian Pasangan Komutatif", color=BLACK, font_size=48, include_underline=True)
+    judul_algo[-1].set_color(BLACK)
+    s.play(Write(judul_algo))
+    
+    tex_alt = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Tahap 1: Pencarian Alternatif (Subgrup Abelian)}\\[0.3cm]"
+        r"1. Dekomposisikan matriks $A$ menjadi himpunan permutasi penyusun $\Sigma_A = \{\sigma_1^A, \dots, \sigma_n^A\}$.\\[0.1cm]"
+        r"2. Periksa apakah seluruh elemen $\Sigma_A$ saling komutatif. Jika saling komutatif, maka $\Sigma_A$ membangkitkan subgrup Abelian $H_A$.\\[0.1cm]"
+        r"3. Untuk setiap permutasi pengacakan indeks $\pi \in S_n$, bentuk permutasi baru $\sigma_i^B = \sigma_{\pi(i)}^A$ untuk setiap $i \in \underline{n}$.\\[0.1cm]"
+        r"4. Bentuk kandidat matriks $B$ dari kumpulan permutasi $\sigma_i^B$ tersebut.\\[0.1cm]"
+        r"5. Simpan $B$ ke dalam himpunan solusi. Berdasarkan Teorema Subgrup Abelian, kandidat $B$ ini dijamin saling komutatif dengan $A$."
+        r"}",
+        color=BLACK, font_size=30
+    ).next_to(judul_algo, DOWN, buff=0.5)
+    
+    s.play(Write(tex_alt), run_time=2.5)
+    s.wait(1)
+    s.next_slide()
+    
+    # SLIDE 2: TAHAP UMUM
+    tex_umum = Tex(
+        r"\parbox{" + str(config.frame_width) + r"cm}{"
+        r"\textbf{Tahap 2: Pencarian Umum (Metode Backtrack)}\\[0.3cm]"
+        r"1. Tentukan himpunan \textit{centralizer} $C_{S_n}(\sigma_n^A)$.\\[0.1cm]"
+        r"2. Untuk setiap $\tau \in C_{S_n}(\sigma_n^A)$, tetapkan kandidat permutasi maksimum $\sigma_n^B = \tau$.\\[0.1cm]"
+        r"3. Inisialisasi matriks parsial $B^*$ dengan menempatkan simbol $n$ sesuai permutasi $\sigma_n^B$.\\[0.1cm]"
+        r"4. Lakukan penelusuran menurun secara \textit{backtrack} untuk $m = n-1, \dots, 2$:\\[0.1cm]"
+        r"\hspace*{0.5cm}a. Uji setiap kandidat $\sigma_m^B \in S_n$ pada entri yang masih kosong di $B^*$.\\[0.1cm]"
+        r"\hspace*{0.5cm}b. Jika syarat superlevel $\mathcal{U}_{\ge n+m}^{AB} = \mathcal{U}_{\ge n+m}^{BA}$ terpenuhi, simpan simbol $m$ dan lanjutkan ke langkah $m-1$.\\[0.1cm]"
+        r"\hspace*{0.5cm}c. Jika ditolak, hapus kembali simbol $m$ dari $B^*$ dan uji $\sigma_m^B$ selanjutnya.\\[0.1cm]"
+        r"5. Untuk tahap $m=1$, isi entri yang tersisa pada $B^*$ dengan simbol $1$ dan simpan ke himpunan solusi apabila matriks tersebut valid."
+        r"}",
+        color=BLACK, font_size=30
+    ).next_to(judul_algo, DOWN, buff=0.5)
+    
+    s.play(FadeOut(tex_alt, shift=LEFT))
+    s.play(FadeIn(tex_umum, shift=RIGHT))
+    s.wait(1)
+    s.next_slide()
+    
+    s.play(FadeOut(tex_umum, shift=LEFT))
+    
+    def get_max_plus_product(mat1, mat2):
+        res = [[None]*5 for _ in range(5)]
+        for i in range(5):
+            for j in range(5):
+                m_val = None
+                for k in range(5):
+                    if mat1[i][k] is not None and mat2[k][j] is not None:
+                        val = mat1[i][k] + mat2[k][j]
+                        if m_val is None or val > m_val:
+                            m_val = val
+                res[i][j] = m_val
+        return res
+
+    A_vals = [
+        [1, 2, 3, 4, 5],
+        [2, 3, 4, 5, 1],
+        [3, 4, 5, 1, 2],
+        [4, 5, 1, 2, 3],
+        [5, 1, 2, 3, 4]
+    ]
+    B_vals = [[None]*5 for _ in range(5)]
+    
+    mat_A = Matrix([
+        [str(x) for x in row] for row in A_vals
+    ], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(0.5).set_color(BLACK)
+    for ent in mat_A.get_entries(): ent.set_color(BLACK)
+    lbl_A = MathTex("A =").scale(0.6)
+    grp_A = VGroup(lbl_A, mat_A).arrange(RIGHT, buff=0.1)
+    
+    b_star_mat = Matrix([
+        [r"\varepsilon"]*5 for _ in range(5)
+    ], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(0.5).set_color(BLACK)
+    for ent in b_star_mat.get_entries(): ent.set_color(GRAY)
+    lbl_B = MathTex("B^* =").scale(0.6)
+    grp_B = VGroup(lbl_B, b_star_mat).arrange(RIGHT, buff=0.1)
+    
+    grp_left = VGroup(grp_A, grp_B).arrange(DOWN, buff=0.4, aligned_edge=RIGHT)
+    
+    mat_AB = Matrix([
+        [r"\varepsilon"]*5 for _ in range(5)
+    ], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK)
+    for ent in mat_AB.get_entries(): ent.set_color(GRAY)
+    lbl_AB = MathTex("AB^*").scale(0.7)
+    grp_AB = VGroup(lbl_AB, mat_AB).arrange(DOWN, buff=0.2)
+    
+    mat_BA = Matrix([
+        [r"\varepsilon"]*5 for _ in range(5)
+    ], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK)
+    for ent in mat_BA.get_entries(): ent.set_color(GRAY)
+    lbl_BA = MathTex("B^*A").scale(0.7)
+    grp_BA = VGroup(lbl_BA, mat_BA).arrange(DOWN, buff=0.2)
+    
+    grp_right = VGroup(grp_AB, grp_BA).arrange(RIGHT, buff=0.6)
+    
+    grp_all = VGroup(grp_left, grp_right).arrange(RIGHT, buff=1.2, aligned_edge=UP).next_to(judul_algo, DOWN, buff=1)
+    
+    s.play(Write(grp_all), run_time=0.5)
+    
+    tahapan = [
+        {
+            "m": 5,
+            "teks": r"Kandidat $m=5$: Misal $\sigma_5^B = (1\ 5)(2\ 4) \in C_{S_5}(\sigma_5^A)$",
+            "pos": [(0, 4), (1, 3), (2, 2), (3, 1), (4, 0)],
+            "col": PURE_RED
+        },
+        {
+            "m": 4,
+            "teks": r"Evaluasi $m=4$: Lolos superlevel untuk $\sigma_4^B = (1\ 4)(2\ 3) \in S_5$",
+            "pos": [(0, 3), (1, 2), (2, 1), (3, 0), (4, 4)],
+            "col": ORANGE
+        },
+        {
+            "m": 3,
+            "teks": r"Evaluasi $m=3$: Lolos syarat superlevel untuk $\sigma_3^B = (1\ 3)(4\ 5) \in S_5$",
+            "pos": [(0, 2), (1, 1), (2, 0), (3, 4), (4, 3)],
+            "col": TEAL
+        },
+        {
+            "m": 2,
+            "teks": r"Evaluasi $m=2$: Lolos syarat superlevel untuk $\sigma_2^B = (1\ 2)(3\ 5) \in S_5$",
+            "pos": [(0, 1), (1, 0), (2, 4), (3, 3), (4, 2)],
+            "col": PURE_BLUE
+        },
+        {
+            "m": 1,
+            "teks": r"Evaluasi $m=1$: Sisa entri otomatis membentuk permutasi $\sigma_1^B$.",
+            "pos": [(0, 0), (1, 4), (2, 3), (3, 2), (4, 1)],
+            "col": PURE_GREEN
+        }
+    ]
+    
+    prev_teks = None
+    for step in tahapan:
+        m = step["m"]
+        v = 5 + m
+        teks_mob = Tex(step["teks"], font_size=28, color=DARK_GRAY).next_to(judul_algo, DOWN, buff=0.2)
+        
+        if prev_teks:
+            s.play(Transform(prev_teks, teks_mob))
+        else:
+            s.play(Write(teks_mob))
+            prev_teks = teks_mob
+            
+        posisi = step["pos"]
+        updates = []
+        for r, c in posisi:
+            B_vals[r][c] = m
+            idx = r * 5 + c
+            target_entry = b_star_mat.get_entries()[idx]
+            new_entry = MathTex(str(m), font_size=28).set_color(step["col"]).move_to(target_entry)
+            updates.append(Transform(target_entry, new_entry))
+            
+        boxes = VGroup(*[SurroundingRectangle(b_star_mat.get_entries()[r*5+c], color=step["col"], buff=0.05, stroke_opacity=0.5) for r,c in posisi])
+        
+        s.play(LaggedStart(*[Create(b) for b in boxes], lag_ratio=0.1), LaggedStart(*updates, lag_ratio=0.2), run_time=1)
+        
+        AB_res = get_max_plus_product(A_vals, B_vals)
+        BA_res = get_max_plus_product(B_vals, A_vals)
+        
+        new_mat_AB = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in AB_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_AB)
+        for i, ent in enumerate(new_mat_AB.get_entries()):
+            r, c = divmod(i, 5)
+            ent.set_color(GRAY if AB_res[r][c] is None else BLACK)
+                
+        new_mat_BA = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in BA_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_BA)
+        for i, ent in enumerate(new_mat_BA.get_entries()):
+            r, c = divmod(i, 5)
+            ent.set_color(GRAY if BA_res[r][c] is None else BLACK)
+                
+        s.play(
+            Transform(mat_AB, new_mat_AB),
+            Transform(mat_BA, new_mat_BA),
+            run_time=1
+        )
+        
+        boxes_AB = VGroup()
+        boxes_BA = VGroup()
+        for i in range(5):
+            for j in range(5):
+                if AB_res[i][j] is not None and AB_res[i][j] >= v:
+                    boxes_AB.add(SurroundingRectangle(new_mat_AB.get_entries()[i*5+j], color=step["col"], buff=0.05, stroke_opacity=0.5))
+                if BA_res[i][j] is not None and BA_res[i][j] >= v:
+                    boxes_BA.add(SurroundingRectangle(new_mat_BA.get_entries()[i*5+j], color=step["col"], buff=0.05, stroke_opacity=0.5))
+                    
+        s.play(Create(boxes_AB), Create(boxes_BA), run_time=0.8)
+        s.wait(0.5)
+        s.next_slide()
+        s.play(FadeOut(boxes), FadeOut(boxes_AB), FadeOut(boxes_BA), run_time=0.2)
+        
+    teks_final = Tex(r"Seluruh entri matriks telah terisi valid, kandidat $B^*$ disimpan ke $\mathcal{P}(A)$.", font_size=32, color=PURPLE_E).to_edge(DOWN, buff=1.5)
+    s.play(Write(teks_final))
+    s.wait()
+    s.next_slide()
+    
+    # BACKTRACKING DEMO
+    teks_bt1 = Tex(r"Algoritma kemudian menelusuri mundur (\textit{backtrack}) untuk mencari solusi lain.", font_size=32, color=BLUE_E).to_edge(DOWN, buff=1.5)
+    s.play(Transform(teks_final, teks_bt1))
+    
+    undo_anims = []
+    for step_idx in [4, 3, 2, 1]:
+        for r, c in tahapan[step_idx]["pos"]:
+            B_vals[r][c] = None
+            idx = r * 5 + c
+            target_entry = b_star_mat.get_entries()[idx]
+            new_entry = MathTex(r"\varepsilon", font_size=28).set_color(GRAY).move_to(target_entry)
+            undo_anims.append(Transform(target_entry, new_entry))
+        
+    teks_bt2 = Tex(r"Mundur hingga ke $m=4$, lalu uji kandidat $\sigma_4^B$ yang lain.", font_size=30, color=BLACK).next_to(judul_algo, DOWN, buff=0.2)
+    
+    AB_res = get_max_plus_product(A_vals, B_vals)
+    BA_res = get_max_plus_product(B_vals, A_vals)
+    
+    new_mat_AB = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in AB_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_AB)
+    for i, ent in enumerate(new_mat_AB.get_entries()):
+        r, c = divmod(i, 5)
+        ent.set_color(GRAY if AB_res[r][c] is None else BLACK)
+        
+    new_mat_BA = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in BA_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_BA)
+    for i, ent in enumerate(new_mat_BA.get_entries()):
+        r, c = divmod(i, 5)
+        ent.set_color(GRAY if BA_res[r][c] is None else BLACK)
+        
+    s.play(
+        Transform(prev_teks, teks_bt2),
+        LaggedStart(*undo_anims, lag_ratio=0.1),
+        Transform(mat_AB, new_mat_AB),
+        Transform(mat_BA, new_mat_BA),
+        run_time=1.5
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    invalid_pos = [(0, 0), (1, 1), (2, 3), (3, 4), (4, 2)]
+    teks_bt3 = Tex(r"Evaluasi $m=4$: Misal uji $\sigma_4^B = (3\ 4\ 5) \in S_5$", font_size=28, color=BLACK).next_to(judul_algo, DOWN, buff=0.2)
+    s.play(Transform(prev_teks, teks_bt3))
+    
+    updates_inv = []
+    for r, c in invalid_pos:
+        B_vals[r][c] = 4
+        idx = r * 5 + c
+        target_entry = b_star_mat.get_entries()[idx]
+        new_entry = MathTex("4", font_size=28).set_color(ORANGE).move_to(target_entry)
+        updates_inv.append(Transform(target_entry, new_entry))
+        
+    boxes_inv = VGroup(*[SurroundingRectangle(b_star_mat.get_entries()[r*5+c], color=ORANGE, buff=0.05, stroke_opacity=0.5) for r,c in invalid_pos])
+    s.play(LaggedStart(*[Create(b) for b in boxes_inv], lag_ratio=0.1), run_time=0.6)
+    s.play(LaggedStart(*updates_inv, lag_ratio=0.2), run_time=1)
+    
+    AB_res = get_max_plus_product(A_vals, B_vals)
+    BA_res = get_max_plus_product(B_vals, A_vals)
+    
+    new_mat_AB_inv = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in AB_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_AB)
+    for i, ent in enumerate(new_mat_AB_inv.get_entries()):
+        r, c = divmod(i, 5)
+        ent.set_color(GRAY if AB_res[r][c] is None else BLACK)
+        
+    new_mat_BA_inv = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in BA_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_BA)
+    for i, ent in enumerate(new_mat_BA_inv.get_entries()):
+        r, c = divmod(i, 5)
+        ent.set_color(GRAY if BA_res[r][c] is None else BLACK)
+        
+    s.play(
+        Transform(mat_AB, new_mat_AB_inv),
+        Transform(mat_BA, new_mat_BA_inv),
+        run_time=1.2
+    )
+    
+    boxes_AB_inv = VGroup()
+    boxes_BA_inv = VGroup()
+    v = 9
+    for i in range(5):
+        for j in range(5):
+            if AB_res[i][j] is not None and AB_res[i][j] >= v:
+                boxes_AB_inv.add(SurroundingRectangle(new_mat_AB_inv.get_entries()[i*5+j], color=ORANGE, buff=0.05, stroke_opacity=0.5))
+            if BA_res[i][j] is not None and BA_res[i][j] >= v:
+                boxes_BA_inv.add(SurroundingRectangle(new_mat_BA_inv.get_entries()[i*5+j], color=ORANGE, buff=0.05, stroke_opacity=0.5))
+                
+    s.play(Create(boxes_AB_inv), Create(boxes_BA_inv), run_time=0.8)
+    s.wait(1)
+    s.next_slide()
+    
+    diff_bg_AB = VGroup()
+    diff_bg_BA = VGroup()
+    for i in range(5):
+        for j in range(5):
+            cond_AB = (AB_res[i][j] is not None and AB_res[i][j] >= v)
+            cond_BA = (BA_res[i][j] is not None and BA_res[i][j] >= v)
+            if cond_AB and not cond_BA:
+                bg_ab = SurroundingRectangle(new_mat_AB_inv.get_entries()[i*5+j], color=PURE_RED, fill_opacity=0.4, stroke_width=0, buff=0.12).set_z_index(-1)
+                diff_bg_AB.add(bg_ab)
+            elif cond_BA and not cond_AB:
+                bg_ba = SurroundingRectangle(new_mat_BA_inv.get_entries()[i*5+j], color=PURE_RED, fill_opacity=0.4, stroke_width=0, buff=0.12).set_z_index(-1)
+                diff_bg_BA.add(bg_ba)
+                
+    teks_bt4 = Tex(r"\mbox{Terlihat letak sel bernilai $\ge 9$ pada $AB^*$ berbeda dengan $B^*A$. Kandidat ditolak!}", font_size=28, color=PURE_RED).to_edge(DOWN, buff=1.5)
+    s.play(
+        Transform(teks_final, teks_bt4),
+        FadeIn(diff_bg_AB), FadeIn(diff_bg_BA),
+        run_time=1.5
+    )
+    s.wait(1)
+    s.next_slide()
+    
+    teks_bt5 = Tex(r"Algoritma membatalkan penempatan dan lanjut menguji kandidat berikutnya.", font_size=30, color=BLACK).next_to(judul_algo, DOWN, buff=0.2)
+    
+    undo_inv_anims = []
+    for r, c in invalid_pos:
+        B_vals[r][c] = None
+        idx = r * 5 + c
+        target_entry = b_star_mat.get_entries()[idx]
+        new_entry = MathTex(r"\varepsilon", font_size=28).set_color(GRAY).move_to(target_entry)
+        undo_inv_anims.append(Transform(target_entry, new_entry))
+        
+    AB_res = get_max_plus_product(A_vals, B_vals)
+    BA_res = get_max_plus_product(B_vals, A_vals)
+    
+    new_mat_AB_rest = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in AB_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_AB)
+    for i, ent in enumerate(new_mat_AB_rest.get_entries()):
+        r, c = divmod(i, 5)
+        ent.set_color(GRAY if AB_res[r][c] is None else BLACK)
+        
+    new_mat_BA_rest = Matrix([[str(x) if x is not None else r"\varepsilon" for x in row] for row in BA_res], v_buff=0.6, h_buff=0.6, element_alignment_corner=ORIGIN).scale(1).set_color(BLACK).move_to(mat_BA)
+    for i, ent in enumerate(new_mat_BA_rest.get_entries()):
+        r, c = divmod(i, 5)
+        ent.set_color(GRAY if BA_res[r][c] is None else BLACK)
+    
+    s.play(
+        Transform(prev_teks, teks_bt5),
+        LaggedStart(*undo_inv_anims, lag_ratio=0.1),
+        FadeOut(teks_final),
+        Transform(mat_AB, new_mat_AB_rest),
+        Transform(mat_BA, new_mat_BA_rest),
+        FadeOut(boxes_inv), FadeOut(boxes_AB_inv), FadeOut(boxes_BA_inv),
+        FadeOut(diff_bg_AB), FadeOut(diff_bg_BA),
+        run_time=1
+    )
+    s.wait(1)
+    s.next_slide()
+    s.play(FadeOut(VGroup(grp_all, prev_teks, judul_algo), scale=0.5))
 
 def TeoremaSuperlevel(s):
     Mobject.set_default(color=BLACK)
@@ -131,7 +479,6 @@ def TeoremaSuperlevel(s):
     s.next_slide()
     
     s.play(FadeOut(VGroup(judul, teorema, grp_CD, grid_AB, grid_BA, lbl_gAB, lbl_gBA, prev_hi_C, prev_hi_D, concl_text), shift=LEFT))
-
 
 def HimpunanSuperlevel(s):
     Mobject.set_default(color=BLACK)

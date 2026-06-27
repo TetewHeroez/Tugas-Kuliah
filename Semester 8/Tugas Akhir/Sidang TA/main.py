@@ -16,7 +16,7 @@ config.background_color = "#EAEAEA"
 
 class MainPresentation(MovingCameraScene, Slide):
     def construct(self):
-        self.total_slides = 15
+        self.total_slides = 30
 
         self.num = Integer(1, color=GRAY, font_size=24)
         self.text_total = Text(f"/{self.total_slides}", color=GRAY, font_size=24)
@@ -42,25 +42,25 @@ class MainPresentation(MovingCameraScene, Slide):
         self.ind.add_updater(update_posisi_angka)
 
         urutan = [
-            # content,
-            # lambda s: zoom_section(s,1),
-            # pendahuluan,
-            # lambda s: unzoom_section(s,1),
-            # content,
-            # lambda s: zoom_section(s,2),
-            # tinjauan_pustaka,
-            # lambda s: unzoom_section(s,2),
-            # content,
-            # lambda s: zoom_section(s,3),
-            # metodologi,
-            # lambda s: unzoom_section(s,3),
-            # content,
-            # lambda s: zoom_section(s,4),
+            content,
+            lambda s: zoom_section(s,1),
+            pendahuluan,
+            lambda s: unzoom_section(s,1),
+            content,
+            lambda s: zoom_section(s,2),
+            tinjauan_pustaka,
+            lambda s: unzoom_section(s,2),
+            content,
+            lambda s: zoom_section(s,3),
+            metodologi,
+            lambda s: unzoom_section(s,3),
+            content,
+            lambda s: zoom_section(s,4),
             pembahasan,
-            # lambda s: unzoom_section(s,4),
-            # content,
-            # lambda s: zoom_section(s,5),
-            # kesimpulan_saran,
+            lambda s: unzoom_section(s,4),
+            content,
+            lambda s: zoom_section(s,5),
+            kesimpulan_saran,
         ]
 
         judul(self)
