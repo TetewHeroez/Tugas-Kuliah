@@ -4,6 +4,13 @@ from lib.slide_tracker import *
 
 
 def kesimpulan_saran(s):
+    s.play(
+    s.camera.frame.animate
+    .move_to(ORIGIN)
+    .set(width=config.frame_width)
+    .set_rotation(0), 
+    run_time=1.5
+    )
     KesimpulanSaran(s)
     next_slide_count(s)
     Lampiran(s)

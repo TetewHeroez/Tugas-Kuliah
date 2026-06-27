@@ -16,7 +16,7 @@ config.background_color = "#EAEAEA"
 
 class MainPresentation(MovingCameraScene, Slide):
     def construct(self):
-        self.total_slides = 30
+        self.total_slides = 23
 
         self.num = Integer(1, color=GRAY, font_size=24)
         self.text_total = Text(f"/{self.total_slides}", color=GRAY, font_size=24)
