@@ -83,7 +83,7 @@ slides/
 *.mp4
 *.svg
 !Sidang TA/assets/*.svg
-@REM !Sidang TA/index_assets/*.mp4
+!Sidang TA/index_assets/*.mp4
 !Sidang TA/vid/*.mp4
 !Seminar Proposal/assets/*.svg
 
