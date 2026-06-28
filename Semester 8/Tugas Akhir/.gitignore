@@ -83,7 +83,8 @@ slides/
 *.mp4
 *.svg
 !Sidang TA/assets/*.svg
-!Sidang TA/index_assets/*.mp4
+@REM !Sidang TA/index_assets/*.mp4
+!Sidang TA/vid/*.mp4
 !Seminar Proposal/assets/*.svg
 
 # Manim caches
