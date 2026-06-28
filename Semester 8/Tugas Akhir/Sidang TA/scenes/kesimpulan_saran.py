@@ -28,7 +28,7 @@ def Lampiran(s):
         VGroup(Tex("Latin"), Tex("square")).arrange(DOWN, buff=0.1),
         VGroup(Tex("Pasangan"), Tex("Berbeda")).arrange(DOWN, buff=0.1),
         VGroup(Tex("Komutatif"), Tex("Berbeda")).arrange(DOWN, buff=0.1),
-        VGroup(Tex("Komutatif"), Tex("Berbeda")).arrange(DOWN, buff=0.1),
+        VGroup(Tex("Komutatif"), Tex("Algoritma")).arrange(DOWN, buff=0.1),
     ]
     
     table_data = [
