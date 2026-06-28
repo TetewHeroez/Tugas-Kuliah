@@ -249,6 +249,65 @@ def latin_square(s):
     s.wait(2)
     s.next_slide()
     s.play(FadeOut(VGroup(deskripsi, grid_group, *number_mobjects.values()), shift=LEFT), run_time=1)
+
+    banyak_LS = Tex(r"Jumlah Latin squares berordo $n$ \textbf{(OEIS A002860)}", color=BLACK, font_size=30)
+    banyak_LS.next_to(judul_bab, DOWN, buff=0.3)
+    
+    table_data_left = [
+        ["1", "1"],
+        ["2", "2"],
+        ["3", "12"],
+        ["4", "576"],
+        ["5", r"161\,280"]
+    ]
+    
+    table_data_right = [
+        ["6", r"812\,851\,200"],
+        ["7", r"61\,479\,419\,904\,000"],
+        ["8", r"108\,776\,032\,459\,082\,956\,800"],
+        ["9", r"5\,524\,751\,496\,156\,892\,842\,531\,225\,600"],
+        ["10", r"9\,982\,437\,658\,213\,039\,877\,725\,064\,756\,920\,320\,000"]
+    ]
+    
+    table_left = Table(
+        table_data_left,
+        col_labels=[MathTex("n"), Tex("Jumlah Latin square")],
+        include_outer_lines=True,
+        line_config={"color": BLACK},
+        element_to_mobject=Tex
+    )
+    table_left.get_entries().set_color(BLACK)
+    table_left.get_col_labels().set_color(BLACK)
+    
+    table_right = Table(
+        table_data_right,
+        col_labels=[MathTex("n"), Tex("Jumlah Latin square")],
+        include_outer_lines=True,
+        line_config={"color": BLACK},
+        element_to_mobject=Tex
+    )
+    table_right.get_entries().set_color(BLACK)
+    table_right.get_col_labels().set_color(BLACK)
+    
+    table_group = VGroup(table_left, table_right).arrange(RIGHT, buff=0.8)
+    
+    # Highlight the header row
+    for t in [table_left, table_right]:
+        t.add_highlighted_cell((1, 1), color=GRAY, fill_opacity=0.4)
+        t.add_highlighted_cell((1, 2), color=GRAY, fill_opacity=0.4)
+    
+    # Scale table group to fit nicely on screen
+    table_group.scale(0.55).next_to(banyak_LS, DOWN, buff=0.2)
+    
+    if table_group.height > config.frame_height - 1.5:
+        table_group.height = config.frame_height - 1.5
+    if table_group.width > config.frame_width - 1:
+        table_group.width = config.frame_width - 1
+        
+    s.play(Write(banyak_LS), Create(table_group))
+    s.wait(1)
+    s.next_slide()
+    s.play(FadeOut(VGroup(banyak_LS, table_group), shift=LEFT), run_time=1)
     next_slide_count(s)
 
     deskripsi_baru = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{" + r"""Setiap Latin Square dapat didekomposisi menjadi penjumlahan matriks permutasi max--plus.
@@ -376,7 +435,7 @@ def latin_square(s):
     s.wait()
     
     s.next_slide()
-    s.play(FadeOut(VGroup(full_equation, judul_bab, deskripsi_baru, cycle_group), scale=0.5), run_time=1)
+    s.play(FadeOut(VGroup(full_equation, deskripsi_baru, cycle_group, judul_bab), scale=0.5), run_time=1)
 
 def permutasi(s):
     judul_bab = Title("Permutasi", color=BLACK, font_size=48, include_underline=True)
@@ -848,7 +907,6 @@ def permutasi(s):
         prev_eq_1, prev_eq_2, prev_eq_3, prev_eq_4,
         prev_label_i_C, prev_label_j_C, prev_box_row_C, prev_box_col_C
     ), shift=LEFT, run_time=1))
-    
 
 def S4_derangement(s):
     check_sym = "✓"
