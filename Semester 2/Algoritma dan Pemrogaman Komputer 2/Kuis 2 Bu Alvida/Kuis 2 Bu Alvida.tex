@@ -1,0 +1,324 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1cm]{geometry}
+\usepackage{minted}
+\usepackage{enumitem}
+\usepackage{setspace}
+
+% \setstretch{1.15}
+\setminted{
+    fontsize=\small,
+    breaklines,
+    frame=single,
+    framesep=2mm,
+    baselinestretch=1
+}
+
+\pagenumbering{gobble}
+
+\begin{document}
+
+\begin{center}
+  \textbf{KUIS 2}\\
+  \textbf{ALGORITMA PEMROGRAMAN 2}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+  \item Apa tampilan dari coding berikut ini (20 point):
+
+        \begin{minted}{java}
+public class Soal1 {
+    public static void main(String args[]) {
+        Hewan hewan1 = new kucing();
+        System.out.println("Jumlah Hewan1 =" + hewan1.jumlah);
+        hewan1.suara();
+
+        harimau tiger = new harimau();
+        System.out.println("Jumlah tiger =" + tiger.jumlah);
+        tiger.suara(tiger);
+
+        Hewan hewan2 = new harimau();
+        System.out.println(" Jumlah Hewan2 =" + hewan2.jumlah);
+        hewan2.suara();
+    }
+}
+
+class Hewan {
+    int jumlah = 0;
+
+    public void suara() {
+        System.out.println("....");
+    }
+}
+
+class kucing extends Hewan {
+    int jumlah = 10;
+
+    public void info() {
+        System.out.println("Puzz puzz");
+    }
+}
+
+class harimau extends Hewan {
+    int jumlah = 7;
+
+    public void suara() {
+        System.out.println("auuuu auung");
+    }
+
+    public void suara(harimau T) {
+        System.out.println("guuk gukK");
+    }
+}
+\end{minted}
+
+  \item Lengkap coding berikut (20 point):
+
+        \begin{minted}{java}
+public class Soal2 {
+    public static void main(String[] args) {
+        Persegi A = new Persegi("Merah", 8);
+        A.info();
+    }
+}
+
+class Bentuk {
+    String Warna;
+
+    public Bentuk(String x) {
+        System.out.println("Konstruktor Bentuk dipanggil");
+        ................................
+    }
+}
+
+class Persegi extends Bentuk {
+    private int sisi;
+
+    public Persegi(String A, int B) {
+        ................
+        System.out.println("Konstruktor Persegi dipanggil");
+        ................
+    }
+
+    public void info() {
+        System.out.println("Warna persegi adalah : " + Warna);
+        System.out.println("Ukuran adalah : " + sisi);
+    }
+}
+\end{minted}
+
+        Agar menampilkan output berikut:
+
+        \begin{minted}{text}
+Konstruktor Bentuk dipanggil
+Konstruktor Persegi dipanggil
+Warna persegi adalah : Merah
+Ukuran adalah : 8
+\end{minted}
+
+  \item Buatlah coding pada problem berikut:
+
+        Seorang penjual alat tulis menjual 10 bolpoint, 10 pensil dan 10 penghapus.
+        1 biji bolpoint harganya Rp. 2000, 1 biji pensil harganya Rp. 1.000 dan
+        1 penghapus harganya Rp. 500. Gunakanlah objek untuk menyelesaikan soal
+        di bawah ini!
+
+        \begin{enumerate}[label=\alph*.]
+          \item Buatlah method untuk memasukkan (\textit{setter}) nama, stok, harga satuan,
+                dan harga (stok $\times$ harga satuan) alat tulis tersebut! (20 point)
+          \item Buatlah method untuk menampilkan (\textit{getter}) nama, stok, harga satuan,
+                dan harga (stok $\times$ harga satuan) alat tulis tersebut! (20 point)
+          \item Buatlah method Total Harga (\textit{setter getter}) untuk menampilkan uang yang
+                diterima penjual jika semua alat tulis tersebut terjual semuanya! (20 point)
+        \end{enumerate}
+
+        Agar menampilkan output:
+
+        \begin{minted}{text}
+Nama Alat Tulis : Bolpoint
+Stok : 10
+Harga Satuan: 2000
+Harga Bolpoint : 20000
+Nama Alat Tulis : Pensil
+Stok : 10
+Harga Satuan: 1000
+Harga Pensil : 10000
+Nama Alat Tulis : Penghapus
+Stok : 10
+Harga Satuan: 500
+Harga Penghapus : 5000
+Total Harga: 35000
+\end{minted}
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+  \textbf{SOLUSI KUIS 2}\\
+  \textbf{ALGORITMA PEMROGRAMAN 2}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+  \item Tampilan output dari program:
+
+        \begin{minted}{text}
+Jumlah Hewan1 =0
+....
+Jumlah tiger =7
+guuk gukK
+ Jumlah Hewan2 =0
+auuuu auung
+\end{minted}
+
+        Penjelasan singkat: variabel \texttt{jumlah} mengikuti tipe referensi objek,
+        sedangkan method \texttt{suara()} mengikuti method yang dioverride oleh objek
+        sebenarnya.
+
+  \item Coding lengkap:
+
+        \begin{minted}{java}
+public class Soal2 {
+    public static void main(String[] args) {
+        Persegi A = new Persegi("Merah", 8);
+        A.info();
+    }
+}
+
+class Bentuk {
+    String Warna;
+
+    public Bentuk(String x) {
+        System.out.println("Konstruktor Bentuk dipanggil");
+        Warna = x;
+    }
+}
+
+class Persegi extends Bentuk {
+    private int sisi;
+
+    public Persegi(String A, int B) {
+        super(A);
+        System.out.println("Konstruktor Persegi dipanggil");
+        sisi = B;
+    }
+
+    public void info() {
+        System.out.println("Warna persegi adalah : " + Warna);
+        System.out.println("Ukuran adalah : " + sisi);
+    }
+}
+\end{minted}
+
+        Output:
+
+        \begin{minted}{text}
+Konstruktor Bentuk dipanggil
+Konstruktor Persegi dipanggil
+Warna persegi adalah : Merah
+Ukuran adalah : 8
+\end{minted}
+
+  \item Coding penyelesaian:
+
+        \begin{minted}{java}
+class AlatTulis {
+    private String nama;
+    private int stok;
+    private int hargaSatuan;
+    private int harga;
+    private static int totalHarga;
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setStok(int stok) {
+        this.stok = stok;
+    }
+
+    public void setHargaSatuan(int hargaSatuan) {
+        this.hargaSatuan = hargaSatuan;
+    }
+
+    public void setHarga() {
+        harga = stok * hargaSatuan;
+        totalHarga += harga;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public int getStok() {
+        return stok;
+    }
+
+    public int getHargaSatuan() {
+        return hargaSatuan;
+    }
+
+    public int getHarga() {
+        return harga;
+    }
+
+    public static int getTotalHarga() {
+        return totalHarga;
+    }
+
+    public void tampilkanData() {
+        System.out.println("Nama Alat Tulis : " + getNama());
+        System.out.println("Stok : " + getStok());
+        System.out.println("Harga Satuan: " + getHargaSatuan());
+        System.out.println("Harga " + getNama() + " : " + getHarga());
+    }
+}
+
+public class Soal3 {
+    public static void main(String[] args) {
+        AlatTulis bolpoint = new AlatTulis();
+        bolpoint.setNama("Bolpoint");
+        bolpoint.setStok(10);
+        bolpoint.setHargaSatuan(2000);
+        bolpoint.setHarga();
+
+        AlatTulis pensil = new AlatTulis();
+        pensil.setNama("Pensil");
+        pensil.setStok(10);
+        pensil.setHargaSatuan(1000);
+        pensil.setHarga();
+
+        AlatTulis penghapus = new AlatTulis();
+        penghapus.setNama("Penghapus");
+        penghapus.setStok(10);
+        penghapus.setHargaSatuan(500);
+        penghapus.setHarga();
+
+        bolpoint.tampilkanData();
+        pensil.tampilkanData();
+        penghapus.tampilkanData();
+
+        System.out.println("Total Harga: " + AlatTulis.getTotalHarga());
+    }
+}
+\end{minted}
+
+        Output:
+
+        \begin{minted}{text}
+Nama Alat Tulis : Bolpoint
+Stok : 10
+Harga Satuan: 2000
+Harga Bolpoint : 20000
+Nama Alat Tulis : Pensil
+Stok : 10
+Harga Satuan: 1000
+Harga Pensil : 10000
+Nama Alat Tulis : Penghapus
+Stok : 10
+Harga Satuan: 500
+Harga Penghapus : 5000
+Total Harga: 35000
+\end{minted}
+\end{enumerate}
+
+\end{document}
