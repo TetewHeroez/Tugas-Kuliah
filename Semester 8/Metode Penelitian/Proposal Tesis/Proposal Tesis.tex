@@ -1,4 +1,4 @@
-\documentclass{file/TA-ITS}
+\documentclass{file/Tesis-ITS}
 
 \theoremstyle{definition}
 \newtheorem{definisi}{Definisi}[section]
@@ -7,17 +7,7 @@
 \newtheorem{akibat}{Akibat}[section]
 \newtheorem{contoh}{Contoh}[section]
 \newtheorem{proposisi}{Proposisi}[section]
-\newtheorem{algoritma}{Algoritma}[section]
 \renewcommand{\proofname}{Bukti}
-
-\providecommand{\definisiautorefname}{Definisi}
-\providecommand{\proposisiautorefname}{Proposisi}
-\providecommand{\lemaautorefname}{Lema}
-\providecommand{\teoremaautorefname}{Teorema}
-\providecommand{\akibatautorefname}{Akibat}
-\providecommand{\contohautorefname}{Contoh}
-\providecommand{\algoritmaautorefname}{Algoritma}
-
 
 \newcommand{\norm}[1]{\left\|#1\right\|} % Fungsi norm (||x||)
 
@@ -36,7 +26,6 @@
 \captionsetup[table]{skip=5pt}
 
 \usepackage{multirow}
-\usepackage{makecell}
 \usepackage{longtable}
 \usepackage{physics}
 \usepackage{ragged2e} 
@@ -56,7 +45,6 @@
 \usepackage{xcolor}
 \usepackage{color}
 \usepackage{listings}
-\usepackage{minted}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codeblack}{rgb}{0,0,0}
@@ -129,52 +117,6 @@ draw=black,fill=decisionColor]
     }
 ]
 
-\colorlet{cOne}{white}     % 1 putih
-\colorlet{cTwo}{yellow}   % 2 kuning
-\colorlet{cThree}{cyan}   % 3 merah muda
-\colorlet{cFour}{green}   % 4 hijau
-
-\newcommand{\numcolor}[1]{%
-  \ifnum#1=1 cOne\fi
-  \ifnum#1=2 cTwo\fi
-  \ifnum#1=3 cThree\fi
-  \ifnum#1=4 cFour\fi
-}
-
-
-\newcommand{\permcell}[3]{%
-  % #1 = x-shift
-  % #2 = nilai sigma(i)
-  % #3 = indeks i
-
-  % kotak
-  \draw[thick, fill=\numcolor{#3}]
-    (#1,0) rectangle ++(1,1);
-
-  % lingkaran
-  \draw[thick, fill=\numcolor{#2}]
-    (#1+0.5,0.5) circle (0.3);
-
-  % angka
-  \node at (#1+0.5,0.5) {\small #2};
-
-  % fixed point
-  \ifnum#2=#3
-    \draw[red!60, very thick] (#1,0) -- (#1+1,1);
-    \draw[red!60, very thick] (#1,1) -- (#1+1,0);
-  \fi
-}
-
-
-\newcommand{\permrow}[4]{%
-  \begin{tikzpicture}[baseline,scale=0.8]
-    \permcell{0}{#1}{1}
-    \permcell{1}{#2}{2}
-    \permcell{2}{#3}{3}
-    \permcell{3}{#4}{4}
-  \end{tikzpicture}
-}
-
 
 % \tolerance=1
 % \emergencystretch = \maxdimen
@@ -191,14 +133,14 @@ draw=black,fill=decisionColor]
 \begin{document}
 
 % input data
-\input{file/TA-data}
-\Cover
+\input{file/Tesis-data}
+%\Cover
 \BagianAwal
 \LembarJudul
-% \TitlePage
-\LembarPengesahan
-\LembarOrisinalitas
-%\LembarPengesahanProposal
+\TitlePage
+%\LembarPengesahan
+%\LembarOrisinalitas
+\LembarPengesahanProposal
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Abstrak  %%%%%%%%%%%%%%%5%%%%%%%%%%
 \LembarAbstrak{Inti/abstrak}
@@ -226,8 +168,6 @@ draw=black,fill=decisionColor]
 \input{Inti/bab 1}
 \input{Inti/bab 2}
 \input{Inti/bab 3}
-\input{Inti/bab 4}
-\input{Inti/bab 5}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Dapus  %%%%%%%%%%%%%%%5%%%%%%%%%%akan
@@ -238,8 +178,8 @@ draw=black,fill=decisionColor]
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Lampiran  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
-\pagebreak
-\DaftarLampiran
+%\pagebreak
+%\DaftarLampiran
 %%%%%%%%%%%%%%%%%%%%%%%%  Lampiran  %%%%%%%%%%%%%%%5%%%%%%%%%%
 
 
