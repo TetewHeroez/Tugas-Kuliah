@@ -4,27 +4,23 @@ Berdasarkan pembahasan pada Bab 4, dapat ditarik kesimpulan sebagai berikut.
 
 \begin{enumerate}
       \item Syarat perlu komutativitas dua Latin square terhadap perkalian max-plus
-            diperoleh dari elemen maksimum. Berdasarkan
-            \autoref{thm:komutatif_elemen_maksimum}, jika $A,B\in L_S(n)$
+            diperoleh dari elemen maksimum, yaitu jika $A,B\in L_S(n)$
             komutatif, maka permutasi yang bersesuaian dengan simbol maksimum
             harus saling komutatif. Dengan demikian, kandidat permutasi simbol
             maksimum pada $B$ harus berada dalam centralizer dari permutasi simbol
             maksimum pada $A$.
 
       \item Kriteria komutativitas dua Latin square terhadap perkalian max-plus
-            diperoleh melalui syarat cukup dan kriteria perlu-cukup. Berdasarkan
-            \autoref{thm:syarat_cukup_subgrup_abelian}, komutativitas dijamin
+            diperoleh melalui syarat cukup dan kriteria perlu-cukup. Sebagai syarat cukup, komutativitas dijamin
             ketika seluruh permutasi penyusun $A$ dan $B$ berada dalam subgrup
-            abelian yang sama. Selanjutnya, berdasarkan
-            \autoref{thm:kriteria_komutatif_superlevel}, komutativitas terjadi
+            abelian yang sama. Selanjutnya, sebagai kriteria perlu-cukup, komutativitas terjadi
             jika dan hanya jika himpunan superlevel pada $A\otimes B$ dan
             $B\otimes A$ sama untuk setiap level yang diperlukan.
 
       \item Konstruksi pasangan Latin square yang komutatif dengan suatu Latin
-            square $A$ diberikan pada
-            \autoref{alg:pencarian_pasangan_latin_square_komutatif}. Algoritma
+            square $A$ dapat dicari menggunakan sebuah algoritma pencarian. Algoritma
             tersebut memanfaatkan tahap alternatif dari
-            \autoref{thm:syarat_cukup_subgrup_abelian} serta tahap umum melalui
+            pemeriksaan kesamaan subgrup abelian serta tahap umum melalui
             centralizer dan pemeriksaan superlevel. Penerapan pada ordo $3$, $4$,
             dan $5$ menunjukkan bahwa algoritma tersebut dapat digunakan untuk
             memperoleh kandidat $B$ yang memenuhi $A\otimes B=B\otimes A$.
@@ -35,7 +31,7 @@ selanjutnya.
 
 \begin{enumerate}
       \item Mengimplementasikan
-            \autoref{alg:pencarian_pasangan_latin_square_komutatif} secara
+            algoritma pencarian pasangan Latin square komutatif secara
             komputasi untuk menguji Latin square berordo lebih besar.
 
       \item Mengkaji efisiensi pemeriksaan superlevel agar proses pencarian

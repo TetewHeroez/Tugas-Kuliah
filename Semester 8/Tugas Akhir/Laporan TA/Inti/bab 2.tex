@@ -826,7 +826,6 @@ Perhatikan pada Gambar \ref{fig:derangement_s4}, jika kita ekstrak penempatan bl
   (1234),(1243),(1324),
   (1342),(1423),(1432)\}.
 \]
-
 Karakteristik pengurutan yang cukup unik ini dapat memunculkan adanya lema dan teorema
 yang cukup berguna untuk kedepannya
 \begin{lema}[\cite{Burness2025derangements}]
@@ -834,6 +833,9 @@ yang cukup berguna untuk kedepannya
 \end{lema}
 \section{\textit{Latin Square}}
 \textit{Latin square} adalah susunan $n \times n$ larik yang diisi dengan $n$ simbol berbeda, sehingga setiap simbol muncul tepat satu kali pada setiap baris dan setiap kolom. Setiap \textit{Latin square} dapat direpresentasikan sebagai matriks berukuran $n \times n$ dengan kolom-kolom yang dibangun dari permutasi pada himpunan simbolnya \parencite{mufid2014eigenvalues}.
+
+Misalkan $S$ adalah himpunan simbol dengan kardinalitas $n$. Himpunan semua \textit{Latin square} berordo $n$ yang dibangun menggunakan simbol-simbol dari $S$ dinotasikan sebagai $L_S(n)$. Secara khusus, jika himpunan simbol yang digunakan adalah $S=\{a_1, a_2, \ldots, a_n\}$, maka sebuah \textit{Latin square} $A \in L_S(n)$ merupakan matriks $n \times n$ di mana setiap entri $a_{ij} \in \{a_1, a_2, \ldots, a_n\}$ dan setiap simbol $a_k$ muncul tepat satu kali pada setiap baris dan setiap kolom.
+
 Pada penelitian yang dilakukan oleh \textcite{trivialeigenvectorsym14061101}, didefinisikan dua buah \textit{Latin square} yang dibangun dari himpunan $\underline{n}=\{1,2,\ldots,n\}$ dan $\underline{n_\varepsilon}=\{1,2,\ldots,n-1,\varepsilon\}$.
 Selain itu, dinotasikan $L = [l_{ij}]$ adalah Latin square ordo $n$. Untuk setiap baris $i$, kita dapat mendefinisikan sebuah simbol permutasi $\tau_i$ sehingga $\tau_i(j)=k$ bila $l_{ij}=p_k$. Dengan cara ini, setiap baris Latin square menghasilkan sebuah permutasi lengkap yang dapat ditulis dalam notasi siklik.
 
