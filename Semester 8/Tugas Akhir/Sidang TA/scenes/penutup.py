@@ -30,9 +30,7 @@ def penutup(s):
       ref5 = Text("Zufar, M. Z. (2023). Konstruksi grup latin square pada\naljabar max-plus.", **cit_style)
       ref6 = Text("George, W. D., John Clay; Wallis. (2017). Introduction\nto combinatorics (2nd ed.).", **cit_style)
       ref7 = Text("Huang, H., Jiang, X., Peng, C., & Pan, G. (2024). A new\nsemiring and its cryptographic applications.", **cit_style)
-      ref8 = Text("Dummit, D. S., & Foote, R. M. (2004). Abstract algebra\n(3rd ed.).", **cit_style)
-      ref9 = Text("Sloane, N. J. A. (2024). A002860: Number of latin squares\nof order n; or labeled quasigroups.", **cit_style)
-      citations = VGroup(lbl_ref, ref1, ref6, ref7, ref8, ref9, ref2, ref3, ref4, ref5).arrange(DOWN, aligned_edge=LEFT, buff=0.2)
+      citations = VGroup(lbl_ref, ref1, ref6, ref7, ref2, ref3, ref4, ref5).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
       citations.move_to(reference_box.get_center()).shift(LEFT * 0.2)
       
       s.play(Write(thanks), run_time=1)

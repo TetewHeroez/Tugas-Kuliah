@@ -23,7 +23,7 @@ def judul(scene):
     subtitle = Text("Oleh: Teosofi Hidayah Agung", font_size=32, slant=ITALIC)
     subtitle.set_color(subtitle_color)
 
-    dospem = Text("Dosen Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.", font_size=24)
+    dospem = Text("Calon Dosen Pembimbing: Muhammad Syifa'ul Mufid, S.Si., M.Si., D.Phil.", font_size=24)
     dospem.set_color(subtitle_color)
 
     line.next_to(t_obj, DOWN, buff=0.5)

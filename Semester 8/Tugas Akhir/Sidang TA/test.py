@@ -1,81 +1,115 @@
 from manim import *
-from manim_slides import Slide
 from lib.slide_tracker import *
 
 config.background_color = WHITE
 
-class RevisionScene(Slide):
+class RevisionScene(Scene):
     def construct(self):
-       LS(self)
+        permutasi(self)
 
-def LS(s):
-    Mobject.set_default(color=BLACK)
+def permutasi(s):
+    n = 6
+    matrix_data = [[r"\varepsilon" for _ in range(n)] for _ in range(n)]
     
-    judul = Title(r"Rekapitulasi Hasil Pencarian Pasangan Komutatif", color=BLACK, font_size=48)
-    judul[-1].set_color(BLACK)
-    deskripsi = Tex(r"\parbox{" + str(config.frame_width) + r"cm}{"r"Berikut merupakan hasil penerapan pada pembahasan yang telah diperoleh menggunakan bahasa pemrograman Python", font_size=30, color=BLACK)
-    deskripsi.next_to(judul, DOWN, buff=0.3)
-    
-    col_labels = [
-        Tex("Ordo"),
-        VGroup(Tex("Latin"), Tex("square")).arrange(DOWN, buff=0.1),
-        VGroup(Tex("Pasangan"), Tex("Berbeda")).arrange(DOWN, buff=0.1),
-        VGroup(Tex("Komutatif"), Tex("Berbeda")).arrange(DOWN, buff=0.1),
-        VGroup(Tex("Komutatif"), Tex("Berbeda")).arrange(DOWN, buff=0.1),
-    ]
-    
-    table_data = [
-        ["3", "12", "66", "15", "42"],
-        ["4", "576", "165.600", "4.752", "10.080"],
-        ["5", "161.280", "13.005.538.560", "460.160", "1.081.560"]
-    ]
-    
-    table = Table(
-        table_data,
-        col_labels=col_labels,
-        include_outer_lines=True,
-        line_config={"color": BLACK},
-        element_to_mobject=Tex
+    matrix_mobj = Matrix(
+        matrix_data, 
+        v_buff=0.6, 
+        h_buff=0.8, 
+        element_alignment_corner=ORIGIN,
+        left_bracket="[", 
+        right_bracket="]"
     )
-    table.get_entries().set_color(BLACK)
-    for lbl in table.get_col_labels():
-        lbl.set_color(BLACK)
-        
-    table.scale(0.55).next_to(deskripsi, DOWN, buff=0.5)
+    matrix_mobj.set_color(BLACK) 
     
-    if table.width > config.frame_width - 1:
-        table.width = config.frame_width - 1
-        
-    s.play(Write(judul), Write(deskripsi))
-    s.play(Create(table))
+    for entry in matrix_mobj.get_entries():
+        entry.set_color(GRAY_C)
+    matrix_mobj.scale(0.6)
+    # matrix_mobj.next_to(deskripsi_baru, DOWN, buff=1)
+    matrix_mobj.shift(RIGHT * 3)
+    row_labels = VGroup()
+    col_labels = VGroup()
+    for i in range(n):
+        row_ref = matrix_mobj.get_rows()[i]
+        lbl_r = MathTex(str(i+1), color=BLUE_E, font_size=20)
+        lbl_r.next_to(row_ref, RIGHT, buff=0.4)
+        row_labels.add(lbl_r)
+        col_ref = matrix_mobj.get_columns()[i]
+        lbl_c = MathTex(str(i+1), color=RED_E, font_size=20)
+        lbl_c.next_to(col_ref, DOWN, buff=0.3)
+        col_labels.add(lbl_c)
+    p_sigma_label = MathTex(r"P_{\sigma} =", color=BLACK, font_size=40).next_to(matrix_mobj, LEFT, buff=0.5)
+    
+    sigma_label = MathTex(r"\sigma =", color=BLACK, font_size=40)
+    
+    cycle_tex_strings = [
+        "(", "1", "3", ")", 
+        "(", "2", "5", "6", "4", ")"
+    ]
+    
+    cycle_group = VGroup()
+    for ss in cycle_tex_strings:
+        cycle_group.add(MathTex(ss, color=BLACK, font_size=40))
+    
+    cycle_group.arrange(RIGHT, buff=0.2)
+    
+    sigma_full = VGroup(sigma_label, cycle_group).arrange(RIGHT, buff=0.2)
+    sigma_full.next_to(p_sigma_label, LEFT, buff=1.0)
+    s.play(
+        Write(p_sigma_label),
+        Create(matrix_mobj),
+        Write(row_labels),
+        Write(col_labels),
+        Write(sigma_full))
     s.wait(1)
-    
-    # Animasi kotak penanda kolom 3
-    col3_group = VGroup(table.get_col_labels()[2], table.get_columns()[2])
-    box = SurroundingRectangle(col3_group, color=PURE_RED, buff=0.15)
-    
-    ket = Tex(r"Diperoleh dari rumus $\displaystyle\binom{n}{2}$ (dengan $n$ adalah jumlah Latin square)", font_size=30, color=PURE_RED)
-    ket.next_to(table, DOWN, buff=0.7)
-    
-    s.play(Create(box), Write(ket))
-    s.wait(2)
-    
-    # Animasi kotak penanda kolom 4
-    col4_group = VGroup(table.get_col_labels()[3], table.get_columns()[3])
-    box_new = SurroundingRectangle(col4_group, color=PURE_RED, buff=0.15)
-    ket_new = Tex(r"\mbox{Didapat dari \textit{brute-force} (pengecekan satu per satu untuk setiap pasangan berbeda})", font_size=30, color=PURE_RED).next_to(table, DOWN, buff=0.7)
-    
-    s.play(Transform(box, box_new), Transform(ket, ket_new))
-    s.wait(2)
-    
-    # Animasi kotak penanda kolom 5
-    col5_group = VGroup(table.get_col_labels()[4], table.get_columns()[4])
-    box_new2 = SurroundingRectangle(col5_group, color=PURE_RED, buff=0.15)
-    ket_new2 = Tex(r"Didapat dari mengenakan algoritma ke seluruh matriks Latin square ordo $n$", font_size=30, color=PURE_RED).next_to(table, DOWN, buff=0.7)
-    
-    s.play(Transform(box, box_new2), Transform(ket, ket_new2))
-    s.wait(2)
-    
-    s.play(FadeOut(VGroup(judul, deskripsi, table, box, ket), scale=0.5))
+    # s.next_slide(loop=True)
+    mappings = [
+        (1, 3, cycle_group[1], cycle_group[2]), 
+        (3, 1, cycle_group[2], cycle_group[1]), 
+        (2, 5, cycle_group[5], cycle_group[6]), 
+        (5, 6, cycle_group[6], cycle_group[7]), 
+        (6, 4, cycle_group[7], cycle_group[8]), 
+        (4, 2, cycle_group[8], cycle_group[5]), 
+    ]
+    entries = matrix_mobj.get_entries()
+    for inp, out, mob_in, mob_out in mappings:
+        idx = (inp - 1) * n + (out - 1) 
+        target_entry = entries[idx]
 
-    
+        s.play(
+            mob_in.animate.set_color(BLUE).scale(1.2), 
+            mob_out.animate.set_color(RED).scale(1.2),  
+            row_labels[inp-1].animate.set_color(BLUE).set_weight(BOLD).scale(1.2),
+            col_labels[out-1].animate.set_color(RED).set_weight(BOLD).scale(1.2),
+            run_time=0.4
+        )
+        
+        indicator = SurroundingRectangle(target_entry, color=ORANGE, buff=0.15)
+        s.play(Create(indicator), run_time=0.2)
+        
+        new_val = MathTex("0", color=BLACK, font_size=32).move_to(target_entry)
+        
+        s.play(
+            Transform(target_entry, new_val),
+            run_time=0.4
+        )
+        
+        s.play(
+            mob_in.animate.set_color(BLACK).scale(1/1.2),
+            mob_out.animate.set_color(BLACK).scale(1/1.2),
+            row_labels[inp-1].animate.set_color(BLUE).scale(1/1.2), 
+            col_labels[out-1].animate.set_color(RED).scale(1/1.2),
+            FadeOut(indicator),
+            run_time=0.3
+        )
+    s.play(
+        FadeOut(row_labels),
+        FadeOut(col_labels),
+        run_time=1
+    )
+    s.play(
+        matrix_mobj.get_entries().animate.set_color(BLACK),
+        run_time=1
+    )
+    final_box = SurroundingRectangle(VGroup(p_sigma_label, matrix_mobj), color=GREEN, buff=0.2)
+    s.play(Create(final_box))
+    s.wait(2)
