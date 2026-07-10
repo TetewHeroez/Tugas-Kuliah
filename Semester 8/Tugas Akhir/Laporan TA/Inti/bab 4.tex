@@ -1,9 +1,133 @@
 \chapter{PEMBAHASAN}
 
 \section{Sifat Perkalian Latin Square Max-Plus}
+
+Sebelum membahas sifat perkalian dari \textit{Latin square}, kita akan meninjau kembali perkalian matriks permutasi max-plus. Sebagai motivasi awal, misalkan diberikan grup simetri $S_3$ dan diambil dua buah permutasi $\alpha, \beta \in S_3$ yang dituliskan dalam notasi sikel sebagai:
+\[
+  \alpha = (1\;2\;3), \quad \beta = (1\;2).
+\]
+Matriks permutasi max-plus yang berkorespondensi dengan $\alpha$ dan $\beta$ berturut-turut adalah:
+\[
+  P_\alpha = \begin{bmatrix}
+    \varepsilon & 0           & \varepsilon \\
+    \varepsilon & \varepsilon & 0           \\
+    0           & \varepsilon & \varepsilon
+  \end{bmatrix}, \quad
+  P_\beta = \begin{bmatrix}
+    \varepsilon & 0           & \varepsilon \\
+    0           & \varepsilon & \varepsilon \\
+    \varepsilon & \varepsilon & 0
+  \end{bmatrix}.
+\]
+Kemudian diperoleh matriks hasil kali:
+\[
+  P_\alpha \otimes P_\beta =\begin{bmatrix}
+    0           & \varepsilon & \varepsilon \\
+    \varepsilon & \varepsilon & 0           \\
+    \varepsilon & 0           & \varepsilon
+  \end{bmatrix}.
+\]
+Selanjutnya, tinjau komposisi fungsi $\beta \circ \alpha=(1\;2\;3)(1\;2)=(2\;3)$.
+Matriks permutasi max-plus yang dibangun dari permutasi $\beta \circ \alpha$ adalah:
+\[
+  P_{\beta \circ \alpha} = \begin{bmatrix}
+    0           & \varepsilon & \varepsilon \\
+    \varepsilon & \varepsilon & 0           \\
+    \varepsilon & 0           & \varepsilon
+  \end{bmatrix}.
+\]
+Dari perhitungan di atas, terlihat jelas bahwa hasil akhir $P_\alpha \otimes P_\beta$ sama persis dengan $P_{\beta \circ \alpha}$. Fenomena ini memberikan gambaran bahwa perkalian matriks permutasi max-plus sangat berkaitan erat dengan komposisi dari permutasi yang bersesuaian, yang secara formal dinyatakan dalam lema berikut.
+
+\begin{lema}\label{lem:perkalian_matriks_permutasi}
+  Misalkan $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi max-plus berukuran $n \times n$. Untuk setiap permutasi $\alpha, \beta \in S_n$, berlaku sifat perkalian:
+  \begin{align}\label{eq:perkalian_matriks_permutasi}
+    P_{\alpha} \otimes P_{\beta} = P_{\beta \circ \alpha}.
+  \end{align}
+\end{lema}
+
+\begin{proof}
+  Berdasarkan \autoref{def:matriks_permutasi}, entri-entri dari matriks permutasi $P_{\alpha}$ dan $P_{\beta}$ didefinisikan sebagai:
+  \[
+    [P_{\alpha}]_{ik} = \begin{cases}
+      0,           & \text{jika } k = \alpha(i) \\
+      \varepsilon, & \text{lainnya}
+    \end{cases}
+    \quad\text{dan}\quad
+    [P_{\beta}]_{kj} = \begin{cases}
+      0,           & \text{jika } j = \beta(k) \\
+      \varepsilon, & \text{lainnya}
+    \end{cases}
+  \]
+  Misalkan $C = P_{\alpha} \otimes P_{\beta}$. Berdasarkan \autoref{def:perkalian_matriks_maxplus}, entri pada baris ke-$i$ dan kolom ke-$j$ dari $C$ adalah:
+  \begin{align}\label{eq:lema_perkalian_matriks_permutasi_AB}
+    [C]_{ij} = \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj}).
+  \end{align}
+  Karena nilai maksimum yang mungkin dalam matriks permutasi max-plus adalah $0$, entri $[C]_{ij}$ akan bernilai $0$ jika dan hanya jika terdapat indeks $k$ sedemikian sehingga $[P_{\alpha}]_{ik} = 0$ dan $[P_{\beta}]_{kj} = 0$ secara bersamaan. Jika kondisi ini tidak terpenuhi untuk seluruh $k$, maka $[C]_{ij} = \varepsilon$.
+  Berdasarkan \autoref{def:matriks_permutasi}, berlaku
+  \begin{align}
+    [P_{\alpha}]_{ik} = 0 & \iff k = \alpha(i) \label{eq:lema_perkalian_matriks_permutasi_1} \\
+    [P_{\beta}]_{kj} = 0  & \iff j = \beta(k). \label{eq:lema_perkalian_matriks_permutasi_2}
+  \end{align}
+  Dengan mensubstitusikan \eqref{eq:lema_perkalian_matriks_permutasi_1} ke dalam \eqref{eq:lema_perkalian_matriks_permutasi_2}, diperoleh:
+  \[
+    j = \beta(\alpha(i)) = (\beta \circ \alpha)(i).
+  \]
+  Karena $\alpha$ dan $\beta$ adalah permutasi di $S_n$, fungsi komposisinya juga merupakan permutasi yang bijektif. Artinya, untuk setiap baris $i$ hanya terdapat tepat satu kolom $j$ bernilai $0$ yang dituju.
+  Maka, \eqref{eq:lema_perkalian_matriks_permutasi_AB} dapat disederhanakan menjadi:
+  \begin{align}\label{eq:lema_perkalian_matriks_permutasi_hasil_kali}
+    \bigoplus_{k=1}^{n} ([P_{\alpha}]_{ik} \otimes [P_{\beta}]_{kj}) = [C]_{ij} = \begin{cases}
+                                                                                    0,           & \text{jika } j = (\beta \circ \alpha)(i) \\
+                                                                                    \varepsilon, & \text{lainnya}.
+                                                                                  \end{cases}
+  \end{align}
+  Matriks dengan definisi \eqref{eq:lema_perkalian_matriks_permutasi_hasil_kali} secara tepat merepresentasikan matriks permutasi max-plus yang dibangun oleh fungsi komposisi $\beta \circ \alpha$. Dengan demikian, disimpulkan bahwa \eqref{eq:perkalian_matriks_permutasi} berlaku.
+\end{proof}
+
+Ternyata dari \autoref{lem:perkalian_matriks_permutasi} diperoleh bahwa setiap $L_S(n)$ sangat berkaitan erat dengan sebuah permutasi. Dari hal tersebut dapat diperoleh sebuah ide untuk mendefinisikan grup yang dibangun dari himpunan seluruh matriks permutasi max-plus berukuran $n \times n$. Berikut adalah definisi dari grup matriks permutasi max-plus.
+
+\begin{definisi}\label{def:grup_permutasi_maxplus}
+  Misalkan $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi max-plus berukuran $n \times n$.
+  Dilengkapi dengan operasi perkalian matriks max-plus $(\otimes)$, $(\mathcal{P}_n, \otimes)$ membentuk sebuah grup dengan sifat:
+  \begin{enumerate}
+    \item Elemen identitas adalah matriks identitas max-plus $I_{n}$ (entri diagonal $0$ dan entri lainnya $\varepsilon$).
+    \item Invers dari $P_\tau \in \mathcal{P}_n$ adalah transposenya, yaitu $(P_\tau)^{-1} = (P_\tau)^T = P_{\tau^{-1}}$.
+  \end{enumerate}
+\end{definisi}
+
+\autoref{def:grup_permutasi_maxplus} dipastikan memenuhi keempat aksioma grup. Sifat tertutup dijamin oleh berlakunya \autoref{lem:perkalian_matriks_permutasi}, sedangkan sifat asosiatif diwarisi dari sifat dasar perkalian matriks max-plus yang ditunjukkan dalam \autoref{thm:sifat_matriks_maxplus}. Keberadaan elemen identitas $I_n$ yang komutatif dari kedua sisi sudah sangat jelas, dan eksistensi invers untuk masing-masing anggotanya juga dapat ditunjukkan kembali melalui penggunaaan \autoref{lem:perkalian_matriks_permutasi} dengan memandang grup $S_n$.
+
+\begin{teorema}\label{thm:isomorfisma_Sn}
+  Grup matriks permutasi max-plus $(\mathcal{P}_n, \otimes)$ isomorfis dengan grup simetri $(S_n, \circ)$.
+  Isomorfisma tersebut diberikan oleh fungsi bijektif $\phi : S_n \to \mathcal{P}_n$ yang didefinisikan sebagai
+  \[
+    \phi(\tau) = P_{\tau^{-1}}, \quad \forall\tau \in S_n.
+  \]
+\end{teorema}
+\begin{proof}
+  Akan ditunjukkan bahwa pemetaan $\phi : S_n \to \mathcal{P}_n$ dengan $\phi(\tau) = P_{\tau^{-1}}$ adalah sebuah isomorfisma dengan membuktikan bahwa $\phi$ merupakan homomorfisma grup yang bijektif.
+
+  \noindent Pertama, akan ditunjukkan bahwa $\phi$ adalah homomorfisma. Ambil sembarang $\tau, \sigma \in S_n$. Berdasarkan sifat invers dari komposisi fungsi dan \autoref{lem:perkalian_matriks_permutasi}, diperoleh:
+  \begin{align*}
+    \phi(\tau \circ \sigma) & = P_{(\tau \circ \sigma)^{-1}} = P_{\sigma^{-1} \circ \tau^{-1}} = P_{\tau^{-1}} \otimes P_{\sigma^{-1}} = \phi(\tau) \otimes \phi(\sigma).
+  \end{align*}
+  Terbukti $\phi$ mempertahankan operasi grup.
+
+  \noindent Selanjutnya, akan ditunjukkan bahwa $\phi$ bersifat injektif dengan meninjau kernelnya. Misalkan $e$ adalah permutasi identitas pada $S_n$ dan $I_n$ adalah elemen identitas pada $\mathcal{P}_n$. Kernel dari $\phi$ adalah $\ker(\phi) = \{\tau \in S_n \mid \phi(\tau) = I_n\}$.\\
+  Ambil sembarang $\tau \in \ker(\phi)$, maka $\phi(\tau) = P_{\tau^{-1}} = I_n$.
+  Karena $I_n$ hanya dibangun oleh permutasi identitas, haruslah $\tau^{-1} = e$, yang berakibat $\tau = e$.
+  Sehingga diperoleh $\ker(\phi) = \{e\}$. Mengingat kernel dari homomorfisma $\phi$ trivial, maka $\phi$ bersifat injektif.
+
+  \noindent Terakhir, akan ditunjukkan bahwa $\phi$ bersifat surjektif. Diketahui grup simetri memiliki orde $|S_n| = n!$. Karena $\mathcal{P}_n$ adalah himpunan seluruh matriks permutasi berukuran $n \times n$, ordonya juga $|\mathcal{P}_n| = n!$.
+  Karena $\phi : S_n \to \mathcal{P}_n$ adalah fungsi injektif di antara dua himpunan berhingga dengan kardinalitas yang sama ($|S_n| = |\mathcal{P}_n|$), maka $\phi$ secara otomatis bersifat surjektif.
+
+  \noindent Karena $\phi$ adalah homomorfisma grup yang injektif dan surjektif, terbukti bahwa $\phi$ adalah isomorfisma, sehingga $(\mathcal{P}_n, \otimes) \cong (S_n, \circ)$.
+\end{proof}
+
+\autoref{thm:isomorfisma_Sn} menunjukkan bahwa struktur matriks permutasi max-plus $(\mathcal{P}_n, \otimes)$ sama persis dengan struktur grup simetri $(S_n, \circ)$, sehingga setiap sifat yang berlaku pada $(S_n, \circ)$ juga berlaku pada $(\mathcal{P}_n, \otimes)$ dan sebaliknya.
+
 Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \autoref{lem:perkalian_matriks_permutasi} dan \autoref{prop:dekomposisi_latin_square}.
 \begin{akibat}\label{cor:perkalian_latin_square}
-  Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol $\{a_1, a_2, \ldots, a_n\}$ dan $\{b_1, b_2, \ldots, b_n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{prop:dekomposisi_latin_square}, matriks $A$ dan $B$ memiliki dekomposisi $A = \bigoplus_{i=1}^{n} a_i \otimes P_{\sigma_i^A}$ dan $B = \bigoplus_{j=1}^{n} b_j \otimes P_{\sigma_j^B}$, maka hasil kali max-plus dari $A$ dan $B$ diberikan oleh
+  Misalkan $A, B \in L_S(n)$ berturut-turut memiliki himpunan simbol $\{a_1, a_2, \ldots, a_n\}$ dan $\{b_1, b_2, \ldots, b_n\}$ di dalam $\mathbb{R}_{\max}$ dan memiliki dekomposisi $A = \bigoplus_{i=1}^{n} a_i \otimes P_{\sigma_i^A}$ dan $B = \bigoplus_{j=1}^{n} b_j \otimes P_{\sigma_j^B}$, maka hasil kali max-plus dari $A$ dan $B$ diberikan oleh
   \begin{align}\label{eq:perkalian_latin_square_maxplus}
     A \otimes B = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (a_i \otimes b_j) \otimes P_{\sigma_j^B \circ \sigma_i^A}.
   \end{align}
@@ -44,44 +168,36 @@ Berikut merupakan rumus perkalian dua buah latin square max-plus menggunakan \au
   \end{equation}
   Karena berlaku untuk setiap baris $r$ dan kolom $c$, \eqref{eq:hasil_perkalian_max_plus_final} ekuivalen dengan \eqref{eq:perkalian_latin_square_maxplus}.
 \end{proof}
-\begin{akibat}\label{cor:perkalian_latin_square_simbol_1_hingga_n}
-  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\{1, 2, \ldots, n\}$ di dalam $\mathbb{R}_{\max}$. Menurut \autoref{cor:perkalian_latin_square}, hasil kali max-plus dari $A$ dan $B$ diberikan oleh:
+\begin{catatan}\label{cor:perkalian_latin_square_simbol_1_hingga_n}
+  Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\underline{n}$ di dalam $\mathbb{R}_{\max}$. Hasil kali max-plus dari $A$ dan $B$ diberikan oleh:
   \begin{align}\label{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n}
     A \otimes B = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A}.
   \end{align}
   Lebih lanjut, dapat digabungkan menjadi:
   \begin{align}\label{eq:perkalian_latin_square_gabung}
-    A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
+    A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \underline{n} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
   \end{align}
-<<<<<<< HEAD
-\end{akibat}
 
-\begin{proof}
   Pada \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n}, nilai skalar hasil operasi max-plus $i \otimes j$ bernilai sama dengan $i + j$.
-  Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$.
+  Karena himpunan simbol yang digunakan adalah $\underline{n}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$.
   Oleh karena itu, jumlahan ganda pada \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n} dapat dikelompokkan berdasarkan nilai $k = i+j$.
   Dengan melakukan substitusi nilai $k$ dan menggunakan sifat distributif perkalian skalar terhadap penjumlahan matriks max-plus, persamaan \eqref{eq:perkalian_latin_square_maxplus_simbol_1_hingga_n} dapat dijabarkan sebagai berikut:
   \begin{align*}
-    A \otimes B & = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i + j) \otimes P_{\sigma_j^B \circ \sigma_i^A} = \bigoplus_{k=2}^{2n} \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} k \otimes P_{\sigma_j^B \circ \sigma_i^A} \right) = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
+    A \otimes B & = \bigoplus_{i=1}^{n} \bigoplus_{j=1}^{n} (i + j) \otimes P_{\sigma_j^B \circ \sigma_i^A} = \bigoplus_{k=2}^{2n} \left( \bigoplus_{\substack{i,j \in \underline{n} \\ i+j=k}} k \otimes P_{\sigma_j^B \circ \sigma_i^A} \right) = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \underline{n} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right).
   \end{align*}
   Bentuk penjabaran terakhir tersebut ekuivalen dengan \eqref{eq:perkalian_latin_square_gabung}.
-\end{proof}
+\end{catatan}
 
-=======
-  Pada \eqref{eq:perkalian_latin_square_gabung}, jumlahan ganda sebelumnya telah dikelompokkan berdasarkan nilai skalar hasil operasi max-plus $i \otimes j = i + j$. Karena himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$, nilai minimum dari $i+j$ adalah $2$ dan nilai maksimumnya adalah $2n$. Bentuk di dalam tanda kurung besar merupakan jumlahan matriks (operasi maksimum pada setiap entri) dari seluruh matriks permutasi yang bersesuaian dengan pasangan indeks $i$ dan $j$ yang memenuhi $i+j=k$.
-\end{akibat}
-
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 \begin{contoh}\label{ex:hasil_iterasi_semua}
-  Misalkan $A, B \in L_S(3)$ dengan himpunan simbol $\{1, 2, 3\}$, maka
+  Misalkan $A, B \in L_S(3)$ dengan himpunan simbol $\underline{3}$, maka
   \begin{align*}
-    A \otimes B & = \bigoplus_{i=1}^{3} \bigoplus_{j=1}^{3} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A} =      A \otimes B = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \{1,\ldots,n\} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right) \\
-                & = 2 \otimes P_{\sigma_1^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_2^B \circ \sigma_1^A} \oplus 4 \otimes P_{\sigma_3^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_1^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_2^B \circ \sigma_2^A}           \\
+    A \otimes B & = \bigoplus_{i=1}^{3} \bigoplus_{j=1}^{3} (i \otimes j) \otimes P_{\sigma_j^B \circ \sigma_i^A} = \bigoplus_{k=2}^{2n} k \otimes \left( \bigoplus_{\substack{i,j \in \underline{n} \\ i+j=k}} P_{\sigma_j^B \circ \sigma_i^A} \right)           \\
+                & = 2 \otimes P_{\sigma_1^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_2^B \circ \sigma_1^A} \oplus 4 \otimes P_{\sigma_3^B \circ \sigma_1^A} \oplus 3 \otimes P_{\sigma_1^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_2^B \circ \sigma_2^A} \\
                 & \quad \oplus 5 \otimes P_{\sigma_3^B \circ \sigma_2^A} \oplus 4 \otimes P_{\sigma_1^B \circ \sigma_3^A} \oplus 5 \otimes P_{\sigma_2^B \circ \sigma_3^A} \oplus 6 \otimes P_{\sigma_3^B \circ \sigma_3^A}.
   \end{align*}
 \end{contoh}
 
-Lebih lanjut, \eqref{eq:perkalian_latin_square_gabung} dapat direduksi batas bawah iterasinya dengan meninjau keberadaan elemen maksimum pada matriks \emph{Latin Square}, terlebih jika himpunan simbol yang digunakan adalah $\{1, 2, \ldots, n\}$.
+Lebih lanjut, \eqref{eq:perkalian_latin_square_gabung} dapat direduksi batas bawah iterasinya dengan meninjau keberadaan elemen maksimum pada matriks \emph{Latin Square}, terlebih jika himpunan simbol yang digunakan adalah $\underline{n}$.
 
 \begin{proposisi}\label{prop:batas_bawah_perkalian_latin_square}
   Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $\underline{n}$. Untuk setiap $(r,s)\in \underline{n}\times \underline{n}$, entri ke-$(r,s)$ dari hasil perkalian $A\otimes B$ memenuhi
@@ -94,13 +210,13 @@ Lebih lanjut, \eqref{eq:perkalian_latin_square_gabung} dapat direduksi batas baw
   \[
     [A \otimes B]_{rs} = \max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}).
   \]
-  Karena $A$ memuat setiap elemen dari himpunan $\{1, 2, \ldots, n\}$ tepat satu kali di setiap baris, maka $\exists t^* \in \{1, \ldots, n\}$ sedemikian sehingga $[A]_{rt^*} = n$. Karena setiap entri pada matriks $B$ bernilai minimal $1$, dipastikan bahwa $[B]_{t^*s} \ge 1$, maka diperoleh ketaksamaan
+  Karena $A$ memuat setiap elemen dari himpunan $\underline{n}$ tepat satu kali di setiap baris, maka $\exists t^* \in \underline{n}$ sedemikian sehingga $[A]_{rt^*} = n$. Karena setiap entri pada matriks $B$ bernilai minimal $1$, dipastikan bahwa $[B]_{t^*s} \ge 1$, maka diperoleh ketaksamaan
   \[
     [A \otimes B]_{rs} \ge [A]_{rt^*} + [B]_{t^*s} \ge n + 1.
   \]
   Selanjutnya, akan dibuktikan kondisi perlu untuk mencapai nilai eksak $[A \otimes B]_{rs} = n+1$. Misalkan $\displaystyle\max_{1 \le t \le n} ([A]_{rt} + [B]_{ts}) = n+1$. Berdasarkan definisi nilai maksimum, hal ini mengimplikasikan
   \[
-    [A]_{rt} + [B]_{ts} \le n+1, \quad \forall t \in \{1, 2, \ldots, n\}.
+    [A]_{rt} + [B]_{ts} \le n+1, \quad \forall t \in \underline{n}.
   \]
   Definisikan variabel selisih non-negatif $\epsilon_t \ge 0$ sedemikian sehingga
   \begin{equation}\label{eq:hubungan_dengan_epsilon}
@@ -116,12 +232,12 @@ Lebih lanjut, \eqref{eq:perkalian_latin_square_gabung} dapat direduksi batas baw
     \frac{n(n+1)}{2} + \frac{n(n+1)}{2} & = n(n+1) - \sum_{t=1}^n \epsilon_t \implies
     \sum_{t=1}^n \epsilon_t              = 0.
   \end{align*}
-  Mengingat $\epsilon_t \ge 0$ untuk setiap $t$, satu-satunya solusi nyata yang memenuhi $\sum_{t=1}^n \epsilon_t = 0$ adalah $\epsilon_t = 0, \forall t\in\{1,2,\dots,n\}$. Substitusi kembali $\epsilon_t = 0$ pada \eqref{eq:hubungan_dengan_epsilon} yang menghasilkan persamaan
+  Mengingat $\epsilon_t \ge 0$ untuk setiap $t$, satu-satunya solusi nyata yang memenuhi $\sum_{t=1}^n \epsilon_t = 0$ adalah $\epsilon_t = 0, \forall t\in \underline{n}$. Substitusi kembali $\epsilon_t = 0$ pada \eqref{eq:hubungan_dengan_epsilon} yang menghasilkan persamaan
   \begin{align}
-    [A]_{rt} + [B]_{ts} = n+1, \quad \forall t \in \{1, 2, \ldots, n\}\notag \\
-    [B]_{ts} = (n+1) - [A]_{rt}, \quad \forall t \in \{1, 2, \ldots, n\}. \label{eq:persamaan_komplemen}
+    [A]_{rt} + [B]_{ts} = n+1, \quad \forall t \in \underline{n}\notag \\
+    [B]_{ts} = (n+1) - [A]_{rt}, \quad \forall t \in \underline{n}. \label{eq:persamaan_komplemen}
   \end{align}
-  Persamaan \eqref{eq:persamaan_komplemen} merupakan pemetaan bijektif $x \mapsto n+1-x$ pada himpunan $\{1, 2, \ldots, n\}$. Dalam representasi grup simetri $S_n$, pemetaan komplemen ini diekspresikan oleh sebuah permutasi pencerminan (involusi) $\rho$ dengan dekomposisi sikel:
+  Persamaan \eqref{eq:persamaan_komplemen} merupakan pemetaan bijektif $x \mapsto n+1-x$ pada himpunan $\underline{n}$. Dalam representasi grup simetri $S_n$, pemetaan komplemen ini diekspresikan oleh sebuah permutasi pencerminan (involusi) $\rho$ dengan dekomposisi sikel:
   \[
     \rho = (1\;\; n)(2\;\; n-1)(3\;\; n-2)\ldots
   \]
@@ -286,6 +402,10 @@ Bagian ini membahas beberapa kriteria komutativitas yang diperoleh dari sudut pa
 \subsection{Syarat Perlu Latin Square Max-Plus Saling Komutatif}
 Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif terhadap perkalian max-plus.
 
+\begin{definisi}\label{def:simbol_maksimum}
+  Misalkan $A \in L_S(n)$ dengan himpunan simbol $\underline{n}$. Simbol maksimum dari matriks $A$ adalah nilai numerik terbesar di dalam himpunan simbol penyusunnya, yaitu $n$. Permutasi yang bersesuaian dengan simbol maksimum ini dinotasikan sebagai $\sigma_n^A$.
+\end{definisi}
+
 \begin{teorema}\label{thm:komutatif_elemen_maksimum}
   Misalkan $A, B \in L_S(n)$ dengan himpunan simbol $\underline{n}$. Jika matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus, yaitu $A \otimes B = B \otimes A$, maka permutasi yang bersesuaian dengan simbol maksimum $n$ dari kedua matriks tersebut saling komutatif, yaitu
   \[
@@ -400,7 +520,6 @@ Berikut merupakan salah satu syarat perlu agar dua buah latin square komutatif t
   \]
   Dengan demikian, syarat perlu pada elemen maksimum terpenuhi.
 \end{contoh}
-<<<<<<< HEAD
 
 Walaupun \autoref{thm:komutatif_elemen_maksimum} memberikan syarat perlu untuk komutativitas dua buah matriks \emph{Latin Square} terhadap perkalian max-plus, konvers dari teorema tersebut tidak berlaku. Artinya, jika dua matriks \emph{Latin Square} memiliki permutasi simbol maksimum yang saling komutatif, kedua matriks tersebut belum tentu komutatif terhadap perkalian max-plus. Berikut adalah contoh penyangkal (\emph{counterexample}) untuk menunjukkan hal tersebut.
 
@@ -448,8 +567,6 @@ Walaupun \autoref{thm:komutatif_elemen_maksimum} memberikan syarat perlu untuk k
   Terlihat bahwa $A \otimes B \neq B \otimes A$. Dengan demikian, konvers dari \autoref{thm:komutatif_elemen_maksimum} tidak berlaku.
 \end{contoh}
 
-=======
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 Setelah diperoleh syarat perlu pada nilai maksimum $2n$, muncul pertanyaan
 apakah pola yang sama dapat diterapkan pada nilai maksimum kedua, yaitu
 $2n-1$. Pada nilai maksimum $2n$, hanya terdapat satu pasangan indeks yang
@@ -552,223 +669,7 @@ permutasi yang menghasilkan nilai tepat $2n-1$. Berikut merupakan contoh penyang
   komposisi permutasi pada nilai tepat $2n-1$ bukan merupakan syarat perlu
   bagi komutativitas Latin square terhadap perkalian max-plus.
 \end{contoh}
-<<<<<<< HEAD
 Dari \autoref{contoh:counterexample_elemen_2n-1} dapat memberikan gambaran untuk nilai maksimum selanjutnya, yaitu $2n-2,\,2n-3,\ldots,\,n+1$ yang tidak bisa kita harapkan untuk menjadi syarat perlu jika kita hanya memperhatikan permutasi yang dibangun dari pasangan nilai tersebut.
-=======
-Dari \autoref{contoh:counterexample_elemen_2n-1} dapat memberikan gambaran untuk nilai maksimum selanjutnya, yaitu $2n-2,\,2n-3,\ldots,\,n+1$ yang dimana tidak bisa kita harapkan untuk menjadi syarat perlu jika kita hanya memperhatikan permutasi yang dibangun dari pasangan nilai tersebut.
-
-\subsection{Syarat Cukup Latin Square Max-Plus Saling Komutatif}
-Syarat perlu pada simbol maksimum hanya memberikan penyaring awal bagi pasangan Latin square yang mungkin komutatif. Selanjutnya diberikan suatu syarat cukup yang lebih kuat. Ide utamanya adalah sebagai berikut. Pada dekomposisi perkalian max-plus, setiap suku pada $A\otimes B$ memuat komposisi permutasi $\sigma_j^B\circ\sigma_i^A$, sedangkan suku yang bersesuaian pada $B\otimes A$ memuat komposisi $\sigma_i^A\circ\sigma_j^B$. Oleh karena itu, jika setiap permutasi penyusun $A$ komutatif dengan setiap permutasi penyusun $B$, maka setiap suku pada kedua hasil perkalian akan bersesuaian.
-
-Kondisi tersebut dapat dijamin apabila seluruh permutasi penyusun $A$ dan $B$ berada di dalam suatu subgrup abelian dari $S_n$. Hal ini menghasilkan syarat cukup berikut.
-\begin{teorema}\label{thm:syarat_cukup_subgrup_abelian}
-  Misalkan $A,B\in L_S(n)$ dengan dekomposisi
-  $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan
-  $B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$.
-  Jika terdapat subgrup abelian $H\le S_n$ sedemikian sehingga
-  $\sigma_i^A\in H$ dan $\sigma_j^B\in H$ untuk setiap $i,j\in \underline{n}$, maka
-  $A\otimes B=B\otimes A$.
-\end{teorema}
-
-\begin{proof}
-  Karena $H$ abelian, setiap dua elemen di dalam $H$ saling komutatif. Jadi, untuk setiap $i,j\in \underline{n}$ berlaku
-  \[
-    \sigma_j^B\circ\sigma_i^A
-    =
-    \sigma_i^A\circ\sigma_j^B.
-  \]
-  Berdasarkan dekomposisi perkalian Latin square max-plus, diperoleh
-  \[
-    A\otimes B
-    =
-    \bigoplus_{i,j\in \underline{n}}
-    (i+j)\otimes P_{\sigma_j^B\circ\sigma_i^A}
-    \quad
-    \text{dan}
-    \quad
-    B\otimes A
-    =
-    \bigoplus_{i,j\in \underline{n}}
-    (i+j)\otimes P_{\sigma_i^A\circ\sigma_j^B}.
-  \]
-  Karena $\sigma_j^B\circ\sigma_i^A=\sigma_i^A\circ\sigma_j^B$ untuk setiap $i,j\in \underline{n}$, maka setiap suku pada dekomposisi $A\otimes B$ bersesuaian dengan suku pada dekomposisi $B\otimes A$. Dengan demikian, $A\otimes B=B\otimes A$.
-\end{proof}
-
-Syarat pada \autoref{thm:syarat_cukup_subgrup_abelian} dapat diperlemah.
-Tidak diperlukan bahwa permutasi-permutasi penyusun $A$ saling komutatif
-atau permutasi-permutasi penyusun $B$ saling komutatif. Yang diperlukan
-cukup kondisi silang
-\[
-  \sigma_j^B\circ\sigma_i^A
-  =
-  \sigma_i^A\circ\sigma_j^B
-\]
-untuk setiap $i,j\in \underline{n}$. Dengan kata lain, jika
-$H_A=\langle \sigma_1^A,\ldots,\sigma_n^A\rangle$ dan
-$\sigma_j^B\in C_{S_n}(H_A)$ untuk setiap $j\in \underline{n}$, maka
-$A\otimes B=B\otimes A$.
-
-Untuk ordo kecil, \autoref{thm:syarat_cukup_subgrup_abelian} dapat
-digunakan dengan memilih subgrup abelian dari $S_n$ yang memuat
-permutasi-permutasi penyusun Latin square. Pada ordo $3$, subgrup yang
-relevan adalah subgrup siklik berordo $3$. Pada ordo $4$, subgrup yang
-dapat digunakan antara lain subgrup siklik berordo $4$ atau subgrup Klein
-berordo $4$. Pada ordo $5$, karena $5$ prima, pilihan yang paling alami
-adalah subgrup siklik berordo $5$.
-
-\begin{table}[H]
-  \centering
-  \label{tab:contoh_subgrup_abelian_sn}
-  \begin{tabular}{|c|l|l|}
-    \hline
-    $n$ & Contoh grup abelian       & Keterangan                \\
-    \hline
-    $3$ & $C_3$                     & grup siklik berordo $3$   \\
-    \hline
-    $4$ & $C_4$                     & grup siklik berordo $4$   \\
-        & $V_4\cong C_2\times C_2$  & grup Klein                \\
-    \hline
-    $5$ & $C_5$                     & grup siklik berordo $5$   \\
-    \hline
-    $6$ & $C_6$                     & grup siklik berordo $6$   \\
-        & $C_2\times C_3$           & isomorfik dengan $C_6$    \\
-    \hline
-    $7$ & $C_7$                     & grup siklik berordo $7$   \\
-    \hline
-    $8$ & $C_8$                     & grup siklik berordo $8$   \\
-        & $C_4\times C_2$           & grup abelian tidak siklik \\
-        & $C_2\times C_2\times C_2$ & grup abelian elementer    \\
-    \hline
-  \end{tabular}
-  \caption{Contoh grup abelian dari subgrup $S_n$}
-\end{table}
-
-Kriteria ini memberikan cara konstruktif untuk memperoleh pasangan Latin
-square komutatif. Namun, kriteria ini bukan syarat perlu. Artinya, masih
-mungkin terdapat pasangan Latin square komutatif yang tidak diperoleh dari
-satu subgrup abelian yang sama.
-
-\begin{contoh}\label{contoh:syarat_cukup_subgrup_abelian_ordo_8}
-  Contoh berikut menunjukkan bahwa subgrup abelian pada
-  \autoref{thm:syarat_cukup_subgrup_abelian} tidak harus berupa subgrup
-  siklik atau subgrup Klein. Misalkan
-  \[
-    (\mathbb{Z}_2)^3
-    =
-    \{(a,b,c)\mid a,b,c\in\mathbb{Z}_2\}.
-  \]
-  Operasi pada $(\mathbb{Z}_2)^3$ adalah penjumlahan komponen demi komponen modulo $2$.
-  Sebagai contoh:
-  \[
-    (1,0,1)+(1,1,0)=(0,1,1).
-  \]
-  Untuk setiap $u\in (\mathbb{Z}_2)^3$, definisikan pemetaan
-  $\tau_u:(\mathbb{Z}_2)^3\to (\mathbb{Z}_2)^3$ dengan $\tau_u(x)=x+u$. Pemetaan $\tau_u$ merupakan
-  permutasi pada $(\mathbb{Z}_2)^3$, karena untuk setiap $x,y\in (\mathbb{Z}_2)^3$, jika
-  $\tau_u(x)=\tau_u(y)$, maka $x+u=y+u$, sehingga $x=y$. Selain itu,
-  untuk setiap $z\in (\mathbb{Z}_2)^3$, terdapat $x=z+u$ sedemikian sehingga
-  $\tau_u(x)=z$. Jadi, $\tau_u$ bijektif.\\
-  Setelah $(\mathbb{Z}_2)^3$ diidentifikasi dengan himpunan simbol $\{1,2,\ldots,8\}$,
-  setiap $\tau_u$ dapat dipandang sebagai elemen dari $S_8$. Definisikan
-  \[
-    H=\{\tau_u\mid u\in (\mathbb{Z}_2)^3\}.
-  \]
-  Untuk setiap $u,v\in (\mathbb{Z}_2)^3$ dan setiap $x\in (\mathbb{Z}_2)^3$, berlaku
-  \[
-    \tau_{u+v}(x)
-    =
-    x+(u+v)
-    =
-    (x+v)+u
-    =
-    \tau_u(\tau_v(x)).
-  \]
-  Oleh karena itu,
-  \[
-    \tau_{u+v}=\tau_u\circ\tau_v.
-  \]
-  Dengan demikian, pemetaan
-  \[
-    \varphi:X\to S_8,\qquad \varphi(u)=\tau_u
-  \]
-  merupakan homomorfisma grup. Jika $\varphi(u)=\varphi(v)$, maka
-  $\tau_u=\tau_v$. Dengan mengambil $x=(0,0,0)$, diperoleh
-  \[
-    u=\tau_u((0,0,0))=\tau_v((0,0,0))=v.
-  \]
-  Jadi, $\varphi$ injektif. Akibatnya, $H=\varphi((\mathbb{Z}_2)^3)$ merupakan subgrup
-  dari $S_8$ yang isomorfik dengan $(\mathbb{Z}_2)^3$. Dengan kata lain,
-  \[
-    H\cong C_2\times C_2\times C_2.
-  \]
-  Salah satu Latin Square dari operasi penjumlahan pada $(\mathbb{Z}_2)^3$ adalah
-  \[
-    A=
-    \begin{pmatrix}
-      1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
-      2 & 1 & 4 & 3 & 6 & 5 & 8 & 7 \\
-      3 & 4 & 1 & 2 & 7 & 8 & 5 & 6 \\
-      4 & 3 & 2 & 1 & 8 & 7 & 6 & 5 \\
-      5 & 6 & 7 & 8 & 1 & 2 & 3 & 4 \\
-      6 & 5 & 8 & 7 & 2 & 1 & 4 & 3 \\
-      7 & 8 & 5 & 6 & 3 & 4 & 1 & 2 \\
-      8 & 7 & 6 & 5 & 4 & 3 & 2 & 1
-    \end{pmatrix}.
-  \]
-  Setiap simbol pada $A$ bersesuaian dengan salah satu permutasi translasi
-  $\tau_u$. Jadi, seluruh permutasi penyusun $A$ berada di dalam $H$.
-  Selanjutnya, bentuk Latin square $B$ dengan menukar label simbol $2$ dan
-  $3$ pada $A$, yaitu
-  \[
-    B=
-    \begin{pmatrix}
-      1 & 3 & 2 & 4 & 5 & 6 & 7 & 8 \\
-      3 & 1 & 4 & 2 & 6 & 5 & 8 & 7 \\
-      2 & 4 & 1 & 3 & 7 & 8 & 5 & 6 \\
-      4 & 2 & 3 & 1 & 8 & 7 & 6 & 5 \\
-      5 & 6 & 7 & 8 & 1 & 3 & 2 & 4 \\
-      6 & 5 & 8 & 7 & 3 & 1 & 4 & 2 \\
-      7 & 8 & 5 & 6 & 2 & 4 & 1 & 3 \\
-      8 & 7 & 6 & 5 & 4 & 2 & 3 & 1
-    \end{pmatrix}.
-  \]
-  Karena $B$ hanya diperoleh dengan menukar label simbol pada $A$, maka
-  permutasi-permutasi penyusun $B$ juga merupakan elemen-elemen dari $H$.
-  Dengan demikian, seluruh permutasi penyusun $A$ dan $B$ berada di dalam
-  subgrup abelian yang sama, yaitu $H$.
-  Berdasarkan \autoref{thm:syarat_cukup_subgrup_abelian}, diperoleh
-  $A\otimes B=B\otimes A$. Hasil perkalian max-plus-nya adalah
-  \[
-    A\otimes B
-    =
-    B\otimes A
-    =
-    \begin{pmatrix}
-      16 & 15 & 14 & 13 & 12 & 11 & 11 & 10 \\
-      15 & 16 & 13 & 14 & 11 & 12 & 10 & 11 \\
-      14 & 13 & 16 & 15 & 11 & 10 & 12 & 11 \\
-      13 & 14 & 15 & 16 & 10 & 11 & 11 & 12 \\
-      12 & 11 & 11 & 10 & 16 & 15 & 14 & 13 \\
-      11 & 12 & 10 & 11 & 15 & 16 & 13 & 14 \\
-      11 & 10 & 12 & 11 & 14 & 13 & 16 & 15 \\
-      10 & 11 & 11 & 12 & 13 & 14 & 15 & 16
-    \end{pmatrix}.
-  \]
-  Jadi, contoh ini memperlihatkan bahwa syarat cukup pada
-  \autoref{thm:syarat_cukup_subgrup_abelian} dapat diterapkan pada subgrup
-  abelian yang bukan siklik dan bukan Klein.
-\end{contoh}
-
-Kandidat terkuat agar permutasi di dalam satu subgrup abelian yang sama adalah jika kedua Latin square tersebut merupakan Latin square sirkulan. Dalam hal ini, seluruh permutasi penyusun kedua Latin square merupakan kekuatan dari suatu siklik generator yang sama. Oleh karena itu, seluruh permutasi penyusun kedua Latin square berada di dalam subgrup siklik yang sama. Dengan demikian, setiap pasangan Latin square sirkulan saling komutatif terhadap perkalian max-plus.
-
-\begin{akibat}\label{akibat:latin_square_sirkulan_komutatif}
-  Misalkan $A,B\in L_S(n)$ adalah Latin square sirkulan, maka $A\otimes B=B\otimes A$.
-\end{akibat}
-
-\begin{proof}
-  Berdasarkan \autoref{thm:komutatif_matriks_sirkulan} hal ini sudah terbukti, disisi lain karena $A$ dan $B$ merupakan Latin square sirkulan, maka seluruh permutasi penyusun $A$ dan $B$ merupakan kekuatan dari suatu siklik generator yang sama. Dengan demikian, seluruh permutasi penyusun $A$ dan $B$ berada di dalam subgrup siklik yang sama, yaitu $\langle \sigma_1^A\rangle=\langle \sigma_1^B\rangle$. Berdasarkan \autoref{thm:syarat_cukup_subgrup_abelian}, diperoleh $A\otimes B=B\otimes A$.
-\end{proof}
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 
 Berdasarkan \autoref{thm:perkalian_permutasi_menjaga_latin_square},
 konjugasi suatu Latin square oleh matriks permutasi max-plus tetap
@@ -793,12 +694,7 @@ komutativitas dua Latin square juga dipertahankan oleh konjugasi yang sama.
 \begin{proof}
   Berdasarkan \autoref{thm:perkalian_permutasi_menjaga_latin_square},
   $P_\rho^{-1}\otimes A\otimes P_\rho$ dan
-<<<<<<< HEAD
   $P_\rho^{-1}\otimes B\otimes P_\rho$ merupakan Latin square. Misalkan $A'=P_\rho^{-1}\otimes A\otimes P_\rho$ dan
-=======
-  $P_\rho^{-1}\otimes B\otimes P_\rho$ merupakan Latin square.\\
-  Misalkan $A'=P_\rho^{-1}\otimes A\otimes P_\rho$ dan
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
   $B'=P_\rho^{-1}\otimes B\otimes P_\rho$. Dengan menggunakan asosiativitas
   perkalian max-plus, diperoleh
   \begin{align}\label{eq:konjugasi_AB}
@@ -933,43 +829,18 @@ komutativitas dua Latin square juga dipertahankan oleh konjugasi yang sama.
   \autoref{akibat:konjugasi_menjaga_komutatif}.
 \end{contoh}
 
-<<<<<<< HEAD
 \subsection{Syarat Cukup Latin Square Max-Plus Saling Komutatif}
 Syarat perlu pada simbol maksimum hanya memberikan penyaring awal bagi pasangan Latin square yang mungkin komutatif. Selanjutnya diberikan suatu syarat cukup yang lebih kuat. Ide utamanya adalah sebagai berikut. Pada dekomposisi perkalian max-plus, setiap suku pada $A\otimes B$ memuat komposisi permutasi $\sigma_j^B\circ\sigma_i^A$, sedangkan suku yang bersesuaian pada $B\otimes A$ memuat komposisi $\sigma_i^A\circ\sigma_j^B$. Oleh karena itu, jika setiap permutasi penyusun $A$ komutatif dengan setiap permutasi penyusun $B$, maka setiap suku pada kedua hasil perkalian akan bersesuaian.
 
 Kondisi tersebut dapat dijamin apabila seluruh permutasi penyusun $A$ dan $B$ berada di dalam suatu subgrup abelian dari $S_n$. Hal ini menghasilkan syarat cukup berikut.
-\begin{teorema}\label{thm:syarat_cukup_subgrup_abelian}
+\begin{catatan}\label{thm:syarat_cukup_subgrup_abelian}
   Misalkan $A,B\in L_S(n)$ dengan dekomposisi
   $A=\bigoplus_{i=1}^{n} i\otimes P_{\sigma_i^A}$ dan
   $B=\bigoplus_{j=1}^{n} j\otimes P_{\sigma_j^B}$.
   Jika terdapat subgrup abelian $H\le S_n$ sedemikian sehingga
   $\sigma_i^A\in H$ dan $\sigma_j^B\in H$ untuk setiap $i,j\in \underline{n}$, maka
-  $A\otimes B=B\otimes A$.
-\end{teorema}
-
-\begin{proof}
-  Karena $H$ abelian, setiap dua elemen di dalam $H$ saling komutatif. Jadi, untuk setiap $i,j\in \underline{n}$ berlaku
-  \[
-    \sigma_j^B\circ\sigma_i^A
-    =
-    \sigma_i^A\circ\sigma_j^B.
-  \]
-  Berdasarkan dekomposisi perkalian Latin square max-plus, diperoleh
-  \[
-    A\otimes B
-    =
-    \bigoplus_{i,j\in \underline{n}}
-    (i+j)\otimes P_{\sigma_j^B\circ\sigma_i^A}
-    \quad
-    \text{dan}
-    \quad
-    B\otimes A
-    =
-    \bigoplus_{i,j\in \underline{n}}
-    (i+j)\otimes P_{\sigma_i^A\circ\sigma_j^B}.
-  \]
-  Karena $\sigma_j^B\circ\sigma_i^A=\sigma_i^A\circ\sigma_j^B$ untuk setiap $i,j\in \underline{n}$, maka setiap suku pada dekomposisi $A\otimes B$ bersesuaian dengan suku pada dekomposisi $B\otimes A$. Dengan demikian, $A\otimes B=B\otimes A$.
-\end{proof}
+  $A\otimes B=B\otimes A$. Hal ini dikarenakan setiap permutasi di dalam subgrup yang sama saling komutatif, sehingga pada setiap suku penjumlahan max-plus komposisi permutasi dari $A\otimes B$ sama dengan permutasi dari $B\otimes A$.
+\end{catatan}
 
 Syarat pada \autoref{thm:syarat_cukup_subgrup_abelian} dapat diperlemah.
 Tidak diperlukan bahwa permutasi-permutasi penyusun $A$ saling komutatif
@@ -1138,19 +1009,13 @@ satu subgrup abelian yang sama.
 
 Kandidat terkuat agar permutasi di dalam satu subgrup abelian yang sama adalah jika kedua Latin square tersebut merupakan Latin square sirkulan. Dalam hal ini, seluruh permutasi penyusun kedua Latin square merupakan kekuatan dari suatu siklik generator yang sama. Oleh karena itu, seluruh permutasi penyusun kedua Latin square berada di dalam subgrup siklik yang sama. Dengan demikian, setiap pasangan Latin square sirkulan saling komutatif terhadap perkalian max-plus.
 
-\begin{akibat}\label{akibat:latin_square_sirkulan_komutatif}
-  Misalkan $A,B\in L_S(n)$ adalah Latin square sirkulan, maka $A\otimes B=B\otimes A$.
-\end{akibat}
+\begin{catatan}\label{akibat:latin_square_sirkulan_komutatif}
+  Misalkan $A,B\in L_S(n)$ adalah Latin square sirkulan, maka $A\otimes B=B\otimes A$. Karena seluruh permutasi penyusun $A$ dan $B$ merupakan kekuatan dari suatu siklik generator yang sama, kedua Latin square tersebut berada dalam subgrup siklik yang sama sehingga saling komutatif.
+\end{catatan}
 
-\begin{proof}
-  Berdasarkan \autoref{thm:komutatif_matriks_sirkulan} hal ini sudah terbukti, disisi lain karena $A$ dan $B$ merupakan Latin square sirkulan, maka seluruh permutasi penyusun $A$ dan $B$ merupakan kekuatan dari suatu siklik generator yang sama. Dengan demikian, seluruh permutasi penyusun $A$ dan $B$ berada di dalam subgrup siklik yang sama, yaitu $\langle \sigma_1^A\rangle=\langle \sigma_1^B\rangle$. Berdasarkan \autoref{thm:syarat_cukup_subgrup_abelian}, diperoleh $A\otimes B=B\otimes A$.
-\end{proof}
-
-=======
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 \autoref{thm:komutatif_ldlp} dapat digunakan untuk membangun contoh Latin
 square komutatif pada ordo $3$. Idenya adalah menggeser simbol Latin square
-$\{1,2,3\}$ menjadi $\{-2,-1,0\}$, sehingga simbol maksimum menjadi $0$ dan
+$\underline{3}$ menjadi $\{-2,-1,0\}$, sehingga simbol maksimum menjadi $0$ dan
 semua entri di luar diagonal berada pada interval $[-2,-1]$, hal ini sesuai pada
 \autoref{def:matriks_ldlp}.
 
@@ -1235,11 +1100,7 @@ $\underline{n}$.
 
 \subsection{Syarat Perlu dan Cukup Latin Square Max-Plus Saling Komutatif}
 
-<<<<<<< HEAD
 Kesamaan komposisi permutasi untuk pasangan indeks dengan $x+y=v$ belum cukup untuk menjamin kesamaan entri hasil perkalian. Hal ini disebabkan karena pada aljabar max-plus, nilai suatu entri ditentukan oleh nilai maksimum dari seluruh kemungkinan penjumlahan yang muncul pada posisi tersebut. Dengan demikian, apabila suatu posisi matriks memperoleh nilai dari pasangan indeks dengan jumlah $v$, tetapi pada posisi yang sama terdapat pasangan indeks lain dengan jumlah lebih besar dari $v$, maka nilai akhir pada posisi tersebut ditentukan oleh jumlah yang lebih besar.
-=======
-Akan tetapi, kesamaan komposisi permutasi untuk pasangan indeks dengan $x+y=v$ belum cukup untuk menjamin kesamaan entri hasil perkalian. Hal ini disebabkan karena pada aljabar max-plus, nilai suatu entri ditentukan oleh nilai maksimum dari seluruh kemungkinan penjumlahan yang muncul pada posisi tersebut. Dengan demikian, apabila suatu posisi matriks memperoleh nilai dari pasangan indeks dengan jumlah $v$, tetapi pada posisi yang sama terdapat pasangan indeks lain dengan jumlah lebih besar dari $v$, maka nilai akhir pada posisi tersebut ditentukan oleh jumlah yang lebih besar.
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 
 Oleh karena itu, analisis tidak cukup dilakukan hanya dengan memperhatikan pasangan indeks yang memenuhi $x+y=v$. Untuk menentukan apakah suatu posisi matriks memiliki nilai sekurang-kurangnya $v$, perlu diperhatikan seluruh pasangan indeks yang memenuhi
 $
@@ -1258,14 +1119,14 @@ Dengan demikian, pembahasan selanjutnya diarahkan pada posisi-posisi entri matri
 \end{definisi}
 
 \begin{contoh}
-  Misalkan $n=3$ dan $\underline{3}=\{1,2,3\}$. Diberikan permutasi $\sigma=(1\;2\;3)\in S_3$, yaitu $\sigma(1)=2$, $\sigma(2)=3$, dan $\sigma(3)=1$. Berdasarkan \autoref{def:representasi_koordinat}, diperoleh
+  Misalkan $n=3$ dan $\underline{3}=\underline{3}$. Diberikan permutasi $\sigma=(1\;2\;3)\in S_3$, yaitu $\sigma(1)=2$, $\sigma(2)=3$, dan $\sigma(3)=1$. Berdasarkan \autoref{def:representasi_koordinat}, diperoleh
   \[
     \Gamma(\sigma)=\{(1,2),(2,3),(3,1)\}.
   \]
 \end{contoh}
 
 \begin{definisi}\label{def:himpunan_superlevel}
-  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $\underline{n}=\{1,2,\ldots,n\}$, dan misalkan $v\in\{n+1,n+2,\ldots,2n\}$. Himpunan superlevel dari hasil perkalian $A\otimes B$ pada level $v$, yang dinotasikan dengan $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai
+  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $\underline{n}=\underline{n}$, dan misalkan $v\in\{n+1,n+2,\ldots,2n\}$. Himpunan superlevel dari hasil perkalian $A\otimes B$ pada level $v$, yang dinotasikan dengan $\mathcal{U}_{\ge v}^{AB}$, didefinisikan sebagai
   \[
     \mathcal{U}_{\ge v}^{AB}
     =
@@ -1282,7 +1143,7 @@ Dengan demikian, pembahasan selanjutnya diarahkan pada posisi-posisi entri matri
 \end{definisi}
 
 \begin{contoh}
-  Misalkan $n=3$, sehingga $\underline{3}=\{1,2,3\}$, dan diberikan skalar pembanding $v=5$. Pasangan indeks $(x,y)\in\underline{3}\times\underline{3}$ yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$, dan $(3,3)$.
+  Misalkan $n=3$, sehingga $\underline{3}=\underline{3}$, dan diberikan skalar pembanding $v=5$. Pasangan indeks $(x,y)\in\underline{3}\times\underline{3}$ yang memenuhi $x+y\ge 5$ adalah $(2,3)$, $(3,2)$, dan $(3,3)$.
   Misalkan permutasi penyusun untuk $A$ dan $B$ diberikan oleh
   \[
     \sigma_1^A=(1),\quad
@@ -1360,7 +1221,7 @@ Dengan demikian, pembahasan selanjutnya diarahkan pada posisi-posisi entri matri
 \end{contoh}
 
 \begin{teorema}\label{thm:kriteria_komutatif_superlevel}
-  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $\underline{n}=\{1,2,\ldots,n\}$. Matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus
+  Misalkan $A,B\in L_S(n)$ dengan himpunan simbol $\underline{n}=\underline{n}$. Matriks $A$ dan $B$ saling komutatif terhadap perkalian max-plus
   jika dan hanya jika
   \[
     \mathcal{U}_{\ge v}^{AB}
@@ -1831,15 +1692,9 @@ Pada contoh pertama, permutasi simbol maksimum $\sigma_3^A$ merupakan sikel panj
           \]
 
     \item Selanjutnya pilih kandidat untuk simbol $2$. Ambil
-<<<<<<< HEAD
           $
             \sigma_2^B=(1\;2).
           $
-=======
-          \[
-            \sigma_2^B=(1\;2).
-          \]
->>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
           Permutasi ini menempatkan simbol $2$ pada posisi $(1,2)$, $(2,1)$,
           dan $(3,3)$, yang seluruhnya masih bernilai $\varepsilon$ pada
           $B^*$. Maka

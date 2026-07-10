@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% File `TA-ITS.cls' ini ditujukan untuk menulis laporan
-%%% Tugas Akhir (Skripsi) menggunakan LaTeX untuk program sarjana
+%%% File `Tesis-ITS.cls' ini ditujukan untuk menulis laporan
+%%% Tesis menggunakan LaTeX untuk program Magister
 %%% di Institut Teknologi Sepuluh Nopember, Surabaya.
 %%%
 %%% Komentar, saran, koreksi, modifikasi untuk file ini dipersilakan
@@ -32,9 +32,9 @@
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\ProvidesClass{file/TA-ITS}[12/12/2010 v1.01]
+\ProvidesClass{file/Tesis-ITS}[12/12/2010 v1.01]
 \NeedsTeXFormat{LaTeX2e}
-\LoadClass[a4paper,12pt,twoside,openright,final]{book}
+\LoadClass[a4paper,12pt,oneside,openright,final]{book}
 \RequirePackage[hmargin={3cm,2cm},vmargin={3cm,2.5cm}]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{amssymb,amsmath,amsthm,amsfonts,indentfirst,
@@ -48,15 +48,10 @@
     urlcolor={black}
 }
 \RequirePackage{float}
-\RequirePackage{algorithm}
-\RequirePackage{algpseudocode}
-\floatname{algorithm}{Algoritma}
-
 \RequirePackage{setspace}
 \RequirePackage{afterpage}
 \RequirePackage{xcolor}
 \RequirePackage{caption}
-\RequirePackage{enumitem}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 % \RequirePackage[nosectionbib]{apacite}
@@ -280,7 +275,7 @@
     % \fancyhf{}
     % \fancyfoot[R]{\thepage}
 }
-\definecolor{blue}{RGB}{0,103,172}
+\definecolor{blue}{RGB}{0,128,0}
 \renewcommand{\baselinestretch}{1}
 \newcommand*{\changepagecolor}{%
   \@ifnextchar[\@changepagecolor@i\@changepagecolor@ii
@@ -339,7 +334,7 @@
     \vspace{10mm}
     \setstretch{1.5}\noindent
     \textsf{
-    {\fontsize{14}{2}\selectfont{\textbf{TUGAS AKHIR~ - ~SM234801}}}\\
+    {\fontsize{14}{2}\selectfont{\textbf{TESIS~ - ~SM235401}}}\\
     \vspace{2cm}
     {\fontsize{18}{2}\selectfont{\textbf{\MakeUppercase{\@judul}}}}\\
     \vspace{3cm}
@@ -356,7 +351,7 @@
             NIP \@NIPpbbdua\\
         }
     \vspace{1.0cm}
-    \textbf{Program Studi Sarjana}\\
+    \textbf{Program Studi Magister}\\
     Departemen~\@jur\\
     Fakultas~\@fak\\
     Institut Teknologi Sepuluh Nopember\\
@@ -378,7 +373,7 @@
     {\color{blue}\makebox[\textwidth]{\rule{200cm}{10mm}}}\\ 
     \vspace{10mm}\setstretch{1.5}\noindent
     \textsf{
-    {\fontsize{14}{2}\selectfont{\textbf{TUGAS AKHIR~ - ~SM234801}}}\\
+    {\fontsize{14}{2}\selectfont{\textbf{PROPOSAL TESIS~ - ~SM235401}}}\\
     \vspace{2cm}
     {\fontsize{18}{2}\selectfont{\textbf{\MakeUppercase{\@judul}}}}\\
     \vspace{2cm}
@@ -395,7 +390,7 @@
             NIP \@NIPpbbdua\\
         }
     \vspace{1.0cm}
-    \textbf{Program Sarjana}\\
+    \textbf{Program Magister}\\
     Departemen~\@jur\\
     Fakultas~\@fak\\
     Institut Teknologi Sepuluh Nopember\\
@@ -415,7 +410,7 @@
     {\color{blue}\makebox[\textwidth]{\rule{200cm}{10mm}}}\\
     \vspace{10mm}\setstretch{1.5}\noindent
     \textsf{
-    {\fontsize{14}{2}\selectfont{\textbf{FINAL PROJECT ~ - ~SM234801}}}\\
+    {\fontsize{14}{2}\selectfont{\textbf{FINAL PROJECT PROPOSAL~ - ~SM235401}}}\\
     \vspace{2cm}
     {\fontsize{18}{2}\selectfont{\textbf{\MakeUppercase{\@juduleng}}}}\\
     \vspace{2cm}
@@ -452,12 +447,12 @@
 \begin{center}
 {\fontsize{14}{2}\selectfont{\textbf{LEMBAR PENGESAHAN}}}\vspace{1cm}\\
 \textbf{\@judul}\vspace{0.75cm}\\
-\textbf{TUGAS AKHIR}\vspace{0.25cm}\\
-Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika pada\\ Program Studi S-1 Matematika\\Departemen \@jur\\Fakultas \@fak\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
+\textbf{PROPOSAL TESIS}\vspace{0.25cm}\\
+Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Magister Matematika pada\\ Program Studi S-1 Matematika\\Departemen \@jur\\Fakultas \@fak\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
         Oleh: \textbf{\@nama}\\
         NRP.~\@NRP\vspace{0.5cm}\\
        	Surabaya, \@bulan~\@thn\\
-       	Disetujui oleh Tim Penguji Tugas Akhir:\\
+       	Disetujui oleh Tim Penguji Proposal Tesis:\\
        \vspace{0.5cm}
       \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
         {
@@ -493,7 +488,7 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
     \begin{flushright}
     \begin{tabular}{c}
     Mengetahui                        \\
-    Kepala Prodi Sarjana Matematika      \\
+    Kepala Prodi Magister Matematika      \\
     Fakultas Sains dan Analitika Data \vspace{2cm}\\
     \underline{\@kadep}                   \\
     NIP. \@NIPkadep                       
@@ -503,7 +498,7 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
 \addcontentsline{toc}{chapter}{LEMBAR PENGESAHAN}
 }
 
-%% Lembar Pengesahan 
+%% Lembar Pengesahan Proposal
 \newcommand\LembarPengesahanProposal{%
 \cleardoublepage
 \setcounter{page}{1}
@@ -515,8 +510,8 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
 {\fontsize{14}{2}\selectfont{\textbf{LEMBAR PENGESAHAN}}}\vspace{1cm}\\
 \textbf{\@judul}\vspace{0.75cm}\\
 \textbf{\textit{\@juduleng}}\vspace{0.75cm}\\
-\textbf{TUGAS AKHIR}\vspace{0.25cm}\\
-Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika pada\\ Program Studi S-1 Matematika\\Departemen \@jur\\Fakultas \@fak\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
+\textbf{PROPOSAL TESIS}\vspace{0.25cm}\\
+Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Magister Matematika pada\\ Program Studi S-1 Matematika\\Departemen \@jur\\Fakultas \@fak\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
         Oleh: \textbf{\@nama}\\
         NRP.~\@NRP\vspace{0.5cm}\\
        \vspace{0.3cm}
@@ -540,7 +535,7 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
     \begin{center}
     \begin{tabular}{c}
     Mengetahui,                        \\
-    Kepala Prodi Sarjana Matematika FSAD-ITS  \vspace{2.5cm}\\
+    Kepala Prodi Magister Matematika FSAD-ITS  \vspace{2.5cm}\\
     \underline{\@kadep}                   \\
     NIP. \@NIPkadep                     
     \end{tabular} \vspace{1cm}\\
@@ -557,14 +552,14 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
     \end{center}\vspace{1.5cm}
     \noindent
     Yang bertanda tangan disini:\vspace{1cm}\\
-    \begin{tabular}{lcp{0.49\paperwidth}}
+    \begin{tabular}{lcl}
         Nama Mahasiswa / NRP &:& \@namaa~/ \@NRP\vspace{0.15cm}\\
         Departemen &:& \@jur\vspace{0.15cm}\\
         \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
               {Dosen Pembimbing / NIP &:& \@pbbsatu~/ \@NIPpbbsatu\\}
               {Dosen Pembimbing / NIP &:& 1.~ \@pbbsatu~/ \@NIPpbbsatu\\&& 2.~ \@pbbdua~/ \@NIPpbbdua\\}
     \end{tabular}\vspace{1cm}\\
- dengan ini menyatakan bahwa Tugas Akhir dengan judul “\@judul” adalah hasil karya sendiri, bersifat orisinal, dan ditulis dengan mengikuti kaidah penulisan ilmiah.\\\\
+ dengan ini menyatakan bahwa Tesis dengan judul “\@judul” adalah hasil karya sendiri, bersifat orisinal, dan ditulis dengan mengikuti kaidah penulisan ilmiah.\\\\
 Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka saya bersedia menerima sanksi sesuai dengan ketentuan yang berlaku di Institut Teknologi Sepuluh Nopember.\\ \vspace{1cm}
     \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
       {\begin{flushleft}
@@ -973,27 +968,6 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
 \sloppy
 
 \newcommand{\kb}[1]{\left(#1\right)}
-
-%%%----------------- PENYESUAIAN ALGORITHM ---------------------------
-\renewenvironment{algorithm}
-  {%
-   \begin{center}
-     \refstepcounter{algorithm}%
-     \hrule height.8pt depth0pt \kern2pt
-     \renewcommand{\caption}[2][\relax]{%
-       {\raggedright\textbf{\ALG@name~\thealgorithm.} ##2\par}%
-       \ifx\relax##1\relax
-         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
-       \else
-         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
-       \fi
-       \kern2pt\hrule\kern2pt
-     }%
-  }
-  {%
-     \kern2pt\hrule\relax
-   \end{center}
-  }
 %%
 %% end of file `TA-ITS.cls'.
 
