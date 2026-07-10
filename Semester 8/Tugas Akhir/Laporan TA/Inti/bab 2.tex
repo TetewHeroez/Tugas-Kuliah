@@ -262,26 +262,41 @@ Secara ekuivalen, \eqref{eq:orbit_stabilizer} dapat dituliskan sebagai $|G|=|O_a
 
 \subsection{Produk Semidirek}
 
+<<<<<<< HEAD
 \begin{definisi}[\cite{dummit2004abstract}]\label{def:produk_semidirek}
+=======
+\begin{definisi}[\cite{subiono2022aljabar}]\label{def:produk_semidirek}
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
   Misalkan $N$ dan $H$ adalah grup, dan misalkan terdapat homomorfisma
   \begin{align}\label{eq:aksi_semidirek_ke_automorfisma}
     \theta:H\to \operatorname{Aut}(N).
   \end{align}
   Produk semidirek dari $N$ oleh $H$ terhadap $\theta$, dinotasikan dengan
+<<<<<<< HEAD
   $
     N\rtimes_\theta H,
   $
+=======
+  \[
+    N\rtimes_\theta H,
+  \]
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
   adalah himpunan $N\times H$ yang dilengkapi operasi
   \begin{align}\label{eq:operasi_produk_semidirek}
     (n_1,h_1)(n_2,h_2)
     =
+<<<<<<< HEAD
     (n_1\theta_{h_1}(n_2),h_1h_2),
+=======
+    \bigl(n_1\theta(h_1)(n_2),h_1h_2\bigr),
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
   \end{align}
   untuk setiap $(n_1,h_1),(n_2,h_2)\in N\times H$.
 \end{definisi}
 
 Pada \autoref{def:produk_semidirek}, grup $H$ bertindak pada $N$ melalui automorfisma sebagaimana dinyatakan pada \eqref{eq:aksi_semidirek_ke_automorfisma}. Oleh karena itu, operasi pada produk semidirek tidak hanya mengalikan komponen pertama dan kedua secara terpisah, tetapi juga melibatkan aksi elemen $h_1$ terhadap elemen $n_2$, sebagaimana terlihat pada \eqref{eq:operasi_produk_semidirek}.
 
+<<<<<<< HEAD
 Selain dari definisi di atas, suatu grup dapat dikenali sebagai produk semidirek dari dua subgrupnya apabila memenuhi kriteria tertentu. Teorema berikut memberikan syarat cukup bagi sebuah grup agar dapat dipandang sebagai produk semidirek secara internal.
 
 \begin{teorema}[\cite{dummit2004abstract}]\label{thm:pengenalan_produk_semidirek}
@@ -297,6 +312,8 @@ Selain dari definisi di atas, suatu grup dapat dikenali sebagai produk semidirek
   Tinjau grup simetri $S_3$. Grup $S_3$ memiliki subgrup normal $H = A_3 = \{(1), (1\;2\;3), (1\;3\;2)\} \cong \mathbb{Z}_3$ dan subgrup $K = \{(1), (1\;2)\} \cong \mathbb{Z}_2$. Karena $H \unlhd S_3$ dan perpotongan $H \cap K = \{(1)\}$, serta $S_3 = HK$, maka menurut \autoref{thm:pengenalan_produk_semidirek}, $S_3$ merupakan produk semidirek dari $H$ dan $K$. Dengan kata lain, $S_3 \cong \mathbb{Z}_3 \rtimes \mathbb{Z}_2$.
 \end{contoh}
 
+=======
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 \subsection{Konjugasi dan \emph{Centralizer}}
 
 Konsep tindakan grup dapat diterapkan pada grup itu sendiri. Salah satu tindakan yang penting adalah tindakan konjugasi, yaitu tindakan $G$ pada dirinya sendiri yang didefinisikan oleh
@@ -763,7 +780,11 @@ Aksi pada \eqref{eq:aksi_Sak_pada_Zkak} merupakan automorfisma pada $\mathbb{Z}_
 \]
 
 \begin{teorema}[{\cite{dummit2004abstract}}]\label{thm:struktur_centralizer}
+<<<<<<< HEAD
   Misalkan $\sigma\in S_n$ memiliki $a_k$ sikel berpanjang $k$ untuk setiap $k=1,2,\ldots,n$, maka
+=======
+  Misalkan $\sigma\in S_n$ memiliki $a_k$ sikel berpanjang $k$ untuk setiap $k=1,2,\ldots,n$. Maka centralizer dari $\sigma$ di $S_n$ isomorfik dengan
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
   \begin{align}\label{eq:struktur_centralizer_semidirek}
     C_{S_n}(\sigma)
     \cong
@@ -832,7 +853,11 @@ Dengan struktur isomorfik dari \emph{centralizer} yang telah diperoleh dari \aut
 \end{proof}
 
 \begin{contoh}
+<<<<<<< HEAD
   Diberikan permutasi $\sigma = (1\; 2\; 3\; 4)(5\; 6\; 7)(8)(9)\in S_9$. Kita akan mencari \emph{centralizer} $C_{S_9}(\sigma)$ dengan mengevaluasi syarat komutatif $\tau \sigma = \sigma \tau$, yang ekuivalen dengan $\tau \sigma \tau^{-1} = \sigma$.\\
+=======
+  Diberikan permutasi $\sigma \in S_9$ dengan dekomposisi sikel utuh $\sigma = (1\;\; 2\;\; 3\;\; 4)(5\;\; 6\;\; 7)(8)(9)$. Kita akan mencari \emph{centralizer} $C_{S_9}(\sigma)$ dengan mengevaluasi syarat komutatif $\tau \sigma = \sigma \tau$, yang ekuivalen dengan $\tau \sigma \tau^{-1} = \sigma$.\\
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
   Berdasarkan \autoref{prop:konjugasi_sikel_Sn}, hasil dari konjugasi $\tau \sigma \tau^{-1}$ diperoleh dengan mensubstitusikan pemetaan $\tau$ ke dalam setiap elemen di dekomposisi sikel $\sigma$. Persamaan komutatif tersebut berubah menjadi:
   \[
     (\tau(1)\;\; \tau(2)\;\; \tau(3)\;\; \tau(4))(\tau(5)\;\; \tau(6)\;\; \tau(7))(\tau(8))(\tau(9)) = (1\;\; 2\;\; 3\;\; 4)(5\;\; 6\;\; 7)(8)(9).
@@ -1002,7 +1027,11 @@ Tabel berikut menunjukkan jumlah \textit{Latin square} untuk ordo $n$ dari 1 hin
   \end{tabular}
 \end{table}
 
+<<<<<<< HEAD
 Berikut merupakan sebuah proposisi penting mengenai dekomposisi \textit{Latin square} dalam bentuk matriks permutasi max-plus yang berlaku untuk setiap ordo $n$.
+=======
+Berikut merupakan sebuah proposisi penting mengenai dekomposisi \textit{Latin square} dalam bentuk matriks permutasi max-plus yang dimana berlaku untuk setiap ordo $n$.
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 
 \begin{proposisi}\label{prop:dekomposisi_latin_square}
   Misalkan $A \in L_S(n)$ dengan himpunan simbol

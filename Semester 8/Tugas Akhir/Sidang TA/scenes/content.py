@@ -58,16 +58,12 @@ def bikin_bab(judul, warna, video_path=None):
         # Grouping: Konten (belakang) -> Frame (depan) -> Judul
         return Group(content_obj, frame, t_judul)
 
-b1 = bikin_bab("Pendahuluan", BLUE, "vid/bab1.mp4")
+b1 = bikin_bab("Pendahuluan", BLUE,"vid/bab1.mp4")
 b2 = bikin_bab("Tinjauan Pustaka", TEAL, "vid/bab2.mp4")
 b3 = bikin_bab("Metodologi", GREEN, "vid/bab3.mp4")
-b4 = bikin_bab("Pembahasan", ORANGE, "vid/bab4.mp4")
-b5 = bikin_bab("Kesimpulan & Saran", MAROON_B, "vid/bab5.mp4")
-bab = [b1, b2, b3, b4, b5]
+bab = [b1, b2, b3]
 
-baris_atas = Group(b1, b2, b3).arrange(RIGHT, buff=1.0)
-baris_bawah = Group(b4, b5).arrange(RIGHT, buff=1.0)
-grup_utama = Group(baris_atas, baris_bawah).arrange(DOWN, buff=1.0)
+grup_utama = Group(b1, b2, b3).arrange(RIGHT, buff=1.0)
 
 bg_baru = Rectangle(
   width=config.frame_width *3, # Lebihin dikit biar aman

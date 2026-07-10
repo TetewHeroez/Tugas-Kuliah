@@ -71,12 +71,12 @@ def tujuan_manfaat(s):
     list_rumusan = [
         r"1. Apa saja syarat perlu untuk dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$?",
         r"2. Apa saja syarat cukup untuk dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$?",
-        r"3. Bagaimana cara mengonstruksi Latin square $B \in L_S(n)$ sehingga $A \otimes B = B \otimes A$ untuk suatu Latin square $A \in L_S(n)$?"
+        r"3. Bagaimana cara membangun pasangan Latin square komutatif dari $L_S(n)$?"
     ]
     list_tujuan = [
         r"1. Menentukan syarat perlu bagi dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$.",
         r"2. Menentukan syarat cukup bagi dua Latin square $A, B \in \mathbb{R}_{\max}^{n \times n}$ agar komutatif terhadap operasi $\otimes$.",
-        r"3. Merumuskan prosedur untuk mengonstruksi Latin square $B \in L_S(n)$ sehingga $A \otimes B = B \otimes A$ untuk suatu Latin square $A \in L_S(n)$."
+        r"3. Membangun pasangan Latin square komutatif dari $L_S(n)$."
     ]
     
     section_rumusan = buat_section("Rumusan Masalah", list_rumusan)
@@ -220,10 +220,7 @@ def stickel_protocol(s):
             buff=0.2, 
             stroke_width=2
         )
-    judul_tropikal = Text("Protokol Tropikal (Sergeev, 2024)", font_size=48, color=BLACK)
-    judul_tropikal.match_height(target_teks)
-    if judul_tropikal.width > algoritma_tropikal.width * 0.8:
-        judul_tropikal.set_width(algoritma_tropikal.width * 0.8)
+    judul_tropikal = Tex("Protokol Tropikal (Sergeev, 2024)", font_size=target_teks.font_size, color=BLACK)
     judul_tropikal.move_to(algoritma_tropikal.get_top()+UP)
     judul_tropikal_bg = SurroundingRectangle(
             judul_tropikal,

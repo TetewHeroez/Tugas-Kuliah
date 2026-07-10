@@ -82,10 +82,13 @@ media/
 slides/
 *.mp4
 *.svg
+<<<<<<< HEAD
 !Sidang TA/assets/*.svg
 !Sidang TA/index_assets/*.mp4
 !Sidang TA/vid/*.mp4
 !Seminar Proposal/assets/*.svg
+=======
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 
 # Manim caches
 partial_movie_files/
@@ -94,6 +97,11 @@ partial_movie_files/
 Eksperimen/Koding/latin_square_commutative_pairs_order_5.tex
 Eksperimen/Koding/main_order_5.pdf
 Pameran TA/
+<<<<<<< HEAD
+Sidang TA/
+Seminar Proposal/
+=======
+>>>>>>> 8cb166b2149ae3c49cedbced9789e3c048be05f5
 @REM *.ipynb
 
 .env
