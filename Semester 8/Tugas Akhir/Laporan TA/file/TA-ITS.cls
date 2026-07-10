@@ -450,6 +450,9 @@
     \fancyfoot[R]{\thepage}
     \setstretch{1}
 \begin{center}
+  \tikz[remember picture,overlay] 
+    \node[opacity=1,inner sep=0pt] at (current page.center)
+        {\includegraphics[width=\paperwidth,height=\paperheight]{foto/wm_pengesahan}};
 {\fontsize{14}{2}\selectfont{\textbf{LEMBAR PENGESAHAN}}}\vspace{1cm}\\
 \textbf{\@judul}\vspace{0.75cm}\\
 \textbf{TUGAS AKHIR}\vspace{0.25cm}\\
@@ -512,6 +515,9 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
     \fancyfoot[R]{\thepage}
     \setstretch{1}
 \begin{center}
+\tikz[remember picture,overlay] 
+    \node[opacity=1,inner sep=0pt] at (current page.center)
+        {\includegraphics[width=\paperwidth,height=\paperheight]{foto/wm_pengesahan}};
 {\fontsize{14}{2}\selectfont{\textbf{LEMBAR PENGESAHAN}}}\vspace{1cm}\\
 \textbf{\@judul}\vspace{0.75cm}\\
 \textbf{\textit{\@juduleng}}\vspace{0.75cm}\\
