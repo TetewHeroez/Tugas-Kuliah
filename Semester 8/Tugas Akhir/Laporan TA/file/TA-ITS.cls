@@ -648,7 +648,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
   \par}{\normalfont\normalsize
   }
 
-\newcommand\LembarAbstract{
+\newcommand\LembarAbstract[1]{
 \cleardoublepage
 \begin{center}
         {\fontsize{14}{2}\selectfont{\textbf{ABSTRACT}}}\vspace{1.5cm}\\
@@ -667,7 +667,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
   \addcontentsline{toc}{chapter}{ABSTRACT}
   \textbf{Abstract}
   
-  \input{Inti/abstrakeng}
+  \input{#1}
   \setstretch{1}
   \par}{\normalfont\normalsize
 }
@@ -715,15 +715,33 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
   \setstretch{1}
   \par}{\normalfont\normalsize
 }
-\newcommand{\KataPengantar}{%-----------------
+\newcommand{\KataPengantar}[1]{%-----------------
     \cleardoublepage
     \centerline{\large\bfseries KATA PENGANTAR}
     \addcontentsline{toc}{chapter}{KATA PENGANTAR}\vspace{1.5cm}
+    Puji syukur saya haturkan kehadirat Allah Swt. karena berkat rahmat dan anugerah-Nya penulis dapat menyelesaikan Tugas Akhir dengan judul \textbf{\@judul}. Tugas Akhir ini disusun guna memenuhi salah satu persyaratan akademik untuk menyelesaikan Program Studi Sarjana di Departemen Matematika, Fakultas Sains dan Analitika Data, Institut Teknologi Sepuluh Nopember.
+
+\input{#1}
+\begin{flushright}
+  Surabaya, \@bulan~\@thn
+
+  \vspace{2cm}
+  \@namaa
+\end{flushright}
 }
-\newcommand{\UcapanTerimaKasih}{%-----------------
+\newcommand{\UcapanTerimaKasih}[1]{%-----------------
 	\cleardoublepage
 	\centerline{\large\bfseries UCAPAN TERIMA KASIH}
 	\addcontentsline{toc}{chapter}{UCAPAN TERIMA KASIH}\vspace{1.5cm}
+  Selama proses pengerjaan penelitian Tugas Akhir ini, penulis sadar bahwa seluruh tahapan tidak dapat diselesaikan seorang diri. Dengan hati yang tulus, penulis menyampaikan apresiasi dan ucapan terima kasih kepada seluruh pihak yang telah memberikan dukungan, bimbingan, dan semangat selama pelaksanaan penelitian Tugas Akhir ini. Maka dari itu, penulis secara khusus menyampaikan rasa terima kasih kepada:
+
+  \input{#1}
+\begin{flushright}
+  Surabaya, \@bulan~\@thn
+
+  \vspace{2cm}
+  \@namaa
+\end{flushright}
 }
 \newcommand{\DaftarIsi}{%---------------------
     \cleardoublepage
@@ -961,6 +979,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
   \newsavebox{\foto}
   \savebox{\foto}[4cm][b]{\includegraphics[width=4cm,height=6cm]{#1}}
   \parpic(4cm,6cm){\usebox\foto}
+  
 }
 
 %%%------------- PENYESUAIAN ISTILAH ---------------------------
