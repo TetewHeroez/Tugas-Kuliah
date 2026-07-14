@@ -129,8 +129,6 @@
    \renewcommand\@thnajr{#1}
 }
 
-
-
 \newcommand\@pbbsatu{Nama Pembimbing Pertama}
 \newcommand\@pbbdua{Nama Pembimbing Kedua}
 \DeclareRobustCommand\Pembimbing[2]{%
@@ -157,6 +155,46 @@
   \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}{}{, \@pbbdua}%
 }
 
+\newcommand\@periodewisuda{134}
+\DeclareRobustCommand\PeriodeWisuda[1]{%
+   \renewcommand\@periodewisuda{#1}
+}
+
+\newcommand\@tahunwisuda{2026}
+\DeclareRobustCommand\TahunWisuda[1]{%
+   \renewcommand\@tahunwisuda{#1}
+}
+
+\newcommand\@kaprodi{Dr. Tahiyatul Asfihani, S.Si., M.Si}
+\DeclareRobustCommand\Kaprodi[1]{%
+   \renewcommand\@kaprodi{#1}
+}
+
+\newcommand\@NIPkaprodi{19870728 201404 2 001}
+\DeclareRobustCommand\NIPKaprodi[1]{%
+   \renewcommand\@NIPkaprodi{#1}
+}
+
+\newcommand\@petugasruangbaca{Djoko Priatin}
+\DeclareRobustCommand\PetugasRBM[1]{%
+   \renewcommand\@petugasruangbaca{#1}
+}
+
+\newcommand\@NPPruangbaca{197201012002121003}
+\DeclareRobustCommand\NPPrbm[1]{%
+   \renewcommand\@NPPruangbaca{#1}
+}
+
+\newcommand\@petugasperpus{}
+\DeclareRobustCommand\PetugasPerpustakaan[1]{%
+   \renewcommand\@petugasperpus{#1}
+}
+
+\newcommand\@NIPpetugasperpus{}
+\DeclareRobustCommand\NIPPetugasPerpustakaan[1]{%
+   \renewcommand\@NIPpetugasperpus{#1}
+}
+
 % ======================================
 %  Mesin pemotong nama → inisial
 % ======================================
@@ -173,6 +211,114 @@
         \MakeUppercase{#1}.%
         \process@initials#2 \relax
     \fi
+}
+
+\newcommand{\FormBukuLembarPembimbing}{
+\newgeometry{left=2.5cm, right=2.5cm, top=1.4cm, bottom=1.5cm}
+\thispagestyle{empty}
+\parindent0pt
+{\fontfamily{ptm}\selectfont
+
+\begin{center}
+{\fontfamily{ptm}\fontsize{20pt}{22pt}\selectfont\textbf{TANDA TERIMA}}
+\end{center}
+
+\vspace{0.6cm}
+
+Kami yang bertanda tangan di bawah ini masing-masing telah menerima sebuah buku\\
+laporan Tugas Akhir Periode Wisuda \@periodewisuda\ tahun \@tahunwisuda\ dari :
+
+\vspace{0.6cm}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}p{1.8cm}p{0.4cm}p{11.5cm}@{}}
+\textbf{NAMA} & : & \@nama \\
+\textbf{NRP} & : & \@NRP \\
+\textbf{Judul TA} & : & \@judul \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vfill
+
+\begin{center}
+\ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
+{
+\begin{tabular}{c}
+\textbf{PEMBIMBING}\vspace{2.1cm}\\
+\underline{\textbf{\@pbbsatu}}\\
+NIP. \@NIPpbbsatu
+\end{tabular}
+}
+{
+\begin{tabular}{>{\centering\arraybackslash}p{0.42\textwidth}>{\centering\arraybackslash}p{0.42\textwidth}}
+\textbf{PEMBIMBING 1}\vspace{2.1cm} & \textbf{PEMBIMBING 2}\vspace{2.1cm}\\
+\underline{\textbf{\@pbbsatu}} & \underline{\textbf{\@pbbdua}}\\
+NIP. \@NIPpbbsatu & NIP. \@NIPpbbdua
+\end{tabular}
+}
+\end{center}
+
+\vfill
+
+\begin{center}
+\textbf{RUANG BACA Departemen \@jur\space FSAD-ITS}\\[1.6cm]
+\underline{\textbf{\@petugasruangbaca}}\\
+NPP. \@NPPruangbaca
+\end{center}
+
+\vfill
+
+\begin{center}
+\textbf{PERPUSTAKAAN PUSAT ITS}\\[2cm]
+\ifthenelse{\equal{\@petugasperpus}{}\OR\equal{\@petugasperpus}{ }}
+{(........................................)}%
+{\underline{\textbf{\@petugasperpus}}}\\
+NIP. \ifthenelse{\equal{\@NIPpetugasperpus}{}\OR\equal{\@NIPpetugasperpus}{ }}{........................................}{\@NIPpetugasperpus}
+\end{center}
+
+\vfill
+
+Catatan : Form ini diserahkan kembali ke Kepala Program Studi Sarjana Matematika
+}
+}
+
+\newcommand{\FormBukuLembarKaprodi}{
+\newgeometry{left=2.5cm, right=2.5cm, top=1.4cm, bottom=1.5cm}
+\thispagestyle{empty}
+\parindent0pt
+{\fontfamily{ptm}\selectfont
+
+\begin{center}
+{\fontfamily{ptm}\fontsize{20pt}{22pt}\selectfont\textbf{TANDA TERIMA}}
+\end{center}
+
+\vspace{0.6cm}
+
+Saya yang bertanda tangan di bawah ini telah menerima sebuah buku laporan Tugas\\
+Akhir Periode Wisuda \@periodewisuda\ tahun \@tahunwisuda\ dari :
+
+\vspace{0.6cm}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}p{1.8cm}p{0.4cm}p{11.5cm}@{}}
+\textbf{NAMA} & : & \@nama \\
+\textbf{NRP} & : & \@NRP \\
+\textbf{Judul TA} & : & \@judul \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vfill
+
+\begin{center}
+\textbf{Kepala Program Studi Sarjana \@jur\space FSAD-ITS}\\[2.5cm]
+\underline{\textbf{\@kaprodi}}\\
+NIP. \@NIPkaprodi
+\end{center}
+
+\vfill
+
+Catatan : Form ini diserahkan kembali ke Kepala Program Studi Sarjana Matematika
+}
 }
 
 \newcommand{\FormSempro}{
