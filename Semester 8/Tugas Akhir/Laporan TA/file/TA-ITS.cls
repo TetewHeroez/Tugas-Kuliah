@@ -249,6 +249,16 @@
    \renewcommand\@kadep{#1}
 }
 
+\newcommand\@NIPkaprodi{19870728 201404 2 001}
+\DeclareRobustCommand\NIPKaprodi[1]{%
+   \renewcommand\@NIPkaprodi{#1}
+}
+
+\newcommand\@kaprodi{Nama Kepala Program Studi}
+\DeclareRobustCommand\Kaprodi[1]{%
+   \renewcommand\@kaprodi{#1}
+}
+
 \newcommand\@singfak{FSAD}
 \DeclareRobustCommand\SingkatanFakultas[1]{%
    \renewcommand\@singfak{#1}
@@ -496,7 +506,7 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
     \begin{flushright}
     \begin{tabular}{c}
     Mengetahui                        \\
-    Kepala Prodi Sarjana Matematika      \\
+    Kepala Departemen Matematika      \\
     Fakultas Sains dan Analitika Data \vspace{2cm}\\
     \underline{\@kadep}                   \\
     NIP. \@NIPkadep                       
@@ -547,8 +557,8 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
     \begin{tabular}{c}
     Mengetahui,                        \\
     Kepala Prodi Sarjana Matematika FSAD-ITS  \vspace{2.5cm}\\
-    \underline{\@kadep}                   \\
-    NIP. \@NIPkadep                     
+    \underline{\@kaprodi}                   \\
+    NIP. \@NIPkaprodi                     
     \end{tabular} \vspace{1cm}\\
     Surabaya, \\ \@bulan~\@thn\\
     \end{center}
