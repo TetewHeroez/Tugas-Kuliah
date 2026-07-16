@@ -631,7 +631,6 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
 
 \newcommand\LembarAbstrak[1]{
 \cleardoublepage
-\setcounter{page}{2}
     \pagestyle{fancy}
     \fancyhf{}
     \fancyfoot[R]{\thepage}
