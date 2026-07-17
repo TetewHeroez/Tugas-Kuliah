@@ -697,6 +697,138 @@ Beri tanda cek list ($\checkmark$) pada kotak yang disediakan
 
 }
 
+\newcommand{\POMITSKotak}{\makebox[1.8em][c]{$\square$}}
+
+\newcommand{\POMITSPenelaah}[2]{%
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}p{0.4\textwidth}p{0.26\textwidth}@{}}
+\centering #1 & \centering \textcolor{titlegray}{} \tabularnewline[-0.15em]
+\centering \rule{0.84\linewidth}{0.4pt} & \centering \rule{0.82\linewidth}{0.4pt} \tabularnewline[-0.05em]
+\centering #2 &
+\end{tabular*}\par
+}
+
+\newcommand{\FormPOMITS}{
+\newgeometry{left=1.5cm, right=1.5cm, top=1cm, bottom=1cm}
+\thispagestyle{empty}
+\parindent0pt
+{\fontfamily{ptm}\selectfont
+
+\begin{center}
+{\fontsize{14pt}{16pt}\selectfont\textbf{FORMULIR TELAAH DAN PERSETUJUAN PUBLIKASI ARTIKEL POMITS}}\\
+{\fontsize{14pt}{16pt}\selectfont\textbf{OLEH PEMBIMBING}}
+\end{center}
+
+\vspace{0.7cm}
+
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}p{1.4cm}p{0.35cm}p{13cm}@{}}
+\textbf{Nama} & : & \@nama \\
+\textbf{NRP} & : & \@NRP \\
+\textbf{Judul} & : & \@judul \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vspace{0.55cm}
+
+\textbf{Petunjuk Review:}
+
+\vspace{0.2cm}
+
+\textit{Telaah artikel yang ada dan berikan tanda silang pada kotak yang tersedia dan isilah titik-titik yang sudah tersedia sesuai dengan hasil telaah.}
+
+\vspace{0.2cm}
+
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}p{0.55cm}p{11cm}cc@{}}
+\textbf{A.} & \textbf{Gaya dan Penataan} (berilah tanda silang pada kotak yang tersedia) & \textbf{Ya} & \textbf{Tidak} \\
+1. & Apakah judul sudah sesuai dengan isi artikel? & \POMITSKotak & \POMITSKotak \\
+2. & Apakah abstrak sudah memberikan pokok-pokok penting? & \POMITSKotak & \POMITSKotak \\
+3. & Apakah metodologi yang digunakan sesuai? & \POMITSKotak & \POMITSKotak \\
+4. & Apakah data yang ditampilkan benar dan akurat? & \POMITSKotak & \POMITSKotak \\
+5. & Apakah tabel dan gambar sesuai dengan kebutuhan? & \POMITSKotak & \POMITSKotak \\
+6. & Apakah keterangan tabel dan gambar sudah sesuai? & \POMITSKotak & \POMITSKotak \\
+7. & Apakah kesimpulan sudah lengkap dan jelas? & \POMITSKotak & \POMITSKotak \\
+8. & Apakah pustaka yang digunakan terbaru dan mendukung? & \POMITSKotak & \POMITSKotak \\
+9. & Apakah artikel ditulis dengan lugas dan jelas? & \POMITSKotak & \POMITSKotak \\
+10. & Apakah penulisan sudah sesuai dengan gaya selingkung jurnal? & \POMITSKotak & \POMITSKotak \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vspace{0.45cm}
+
+\noindent
+\begin{tabular}{|p{0.45\textwidth}|p{0.55\textwidth}|}
+\hline
+\textbf{B. Kualitas Penilaian Artikel} & \textbf{C. Rekomendasi} \\
+\hline
+\begin{minipage}[t]{\linewidth}
+\raggedright\small
+\vspace{0.1cm}
+\textbf{Ya}\hspace{1.2em}\textbf{Tidak}
+
+\vspace{0.15cm}
+
+\begin{tabular}{@{}c c p{5.8cm}@{}}
+\POMITSKotak & \POMITSKotak & menjiplak karya orang lain. \\
+\POMITSKotak & \POMITSKotak & menggunakan perangkat lunak illegal \\
+\POMITSKotak & \POMITSKotak & direncanakan untuk dipatenkan \\
+\POMITSKotak & \POMITSKotak & melanggar perjanjian kerjasama dengan pihak ketiga \\
+\end{tabular}
+\end{minipage}
+&
+\begin{minipage}[t]{\linewidth}
+\raggedright\small
+\vspace{0.1cm}
+\POMITSKotak\ tidak dipublikasikan
+
+\vspace{0.1cm}
+
+\POMITSKotak\ dipublikasikan pada
+
+\vspace{0.1cm}
+
+\hspace*{2em}\begin{tabular}{c@{}p{0.65\linewidth}c@{}}
+$\bullet$\,& Daftar jurnal yang dipilih sebagaimana tercantum pada lampiran panduan unggah & \POMITSKotak \\
+$\bullet$\,& Jurnal Teknik & \POMITSKotak \\
+$\bullet$\,& Jurnal Sains dan Seni & \POMITSKotak \\
+\end{tabular}
+
+\vspace{0.1cm}
+
+\begin{tabular}{@{}p{0.47\linewidth}p{0.56\linewidth}@{}}
+\textbf{Jurnal Teknik} & \textbf{Jurnal Sains dan Seni} \\
+\POMITSKotak\ TIK (ICT) & \POMITSKotak\ Matematika \\
+\POMITSKotak\ Energi & \POMITSKotak\ Statistika \\
+\POMITSKotak\ Pemukiman dan Bencana & \POMITSKotak\ Fisika \\
+\POMITSKotak\ Transportasi & \POMITSKotak\ Kimia \\
+\POMITSKotak\ Teknologi Proses & \POMITSKotak\ Biologi \\
+\POMITSKotak\ Kelautan & \POMITSKotak\ Produk Desain \\
+\POMITSKotak\ Bangunan Berorientasi& \POMITSKotak\ Arsitektur \\
+Lingkungan & \POMITSKotak\ Desain dan Seni \\
+& \POMITSKotak\ Bisnis dan Studi  \\
+& Pembangunan\\
+\end{tabular}
+\end{minipage}
+\\
+\hline
+\end{tabular}
+
+\vspace{0.35cm}
+
+\textbf{Penelaah:}
+
+\vspace{0.7cm}
+
+\POMITSPenelaah{\@pbbsatu}{\@NIPpbbsatu}
+
+\ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}{}{%
+\vspace{0.35cm}
+\POMITSPenelaah{\@pbbdua}{\@NIPpbbdua}
+}
+}
+}
+
 \ExplSyntaxOn
 
 \int_new:N \g_bimbingan_no_int

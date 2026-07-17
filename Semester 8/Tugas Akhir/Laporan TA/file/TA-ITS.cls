@@ -219,17 +219,7 @@
 
 \newcommand\@aprvdate{12 December 2010}
 \DeclareRobustCommand\ApprovalDate[1]{
-   \renewcommand\@tglsetuju{#1}
-   \StrSubstitute{#1}{Januari}{January}[\tempDate]
-   \StrSubstitute{\tempDate}{Februari}{February}[\tempDate]
-   \StrSubstitute{\tempDate}{Maret}{March}[\tempDate]
-   \StrSubstitute{\tempDate}{Mei}{May}[\tempDate]
-   \StrSubstitute{\tempDate}{Juni}{June}[\tempDate]
-   \StrSubstitute{\tempDate}{Juli}{July}[\tempDate]
-   \StrSubstitute{\tempDate}{Agustus}{August}[\tempDate]
-   \StrSubstitute{\tempDate}{Oktober}{October}[\tempDate]
-   \StrSubstitute{\tempDate}{Desember}{December}[\tempDate]
-   \global\let\@aprvdate\tempDate
+   \renewcommand\@aprvdate{#1}
 }
 
 \newcommand\@fak{Matematika dan Ilmu Pengetahuan Alam}
@@ -696,7 +686,7 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
         \end{flushleft}}
       {\vspace{-0.5cm}\begin{flushleft}
         \begin{tabular}{L{9cm}L{7cm}}
-    		&Surabaya, \@aprvdate\\
+    		&Surabaya, \@tglsetuju\\
     		&\\
     		Mengetahui&\\
     		Dosen Pembimbing 2&Dosen Pembimbing 1\\
@@ -745,7 +735,7 @@ If in the future there is a discrepancy with this statement, then I am willing t
     \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
       {\begin{flushleft}
         \begin{tabular}{L{9cm}L{7cm}}
-    		&Surabaya, 10 July 2026\\
+    		&Surabaya, \@aprvdate\\
     		&\\
     		Acknowledged&\\
     		Advisor & Student\\

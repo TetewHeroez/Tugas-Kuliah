@@ -1,0 +1,82 @@
+\chapter{METODOLOGI}
+
+
+Pada bab ini dijelaskan langkah-langkah sistematis pelaksanaan penelitian tesis beserta rancangan bangun simulasi komputasi dan jadwal kegiatan terstruktur. Pendekatan pada penelitian ini bersifat teoretis dan komputasional murni.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[node distance=0.8cm and 2cm,font=\scriptsize,scale=1,transform shape]
+
+    % Nodes
+    \node[startstop] (start) {Mulai};
+    \node[process, below=of start] (lit) {Studi \& Akuisisi Model Ortogonal $SO(3)$};
+    \node[process, below=of lit] (dh) {Penurunan Matriks D-H dan Adjacency Graph};
+    \node[process, below=of dh] (trop) {Pemetaan Dekuantisasi Tropikal};
+    \node[process, right=of trop] (kapranov) {Aplikasi Teorema Kapranov pada Limit Valuasi};
+    \node[process, above=of kapranov] (sim) {Konstruksi Newton Polygon \& Simulasi};
+    \node[process, above=of sim] (val) {Validasi Galat vs Solusi Klasik Trigonometri};
+    \node[startstop, above=of val] (end) {Selesai dan Penulisan Tesis};
+
+    % Arrows
+    \draw[arrow] (start) -- (lit);
+    \draw[arrow] (lit) -- (dh);
+    \draw[arrow] (dh) -- (trop);
+    \draw[arrow] (trop) -- (kapranov);
+    \draw[arrow] (kapranov) -- (sim);
+    \draw[arrow] (sim) -- (val);
+    \draw[arrow] (val) -- (end);
+
+  \end{tikzpicture}
+  \caption{Alur Proses Penelitian Tesis Terintegrasi}
+  \label{fig:metodologi}
+\end{figure}
+
+\section{Tahapan Pelaksanaan Penelitian}
+Untuk memastikan keabsahan dan akurasi konstruksi konversi antara matriks klasik menjadi aljabar nilai-minimum, penelitian ini dipecah ke dalam empat tahapan teknis utama.
+
+\subsection{Akuisisi Geometri Klasik dan Formulasi Matriks}
+Penelitian dimulai dengan pengumpulan data matriks ketetanggaan \textit{adjacency graph} dari berbagai macam teselasi \textit{rigid origami} (misal: Miura-ori, Kresling, Waterbomb). Dari arsitektur simpul spasial 3 dimensi tersebut, diekstraksi nilai parameter Denavit-Hartenberg (D-H) yang memuat sudut lipatan $\theta$ dan sudut \textit{dihedral} $\alpha$ dari setiap engsel kontinu secara sekuensial. Ini menghasilkan sistem persamaan polinomial trigonometris yang akan diproses lebih lanjut \parencite{hayakawa2023analytical}.
+
+\subsection{Dekuantisasi dan Pemetaan Valuasi Tropikal}
+Pada tahap krusial ini, keseluruhan sistem perputaran engsel $SO(3)$ dialihbahasakan menggunakan operator dekuantisasi tropikal. Suku sinus dan kosinus pada parameter D-H dijabarkan ke dalam deret dan dibatasi nilai logaritmik asimtotiknya berlandaskan Teorema Kapranov. Operasi perkalian rentet kemudian dipetakan menjadi operasi penjumlahan nilai (\textit{addition} pada semiring min-plus), dan perkalian parameter diubah menjadi minimum spasial.
+
+\subsection{Konstruksi Kurva dan Poligon Newton}
+Matriks ekuivalen tropikal divisualisasikan dalam bentuk kombinatorik geometri. \textit{Tropical Hypersurfaces} dirender ke dalam bidang dua dan tiga dimensi (menyerupai batas konveks dari arsitektur ReLU \textit{Neural Network}) untuk menghasilkan \textit{Newton Polygons}. Perpotongan ruas garis tropikal tersebut akan menjadi set solusi penyeimbang batas (\textit{balancing conditions}) tanpa harus membalik matriks Jacobian \parencite{nekrasov2018geometry}.
+
+\subsection{Komputasi Silang dan Penarikan Kesimpulan}
+Hasil solusi sudut lintasan \textit{rigid folding} dari geometri tropikal kemudian divalidasi dengan membenturkannya terhadap solusi pencarian akar trigonometri konvensional (menggunakan ekspansi numerik iteratif tipe Newton-Raphson). 
+
+\section{Instrumen dan Perangkat Komputasi}
+Penelitian ini tidak menggunakan benda empiris berskala makro, melainkan menggunakan piranti lunak komputasi aljabar lanjutan untuk membuktikan keabsahan teorema. Perangkat keras dan peranti lunak yang dilibatkan adalah:
+\begin{enumerate}
+    \item \textbf{Perangkat Keras (Hardware)}: Komputer berbasis sistem operasi 64-bit dengan kapasitas memori sekurang-kurangnya 16 GB untuk menangani simulasi manipulasi matriks dimensi besar secara waktu nyata.
+    \item \textbf{Lingkungan Komputasi Tensor (Python)}: Penggunaan bahasa pemrograman Python, khususnya pustaka \textit{NumPy} untuk manipulasi tensor aljabar numerik, serta \textit{SymPy} untuk menjabarkan turunan deret \textit{symbolic}.
+    \item \textbf{Aplikasi Geometri Khusus (\textit{Polymake / Oscar.jl})}: Perangkat lunak matematika \textit{open-source} yang didesain terkhusus bagi riset Geometri Aljabar Tropikal. Perangkat lunak ini mampu mencetak topologi \textit{Newton Polygon} secara \textit{native} berdasarkan fungsi kombinatorik diskret.
+\end{enumerate}
+
+\section{Skenario Uji dan Parameter Validasi}
+Metrik evaluasi mutlak yang digunakan pada penelitian komputasi ini adalah pengukuran derajat deviasi jarak spasial dari syarat penutup (\textit{loop closure error magnitude}).
+
+Skenario uji dinyatakan berhasil (\textit{valid}) apabila parameter ekuivalen tropikal terbukti sanggup memberikan aproksimasi solusi sudut lipatan $\theta^*$ sehingga:
+\begin{equation}
+  \left\| \left( \prod_{i=1}^{k} \hat{A}_i (\theta^*) \right) - I_3 \right\|_2 < \epsilon
+\end{equation}
+di mana $\hat{A}_i$ adalah parameter matriks Denavit-Hartenberg klasik spasial konvensional yang disuntikkan kembali dengan hasil prediksi sudut tropikal, dan $\epsilon$ merupakan batas toleransi aproksimasi infintesimal numerik (dijaga pada orde $\sim 10^{-6}$). Semakin dekat nilai norma-$2$ ke angka nol mutlak, maka ekuivalensi topologis tropikal dinyatakan semakin \textit{isometrik} secara mekanis.
+
+\chapter*{JADWAL PENELITIAN}
+Berikut jadwal pelaksanaan tahap-tahap penelitian tesis yang dialokasikan dalam periode simulasi komputasi selama 3 bulan. \vspace{0.5cm}
+\begin{table}[htbp]
+  \centering
+  \caption{Jadwal Pelaksanaan Eksperimen dan Pemodelan Tesis}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|C{0.6cm}|L{6.5cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|C{0.25cm}|}	\hline
+                                      &                                                   & \multicolumn{12}{c|}{\textbf{BULAN}}                                                                                                                                                                                                                                       \\\cline{3-14}
+    \multicolumn{1}{|c|}{\textbf{NO}} & \multicolumn{1}{c|}{\textbf{NAMA KEGIATAN}}       & \multicolumn{4}{c|}{1}               & \multicolumn{4}{c|}{2} & \multicolumn{4}{c|}{3}                                                                                                                                                                                     \\\cline{3-14}
+                                      &                                                   & 1                                    & 2                      & 3                      & 4                 & 1                 & 2                 & 3                 & 4                 & 1                 & 2                 & 3                 & 4                 \\\cline{1-14}
+    1                                 & Formulasi Matriks D-H Klasik                      & \cellcolor{blue!}                    & \cellcolor{blue!}      & \cellcolor{blue!}      &                   &                   &                   &                   &                   &                   &                   &                   &                   \\\hline
+    2                                 & Pemetaan Dekuantisasi Tropikal                    &                                      &                        & \cellcolor{blue!}      & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   &                   &                   \\\hline
+    3                                 & Rendering Newton Polygon (Polymake)               &                                      &                        &                        &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   &                   &                   \\\hline
+    4                                 & Analisis Deviasi Galat dan Validasi               &                                      &                        &                        &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} &                   &                   \\\hline
+    5                                 & Penulisan Naskah Publikasi \& Tesis Akhir         &                                      &                        &                        &                   &                   &                   &                   &                   &                   & \cellcolor{blue!} & \cellcolor{blue!} & \cellcolor{blue!} \\\hline
+  \end{tabular}
+\end{table}
