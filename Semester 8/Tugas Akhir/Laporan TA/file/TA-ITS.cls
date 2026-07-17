@@ -52,6 +52,8 @@
 \RequirePackage{algpseudocode}
 \floatname{algorithm}{Algoritma}
 
+
+\RequirePackage{xstring}
 \RequirePackage{setspace}
 \RequirePackage{afterpage}
 \RequirePackage{xcolor}
@@ -194,6 +196,40 @@
 \newcommand\@tglsetuju{12 Desember 2010}
 \DeclareRobustCommand\TanggalDisetujui[1]{%
    \renewcommand\@tglsetuju{#1}
+}
+
+\newcommand\@month{December}
+\DeclareRobustCommand\Bulan[1]{
+   \renewcommand\@bulan{#1}
+   \IfEqCase{#1}{
+      {Januari}{\renewcommand\@month{January}}
+      {Februari}{\renewcommand\@month{February}}
+      {Maret}{\renewcommand\@month{March}}
+      {April}{\renewcommand\@month{April}}
+      {Mei}{\renewcommand\@month{May}}
+      {Juni}{\renewcommand\@month{June}}
+      {Juli}{\renewcommand\@month{July}}
+      {Agustus}{\renewcommand\@month{August}}
+      {September}{\renewcommand\@month{September}}
+      {Oktober}{\renewcommand\@month{October}}
+      {November}{\renewcommand\@month{November}}
+      {Desember}{\renewcommand\@month{December}}
+   }[\renewcommand\@month{#1}]
+}
+
+\newcommand\@aprvdate{12 December 2010}
+\DeclareRobustCommand\ApprovalDate[1]{
+   \renewcommand\@tglsetuju{#1}
+   \StrSubstitute{#1}{Januari}{January}[\tempDate]
+   \StrSubstitute{\tempDate}{Februari}{February}[\tempDate]
+   \StrSubstitute{\tempDate}{Maret}{March}[\tempDate]
+   \StrSubstitute{\tempDate}{Mei}{May}[\tempDate]
+   \StrSubstitute{\tempDate}{Juni}{June}[\tempDate]
+   \StrSubstitute{\tempDate}{Juli}{July}[\tempDate]
+   \StrSubstitute{\tempDate}{Agustus}{August}[\tempDate]
+   \StrSubstitute{\tempDate}{Oktober}{October}[\tempDate]
+   \StrSubstitute{\tempDate}{Desember}{December}[\tempDate]
+   \global\let\@aprvdate\tempDate
 }
 
 \newcommand\@fak{Matematika dan Ilmu Pengetahuan Alam}
@@ -516,6 +552,66 @@ Diajukan untuk memenuhi salah satu syarat\\memperoleh gelar Sarjana Matematika p
 \addcontentsline{toc}{chapter}{LEMBAR PENGESAHAN}
 }
 
+\newcommand\LembarPengesahanEng{%
+\cleardoublepage
+\setcounter{page}{3} 
+\begin{center}
+  \tikz[remember picture,overlay] 
+    \node[opacity=1,inner sep=0pt] at (current page.center)
+        {\includegraphics[width=\paperwidth,height=\paperheight]{foto/wm_pengesahan}};
+{\fontsize{14}{2}\selectfont{\textbf{APPROVAL SHEET}}}\vspace{1cm}\\
+\textbf{\@juduleng}\vspace{0.75cm}\\
+\textbf{FINAL PROJECT}\vspace{0.25cm}\\
+Submitted to fulfill one of the requirements\\For obtaining a degree Bachelor of Mathematics at\\ Bachelor Program of Mathematics\\Department of Mathematics\\Faculty of Science and Data Analytics\\Institut Teknologi Sepuluh Nopember\vspace{0.5cm}\\
+        By: \textbf{\@nama}\\
+        NRP.~\@NRP\vspace{0.5cm}\\
+       	Surabaya, \@month~\@thn\\
+       	Approved By:\\
+       \vspace{0.5cm}
+      \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
+        {
+\begin{tabular}{ll}
+\multicolumn{2}{c}{Advisor}\vspace{0.5cm}\\
+1. \@pbbsatu & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpbbsatu & \vspace{0.5cm}\\
+\multicolumn{2}{c}{Examiners}\vspace{0.5cm}\\
+1. \@pujsatu & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpujsatu & \vspace{0.75cm}\\
+2. \@pujdua & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpujdua & \vspace{0.75cm}\\
+3. \@pujtiga & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpujtiga & \vspace{0.3cm}\\
+\end{tabular}
+        }
+        {
+\begin{tabular}{ll}
+\multicolumn{2}{c}{Advisor}\vspace{0.5cm}\\
+1. \@pbbsatu & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpbbsatu & \vspace{0.5cm}\\
+2. \@pbbdua & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpbbdua & \vspace{0.1cm}\\
+\multicolumn{2}{c}{Examiners}\vspace{0.5cm}\\
+1. \@pujsatu & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpujsatu & \vspace{0.5cm}\\
+2. \@pujdua & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpujdua & \vspace{0.5cm}\\
+3. \@pujtiga & \hspace{1cm}(\dots\dots\dots\dots\dots\dots) \\
+\hspace{0.5cm}NIP. \@NIPpujtiga & \vspace{0.2cm}\\
+\end{tabular}
+        }\\
+    \begin{flushright}
+    \begin{tabular}{c}
+    Acknowledged by                        \\
+    Head of Mathematics Department      \\
+    Faculty of Science and Data Analytics \vspace{1.5cm}\\
+    \underline{\@kadep}                   \\
+    NIP. \@NIPkadep                       
+    \end{tabular}
+    \end{flushright}
+\end{center}
+\addcontentsline{toc}{chapter}{APPROVAL SHEET}
+}
+
 %% Lembar Pengesahan 
 \newcommand\LembarPengesahanProposal{%
 \cleardoublepage
@@ -580,8 +676,8 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
               {Dosen Pembimbing / NIP &:& \@pbbsatu~/ \@NIPpbbsatu\\}
               {Dosen Pembimbing / NIP &:& 1.~ \@pbbsatu~/ \@NIPpbbsatu\\&& 2.~ \@pbbdua~/ \@NIPpbbdua\\}
     \end{tabular}\vspace{1cm}\\
- dengan ini menyatakan bahwa Tugas Akhir dengan judul “\@judul” adalah hasil karya sendiri, bersifat orisinal, dan ditulis dengan mengikuti kaidah penulisan ilmiah.\\\\
-Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka saya bersedia menerima sanksi sesuai dengan ketentuan yang berlaku di Institut Teknologi Sepuluh Nopember.\\ \vspace{1cm}
+ dengan ini menyatakan bahwa Tugas Akhir dengan judul ``\@judul'' adalah hasil karya sendiri, bersifat orisinal, dan ditulis dengan mengikuti kaidah penulisan ilmiah.\\\\
+ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka saya bersedia menerima sanksi sesuai dengan ketentuan yang berlaku di Institut Teknologi Sepuluh Nopember.\\ \vspace{1cm}
     \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
       {\begin{flushleft}
         \begin{tabular}{L{9cm}L{7cm}}
@@ -589,6 +685,70 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
     		&\\
     		Mengetahui&\\
     		Dosen Pembimbing &Mahasiswa\\
+    		&\\
+    		&\\
+    		&\\
+    		&\\
+    		&\\
+    		\underline{\@pbbsatu}&\underline{\@namaa}\\
+    		NIP. \@NIPpbbsatu &NRP. \@NRP
+    	\end{tabular}
+        \end{flushleft}}
+      {\vspace{-0.5cm}\begin{flushleft}
+        \begin{tabular}{L{9cm}L{7cm}}
+    		&Surabaya, \@aprvdate\\
+    		&\\
+    		Mengetahui&\\
+    		Dosen Pembimbing 2&Dosen Pembimbing 1\\
+    		&\\
+    		&\\
+    		&\\
+    		&\\
+    		\underline{\@pbbdua}&\underline{\@pbbsatu}\\
+    		NIP. \@NIPpbbdua &NIP. \@NIPpbbsatu
+    	\end{tabular}
+        \end{flushleft}
+        \begin{center}
+            \begin{tabular}{c}
+            \hspace{1cm}\\
+            Mahasiswa\\
+    		\hspace{1cm}\\
+    		\hspace{1cm}\\
+    		\hspace{1cm}\\
+    		\hspace{1cm}\\
+    		\underline{\@namaa}\\
+    		NRP. \@NRP
+    	    \end{tabular}
+        \end{center}
+      }
+	\vspace{2cm}
+\addcontentsline{toc}{chapter}{PERNYATAAN ORISINALITAS}
+}
+
+\newcommand\LembarOrisinalitasEng{
+\cleardoublepage
+    \begin{center}
+        {\fontsize{14}{2}\selectfont{\textbf{STATEMENT OF ORIGINALITY}}}
+    \end{center}\vspace{1.5cm}
+    \noindent
+    The undersigned below:\vspace{1cm}\\
+    \begin{tabular}{lcl}
+        Student's Name/NRP &:& \@namaa~/ \@NRP\vspace{0.15cm}\\
+        Departement &:& Mathematics\vspace{0.15cm}\\
+        \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
+              {Advisor / NIP &:& \@pbbsatu~/ \\ & & \@NIPpbbsatu\\}
+              {Advisor / NIP &:& 1.~ \@pbbsatu~/ \@NIPpbbsatu\\&& 2.~ \@pbbdua~/ \@NIPpbbdua\\}
+    \end{tabular}\vspace{1cm}\\
+ Hereby declare that the Final Project with the title of ``\@juduleng'' is the result of my own work, is original, and is written by following the rules of scientific writing.\\\\
+If in the future there is a discrepancy with this statement, then I am willing to accept sanctions in accordance with the provisions that apply at Institut Teknologi Sepuluh Nopember.
+\\ \vspace{1cm}
+    \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
+      {\begin{flushleft}
+        \begin{tabular}{L{9cm}L{7cm}}
+    		&Surabaya, 10 July 2026\\
+    		&\\
+    		Acknowledged&\\
+    		Advisor & Student\\
     		&\\
     		&\\
     		&\\
@@ -626,7 +786,7 @@ Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka 
         \end{center}
       }
 	\vspace{2cm}
-\addcontentsline{toc}{chapter}{PERNYATAAN ORISINALITAS}
+\addcontentsline{toc}{chapter}{STATEMENT OF ORIGINALITY}
 }
 
 \newcommand\LembarAbstrak[1]{
