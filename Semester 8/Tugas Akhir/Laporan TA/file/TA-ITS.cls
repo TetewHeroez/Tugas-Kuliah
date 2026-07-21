@@ -910,19 +910,15 @@ If in the future there is a discrepancy with this statement, then I am willing t
     \tableofcontents
 }
 \newcommand{\DaftarGambar}{%
-    \ifnum\value{figure}>0
         \cleardoublepage
         \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}%
         \listoffigures
-    \fi
 }
 
 \newcommand{\DaftarTabel}{%
-    \ifnum\value{table}>0
         \cleardoublepage
         \addcontentsline{toc}{chapter}{DAFTAR TABEL}%
         \listoftables
-    \fi
 }
 
 \newcommand\Lampiran[1]{%
