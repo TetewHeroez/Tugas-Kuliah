@@ -235,7 +235,7 @@ Keuntungan utamanya adalah proses pemeriksaan dapat dituntaskan secara parsial d
 \subsection{Prosedur Pencarian Pasangan \textit{Latin Square} Komutatif}
 Berdasarkan semua penjabaran teori sebelumnya, dapat disusun prosedur atau algoritma untuk menentukan seluruh kandidat pasangan $B\in L_S(n)$ yang memenuhi $A\otimes B=B\otimes A$ bagi sembarang $A\in L_S(n)$ yang telah diberikan. Algoritma ini memadukan dua pendekatan utama: tahap alternatif untuk eksploitasi grup abelian dan tahap rekursif (\textit{backtracking}) yang melibatkan pemangkasan (\textit{pruning}) berbasis pencocokan himpunan superlevel.
 
-\begin{algorithm}
+\begin{algorithm}[H]
     \caption{Pencarian Pasangan \textit{Latin Square} Komutatif}
     \begin{algorithmic}[1]
         \Require $A \in L_S(n)$
@@ -262,7 +262,6 @@ Berdasarkan semua penjabaran teori sebelumnya, dapat disusun prosedur atau algor
     \end{algorithmic}
 \end{algorithm}
 
-\vspace{1em}
 Secara rinci, alur dari pseudocode Pencarian Pasangan \textit{Latin Square} Komutatif tersebut dijelaskan sebagai berikut:
 \begin{enumerate}
     \item \textbf{Tahap Inisialisasi dan Dekomposisi} (Baris 1-2): Matriks $A$ yang diinputkan pertama kali didekomposisi ke dalam himpunan permutasi penyusunnya. Himpunan penyelesaian $\mathcal{P}(A)$ diinisialisasi sebagai himpunan kosong.
@@ -297,7 +296,7 @@ Berikut diberikan contoh komputasi tahap alternatif untuk kasus abelian.
             3 & 2 & 1
         \end{pmatrix}.
     \end{equation}
-    
+
     Untuk matriks $A$ tersebut, permutasi penyusunnya secara spesifik memetakan elemen sebagai berikut: $\sigma_1^A = (1)(2)(3)$, $\sigma_2^A = (1 2 3)$, dan $\sigma_3^A = (1 3 2)$. Dengan menjabarkan nilai operasi pada masing-masing sel koordinat matriks, proses penjumlahan max-plus berjenjang untuk $A \otimes B$ menghasilkan elemen maksimum $6$ di diagonal utama, sedangkan sel lainnya diisi oleh nilai $5$. Hal ini menunjukkan distribusi nilai yang sepenuhnya identik dengan perkalian dari arah berlawanan, $B \otimes A$.
 
     Pengecekan langsung membuktikan komutativitas:
@@ -334,7 +333,7 @@ Berikut diberikan contoh dari prosedur pencarian rekursif umum berbasis \textit{
             3 & 2 & 1 & 4
         \end{pmatrix}.
     \end{equation}
-    
+
     Dalam kasus Ordo 4 ini, proses \textit{superlevel pruning} terjadi dengan cukup intens. Ketika algoritma mencoba memasangkan kandidat permutasi untuk simbol $3$ ($\sigma_3^B$) yang diambil sembarang dari $S_4$, uji himpunan superlevel $\mathcal{U}_{\ge 7}^{AB}$ pada banyak cabang rekursi mendapati ketidaksamaan letak spasial matriks jika dibandingkan dengan $\mathcal{U}_{\ge 7}^{BA}$. Berkat evaluasi level demi level ini, ribuan komputasi perkalian matriks utuh yang sebetulnya sia-sia dapat dibatalkan sedini mungkin.
 
     Hasil perkalian dari kedua buah 	extit{Latin square} berordo $4$ tersebut memvalidasi:
@@ -374,7 +373,7 @@ Penerapan algoritma pada dimensi yang lebih besar seperti ordo $5$ menghasilkan 
             4 & 2 & 5 & 3 & 1
         \end{pmatrix}.
     \end{equation}
-    
+
     Secara spesifik, karena himpunan permutasi pembangun matriks $A$ merupakan subgrup siklik yang dibangun oleh elemen pemutar $(1 2 3 4 5)$, maka elemen $\sigma_k^A$ hanyalah permutasi pergeseran sejauh $k$ posisi. Hal inilah yang mendasari tereduksinya proses komputasi yang kompleks. Tidak diperlukan penelusuran graf keputusan yang panjang; cukup dengan menyusun ulang secara periodik struktur indeks pembangun dari matriks $A$, kita secara langsung mensintesis \textit{Latin square} berstruktur sirkulan alternatif, layaknya matriks $B$, yang secara analitik dijamin mutlak komutatif. Fenomena komputasional ini mengukuhkan hipotesis efisiensi pendekatan heuristik kita pada Teorema Syarat Cukup (Subgrup Abelian).
 
     Pengujian komputasi memberikan:
