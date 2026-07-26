@@ -724,7 +724,7 @@ Dosen Pembimbing 1\vspace{2.5cm}&Dosen Pembimbing 2\vspace{2cm}\\
     The undersigned below:\vspace{1cm}\\
     \begin{tabular}{lcl}
         Student's Name/NRP &:& \@namaa~/ \@NRP\vspace{0.15cm}\\
-        Departement &:& Mathematics\vspace{0.15cm}\\
+        Department &:& Mathematics\vspace{0.15cm}\\
         \ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
               {Advisor / NIP &:& \@pbbsatu~/ \\ & & \@NIPpbbsatu\\}
               {Advisor / NIP &:& 1.~ \@pbbsatu~/ \@NIPpbbsatu\\&& 2.~ \@pbbdua~/ \@NIPpbbdua\\}
@@ -815,7 +815,7 @@ If in the future there is a discrepancy with this statement, then I am willing t
     \end{center}\vspace{1cm}
   \begin{tabular}{lcl}
         Student Name / NRP &:& \@namaa~/ \@NRP\vspace{0.15cm}\\
-        Departement &:& \@dept~\@singfakeng~- ITS\vspace{0.15cm}\\
+        Department &:& \@dept~\@singfakeng~- ITS\vspace{0.15cm}\\
         \ifthenelse{\equal{\@pbbtiga}{}\OR\equal{\@pbbtiga}{ }}
           {\ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
               {Supervisor &:& \@pbbsatu\\}
@@ -861,7 +861,7 @@ If in the future there is a discrepancy with this statement, then I am willing t
     \end{center}\vspace{1cm}
   \begin{tabular}{lcl}
         Student Name / NRP &:& \@namaa~/ \@NRP\vspace{0.15cm}\\
-        Departement &:& \@dept~\@singfakeng~- ITS\vspace{0.15cm}\\
+        Department &:& \@dept~\@singfakeng~- ITS\vspace{0.15cm}\\
         \ifthenelse{\equal{\@pbbtiga}{}\OR\equal{\@pbbtiga}{ }}
           {\ifthenelse{\equal{\@pbbdua}{}\OR\equal{\@pbbdua}{ }}
               {Advisor &:& \@pbbsatu\\}
