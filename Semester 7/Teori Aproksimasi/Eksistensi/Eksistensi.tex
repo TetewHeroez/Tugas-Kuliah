@@ -1,0 +1,378 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{cancel}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{pgfplots, tkz-euclide,calc}
+\pgfplotsset{compat=1.18}
+\usepackage{listings}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage[scaled]{uarial}
+\usepackage{dsfont}
+\usepackage[T1]{fontenc}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+\definecolor{PastelGreen}{HTML}{77DD77}
+
+\usetheme{Madrid}
+
+\setbeamertemplate{frametitle continuation}{}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usetikzlibrary{shapes.geometric, arrows, calc, intersections}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}[book]
+
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}
+\newtheorem{proposisi}{Proposisi}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}{Lema}
+\newtheorem{akibat}{Akibat}
+\newtheorem{contoh}{Contoh}
+\newtheorem{latihan}{Latihan}
+
+% Ubah penomoran agar otomatis diawali dengan 3.
+\renewcommand{\thedefinisi}{3.\arabic{definisi}}
+\renewcommand{\theproposisi}{3.\arabic{proposisi}}
+\renewcommand{\theteorema}{3.\arabic{teorema}}
+\renewcommand{\thelema}{3.\arabic{lema}}
+\renewcommand{\theakibat}{3.\arabic{akibat}}
+\renewcommand{\thecontoh}{3.\arabic{contoh}}
+\renewcommand{\thelatihan}{3.\arabic{latihan}}
+
+\usepackage[nameinlink]{cleveref}
+\crefname{teorema}{Teorema}{Teorema}
+\crefname{proposisi}{Proposisi}{Proposisi}
+\crefname{definisi}{Definisi}{Definisi}
+\crefname{lema}{Lema}{Lema}
+\crefname{akibat}{Akibat}{Akibat}
+\crefname{contoh}{Contoh}{Contoh}
+\crefname{latihan}{Latihan}{Latihan}
+
+\newcommand{\myref}[1]{\hyperref[#1]{\nameCref{#1} \ref*{#1}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\AtBeginEnvironment{contoh}{%
+\setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
+\setbeamercolor{block body}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+\setbeamercolor{item}{fg=example text.fg}
+}
+\AtBeginEnvironment{definisi}{
+\setbeamercolor{block title}{fg=white,bg=HIMAtua}
+\setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+\setbeamercolor{item}{fg=HIMAtua}
+}
+\AtBeginEnvironment{latihan}{%
+  \setbeamercolor{block title}{fg=white,bg=yellow!30!orange}
+  \setbeamercolor{block body}{parent=normal text,bg=yellow!30!white}
+  \setbeamercolor{item}{fg=yellow!30!orange}
+}
+\AtBeginEnvironment{teorema}{
+    \setbeamercolor{block title}{bg=darkgray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+    \setbeamercolor{item}{fg=HIMAabu}
+}
+\AtBeginEnvironment{proposisi}{
+    \setbeamercolor{block title}{bg=teal,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=teal!30!white}
+    \setbeamercolor{item}{fg=teal}
+}
+\AtBeginEnvironment{lema}{
+    \setbeamercolor{block title}{bg=lime!70!black,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=lime!30!white}
+    \setbeamercolor{item}{fg=lime}
+}
+\AtBeginEnvironment{akibat}{
+    \setbeamercolor{block title}{bg=magenta,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=magenta!30!white}
+    \setbeamercolor{item}{fg=magenta}
+}
+
+\date{\today}
+\title[Teori Aproksimasi]{Eksistensi Hampiran Terbaik}
+\author[Tetew]{Teosofi Hidayah Agung}
+\institute[Matematika ITS]{Matematika ITS}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSection{
+  {
+    \begin{frame}{\insertsection}{Daftar Isi}
+      \tableofcontents[currentsection,hideothersubsections]
+    \end{frame}}
+}
+
+\section{Hampiran Terbaik}
+\subsection{Eksistensi}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{8}
+  \begin{teorema}
+    Misalkan $\mathcal{F}$ adalah ruang Euclidean dengan hasil kali dalam $(\cdot, \cdot)$ dan norma $\| \cdot \| = (\cdot, \cdot)^{1/2}$. Maka identitas jajar genjang
+    \begin{equation}
+      \|v+w\|^2 + \|v-w\|^2 = 2\|v\|^2 + 2\|w\|^2 \quad \text{untuk semua } v,w \in \mathcal{F} \label{eq:3.1}
+    \end{equation}
+    berlaku. Jika $\mathcal{F}$ adalah ruang Euclidean atas bilangan real $\R$, maka identitas polarisasi
+    \begin{equation}
+      (v,w) = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2) \quad \text{untuk semua } v,w \in \mathcal{F} \label{eq:3.2}
+    \end{equation}
+    berlaku. Jika $\mathcal{F}$ adalah ruang Euclidean atas bilangan kompleks $\C$, maka identitas polarisasi berlaku sebagai
+    \begin{equation}
+      (v,w) = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2) \label{eq:3.3}
+    \end{equation}
+    untuk semua $v,w \in \mathcal{F}$.
+  \end{teorema}
+
+  \begin{proof}
+    Persamaan \eqref{eq:3.1} dan \eqref{eq:3.2} mengikuti langsung dari sifat linearitas hasil kali dalam:
+    \begin{equation*}
+      \|v \pm w\|^2 = (v \pm w, v \pm w) = (v,v) \pm 2(v,w) + (w,w) = \|v\|^2 \pm 2(v,w) + \|w\|^2.
+    \end{equation*}
+    Dengan menjumlahkan persamaan untuk $\|v+w\|^2$ dan $\|v-w\|^2$, kita peroleh identitas jajar genjang \eqref{eq:3.1}:
+    \begin{equation*}
+      \|v+w\|^2 + \|v-w\|^2 = 2\|v\|^2 + 2\|w\|^2.
+    \end{equation*}
+    Dengan mengurangkan $\|v-w\|^2$ dari $\|v+w\|^2$, kita peroleh identitas polarisasi untuk ruang real \eqref{eq:3.2}:
+    \begin{equation*}
+      \|v+w\|^2 - \|v-w\|^2 = 4(v,w) \implies (v,w) = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2).
+    \end{equation*}
+    \framebreak
+
+    Untuk identitas polarisasi atas bilangan kompleks \eqref{eq:3.3}, kita ingat bahwa $(w, v) = \overline{(v, w)}$, $(\alpha v, w) = \alpha (v, w)$, dan $(v, \alpha w) = \bar{\alpha} (v, w)$. Sehingga,
+    \begin{align*}
+      \|v+w\|^2 &= \|v\|^2 + (v,w) + (w,v) + \|w\|^2, \\
+      \|v-w\|^2 &= \|v\|^2 - (v,w) - (w,v) + \|w\|^2.
+    \end{align*}
+    Pengurangan keduanya memberikan:
+    \begin{equation*}
+      \|v+w\|^2 - \|v-w\|^2 = 2(v,w) + 2(w,v).
+    \end{equation*}
+    Selanjutnya,
+    \begin{align*}
+      \|v+iw\|^2 &= \|v\|^2 - i(v,w) + i(w,v) + \|w\|^2, \\
+      \|v-iw\|^2 &= \|v\|^2 + i(v,w) - i(w,v) + \|w\|^2.
+    \end{align*}
+    \framebreak
+
+    Pengurangan keduanya memberikan:
+    \begin{equation*}
+      \|v+iw\|^2 - \|v-iw\|^2 = -2i(v,w) + 2i(w,v).
+    \end{equation*}
+    Dengan mengalikan hasil ini dengan $i$, kita peroleh:
+    \begin{equation*}
+      i\|v+iw\|^2 - i\|v-iw\|^2 = 2(v,w) - 2(w,v).
+    \end{equation*}
+    Dengan menjumlahkan bagian real dan imajinernya:
+    \begin{equation*}
+      \|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2 = 4(v,w).
+    \end{equation*}
+    Hal ini melengkapi bukti identitas polarisasi \eqref{eq:3.3}.
+  \end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \begin{teorema}[Teorema Jordan-von Neumann, 1935]
+    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\| \cdot \|$, di mana identitas jajar genjang \eqref{eq:3.1} berlaku. Maka terdapat sebuah hasil kali dalam $(\cdot, \cdot)$ pada $\mathcal{F}$, sehingga
+    \begin{equation}
+      (v,v) = \|v\|^2 \quad \text{untuk semua } v \in \mathcal{F}, \label{eq:3.4}
+    \end{equation}
+    yaitu, $\mathcal{F}$ adalah ruang Euclidean.
+  \end{teorema}
+
+  \begin{proof}
+    Misalkan $\mathcal{F}$ adalah ruang linear atas $\R$. Dengan menggunakan norma $\| \cdot \|$ dari $\mathcal{F}$ kita mendefinisikan sebuah pemetaan $(\cdot, \cdot) : \mathcal{F} \times \mathcal{F} \to \R$ melalui identitas polarisasi \eqref{eq:3.2}, yaitu,
+    \begin{equation*}
+      (v,w) := \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2) \quad \text{untuk } v,w \in \mathcal{F}.
+    \end{equation*}
+    Dari definisi ini, jelas bahwa $(v,v) = \frac{1}{4}(\|2v\|^2 - \|0\|^2) = \|v\|^2$, sehingga \eqref{eq:3.4} terpenuhi dan dengan demikian $(\cdot, \cdot)$ adalah definit positif. Selain itu, pemetaan ini terbukti simetris karena $\|v-w\| = \|w-v\|$, sehingga $(v,w) = (w,v)$ untuk semua $v,w \in \mathcal{F}$.
+
+    Tersisa untuk memverifikasi sifat linearitas:
+    \begin{equation}
+      (\alpha u + \beta v, w) = \alpha (u,w) + \beta (v,w) \quad \text{untuk semua } \alpha, \beta \in \R, u,v,w \in \mathcal{F}. \label{eq:3.5}
+    \end{equation}
+    \framebreak
+
+    Pertama, kita perhatikan sifat
+    \begin{equation}
+      (-v, w) = \frac{1}{4}(\|-v+w\|^2 - \|-v-w\|^2) = \frac{1}{4}(\|v-w\|^2 - \|v+w\|^2) = -(v, w), \label{eq:3.6}
+    \end{equation}
+    yang berlaku untuk semua $v,w \in \mathcal{F}$. Secara khusus, untuk $v=0$, kita peroleh $(0,w) = -(0,w)$ yang berakibat $(0,w) = 0$.
+
+    Selanjutnya, kita akan membuktikan sifat aditif. Dengan identitas jajar genjang \eqref{eq:3.1}, substitusi $x = \frac{u+v}{2} + w$ dan $y = \frac{u-v}{2}$ memberikan:
+    \begin{equation*}
+      \|u+w\|^2 + \|v+w\|^2 = 2\left\| \frac{u+v}{2} + w \right\|^2 + 2\left\| \frac{u-v}{2} \right\|^2.
+    \end{equation*}
+    Dengan substitusi serupa, $x = \frac{u+v}{2} - w$ dan $y = \frac{u-v}{2}$, kita peroleh:
+    \begin{equation*}
+      \|u-w\|^2 + \|v-w\|^2 = 2\left\| \frac{u+v}{2} - w \right\|^2 + 2\left\| \frac{u-v}{2} \right\|^2.
+    \end{equation*}
+    \framebreak
+
+    Maka:
+    \begin{align*}
+      (u,w) + (v,w) &= \frac{1}{4} \left( \|u+w\|^2 - \|u-w\|^2 + \|v+w\|^2 - \|v-w\|^2 \right) \\
+      &= \frac{1}{4} \left( 2\left\| \frac{u+v}{2} + w \right\|^2 - 2\left\| \frac{u+v}{2} - w \right\|^2 \right) \\
+      &= 2 \left[ \frac{1}{4} \left( \left\| \frac{u+v}{2} + w \right\|^2 - \left\| \frac{u+v}{2} - w \right\|^2 \right) \right] \\
+      &= 2 \left( \frac{1}{2}(u+v), w \right).
+    \end{align*}
+    Untuk $v=0$, ini mengimplikasikan:
+    \begin{equation}
+      (u,w) = 2 \left( \frac{1}{2}u, w \right) \quad \text{untuk semua } u,w \in \mathcal{F}. \label{eq:3.7}
+    \end{equation}
+    \framebreak
+
+    Substitusi hasil ini kembali ke penjumlahan memberikan sifat \textit{aditivitas}:
+    \begin{equation}
+      (u,w) + (v,w) = \left( u+v, w \right) \quad \text{untuk semua } u,v,w \in \mathcal{F}. \label{eq:3.8}
+    \end{equation}
+    Dari \eqref{eq:3.7} dan \eqref{eq:3.8}, kita peroleh untuk $m,n \in \N$ identitas-identitas:
+    \begin{align*}
+      m(u,w) &= (mu, w) \quad \text{untuk semua } u,w \in \mathcal{F}, \\
+      \frac{1}{2^n}(u,w) &= \left( \frac{1}{2^n}u, w \right) \quad \text{untuk semua } u,w \in \mathcal{F},
+    \end{align*}
+    yang dibuktikan dengan induksi terhadap $m \in \N$ dan $n \in \N$ berturut-turut.
+    \framebreak
+
+    Kombinasi hasil ini dengan \eqref{eq:3.6} dan \eqref{eq:3.8} mengimplikasikan sifat \textit{homogenitas}:
+    \begin{equation}
+      (\alpha u, w) = \alpha (u, w) \quad \text{untuk semua } u,w \in \mathcal{F} \label{eq:3.9}
+    \end{equation}
+    untuk semua bilangan \textit{diadik} $\alpha \in \mathbb{Q}$ dengan bentuk
+    \begin{equation*}
+      \alpha = m + \sum_{k=1}^n \frac{\alpha_k}{2^k} \quad \text{untuk } m \in \Z, n \in \N, \alpha_k \in \{0,1\}, 1 \leq k \leq n.
+    \end{equation*}
+    Karena sebarang bilangan real $\alpha \in \R$ dapat dihampiri seakurat mungkin oleh barisan bilangan diadik, dan norma $\| \cdot \|$ adalah fungsi kontinu, hal ini mengimplikasikan homogenitas \eqref{eq:3.9} berlaku untuk semua $\alpha \in \R$. Bersama dengan aditivitas \eqref{eq:3.8}, ini membuktikan kelinieran penuh \eqref{eq:3.5}. Oleh karena itu, $(\cdot, \cdot)$ adalah sebuah hasil kali dalam atas $\R$.
+    \framebreak
+
+    Jika $\mathcal{F}$ adalah ruang linear atas $\C$, kita mendefinisikan pemetaan $(\cdot, \cdot) : \mathcal{F} \times \mathcal{F} \to \C$ melalui identitas polarisasi \eqref{eq:3.3}. Misalkan $(\cdot, \cdot)_R$ adalah hasil kali dalam atas $\R$ yang didefinisikan dari bagian realnya, maka $(v,w) = (v,w)_R + i(v,iw)_R$.
+    Sifat aditivitas langsung diturunkan dari aditivitas bagian realnya. Untuk homogenitas skalar kompleks $\alpha = a + ib$, kita verifikasi perkalian dengan $i$:
+    \begin{align*}
+      (iv, w)_R &= \frac{1}{4}(\|iv+w\|^2 - \|iv-w\|^2) = -(v, iw)_R. \\
+      (iv, iw)_R &= \frac{1}{4}(\|iv+iw\|^2 - \|iv-iw\|^2) = (v, w)_R.
+    \end{align*}
+    Maka $(iv, w) = (iv, w)_R + i(iv, iw)_R = -(v, iw)_R + i(v, w)_R = i((v, w)_R + i(v, iw)_R) = i(v, w)$. Ini membuktikan $(\alpha v, w) = \alpha (v,w)$.
+    Kesimetrisan konjugat juga terpenuhi karena $(w,v) = (v,w)_R - i(v,iw)_R = \overline{(v,w)}$. Sifat definit positif jelas dari $(v,v) = \|v\|^2$. Dengan analogi ini, sifat hasil kali dalam atas $\C$ terpenuhi.
+  \end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \setcounter{akibat}{10}
+  \begin{akibat}
+    Setiap hasil kali dalam adalah kontinu.
+  \end{akibat}
+
+  \begin{proof}
+    Misalkan $\mathcal{F}$ adalah ruang Euclidean atas $\R$ dengan hasil kali dalam $(\cdot, \cdot)$. Misalkan $(v_n)_{n \in \N} \subset \mathcal{F}$ dan $(w_n)_{n \in \N} \subset \mathcal{F}$ adalah barisan yang konvergen di $\mathcal{F}$ dengan elemen limit $v \in \mathcal{F}$ dan $w \in \mathcal{F}$ berturut-turut. Menggunakan identitas polarisasi \eqref{eq:3.2} dan sifat kekontinuan norma $\| \cdot \| = (\cdot, \cdot)^{1/2}$, kita peroleh:
+    \begin{align*}
+      (v_n, w_n) &= \frac{1}{4} (\|v_n+w_n\|^2 - \|v_n-w_n\|^2) \\
+      &\to \frac{1}{4} (\|v+w\|^2 - \|v-w\|^2) = (v,w) \quad \text{untuk } n \to \infty.
+    \end{align*}
+
+    Untuk kasus di mana $\mathcal{F}$ adalah ruang Euclidean atas $\C$, kita menunjukkan kekontinuan dari $(\cdot, \cdot)$ melalui identitas polarisasi kompleks \eqref{eq:3.3}:
+    \begin{align*}
+      (v_n, w_n) &= \frac{1}{4} (\|v_n+w_n\|^2 - \|v_n-w_n\|^2 + i\|v_n+iw_n\|^2 - i\|v_n-iw_n\|^2) \\
+      &\to \frac{1}{4} (\|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2) = (v,w) \quad \text{untuk } n \to \infty.
+    \end{align*}
+    Kekontinuan norma menjamin eksistensi limit di atas, sehingga hasil kali dalam kontinu.
+  \end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  Kini kita kembali ke pertanyaan mengenai eksistensi hampiran terbaik (best approximations). Di ruang Euclidean $\mathcal{F}$ kita dapat mengandalkan identitas jajar genjang \eqref{eq:3.1}. Selain itu, kita membutuhkan \textit{kelengkapan} dari $\mathcal{F}$. Pada kesempatan ini, kita mengingat kembali definisi berikut.
+
+  \setcounter{definisi}{11}
+  \begin{definisi}
+    Sebuah ruang Euclidean yang lengkap disebut \textbf{ruang Hilbert}.
+  \end{definisi}
+
+  Selain itu, mari kita ingat kembali pengertian himpunan konveks tegas.
+
+  \begin{definisi}
+    Sebuah himpunan bagian tak-kosong $\mathcal{K} \subset \mathcal{F}$ disebut \textbf{konveks}, jika untuk sebarang $u,v \in \mathcal{K}$ segmen garis
+    \begin{equation*}
+      [u,v] = \{ \lambda u + (1-\lambda)v \mid \lambda \in [0,1] \}
+    \end{equation*}
+    antara $u$ dan $v$ terletak di dalam $\mathcal{K}$, yaitu, jika $[u,v] \subset \mathcal{K}$ untuk semua $u,v \in \mathcal{K}$.
+
+    Jika untuk sebarang $u,v \in \mathcal{K}$ dengan $u \neq v$, segmen garis terbuka
+    \begin{equation*}
+      (u,v) = \{ \lambda u + (1-\lambda)v \mid \lambda \in (0,1) \}
+    \end{equation*}
+    terkandung di dalam interior dari $\mathcal{K}$, maka $\mathcal{K}$ disebut \textbf{konveks tegas}.
+  \end{definisi}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{13}
+  \begin{teorema}
+    Misalkan $\mathcal{F}$ adalah sebuah ruang Hilbert dengan hasil kali dalam $(\cdot, \cdot)$ dan norma $\| \cdot \| = (\cdot, \cdot)^{1/2}$. Selanjutnya, misalkan $\mathcal{S} \subset \mathcal{F}$ menjadi sebuah himpunan bagian tertutup dan konveks dari $\mathcal{F}$. Maka terdapat untuk sebarang $f \in \mathcal{F}$ sebuah hampiran terbaik $s^* \in \mathcal{S}$ terhadap $f$.
+  \end{teorema}
+
+  \begin{proof}
+    Misalkan $(s_n)_{n \in \N} \subset \mathcal{S}$ adalah sebuah barisan minimal (\textit{minimal sequence}) di $\mathcal{S}$, yaitu:
+    \begin{equation*}
+      \|s_n - f\| \to \eta(f, \mathcal{S}) \quad \text{untuk } n \to \infty,
+    \end{equation*}
+    dengan jarak minimal $\eta \equiv \eta(f, \mathcal{S}) = \inf_{s \in \mathcal{S}} \|s - f\|$.
+
+    Dengan menggunakan identitas jajar genjang \eqref{eq:3.1} pada elemen $v = s_n - f$ dan $w = s_m - f$, kita memiliki $v-w = s_n - s_m$ dan $v+w = s_n + s_m - 2f = 2\left(\frac{s_n+s_m}{2} - f\right)$. Maka kita peroleh:
+    \begin{align*}
+      \|s_n - s_m\|^2 + \left\| 2\left(\frac{s_n+s_m}{2} - f\right) \right\|^2 &= 2\|s_n - f\|^2 + 2\|s_m - f\|^2 \\
+      \|s_n - s_m\|^2 &= 2\|s_n - f\|^2 + 2\|s_m - f\|^2 - 4 \left\| \frac{s_n + s_m}{2} - f \right\|^2.
+    \end{align*}
+    \framebreak
+
+    Karena $\mathcal{S}$ adalah himpunan konveks dan $s_n, s_m \in \mathcal{S}$, titik tengahnya $\frac{s_n + s_m}{2}$ juga harus berada di dalam $\mathcal{S}$. Menurut definisi jarak minimal $\eta$, jarak dari elemen mana pun di $\mathcal{S}$ (termasuk titik tengah tersebut) ke $f$ minimal adalah $\eta$. Oleh karena itu, $\left\| \frac{s_n + s_m}{2} - f \right\|^2 \geq \eta^2$. Menggunakan batas bawah ini, kita dapatkan estimasi:
+    \begin{equation*}
+      \|s_n - s_m\|^2 \leq 2\|s_n - f\|^2 + 2\|s_m - f\|^2 - 4\eta^2.
+    \end{equation*}
+
+    Saat $n, m \to \infty$, kita tahu bahwa $\|s_n - f\| \to \eta$ dan $\|s_m - f\| \to \eta$. Maka batas atas dari persamaan di atas konvergen ke $2\eta^2 + 2\eta^2 - 4\eta^2 = 0$.
+    Oleh karena itu, untuk setiap $\varepsilon > 0$ terdapat suatu $N = N(\varepsilon) \in \N$ yang memenuhi
+    \begin{equation*}
+      \|s_n - s_m\| < \varepsilon \quad \text{untuk semua } n,m \geq N.
+    \end{equation*}
+    Hal ini menunjukkan bahwa $(s_n)_{n \in \N}$ adalah sebuah barisan Cauchy di dalam ruang Hilbert $\mathcal{F}$, dan oleh karenanya memiliki limit dan konvergen di $\mathcal{F}$.
+
+    Karena $\mathcal{S}$ adalah himpunan tertutup, elemen limit $s^*$ harus terletak di dalam $\mathcal{S}$. Karena fungsi norma itu kontinu, kita dapat menukar proses limit dengan normanya:
+    \begin{equation*}
+      \eta = \lim_{n \to \infty} \|s_n - f\| = \left\| \lim_{n \to \infty} s_n - f \right\| = \|s^* - f\|.
+    \end{equation*}
+    Ini berarti bahwa $s^* \in \mathcal{S}$ mencapai jarak infimum $\eta$, sehingga $s^*$ adalah sebuah hampiran terbaik terhadap $f$.
+  \end{proof}
+\end{frame}
+
+\end{document}
