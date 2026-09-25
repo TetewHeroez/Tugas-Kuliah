@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage[indonesian]{babel}
+
+\begin{document}
+\begin{enumerate}
+  \item
+        \begin{enumerate}
+          \item Dapatkan polinomial $P(x) = \sum_{n=0}^N a_n x^n$ sedemikian sehingga
+                $$ \left| \sin x - \sum_{n=0}^N a_n x^n \right| \le 0.005, \quad \forall x \in \left[0, \frac{\pi}{2}\right]. $$
+          \item Gunakan hasil pada (a) untuk mendapatkan nilai aproksimasi dari
+                $$ \int_0^1 \sin x^2 \, dx. $$
+                dengan error paling banyak $0.05$.
+        \end{enumerate}
+
+        \textbf{Solusi:}
+        \begin{enumerate}
+          \item Ekspansi deret Maclaurin untuk fungsi $\sin x$ adalah barisan selang-seling (alternating series) untuk $x \ge 0$:
+                $$ \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots $$
+                Berdasarkan Teorema Deret Ganti Tanda (Alternating Series Theorem), galat/error aproksimasi deret Maclaurin dibatasi oleh nilai mutlak suku pertama yang diabaikan. Untuk $x \in [0, \pi/2]$, nilai dari setiap suku deret bernilai positif dan monoton turun, sehingga dapat digunakan aproksimasi pemotongan deret Taylor.
+
+                Kita ingin memotong deret sampai suku berderajat $N$ sehingga batas atas erornya $\le 0.005$ pada rentang $[0, \pi/2]$.
+                Nilai maksimal dari $x$ adalah $x = \frac{\pi}{2} \approx 1.5708$. Kita evaluasi batas eror (suku selanjutnya) untuk beberapa nilai derajat $N$:
+                \begin{itemize}
+                  \item Untuk $N=3$, batas eror adalah suku derajat ke-5: $\left| \frac{(\pi/2)^5}{5!} \right| \approx \frac{9.553}{120} \approx 0.0796 > 0.005$.
+                  \item Untuk $N=5$, batas eror adalah suku derajat ke-7: $\left| \frac{(\pi/2)^7}{7!} \right| \approx \frac{23.682}{5040} \approx 0.0047 \le 0.005$.
+                \end{itemize}
+                Karena untuk $N=5$ eror sudah kurang dari atau sama dengan $0.005$, kita dapat memilih polinomial:
+                $$ P(x) = x - \frac{x^3}{6} + \frac{x^5}{120} $$
+                dengan derajat $N=5$. (Perhatikan bahwa polinomial ini memiliki $a_0 = a_2 = a_4 = 0$, $a_1 = 1, a_3 = -\frac{1}{6}, a_5 = \frac{1}{120}$).
+
+          \item Diketahui kita ingin mengaproksimasi $\int_0^1 \sin x^2 \, dx$. Dari hasil bagian (a), kita miliki aproksimasi fungsi $\sin y$ oleh polinomial $P(y) = y - \frac{y^3}{6} + \frac{y^5}{120}$ yang menjamin:
+                $$ |\sin y - P(y)| \le 0.005 \quad \text{untuk semua } y \in \left[0, \frac{\pi}{2}\right]. $$
+                Dengan melakukan substitusi $y = x^2$, maka untuk $x \in [0, 1]$, berlaku $x^2 \in [0, 1] \subset [0, \pi/2]$. Sehingga menjamin:
+                $$ |\sin x^2 - P(x^2)| \le 0.005 \quad \text{untuk semua } x \in [0, 1]. $$
+                Aproksimasi dari integral tersebut adalah integral dari $P(x^2)$:
+                \begin{align*}
+                  \int_0^1 \sin x^2 \, dx & \approx \int_0^1 P(x^2) \, dx                                             \\
+                                          & = \int_0^1 \left( x^2 - \frac{x^6}{6} + \frac{x^{10}}{120} \right) \, dx  \\
+                                          & = \left[ \frac{x^3}{3} - \frac{x^7}{42} + \frac{x^{11}}{1320} \right]_0^1 \\
+                                          & = \frac{1}{3} - \frac{1}{42} + \frac{1}{1320}                             \\
+                                          & = \frac{3080 - 220 + 7}{9240} = \frac{2867}{9240} \approx 0.31028
+                \end{align*}
+                Sedangkan batas galat dari aproksimasi integral di atas adalah:
+                $$ \left| \int_0^1 \sin x^2 \, dx - \int_0^1 P(x^2) \, dx \right| \le \int_0^1 \left| \sin x^2 - P(x^2) \right| \, dx \le \int_0^1 0.005 \, dx = 0.005 $$
+                Karena nilai galat mutlak dari aproksimasi bernilai $\le 0.005 \le 0.05$, nilai eksak hampiran tersebut memenuhi batasan yang disyaratkan oleh soal, yakni error paling banyak $0.05$. Oleh karena itu nilai hasil aproksimasinya adalah $\frac{2867}{9240}$.
+        \end{enumerate}
+
+  \item Buktikan bahwa
+        $$ \sum_{n=k+1}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2} + \frac{1}{(2k+1)^2}, \quad \forall k \in \mathbb{N}. $$
+
+        \textbf{Solusi:}
+        Kita dapat menggunakan uji integral (atau estimasi sisa deret dengan integral) karena fungsi $f(x) = \frac{1}{(2x-1)^2}$ adalah fungsi yang positif dan monoton turun untuk $x \ge 1$.
+        Untuk menaksir sisa jumlahan mulai dari indeks $n = k+2$ hingga tak hingga, kita dapat menaksir dengan integral Riemann berikut:
+        $$ \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \le \int_{k+1}^\infty \frac{1}{(2x-1)^2} \, dx $$
+        Kita hitung nilai integral tak wajar tersebut:
+        \begin{align*}
+          \int_{k+1}^\infty (2x-1)^{-2} \, dx & = \lim_{t \to \infty} \left[ -\frac{1}{2}(2x-1)^{-1} \right]_{k+1}^t                            \\
+                                              & = \lim_{t \to \infty} \left( -\frac{1}{2(2t-1)} \right) - \left( -\frac{1}{2(2(k+1)-1)} \right) \\
+                                              & = 0 + \frac{1}{2(2k+1)}                                                                         \\
+                                              & = \frac{1}{4k+2}
+        \end{align*}
+        Jadi,
+        $$ \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2}. $$
+        Kita dapat menambahkan suku dengan indeks $n = k+1$ ke ruas kiri dan kanan pada persamaan tersebut:
+        \begin{align*}
+          \sum_{n=k+1}^\infty \frac{1}{(2n-1)^2} & = \frac{1}{(2(k+1)-1)^2} + \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \\
+                                                 & \le \frac{1}{(2k+1)^2} + \frac{1}{4k+2}.
+        \end{align*}
+        Sehingga terbukti bahwa $\sum_{n=k+1}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2} + \frac{1}{(2k+1)^2}, \quad \forall k \in \mathbb{N}.$
+
+  \item Diketahui bahwa fungsi parabola $f(x) = x^2$ pada interval $[0, 1]$ akan diaproksimasi dengan fungsi linear yang berbentuk
+        $$ g_\xi(x) = \xi x \text{ untuk } \xi \in \mathbb{R}. $$
+        Dapatkan aproksimasi terbaik $g_{\xi^*}(x)$ atas $f$ yang memenuhi
+        $$ \|g_{\xi^*} - f\| = \inf_{\xi \in \mathbb{R}} \|g_\xi - f\| $$
+        apabila
+        \begin{enumerate}
+          \item $\|h\| = \left( \int_0^1 |h(x)|^2 \, dx \right)^{1/2}$.
+          \item $\|h\| = \int_0^1 |h(x)| \, dx$.
+        \end{enumerate}
+
+        \textbf{Solusi:}
+        \begin{enumerate}
+          \item Menggunakan norm $L_2$ yakni $\|h\| = \left( \int_0^1 |h(x)|^2 \, dx \right)^{1/2}$, kita ingin meminimalkan kuadrat jarak antara dua fungsi:
+                $$ I(\xi) = \|g_\xi - f\|^2 = \int_0^1 (\xi x - x^2)^2 \, dx $$
+                Mari kita hitung nilai integral tersebut:
+                \begin{align*}
+                  I(\xi) & = \int_0^1 (\xi^2 x^2 - 2\xi x^3 + x^4) \, dx                                \\
+                         & = \left[ \frac{\xi^2}{3}x^3 - \frac{2\xi}{4}x^4 + \frac{1}{5}x^5 \right]_0^1 \\
+                         & = \frac{\xi^2}{3} - \frac{\xi}{2} + \frac{1}{5}
+                \end{align*}
+                Untuk mendapatkan nilai minimum, kita hitung turunan pertama dan menyamakannya dengan nol:
+                $$ I'(\xi) = \frac{2\xi}{3} - \frac{1}{2} = 0 \implies \xi = \frac{3}{4} $$
+                (Karena $I''(\xi) = \frac{2}{3} > 0$, maka $\xi = \frac{3}{4}$ merupakan titik minimum).
+                Sehingga aproksimasi terbaik dengan norma-2 adalah $g_{\xi^*}(x) = \frac{3}{4}x$.
+
+          \item Menggunakan norm $L_1$ yakni $\|h\| = \int_0^1 |h(x)| \, dx$, fungsi jarak yang ingin diminimalkan adalah:
+                $$ I(\xi) = \|g_\xi - f\| = \int_0^1 | \xi x - x^2 | \, dx = \int_0^1 x | \xi - x | \, dx $$
+                Karena fungsi yang akan dievaluasi berada pada $x \in [0, 1]$, ada tiga kasus untuk nilai $\xi$:
+                \begin{itemize}
+                  \item Untuk $\xi \le 0$: Pada $x \in [0, 1]$, bernilai $\xi - x \le 0$, sehingga $|\xi - x| = x - \xi$.
+                        $$ I(\xi) = \int_0^1 (x^2 - \xi x) \, dx = \frac{1}{3} - \frac{\xi}{2} $$
+                        Nilai integral fungsi tersebut bernilai paling minimum di domain ini saat $\xi = 0$ dengan nilai fungsi minimum $1/3$.
+                  \item Untuk $\xi \ge 1$: Pada $x \in [0, 1]$, bernilai $\xi - x \ge 0$, sehingga $|\xi - x| = \xi - x$.
+                        $$ I(\xi) = \int_0^1 (\xi x - x^2) \, dx = \frac{\xi}{2} - \frac{1}{3} $$
+                        Nilai integral fungsi tersebut bernilai paling minimum di domain ini saat $\xi = 1$ dengan nilai fungsi minimum $1/6$.
+                  \item Untuk $0 < \xi < 1$: Terdapat titik perpotongan antara fungsi konstan $\xi$ dan fungsi $x$ di selang $(0, 1)$ pada titik $x = \xi$. Saat rentang limit $x \in (0, \xi]$, $| \xi - x | = \xi - x$ positif, sedangkan pada limit $x \in (\xi, 1]$, $| \xi - x | = x - \xi$ negatif.
+                        \begin{align*}
+                          I(\xi) & = \int_0^\xi x (\xi - x) \, dx + \int_\xi^1 x (x - \xi) \, dx                                                                                      \\
+                                 & = \int_0^\xi (\xi x - x^2) \, dx + \int_\xi^1 (x^2 - \xi x) \, dx                                                                                  \\
+                                 & = \left[ \frac{\xi x^2}{2} - \frac{x^3}{3} \right]_0^\xi + \left[ \frac{x^3}{3} - \frac{\xi x^2}{2} \right]_\xi^1                                  \\
+                                 & = \left( \frac{\xi^3}{2} - \frac{\xi^3}{3} \right) + \left( \frac{1}{3} - \frac{\xi}{2} \right) - \left( \frac{\xi^3}{3} - \frac{\xi^3}{2} \right) \\
+                                 & = \frac{\xi^3}{6} + \frac{1}{3} - \frac{\xi}{2} + \frac{\xi^3}{6}                                                                                  \\
+                                 & = \frac{\xi^3}{3} - \frac{\xi}{2} + \frac{1}{3}
+                        \end{align*}
+                \end{itemize}
+                Untuk mendapatkan nilai minimum untuk kasus terakhir, kita hitung turunan dan cari akar persamaannya:
+                $$ I'(\xi) = \xi^2 - \frac{1}{2} = 0 \implies \xi = \pm \frac{1}{\sqrt{2}} $$
+                Diketahui karena rentangnya adalah $0 < \xi < 1$, nilai titik kritis stasionernya hanyalah $\xi = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}$.
+                Saat $\xi = \frac{1}{\sqrt{2}}$, $I(\frac{1}{\sqrt{2}}) = \frac{1}{6\sqrt{2}} - \frac{1}{2\sqrt{2}} + \frac{1}{3} = \frac{1}{3} - \frac{\sqrt{2}}{6} \approx 0.0976$.
+                Karena nilai minimum ini jauh lebih kecil dari nilai minimum kedua domain fungsi lainnya, ini adalah minimum global. (Selain itu $I''(\xi) = 2\xi > 0$ mengkonfirmasi titik ekstrem ini adalah minimum).
+                Sehingga aproksimasi terbaik dengan norma-1 adalah $g_{\xi^*}(x) = \frac{\sqrt{2}}{2}x$.
+        \end{enumerate}
+
+  \item Diberikan ruang linier fungsi kontinu $C([-\pi, \pi])$ yang dilengkapi dengan norm
+        $$ \|g\| := \|g\|_1 + \|g\|_\infty \text{ untuk } g \in C([-\pi, \pi]). $$
+        Lebih lanjut misal $f(x) = x$ untuk $-\pi \le x \le \pi$ dan
+        $$ S = \{ \alpha \sin^2(\cdot) : \alpha \in \mathbb{R} \} \subset C([-\pi, \pi]). $$
+        Jelaskan mengenai eksistensi aproksimasi terbaik dari $f$ pada ruang $S$.
+
+        \textbf{Solusi:}
+        Masalah mencari eksistensi hampiran terbaik dari $f$ pada subruang $S$ adalah masalah mencari nilai minimum dari fungsi objektif (jarak):
+        $$ E(\alpha) = \|\alpha \sin^2(\cdot) - x\| = \|\alpha \sin^2(\cdot) - x\|_1 + \|\alpha \sin^2(\cdot) - x\|_\infty. $$
+        berkenaan dengan parameter skalar real $\alpha \in \mathbb{R}$.
+
+        Pertama, ruang $S = \text{span}\{\sin^2(\cdot)\}$ adalah sebuah subruang dari ruang bernorma $C([-\pi, \pi])$ yang hanya berdimensi-1 (yaitu dimensi berhingga/finite). Sebuah teorema fundamental dalam teori hampiran/aproksimasi menyatakan bahwa: "Jika $S$ adalah ruang bagian (subruang) berdimensi hingga tak-kosong dari ruang bernorma $X$, maka untuk setiap elemen $f \in X$ terdapat minimal sebuah elemen hampiran terbaik di dalam $S$". Karena subruang linear $S$ berdimensi satu yang dibentangkan atas fungsi $\sin^2(\cdot)$, hal tersebut membuktikan tentang pasti adanya jaminan keberadaan paling sedikit satu titik dari subruang hampiran terbaik tersebut.
+
+        Kita juga dapat membuktikannya secara langsung dengan argumen \textbf{kekompakan} (compactness).
+        Berdasarkan ketaksamaan segitiga terbalik:
+        $$ E(\alpha) \ge | \|\alpha \sin^2(\cdot)\| - \|x\| | \ge |\alpha| \|\sin^2(\cdot)\| - \|x\|. $$
+        Nilai norma dari $\sin^2(\cdot)$ bernilai konstan positif:
+        $$ \|\sin^2(\cdot)\| = \|\sin^2(\cdot)\|_1 + \|\sin^2(\cdot)\|_\infty = \int_{-\pi}^\pi \sin^2(t)\,dt + 1 = \pi + 1 > 0. $$
+        Dengan demikian, ketika $|\alpha| \to \infty$, nilai error akan bersifat konvergen tak hingga $E(\alpha) \to \infty$ yang disebut fungsinya "bersifat koersif".
+
+        Misalkan ada sebuah elemen patokan yakni $\alpha = 0$, dengan nilai eror $E(0) = \|x\| = \pi^2 + \pi$. Oleh karena sifat koersivitas pada fungsi, maka ada suatu batasan konstan riil positif $M > 0$ sehingga untuk setiap kondisi $|\alpha| > M$, pastilah dipenuhi $E(\alpha) > E(0)$. Oleh karena itu, jika kita ingin meminimalkan fungsi pada fungsi jarak di atas, batasan perolehan solusi riil minimum (infimum global) dapat dijamin terletak secara eksklusif pada rentang interval tertutup dan terbatas $[-M, M]$ saja.
+        $$ \inf_{\alpha \in \mathbb{R}} E(\alpha) = \inf_{\alpha \in [-M, M]} E(\alpha) $$
+        Karena fungsi norm itu kontinu, $E(\alpha)$ adalah fungsi skalar dari nilai absolut yang kontinu dan merupakan pemetaan nilai riil kepada $\mathbb{R}$. Kita ketahui pula bahwa himpunan parameter rentang $[-M, M]$ di dalam bilangan riil juga bersifat \textbf{kompak} (karena ini merupakan himpunan yang tertutup dan terbatas (berdasarkan Teorema Heine-Borel)).
+        Berdasarkan Teorema Nilai Ekstrem (Teorema Weierstrass), sebuah fungsi riil kontinu yang terdefinisikan pada domain himpunan yang kompak niscaya akan secara asimtotik selalu berhasil mencapai nilai paling minimumnya di suatu posisi setidaknya sebuah titik dalam selang rentang interval himpunan terbatas tersebut.
+        Oleh karena itu, ini membuktikan bahwa terdapat setidaknya suatu nilai $\alpha^* \in [-M, M]$ yang merupakan penjamin hampiran aproksimasi terbaik sehingga berlaku $E(\alpha^*) = \inf_{\alpha \in \mathbb{R}} E(\alpha)$.
+
+\end{enumerate}
+
+\end{document}
