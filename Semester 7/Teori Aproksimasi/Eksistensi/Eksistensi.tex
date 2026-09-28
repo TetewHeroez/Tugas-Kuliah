@@ -394,7 +394,7 @@
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   \setcounter{teorema}{13}
   \begin{teorema}
-    Misalkan $\mathcal{F}$ adalah sebuah ruang Hilbert dengan hasil kali dalam $\langle \cdot, \cdot \rangle$ dan norma $\| \cdot \| = \langle \cdot, \cdot \rangle^{1/2}$. Selanjutnya, misalkan $\mathcal{S} \subset \mathcal{F}$ menjadi sebuah himpunan bagian tertutup dan konveks dari $\mathcal{F}$. Maka terdapat untuk sebarang $f \in \mathcal{F}$ sebuah hampiran terbaik $s^* \in \mathcal{S}$ terhadap $f$.
+    Misalkan $\mathcal{F}$ adalah sebuah ruang Hilbert dengan hasil kali dalam $\langle \cdot, \cdot \rangle$ dan norma $\| \cdot \| = \langle \cdot, \cdot \rangle^{1/2}$. Selanjutnya, misalkan $\mathcal{S} \subset \mathcal{F}$ menjadi sebuah himpunan bagian tertutup dan konveks dari $\mathcal{F}$. Maka terdapat untuk sebarang $f \in \mathcal{F}$ sebuah aproksimasi terbaik $s^* \in \mathcal{S}$ terhadap $f$.
   \end{teorema}
   \textit{Bukti.}
   Definisikan jarak minimal $\eta \equiv \eta(f, \mathcal{S}) := \inf_{s \in \mathcal{S}} \|s - f\|$ dan misalkan $(s_n)_{n \in \N} \subset \mathcal{S}$ adalah barisan minimal di $\mathcal{S}$, yaitu $\|s_n - f\| \to \eta$ untuk $n \to \infty$.
@@ -423,7 +423,7 @@
   \begin{equation*}
     \|s^* - f\| = \left\|\lim_{n \to \infty} s_n - f\right\| = \lim_{n \to \infty} \|s_n - f\| = \eta.
   \end{equation*}
-  Jadi $s^* \in \mathcal{S}$ mencapai infimum $\eta$, yang berarti $s^*$ adalah hampiran terbaik dari $f$ di $\mathcal{S}$. \qed
+  Jadi $s^* \in \mathcal{S}$ mencapai infimum $\eta$, yang berarti $s^*$ adalah aproksimasi terbaik dari $f$ di $\mathcal{S}$. \qed
 
 \end{frame}
 
