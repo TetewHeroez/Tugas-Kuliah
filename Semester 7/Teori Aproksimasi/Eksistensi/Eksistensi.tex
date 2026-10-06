@@ -274,9 +274,23 @@
                   \begin{enumerate}
                     \item Pilih $n \in \N$ cukup besar sehingga $\dfrac{1}{2^n} < \epsilon$.
                     \item Tetapkan $m = \lfloor x \rfloor \in \Z$, sehingga $x - m \in [0,1)$.
-                    \item Ekspansikan $x - m$ ke dalam biner tak hingga:
+                    \item Ekspansikan $x - m$ ke dalam biner tak hingga. Konstruksi $\alpha_k$ dilakukan secara rekursif dengan algoritma \textit{greedy}: definisikan sisa awal $r_0 = x - m \in [0,1)$, lalu untuk tiap $k \geq 1$:
                           \begin{equation*}
-                            x - m = \sum_{k=1}^{\infty} \frac{\alpha_k}{2^k}, \quad \alpha_k \in \{0,1\}.
+                            \alpha_k = \begin{cases} 1 & \text{jika } r_{k-1} \geq \dfrac{1}{2^k}, \\ 0 & \text{jika } r_{k-1} < \dfrac{1}{2^k}, \end{cases} \qquad r_k = r_{k-1} - \frac{\alpha_k}{2^k}.
+                          \end{equation*}
+                          \textbf{Klaim:} $r_k \in \left[0, \frac{1}{2^k}\right)$ untuk semua $k \geq 0$.
+
+                          \textit{Bukti klaim dengan induksi.} Basis: $r_0 = x - m \in [0,1) = \left[0, \frac{1}{2^0}\right)$, terpenuhi.
+
+                          Langkah induksi: asumsikan $r_{k-1} \in \left[0, \frac{1}{2^{k-1}}\right)$.
+
+                          Jika $r_{k-1} \geq \frac{1}{2^k}$, maka $\alpha_k = 1$ dan $r_k = r_{k-1} - \frac{1}{2^k}$. Karena $r_{k-1} < \frac{1}{2^{k-1}} = \frac{2}{2^k}$, diperoleh
+                          \[r_k = r_{k-1} - \frac{1}{2^k} < \frac{2}{2^k} - \frac{1}{2^k} = \frac{1}{2^k}.\]
+                          Juga $r_k = r_{k-1} - \frac{1}{2^k} \geq 0$.
+
+                          Jika $r_{k-1} < \frac{1}{2^k}$, maka $\alpha_k = 0$ dan $r_k = r_{k-1} \in \left[0, \frac{1}{2^k}\right)$. Pada kedua kasus, $r_k \in \left[0, \frac{1}{2^k}\right)$, sehingga $r_k \to 0$ untuk $k \to \infty$. Karena $r_0 = \sum_{j=1}^{k} \frac{\alpha_j}{2^j} + r_k$ untuk setiap $k$, maka:
+                          \begin{equation*}
+                            x - m = r_0 = \lim_{k \to \infty} \sum_{j=1}^{k} \frac{\alpha_j}{2^j} = \sum_{k=1}^{\infty} \frac{\alpha_k}{2^k}, \quad \alpha_k \in \{0,1\}.
                           \end{equation*}
                     \item Definisikan bilangan diadik $\alpha$ sebagai pemotongan di suku ke-$n$:
                           \begin{equation*}
@@ -397,7 +411,20 @@
     Misalkan $\mathcal{F}$ adalah sebuah ruang Hilbert dengan hasil kali dalam $\langle \cdot, \cdot \rangle$ dan norma $\| \cdot \| = \langle \cdot, \cdot \rangle^{1/2}$. Selanjutnya, misalkan $\mathcal{S} \subset \mathcal{F}$ menjadi sebuah himpunan bagian tertutup dan konveks dari $\mathcal{F}$. Maka terdapat untuk sebarang $f \in \mathcal{F}$ sebuah aproksimasi terbaik $s^* \in \mathcal{S}$ terhadap $f$.
   \end{teorema}
   \textit{Bukti.}
-  Definisikan jarak minimal $\eta \equiv \eta(f, \mathcal{S}) := \inf_{s \in \mathcal{S}} \|s - f\|$ dan misalkan $(s_n)_{n \in \N} \subset \mathcal{S}$ adalah barisan minimal di $\mathcal{S}$, yaitu $\|s_n - f\| \to \eta$ untuk $n \to \infty$.
+  Definisikan jarak minimal $\eta \equiv \eta(f, \mathcal{S}) := \inf_{s \in \mathcal{S}} \|s - f\|$. Kita terlebih dahulu membuktikan keberadaan barisan minimal di $\mathcal{S}$.
+
+  Karena $\mathcal{S}$ tak-kosong sesuai definisi himpunan konveks yang digunakan, ambil $s_0\in\mathcal{S}$. Semua jarak tak-negatif, sehingga:
+  \begin{equation*}
+    0\leq\eta\leq\|s_0-f\|<\infty.
+  \end{equation*}
+  Untuk setiap $n\in\N$, $n\geq 1$, berlaku $\eta+1/n>\eta$. Berdasarkan sifat infimum, harus ada $s_n\in\mathcal{S}$ dengan $\|s_n-f\|<\eta+1/n$. Sebab, jika tidak ada, maka $\|s-f\|\geq\eta+1/n$ untuk semua $s\in\mathcal{S}$. Ini menjadikan $\eta+1/n$ suatu batas bawah yang lebih besar daripada $\eta$, bertentangan dengan definisi infimum sebagai batas bawah terbesar.
+
+  Dengan memilih satu elemen tersebut untuk setiap $n$, diperoleh barisan $(s_n)_{n\in\N}\subset\mathcal{S}$ yang memenuhi:
+  \begin{equation*}
+    \eta\leq\|s_n-f\|<\eta+\frac{1}{n},
+    \qquad 0\leq\|s_n-f\|-\eta<\frac{1}{n}.
+  \end{equation*}
+  Karena $1/n\to 0$, teorema apit memberikan $\|s_n-f\|\to\eta$. Barisan inilah yang disebut \textbf{barisan minimal}. Selanjutnya, kita buktikan bahwa barisan tersebut konvergen ke suatu aproksimasi terbaik.
 
   Terapkan identitas jajar genjang \eqref{eq:3.1} dengan substitusi $v = s_n - f$ dan $w = s_m - f$, sehingga:
   \begin{equation*}
