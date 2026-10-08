@@ -41,326 +41,141 @@
 \newcommand{\lowr}[1]{\underline{Apr}(#1)}
 \newcommand{\res}[1]{[\![#1]\!]_3}
 
-\title{\textbf{Pendekatan Baru terhadap Ruang Vektor Rough}\\[0.4em]
-\large\textit{A New Approach to Rough Vector Spaces}}
-\author{Shahad T. Almohammadi$^{1}$ \and
-Cenap \"Ozel$^{2}$\thanks{Penulis korespondensi: Cenap \"Ozel,
-\texttt{cenap.ozel@gmail.com}.}}
+\title{\textbf{Ruang Vektor Rough}\\[0.4em]
+\large}
+\author{\textit{Journal: A New Approach to Rough Vector Spaces}\\
+Author: Shahad T. Almohammadi \& Cenap \"Ozel}
 \date{}
 
 \begin{document}
 \maketitle
-\begin{center}
-\small
-$^{1}$Departemen Matematika, King Abdulaziz University (KAU),\\
-P.O. Box 80203, Jeddah 21589, Arab Saudi;\\
-dan Departemen Matematika, University of Jeddah,\\
-P.O. Box 80327, Jeddah 21589, Arab Saudi.\\[0.4em]
-$^{2}$Departemen Matematika, King Abdulaziz University (KAU),\\
-P.O. Box 80203, Jeddah 21589, Arab Saudi.\\[0.4em]
-$^{1}$\texttt{shtlmd.93@gmail.com}, \texttt{stalmohammadi@uj.edu.sa}\\
-$^{2}$\texttt{cenap.ozel@gmail.com}, \texttt{cozel@kau.edu.sa}\\[0.7em]
-\textit{General Letters in Mathematics}, Vol.~6, No.~1, Maret 2019, hlm.~1--9.\\
-e-ISSN 2519-9277, p-ISSN 2519-9269.\\
-Tersedia daring di \url{https://www.refaad.com}.\\
-\url{https://doi.org/10.31559/glm2019.6.1.1}
-\end{center}
-
-\begin{abstract}
-Dalam artikel ini, kami memperkenalkan konsep ruang vektor rough
-menggunakan aproksimasi atas, dan beberapa hasil aljabar akan dibuktikan.
-Selain itu, konsep ini akan digabungkan dengan konsep ruang topologis.
-\end{abstract}
-
-\noindent\textbf{Kata kunci:} Himpunan rough, aproksimasi bawah,
-aproksimasi atas, ruang aproksimasi, ruang vektor, ruang topologis,
-ruang vektor topologis.
-
-\noindent\textbf{Klasifikasi MSC 2010:} 15A03, 03E99.
-
-\section{Pendahuluan}
-
-Pada tahun 1982, Z.~Pawlak mengusulkan operasi aproksimasi pada suatu
-himpunan yang menjadi awal dari teori himpunan rough~\cite{pawlak}.
-Sebenarnya, teori himpunan rough bukanlah hal baru, melainkan perluasan
-teori himpunan untuk menangani sistem informasi yang tidak lengkap.
-Teori ini didasarkan pada ruang aproksimasi yang dinyatakan oleh pasangan
-terurut $(U,R)$, yang terdiri atas himpunan tak kosong dan relasi
-ekuivalensi, masing-masing disebut semesta dan relasi ketakterbedaan.
-Di sini, kelas-kelas ekuivalensi suatu semesta disebut himpunan elementer,
-dan gabungan hingga dari kelas-kelas tersebut disebut himpunan tersusun.
-Setiap himpunan bagian dari semesta dalam teori rough direpresentasikan
-oleh dua himpunan, yaitu aproksimasi bawah dan aproksimasi atas.
-Aproksimasi bawah suatu himpunan bagian adalah himpunan tersusun terbesar
-yang termuat dalam himpunan tersebut. Di sisi lain, aproksimasi atas
-adalah himpunan tersusun terkecil yang memuat himpunan tersebut.
-Penelitian sebelumnya telah membangun struktur-struktur aljabar penting,
-yaitu grup rough~\cite{biwa}, gelanggang rough~\cite{davvaz}, dan modul
-rough~\cite{modules}.
-
-Dalam artikel ini, kami menggeneralisasi pengertian grup rough
-dalam~\cite{biwa} untuk membangun pengertian ruang vektor rough.
-Selanjutnya, beberapa struktur aljabar dari ruang vektor rough akan
-dibuktikan.
-
-Susunan artikel ini adalah sebagai berikut. Pada Bagian 2, diberikan
-dasar-dasar teori himpunan rough dan beberapa informasi mengenai teori
-grup rough yang didefinisikan oleh Biwas dan Nanda~\cite{biwa}.
-Pada Bagian 3, kami mendefinisikan dan mengkaji ruang vektor rough serta
-memberikan beberapa contoh yang menarik. Pada bagian terakhir, kami
-memberikan teori lanjutan mengenai ruang vektor rough, seperti hasil
-bagi, koset, dan jumlah langsung. Selanjutnya, pada Bagian 4, kami
-menggabungkan konsep ruang vektor rough yang didefinisikan pada bagian
-ketiga dengan konsep ruang topologis, yang disebut ruang vektor rough
-topologis.
-
-Artikel ini dihasilkan dari tesis magister penulis pertama di King
-Abdulaziz University.
-
 \section{Konsep Dasar}
 
-Pengertian dasar dalam teori himpunan rough dan grup rough akan
-diberikan; untuk uraian lebih lanjut, lihat~\cite{biwa,pawlak}.
-
 \begin{definisi}\label{def:1}
-Pasangan $(U,R)$ yang terdiri atas himpunan tak kosong $U$ dan relasi
-ekuivalensi $R$ disebut \textbf{ruang aproksimasi}.
+      Pasangan $(U,R)$ yang terdiri atas himpunan tak kosong $U$ dan relasi
+      ekuivalensi $R$ disebut \textbf{ruang aproksimasi}.
 \end{definisi}
 
 \begin{definisi}\label{def:2}
-Misalkan $X$ sebarang himpunan bagian dari ruang aproksimasi $(U,R)$.
-Maka $X$ dinyatakan oleh pasangan $(\lowp{X},\upp{X})$, yang
-berturut-turut merupakan aproksimasi bawah dan aproksimasi atas, dengan
-\begin{align*}
- \lowp{X}&=\bigcup_{x\in U}\{[x]_R:[x]_R\subseteq X\},\quad\text{dan}\\
- \upp{X}&=\bigcup_{x\in U}\{[x]_R:[x]_R\cap X\ne\varnothing\},
-\end{align*}
-di mana $[x]_R$ menyatakan kelas ekuivalensi yang memuat $x$ dalam $R$.
-\textbf{Batas} himpunan $X$ dalam $A$ didefinisikan sebagai
-\[
- Bnd(X)=\upr{X}-\lowr{X}.
-\]
+      Misalkan $X$ sebarang himpunan bagian dari ruang aproksimasi $(U,R)$.
+      Maka $X$ dinyatakan oleh pasangan $(\lowp{X},\upp{X})$, yang
+      berturut-turut merupakan aproksimasi bawah dan aproksimasi atas, dengan
+      \begin{align*}
+            \lowp{X} & =\bigcup_{x\in U}\{[x]_R:[x]_R\subseteq X\},\quad\text{dan} \\
+            \upp{X}  & =\bigcup_{x\in U}\{[x]_R:[x]_R\cap X\ne\varnothing\},
+      \end{align*}
+      di mana $[x]_R$ menyatakan kelas ekuivalensi yang memuat $x$ dalam $R$.
+      \textbf{Batas} himpunan $X$ dalam $A$ didefinisikan sebagai
+      \[
+            Bnd(X)=\upr{X}-\lowr{X}.
+      \]
 \end{definisi}
 
 Misalkan $U$ suatu ruang aproksimasi dan $X,Y\subseteq U$. Maka berlaku:
 \begin{enumerate}
- \item $\lowp{X}\subseteq X\subseteq\upp{X}$,
- \item $\upp{U}=\lowp{U}=U$,
- \item $\upp{\phi}=\lowp{\phi}=\phi$,
- \item $\upp{X\cup Y}=\upp{X}\cup\upp{Y}$,
- \item $\lowp{X\cap Y}=\lowp{X}\cap\lowp{Y}$,
- \item $\upp{X\cap Y}\subset\upp{X}\cap\upp{Y}$,
- \item $\lowp{X}\cup\lowp{Y}\subseteq\lowp{X\cup Y}$,
- \item $\upp{X}\subset\upp{Y}$ dan $\lowp{X}\subset\lowp{Y}$
-       apabila $X\subset Y$.
+      \item $\lowp{X}\subseteq X\subseteq\upp{X}$,
+      \item $\upp{U}=\lowp{U}=U$,
+      \item $\upp{\phi}=\lowp{\phi}=\phi$,
+      \item $\upp{X\cup Y}=\upp{X}\cup\upp{Y}$,
+      \item $\lowp{X\cap Y}=\lowp{X}\cap\lowp{Y}$,
+      \item $\upp{X\cap Y}\subset\upp{X}\cap\upp{Y}$,
+      \item $\lowp{X}\cup\lowp{Y}\subseteq\lowp{X\cup Y}$,
+      \item $\upp{X}\subset\upp{Y}$ dan $\lowp{X}\subset\lowp{Y}$
+            apabila $X\subset Y$.
 \end{enumerate}
-
-\begin{contoh}\label{ex:3}
-Pada gambar berikut, kisi merepresentasikan ruang aproksimasi
-$A=(U,R)$ yang dipartisi menjadi persegi-persegi, yaitu klasifikasi
-$U/R$ dari $U$ berupa himpunan persegi berwarna abu-abu. Misalkan elips
-merah merupakan himpunan bagian $X$ dari $U$. Aproksimasi bawah $X$
-adalah himpunan semua persegi yang terletak di dalam elips dan diberi
-warna hijau. Sementara itu, aproksimasi atas $X$ adalah himpunan semua
-persegi yang dikelilingi garis biru karena persegi-persegi tersebut
-beririsan dengan elips $X$. Batas $X$ adalah himpunan semua persegi yang
-dikelilingi garis biru dan tidak berwarna hijau.
-\end{contoh}
-
-\begin{figure}[htbp]
- \centering
- \includegraphics[width=5cm]{aproksimasi-himpunan.pdf}
- \caption{Contoh aproksimasi himpunan.}
-\end{figure}
-
-Pada tahun 1994, Biwas membangun konsep grup rough dan subgrup rough.
 
 \begin{definisi}\label{def:4}
-Himpunan bagian $G$ dari ruang aproksimasi $(U,R)$ dengan operasi biner
-$(*)$ yang didefinisikan pada $U$ disebut \textbf{grup rough} apabila
-empat aksioma berikut berlaku:
-\begin{enumerate}
- \item $x*y\in\upp{G}$, $\forall x,y\in G$;
- \item sifat asosiatif berlaku pada $\upp{G}$;
- \item $\exists e\in\upp{G}$ sehingga $\forall x\in G$,
-       $x*e=e*x=x$, dengan $e$ disebut identitas rough; dan
- \item $\forall x\in G$, $\exists y\in G$ sehingga $x*y=y*x=e$,
-       dengan $y$ disebut invers rough dan dinotasikan dengan $x^{-1}$.
-\end{enumerate}
+      Himpunan bagian $G$ dari ruang aproksimasi $(U,R)$ dengan operasi biner
+      $(*)$ yang didefinisikan pada $U$ disebut \textbf{grup rough} apabila
+      empat aksioma berikut berlaku:
+      \begin{enumerate}
+            \item $x*y\in\upp{G}$, $\forall x,y\in G$;
+            \item sifat asosiatif berlaku pada $\upp{G}$;
+            \item $\exists e\in\upp{G}$ sehingga $\forall x\in G$,
+                  $x*e=e*x=x$, dengan $e$ disebut identitas rough; dan
+            \item $\forall x\in G$, $\exists y\in G$ sehingga $x*y=y*x=e$,
+                  dengan $y$ disebut invers rough dan dinotasikan dengan $x^{-1}$.
+      \end{enumerate}
 \end{definisi}
 
 \begin{contoh}\label{ex:5}
-Misalkan $X=\Z_3\times\Z_3=\{\langle a,b\rangle:a,b\in\Z_3\}$
-dengan operasi penjumlahan modulo $3$, dan misalkan
-\[
- V=\{\langle1,1\rangle,\langle1,2\rangle,\langle2,2\rangle,
-       \langle2,1\rangle,\langle1,0\rangle,\langle2,0\rangle\}\subseteq X.
-\]
-Klasifikasi $X$ adalah $X/R=\{C_1,C_2\}$, dengan $C_1$ merupakan
-himpunan semua pasangan terurut yang sekurang-kurangnya satu
-komponennya nol, dan $C_2=X\setminus C_1$. Maka $\upp{V}=X$.
+      Misalkan $X=\Z_3\times\Z_3=\{\langle a,b\rangle:a,b\in\Z_3\}$
+      dengan operasi penjumlahan modulo $3$, dan misalkan
+      \[
+            V=\{\langle1,1\rangle,\langle1,2\rangle,\langle2,2\rangle,
+            \langle2,1\rangle,\langle1,0\rangle,\langle2,0\rangle\}\subseteq X.
+      \]
+      Klasifikasi $X$ adalah $X/R=\{C_1,C_2\}$, dengan $C_1$ merupakan
+      himpunan semua pasangan terurut yang sekurang-kurangnya satu
+      komponennya nol, dan $C_2=X\setminus C_1$. Maka $\upp{V}=X$.
 
-Mari kita periksa bahwa $V$ merupakan grup rough. Berdasarkan
-Definisi~\ref{def:4}, syarat-syarat berikut terpenuhi:
-\begin{enumerate}
- \item $x*y\in\upp{V}$, $\forall x,y\in V$, karena $\upp{V}=X$;
- \item sifat asosiatif sudah berlaku pada $\upp{V}$;
- \item $\langle0,0\rangle\in\upp{V}$ dianggap sebagai identitas rough;
- \item $\langle1,1\rangle^{-1}=\langle2,2\rangle\in V$,
-       $\langle1,2\rangle^{-1}=\langle2,1\rangle\in V$, dan
-       $\langle1,0\rangle^{-1}=\langle2,0\rangle\in V$.
-\end{enumerate}
-Dengan demikian, $V$ merupakan grup rough.
+      Mari kita periksa bahwa $V$ merupakan grup rough. Berdasarkan
+      Definisi~\ref{def:4}, syarat-syarat berikut terpenuhi:
+      \begin{enumerate}
+            \item $x*y\in\upp{V}$, $\forall x,y\in V$, karena $\upp{V}=X$;
+            \item sifat asosiatif sudah berlaku pada $\upp{V}$;
+            \item $\langle0,0\rangle\in\upp{V}$ dianggap sebagai identitas rough;
+            \item $\langle1,1\rangle^{-1}=\langle2,2\rangle\in V$,
+                  $\langle1,2\rangle^{-1}=\langle2,1\rangle\in V$, dan
+                  $\langle1,0\rangle^{-1}=\langle2,0\rangle\in V$.
+      \end{enumerate}
+      Dengan demikian, $V$ merupakan grup rough.
 \end{contoh}
 
-\begin{contoh}\label{ex:6}
-Misalkan $X=\R$ adalah himpunan bilangan real dengan penjumlahan biasa,
-dan klasifikasi $X$ adalah $X/R=\{E_1,E_2\}$, dengan $E_1$ himpunan
-bilangan real tak negatif dan $E_2=\R\setminus E_1$. Misalkan
-$V=\R-\{0\}$, maka $\upp{V}=\R$.
+\begin{contoh}[Pengaruh relasi ekuivalensi]\label{ex:relasi-grup}
+      Ambil $U=\Z_6$ dengan penjumlahan modulo $6$ dan $G=\{1,5\}$.
+      Himpunan $G$ bukan grup biasa karena $1+1=2\notin G$.
+      Pertimbangkan dua relasi ekuivalensi berikut.
+      \begin{enumerate}
+            \item Jika $U/R_1=\{\{0\},\{1\},\{2\},\{3\},\{4\},\{5\}\}$,
+                  maka $\overline{App}_{R_1}(G)=\{1,5\}$.
+                  Karena $1+1=2\notin\overline{App}_{R_1}(G)$,
+                  $G$ bukan grup rough terhadap $(U,R_1)$.
 
-Sekarang, kita tunjukkan bahwa $V$ merupakan grup rough. Kita harus
-membuktikan bahwa keempat syarat pada Definisi~\ref{def:4} berlaku.
-\begin{enumerate}
- \item Jelas bahwa syarat pertama berlaku untuk penjumlahan pada $V$.
- \item Sifat asosiatif berlaku pada $\upp{V}$.
- \item $0$ dianggap sebagai identitas rough.
- \item Untuk setiap $x\in V$, terdapat $x^{-1}=-x\in V$ sehingga
-       $x+x^{-1}=0$.
-\end{enumerate}
-Oleh karena itu, $V$ merupakan grup rough.
+            \item Jika $U/R_2=\{\{0,1,2\},\{4,5\},\{3\}\}$, maka
+                  \[
+                        \overline{App}_{R_2}(G)=\{0,1,2,4,5\}.
+                  \]
+                  Semua kemungkinan jumlah dua anggota $G$ adalah
+                  \[
+                        1+1=2,\qquad 1+5=5+1=0,\qquad 5+5=4,
+                  \]
+                  yang seluruhnya berada di $\overline{App}_{R_2}(G)$.
+                  Asosiativitas diwarisi dari penjumlahan pada $\Z_6$.
+                  Elemen $0\in\overline{App}_{R_2}(G)$ merupakan identitas,
+                  sedangkan invers aditif $1$ dan $5$ masing-masing adalah
+                  $5$ dan $1$, yang keduanya berada di $G$.
+                  Jadi, $G$ merupakan grup rough terhadap $(U,R_2)$.
+      \end{enumerate}
+      Dengan demikian, perubahan relasi ekuivalensi dapat mengubah
+      status $G$ sebagai grup rough. Pada kasus kedua, berlaku
+      \[
+            G\subsetneq\overline{App}_{R_2}(G)\subsetneq U,
+            \qquad \underline{App}_{R_2}(G)=\varnothing.
+      \]
 \end{contoh}
 
-\begin{contoh}\label{ex:7}
-Misalkan $U=\Z_6$ adalah grup aditif residu modulo $6$, dan operasi
-biner $(*)$ adalah penjumlahan modulo $6$. Klasifikasi $U$ adalah
-$U/R=\{C_1,C_2,C_3\}$, dengan $C_1=\{0,1,4\}$, $C_2=\{2,3\}$,
-dan $C_3=\{5\}$. Misalkan $V=\{1,2,4,5\}\subset U$. Perhatikan
-bahwa $\upp{V}=U$. Kita akan membuktikan bahwa $V$ merupakan grup
-rough berdasarkan Definisi~\ref{def:4}.
-\begin{enumerate}
- \item Karena $\upp{V}=U$, syarat pertama berlaku.
- \item $(*)$ bersifat asosiatif.
- \item $0\in\upp{V}$ merupakan identitas rough.
- \item $1^{-1}=5\in V$ dan $2^{-1}=4\in V$.
-\end{enumerate}
-Jadi, $V$ merupakan grup rough.
-\end{contoh}
 
 \begin{definisi}\label{def:8}
-Jika $G$ merupakan grup rough dan $H\subseteq G$, maka $H$ disebut
-\textbf{subgrup rough} dari $G$ apabila $H$ sendiri merupakan grup
-rough dengan operasi yang diinduksi dari $G$.
+      Jika $G$ merupakan grup rough dan $H\subseteq G$, maka $H$ disebut
+      \textbf{subgrup rough} dari $G$ apabila $H$ sendiri merupakan grup
+      rough dengan operasi yang diinduksi dari $G$.
 \end{definisi}
 
 \begin{catatan}\label{rem:9}
-Satu-satunya subgrup rough trivial dari suatu grup rough $G$ adalah
-$G$ sendiri, dan himpunan bagian $\{e\}$ menjadi subgrup rough trivial
-hanya jika $e\in G$.
+      Satu-satunya subgrup rough trivial dari suatu grup rough $G$ adalah
+      $G$ sendiri, dan himpunan bagian $\{e\}$ menjadi subgrup rough trivial
+      hanya jika $e\in G$.
 \end{catatan}
 
 \begin{definisi}\label{def:10}
-Himpunan bagian $H$ dari grup rough $G$ merupakan subgrup rough dari
-$G$ jika dan hanya jika
-\begin{enumerate}
- \item $xy\in\upp{H}$, $\forall x,y\in H$;
- \item $x^{-1}\in H$, $\forall x\in H$.
-\end{enumerate}
+      Himpunan bagian $H$ dari grup rough $G$ merupakan subgrup rough dari
+      $G$ jika dan hanya jika
+      \begin{enumerate}
+            \item $xy\in\upp{H}$, $\forall x,y\in H$;
+            \item $x^{-1}\in H$, $\forall x\in H$.
+      \end{enumerate}
 \end{definisi}
-
-Pada tahun 2016, Nurettin Ba\u{g}{\i}rmaz~\cite{bagirmaz} melengkapi
-karya Biswas dengan menggabungkan konsep grup topologis dan grup rough,
-yang menghasilkan definisi grup rough topologis.
-
-\begin{definisi}\label{def:11}
-\textbf{Grup rough topologis} adalah grup rough $(G,*)$ dalam ruang
-aproksimasi $A=(U,R)$ yang dilengkapi topologi $\mathcal{T}$ pada
-$\overline{G}$, yang memenuhi dua aksioma:
-\begin{enumerate}
- \item pemetaan $(x,y)\mapsto x*y$ dari $G\times G$ ke $\overline{G}$
-       bersifat kontinu; dan
- \item pemetaan invers $x\mapsto x^{-1}$ dari $G\to G$ bersifat kontinu.
-\end{enumerate}
-\end{definisi}
-
-\begin{contoh}\label{ex:12}
-Berdasarkan Contoh~\ref{ex:5}, misalkan $\mathcal{D}$ adalah topologi
-diskret pada $\upr{V}=X$ dan $\mathcal{D}_V$ adalah topologi yang
-diinduksi pada $V$, sehingga $\mathcal{D}_V$ juga merupakan topologi
-diskret pada $V$. Kita tunjukkan bahwa grup rough $V$ dengan
-$\mathcal{D}_V$ merupakan grup rough topologis.
-\begin{enumerate}
- \item Pertama, kita mengklaim bahwa pemetaan
- $f:V\times V\to\upr{V}$ bersifat kontinu. Misalkan
- $\{x\}\subset\upr{V}=X$ sebarang himpunan terbuka di $X$.
- Maka $f^{-1}(\{x\})=\{f^{-1}(x)\}\in V\times V$ juga merupakan
- himpunan terbuka di $V\times V$. Jadi, $f$ kontinu.
- \item Kedua, kita perlu memeriksa bahwa pemetaan $g:V\to V$ yang
- didefinisikan oleh $g(x)=x^{-1}$ kontinu pada $V$. Misalkan
- $\{x^{-1}\}\subset V$ sebarang himpunan terbuka di $V$. Maka
- $g^{-1}(\{x^{-1}\})=\{g^{-1}(x^{-1})\}=\{x\}$ juga merupakan
- himpunan terbuka di $V$, sehingga $g$ kontinu pada $V$.
-\end{enumerate}
-Oleh karena itu, grup rough $V$ yang dilengkapi $\mathcal{D}_V$
-merupakan grup rough topologis berdasarkan Definisi~\ref{def:11}.
-\end{contoh}
-
-\begin{contoh}\label{ex:13}
-Pada Contoh~\ref{ex:6}, telah ditunjukkan bahwa $V=\R-\{0\}$ merupakan
-grup rough. Misalkan $\mathcal{U}$ adalah topologi biasa pada $\R$ dan
-$\mathcal{U}_V$ topologi yang diinduksi pada $V$. Kita akan memeriksa
-bahwa $V$ yang dilengkapi $\mathcal{U}_V$ merupakan grup rough topologis.
-Basis topologi $\mathcal{U}_V$ pada $V$ adalah
-\[
- \mathcal{B}_V=\{(a,b)\cap V:a,b\in\R;\ a<b\},
-\]
-yang kembali merupakan topologi biasa pada $V$. Jadi, himpunan terbuka
-dasar untuk topologi hasil kali pada $V\times V$ berbentuk
-\[
- \bigl((a,b)\times(c,d)\bigr)\cap V^2;
- \qquad (a,b),(c,d)\in\mathcal{U},
-\]
-yang merupakan persegi panjang terbuka pada $\R^2$ tanpa sumbu $x$
-dan sumbu $y$. Dengan demikian, topologi pada $V\times V$ juga
-merupakan topologi hasil kali pada $V\times V$.
-\begin{enumerate}
- \item Kita ingin memeriksa bahwa pemetaan
- $f:V\times V\to\upr{V}=\R$, $f(\langle x,y\rangle)=x+y$,
- kontinu pada $V\times V$. Misalkan $(a,b)$ sebarang himpunan terbuka
- dasar di $(\R,\mathcal{U})$. Maka
- \[
- f^{-1}((a,b))=\{\langle x,y\rangle:a<x+y<b\},
- \]
- dan himpunan ini bukan himpunan terbuka di $V\times V$. Sebagai
- contoh, interval terbuka $(-1,1)$ merupakan himpunan terbuka dasar
- di $\R$, tetapi prapetanya adalah himpunan
- $\{\langle x,y\rangle\in\R^2:-1<x+y<1\}$, dan himpunan tersebut
- bukan himpunan bagian dari $V\times V$ karena memuat elemen
- $\langle0,0\rangle$.
-\end{enumerate}
-Jadi, $V$ yang dilengkapi topologi yang diinduksi dari topologi biasa
-pada $\R$ bukan merupakan grup rough topologis.
-\end{contoh}
-
-\begin{contoh}\label{ex:14}
-Contoh~\ref{ex:7} menunjukkan bahwa $V=\{0,1,2,3,4\}$ merupakan grup
-rough. Pada contoh ini, kita ingin menunjukkan bahwa $V$ bersama
-topologi indiskret merupakan grup rough topologis. Misalkan
-$\mathcal{I}$ adalah topologi indiskret pada $\upr{V}=\Z_6$.
-Maka topologi terinduksi $\mathcal{I}_V$ pada $V$ dan topologi hasil
-kali $\mathcal{I}_{V\times V}$ pada $V\times V$ juga merupakan topologi
-indiskret, masing-masing pada $V$ dan $V\times V$. Sekarang, kita akan
-memeriksa syarat-syarat pada Definisi~\ref{def:11}.
-\begin{enumerate}
- \item Pemetaan $f:V\times V\to\upr{V}$ kontinu karena prapeta
- setiap himpunan terbuka dalam $\mathcal{I}$ terbuka dalam
- $\mathcal{I}_{V\times V}$.
- \item Pemetaan $f:V\to V$ yang didefinisikan oleh $f(x)=x^{-1}$
- juga kontinu dengan alasan yang sama.
-\end{enumerate}
-Oleh karena itu, $V$ dengan topologi indiskret $\mathcal{I}_V$
-merupakan grup rough topologis.
-\end{contoh}
 
 \section{Ruang Vektor Rough}
 
@@ -368,484 +183,367 @@ Pada bagian ini, akan diberikan definisi ruang vektor rough beserta
 sifat-sifat dan contoh-contoh yang berkaitan dengannya.
 
 \begin{definisi}\label{def:15}
-Misalkan $(U,R)$ suatu ruang aproksimasi. Himpunan bagian $V\subseteq U$
-disebut \textbf{ruang vektor rough} atas lapangan $\F$, dinotasikan dengan
-$\boldsymbol{RV}_{\F}$, jika $V$ merupakan grup rough terhadap operasi
-biner $(+)$ dan sifat komutatif $(+)$ berlaku pada $\upp{V}$. Selain
-itu, untuk setiap $\lambda\in\F$ dan $v\in V$, terdapat elemen
-$\lambda\cdot v\in\upp{V}$ sehingga aksioma-aksioma berikut dipenuhi
-untuk setiap $\alpha,\beta\in\F$ dan setiap $u,v\in V$:
-\begin{enumerate}
- \item $\alpha\cdot(u+v)=\alpha\cdot u+\alpha\cdot v$;
- \item $(\alpha+\beta)v=\alpha\cdot v+\beta\cdot v$;
- \item $\alpha\cdot(\beta\cdot v)=(\alpha\cdot\beta)\cdot v$; dan
- \item $1\cdot v=v$, dengan $1\in\F$.
-\end{enumerate}
+      Misalkan $(U,R)$ suatu ruang aproksimasi. Himpunan bagian $V\subseteq U$
+      disebut \textbf{ruang vektor rough} atas lapangan $\F$, dinotasikan dengan
+      $\boldsymbol{RV}_{\F}$, jika $V$ merupakan grup rough terhadap operasi
+      biner $(+)$ dan sifat komutatif $(+)$ berlaku pada $\upp{V}$. Selain
+      itu, untuk setiap $\lambda\in\F$ dan $v\in V$, terdapat elemen
+      $\lambda\cdot v\in\upp{V}$ sehingga aksioma-aksioma berikut dipenuhi
+      untuk setiap $\alpha,\beta\in\F$ dan setiap $u,v\in V$:
+      \begin{enumerate}
+            \item $\alpha\cdot(u+v)=\alpha\cdot u+\alpha\cdot v$;
+            \item $(\alpha+\beta)v=\alpha\cdot v+\beta\cdot v$;
+            \item $\alpha\cdot(\beta\cdot v)=(\alpha\cdot\beta)\cdot v$; dan
+            \item $1\cdot v=v$, dengan $1\in\F$.
+      \end{enumerate}
 \end{definisi}
 
 \begin{definisi}\label{def:16}
-Misalkan $A=(U,R)$ suatu ruang aproksimasi dan $V\subseteq U$ suatu
-ruang vektor rough atas lapangan $\F$. Himpunan bagian tak kosong
-$X\subset V$ disebut \textbf{subruang rough} dari $V$ atas lapangan
-$\F$ yang sama apabila $X$ sendiri merupakan ruang vektor rough
-terhadap operasi yang sama dengan operasi yang didefinisikan pada $V$.
+      Misalkan $A=(U,R)$ suatu ruang aproksimasi dan $V\subseteq U$ suatu
+      ruang vektor rough atas lapangan $\F$. Himpunan bagian tak kosong
+      $X\subset V$ disebut \textbf{subruang rough} dari $V$ atas lapangan
+      $\F$ yang sama apabila $X$ sendiri merupakan ruang vektor rough
+      terhadap operasi yang sama dengan operasi yang didefinisikan pada $V$.
 \end{definisi}
 
-\begin{definisi}\label{def:17}
-Himpunan bagian $W$ dari ruang vektor rough $V$ atas lapangan $\F$
-merupakan subruang rough jika dan hanya jika kedua syarat berikut
-terpenuhi:
-\begin{enumerate}
- \item $W$ merupakan subgrup rough;
- \item $\lambda x\in\upp{W}$, $\forall x\in W$ dan $\forall\lambda\in\F$.
-\end{enumerate}
-\end{definisi}
+\begin{teorema}\label{def:17}
+      Himpunan bagian $W$ dari ruang vektor rough $V$ atas lapangan $\F$
+      merupakan subruang rough jika dan hanya jika kedua syarat berikut
+      terpenuhi:
+      \begin{enumerate}
+            \item $W$ merupakan subgrup rough;
+            \item $\lambda x\in\upp{W}$, $\forall x\in W$ dan $\forall\lambda\in\F$.
+      \end{enumerate}
+\end{teorema}
 
 \begin{contoh}\label{ex:18}
-Misalkan $X=\Z_3\times\Z_3=\{(a,b):a,b\in\Z_3\}$ dengan operasi
-penjumlahan modulo $3$, dan misalkan
-\[
- V=\{(1,1),(1,2),(2,2),(2,1),(1,0),(2,0)\}\subseteq X.
-\]
-Klasifikasi $U$ adalah seperti pada Contoh~\ref{ex:5}. Kita akan
-memeriksa bahwa $V$ merupakan ruang vektor rough atas lapangan $\Z_3$
-dengan perkalian modulo $3$. Kita telah menunjukkan bahwa $V$
-merupakan grup rough, dan dapat diperiksa secara langsung bahwa
-penjumlahan modulo $3$ komutatif pada $\upp{V}=X$. Selain itu,
-untuk setiap $\lambda\in\Z_3$, berlaku $\lambda v\in\upp{V}$.
-Jadi, yang tersisa adalah menunjukkan bahwa keempat syarat perkalian
-skalar pada Definisi~\ref{def:15} benar. Misalkan
-$\alpha,\beta\in\Z_3$ dan $u,v\in V$ sebarang. Maka
-\begin{enumerate}
- \item Perkalian modulo $3$ distributif terhadap penjumlahan modulo $3$,
- \begin{align*}
- \res{\alpha}\bigl(\res{u}+_3\res{v}\bigr)
-  &=\res{\alpha}\bigl(\res{u+v}\bigr)\\
-  &=\res{\alpha(u+v)}=\res{\alpha u+\alpha v}\\
-  &=\res{\alpha u}+_3\res{\alpha v}\\
-  &=\res{\alpha}\bigl(\res{u}\bigr)
-       +_3\res{\alpha}\bigl(\res{v}\bigr).
- \end{align*}
- \item
- \begin{align*}
- \bigl(\res{\alpha}+_3\res{\beta}\bigr)\res{u}
-  &=\bigl(\res{\alpha+\beta}\bigr)\res{u}\\
-  &=\res{(\alpha+\beta u}=\res{\alpha u+\beta)u}\\
-  &=\res{\alpha u}+_3\res{\beta u}.
- \end{align*}
- \item
- \begin{align*}
- \res{\alpha}\bigl(\res{\beta}\res{v}\bigr)
-  &=\res{\alpha}\bigl(\res{\beta v}\bigr)\\
-  &=\res{\alpha(\beta v)}=\res{(\alpha\beta)v}\\
-  &=\res{(\alpha\beta}\res{v}
-    =\bigl(\res{\alpha}\res{\beta}\bigr)\res{v}.
- \end{align*}
- \item Terdapat $1\in\Z_3$ sehingga untuk setiap $v\in V$, berlaku $1v=v$.
-\end{enumerate}
-Dengan demikian, $V$ merupakan ruang vektor rough atas $\Z_3$.
-\end{contoh}
+      Ambil lapangan $\Z_7$ dan ruang vektor $X=\Z_7^3$, dengan operasi
+      penjumlahan dan perkalian skalar pada setiap koordinat modulo $7$.
+      Tetapkan
+      \[
+            H=\{(a,b,0):a,b\in\Z_7\},\qquad
+            V=\{(a,b,0):a\in\Z_7\setminus\{0\},\ b\in\Z_7\}.
+      \]
+      Jadi, $|X|=343$, $|H|=49$, dan $|V|=42$.
+      Definisikan relasi ekuivalensi $R$ melalui partisi
+      \[
+            X/R=\{C_0,C_1,\ldots,C_6,C_*\},\qquad
+            C_b=\{(a,b,0):a\in\Z_7\},\quad C_*=X\setminus H.
+      \]
+      Kelas $C_b$ memuat semua vektor dengan koordinat kedua $b$ dan
+      koordinat ketiga $0$. Sebagai contoh,
+      \[
+            C_0=\{(0,0,0),(1,0,0),\ldots,(6,0,0)\},\qquad
+            C_1=\{(0,1,0),(1,1,0),\ldots,(6,1,0)\}.
+      \]
+      Jadi, $C_0,\ldots,C_6$ membagi seluruh $H$, yaitu semua vektor
+      yang koordinat ketiganya $0$. Vektor-vektor di $X$ yang belum
+      tercakup adalah yang koordinat ketiganya bukan $0$; semuanya
+      dikelompokkan ke dalam satu kelas tambahan
+      \[
+            C_*=\{(a,b,c):a,b\in\Z_7,\ c\in\{1,2,3,4,5,6\}\}.
+      \]
+      Misalnya, $(0,0,1)$, $(2,5,3)$, dan $(6,6,6)$ berada di $C_*$.
+      Tanda $*$ hanya merupakan label kelas. Kelas ini memiliki
+      $7\cdot7\cdot6=294$ anggota dan melengkapi partisi seluruh $X$.
 
-\begin{contoh}\label{ex:19}
-Misalkan $A$ adalah ruang aproksimasi pada Contoh~\ref{ex:6}, dan
-$V$ adalah grup rough pada contoh yang sama. Kita ingin membuktikan
-bahwa $V$ dengan penjumlahan dan perkalian biasa juga merupakan ruang
-vektor rough atas lapangan $\R$. Jadi, kita harus memeriksa sifat
-komutatif penjumlahan pada $\upp{V}=\R$ serta syarat-syarat lapangan
-pada Definisi~\ref{def:15}. Tentu saja $(+)$ komutatif dan syarat-syarat
-\begin{enumerate}
- \item $\lambda x\in\upp{V}$, $\forall\lambda,x\in\R$;
- \item $\alpha(x+y)=\alpha x+\alpha y$,
-       $\forall x,y\in V$, $\forall\alpha\in\R$;
- \item $(\alpha+\beta)x=\alpha x+\beta x$,
-       $\forall\alpha,\beta\in\R$ dan $\forall x\in V$;
- \item $\alpha(\beta x)=(\alpha\beta)x$,
-       $\forall\alpha,\beta\in\R$ dan $\forall x\in V$;
- \item $1\in\R$ merupakan identitas perkalian,
-\end{enumerate}
-berlaku, sehingga $V$ merupakan ruang vektor rough.
-\end{contoh}
+      Setiap $C_b$ beririsan dengan $V$ pada enam anggotanya.
+      Sebaliknya, $C_*\cap V=\varnothing$ karena koordinat ketiga
+      setiap anggota $V$ adalah $0$. Oleh karena itu, $C_*$ tidak
+      masuk aproksimasi atas $V$, sehingga
+      \[
+            \upp{V}=\bigcup_{b\in\Z_7}C_b=H,
+            \qquad V\subsetneq\upp{V}\subsetneq X.
+      \]
+      Kita periksa bahwa $V$ merupakan ruang vektor rough atas $\Z_7$.
+      \begin{enumerate}
+            \item Untuk $u=(a,b,0)$ dan $v=(c,d,0)$ dalam $V$,
+                  \[
+                        u+v=(a+c,b+d,0)\in H=\upp{V}.
+                  \]
+                  Hasilnya tidak harus berada di $V$; misalnya,
+                  $(1,2,0)+(6,3,0)=(0,5,0)\notin V$.
+            \item Penjumlahan pada $\upp{V}$ bersifat asosiatif dan
+                  komutatif karena diwarisi dari $X$.
+            \item Vektor $0=(0,0,0)\in\upp{V}$ merupakan identitas.
+                  Setiap $v=(a,b,0)\in V$ memiliki invers
+                  $-v=(-a,-b,0)\in V$, sebab $a\ne0$ mengakibatkan
+                  $-a\ne0$ di $\Z_7$.
+            \item Untuk setiap $\lambda\in\Z_7$ dan $v=(a,b,0)\in V$,
+                  \[
+                        \lambda v=(\lambda a,\lambda b,0)\in H=\upp{V}.
+                  \]
+                  Kedua sifat distributif, kesesuaian perkalian skalar,
+                  dan $1v=v$ berlaku karena operasinya diwarisi dari
+                  ruang vektor $X$ atas $\Z_7$.
+      \end{enumerate}
+      Jadi, $V$ merupakan ruang vektor rough dengan aproksimasi atas
+      yang bukan seluruh $X$. Namun, $V$ bukan ruang vektor biasa
+      karena $0\notin V$. Selain itu, $\lowp{V}=\varnothing$ karena
+      setiap $C_b$ memuat $(0,b,0)\notin V$.
 
-\begin{contoh}\label{ex:20}
-Misalkan $U=\Z_6$ adalah grup aditif residu modulo $6$. Klasifikasi
-$U$ adalah $U/R=\{C_1,C_2,C_3\}$, dengan $C_1=\{0,1,4\}$,
-$C_2=\{2,3\}$, dan $C_3=\{5\}$. Misalkan $V=\{1,2,4,5\}\subset U$.
-Pada Contoh~\ref{ex:7}, telah ditunjukkan bahwa $V$ merupakan grup
-rough terhadap penjumlahan residu modulo $6$. Kita tunjukkan bahwa
-$V$ juga merupakan ruang vektor rough atas lapangan $\Z_3$ dengan
-perkalian residu modulo $3$. Perhatikan bahwa $\upp{V}=U$, sehingga
-untuk setiap $\lambda\in\Z_3$ dan $v\in V$, berlaku
-$\lambda x\in\upp{V}$. Dapat diperiksa secara langsung bahwa
-syarat 1, 2, 3, dan 4 pada Definisi~\ref{def:15} berlaku. Oleh karena
-itu, $V$ merupakan ruang vektor rough.
+      Jika $R$ diganti dengan relasi kesamaan $R_1$, maka
+      $\overline{App}_{R_1}(V)=V$. Hasil penjumlahan
+      $(1,2,0)+(6,3,0)=(0,5,0)\notin V$ menunjukkan bahwa
+      $V$ bukan ruang vektor rough terhadap $(X,R_1)$.
 \end{contoh}
 
 \begin{teorema}\label{thm:21}
-Jika $V$ merupakan ruang vektor rough dan $V=\upp{V}$, maka $V$
-juga merupakan ruang vektor.
+      Jika $V$ merupakan ruang vektor rough dan $V=\upp{V}$, maka $V$
+      juga merupakan ruang vektor.
 \end{teorema}
 \begin{proof}
-Pembuktiannya langsung. Berdasarkan Definisi~\ref{def:15}, $V$
-memenuhi syarat-syarat ruang vektor.
+      Pembuktiannya langsung. Berdasarkan Definisi~\ref{def:15}, $V$
+      memenuhi syarat-syarat ruang vektor.
 \end{proof}
 
 \begin{catatan}\label{rem:22}
-Irisan dua ruang vektor rough tidak harus merupakan subruang vektor
-rough. Sebagai contoh, misalkan $U=\Z_6\times\Z_6$ dan klasifikasi
-$U$ adalah $U/R=\{C_1,C_2\}$, dengan $C_1$ terdiri atas semua elemen
-yang sekurang-kurangnya satu komponennya nol dan $C_2=U\setminus C_1$.
-Misalkan
-\[
- V=\{(1,1),(0,2),(0,4),(5,5)\},\qquad
- W=\{(1,1),(5,5),(3,3),(4,0),(2,0)\}.
-\]
-Maka $V$ dan $W$ keduanya merupakan ruang vektor rough, sedangkan
-irisannya, $V\cap W=\{(1,1),(5,5)\}$, dengan aproksimasi
-$\upp{V\cap W}=C_2$, bukan merupakan ruang vektor rough karena
-$\upp{V\cap W}=C_2$ tidak memiliki identitas rough.
+      Irisan dua ruang vektor rough tidak harus merupakan subruang vektor
+      rough. Sebagai contoh, misalkan $U=\Z_6\times\Z_6$ dan klasifikasi
+      $U$ adalah $U/R=\{C_1,C_2\}$, dengan $C_1$ terdiri atas semua elemen
+      yang sekurang-kurangnya satu komponennya nol dan $C_2=U\setminus C_1$.
+      Misalkan
+      \[
+            V=\{(1,1),(0,2),(0,4),(5,5)\},\qquad
+            W=\{(1,1),(5,5),(3,3),(4,0),(2,0)\}.
+      \]
+      Maka $V$ dan $W$ keduanya merupakan ruang vektor rough, sedangkan
+      irisannya, $V\cap W=\{(1,1),(5,5)\}$, dengan aproksimasi
+      $\upp{V\cap W}=C_2$, bukan merupakan ruang vektor rough karena
+      $\upp{V\cap W}=C_2$ tidak memiliki identitas rough.
 \end{catatan}
 
 Pada proposisi berikut, diberikan syarat agar irisan dua ruang vektor
 rough merupakan ruang vektor rough.
 
 \begin{proposisi}\label{prop:23}
-Jika $(U,R)$ merupakan ruang aproksimasi dan $V$ serta $W$ merupakan
-dua ruang vektor rough atas lapangan $\F$ dengan operasi biner $(+)$
-dan perkalian skalar $(\cdot)$, maka $V\cap W$ juga merupakan subruang
-vektor rough atas lapangan yang sama apabila
-\begin{equation}
- \bigl[\upp{V}\cap\upp{W}\bigr]\subset\upp{V\cap W}.
- \tag{3.1}\label{eq:3.1}
-\end{equation}
+      Jika $(U,R)$ merupakan ruang aproksimasi dan $V$ serta $W$ merupakan
+      dua ruang vektor rough atas lapangan $\F$ dengan operasi biner $(+)$
+      dan perkalian skalar $(\cdot)$, maka $V\cap W$ juga merupakan subruang
+      vektor rough atas lapangan yang sama apabila
+      \begin{equation}
+            \bigl[\upp{V}\cap\upp{W}\bigr]\subset\upp{V\cap W}.
+            \tag{3.1}\label{eq:3.1}
+      \end{equation}
 \end{proposisi}
 \begin{proof}
-Untuk menunjukkan bahwa $V\cap W$ merupakan subruang vektor rough,
-kita harus membuktikan bahwa $V\cap W$ merupakan subgrup rough dan
-$\lambda x\in\upp{V\cap W}$ untuk setiap $\lambda\in\F$ dan
-$x\in V\cap W$. Misalkan $x$ dan $y$ sebarang elemen dalam
-$V\cap W$, dan $\lambda\in\F$ sebarang. Maka $x+y$ berada di
-$\upp{V}$ dan $\upp{W}$ karena $V$ dan $W$ merupakan ruang vektor
-rough. Dengan demikian, $x+y\in\upp{V}\cap\upp{W}$, dan berdasarkan
-\eqref{eq:3.1}, diperoleh $x+y\in\upp{V\cap W}$. Selain itu,
-$x^{-1}\in V\cap W$, sehingga berdasarkan Definisi~\ref{def:10},
-$V\cap W$ merupakan subgrup rough.
+      Untuk menunjukkan bahwa $V\cap W$ merupakan subruang vektor rough,
+      kita harus membuktikan bahwa $V\cap W$ merupakan subgrup rough dan
+      $\lambda x\in\upp{V\cap W}$ untuk setiap $\lambda\in\F$ dan
+      $x\in V\cap W$. Misalkan $x$ dan $y$ sebarang elemen dalam
+      $V\cap W$, dan $\lambda\in\F$ sebarang. Maka $x+y$ berada di
+      $\upp{V}$ dan $\upp{W}$ karena $V$ dan $W$ merupakan ruang vektor
+      rough. Dengan demikian, $x+y\in\upp{V}\cap\upp{W}$, dan berdasarkan
+      \eqref{eq:3.1}, diperoleh $x+y\in\upp{V\cap W}$. Selain itu,
+      $x^{-1}\in V\cap W$, sehingga berdasarkan Definisi~\ref{def:10},
+      $V\cap W$ merupakan subgrup rough.
 
-Sekarang, jika $x\in V\cap W$ dan $\lambda\in\F$, maka
-$\lambda x$ berada di $\upp{V}$ dan $\upp{W}$. Jadi,
-$\lambda x\in\upp{V}\cap\upp{W}$, dan kembali menggunakan asumsi
-\eqref{eq:3.1}, diperoleh $\lambda x\in\upp{V\cap W}$. Oleh karena
-itu, berdasarkan Definisi~\ref{def:17}, $V\cap W$ merupakan subruang
-vektor rough.
+      Sekarang, jika $x\in V\cap W$ dan $\lambda\in\F$, maka
+      $\lambda x$ berada di $\upp{V}$ dan $\upp{W}$. Jadi,
+      $\lambda x\in\upp{V}\cap\upp{W}$, dan kembali menggunakan asumsi
+      \eqref{eq:3.1}, diperoleh $\lambda x\in\upp{V\cap W}$. Oleh karena
+      itu, berdasarkan Definisi~\ref{def:17}, $V\cap W$ merupakan subruang
+      vektor rough.
 \end{proof}
 
 \section{Struktur Aljabar}
 
 \begin{definisi}\label{def:24}
-Misalkan $A=(U,R)$ suatu ruang aproksimasi. Ruang vektor rough $V$
-disebut \textbf{jumlah langsung} dari subruang-subruang vektor rough
-$W_1$ dan $W_2$ apabila
-\begin{enumerate}
- \item $\upp{W_1}\cap\upp{W_2}=\{0\}$, dan
- \item setiap elemen $x$ di $V$ dapat dituliskan sebagai $x=w_1+w_2$,
-       dengan $w_1\in\upp{W_1}$ dan $w_2\in\upp{W_2}$.
-\end{enumerate}
+      Misalkan $A=(U,R)$ suatu ruang aproksimasi. Ruang vektor rough $V$
+      disebut \textbf{jumlah langsung} dari subruang-subruang vektor rough
+      $W_1$ dan $W_2$ apabila
+      \begin{enumerate}
+            \item $\upp{W_1}\cap\upp{W_2}=\{0\}$, dan
+            \item setiap elemen $x$ di $V$ dapat dituliskan sebagai $x=w_1+w_2$,
+                  dengan $w_1\in\upp{W_1}$ dan $w_2\in\upp{W_2}$.
+      \end{enumerate}
 \end{definisi}
 Perhatikan bahwa pada syarat pertama, $0$ merupakan identitas rough
 dari grup rough $(V,+)$.
 
 \begin{definisi}\label{def:25}
-Misalkan $A=(U,R)$ suatu ruang aproksimasi dan $V$ serta $W$ merupakan
-dua ruang vektor rough pada $A$ atas lapangan $\F$ yang sama.
-Pemetaan $L:\upp{V}\to\upp{W}$ disebut \textbf{linear rough}
-apabila berlaku:
-\begin{enumerate}
- \item $L(u+v)=L(u)*L(v)$; dan
- \item $L(\alpha v)=\alpha L(v)$,
-\end{enumerate}
-di mana $+$ merupakan operasi biner yang didefinisikan pada $V$ dan
-$*$ merupakan operasi biner yang didefinisikan pada $W$.
+      Misalkan $A=(U,R)$ suatu ruang aproksimasi dan $V$ serta $W$ merupakan
+      dua ruang vektor rough pada $A$ atas lapangan $\F$ yang sama.
+      Pemetaan $L:\upp{V}\to\upp{W}$ disebut \textbf{linear rough}
+      apabila berlaku:
+      \begin{enumerate}
+            \item $L(u+v)=L(u)*L(v)$; dan
+            \item $L(\alpha v)=\alpha L(v)$,
+      \end{enumerate}
+      di mana $+$ merupakan operasi biner yang didefinisikan pada $V$ dan
+      $*$ merupakan operasi biner yang didefinisikan pada $W$.
 \end{definisi}
 
 \begin{definisi}\label{def:26}
-Pemetaan linear rough disebut \textbf{isomorfisme rough} apabila
-pemetaan tersebut bijektif.
+      Pemetaan linear rough disebut \textbf{isomorfisme rough} apabila
+      pemetaan tersebut bijektif.
 \end{definisi}
 
 \begin{definisi}\label{def:27}
-Misalkan $A=(U,R)$ suatu ruang aproksimasi dan
-$L:\upp{V}\to\upp{W}$ suatu pemetaan linear rough. Maka himpunan
-\[
- RKer(L)=\{v\in\upp{V}:L(v)=0_{\upp{W}}\}
-        =L^{-1}\bigl(0_{\upp{W}}\bigr)
-\]
-disebut \textbf{kernel rough} dari $L$, dengan $0_{\upr{W}}$
-merupakan identitas rough dari $W$.
+      Misalkan $A=(U,R)$ suatu ruang aproksimasi dan
+      $L:\upp{V}\to\upp{W}$ suatu pemetaan linear rough. Maka himpunan
+      \[
+            RKer(L)=\{v\in\upp{V}:L(v)=_{\upp{W}}\}
+            =L^{-1}\bigl(0_{\upp{W}}\bigr)
+      \]
+      disebut \textbf{kernel rough} dari $L$, dengan $_{\upr{W}}$
+      merupakan identitas rough dari $W$.
 \end{definisi}
 
 \begin{catatan}\label{rem:28}
-Jika $L:\upp{V}\to\upp{W}$ merupakan isomorfisme rough, maka
-$L^{-1}:\upp{W}\to\upp{V}$ juga merupakan isomorfisme rough.
-Hal ini karena sifat linearitas berlaku untuk invers isomorfisme
-rough $L^{-1}$.
+      Jika $L:\upp{V}\to\upp{W}$ merupakan isomorfisme rough, maka
+      $L^{-1}:\upp{W}\to\upp{V}$ juga merupakan isomorfisme rough.
+      Hal ini karena sifat linearitas berlaku untuk invers isomorfisme
+      rough $L^{-1}$.
 \end{catatan}
 
 \begin{definisi}\label{def:29}
-Misalkan $V$ merupakan ruang vektor rough atas lapangan $\F$ dalam
-ruang aproksimasi $(U,R)$. Misalkan $N$ suatu subruang rough dari $V$.
-\textbf{Hasil bagi rough} dari $V$ oleh $N$ adalah himpunan
-\[
- V/N=\{x+\upp{N}:x\in\upp{V}\},
-\]
-di mana $x+N$ adalah himpunan semua $y$ yang memenuhi relasi
-$x-y\in\upp{N}$.
+      Misalkan $V$ merupakan ruang vektor rough atas lapangan $\F$ dalam
+      ruang aproksimasi $(U,R)$. Misalkan $N$ suatu subruang rough dari $V$.
+      \textbf{Hasil bagi rough} dari $V$ oleh $N$ adalah himpunan
+      \[
+            V/N=\{x+\upp{N}:x\in\upp{V}\},
+      \]
+      di mana $x+N$ adalah himpunan semua $y$ yang memenuhi relasi
+      $x-y\in\upp{N}$.
 \end{definisi}
 
 \begin{definisi}\label{def:30}
-Misalkan $V$ merupakan ruang vektor rough dalam ruang aproksimasi
-$(U,R)$ atas lapangan $\F$, dengan operasi biner $(+)$. Misalkan
-$N$ suatu subruang rough dari $V$. Maka himpunan
-\[
- x+\upp{N}=\{x+n:n\in\upp{N}\}
-\]
-disebut \textbf{koset rough} dari $N$ dalam $V$ yang memuat $x$,
-dengan $x$ suatu elemen tetap di $\upp{V}$.
+      Misalkan $V$ merupakan ruang vektor rough dalam ruang aproksimasi
+      $(U,R)$ atas lapangan $\F$, dengan operasi biner $(+)$. Misalkan
+      $N$ suatu subruang rough dari $V$. Maka himpunan
+      \[
+            x+\upp{N}=\{x+n:n\in\upp{N}\}
+      \]
+      disebut \textbf{koset rough} dari $N$ dalam $V$ yang memuat $x$,
+      dengan $x$ suatu elemen tetap di $\upp{V}$.
 \end{definisi}
 
 Perhatikan bahwa, berdasarkan sifat komutatif pada $\upp{V}$,
 diperoleh
 \[
- x+\upp{N}=\upp{N};\qquad\forall x\in\upp{V},
+      x+\upp{N}=\upp{N};\qquad\forall x\in\upp{V},
 \]
 dan tidak ada perbedaan antara kedua bentuk tersebut.
 
 \begin{teorema}\label{thm:31}
-Jika $V/N$ merupakan hasil bagi rough dari $V$ oleh $N$, maka
-\[
- \upp{V}=\bigcup V/N.
-\]
+      Jika $V/N$ merupakan hasil bagi rough dari $V$ oleh $N$, maka
+      \[
+            \upp{V}=\bigcup V/N.
+      \]
 \end{teorema}
 \begin{proof}
-Jelas bahwa $\bigcup V/N\subseteq\upp{V}$. Kita hanya perlu
-membuktikan bahwa $\upp{V}\subseteq\bigcup V/N$. Misalkan
-$x\in\upp{V}$ sebarang. Maka untuk setiap $N\subseteq V$,
-terdapat $0\in\upp{N}$ sehingga $x=x+0\in x+\upp{N}$. Jadi,
-$\upp{V}\subseteq\bigcup V/N$.
+      Jelas bahwa $\bigcup V/N\subseteq\upp{V}$. Kita hanya perlu
+      membuktikan bahwa $\upp{V}\subseteq\bigcup V/N$. Misalkan
+      $x\in\upp{V}$ sebarang. Maka untuk setiap $N\subseteq V$,
+      terdapat $0\in\upp{N}$ sehingga $x=x+0\in x+\upp{N}$. Jadi,
+      $\upp{V}\subseteq\bigcup V/N$.
 \end{proof}
 
 \begin{lema}[Sifat-Sifat Koset Rough]\label{lem:32}
-Misalkan $N$ suatu subruang rough dari ruang vektor rough $V$ dan
-$x,y\in\upp{V}$.
-\begin{enumerate}
- \item $x\in x+\upp{N}$.
- \item $x+\upp{N}=\upp{N}$ jika dan hanya jika $x\in\upp{N}$.
- \item $x+\upp{N}=y+\upp{N}$ jika dan hanya jika $x\in y+\upp{N}$.
- \item $x+\upp{N}=y+\upp{N}$ atau
-       $\bigl(x+\upp{N}\bigr)\cap\bigl(y+\upp{N}\bigr)=\varnothing$.
- \item $x+\upp{N}=y+\upp{N}$ jika dan hanya jika $x-y\in\upp{N}$.
- \item $|x+\upp{N}|=|y+\upp{N}|$ apabila $V$ hingga.
- \item $x+\upp{N}$ merupakan subruang rough dari $V$ jika dan hanya
-       jika $x\in\upp{N}$.
-\end{enumerate}
+      Misalkan $N$ suatu subruang rough dari ruang vektor rough $V$ dan
+      $x,y\in\upp{V}$.
+      \begin{enumerate}
+            \item $x\in x+\upp{N}$.
+            \item $x+\upp{N}=\upp{N}$ jika dan hanya jika $x\in\upp{N}$.
+            \item $x+\upp{N}=y+\upp{N}$ jika dan hanya jika $x\in y+\upp{N}$.
+            \item $x+\upp{N}=y+\upp{N}$ atau
+                  $\bigl(x+\upp{N}\bigr)\cap\bigl(y+\upp{N}\bigr)=\varnothing$.
+            \item $x+\upp{N}=y+\upp{N}$ jika dan hanya jika $x-y\in\upp{N}$.
+            \item $|x+\upp{N}|=|y+\upp{N}|$ apabila $V$ hingga.
+            \item $x+\upp{N}$ merupakan subruang rough dari $V$ jika dan hanya
+                  jika $x\in\upp{N}$.
+      \end{enumerate}
 \end{lema}
 \begin{proof}
-\leavevmode
-\begin{enumerate}
- \item Karena $0\in\upp{N}$, maka $x=x+0\in x+\upp{N}$.
+      \leavevmode
+      \begin{enumerate}
+            \item Karena $0\in\upp{N}$, maka $x=x+0\in x+\upp{N}$.
 
- \item Andaikan $x+\upp{N}=\upp{N}$. Berdasarkan sifat sebelumnya,
- $x\in x+\upp{N}=\upp{N}$. Sebaliknya, andaikan $x\in\upp{N}$.
- Karena $\upp{N}$ merupakan ruang vektor rough, maka
- $x+\upp{N}=\upp{N}$.
+            \item Andaikan $x+\upp{N}=\upp{N}$. Berdasarkan sifat sebelumnya,
+                  $x\in x+\upp{N}=\upp{N}$. Sebaliknya, andaikan $x\in\upp{N}$.
+                  Karena $\upp{N}$ merupakan ruang vektor rough, maka
+                  $x+\upp{N}=\upp{N}$.
 
- \item Andaikan $x+\upp{N}=y+\upp{N}$. Kita mengklaim bahwa
- $x\in y+\upp{N}$. Berdasarkan sifat pertama,
- $x\in x+\upp{N}=y+\upp{N}$. Sebaliknya, andaikan
- $x\in y+\upp{N}$, dan kita mengklaim bahwa
- $x+\upp{N}=y+\upp{N}$. Berdasarkan asumsi, $x=y+n$ dengan
- $n\in\upp{N}$, sehingga
- \[
- x+\upp{N}=(y+n)+\upp{N}
-          =y+\bigl(n+\upp{N}\bigr)=y+\upp{N}.
- \]
- Dengan demikian, kesamaan tersebut berlaku.
+            \item Andaikan $x+\upp{N}=y+\upp{N}$. Kita mengklaim bahwa
+                  $x\in y+\upp{N}$. Berdasarkan sifat pertama,
+                  $x\in x+\upp{N}=y+\upp{N}$. Sebaliknya, andaikan
+                  $x\in y+\upp{N}$, dan kita mengklaim bahwa
+                  $x+\upp{N}=y+\upp{N}$. Berdasarkan asumsi, $x=y+n$ dengan
+                  $n\in\upp{N}$, sehingga
+                  \[
+                        x+\upp{N}=(y+n)+\upp{N}
+                        =y+\bigl(n+\upp{N}\bigr)=y+\upp{N}.
+                  \]
+                  Dengan demikian, kesamaan tersebut berlaku.
 
- \item Andaikan terdapat elemen
- $z\in\bigl(x+\upp{N}\bigr)\cap\bigl(y+\upp{N}\bigr)$.
- Maka $z\in x+\upp{N}$ dan $z\in y+\upp{N}$. Berdasarkan sifat
- ketiga, diperoleh $z+\upp{N}=x+\upp{N}=y+\upp{N}$.
- Jadi, setiap dua koset sama atau saling lepas.
+            \item Andaikan terdapat elemen
+                  $z\in\bigl(x+\upp{N}\bigr)\cap\bigl(y+\upp{N}\bigr)$.
+                  Maka $z\in x+\upp{N}$ dan $z\in y+\upp{N}$. Berdasarkan sifat
+                  ketiga, diperoleh $z+\upp{N}=x+\upp{N}=y+\upp{N}$.
+                  Jadi, setiap dua koset sama atau saling lepas.
 
- \item $x+\upp{N}=y+\upp{N}$ jika dan hanya jika
- $(x-y)+\upp{N}=0+\upp{N}$, jika dan hanya jika
- $(x-y)\in0+\upp{N}=\upp{N}$.
+            \item $x+\upp{N}=y+\upp{N}$ jika dan hanya jika
+                  $(x-y)+\upp{N}=0+\upp{N}$, jika dan hanya jika
+                  $(x-y)\in0+\upp{N}=\upp{N}$.
 
- \item Untuk menunjukkan sifat ini, kita harus menemukan suatu
- bijeksi dari $x+\upp{N}$ pada $y+\upp{N}$. Jelas bahwa fungsi
- \[
- x+n\longmapsto y+n;\qquad n\in\upp{N}
- \]
- memetakan $x+\upp{N}$ pada $y+\upp{N}$. Jika $y+n_1=y+n_2$,
- maka $n_1=n_2$, sehingga fungsi tersebut satu-satu. Jadi,
- $|x+\upp{N}|=|y+\upp{N}|$.
+            \item Untuk menunjukkan sifat ini, kita harus menemukan suatu
+                  bijeksi dari $x+\upp{N}$ pada $y+\upp{N}$. Jelas bahwa fungsi
+                  \[
+                        x+n\longmapsto y+n;\qquad n\in\upp{N}
+                  \]
+                  memetakan $x+\upp{N}$ pada $y+\upp{N}$. Jika $y+n_1=y+n_2$,
+                  maka $n_1=n_2$, sehingga fungsi tersebut satu-satu. Jadi,
+                  $|x+\upp{N}|=|y+\upp{N}|$.
 
- \item Andaikan $x+\upp{N}$ merupakan subruang rough dari $V$.
- Karena $x=x+0\in x+\upp{N}$, $0\in\upp{N}$, dan
- $\upp{N}$ merupakan subruang rough, maka berdasarkan
- Definisi~\ref{def:15}, diperoleh $x=x+0\in\upp{N}$.
- Sebaliknya, jika $x\in\upp{N}$, maka berdasarkan sifat kedua,
- diperoleh $x+\upp{N}=\upp{N}$. Himpunan $\upp{N}$ sudah
- merupakan subruang rough, sehingga $x+\upp{N}$ juga demikian.
-\end{enumerate}
+            \item Andaikan $x+\upp{N}$ merupakan subruang rough dari $V$.
+                  Karena $x=x+0\in x+\upp{N}$, $0\in\upp{N}$, dan
+                  $\upp{N}$ merupakan subruang rough, maka berdasarkan
+                  Definisi~\ref{def:15}, diperoleh $x=x+0\in\upp{N}$.
+                  Sebaliknya, jika $x\in\upp{N}$, maka berdasarkan sifat kedua,
+                  diperoleh $x+\upp{N}=\upp{N}$. Himpunan $\upp{N}$ sudah
+                  merupakan subruang rough, sehingga $x+\upp{N}$ juga demikian.
+      \end{enumerate}
 \end{proof}
 
 \begin{definisi}\label{def:33}
-Misalkan $V$ merupakan ruang vektor rough dalam ruang aproksimasi
-$(U,R)$. Himpunan bagian $F\subset\upp{V}$ disebut
-\textbf{simetris} apabila untuk setiap $x\in F$, berlaku $(-x)\in F$.
+      Misalkan $V$ merupakan ruang vektor rough dalam ruang aproksimasi
+      $(U,R)$. Himpunan bagian $F\subset\upp{V}$ disebut
+      \textbf{simetris} apabila untuk setiap $x\in F$, berlaku $(-x)\in F$.
 \end{definisi}
 
 \begin{akibat}\label{cor:34}
-Jika $V$ merupakan ruang vektor rough dalam ruang aproksimasi $(U,R)$,
-maka $V$ dan setiap subruang rough dari $V$ merupakan himpunan simetris.
+      Jika $V$ merupakan ruang vektor rough dalam ruang aproksimasi $(U,R)$,
+      maka $V$ dan setiap subruang rough dari $V$ merupakan himpunan simetris.
 \end{akibat}
 
-\section{Ruang Vektor Rough Topologis}
-
-\begin{definisi}\label{def:35}
-Misalkan $V$ merupakan ruang vektor rough atas lapangan $\F$.
-\textbf{Ruang vektor rough topologis}, dinotasikan dengan
-$\boldsymbol{TRV}_{\F}$, adalah $V$ bersama topologi terinduksi
-$\mathcal{T}_V$ yang diperoleh dari suatu topologi pada $\upr{V}$,
-yang memenuhi dua aksioma:
-\begin{enumerate}
- \item pemetaan $+:V\times V\to\upr{V}$,
-       $(x,y)\mapsto x+y$, bersifat kontinu; dan
- \item pemetaan $\cdot:\F\times V\to\upr{V}$ juga bersifat kontinu.
-\end{enumerate}
-Selanjutnya, ruang tersebut dituliskan sebagai pasangan
-$(V,\mathcal{T}_V)$. Di sini, topologi yang didefinisikan pada $\F$
-adalah topologi standar.
-\end{definisi}
-
-\begin{contoh}\label{ex:36}
-Pada Contoh~\ref{ex:18}, telah ditunjukkan bahwa
-\[
-V=\{(1,1),(1,2),(2,2),(2,1),(1,0),(2,0)\}
-\]
-merupakan ruang vektor
-rough dalam ruang aproksimasi $(X,R)$. Kita ingin memeriksa bahwa
-$V$ bersama topologi diskret $\mathcal{D}_V$ merupakan ruang vektor
-rough topologis dengan memeriksa syarat-syarat pada
-Definisi~\ref{def:35}. Jelas bahwa syarat pertama telah dipenuhi
-pada Contoh~\ref{ex:12}. Jadi, yang tersisa adalah memeriksa
-kekontinuan fungsi $\cdot:\Z_3\times V\to\upr{V}$. Topologi
-yang didefinisikan pada lapangan $\Z_3$ adalah topologi standar
-pada himpunan hingga, yaitu topologi diskret, sehingga topologi
-hasil kali pada $\Z_3\times V$ juga merupakan topologi diskret.
-Karena setiap fungsi dari ruang diskret bersifat kontinu, syarat
-tersebut terpenuhi. Oleh karena itu, ruang vektor rough $V$ atas
-lapangan $\Z_3$ bersama topologi diskret merupakan ruang vektor
-rough topologis.
-\end{contoh}
-
-\begin{contoh}\label{ex:37}
-Berdasarkan Contoh~\ref{ex:20}, $V=\{1,2,4,5\}$ atas lapangan
-$\Z_3$ merupakan ruang vektor rough, dan pada Contoh~\ref{ex:14}
-telah ditunjukkan bahwa $V$ dengan topologi indiskret merupakan
-grup rough topologis. Untuk menunjukkan bahwa ruang vektor rough
-$V$ atas $\Z_3$ dengan topologi indiskret merupakan ruang vektor
-rough topologis, kita harus membuktikan bahwa fungsi
-$f:\Z_3\times V\to\upr{V}$ bersifat kontinu. Topologi hasil
-kali pada $\Z_3\times V$ adalah
-\[
- \{\varnothing,\Z_3\times V\}\cup\{U\times V:U\subset\Z_3\},
-\]
-di mana topologi pada $\Z_3$ adalah topologi diskret. Sekarang,
-misalkan $U$ sebarang himpunan terbuka di $\upr{V}$. Karena
-topologi yang didefinisikan pada $\upr{V}$ adalah topologi indiskret,
-kita mempunyai dua kasus.
-
-\noindent Kasus (1): Jika $U=V$, maka $f^{-1}=F\times V$ dengan
-$F\subseteq\Z_3$, dan tentu saja himpunan tersebut terbuka
-di $\Z_3\times V$.
-
-\noindent Kasus (2): Jika $U=\varnothing$, maka
-$f^{-1}(U)=\varnothing$, yang terbuka di $\Z_3\times V$.
-
-Oleh karena itu, $f:\Z_3\times V\to\upr{V}$ kontinu, sehingga
-klaim kita terbukti.
-\end{contoh}
-
-\begin{proposisi}\label{prop:38}
-Misalkan $(V,\mathcal{T}_V)$ merupakan ruang vektor rough topologis
-atas lapangan $\F$. Untuk suatu titik tetap $a\in\R$ dan skalar
-tetap $\alpha\in\F$, misalkan $T_a:\R\to\R$ dan
-$M_\alpha:V\to V$ masing-masing merupakan operator translasi dan
-perkalian yang didefinisikan oleh
-\begin{align*}
- T_a(x)&=x+a,\\
- M_\alpha(x)&=\alpha\cdot x.
-\end{align*}
-Maka kedua fungsi ini merupakan homeomorfisme dari $V$ pada $V$.
-\end{proposisi}
-\begin{proof}
-Fungsi $T_a$ dan $M_\alpha$ bersifat satu-satu berdasarkan
-Definisi~\ref{def:15}, dan keduanya bersifat pada karena untuk
-setiap $x\in V$, terdapat $0\in V$ dan $1\in\F$ sehingga
-$x+0=x$ dan $1\cdot x=x$. Jadi, $T_a$ dan $M_\alpha$ merupakan
-bijeksi. Selain itu, berdasarkan Definisi~\ref{def:35}, keduanya
-kontinu, dan inversnya, $T_{-a}$ dan $M_{1/\alpha}$, juga kontinu
-karena $-a\in V$ dan $1/\alpha\in\F$. Dengan demikian, $T_a$ dan
-$M_\alpha$ keduanya merupakan homeomorfisme.
-\end{proof}
-
-\begin{teorema}\label{thm:39}
-Misalkan $(V,\mathcal{T}_V)$ dan $(W,\mathcal{T}_W)$ merupakan
-ruang vektor rough topologis dan pemetaan linear rough
-$f:\upr{V}\to\upr{W}$ bersifat kontinu, sedangkan $\upr{V}$
-merupakan ruang terhitung pertama. Maka kernel rough $Rker(f)$
-tertutup.
-\end{teorema}
-\begin{proof}
-Argumen yang ingin ditunjukkan adalah bahwa kernel rough memuat
-semua titik limitnya. Andaikan $f$ kontinu pada $\upr{V}$ dan
-merupakan pemetaan linear rough. Misalkan $(x_n)$ suatu barisan
-di $Rker(f)$ yang konvergen ke $x\in\upr{V}$. Berdasarkan
-kekontinuan $f$, barisan $f(x_n)$ konvergen ke $f(x)$. Karena
-$x_n\in Rker(f)$,
-\[
- f(x)=\lim_{n\to\infty}f(x_n)=0.
-\]
-Maka $x\in Rker(f)$, sehingga $Rker(f)$ tertutup.
-\end{proof}
-
 \begin{thebibliography}{9}
-\bibitem{bagirmaz}
-N.~Ba\u{g}{\i}rmaz, \.{I}\c{c}en, \.{I}., A.~F.~\"Ozcan,
-\textit{Topological Rough Groups},
-Topological Algebra and its Applications, 4(1), 2016, 31--38.
-\url{https://doi.org/10.1515/taa-2016-0004}.
+      \bibitem{bagirmaz}
+      N.~Ba\u{g}{\i}rmaz, \.{I}\c{c}en, \.{I}., A.~F.~\"Ozcan,
+      \textit{Topological Rough Groups},
+      Topological Algebra and its Applications, 4(1), 2016, 31--38.
+      \url{https://doi.org/10.1515/taa-2016-0004}.
 
-\bibitem{biwa}
-R.~Biwa, S.~Nanda,
-\textit{Rough Groups and Rough Subgroups},
-Bulletin of the Polish Academy of Sciences--Mathematics,
-42(3), 1994, 251--254.
+      \bibitem{biwa}
+      R.~Biwa, S.~Nanda,
+      \textit{Rough Groups and Rough Subgroups},
+      Bulletin of the Polish Academy of Sciences--Mathematics,
+      42(3), 1994, 251--254.
 
-\bibitem{davvaz}
-B.~Davvaz, \textit{Roughness in rings},
-Information Sciences, 164(1--4), 2004, 147--163.
-\url{https://doi.org/10.1016/j.ins.2003.10.001}.
+      \bibitem{davvaz}
+      B.~Davvaz, \textit{Roughness in rings},
+      Information Sciences, 164(1--4), 2004, 147--163.
+      \url{https://doi.org/10.1016/j.ins.2003.10.001}.
 
-\bibitem{modules}
-B.~Davvaz, M.~Mahdavipour, \textit{Roughness in modules},
-Information Sciences, 176(24), 2006, 3658--3674.
-\url{https://doi.org/10.1016/j.ins.2006.02.014}.
+      \bibitem{modules}
+      B.~Davvaz, M.~Mahdavipour, \textit{Roughness in modules},
+      Information Sciences, 176(24), 2006, 3658--3674.
+      \url{https://doi.org/10.1016/j.ins.2006.02.014}.
 
-\bibitem{pawlak}
-Z.~Pawlak, \textit{Rough sets},
-International Journal of Computer \& Information Sciences,
-11(5), 1982, 341--356.
+      \bibitem{pawlak}
+      Z.~Pawlak, \textit{Rough sets},
+      International Journal of Computer \& Information Sciences,
+      11(5), 1982, 341--356.
 \end{thebibliography}
 
 \end{document}
