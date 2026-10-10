@@ -1,0 +1,244 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{enumitem}
+\pagenumbering{gobble}
+
+\begin{document}
+
+\begin{center}
+  \textbf{\underline{Quiz 1 Teori Approksimasi Gasal 2025/2026}}\\[1em]
+  \begin{tabular}{lcl}
+    Mata Kuliah/SKS & : & Teori Approksimasi / 3 SKS \\
+    Hari, Tanggal   & : & Rabu, 10 September 2025    \\
+    Waktu           & : & 09.00-10.40 WIB            \\
+    Sifat           & : & Terbuka
+  \end{tabular}
+\end{center}
+
+\vspace{1.5em}
+
+\begin{enumerate}
+  \item Show that
+        \[
+          \left| e^x - \sum_{n=0}^8 \frac{x^n}{n!} \right| \le 2.8 \times 10^{-10}, \forall x \in [-1, 0].
+        \]
+
+  \item \begin{enumerate}[label=(\alph*), before=\vspace{-\dimexpr\baselineskip+\topsep\relax}]
+          \item Find a Polynomial $P(x) = \sum\limits_{n=0}^N a_n x^n$ such that
+                \[
+                  \left| \sin x - \sum_{n=0}^N a_n x^n \right| \le 0.0001, \forall x \in \left[0, \frac{\pi}{2}\right].
+                \]
+          \item Use the result to find an approximative value of
+                \[
+                  \int_0^1 \sin x^4 dx,
+                \]
+                with an error of at most 0.0001.
+        \end{enumerate}
+
+  \item Dapatkan radius konvergensi untuk deret pangkat
+        \[
+          \sum_{n=0}^\infty \frac{n+2}{n+1} x^{n+1}.
+        \]
+
+  \item Buktikan bahwa
+        \[
+          \sum_{n=k+1}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2} + \frac{1}{(2k+1)^2}, \forall k \in \mathbb{N}.
+        \]
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+  \textbf{\underline{Solusi Quiz 1 Teori Approksimasi Gasal 2025/2026}}
+\end{center}
+
+\begin{enumerate}
+  \item Pernyataan di atas \textbf{tidak benar} (salah). Untuk menyangkal suatu pernyataan yang berkuantor universal ($\forall x \in [-1, 0]$), cukup ditunjukkan satu contoh penyangkal (\textit{counterexample}) pada interval tersebut di mana ketaksamaan tidak terpenuhi.
+
+        Pilihlah titik ujung $x = -1 \in [-1, 0]$.
+
+        Misalkan $P_8(x) = \sum_{n=0}^8 \frac{x^n}{n!}$ adalah polinomial Taylor (Maclaurin) berderajat $8$ dari fungsi $f(x) = e^x$. Nilai aproksimasi pada $x = -1$ adalah:
+        \begin{align*}
+          P_8(-1) & = \sum_{n=0}^8 \frac{(-1)^n}{n!}                                                                                      \\
+                  & = 1 - 1 + \frac{1}{2!} - \frac{1}{3!} + \frac{1}{4!} - \frac{1}{5!} + \frac{1}{6!} - \frac{1}{7!} + \frac{1}{8!}      \\
+                  & = 1 - 1 + \frac{1}{2} - \frac{1}{6} + \frac{1}{24} - \frac{1}{120} + \frac{1}{720} - \frac{1}{5040} + \frac{1}{40320} \\
+                  & = \frac{14833}{40320} \approx 0{,}3678819444.
+        \end{align*}
+        Sementara itu, nilai eksak dari $e^{-1} = \frac{1}{e}$ hingga 10 desimal adalah:
+        \[
+          e^{-1} \approx 0,3678794412.
+        \]
+        Dengan demikian, galat aproksimasi aktual pada titik $x = -1$ bernilai:
+        \[
+          \left| e^{-1} - \sum_{n=0}^8 \frac{(-1)^n}{n!} \right| = |0,3678794412 - 0,3678819444| \approx 2,50327 \times 10^{-6}.
+        \]
+        Karena
+        \[
+          2,50327 \times 10^{-6} > 2,8 \times 10^{-10},
+        \]
+        maka ketaksamaan tersebut \textbf{gagal} pada $x = -1 \in [-1, 0]$.
+
+  \item \begin{enumerate}[label=(\alph*)]
+          \item Deret Maclaurin untuk fungsi $f(x) = \sin x$ diberikan oleh
+                \[
+                  \sin x = \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \frac{x^9}{9!} - \dots
+                \]
+                Kita pilih polinomial aproksimasi berupa polinomial Taylor berderajat $N = 2m+1$:
+                \[
+                  P(x) = P_{2m+1}(x) = \sum_{k=0}^m \frac{(-1)^k}{(2k+1)!} x^{2k+1}.
+                \]
+                Karena turunan ke-$(2m+2)$ dari $\sin x$ di titik $x = 0$ bernilai nol, polinomial Taylor berderajat ganjil $2m+1$ identik dengan polinomial Taylor berderajat genap $2m+2$, yaitu $P_{2m+1}(x) = P_{2m+2}(x)$.
+
+                Berdasarkan Teorema Taylor bentuk Lagrange, untuk setiap $x \in [0, \pi/2]$, terdapat $\xi \in (0, x)$ sedemikian sehingga sisa aproksimasi memenuhi
+                \[
+                  |R_{2m+2}(x)| = \left| \frac{f^{(2m+3)}(\xi)}{(2m+3)!} x^{2m+3} \right|.
+                \]
+                Setiap turunan dari fungsi sinus bernilai $\pm \cos x$ atau $\pm \sin x$, sehingga $|f^{(2m+3)}(\xi)| \le 1$. Karena untuk $x \in [0, \pi/2]$ berlaku $|x| \le \frac{\pi}{2}$, maka batas galat maksimum adalah
+                \[
+                  |R_{2m+2}(x)| \le \frac{(\pi/2)^{2m+3}}{(2m+3)!}.
+                \]
+                Kita uji nilai derajat polinomial:
+                \begin{itemize}
+                  \item Untuk $m = 3$ (derajat $N = 7$):
+                        \[
+                          \frac{(\pi/2)^9}{9!} \approx \frac{(1{,}570796)^9}{362.880} \approx \frac{58{,}2189}{362.880} \approx 1{,}604 \times 10^{-4} > 0{,}0001.
+                        \]
+                        (Belum mencukupi ketelitian ${,}0001$).
+                  \item Untuk $m = 4$ (derajat $N = 9$):
+                        \[
+                          \frac{(\pi/2)^{11}}{11!} \approx \frac{(1{,}570796)^{11}}{39.916.800} \approx \frac{143{,}646}{39.916.800} \approx 3{,}599 \times 10^{-6} \le 0{,}0001.
+                        \]
+                        (Bahkan jika ditinjau dari rumus sisa berderajat $9$, batas galat $\frac{(\pi/2)^{10}}{10!} \approx 2{,}54 \times 10^{-5} < 0{,}0001$).
+                \end{itemize}
+                Dengan demikian, derajat terkecil yang menjamin galat $\le 0{,}0001$ adalah $N = 9$. Polinomial $P(x)$ yang dicari adalah
+                \begin{align*}
+                  P(x) & = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \frac{x^9}{9!}        \\
+                       & = x - \frac{x^3}{6} + \frac{x^5}{120} - \frac{x^7}{5040} + \frac{x^9}{362880}.
+                \end{align*}
+
+          \item Dari hasil bagian (a), untuk setiap $u \in [0, \pi/2]$, berlaku
+                \[
+                  |\sin u - P(u)| \le 0{,}0001.
+                \]
+                Untuk setiap $x \in [0, 1]$, perhatikan bahwa $x^4 \in [0, 1]$. Karena $[0, 1] \subset [0, \pi/2]$ (mengingat $\pi/2 \approx 1{,}5708 > 1$), maka kita dapat mensubstitusikan $u = x^4$ ke dalam ketaksamaan tersebut:
+                \[
+                  |\sin(x^4) - P(x^4)| \le 0{,}0001, \quad \forall x \in [0, 1].
+                \]
+                Dengan mengintegralkan kedua ruas pada interval $[0, 1]$, kita peroleh
+                \begin{align*}
+                  \left| \int_0^1 \sin(x^4) \, dx - \int_0^1 P(x^4) \, dx \right|
+                   & \le \int_0^1 \left| \sin(x^4) - P(x^4) \right| dx \\
+                   & \le \int_0^1 0{,}0001 \, dx                       \\
+                   & = {,}0001 \times (1 - 0) = {,}0001.
+                \end{align*}
+                Oleh karena itu, nilai aproksimasi integral yang dicari adalah
+                \begin{align*}
+                  \int_0^1 P(x^4) \, dx
+                   & = \int_0^1 \left( x^4 - \frac{x^{12}}{3!} + \frac{x^{20}}{5!} - \frac{x^{28}}{7!} + \frac{x^{36}}{9!} \right) dx               \\
+                   & = \left[ \frac{x^5}{5} - \frac{x^{13}}{78} + \frac{x^{21}}{2520} - \frac{x^{29}}{146160} + \frac{x^{37}}{13426560} \right]_0^1 \\
+                   & = \frac{1}{5} - \frac{1}{78} + \frac{1}{2520} - \frac{1}{146160} + \frac{1}{13426560}.
+                \end{align*}
+                Nilai dari masing-masing suku pecahan tersebut adalah:
+                \begin{align*}
+                  \frac{1}{5}        & = {,}2000000000         \\
+                  -\frac{1}{78}      & \approx -0{,}0128205128 \\
+                  \frac{1}{2520}     & \approx +0{,}0003968254 \\
+                  -\frac{1}{146160}  & \approx -0{,}0000068418 \\
+                  \frac{1}{13426560} & \approx +0{,}0000000745
+                \end{align*}
+                Menjumlahkan seluruh suku menghasilkan nilai aproksimasi
+                \[
+                  \int_0^1 \sin(x^4) \, dx \approx 0{,}1875695.
+                \]
+                \textit{Catatan:} Deret ini merupakan deret bolak-balik (\textit{alternating series}) yang suku-sukunya monoton turun menuju nol. Suku ke-4 adalah $\frac{1}{146160} \approx 6{,}84 \times 10^{-6} < 0{,}0001$. Oleh karena itu, bahkan dengan menggunakan 3 suku pertama saja:
+                \[
+                  \frac{1}{5} - \frac{1}{78} + \frac{1}{2520} = \frac{1229}{6552} \approx 0{,}187576,
+                \]
+                galat aproksimasi sudah dijamin kurang dari $\frac{1}{146160} < 0{,}0001$.
+        \end{enumerate}
+
+  \item Misalkan suku ke-$n$ dari deret tersebut adalah
+        \[
+          u_n = \frac{n+2}{n+1} x^{n+1}.
+        \]
+        Berdasarkan Uji Rasio (\textit{Ratio Test}) untuk konvergensi mutlak, kita evaluasi limit
+        \[
+          L = \lim_{n \to \infty} \left| \frac{u_{n+1}}{u_n} \right|.
+        \]
+        Suku ke-$(n+1)$ adalah
+        \[
+          u_{n+1} = \frac{(n+1)+2}{(n+1)+1} x^{(n+1)+1} = \frac{n+3}{n+2} x^{n+2}.
+        \]
+        Rasio kedua suku tersebut adalah
+        \begin{align*}
+          \left| \frac{u_{n+1}}{u_n} \right|
+           & = \left| \frac{\frac{n+3}{n+2} x^{n+2}}{\frac{n+2}{n+1} x^{n+1}} \right| \\
+           & = \frac{(n+3)(n+1)}{(n+2)^2} \cdot |x|                                   \\
+           & = \frac{n^2 + 4n + 3}{n^2 + 4n + 4} \cdot |x|.
+        \end{align*}
+        Dengan mengambil limit untuk $n \to \infty$:
+        \[
+          L = \lim_{n \to \infty} \left( \frac{n^2 + 4n + 3}{n^2 + 4n + 4} \right) |x| = \lim_{n \to \infty} \left( \frac{1 + \frac{4}{n} + \frac{3}{n^2}}{1 + \frac{4}{n} + \frac{4}{n^2}} \right) |x| = 1 \cdot |x| = |x|.
+        \]
+        Berdasarkan Uji Rasio:
+        \begin{itemize}
+          \item Deret konvergen mutlak jika $L < 1 \iff |x| < 1$.
+          \item Deret divergen jika $L > 1 \iff |x| > 1$.
+        \end{itemize}
+        Karena deret berpusat di $x_0 = 0$ dan konvergen mutlak untuk $|x| < 1$, maka sesuai dengan definisi pertidaksamaan $|x - x_0| < R$, radius konvergensinya adalah $R = 1$.
+
+
+  \item  Perhatikan suku pertama deret pada ruas kiri, yaitu pada saat indeks $n = k+1$:
+        \[
+          \text{Untuk } n = k+1: \quad \frac{1}{(2(k+1)-1)^2} = \frac{1}{(2k+2-1)^2} = \frac{1}{(2k+1)^2}.
+        \]
+        Dengan memisahkan suku pertama tersebut dari penjumlahan, ruas kiri dapat ditulis sebagai
+        \[
+          \sum_{n=k+1}^\infty \frac{1}{(2n-1)^2} = \frac{1}{(2k+1)^2} + \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2}.
+        \]
+        Oleh sebab itu, pertidaksamaan pada soal ekuivalen dengan membuktikan bahwa
+        \[
+          \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2}.
+        \]
+        Untuk membuktikan hal ini, kita gunakan Teorema Uji Integral untuk Estimasi Sisa Deret.
+        Definisikan fungsi
+        \[
+          f(x) = \frac{1}{(2x-1)^2}, \quad \text{untuk } x \ge 1.
+        \]
+        Fungsi $f(x)$ kontinu, positif, dan monoton turun pada interval $[1, \infty)$ karena turunan pertamanya adalah
+        \[
+          f'(x) = -\frac{4}{(2x-1)^3} < 0, \quad \forall x > \frac{1}{2}.
+        \]
+        Karena $f(x)$ monoton turun, untuk setiap interval $[n-1, n]$ dengan $n \ge k+2$, berlaku
+        \[
+          f(n) \le f(x), \quad \forall x \in [n-1, n].
+        \]
+        Dengan mengintegralkan kedua ruas pada interval $[n-1, n]$ yang panjangnya $\Delta x = 1$:
+        \[
+          \frac{1}{(2n-1)^2} = f(n) = \int_{n-1}^n f(n) \, dx \le \int_{n-1}^n f(x) \, dx = \int_{n-1}^n \frac{1}{(2x-1)^2} \, dx.
+        \]
+        Jumlahkan ketaksamaan ini dari $n = k+2$ sampai $\infty$:
+        \[
+          \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \le \sum_{n=k+2}^\infty \int_{n-1}^n \frac{1}{(2x-1)^2} \, dx = \int_{k+1}^\infty \frac{1}{(2x-1)^2} \, dx.
+        \]
+        Sekarang kita hitung integral tak wajar di ruas kanan:
+        \begin{align*}
+          \int_{k+1}^\infty \frac{1}{(2x-1)^2} \, dx
+           & = \lim_{b \to \infty} \int_{k+1}^b (2x-1)^{-2} \, dx = \lim_{b \to \infty} \left[ -\frac{1}{2(2x-1)} \right]_{k+1}^b                                                                                     \\
+           & = \lim_{b \to \infty} \left( -\frac{1}{2(2b-1)} \right) - \left( -\frac{1}{2(2(k+1)-1)} \right)                                                                                                          \\
+           & = 0 + \frac{1}{2(2k+2-1)}                                                                                            = \frac{1}{2(2k+1)}                                               = \frac{1}{4k+2}.
+        \end{align*}
+        Dengan demikian, terbukti bahwa
+        \[
+          \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2}.
+        \]
+        Terakhir, dengan menambahkan suku $\frac{1}{(2k+1)^2}$ pada kedua ruas, kita peroleh
+        \[
+          \sum_{n=k+1}^\infty \frac{1}{(2n-1)^2} = \frac{1}{(2k+1)^2} + \sum_{n=k+2}^\infty \frac{1}{(2n-1)^2} \le \frac{1}{4k+2} + \frac{1}{(2k+1)^2}.
+        \]
+        Pertidaksamaan ini berlaku untuk setiap $k \in \mathbb{N}$.
+        \hfill $\blacksquare$
+\end{enumerate}
+
+\end{document}

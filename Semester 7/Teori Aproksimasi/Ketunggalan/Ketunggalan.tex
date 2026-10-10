@@ -1,0 +1,1077 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[style=ieee,backend=biber]{biblatex}
+\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{cancel}
+\usepackage{ragged2e}
+\usepackage[indonesian]{babel}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{pgfplots, tkz-euclide,calc}
+\pgfplotsset{compat=1.18}
+\usepackage{listings}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage[scaled]{uarial}
+\usepackage{dsfont}
+\usepackage[T1]{fontenc}
+
+\definecolor{HIMAmuda}{HTML}{01D1FD}
+\definecolor{HIMAtua}{HTML}{02016A}
+\definecolor{HIMAabu}{HTML}{CBCBCC}
+\definecolor{PastelGreen}{HTML}{77DD77}
+
+\usetheme{Madrid}
+
+\setbeamertemplate{frametitle continuation}{}
+
+\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
+\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
+\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
+\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
+\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
+\setbeamercolor{bibliography item}{parent=palette secondary}
+\setbeamercolor*{bibliography entry author}{parent=section in toc}
+
+\usetikzlibrary{shapes.geometric, arrows, calc, intersections}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{bibliography item}[book]
+
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}
+\newtheorem{proposisi}{Proposisi}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}{Lema}
+\newtheorem{akibat}{Akibat}
+\newtheorem{contoh}{Contoh}
+\newtheorem{catatan}{Catatan}
+\newtheorem{latihan}{Latihan}
+
+% Ubah penomoran agar otomatis diawali dengan 3.
+\renewcommand{\thedefinisi}{3.\arabic{definisi}}
+\renewcommand{\theproposisi}{3.\arabic{proposisi}}
+\renewcommand{\theteorema}{3.\arabic{teorema}}
+\renewcommand{\thelema}{3.\arabic{lema}}
+\renewcommand{\theakibat}{3.\arabic{akibat}}
+\renewcommand{\thecontoh}{3.\arabic{contoh}}
+\renewcommand{\thecatatan}{3.\arabic{catatan}}
+\renewcommand{\thelatihan}{3.\arabic{latihan}}
+\renewcommand{\theequation}{3.\arabic{equation}}
+
+\usepackage[nameinlink]{cleveref}
+\crefname{teorema}{Teorema}{Teorema}
+\crefname{proposisi}{Proposisi}{Proposisi}
+\crefname{definisi}{Definisi}{Definisi}
+\crefname{lema}{Lema}{Lema}
+\crefname{akibat}{Akibat}{Akibat}
+\crefname{contoh}{Contoh}{Contoh}
+\crefname{catatan}{Catatan}{Catatan}
+\crefname{latihan}{Latihan}{Latihan}
+
+\newcommand{\myref}[1]{\hyperref[#1]{\nameCref{#1} \ref*{#1}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\AtBeginEnvironment{contoh}{%
+\setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
+\setbeamercolor{block body}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+\setbeamercolor{item}{fg=example text.fg}
+}
+\AtBeginEnvironment{definisi}{
+\setbeamercolor{block title}{fg=white,bg=HIMAtua}
+\setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+\setbeamercolor{item}{fg=HIMAtua}
+}
+\AtBeginEnvironment{latihan}{%
+  \setbeamercolor{block title}{fg=white,bg=yellow!30!orange}
+  \setbeamercolor{block body}{parent=normal text,bg=yellow!30!white}
+  \setbeamercolor{item}{fg=yellow!30!orange}
+}
+\AtBeginEnvironment{teorema}{
+    \setbeamercolor{block title}{bg=darkgray,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+    \setbeamercolor{item}{fg=HIMAabu}
+}
+\AtBeginEnvironment{proposisi}{
+    \setbeamercolor{block title}{bg=teal,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=teal!30!white}
+    \setbeamercolor{item}{fg=teal}
+}
+\AtBeginEnvironment{lema}{
+    \setbeamercolor{block title}{bg=lime!70!black,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=lime!30!white}
+    \setbeamercolor{item}{fg=lime}
+}
+\AtBeginEnvironment{akibat}{
+    \setbeamercolor{block title}{bg=magenta,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=magenta!30!white}
+    \setbeamercolor{item}{fg=magenta}
+}
+\AtBeginEnvironment{catatan}{
+    \setbeamercolor{block title}{bg=orange!80!black,fg=white}
+    \setbeamercolor{block body}{parent=pallette tertiary,bg=orange!20!white}
+    \setbeamercolor{item}{fg=orange}
+}
+
+\date{6 Oktober 2026}
+\title[Teori Aproksimasi]{Aproksimasi Terbaik (Ketunggalan)}
+\author[Tetew]{Teosofi Hidayah Agung}
+\institute[Matematika ITS]{Matematika ITS}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Ketunggalan}
+\subsection{Teorema 3.16}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{15}
+  \begin{teorema}
+    Misalkan $\mathcal{F}$ adalah ruang linear bernorma dengan norma $\|\cdot\|$, $\mathcal{S} \subset \mathcal{F}$ adalah himpunan bagian konveks, dan $f \in \mathcal{F}$. Maka himpunan aproksimasi terbaik
+    \begin{equation*}
+      \mathcal{S}^* \equiv \mathcal{S}^*(f, \mathcal{S}) := \left\{ s^* \in \mathcal{S} \;\middle|\; \|s^* - f\| = \inf_{s \in \mathcal{S}} \|s - f\| \right\} \subset \mathcal{S}
+    \end{equation*}
+    dari $f$ di $\mathcal{S}$ merupakan himpunan yang konveks.
+  \end{teorema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \textit{Bukti.}
+  Misalkan $\eta \equiv \eta(f, \mathcal{S}) := \displaystyle \inf_{s \in \mathcal{S}} \|s - f\|$ menyatakan jarak minimal dari $f$ ke himpunan $\mathcal{S}$.
+  Untuk membuktikan bahwa himpunan $\mathcal{S}^*$ konveks, kita harus menunjukkan bahwa untuk setiap $s_1^*, s_2^* \in \mathcal{S}^*$ dan untuk setiap skalar $\lambda \in [0,1]$, maka
+  \setcounter{equation}{10}
+  \begin{equation}
+    s_\lambda^* := \lambda s_1^* + (1 - \lambda) s_2^* \label{eq:3.11}
+  \end{equation}
+  juga berada di dalam $\mathcal{S}^*$. Pembuktian ini dilakukan dalam beberapa langkah berikut:
+
+  \begin{enumerate}
+    \item Berdasarkan asumsi teorema, himpunan $\mathcal{S}$ adalah konveks. Karena $s_1^*, s_2^* \in \mathcal{S}^* \subset \mathcal{S}$, maka menurut definisi himpunan konveks, diperoleh
+          \begin{equation*}
+            [s_1^*, s_2^*] := \left\{ \lambda s_1^* + (1 - \lambda) s_2^* \;\middle|\; \lambda \in [0,1] \right\} \subset \mathcal{S}.
+          \end{equation*}
+    \item Karena $s_\lambda^* \in \mathcal{S}$, maka berdasarkan definisi infimum, berlaku:
+          \begin{equation*}
+            \|s_\lambda^* - f\| \geq \inf_{s \in \mathcal{S}} \|s - f\| = \eta.
+          \end{equation*}
+    \item Perhatikan bahwa untuk sebarang $\lambda \in [0,1]$, berlaku $\lambda + (1 - \lambda) = 1$. Oleh karena itu, $f$ dapat dinyatakan sebagai:
+          \begin{equation*}
+            f = 1 \cdot f = \left( \lambda + (1 - \lambda) \right) f = \lambda f + (1 - \lambda) f.
+          \end{equation*}
+          Dengan mengurangkan bentuk di atas dari $s_\lambda^*$, kita peroleh:
+          \begin{align*}
+            s_\lambda^* - f & = \left( \lambda s_1^* + (1 - \lambda) s_2^* \right) - \left( \lambda + (1 - \lambda) \right) f = \lambda (s_1^* - f) + (1 - \lambda) (s_2^* - f).
+          \end{align*}
+
+          Mengambil norma pada kedua ruas dan menerapkan ketaksamaan segitiga pada norma $\|\cdot\|$, dapat diperoleh:
+          \begin{align*}
+            \|s_\lambda^* - f\| & = \left\| \lambda (s_1^* - f) + (1 - \lambda) (s_2^* - f) \right\|                      \\
+                                & \leq \left\| \lambda (s_1^* - f) \right\| + \left\| (1 - \lambda) (s_2^* - f) \right\|.
+          \end{align*}
+          Karena $\lambda \in [0,1]$, maka $\lambda \geq 0$ dan $1 - \lambda \geq 0$, sehingga
+          \begin{equation*}
+            \|s_\lambda^* - f\| \leq \lambda \|s_1^* - f\| + (1 - \lambda) \|s_2^* - f\|.
+          \end{equation*}
+          Mengingat bahwa $s_1^*, s_2^* \in \mathcal{S}^*$ adalah aproksimasi terbaik dari $f$ di $\mathcal{S}$, maka menurut definisi:
+          \begin{equation*}
+            \|s_1^* - f\| = \inf_{s \in \mathcal{S}} \|s - f\| = \eta \quad \text{dan} \quad \|s_2^* - f\| = \inf_{s \in \mathcal{S}} \|s - f\| = \eta.
+          \end{equation*}
+          Substitusi kedua nilai ini menghasilkan:
+          \begin{equation*}
+            \|s_\lambda^* - f\| \leq \lambda \inf_{s \in \mathcal{S}} \|s - f\| + (1 - \lambda) \inf_{s \in \mathcal{S}} \|s - f\| = (\lambda + 1 - \lambda) \eta = \eta.
+          \end{equation*}
+  \end{enumerate}
+
+  Dengan menggabungkan batas bawah dari Langkah 2 dan batas atas dari Langkah 3, didapatkan
+  \begin{equation*}
+    \eta \leq \|s_\lambda^* - f\| \leq \eta \implies \|s_\lambda^* - f\| = \eta = \inf_{s \in \mathcal{S}} \|s - f\|.
+  \end{equation*}
+  Karena $s_\lambda^* \in \mathcal{S}$ dan jaraknya ke $f$ tepat sama dengan jarak minimal $\displaystyle \inf_{s \in \mathcal{S}} \|s - f\|$, maka berdasarkan definisi himpunan $\mathcal{S}^*$, diperoleh:
+  \begin{equation*}
+    s_\lambda^* = \lambda s_1^* + (1 - \lambda) s_2^* \in \mathcal{S}^* \quad \text{untuk semua } \lambda \in [0,1].
+  \end{equation*}
+  Dengan demikian, terbukti secara lengkap bahwa himpunan aproksimasi terbaik $\mathcal{S}^*$ adalah konveks. \qed
+\end{frame}
+
+\subsection{Definisi 3.20}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \setcounter{definisi}{19}
+  \begin{definisi}
+    Suatu fungsi $f : [a,b] \to \R$ disebut \textbf{konveks} pada interval $[a,b] \subset \R$, jika untuk semua $x,y \in [a,b]$ ketaksamaan\label{def:3.20}
+    \begin{equation*}
+      f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y) \quad \text{untuk semua } \lambda \in [0,1]
+    \end{equation*}
+    berlaku.
+
+    Fungsi $f$ dikatakan \textbf{konveks tegas} (\textit{strictly convex}) pada $[a,b]$, jika untuk semua $x,y \in [a,b]$ dengan $x \neq y$, berlaku
+    \begin{equation*}
+      f(\lambda x + (1 - \lambda)y) < \lambda f(x) + (1 - \lambda)f(y) \quad \text{untuk semua } \lambda \in (0,1).
+    \end{equation*}
+  \end{definisi}
+\end{frame}
+
+\subsection{Teorema 3.21}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{20}
+  \begin{teorema}[Ketaksamaan Jensen, 1906]\label{thm:3.21}
+    Misalkan $f : [a,b] \to \R$ adalah fungsi konveks, dan $\{x_1, \dots, x_n\} \subset [a,b]$ adalah himpunan dari $n \geq 2$ titik. Maka ketaksamaan Jensen
+    \begin{equation*}
+      f\left( \sum_{j=1}^n \lambda_j x_j \right) \leq \sum_{j=1}^n \lambda_j f(x_j) \quad \text{untuk semua } \lambda_j \in (0,1) \text{ dengan } \sum_{j=1}^n \lambda_j = 1
+    \end{equation*}
+    berlaku. Jika $f$ konveks tegas, maka kesamaan berlaku jika dan hanya jika seluruh titik saling berhimpit, yaitu $x_1 = x_2 = \dots = x_n$.
+  \end{teorema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \textit{Bukti.}
+  Kita buktikan pernyataan ketaksamaan Jensen ini menggunakan metode induksi matematika.
+
+  \begin{itemize}
+    \item  Untuk $n = 2$, kita memiliki dua titik $x_1, x_2 \in [a,b]$ dan bobot $\lambda_1, \lambda_2 \in (0,1)$ yang memenuhi $\lambda_1 + \lambda_2 = 1$. Akibatnya, $\lambda_2 = 1 - \lambda_1$.
+          Dengan memisalkan $\lambda := \lambda_1 \in (0,1)$, maka
+          \begin{equation*}
+            \lambda_1 x_1 + \lambda_2 x_2 = \lambda x_1 + (1 - \lambda) x_2.
+          \end{equation*}
+          Berdasarkan Definisi 3.20 mengenai fungsi konveks, diperoleh
+          \begin{equation*}
+            f(\lambda_1 x_1 + \lambda_2 x_2) = f(\lambda x_1 + (1 - \lambda) x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2) = \lambda_1 f(x_1) + \lambda_2 f(x_2).
+          \end{equation*}
+          Selanjutnya, misalkan $f$ konveks tegas. Kita buktikan bahwa tanda kesamaan berlaku jika dan hanya jika $x_1=x_2$.
+
+          $(\Rightarrow)$ Andaikan tanda kesamaan berlaku, yaitu:
+          \begin{equation*}
+            f(\lambda_1x_1+\lambda_2x_2)=\lambda_1f(x_1)+\lambda_2f(x_2).
+          \end{equation*}
+          Untuk membuktikan $x_1=x_2$, andaikan sebaliknya bahwa $x_1\neq x_2$. Karena $f$ konveks tegas dan $\lambda_1\in(0,1)$ dengan $\lambda_2=1-\lambda_1$, Definisi 3.20 memberikan:
+          \begin{equation*}
+            f(\lambda_1x_1+\lambda_2x_2)
+            <\lambda_1f(x_1)+\lambda_2f(x_2).
+          \end{equation*}
+          Ini bertentangan dengan kesamaan yang diasumsikan. Jadi, harus berlaku $x_1=x_2$.
+
+          $(\Leftarrow)$ Sebaliknya, jika $x_1=x_2=:c$, maka $\lambda_1+\lambda_2=1$ memberikan:
+          \begin{align*}
+            f(\lambda_1x_1+\lambda_2x_2)
+             & =f\bigl((\lambda_1+\lambda_2)c\bigr)=f(c)                   \\
+             & =(\lambda_1+\lambda_2)f(c)=\lambda_1f(x_1)+\lambda_2f(x_2).
+          \end{align*}
+          Jadi, tanda kesamaan berlaku. Dengan demikian, kedua arah terbukti dan pernyataan ketaksamaan Jensen beserta syarat kesamaannya benar untuk $n=2$.
+    \item Asumsikan pernyataan ketaksamaan Jensen berlaku benar untuk sebarang $n$ titik $\{y_1, \dots, y_n\} \subset [a,b]$ dan sebarang bobot $\lambda_1, \dots, \lambda_n \in (0,1)$ dengan $\displaystyle \sum_{j=1}^n \lambda_j = 1$, yaitu:
+          \begin{equation*}
+            f\left( \sum_{j=1}^n \lambda_j y_j \right) \leq \sum_{j=1}^n \lambda_j f(y_j),
+          \end{equation*}
+          di mana jika $f$ konveks tegas, tanda kesamaan berlaku jika dan hanya jika $y_1 = y_2 = \dots = y_n$.
+
+    \item Diberikan $n + 1$ titik $\{x_1, \dots, x_n, x_{n+1}\} \subset [a,b]$ dan bobot $\lambda_1, \dots, \lambda_n, \lambda_{n+1} \in (0,1)$ dengan:
+          \begin{equation*}
+            \sum_{j=1}^{n+1} \lambda_j = 1 \iff \sum_{j=1}^n \lambda_j = 1 - \lambda_{n+1}.
+          \end{equation*}
+          Karena $\lambda_{n+1} \in (0,1)$, maka jelas bahwa $1 - \lambda_{n+1} > 0$. Selanjutnya perhatikan bahwa
+          \begin{align*}
+            \sum_{j=1}^{n+1} \lambda_j x_j & = \sum_{j=1}^n \lambda_j x_j + \lambda_{n+1} x_{n+1} = (1 - \lambda_{n+1}) \left( \sum_{j=1}^n \frac{\lambda_j}{1 - \lambda_{n+1}} x_j \right) + \lambda_{n+1} x_{n+1}.
+          \end{align*}
+          Kemudian definisikan
+          \begin{equation*}
+            \bar{x} := \sum_{j=1}^n \frac{\lambda_j}{1 - \lambda_{n+1}} x_j = \sum_{j=1}^n \mu_j x_j, \quad \text{di mana } \mu_j := \frac{\lambda_j}{1 - \lambda_{n+1}}.
+          \end{equation*}
+          Perhatikan bahwa untuk setiap $j \in \{1, \dots, n\}$, karena $\lambda_j > 0$ dan $1 - \lambda_{n+1} > 0$, maka $\mu_j > 0$. Selain itu, jumlah seluruh bobot baru ini adalah:
+          \begin{equation*}
+            \sum_{j=1}^n \mu_j = \sum_{j=1}^n \frac{\lambda_j}{1 - \lambda_{n+1}} = \frac{1}{1 - \lambda_{n+1}} \sum_{j=1}^n \lambda_j = \frac{1 - \lambda_{n+1}}{1 - \lambda_{n+1}} = 1.
+          \end{equation*}
+          Untuk menunjukkan bahwa $\bar{x}\in[a,b]$, perhatikan bahwa $a\leq x_j\leq b$ untuk setiap $j$. Karena $\mu_j>0$, perkalian dengan $\mu_j$ mempertahankan arah ketaksamaan. Dengan menjumlahkan dan menggunakan $\sum_{j=1}^n\mu_j=1$, diperoleh:
+          \begin{equation*}
+            a=a\sum_{j=1}^n\mu_j
+            \leq\sum_{j=1}^n\mu_jx_j=\bar{x}
+            \leq b\sum_{j=1}^n\mu_j=b.
+          \end{equation*}
+          Jadi, $a\leq\bar{x}\leq b$, sehingga $\bar{x}\in[a,b]$.
+
+          Perhatikan bahwa $(1 - \lambda_{n+1}) + \lambda_{n+1} = 1$ dengan koefisien $(1 - \lambda_{n+1}), \lambda_{n+1} \in (0,1)$. Berdasarkan kekonveksan fungsi $f$ untuk 2 titik (yaitu $\bar{x}$ dan $x_{n+1}$), kita peroleh:
+          \begin{align*}
+            f\left( \sum_{j=1}^{n+1} \lambda_j x_j \right) & = f\left( (1 - \lambda_{n+1}) \bar{x} + \lambda_{n+1} x_{n+1} \right) \leq (1 - \lambda_{n+1}) f(\bar{x}) + \lambda_{n+1} f(x_{n+1}).
+          \end{align*}
+          Selanjutnya, kita evaluasi nilai $f(\bar{x})$.
+          \begin{equation}
+            f(\bar{x}) = f\left( \sum_{j=1}^n \frac{\lambda_j}{1 - \lambda_{n+1}} x_j \right) \leq \sum_{j=1}^n \frac{\lambda_j}{1 - \lambda_{n+1}} f(x_j) = \frac{1}{1 - \lambda_{n+1}} \sum_{j=1}^n \lambda_j f(x_j). \label{eq:3.12}
+          \end{equation}
+
+          Karena $1 - \lambda_{n+1} > 0$, kalikan kedua ruas \eqref{eq:3.12} dengan $(1 - \lambda_{n+1})$:
+          \begin{equation*}
+            (1 - \lambda_{n+1}) f(\bar{x}) \leq \sum_{j=1}^n \lambda_j f(x_j).
+          \end{equation*}
+          Substitusikan ketaksamaan ini ke ketaksamaan sebelumnya, sehingga diperoleh:
+          \begin{align}
+            f\left( \sum_{j=1}^{n+1} \lambda_j x_j \right) \leq \sum_{j=1}^n \lambda_j f(x_j) + \lambda_{n+1} f(x_{n+1}) = \sum_{j=1}^{n+1} \lambda_j f(x_j). \label{eq:3.13}
+          \end{align}
+          Persamaan \eqref{eq:3.13} membuktikan bahwa ketaksamaan Jensen berlaku benar untuk $n + 1$ titik.
+  \end{itemize}
+  Sekarang asumsikan bahwa fungsi $f$ adalah konveks tegas.
+
+  $(\Leftarrow)$ Jika $x_1 = x_2 = \dots = x_{n+1} =: c$, maka:
+  \begin{equation*}
+    \sum_{j=1}^{n+1} \lambda_j x_j = c \sum_{j=1}^{n+1} \lambda_j = c \cdot 1 = c \implies f\left( \sum_{j=1}^{n+1} \lambda_j x_j \right) = f(c).
+  \end{equation*}
+  Pada ruas kanan:
+  \begin{equation*}
+    \sum_{j=1}^{n+1} \lambda_j f(x_j) = \sum_{j=1}^{n+1} \lambda_j f(c) = f(c) \sum_{j=1}^{n+1} \lambda_j = f(c).
+  \end{equation*}
+  Maka tanda kesamaan jelas berlaku.
+
+  $(\Rightarrow)$ Andaikan kesamaan berlaku:
+  \begin{equation*}
+    f\left( \sum_{j=1}^{n+1} \lambda_j x_j \right) = \sum_{j=1}^{n+1} \lambda_j f(x_j).
+  \end{equation*}
+  \begin{enumerate}
+    \item Ketaksamaan Jensen untuk dua titik dan \eqref{eq:3.12} memberikan:
+          \begin{align*}
+            f\bigl((1-\lambda_{n+1})\bar{x}+\lambda_{n+1}x_{n+1}\bigr)
+             & \leq(1-\lambda_{n+1})f(\bar{x})+\lambda_{n+1}f(x_{n+1})
+          \end{align*}
+          Berdasarkan syarat kesamaan untuk $n=2$, diperoleh:
+          \begin{equation*}
+            \bar{x}=x_{n+1}.
+          \end{equation*}
+
+    \item Dengan substitusi
+          $\displaystyle
+            \sum_{j=1}^{n+1}\lambda_jx_j
+            =(1-\lambda_{n+1})\bar{x}+\lambda_{n+1}\bar{x}=\bar{x},
+          $
+          maka asumsi kesamaan menjadi:
+          \begin{align*}
+            f(\bar{x}) & =\sum_{j=1}^n\lambda_jf(x_j)+\lambda_{n+1}f(\bar{x}) \implies
+            (1-\lambda_{n+1})f(\bar{x}) =\sum_{j=1}^n\lambda_jf(x_j)\implies                   \\
+            f(\bar{x}) & =\sum_{j=1}^n\frac{\lambda_j}{1-\lambda_{n+1}}f(x_j)         \implies
+            f(\bar{x}) =\sum_{j=1}^n\mu_jf(x_j).
+          \end{align*}
+          Ini adalah kesamaan Jensen untuk $n$ titik. Hipotesis induksi memberikan $x_1=\cdots=x_n=:c$, sehingga:
+          \begin{equation*}
+            x_{n+1}=\bar{x}=\sum_{j=1}^n\mu_jc=c.\qed
+          \end{equation*}
+  \end{enumerate}
+  \par\unskip % Hapus jarak akhir daftar agar tidak menjadi slide kosong.
+\end{frame}
+
+\subsection{Definisi 3.22 \& 3.24}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \setcounter{definisi}{21}
+  \begin{definisi}
+    Suatu fungsional $\phi : \mathcal{F} \to \R$ dikatakan \textbf{konveks} pada ruang linear $\mathcal{F}$, jika untuk semua $u,v \in \mathcal{F}$ ketaksamaan
+    \begin{equation}
+      \phi(\lambda u + (1 - \lambda)v) \leq \lambda \phi(u) + (1 - \lambda)\phi(v) \quad \text{untuk semua } \lambda \in [0,1] \label{eq:3.14}
+    \end{equation}
+    berlaku.
+  \end{definisi}
+  \setcounter{definisi}{23}
+  \begin{definisi}\label{def:3.24}
+    Suatu norma $\|\cdot\|$ disebut \textbf{konveks tegas} (\textit{strictly convex}) pada ruang linear $\mathcal{F}$, jika bola satuan tertutup
+    \begin{equation*}
+      \mathcal{B} := \{ u \in \mathcal{F} \mid \|u\| \leq 1 \} \subset \mathcal{F}
+    \end{equation*}
+    merupakan himpunan yang konveks tegas.
+  \end{definisi}
+\end{frame}
+
+
+\subsection{Teorema 3.26}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{25}
+  \begin{teorema}\label{thm:3.26}
+    \setbeamertemplate{enumerate items}[default]
+    \setbeamercolor{item}{fg=HIMAtua}
+    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\|\cdot\|$. Maka pernyataan-pernyataan berikut ekuivalen:
+    \begin{enumerate}[(a)]
+      \item Norma $\|\cdot\|$ konveks tegas.
+      \item Bola satuan tertutup $\mathcal{B} := \{u \in \mathcal{F} \mid \|u\| \leq 1\} \subset \mathcal{F}$ konveks tegas.
+      \item Untuk semua $u,v \in \mathcal{F}$ dengan $u \neq v$ dan $\|u\| = \|v\| = 1$, berlaku
+            \begin{equation*}
+              \|u+v\| < 2.
+            \end{equation*}
+      \item Untuk $u,v \in \mathcal{F}$ dengan $v \neq 0$, kesamaan $\|u+v\| = \|u\| + \|v\|$ mengakibatkan $u = \alpha v$ untuk suatu $\alpha \geq 0$.
+    \end{enumerate}
+  \end{teorema}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \textit{Bukti.}
+  Kita buktikan $(a) \iff (b)$ dan rantai implikasi $(b) \implies (c) \implies (d) \implies (b)$.
+
+  \begin{itemize}
+    \item \textbf{$(a) \iff (b)$:}\
+          Berdasarkan \myref{def:3.24}, norma $\|\cdot\|$ disebut konveks tegas jika dan hanya jika bola satuan tertutup $\mathcal{B}$ merupakan himpunan konveks tegas. Jadi, pernyataan $(a)$ dan $(b)$ ekuivalen.
+    \item   \textbf{$(b) \implies (c)$:}\\
+          Misalkan $\mathcal{B}$ konveks tegas dan ambil $u,v \in \mathcal{F}$ dengan $u \neq v$ serta $\|u\| = \|v\| = 1$. Karena $u,v \in \mathcal{B}$, titik tengahnya berada di interior $\mathcal{B}$, sehingga $\left\|(u+v)/2\right\| < 1$.
+          Dengan sifat norma, diperoleh:
+          \begin{equation*}
+            \|u+v\| = 2\left\|\frac{u+v}{2}\right\| < 2.
+          \end{equation*}
+          Dengan demikian, pernyataan $(c)$ terbukti.
+    \item \textbf{$(c) \implies (d)$:}\\
+          Asumsikan pernyataan $(c)$ berlaku. Ambil $u,v \in \mathcal{F}$ dengan $v \neq 0$ yang memenuhi:
+          \begin{equation*}
+            \|u+v\| = \|u\| + \|v\|.
+          \end{equation*}
+          Jika $u=0$, maka $u=\alpha v$ dengan $\alpha=0$, sehingga pernyataan $(d)$ langsung terpenuhi.
+
+          Selanjutnya, misalkan $u \neq 0$. Tanpa mengurangi keumuman, kita dapat mengasumsikan $\|u\| \leq \|v\|$.
+
+          Kita akan menunjukkan bahwa vektor satuan $u/\|u\|$ dan $v/\|v\|$ harus sama. Perhatikan identitas:
+          \begin{equation*}
+            \frac{u}{\|u\|} + \frac{v}{\|v\|}
+            = \left(\frac{u}{\|u\|} + \frac{v}{\|u\|}\right)
+            - \left(\frac{v}{\|u\|} - \frac{v}{\|v\|}\right).
+          \end{equation*}
+          Selain itu, $\|u\| \leq \|v\|$ mengakibatkan $1/\|u\| - 1/\|v\| \geq 0$. Berdasarkan sifat norma, diperoleh:
+          \begin{align*}
+            2 & \geq \left\|\frac{u}{\|u\|} + \frac{v}{\|v\|}\right\| = \left\|\left(\frac{u}{\|u\|} + \frac{v}{\|u\|}\right)
+            - \left(\frac{v}{\|u\|} - \frac{v}{\|v\|}\right)\right\|                                                          \\
+              & \geq \left\|\frac{u}{\|u\|} + \frac{v}{\|u\|}\right\|
+            - \left\|\frac{v}{\|u\|} - \frac{v}{\|v\|}\right\|          = \frac{\|u+v\|}{\|u\|}
+            - \left|\frac{1}{\|u\|} - \frac{1}{\|v\|}\right|\|v\|                                                             \\
+              & = \frac{\|u\| + \|v\|}{\|u\|}
+            - \left(\frac{1}{\|u\|} - \frac{1}{\|v\|}\right)\|v\| = 2.
+          \end{align*}
+          Sehingga diperoleh hubungan
+          \begin{equation*}
+            \left\|\frac{u}{\|u\|} + \frac{v}{\|v\|}\right\| = 2.
+          \end{equation*}
+          Andaikan $\dfrac{u}{\|u\|}\neq\dfrac{v}{\|v\|}$. Kedua vektor ini bernorma satu, sebab:
+          \begin{equation*}
+            \left\|\frac{u}{\|u\|}\right\|=\frac{\|u\|}{\|u\|}=1,
+            \qquad
+            \left\|\frac{v}{\|v\|}\right\|=\frac{\|v\|}{\|v\|}=1.
+          \end{equation*}
+          Maka pernyataan $(c)$, diterapkan pada $u/\|u\|$ dan $v/\|v\|$, memberikan:
+          \begin{equation*}
+            2=\left\|\frac{u}{\|u\|}+\frac{v}{\|v\|}\right\|<2.
+          \end{equation*}
+          Ini kontradiksi. Jadi:
+          \begin{equation*}
+            \frac{u}{\|u\|} = \frac{v}{\|v\|}
+            \implies u = \alpha v, \qquad \alpha := \frac{\|u\|}{\|v\|} > 0.
+          \end{equation*}
+          Dengan menggabungkan kasus $u=0$ dan $u \neq 0$, pernyataan $(d)$ terbukti.
+    \item $(d) \implies (b)$\\
+          Asumsikan pernyataan $(d)$ berlaku. Berdasarkan definisi \ref{def:3.20}, ambil sebarang $u,v \in \mathcal{B}$ dengan $u \neq v$ sehingga $\|u\| \leq 1$ dan $\|v\| \leq 1$. Untuk membuktikan bahwa $\mathcal{B}$ konveks tegas, kita harus menunjukkan:
+          \begin{equation*}
+            \|\lambda u + (1-\lambda)v\| < 1 \quad \text{untuk semua } \lambda \in (0,1).
+          \end{equation*}
+          Ketaksamaan ini berarti bahwa seluruh segmen garis terbuka $(u,v)$ berada di interior bola satuan $\mathcal{B}$. Pembuktiannya dibagi menjadi dua kasus.
+
+          \begin{enumerate}
+            \item $\|u\| < 1$ atau $\|v\| < 1$.\\
+                  Karena $\lambda > 0$ dan $1-\lambda > 0$, ketaksamaan segitiga memberikan:
+                  \begin{align*}
+                    \|\lambda u + (1-\lambda)v\|
+                     & \leq \|\lambda u\| + \|(1-\lambda)v\|  = \lambda\|u\| + (1-\lambda)\|v\|    < \lambda + (1-\lambda) = 1.
+                  \end{align*}
+                  Jadi, ketaksamaan yang diinginkan berlaku pada kasus ini.
+
+            \item $\|u\| = \|v\| = 1$.\\
+                  Untuk sebarang $\lambda \in (0,1)$, Dari ketaksamaan segitiga, kita telah mengetahui bahwa
+                  \begin{equation*}
+                    \|\lambda u + (1-\lambda)v\| \leq\|\lambda u\| + \|(1-\lambda)v\|
+                    = \lambda\|u\| + (1-\lambda)\|v\| = 1.
+                  \end{equation*}
+                  Andaikan tanda kesamaan berlaku, yaitu:
+                  \begin{equation*}
+                    \|\lambda u + (1-\lambda)v\| = 1
+                    = \|\lambda u\| + \|(1-\lambda)v\|.
+                  \end{equation*}
+                  Karena $(1-\lambda)v \neq 0$, pernyataan $(d)$ dapat diterapkan pada pasangan $\lambda u$ dan $(1-\lambda)v$. Akibatnya, terdapat $\alpha \geq 0$ sehingga:
+                  \begin{equation*}
+                    \lambda u = \alpha(1-\lambda)v.
+                  \end{equation*}
+                  Karena $\lambda u \neq 0$, maka $\alpha > 0$.
+
+
+                  Dengan mengambil norma pada kedua ruas dan menggunakan $\|u\| = \|v\| = 1$, diperoleh:
+                  \begin{equation*}
+                    \lambda = \lambda\|u\| = \alpha(1-\lambda)\|v\|
+                    = \alpha(1-\lambda).
+                  \end{equation*}
+                  Substitusi nilai $\alpha(1-\lambda)=\lambda$ ke hubungan kedua vektor menghasilkan:
+                  \begin{equation*}
+                    \lambda u = \lambda v \implies u=v,
+                  \end{equation*}
+                  sebab $\lambda > 0$. Hal ini bertentangan dengan asumsi $u \neq v$. Jadi, tanda kesamaan tidak mungkin terjadi, sehingga:
+                  \begin{equation*}
+                    \|\lambda u + (1-\lambda)v\| < 1 \quad \text{untuk semua } \lambda \in (0,1).
+                  \end{equation*}
+          \end{enumerate}
+          Dengan demikian, pada kedua kasus, segmen garis terbuka $(u,v)$ termuat di interior $\mathcal{B}$. Jadi, bola satuan $\mathcal{B}$ konveks tegas dan pernyataan $(b)$ terbukti.
+  \end{itemize}
+
+  Seluruh implikasi telah dibuktikan, sehingga keempat pernyataan $(a)$, $(b)$, $(c)$, dan $(d)$ ekuivalen. \qed
+\end{frame}
+
+\subsection{Teorema 3.28}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{27}
+  \begin{teorema}
+    Setiap norma Euclidean konveks tegas.\label{thm:3.28}
+  \end{teorema}
+  \textit{Bukti.}
+  Misalkan $\mathcal{F}$ adalah ruang linear dengan norma Euclidean yang diinduksi oleh hasil kali dalam $\langle\cdot,\cdot\rangle$, yaitu:
+  \begin{equation*}
+    \|u\| = \langle u,u\rangle^{1/2} \quad \text{untuk semua } u \in \mathcal{F}.
+  \end{equation*}
+  Berdasarkan Teorema 3.9, norma ini memenuhi \textbf{identitas jajar genjang} (3.1):
+  \begin{equation*}
+    \|u+v\|^2 + \|u-v\|^2 = 2\|u\|^2 + 2\|v\|^2
+    \quad \text{untuk semua } u,v \in \mathcal{F}.
+  \end{equation*}
+  Dengan membagi kedua ruas oleh $4$ dan menggunakan sifat norma, diperoleh:
+  \begin{equation*}
+    \left\|\frac{u+v}{2}\right\|^2 + \left\|\frac{u-v}{2}\right\|^2
+    = \frac{\|u\|^2}{2} + \frac{\|v\|^2}{2}.
+  \end{equation*}
+
+
+  Ambil $u,v \in \mathcal{F}$ dengan $u \neq v$ dan $\|u\| = \|v\|$. Karena $u-v \neq 0$, sifat definit positif norma memberikan $\left\|(u-v)/2\right\|^2 > 0$. Oleh karena itu:
+  \begin{align*}
+    \left\|\frac{u+v}{2}\right\|^2
+     & = \frac{\|u\|^2}{2} + \frac{\|v\|^2}{2}
+    - \left\|\frac{u-v}{2}\right\|^2 < \frac{\|u\|^2}{2} + \frac{\|v\|^2}{2}
+    = \|u\|^2 = \|v\|^2.
+  \end{align*}
+  Khususnya, jika $\|u\| = \|v\| = 1$, maka $\left\|(u+v)/2\right\|^2 < 1$. Dengan mengambil akar kuadrat kedua norma, diperoleh:
+  \begin{equation*}
+    \|u+v\| = 2\left\|\frac{u+v}{2}\right\| < 2.
+  \end{equation*}
+  Jadi, untuk setiap dua vektor satuan yang berbeda, norma jumlahnya kurang dari $2$. Berdasarkan pernyataan $(c)$ pada \myref{thm:3.26}, norma $\|\cdot\|$ konveks tegas. \qed
+\end{frame}
+
+\subsection{Teorema 3.29}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{28}
+  \setcounter{equation}{18}
+  \begin{teorema}[Ketaksamaan H\"older, 1889]\label{thm:3.29}
+    Misalkan $1<p,q<\infty$ memenuhi $1/p+1/q=1$. Maka \textbf{ketaksamaan H\"older}
+    \begin{equation}
+      \|xy\|_1 \leq \|x\|_p\|y\|_q
+      \quad \text{untuk semua } x\in\ell^p,\ y\in\ell^q \label{eq:3.19}
+    \end{equation}
+    berlaku, dengan $xy := (x_k y_k)_{k\in\N}$. Kesamaan pada \eqref{eq:3.19} berlaku jika dan hanya jika diantaranya memenuhi $x=0$, $y=0$, atau
+    \begin{equation}
+      |x_k|^{p-1}=\alpha|y_k| \quad \text{untuk semua } k\in\N,
+      \text{dengan}\quad \alpha := \frac{\|x\|_p^{p-1}}{\|y\|_q}>0,  y\ne 0. \label{eq:3.20}
+    \end{equation}
+  \end{teorema}
+\end{frame}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \textit{Bukti.}
+  Misalkan $1<p,q<\infty$ dengan $1/p+1/q=1$, serta:
+  \begin{equation*}
+    x=(x_k)_{k\in\N}\in\ell^p, \qquad y=(y_k)_{k\in\N}\in\ell^q.
+  \end{equation*}
+  Jika $x=0$ atau $y=0$, maka kedua ruas \eqref{eq:3.19} bernilai nol. Jadi, ketaksamaan dan tanda kesamaannya langsung terpenuhi.
+
+  Selanjutnya, asumsikan $x,y\neq 0$, sehingga $\|x\|_p>0$ dan $\|y\|_q>0$. Untuk setiap $k\in\N$, definisikan:
+  \begin{equation*}
+    a_k := \frac{|x_k|^p}{\|x\|_p^p}, \qquad
+    b_k := \frac{|y_k|^q}{\|y\|_q^q}.
+  \end{equation*}
+  Berdasarkan definisi norma pada $\ell^p$ dan $\ell^q$, berlaku:
+  \begin{equation*}
+    a_k,b_k\geq 0, \qquad
+    \sum_{k=1}^{\infty}a_k=1, \qquad \sum_{k=1}^{\infty}b_k=1.
+  \end{equation*}
+  Kita akan menerapkan ketaksamaan Jensen untuk memperoleh estimasi pada setiap komponen, kemudian menjumlahkannya.
+
+
+  \begin{enumerate}
+    \item Fungsi $\phi(t):=-\log t$ pada $(0,\infty)$ konveks tegas, sebab $\phi''(t)=1/t^2>0$. Untuk $a_k,b_k>0$, kita dapat menerapkan \myref{thm:3.21} pada interval tertutup yang memuat kedua nilai ini, dengan bobot $1/p$ dan $1/q$:
+          \begin{equation}
+            \begin{aligned}
+              -\log\left(\frac{1}{p}\frac{|x_k|^p}{\|x\|_p^p}
+              +\frac{1}{q}\frac{|y_k|^q}{\|y\|_q^q}\right)
+               & \leq -\frac{1}{p}\log\left(\frac{|x_k|^p}{\|x\|_p^p}\right)-\frac{1}{q}\log\left(\frac{|y_k|^q}{\|y\|_q^q}\right).
+            \end{aligned}\label{eq:3.21}
+          \end{equation}
+          Dalam notasi $a_k,b_k$, setelah mengalikan kedua ruas dengan $-1$, ketaksamaan ini menjadi:
+          \begin{equation*}
+            \log\left(\frac{a_k}{p}+\frac{b_k}{q}\right)
+            \geq \frac{1}{p}\log a_k+\frac{1}{q}\log b_k
+            =\log\left(a_k^{1/p}b_k^{1/q}\right).
+          \end{equation*}
+          Karena fungsi eksponensial naik tegas, diperoleh $a_k^{1/p}b_k^{1/q}\leq a_k/p+b_k/q$.
+
+          \begin{alertblock}{Ketaksamaan Young}
+            \small
+            Misalkan $a,b\geq0$ dan $1<p,q<\infty$ dengan $1/p+1/q=1$. Maka:
+            \begin{equation*}
+              ab\leq\frac{a^p}{p}+\frac{b^q}{q}.
+            \end{equation*}
+            Kesamaan berlaku jika dan hanya jika $a^p=b^q$.
+
+            \textit{Bukti.} Jika $a=0$ atau $b=0$, ketaksamaan langsung berlaku, dengan kesamaan hanya ketika keduanya nol. Untuk $a,b>0$, Jensen pada fungsi konveks tegas $-\log$ memberikan:
+            \begin{equation*}
+              -\log\left(\frac{a^p}{p}+\frac{b^q}{q}\right)
+              \leq-\frac1p\log(a^p)-\frac1q\log(b^q)
+              =-\log(ab).
+            \end{equation*}
+            Karena $-\log$ turun tegas, diperoleh ketaksamaan Young. Syarat kesamaan Jensen adalah $a^p=b^q$. \qed
+          \end{alertblock}
+    \item Substitusikan definisi $a_k$ dan $b_k$ pada ketaksamaan $a_k^{1/p}b_k^{1/q}\leq a_k/p+b_k/q$ untuk memperoleh \textbf{ketaksamaan Young}:
+          \begin{equation}
+            \begin{aligned}
+              \frac{|x_k y_k|}{\|x\|_p\|y\|_q}
+               & =\left(\frac{|x_k|^p}{\|x\|_p^p}\right)^{1/p}
+              \left(\frac{|y_k|^q}{\|y\|_q^q}\right)^{1/q}  \leq \frac{1}{p}\frac{|x_k|^p}{\|x\|_p^p}
+              +\frac{1}{q}\frac{|y_k|^q}{\|y\|_q^q}.
+            \end{aligned}\label{eq:3.22}
+          \end{equation}
+          Untuk $a_k,b_k>0$, kekonveksan tegas fungsi $-\log$ menunjukkan bahwa kesamaan berlaku jika dan hanya jika $a_k=b_k$.
+
+          Jika $a_k=0$ atau $b_k=0$, ruas kiri \eqref{eq:3.22} bernilai nol, sedangkan ruas kanannya tak-negatif. Jadi, ketaksamaan tetap berlaku tanpa menggunakan logaritma pada nol. Pada kasus ini, kesamaan terjadi jika dan hanya jika $a_k=b_k=0$.
+
+          Dengan demikian, \eqref{eq:3.22} berlaku untuk setiap $k\in\N$, dan pada semua kasus kesamaan terjadi tepat ketika $a_k=b_k$.
+
+
+    \item Syarat kesamaan $a_k=b_k$ pada \eqref{eq:3.22} dapat ditulis sebagai:
+          \begin{equation}
+            \frac{|x_k|^p}{\|x\|_p^p}=\frac{|y_k|^q}{\|y\|_q^q}. \label{eq:3.23}
+          \end{equation}
+          Karena $1/p+1/q=1$, diperoleh $q=p/(p-1)$, sehingga $q/p=1/(p-1)$.
+          \begin{equation}
+            \frac{|x_k|}{\|x\|_p}
+            =\left(\frac{|y_k|}{\|y\|_q}\right)^{1/(p-1)}. \label{eq:3.24}
+          \end{equation}
+          Selanjutnya, dengan mengambil pangkat $p-1$ diperoleh:
+          \begin{equation*}
+            |x_k|^{p-1}=\frac{\|x\|_p^{p-1}}{\|y\|_q}|y_k|=\alpha|y_k|.
+          \end{equation*}
+          Seluruh langkah ini dapat dibalik, karena $p-1>0$ dan kedua norma positif. Jadi, syarat kesamaan pada setiap komponen tepat sama dengan \eqref{eq:3.20}.
+
+
+    \item Jumlahkan \eqref{eq:3.22} untuk $k=1,\dots,N$. Karena semua suku tak-negatif, diperoleh:
+          \begin{equation*}
+            \sum_{k=1}^{N}\frac{|x_k y_k|}{\|x\|_p\|y\|_q}
+            \leq \frac{1}{p}\sum_{k=1}^{N}a_k+\frac{1}{q}\sum_{k=1}^{N}b_k
+            \leq \frac{1}{p}+\frac{1}{q}=1.
+          \end{equation*}
+          Jadi, jumlah parsial $\sum_{k=1}^{N}|x_k y_k|$ naik dan terbatas oleh $\|x\|_p\|y\|_q$. Akibatnya, deret ini konvergen, sehingga $xy\in\ell^1$.
+
+          Dengan mengambil limit $N\to\infty$, diperoleh:
+          \begin{align*}
+            \frac{\|xy\|_1}{\|x\|_p\|y\|_q}
+             & =\sum_{k=1}^{\infty}\frac{|x_k y_k|}{\|x\|_p\|y\|_q} \leq \frac{1}{p}\sum_{k=1}^{\infty}a_k
+            +\frac{1}{q}\sum_{k=1}^{\infty}b_k
+            =\frac{1}{p}+\frac{1}{q}=1.
+          \end{align*}
+          Kalikan kedua ruas dengan $\|x\|_p\|y\|_q>0$ untuk memperoleh ketaksamaan H\"older \eqref{eq:3.19}.
+
+
+    \item Untuk menentukan syarat kesamaan pada \eqref{eq:3.19}, definisikan selisih kedua ruas ketaksamaan Young untuk setiap $k\in\N$:
+          \begin{equation*}
+            d_k:=\frac{a_k}{p}+\frac{b_k}{q}
+            -\frac{|x_k y_k|}{\|x\|_p\|y\|_q}\geq 0.
+          \end{equation*}
+          Dari penjumlahan \eqref{eq:3.22}, jumlah selisih tersebut memenuhi:
+          \begin{equation*}
+            \sum_{k=1}^{\infty}d_k
+            =1-\frac{\|xy\|_1}{\|x\|_p\|y\|_q}.
+          \end{equation*}
+          Jadi, kesamaan pada \eqref{eq:3.19} berlaku jika dan hanya jika $\sum_{k=1}^{\infty}d_k=0$. Karena setiap $d_k\geq 0$, hal ini ekuivalen dengan $d_k=0$ untuk semua $k\in\N$.
+
+          Karena $d_k=0$ berarti kesamaan pada \eqref{eq:3.22}, syarat ini ekuivalen dengan \eqref{eq:3.20} pada komponen ke-$k$. Oleh karena itu, untuk $x,y\neq 0$, kesamaan pada ketaksamaan H\"older terjadi tepat ketika \eqref{eq:3.20} berlaku untuk semua $k\in\N$. \qed
+  \end{enumerate}
+\end{frame}
+
+\subsection{Teorema 3.30}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{29}
+  \begin{teorema}
+    Untuk $1<p<\infty$, norma $\ell^p$, yaitu $\|\cdot\|_p$ pada $\ell^p$, konveks tegas.\label{thm:3.30}
+  \end{teorema}
+  \textit{Bukti.}
+  Misalkan $1<p<\infty$ dan $q=p/(p-1)$ adalah \textbf{eksponen konjugat H\"older} dari $p$. Maka $1<q<\infty$ dan:
+  \begin{equation*}
+    \frac{1}{p}+\frac{1}{q}=1, \qquad (p-1)q=p.
+  \end{equation*}
+  Ambil dua barisan $x,y\in\ell^p$:
+  \begin{equation*}
+    x=(x_k)_{k\in\N},\qquad y=(y_k)_{k\in\N},
+    \qquad x\neq y,\quad \|x\|_p=\|y\|_p=1.
+  \end{equation*}
+  Berdasarkan pernyataan $(c)$ pada \myref{thm:3.26}, untuk membuktikan kekonveksan tegas norma $\|\cdot\|_p$, cukup ditunjukkan:
+  \setcounter{equation}{24}
+  \begin{equation}
+    \|x+y\|_p<2. \label{eq:3.25}
+  \end{equation}
+  Kita akan memperoleh batas $\|x+y\|_p\leq 2$ menggunakan ketaksamaan H\"older, lalu menunjukkan bahwa tanda kesamaan mengakibatkan $x=y$.
+
+
+  \begin{enumerate}
+    \item Definisikan $s=(s_k)_{k\in\N}$ dengan $s_k:=|x_k+y_k|^{p-1}\geq 0$. Untuk memastikan $s\in\ell^q$, perhatikan batas sederhana:
+          \begin{equation*}
+            |x_k+y_k|^p\leq (|x_k|+|y_k|)^p
+            \leq 2^p\bigl(|x_k|^p+|y_k|^p\bigr).
+          \end{equation*}
+          Karena $x,y\in\ell^p$, penjumlahan batas ini menunjukkan $x+y\in\ell^p$. Dengan $(p-1)q=p$, diperoleh:
+          \begin{equation*}
+            \sum_{k=1}^{\infty}|s_k|^q
+            =\sum_{k=1}^{\infty}|x_k+y_k|^{(p-1)q}
+            =\sum_{k=1}^{\infty}|x_k+y_k|^p<\infty.
+          \end{equation*}
+          Jadi, $s\in\ell^q$. Selain itu, karena $p/q=p-1$, normanya memenuhi:
+          \begin{align*}
+            \|s\|_q
+             & =\left(\sum_{k=1}^{\infty}|x_k+y_k|^p\right)^{1/q}
+            =\left(\|x+y\|_p^p\right)^{1/q}                       \\
+             & =\|x+y\|_p^{p/q}=\|x+y\|_p^{p-1}.
+          \end{align*}
+
+
+    \item Dari definisi $s_k$ dan ketaksamaan segitiga pada setiap komponen, diperoleh:
+          \begin{align}
+            \|x+y\|_p^p
+             & =\sum_{k=1}^{\infty}|x_k+y_k||s_k| \nonumber                             \\
+             & \leq\sum_{k=1}^{\infty}\bigl(|x_k||s_k|+|y_k||s_k|\bigr) \label{eq:3.26} \\
+             & \leq\|x\|_p\|s\|_q+\|y\|_p\|s\|_q. \label{eq:3.27}
+          \end{align}
+          Ketaksamaan \eqref{eq:3.27} diperoleh dengan menerapkan \myref{thm:3.29}, yaitu ketaksamaan H\"older \eqref{eq:3.19}, masing-masing pada pasangan $(x,s)$ dan $(y,s)$:
+          \begin{equation*}
+            \sum_{k=1}^{\infty}|x_k||s_k|\leq\|x\|_p\|s\|_q,
+            \qquad
+            \sum_{k=1}^{\infty}|y_k||s_k|\leq\|y\|_p\|s\|_q.
+          \end{equation*}
+          Selanjutnya, kita gunakan hubungan $\|s\|_q=\|x+y\|_p^{p-1}$ untuk memperoleh batas norma jumlah.
+
+
+    \item Substitusikan $\|s\|_q=\|x+y\|_p^{p-1}$ ke \eqref{eq:3.27}, sehingga:
+          \begin{equation*}
+            \|x+y\|_p^p
+            \leq \bigl(\|x\|_p+\|y\|_p\bigr)\|x+y\|_p^{p-1}.
+          \end{equation*}
+          Jika $x+y=0$, maka \eqref{eq:3.25} langsung berlaku. Jika $x+y\neq 0$, kita dapat membagi kedua ruas dengan $\|x+y\|_p^{p-1}>0$ untuk memperoleh \textbf{ketaksamaan Minkowski}:
+          \begin{equation*}
+            \|x+y\|_p\leq\|x\|_p+\|y\|_p.
+          \end{equation*}
+          Penurunan ini juga berlaku untuk sebarang $x,y\in\ell^p$, karena pembentukan $s$ dan penerapan H\"older di atas berlaku tanpa asumsi norma satu.
+
+          Khususnya, untuk pasangan vektor satuan yang sedang ditinjau:
+          \begin{equation*}
+            \|x+y\|_p\leq 2.
+          \end{equation*}
+          Untuk menunjukkan bahwa ketaksamaan ini tegas ketika $x\neq y$, andaikan $\|x+y\|_p=2$. Maka $s\neq 0$ dan seluruh ketaksamaan pada \eqref{eq:3.26} serta \eqref{eq:3.27} harus berupa kesamaan.
+
+
+    \item Kesamaan pada \eqref{eq:3.27} mengharuskan kesamaan pada kedua penerapan H\"older. Berdasarkan syarat kesamaan \eqref{eq:3.20} dan $\|x\|_p=\|y\|_p=1$, diperoleh:
+          \begin{equation*}
+            |x_k|^{p-1}=\alpha|s_k|, \qquad
+            |y_k|^{p-1}=\alpha|s_k|,
+            \qquad \alpha:=\frac{1}{\|s\|_q}>0.
+          \end{equation*}
+          Karena $p-1>0$, fungsi $t\mapsto t^{p-1}$ naik tegas pada $[0,\infty)$. Oleh karena itu:
+          \begin{equation*}
+            |x_k|=|y_k| \quad \text{untuk semua } k\in\N.
+          \end{equation*}
+          Jadi, kedua barisan memiliki nilai mutlak yang sama pada setiap komponen.
+
+
+    \item Gunakan kesamaan pada \eqref{eq:3.26}, yaitu:
+          \begin{equation*}
+            \sum_{k=1}^{\infty}
+            \bigl(|x_k|+|y_k|-|x_k+y_k|\bigr)|s_k|=0.
+          \end{equation*}
+          Setiap suku tak-negatif. Jadi, untuk setiap $k$ dengan $s_k>0$, harus berlaku $|x_k+y_k|=|x_k|+|y_k|$. Untuk skalar real, hal ini berarti $x_k$ dan $y_k$ bertanda sama; untuk skalar kompleks, keduanya memiliki arah yang sama.
+
+          Karena $|x_k|=|y_k|$, kesamaan tersebut mengakibatkan $x_k=y_k$. Secara aljabar:
+          \begin{equation*}
+            |x_k+y_k|=2|x_k|
+            \implies \operatorname{Re}(x_k\overline{y_k})=|x_k|^2
+            \implies |x_k-y_k|^2=0.
+          \end{equation*}
+          Jika $s_k=0$, syarat kesamaan H\"older \eqref{eq:3.20} memberikan $|x_k|^{p-1}=|y_k|^{p-1}=0$, sehingga $x_k=y_k=0$.
+  \end{enumerate}
+
+  Jadi, $x=y$, bertentangan dengan asumsi $x\neq y$. Oleh karena itu, \eqref{eq:3.25} berlaku untuk setiap dua vektor satuan yang berbeda. Berdasarkan \myref{thm:3.26}, norma $\|\cdot\|_p$ pada $\ell^p$ konveks tegas. \qed
+\end{frame}
+
+\subsection{Teorema 3.32}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{31}
+  \begin{teorema}\label{thm:3.32}
+    Untuk $1<p<\infty$, norma $L^p$, yaitu $\|\cdot\|_p$ pada $L^p$, konveks tegas.
+  \end{teorema}
+  \textit{Bukti.}
+  Bukti serupa dengan \myref{thm:3.30}, dengan penjumlahan diganti integral. Bentuk integral H\"older dan syarat kesamaannya diperoleh dengan mengintegralkan ketaksamaan Young pada bukti \myref{thm:3.29}.
+
+  Ambil $f,g\in L^p(\Omega,\mu)$ dengan $f\neq g$ sebagai elemen $L^p$ dan $\|f\|_p=\|g\|_p=1$. Untuk $q=p/(p-1)$, definisikan $s:=|f+g|^{p-1}$. Seperti pada bukti sebelumnya, $(p-1)q=p$ memberikan:
+  \begin{equation*}
+    s\in L^q, \qquad \|s\|_q=\|f+g\|_p^{p-1}.
+  \end{equation*}
+  Ketaksamaan segitiga pada nilai fungsi dan dua penerapan H\"older memberikan:
+  \begin{align*}
+    \|f+g\|_p^p
+     & =\int_\Omega |f+g|s\,d\mu                         \\
+     & \leq\int_\Omega |f|s\,d\mu+\int_\Omega |g|s\,d\mu \\
+     & \leq(\|f\|_p+\|g\|_p)\|s\|_q=2\|f+g\|_p^{p-1}.
+  \end{align*}
+  Jika $\|f+g\|_p=0$, maka $\|f+g\|_p<2$ langsung berlaku. Jika positif, pembagian dengan $\|f+g\|_p^{p-1}$ menghasilkan $\|f+g\|_p\leq 2$.
+
+
+  Andaikan $\|f+g\|_p=2$. Seluruh ketaksamaan di atas mencapai kesamaan, sehingga syarat kesamaan H\"older memberikan:
+  \begin{equation*}
+    |f|^{p-1}=\alpha s, \qquad |g|^{p-1}=\alpha s,
+    \qquad \alpha:=\frac{1}{\|s\|_q}>0,
+  \end{equation*}
+  hampir di mana-mana, sehingga $|f|=|g|$ hampir di mana-mana. Kesamaan pada ketaksamaan segitiga juga memberikan:
+  \begin{equation*}
+    \int_\Omega \bigl(|f|+|g|-|f+g|\bigr)s\,d\mu=0.
+  \end{equation*}
+  Integran tak-negatif ini harus nol hampir di mana-mana. Pada $\{s>0\}$, diperoleh $|f+g|=|f|+|g|$, sehingga $f,g$ bertanda sama (real) atau searah (kompleks). Bersama $|f|=|g|$, diperoleh $f=g$ hampir di mana-mana.
+
+  Pada $\{s=0\}$, syarat kesamaan H\"older memberikan $f=g=0$ hampir di mana-mana.
+
+  Jadi, $f=g$ hampir di mana-mana pada $\Omega$, yaitu sama sebagai elemen $L^p$, bertentangan dengan asumsi. Maka $\|f+g\|_p<2$ untuk dua elemen satuan yang berbeda. Berdasarkan \myref{thm:3.26}, norma $\|\cdot\|_p$ pada $L^p$ konveks tegas. \qed
+\end{frame}
+
+\subsection{Akibat 3.35}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{akibat}{34}
+  \begin{akibat}\label{cor:3.35}
+    Untuk norma-norma $\ell^p$, yaitu $\|\cdot\|_p$ pada $\R^d$, yang didefinisikan oleh
+    \begin{equation*}
+      \|x\|_p^p=\sum_{k=1}^{d}|x_k|^p \quad \text{untuk } 1\leq p<\infty,
+      \qquad \|x\|_\infty=\max_{1\leq k\leq d}|x_k|,
+    \end{equation*}
+    berlaku pernyataan-pernyataan berikut:
+    \setbeamertemplate{enumerate items}[default]
+    \begin{enumerate}[(a)]
+      \item Untuk $1<p<\infty$, norma $\|\cdot\|_p$ konveks tegas pada $\R^d$.
+      \item Untuk $d>1$, norma $\|\cdot\|_1$ tidak konveks tegas pada $\R^d$.
+      \item Untuk $d>1$, norma $\|\cdot\|_\infty$ tidak konveks tegas pada $\R^d$.
+    \end{enumerate}
+  \end{akibat}
+
+  \textit{Bukti.}
+  Kita buktikan setiap pernyataan menggunakan kriteria $(c)$ pada \myref{thm:3.26}: suatu norma konveks tegas jika dan hanya jika norma jumlah setiap dua vektor satuan yang berbeda kurang dari $2$.
+
+  \begin{enumerate}[(a)]
+    \item Untuk $1<p<\infty$, identifikasikan setiap vektor $x=(x_1,\dots,x_d)\in\R^d$ dengan barisan di $\ell^p$ yang diperoleh dengan menambahkan komponen nol:
+          \begin{equation*}
+            Jx:=(x_1,\dots,x_d,0,0,\dots)\in\ell^p.
+          \end{equation*}
+          Pemetaan $J$ linear, injektif, dan mempertahankan norma, sebab:
+          \begin{equation*}
+            \|Jx\|_p^p=\sum_{k=1}^{d}|x_k|^p=\|x\|_p^p.
+          \end{equation*}
+          Jika $x\neq y$ dan $\|x\|_p=\|y\|_p=1$, maka $Jx\neq Jy$ dan $\|Jx\|_p=\|Jy\|_p=1$. Berdasarkan \myref{thm:3.30}, diperoleh:
+          \begin{equation*}
+            \|x+y\|_p=\|J(x+y)\|_p=\|Jx+Jy\|_p<2.
+          \end{equation*}
+          Jadi, norma $\|\cdot\|_p$ pada $\R^d$ konveks tegas untuk $1<p<\infty$.
+
+    \item Untuk $d>1$, pilih dua vektor basis standar yang berbeda:
+          \begin{equation*}
+            x=e_1=(1,0,\dots,0), \qquad y=e_2=(0,1,0,\dots,0).
+          \end{equation*}
+          Keduanya merupakan vektor satuan terhadap norma $\ell^1$, tetapi norma jumlahnya memenuhi:
+          \begin{equation*}
+            \|x\|_1=\|y\|_1=1, \qquad
+            \|x+y\|_1=\|(1,1,0,\dots,0)\|_1=|1|+|1|=2.
+          \end{equation*}
+          Jadi, terdapat dua vektor satuan yang berbeda dengan norma jumlah tepat $2$. Ini melanggar kriteria kekonveksan tegas pada \myref{thm:3.26}. Oleh karena itu, norma $\|\cdot\|_1$ tidak konveks tegas pada $\R^d$ untuk $d>1$.
+
+    \item Untuk $d>1$, pilih dua vektor berikut untuk norma $\|\cdot\|_\infty$:
+          \begin{equation*}
+            x=(1,1,0,\dots,0), \qquad y=(1,-1,0,\dots,0).
+          \end{equation*}
+          Berdasarkan definisi norma maksimum, diperoleh:
+          \begin{equation*}
+            \|x\|_\infty=\|y\|_\infty=1, \qquad
+            \|x+y\|_\infty=\|(2,0,\dots,0)\|_\infty=2.
+          \end{equation*}
+          Sekali lagi, terdapat dua vektor satuan yang berbeda dengan norma jumlah tepat $2$. Berdasarkan \myref{thm:3.26}, norma $\|\cdot\|_\infty$ tidak konveks tegas pada $\R^d$ untuk $d>1$.
+  \end{enumerate}
+
+  Dengan demikian, ketiga pernyataan terbukti. \qed
+\end{frame}
+
+\subsection{Teorema 3.37}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{teorema}{36}
+  \begin{teorema}\label{thm:3.37}
+    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\|\cdot\|$ yang konveks tegas. Selanjutnya, misalkan $\mathcal{S}\subset\mathcal{F}$ adalah himpunan konveks dan $f\in\mathcal{F}$. Jika terdapat aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$, maka $s^*$ tunggal.
+  \end{teorema}
+
+  \textit{Bukti.}
+  Kita gunakan metode kontradiksi. Andaikan terdapat dua aproksimasi terbaik yang berbeda, yaitu $s_1^*,s_2^*\in\mathcal{S}$ dengan $s_1^*\neq s_2^*$. Berdasarkan definisi aproksimasi terbaik, keduanya mencapai jarak minimal yang sama:
+  \begin{equation*}
+    \|s_1^*-f\|=\|s_2^*-f\|
+    =\inf_{s\in\mathcal{S}}\|s-f\|=: \eta.
+  \end{equation*}
+  Jika $\eta=0$, sifat definit positif norma memberikan $s_1^*=f=s_2^*$, bertentangan dengan asumsi bahwa keduanya berbeda. Jadi, $\eta>0$.
+
+  \begin{enumerate}
+    \item Karena $\mathcal{S}$ konveks dan $s_1^*,s_2^*\in\mathcal{S}$, titik tengah keduanya juga berada di $\mathcal{S}$:
+          \begin{equation*}
+            \widehat{s}:=\frac{s_1^*+s_2^*}{2}\in\mathcal{S}.
+          \end{equation*}
+          Kita akan menunjukkan bahwa $\widehat{s}$ lebih dekat ke $f$ daripada kedua aproksimasi terbaik tersebut.
+
+    \item Definisikan vektor galat yang dinormalisasi:
+          \begin{equation*}
+            u:=\frac{s_1^*-f}{\eta}, \qquad
+            v:=\frac{s_2^*-f}{\eta}.
+          \end{equation*}
+          Karena $\eta>0$, kedua vektor ini terdefinisi dan memenuhi $\|u\|=\|v\|=1$. Selain itu, $u\neq v$, sebab $s_1^*\neq s_2^*$.
+
+          Berdasarkan pernyataan $(c)$ pada \myref{thm:3.26}, kekonveksan tegas norma memberikan $\|u+v\|<2$. Dengan sifat homogenitas norma, diperoleh:
+          \setcounter{equation}{27}
+          \begin{equation}
+            \begin{aligned}
+              \left\|\frac{s_1^*+s_2^*}{2}-f\right\|
+               & =\left\|\frac{(s_1^*-f)+(s_2^*-f)}{2}\right\| \\
+               & =\frac{\eta}{2}\|u+v\|
+              <\eta=\|s_1^*-f\|=\|s_2^*-f\|.
+            \end{aligned}\label{eq:3.28}
+          \end{equation}
+
+    \item Karena $\widehat{s}\in\mathcal{S}$, definisi infimum mengharuskan $\|\widehat{s}-f\|\geq\eta$. Namun, \eqref{eq:3.28} memberikan $\|\widehat{s}-f\|<\eta$. Jadi:
+          \begin{equation*}
+            \eta\leq\|\widehat{s}-f\|<\eta,
+          \end{equation*}
+          Ini kontradiksi.
+  \end{enumerate}
+
+  Jadi, dua aproksimasi terbaik yang berbeda tidak dapat ada. Karena keberadaan aproksimasi terbaik telah diasumsikan, aproksimasi terbaik $s^*$ terhadap $f$ di $\mathcal{S}$ tunggal. \qed
+\end{frame}
+
+\subsection{Akibat 3.39}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{akibat}{38}
+  \begin{akibat}\label{cor:3.39}
+    Misalkan $\mathcal{F}$ adalah ruang Euclidean dan $\mathcal{S}\subset\mathcal{F}$ adalah himpunan konveks. Maka untuk setiap $f\in\mathcal{F}$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$.
+  \end{akibat}
+
+  \textit{Bukti.}
+  Karena $\mathcal{F}$ adalah ruang Euclidean, normanya diinduksi oleh hasil kali dalam:
+  \begin{equation*}
+    \|u\|=\langle u,u\rangle^{1/2} \quad \text{untuk semua } u\in\mathcal{F}.
+  \end{equation*}
+  Berdasarkan \myref{thm:3.28}, norma ini konveks tegas. Selain itu, $\mathcal{S}$ konveks menurut asumsi. Jadi, seluruh hipotesis mengenai ruang dan himpunan pada \myref{thm:3.37} terpenuhi.
+
+  Untuk sebarang $f\in\mathcal{F}$, jika aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ ada, maka \myref{thm:3.37} menjamin bahwa $s^*$ tunggal. Dengan demikian, untuk setiap $f\in\mathcal{F}$ terdapat paling banyak satu aproksimasi terbaik di $\mathcal{S}$. \qed
+\end{frame}
+
+\subsection{Akibat 3.40}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{akibat}{39}
+  \begin{akibat}\label{cor:3.40}
+    Misalkan $\mathcal{S}\subset L^p$ adalah himpunan konveks untuk $1<p<\infty$. Maka untuk setiap $f\in L^p$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $\|\cdot\|_p$.
+  \end{akibat}
+
+  \textit{Bukti.}
+  Berdasarkan \myref{thm:3.32}, norma $\|\cdot\|_p$ pada ruang linear $L^p$ konveks tegas untuk $1<p<\infty$. Karena $\mathcal{S}\subset L^p$ konveks, kita dapat menerapkan \myref{thm:3.37} dengan $\mathcal{F}=L^p$ dan norma $\|\cdot\|_p$.
+
+  Untuk sebarang $f\in L^p$, jika terdapat aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$, maka aproksimasi tersebut tunggal. Jadi, untuk setiap $f\in L^p$ terdapat paling banyak satu aproksimasi terbaik di $\mathcal{S}$ terhadap norma $\|\cdot\|_p$.
+
+  Ketunggalan ini dipahami sebagai ketunggalan elemen $L^p$: dua wakil fungsi yang sama hampir di mana-mana menyatakan elemen yang sama. \qed
+\end{frame}
+
+\subsection{Akibat 3.41}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{akibat}{40}
+  \begin{akibat}\label{cor:3.41}
+    Misalkan $\mathcal{S}\subset\ell^p$ adalah himpunan konveks untuk $1<p<\infty$. Maka untuk setiap $f\in\ell^p$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $\|\cdot\|_p$.
+  \end{akibat}
+
+  \textit{Bukti.}
+  Berdasarkan \myref{thm:3.30}, norma $\|\cdot\|_p$ pada ruang linear $\ell^p$ konveks tegas untuk $1<p<\infty$. Selain itu, $\mathcal{S}\subset\ell^p$ konveks menurut asumsi. Jadi, \myref{thm:3.37} dapat diterapkan dengan $\mathcal{F}=\ell^p$ dan norma $\|\cdot\|_p$.
+
+  Untuk sebarang $f\in\ell^p$, jika aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ ada, maka aproksimasi tersebut tunggal. Oleh karena itu, untuk setiap $f\in\ell^p$ terdapat paling banyak satu aproksimasi terbaik di $\mathcal{S}$ terhadap norma $\|\cdot\|_p$. \qed
+\end{frame}
+
+\subsection{Proposisi 3.42}
+
+\begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
+  \setcounter{proposisi}{41}
+  \begin{proposisi}\label{prop:3.42}
+    Misalkan $f\in\mathcal{C}[-1,1]$ adalah fungsi genap dan $\mathcal{S}\subset\mathcal{C}[-1,1]$ adalah himpunan yang invarian terhadap refleksi. Jika terdapat aproksimasi terbaik tunggal $s_p^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $L^p$, yaitu $\|\cdot\|_p$, untuk $1\leq p\leq\infty$, maka $s_p^*$ juga merupakan fungsi genap.
+  \end{proposisi}
+
+  \textit{Bukti.}
+  Karena $f$ genap, berlaku $f(x)=f(-x)$ untuk setiap $x\in[-1,1]$. Sifat invarian terhadap refleksi pada $\mathcal{S}$ berarti bahwa untuk setiap $s\in\mathcal{S}$, fungsi $Rs$ yang didefinisikan oleh $(Rs)(x):=s(-x)$ juga berada di $\mathcal{S}$.
+
+  Misalkan $s_p^*\in\mathcal{S}$ adalah aproksimasi terbaik tunggal terhadap $f$ dalam norma $\|\cdot\|_p$. Definisikan fungsi refleksinya:
+  \begin{equation*}
+    r_p^*(x):=s_p^*(-x) \quad \text{untuk } x\in[-1,1].
+  \end{equation*}
+  Berdasarkan asumsi invariansi terhadap refleksi, $r_p^*\in\mathcal{S}$. Kita akan menunjukkan bahwa refleksi ini memiliki jarak yang sama ke $f$ dengan $s_p^*$, sehingga juga merupakan aproksimasi terbaik.
+
+  \begin{enumerate}
+    \item Untuk $p=\infty$, gunakan substitusi $t=-x$. Karena refleksi memetakan interval $[-1,1]$ ke dirinya sendiri dan $f(-t)=f(t)$, diperoleh:
+          \begin{align*}
+            \|r_\infty^*-f\|_\infty
+             & =\max_{x\in[-1,1]}|s_\infty^*(-x)-f(x)|              \\
+             & =\max_{t\in[-1,1]}|s_\infty^*(t)-f(-t)|              \\
+             & =\max_{t\in[-1,1]}|s_\infty^*(t)-f(t)|               \\
+             & =\|s_\infty^*-f\|_\infty=\eta_\infty(f,\mathcal{S}),
+          \end{align*}
+          dengan $\eta_\infty(f,\mathcal{S}):=\inf_{s\in\mathcal{S}}\|s-f\|_\infty$.
+
+          Jadi, $r_\infty^*\in\mathcal{S}$ juga mencapai jarak minimal terhadap $f$. Karena aproksimasi terbaik tunggal, harus berlaku $r_\infty^*=s_\infty^*$. Berdasarkan definisi refleksi:
+          \begin{equation*}
+            s_\infty^*(x)=r_\infty^*(x)=s_\infty^*(-x)
+            \quad \text{untuk semua } x\in[-1,1].
+          \end{equation*}
+          Dengan demikian, $s_\infty^*$ genap.
+
+    \item Untuk $1\leq p<\infty$, hitung pangkat ke-$p$ dari jarak kedua fungsi. Gunakan substitusi $t=-x$, sehingga $dx=-dt$ dan batas $x=-1,1$ berturut-turut menjadi $t=1,-1$:
+          \begin{align*}
+            \|r_p^*-f\|_p^p
+             & =\int_{-1}^{1}|s_p^*(-x)-f(x)|^p\,dx      \\
+             & =-\int_{1}^{-1}|s_p^*(t)-f(-t)|^p\,dt     \\
+             & =\int_{-1}^{1}|s_p^*(t)-f(t)|^p\,dt       \\
+             & =\|s_p^*-f\|_p^p=\eta_p^p(f,\mathcal{S}),
+          \end{align*}
+          dengan $\eta_p(f,\mathcal{S}):=\inf_{s\in\mathcal{S}}\|s-f\|_p$. Pada baris ketiga, kita membalik batas integrasi dan menggunakan sifat genap $f$.
+
+          Dengan mengambil akar pangkat $p$, diperoleh $\|r_p^*-f\|_p=\eta_p(f,\mathcal{S})$. Jadi, $r_p^*\in\mathcal{S}$ juga merupakan aproksimasi terbaik terhadap $f$. Ketunggalan aproksimasi terbaik mengakibatkan $r_p^*=s_p^*$.
+
+          Jika kesamaan ini dipahami dalam $L^p$, kedua fungsi sama hampir di mana-mana. Karena keduanya kontinu pada $[-1,1]$, kesamaan berlaku di setiap titik: selisih kontinu yang tidak nol di suatu titik akan tidak nol pada suatu interval dengan ukuran positif. Oleh karena itu:
+          \begin{equation*}
+            s_p^*(x)=r_p^*(x)=s_p^*(-x)
+            \quad \text{untuk semua } x\in[-1,1].
+          \end{equation*}
+          Jadi, $s_p^*$ genap untuk $1\leq p<\infty$.
+  \end{enumerate}
+
+  Bersama hasil kasus $p=\infty$, proposisi terbukti untuk seluruh $1\leq p\leq\infty$. \qed
+\end{frame}
+
+\end{document}

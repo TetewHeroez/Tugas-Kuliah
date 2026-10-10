@@ -1,0 +1,179 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+  \geometry{
+    left = 20mm,
+    right = 20mm,
+    top = 20mm,
+    bottom = 30mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+  \textbf{\large Kuis 1 Matematika Statistika bab 7} \\
+  \vspace{0.3cm}
+  \textbf{\large Waktu: Pk. 11.00 -- 12.00 Wib}
+\end{center}
+
+\vspace{0.2cm}
+\noindent Jawaban ditulis dalam kertas HVS dan dikumpulkan di my classroom ITS dalam 1 file bentuk pdf dan dikumpulkan paling lambat pk 12.05 \\
+\rule{\textwidth}{0.5pt}
+\vspace{0.2cm}
+
+\begin{enumerate}
+  \item Perhatikan suatu sampel random $X$ berukuran $n$ yang mempunyai CDF
+  \[ F(x) = (1 + e^{-x})^{-1} ; x \in \mathbb{R} \]
+  Dapatkan limiting distribution dari $\omega_n = X_{n:n} - \ln n$ \hfill [30]
+  \vspace{0.3cm}
+
+  \item Misalkan $Y_i$ adalah berat bagasi penumpang ke-$i$ dari suatu pesawat terbang (dalam kg). Diasumsikan beratnya saling independent dengan pdf tiap bagasi adalah
+  $f(y_i) = \theta B^{-\theta} y_i^{\theta-1} ; 0 < y_i < B$. Jika diketahui $n = 100, \theta = 3, \text{dan } B = 80$,
+  \begin{enumerate}[label=\alph*)]
+    \item Dapatkan $E(y_i)$ dan $\text{Var}(y_i)$ \hfill [10]
+    \item Dapatkan $E\left( \sum_{i=1}^{100} y_i \right)$ dan $\text{Var}\left( \sum_{i=1}^{100} y_i \right)$ \hfill [10]
+    \item Dapatkan Peluang total berat 100 bagasi paling sedikit 6025 kg \hfill [15]
+  \end{enumerate}
+  \vspace{0.3cm}
+
+  \item Misalkan $n$ sampel random dari distribusi Poisson, $X_i \sim Poi(\lambda)$.
+  \begin{enumerate}[label=\alph*)]
+    \item Tunjukkan bahwa $\bar{X}_n$ konvergen stokastik ke $\lambda$ \hfill [20]
+    \item Tunjukan bahwa $\bar{X}_n e^{-\bar{X}_n}$ konvergen stokastik ke $P(X=1) = \lambda e^{-\lambda}$. \hfill [15]
+  \end{enumerate}
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{center}
+  \textbf{Selamat bekerja, bekerjalah dengan jujur} \\
+  \vspace{0.2cm}
+  \textbf{Setialah dalam hal hal kecil}
+\end{center}
+
+\newpage
+\begin{center}
+  \textbf{\large SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item 
+  Diketahui sampel acak berukuran $n$ dengan CDF:
+  \[ F(x) = (1 + e^{-x})^{-1} = \frac{1}{1 + e^{-x}}, \quad x \in \mathbb{R} \]
+  Misalkan $X_{n:n} = \max(X_1, X_2, \cdots, X_n)$ adalah statistik orde ke-$n$.
+  CDF dari $X_{n:n}$ adalah:
+  \[ F_{X_{n:n}}(x) = [F(x)]^n = \left( \frac{1}{1 + e^{-x}} \right)^n \]
+  Kita ingin mencari limiting distribution dari $\omega_n = X_{n:n} - \ln n$.
+  Mula-mula, kita cari CDF dari $\omega_n$, misalkan $F_{\omega_n}(w)$:
+  \begin{align*}
+    F_{\omega_n}(w) &= P(\omega_n \le w) \\
+    &= P(X_{n:n} - \ln n \le w) \\
+    &= P(X_{n:n} \le w + \ln n) \\
+    &= F_{X_{n:n}}(w + \ln n) \\
+    &= \left( \frac{1}{1 + e^{-(w + \ln n)}} \right)^n
+  \end{align*}
+  Perhatikan bahwa $e^{-(w + \ln n)} = e^{-w} e^{-\ln n} = e^{-w} \cdot \frac{1}{n} = \frac{e^{-w}}{n}$.
+  Substitusikan bentuk ini ke dalam persamaan sebelumnya:
+  \[ F_{\omega_n}(w) = \left( \frac{1}{1 + \frac{e^{-w}}{n}} \right)^n = \left( 1 + \frac{e^{-w}}{n} \right)^{-n} \]
+  Untuk mencari limiting distribution, kita hitung limit dari $F_{\omega_n}(w)$ saat $n \to \infty$. 
+  Kita gunakan sifat limit: $\lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = e^x$.
+  Maka,
+  \begin{align*}
+    \lim_{n \to \infty} F_{\omega_n}(w) &= \lim_{n \to \infty} \left[ \left( 1 + \frac{e^{-w}}{n} \right)^n \right]^{-1} \\
+    &= \left( e^{e^{-w}} \right)^{-1} \\
+    &= e^{-e^{-w}}
+  \end{align*}
+  Jadi, limiting distribution dari $\omega_n$ adalah $F(w) = e^{-e^{-w}}$ untuk $w \in \mathbb{R}$ (yang merupakan CDF dari distribusi Gumbel).
+
+  \item
+  Diketahui $Y_i$ dengan pdf:
+  \[ f(y_i) = \theta B^{-\theta} y_i^{\theta-1}, \quad 0 < y_i < B \]
+  Dengan parameter $n = 100, \theta = 3, B = 80$.
+  \begin{enumerate}[label=\alph*)]
+    \item Dapatkan $E(y_i)$ dan $\text{Var}(y_i)$.
+    \begin{align*}
+      E(y_i) &= \int_{-\infty}^{\infty} y f(y) \,dy = \int_0^B y \left( \theta B^{-\theta} y^{\theta-1} \right) dy \\
+      &= \theta B^{-\theta} \int_0^B y^\theta \,dy = \theta B^{-\theta} \left[ \frac{y^{\theta+1}}{\theta+1} \right]_0^B \\
+      &= \theta B^{-\theta} \left( \frac{B^{\theta+1}}{\theta+1} \right) = \frac{\theta}{\theta+1} B
+    \end{align*}
+    Substitusi nilai $\theta = 3$ dan $B = 80$:
+    \[ E(y_i) = \frac{3}{3+1} (80) = \frac{3}{4} (80) = 60 \]
+    Untuk mencari variansi, cari $E(y_i^2)$ terlebih dahulu:
+    \begin{align*}
+      E(y_i^2) &= \int_0^B y^2 \left( \theta B^{-\theta} y^{\theta-1} \right) dy = \theta B^{-\theta} \int_0^B y^{\theta+1} \,dy \\
+      &= \theta B^{-\theta} \left[ \frac{y^{\theta+2}}{\theta+2} \right]_0^B = \theta B^{-\theta} \left( \frac{B^{\theta+2}}{\theta+2} \right) = \frac{\theta}{\theta+2} B^2
+    \end{align*}
+    Substitusi nilai $\theta = 3$ dan $B = 80$:
+    \[ E(y_i^2) = \frac{3}{3+2} (80^2) = \frac{3}{5} (6400) = 3840 \]
+    Maka variansinya adalah:
+    \begin{align*}
+      \text{Var}(y_i) &= E(y_i^2) - (E(y_i))^2 \\
+      &= 3840 - (60)^2 = 3840 - 3600 = 240
+    \end{align*}
+
+    \item Dapatkan $E\left( \sum_{i=1}^{100} y_i \right)$ dan $\text{Var}\left( \sum_{i=1}^{100} y_i \right)$.
+    Berdasarkan sifat ekspektasi dan variansi untuk variabel yang saling independen:
+    \begin{align*}
+      E\left( \sum_{i=1}^{100} y_i \right) &= \sum_{i=1}^{100} E(y_i) = 100 \times 60 = 6000 \\
+      \text{Var}\left( \sum_{i=1}^{100} y_i \right) &= \sum_{i=1}^{100} \text{Var}(y_i) = 100 \times 240 = 24000
+    \end{align*}
+
+    \item Dapatkan peluang total berat 100 bagasi paling sedikit 6025 kg.
+    Misalkan $S = \sum_{i=1}^{100} y_i$ adalah total berat bagasi. 
+    Karena $n=100$ (cukup besar), berdasarkan Teorema Limit Pusat (CLT), distribusi total $S$ mendekati distribusi Normal dengan rata-rata $\mu_S = 6000$ dan variansi $\sigma_S^2 = 24000$.
+    Sehingga $S \sim N(6000, 24000)$ secara asimtotik.
+    Peluang $S \ge 6025$ adalah:
+    \begin{align*}
+      P(S \ge 6025) &= P\left( \frac{S - 6000}{\sqrt{24000}} \ge \frac{6025 - 6000}{\sqrt{24000}} \right) \\
+      &\approx P\left( Z \ge \frac{25}{\sqrt{24000}} \right) \\
+      &= P\left( Z \ge \frac{25}{154.919} \right) \\
+      &\approx P(Z \ge 0.161)
+    \end{align*}
+    Dari tabel distribusi Normal Standar, $P(Z \le 0.16) \approx 0.5636$.
+    Maka,
+    \[ P(Z \ge 0.161) = 1 - P(Z \le 0.161) \approx 1 - 0.5636 = 0.4364 \]
+    Jadi, peluang total berat 100 bagasi paling sedikit 6025 kg adalah sekitar 0.4364 atau 43.64\%.
+  \end{enumerate}
+
+  \item
+  Misalkan $n$ sampel random dari distribusi Poisson, $X_i \sim Poi(\lambda)$.
+  Untuk distribusi Poisson, $E(X_i) = \lambda$ dan $\text{Var}(X_i) = \lambda$.
+  \begin{enumerate}[label=\alph*)]
+    \item Tunjukkan bahwa $\bar{X}_n$ konvergen stokastik ke $\lambda$. \\
+    Kita akan menunjukkan konvergensi dalam probabilitas (konvergen stokastik), yang dilambangkan dengan $\bar{X}_n \xrightarrow{P} \lambda$.
+    Kita bisa menggunakan Ketaksamaan Chebyshev:
+    Untuk setiap $\epsilon > 0$,
+    \[ P(|\bar{X}_n - E(\bar{X}_n)| \ge \epsilon) \le \frac{\text{Var}(\bar{X}_n)}{\epsilon^2} \]
+    Kita tahu $E(\bar{X}_n) = E(X_i) = \lambda$ dan $\text{Var}(\bar{X}_n) = \frac{\text{Var}(X_i)}{n} = \frac{\lambda}{n}$.
+    Maka,
+    \[ P(|\bar{X}_n - \lambda| \ge \epsilon) \le \frac{\lambda/n}{\epsilon^2} = \frac{\lambda}{n \epsilon^2} \]
+    Jika $n \to \infty$, maka limit dari batas atas tersebut adalah 0:
+    \[ \lim_{n \to \infty} P(|\bar{X}_n - \lambda| \ge \epsilon) \le \lim_{n \to \infty} \frac{\lambda}{n \epsilon^2} = 0 \]
+    Karena peluang tidak mungkin negatif, maka $\lim_{n \to \infty} P(|\bar{X}_n - \lambda| \ge \epsilon) = 0$.
+    Menurut definisi Hukum Kuat/Lemah Bilangan Besar (WLLN), hal ini menunjukkan bahwa rata-rata sampel $\bar{X}_n$ konvergen stokastik (konvergen dalam probabilitas) ke $\lambda$, yaitu $\bar{X}_n \xrightarrow{P} \lambda$.
+
+    \item Tunjukkan bahwa $\bar{X}_n e^{-\bar{X}_n}$ konvergen stokastik ke $P(X=1) = \lambda e^{-\lambda}$. \\
+    Berdasarkan Teorema Pemetaan Kontinu (Continuous Mapping Theorem / Teorema Slutsky), jika barisan variabel acak $Z_n \xrightarrow{P} c$ (konvergen stokastik ke konstanta $c$) dan $g$ adalah fungsi yang kontinu di $c$, maka $g(Z_n) \xrightarrow{P} g(c)$. \\
+    Misalkan fungsi $g(x) = x e^{-x}$. Fungsi $g(x)$ merupakan fungsi yang kontinu untuk seluruh nilai $x$ riil.
+    Dari pembuktian bagian (a), kita sudah mendapatkan bahwa $Z_n = \bar{X}_n \xrightarrow{P} \lambda$.
+    Sehingga, berdasarkan Teorema Pemetaan Kontinu:
+    \[ g(\bar{X}_n) \xrightarrow{P} g(\lambda) \]
+    \[ \bar{X}_n e^{-\bar{X}_n} \xrightarrow{P} \lambda e^{-\lambda} \]
+    Di sisi lain, untuk distribusi Poisson $X \sim Poi(\lambda)$, fungsi probabilitas massanya adalah $P(X=x) = \frac{\lambda^x e^{-\lambda}}{x!}$.
+    Untuk $X = 1$, kita dapatkan:
+    \[ P(X=1) = \frac{\lambda^1 e^{-\lambda}}{1!} = \lambda e^{-\lambda} \]
+    Dengan demikian, terbukti bahwa $\bar{X}_n e^{-\bar{X}_n}$ konvergen stokastik ke $P(X=1) = \lambda e^{-\lambda}$.
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}

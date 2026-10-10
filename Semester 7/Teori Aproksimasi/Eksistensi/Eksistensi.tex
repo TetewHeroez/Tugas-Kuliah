@@ -64,6 +64,7 @@
 \renewcommand{\theakibat}{3.\arabic{akibat}}
 \renewcommand{\thecontoh}{3.\arabic{contoh}}
 \renewcommand{\thelatihan}{3.\arabic{latihan}}
+\renewcommand{\theequation}{3.\arabic{equation}}
 
 \usepackage[nameinlink]{cleveref}
 \crefname{teorema}{Teorema}{Teorema}
@@ -117,8 +118,8 @@
     \setbeamercolor{item}{fg=magenta}
 }
 
-\date{\today}
-\title[Teori Aproksimasi]{Eksistensi Hampiran Terbaik}
+\date{29 September 2026}
+\title[Teori Aproksimasi]{Aproksimasi Terbaik (Eksistensi)}
 \author[Tetew]{Teosofi Hidayah Agung}
 \institute[Matematika ITS]{Matematika ITS}
 
@@ -128,205 +129,272 @@
   \titlepage
 \end{frame}
 
-\AtBeginSection{
-  {
-    \begin{frame}{\insertsection}{Daftar Isi}
-      \tableofcontents[currentsection,hideothersubsections]
-    \end{frame}}
-}
+\section{Eksistensi}
+\subsection{Teorema 3.9}
 
-\section{Hampiran Terbaik}
-\subsection{Eksistensi}
-
-\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{frame}{\insertsection}{\insertsubsection}
   \setcounter{teorema}{8}
   \begin{teorema}
-    Misalkan $\mathcal{F}$ adalah ruang Euclidean dengan hasil kali dalam $(\cdot, \cdot)$ dan norma $\| \cdot \| = (\cdot, \cdot)^{1/2}$. Maka identitas jajar genjang
+    Misalkan $\mathcal{F}$ adalah ruang Euclidean dengan hasil kali dalam $\langle \cdot, \cdot \rangle$ dan norma $\| \cdot \| = \langle \cdot, \cdot \rangle^{1/2}$. Maka identitas jajar genjang
     \begin{equation}
       \|v+w\|^2 + \|v-w\|^2 = 2\|v\|^2 + 2\|w\|^2 \quad \text{untuk semua } v,w \in \mathcal{F} \label{eq:3.1}
     \end{equation}
     berlaku. Jika $\mathcal{F}$ adalah ruang Euclidean atas bilangan real $\R$, maka identitas polarisasi
     \begin{equation}
-      (v,w) = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2) \quad \text{untuk semua } v,w \in \mathcal{F} \label{eq:3.2}
+      \langle v,w \rangle = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2) \quad \text{untuk semua } v,w \in \mathcal{F} \label{eq:3.2}
     \end{equation}
     berlaku. Jika $\mathcal{F}$ adalah ruang Euclidean atas bilangan kompleks $\C$, maka identitas polarisasi berlaku sebagai
     \begin{equation}
-      (v,w) = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2) \label{eq:3.3}
+      \langle v,w \rangle = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2)\quad \text{untuk semua } v,w \in \mathcal{F}. \label{eq:3.3}
     \end{equation}
-    untuk semua $v,w \in \mathcal{F}$.
   \end{teorema}
-
-  \begin{proof}
-    Persamaan \eqref{eq:3.1} dan \eqref{eq:3.2} mengikuti langsung dari sifat linearitas hasil kali dalam:
-    \begin{equation*}
-      \|v \pm w\|^2 = (v \pm w, v \pm w) = (v,v) \pm 2(v,w) + (w,w) = \|v\|^2 \pm 2(v,w) + \|w\|^2.
-    \end{equation*}
-    Dengan menjumlahkan persamaan untuk $\|v+w\|^2$ dan $\|v-w\|^2$, kita peroleh identitas jajar genjang \eqref{eq:3.1}:
-    \begin{equation*}
-      \|v+w\|^2 + \|v-w\|^2 = 2\|v\|^2 + 2\|w\|^2.
-    \end{equation*}
-    Dengan mengurangkan $\|v-w\|^2$ dari $\|v+w\|^2$, kita peroleh identitas polarisasi untuk ruang real \eqref{eq:3.2}:
-    \begin{equation*}
-      \|v+w\|^2 - \|v-w\|^2 = 4(v,w) \implies (v,w) = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2).
-    \end{equation*}
-    \framebreak
-
-    Untuk identitas polarisasi atas bilangan kompleks \eqref{eq:3.3}, kita ingat bahwa $(w, v) = \overline{(v, w)}$, $(\alpha v, w) = \alpha (v, w)$, dan $(v, \alpha w) = \bar{\alpha} (v, w)$. Sehingga,
-    \begin{align*}
-      \|v+w\|^2 &= \|v\|^2 + (v,w) + (w,v) + \|w\|^2, \\
-      \|v-w\|^2 &= \|v\|^2 - (v,w) - (w,v) + \|w\|^2.
-    \end{align*}
-    Pengurangan keduanya memberikan:
-    \begin{equation*}
-      \|v+w\|^2 - \|v-w\|^2 = 2(v,w) + 2(w,v).
-    \end{equation*}
-    Selanjutnya,
-    \begin{align*}
-      \|v+iw\|^2 &= \|v\|^2 - i(v,w) + i(w,v) + \|w\|^2, \\
-      \|v-iw\|^2 &= \|v\|^2 + i(v,w) - i(w,v) + \|w\|^2.
-    \end{align*}
-    \framebreak
-
-    Pengurangan keduanya memberikan:
-    \begin{equation*}
-      \|v+iw\|^2 - \|v-iw\|^2 = -2i(v,w) + 2i(w,v).
-    \end{equation*}
-    Dengan mengalikan hasil ini dengan $i$, kita peroleh:
-    \begin{equation*}
-      i\|v+iw\|^2 - i\|v-iw\|^2 = 2(v,w) - 2(w,v).
-    \end{equation*}
-    Dengan menjumlahkan bagian real dan imajinernya:
-    \begin{equation*}
-      \|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2 = 4(v,w).
-    \end{equation*}
-    Hal ini melengkapi bukti identitas polarisasi \eqref{eq:3.3}.
-  \end{proof}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \textit{Bukti.}
+  Persamaan \eqref{eq:3.1} dan \eqref{eq:3.2} mengikuti langsung dari sifat linearitas hasil kali dalam:
+  \begin{equation*}
+    \|v \pm w\|^2 = \langle v \pm w, v \pm w \rangle = \langle v,v \rangle \pm 2\langle v,w \rangle + \langle w,w \rangle = \|v\|^2 \pm 2\langle v,w \rangle + \|w\|^2.
+  \end{equation*}
+  Dengan menjumlahkan persamaan untuk $\|v+w\|^2$ dan $\|v-w\|^2$, kita peroleh identitas jajar genjang \eqref{eq:3.1}:
+  \begin{equation*}
+    \|v+w\|^2 + \|v-w\|^2 = 2\|v\|^2 + 2\|w\|^2.
+  \end{equation*}
+  Dengan mengurangkan $\|v-w\|^2$ dari $\|v+w\|^2$, kita peroleh identitas polarisasi untuk ruang real \eqref{eq:3.2}:
+  \begin{equation*}
+    \|v+w\|^2 - \|v-w\|^2 = 4\langle v,w \rangle \implies \langle v,w \rangle = \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2).
+  \end{equation*}
+  \framebreak
+
+  Untuk identitas polarisasi atas bilangan kompleks \eqref{eq:3.3}, kita ingat bahwa $\langle w, v \rangle = \overline{\langle v, w \rangle}$, $\langle \alpha v, w \rangle = \alpha \langle v, w \rangle$, dan $\langle v, \alpha w \rangle = \bar{\alpha} \langle v, w \rangle$. Sehingga,
+  \begin{align*}
+    \|v+w\|^2 & = \|v\|^2 + \langle v,w \rangle + \langle w,v \rangle + \|w\|^2, \\
+    \|v-w\|^2 & = \|v\|^2 - \langle v,w \rangle - \langle w,v \rangle + \|w\|^2.
+  \end{align*}
+  Pengurangan keduanya memberikan:
+  \begin{equation*}
+    \|v+w\|^2 - \|v-w\|^2 = 2\langle v,w \rangle + 2\langle w,v \rangle.
+  \end{equation*}
+  Selanjutnya,
+  \begin{align*}
+    \|v+iw\|^2 & = \|v\|^2 - i\langle v,w \rangle + i\langle w,v \rangle + \|w\|^2, \\
+    \|v-iw\|^2 & = \|v\|^2 + i\langle v,w \rangle - i\langle w,v \rangle + \|w\|^2.
+  \end{align*}
+  \framebreak
+
+  Pengurangan keduanya memberikan:
+  \begin{equation*}
+    \|v+iw\|^2 - \|v-iw\|^2 = -2i\langle v,w \rangle + 2i\langle w,v \rangle.
+  \end{equation*}
+  Dengan mengalikan hasil ini dengan $i$, kita peroleh:
+  \begin{equation*}
+    i\|v+iw\|^2 - i\|v-iw\|^2 = 2\langle v,w \rangle - 2\langle w,v \rangle.
+  \end{equation*}
+  Dengan menjumlahkan bagian real dan imajinernya:
+  \begin{equation*}
+    \|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2 = 4\langle v,w \rangle.
+  \end{equation*}
+  Hal ini melengkapi bukti identitas polarisasi \eqref{eq:3.3}.
+\end{frame}
+
+\subsection{Teorema 3.10}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   \begin{teorema}[Teorema Jordan-von Neumann, 1935]
-    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\| \cdot \|$, di mana identitas jajar genjang \eqref{eq:3.1} berlaku. Maka terdapat sebuah hasil kali dalam $(\cdot, \cdot)$ pada $\mathcal{F}$, sehingga
+    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\| \cdot \|$, di mana identitas jajar genjang \eqref{eq:3.1} berlaku. Maka terdapat sebuah hasil kali dalam $\langle \cdot, \cdot \rangle$ pada $\mathcal{F}$, sehingga
     \begin{equation}
-      (v,v) = \|v\|^2 \quad \text{untuk semua } v \in \mathcal{F}, \label{eq:3.4}
+      \langle v,v \rangle = \|v\|^2 \quad \text{untuk semua } v \in \mathcal{F}, \label{eq:3.4}
     \end{equation}
     yaitu, $\mathcal{F}$ adalah ruang Euclidean.
   \end{teorema}
 
-  \begin{proof}
-    Misalkan $\mathcal{F}$ adalah ruang linear atas $\R$. Dengan menggunakan norma $\| \cdot \|$ dari $\mathcal{F}$ kita mendefinisikan sebuah pemetaan $(\cdot, \cdot) : \mathcal{F} \times \mathcal{F} \to \R$ melalui identitas polarisasi \eqref{eq:3.2}, yaitu,
-    \begin{equation*}
-      (v,w) := \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2) \quad \text{untuk } v,w \in \mathcal{F}.
-    \end{equation*}
-    Dari definisi ini, jelas bahwa $(v,v) = \frac{1}{4}(\|2v\|^2 - \|0\|^2) = \|v\|^2$, sehingga \eqref{eq:3.4} terpenuhi dan dengan demikian $(\cdot, \cdot)$ adalah definit positif. Selain itu, pemetaan ini terbukti simetris karena $\|v-w\| = \|w-v\|$, sehingga $(v,w) = (w,v)$ untuk semua $v,w \in \mathcal{F}$.
+  \textit{Bukti.}
+  Misalkan $\mathcal{F}$ adalah ruang linear atas $\R$. Definisikan pemetaan $\langle \cdot, \cdot \rangle : \mathcal{F} \times \mathcal{F} \to \R$ melalui identitas polarisasi \eqref{eq:3.2}:
+  \begin{equation*}
+    \langle v,w \rangle := \frac{1}{4}(\|v+w\|^2 - \|v-w\|^2) \quad \text{untuk } v,w \in \mathcal{F}.
+  \end{equation*}
+  Akan diverifikasi aksioma hasil kali dalam:
+  \begin{itemize}
+    \item \textbf{Definit Positif:}
+          $\langle v,v \rangle = \frac{1}{4}(\|2v\|^2 - \|0\|^2) = \|v\|^2 \ge 0$, sehingga \eqref{eq:3.4} terpenuhi.
 
-    Tersisa untuk memverifikasi sifat linearitas:
-    \begin{equation}
-      (\alpha u + \beta v, w) = \alpha (u,w) + \beta (v,w) \quad \text{untuk semua } \alpha, \beta \in \R, u,v,w \in \mathcal{F}. \label{eq:3.5}
-    \end{equation}
-    \framebreak
+    \item \textbf{Simetris:}
+          Karena $\|v-w\| = \|w-v\|$, maka $\langle v,w \rangle = \langle w,v \rangle$.
 
-    Pertama, kita perhatikan sifat
-    \begin{equation}
-      (-v, w) = \frac{1}{4}(\|-v+w\|^2 - \|-v-w\|^2) = \frac{1}{4}(\|v-w\|^2 - \|v+w\|^2) = -(v, w), \label{eq:3.6}
-    \end{equation}
-    yang berlaku untuk semua $v,w \in \mathcal{F}$. Secara khusus, untuk $v=0$, kita peroleh $(0,w) = -(0,w)$ yang berakibat $(0,w) = 0$.
+    \item \textbf{Kelinieran:}
+          Kita akan membuktikan sifat kelinieran berikut:
+          \begin{equation}
+            \langle \alpha u + \beta v, w \rangle = \alpha \langle u,w \rangle + \beta \langle v,w \rangle. \label{eq:3.5}
+          \end{equation}
+          Pembuktian ini dilakukan secara bertahap:
+          \begin{enumerate}
+            \item Sifat negatif:
+                  \begin{equation}
+                    \langle -v, w \rangle = -\langle v, w \rangle, \label{eq:3.6}
+                  \end{equation}
+                  berlaku langsung dari definisi. Untuk $v=0$, berakibat $\langle 0,w \rangle = 0$.
 
-    Selanjutnya, kita akan membuktikan sifat aditif. Dengan identitas jajar genjang \eqref{eq:3.1}, substitusi $x = \frac{u+v}{2} + w$ dan $y = \frac{u-v}{2}$ memberikan:
-    \begin{equation*}
-      \|u+w\|^2 + \|v+w\|^2 = 2\left\| \frac{u+v}{2} + w \right\|^2 + 2\left\| \frac{u-v}{2} \right\|^2.
-    \end{equation*}
-    Dengan substitusi serupa, $x = \frac{u+v}{2} - w$ dan $y = \frac{u-v}{2}$, kita peroleh:
-    \begin{equation*}
-      \|u-w\|^2 + \|v-w\|^2 = 2\left\| \frac{u+v}{2} - w \right\|^2 + 2\left\| \frac{u-v}{2} \right\|^2.
-    \end{equation*}
-    \framebreak
+            \item Aditivitas: Dari definisi \eqref{eq:3.2} dan identitas jajar genjang \eqref{eq:3.1} (substitusi $x = \frac{u+v}{2} \pm w$, $y = \frac{u-v}{2}$), diperoleh penjabaran:
+                  \begin{align*}
+                    \langle u,w \rangle + \langle v,w \rangle
+                     & = \frac{1}{4} \left[ \left( \|u+w\|^2 + \|v+w\|^2 \right) - \left( \|u-w\|^2 + \|v-w\|^2 \right) \right]                                                                                                         \\
+                     & = \frac{1}{4} \left[ \left( 2\left\| \frac{u+v}{2} + w \right\|^2 + 2\left\| \frac{u-v}{2} \right\|^2 \right) - \left( 2\left\| \frac{u+v}{2} - w \right\|^2 + 2\left\| \frac{u-v}{2} \right\|^2 \right) \right] \\
+                     & = \frac{1}{4} \left( 2\left\| \frac{u+v}{2} + w \right\|^2 - 2\left\| \frac{u+v}{2} - w \right\|^2 \right)                                                                                                       \\
+                     & = 2 \left[ \frac{1}{4} \left( \left\| \frac{u+v}{2} + w \right\|^2 - \left\| \frac{u+v}{2} - w \right\|^2 \right) \right]                                                                                        \\
+                     & = 2 \left\langle \frac{1}{2}(u+v), w \right\rangle.
+                  \end{align*}
+                  Untuk $v=0$, berakibat
+                  \begin{equation}
+                    \langle u,w \rangle = 2 \left\langle \frac{1}{2}u, w \right\rangle. \label{eq:3.7}
+                  \end{equation}
+                  Substitusi \eqref{eq:3.7} kembali ke atasnya memberikan sifat \textbf{aditivitas}:
+                  \begin{equation}
+                    \langle u,w \rangle + \langle v,w \rangle = \left\langle u+v, w \right\rangle. \label{eq:3.8}
+                  \end{equation}
 
-    Maka:
-    \begin{align*}
-      (u,w) + (v,w) &= \frac{1}{4} \left( \|u+w\|^2 - \|u-w\|^2 + \|v+w\|^2 - \|v-w\|^2 \right) \\
-      &= \frac{1}{4} \left( 2\left\| \frac{u+v}{2} + w \right\|^2 - 2\left\| \frac{u+v}{2} - w \right\|^2 \right) \\
-      &= 2 \left[ \frac{1}{4} \left( \left\| \frac{u+v}{2} + w \right\|^2 - \left\| \frac{u+v}{2} - w \right\|^2 \right) \right] \\
-      &= 2 \left( \frac{1}{2}(u+v), w \right).
-    \end{align*}
-    Untuk $v=0$, ini mengimplikasikan:
-    \begin{equation}
-      (u,w) = 2 \left( \frac{1}{2}u, w \right) \quad \text{untuk semua } u,w \in \mathcal{F}. \label{eq:3.7}
-    \end{equation}
-    \framebreak
+            \item Homogenitas: Dari aditivitas \eqref{eq:3.8}, kita peroleh $\langle 2u,w \rangle = \langle u+u, w \rangle = 2\langle u,w \rangle$, dan secara induktif terhadap $m \in \N$ didapat:
+                  \begin{equation*}
+                    \langle mu, w \rangle = m\langle u,w \rangle.
+                  \end{equation*}
+                  Dari \eqref{eq:3.7} dan induksi terhadap $n \in \N$ diperoleh:
+                  \begin{equation*}
+                    \langle u,w \rangle = 2 \left\langle \tfrac{1}{2}u, w \right\rangle \implies \left\langle \tfrac{1}{2}u, w \right\rangle = \tfrac{1}{2}\langle u,w \rangle \implies \cdots \implies \left\langle \tfrac{1}{2^n}u, w \right\rangle = \tfrac{1}{2^n}\langle u,w \rangle.
+                  \end{equation*}
 
-    Substitusi hasil ini kembali ke penjumlahan memberikan sifat \textit{aditivitas}:
-    \begin{equation}
-      (u,w) + (v,w) = \left( u+v, w \right) \quad \text{untuk semua } u,v,w \in \mathcal{F}. \label{eq:3.8}
-    \end{equation}
-    Dari \eqref{eq:3.7} dan \eqref{eq:3.8}, kita peroleh untuk $m,n \in \N$ identitas-identitas:
-    \begin{align*}
-      m(u,w) &= (mu, w) \quad \text{untuk semua } u,w \in \mathcal{F}, \\
-      \frac{1}{2^n}(u,w) &= \left( \frac{1}{2^n}u, w \right) \quad \text{untuk semua } u,w \in \mathcal{F},
-    \end{align*}
-    yang dibuktikan dengan induksi terhadap $m \in \N$ dan $n \in \N$ berturut-turut.
-    \framebreak
+                  Kombinasi hasil di atas bersama \eqref{eq:3.6} dan aditivitas \eqref{eq:3.8} membuktikan sifat \textbf{homogenitas}:
+                  \begin{equation}
+                    \langle \alpha u, w \rangle = \alpha \langle u, w \rangle \label{eq:3.9}
+                  \end{equation}
+                  berlaku untuk semua bilangan \textit{diadik} $\alpha \in \mathbb{Q}$ yang berbentuk:
+                  \begin{equation*}
+                    \alpha = m + \sum_{k=1}^n \frac{\alpha_k}{2^k} \quad \text{untuk } m \in \Z,\ n \in \N,\ \alpha_k \in \{0,1\},\ 1 \leq k \leq n.
+                  \end{equation*}
 
-    Kombinasi hasil ini dengan \eqref{eq:3.6} dan \eqref{eq:3.8} mengimplikasikan sifat \textit{homogenitas}:
-    \begin{equation}
-      (\alpha u, w) = \alpha (u, w) \quad \text{untuk semua } u,w \in \mathcal{F} \label{eq:3.9}
-    \end{equation}
-    untuk semua bilangan \textit{diadik} $\alpha \in \mathbb{Q}$ dengan bentuk
-    \begin{equation*}
-      \alpha = m + \sum_{k=1}^n \frac{\alpha_k}{2^k} \quad \text{untuk } m \in \Z, n \in \N, \alpha_k \in \{0,1\}, 1 \leq k \leq n.
-    \end{equation*}
-    Karena sebarang bilangan real $\alpha \in \R$ dapat dihampiri seakurat mungkin oleh barisan bilangan diadik, dan norma $\| \cdot \|$ adalah fungsi kontinu, hal ini mengimplikasikan homogenitas \eqref{eq:3.9} berlaku untuk semua $\alpha \in \R$. Bersama dengan aditivitas \eqref{eq:3.8}, ini membuktikan kelinieran penuh \eqref{eq:3.5}. Oleh karena itu, $(\cdot, \cdot)$ adalah sebuah hasil kali dalam atas $\R$.
-    \framebreak
+                  Selanjutnya, kita buktikan bahwa himpunan bilangan diadik \textbf{padat} (\textit{dense}) di $\R$, yaitu: untuk setiap $x \in \R$ dan $\epsilon > 0$, selalu ada bilangan diadik $\alpha$ dengan $|x - \alpha| < \epsilon$. Konstruksinya:
+                  \begin{enumerate}
+                    \item Pilih $n \in \N$ cukup besar sehingga $\dfrac{1}{2^n} < \epsilon$.
+                    \item Tetapkan $m = \lfloor x \rfloor \in \Z$, sehingga $x - m \in [0,1)$.
+                    \item Ekspansikan $x - m$ ke dalam biner tak hingga. Konstruksi $\alpha_k$ dilakukan secara rekursif dengan algoritma \textit{greedy}: definisikan sisa awal $r_0 = x - m \in [0,1)$, lalu untuk tiap $k \geq 1$:
+                          \begin{equation*}
+                            \alpha_k = \begin{cases} 1 & \text{jika } r_{k-1} \geq \dfrac{1}{2^k}, \\ 0 & \text{jika } r_{k-1} < \dfrac{1}{2^k}, \end{cases} \qquad r_k = r_{k-1} - \frac{\alpha_k}{2^k}.
+                          \end{equation*}
+                          \textbf{Klaim:} $r_k \in \left[0, \frac{1}{2^k}\right)$ untuk semua $k \geq 0$.
 
-    Jika $\mathcal{F}$ adalah ruang linear atas $\C$, kita mendefinisikan pemetaan $(\cdot, \cdot) : \mathcal{F} \times \mathcal{F} \to \C$ melalui identitas polarisasi \eqref{eq:3.3}. Misalkan $(\cdot, \cdot)_R$ adalah hasil kali dalam atas $\R$ yang didefinisikan dari bagian realnya, maka $(v,w) = (v,w)_R + i(v,iw)_R$.
-    Sifat aditivitas langsung diturunkan dari aditivitas bagian realnya. Untuk homogenitas skalar kompleks $\alpha = a + ib$, kita verifikasi perkalian dengan $i$:
-    \begin{align*}
-      (iv, w)_R &= \frac{1}{4}(\|iv+w\|^2 - \|iv-w\|^2) = -(v, iw)_R. \\
-      (iv, iw)_R &= \frac{1}{4}(\|iv+iw\|^2 - \|iv-iw\|^2) = (v, w)_R.
-    \end{align*}
-    Maka $(iv, w) = (iv, w)_R + i(iv, iw)_R = -(v, iw)_R + i(v, w)_R = i((v, w)_R + i(v, iw)_R) = i(v, w)$. Ini membuktikan $(\alpha v, w) = \alpha (v,w)$.
-    Kesimetrisan konjugat juga terpenuhi karena $(w,v) = (v,w)_R - i(v,iw)_R = \overline{(v,w)}$. Sifat definit positif jelas dari $(v,v) = \|v\|^2$. Dengan analogi ini, sifat hasil kali dalam atas $\C$ terpenuhi.
-  \end{proof}
+                          \textit{Bukti klaim dengan induksi.} Basis: $r_0 = x - m \in [0,1) = \left[0, \frac{1}{2^0}\right)$, terpenuhi.
+
+                          Langkah induksi: asumsikan $r_{k-1} \in \left[0, \frac{1}{2^{k-1}}\right)$.
+
+                          Jika $r_{k-1} \geq \frac{1}{2^k}$, maka $\alpha_k = 1$ dan $r_k = r_{k-1} - \frac{1}{2^k}$. Karena $r_{k-1} < \frac{1}{2^{k-1}} = \frac{2}{2^k}$, diperoleh
+                          \[r_k = r_{k-1} - \frac{1}{2^k} < \frac{2}{2^k} - \frac{1}{2^k} = \frac{1}{2^k}.\]
+                          Juga $r_k = r_{k-1} - \frac{1}{2^k} \geq 0$.
+
+                          Jika $r_{k-1} < \frac{1}{2^k}$, maka $\alpha_k = 0$ dan $r_k = r_{k-1} \in \left[0, \frac{1}{2^k}\right)$. Pada kedua kasus, $r_k \in \left[0, \frac{1}{2^k}\right)$, sehingga $r_k \to 0$ untuk $k \to \infty$. Karena $r_0 = \sum_{j=1}^{k} \frac{\alpha_j}{2^j} + r_k$ untuk setiap $k$, maka:
+                          \begin{equation*}
+                            x - m = r_0 = \lim_{k \to \infty} \sum_{j=1}^{k} \frac{\alpha_j}{2^j} = \sum_{k=1}^{\infty} \frac{\alpha_k}{2^k}, \quad \alpha_k \in \{0,1\}.
+                          \end{equation*}
+                    \item Definisikan bilangan diadik $\alpha$ sebagai pemotongan di suku ke-$n$:
+                          \begin{equation*}
+                            \alpha = m + \sum_{k=1}^n \frac{\alpha_k}{2^k}.
+                          \end{equation*}
+                  \end{enumerate}
+
+                  Maka jarak antara $x$ dan $\alpha$ adalah sisa deret:
+                  \begin{equation*}
+                    |x - \alpha| = \sum_{k=n+1}^{\infty} \frac{\alpha_k}{2^k} \leq \sum_{k=n+1}^{\infty} \frac{1}{2^k} = \frac{1}{2^n} < \epsilon.
+                  \end{equation*}
+                  Jadi, setiap bilangan real merupakan limit suatu barisan diadik. Dengan kekontinuan norma, homogenitas \eqref{eq:3.9} meluas ke semua $\alpha \in \R$.
+          \end{enumerate}
+  \end{itemize}
+  Dengan gabungan aditivitas dan homogenitas, sifat kelinieran \eqref{eq:3.5} terpenuhi atas $\R$.
 \end{frame}
+
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+  \textbf{Kasus ruang linear atas $\C$}: \\
+  Definisikan $\langle \cdot, \cdot \rangle : \mathcal{F} \times \mathcal{F} \to \C$ lewat identitas polarisasi kompleks \eqref{eq:3.3}. Misalkan $\langle \cdot, \cdot \rangle_R$ adalah bagian realnya, sehingga:
+  \begin{equation*}
+    \langle v,w \rangle = \langle v,w \rangle_R + i\langle v,iw \rangle_R.
+  \end{equation*}
+  \begin{itemize}
+    \item \textbf{Definit Positif:} Langsung dari definisi,
+          \begin{equation*}
+            \langle v,v \rangle = \langle v,v \rangle_R + i\langle v,iv \rangle_R = \|v\|^2 + i \cdot 0 = \|v\|^2 \geq 0.
+          \end{equation*}
+
+    \item \textbf{Aditivitas:} Diwarisi langsung dari linearitas bagian realnya:
+          \begin{equation*}
+            \langle u+v, w \rangle_R = \langle u,w \rangle_R + \langle v,w \rangle_R,
+          \end{equation*}
+          dan begitu pula untuk suku imajinernya, sehingga $\langle u+v, w \rangle = \langle u,w \rangle + \langle v,w \rangle$.
+
+    \item \textbf{Homogenitas skalar kompleks:} Cukup diverifikasi untuk perkalian dengan $i$ (kasus $\alpha = i$), sebab skalar riil sudah terbukti di atas. Dari definisi:
+          \begin{align*}
+            \langle iv, w \rangle_R & = \frac{1}{4}\left(\|iv+w\|^2 - \|iv-w\|^2\right).
+          \end{align*}
+          Perhatikan bahwa $\|iv \pm w\| = \|v \mp iw\|$ karena $\|i \cdot z\| = \|z\|$. Maka:
+          \begin{align*}
+            \langle iv, w \rangle_R  & = \frac{1}{4}\left(\|w - iv\|^2 - \|w + iv\|^2\right) = -\langle v, iw \rangle_R,                                             \\
+            \langle iv, iw \rangle_R & = \frac{1}{4}\left(\|iv+iw\|^2 - \|iv-iw\|^2\right) = \frac{1}{4}\left(\|v+w\|^2 - \|v-w\|^2\right) = \langle v, w \rangle_R.
+          \end{align*}
+
+          Dengan demikian:
+          \begin{align*}
+            \langle iv, w \rangle & = \langle iv, w \rangle_R + i\langle iv, iw \rangle_R                                      \\
+                                  & = -\langle v, iw \rangle_R + i\langle v, w \rangle_R                                       \\
+                                  & = i\left(\langle v, w \rangle_R + i\langle v, iw \rangle_R\right) = i\langle v, w \rangle.
+          \end{align*}
+          Karena homogenitas riil dan perkalian $i$ keduanya terbukti, maka $\langle \alpha v, w \rangle = \alpha\langle v, w \rangle$ untuk semua $\alpha \in \C$.
+
+    \item \textbf{Simetris Konjugat:} Perlu ditunjukkan $\langle w, v \rangle = \overline{\langle v, w \rangle}$. Dari bagian realnya:
+          \begin{equation*}
+            \langle w, v \rangle_R = \frac{1}{4}\left(\|w+v\|^2 - \|w-v\|^2\right) = \langle v, w \rangle_R,
+          \end{equation*}
+          karena $\|w-v\| = \|v-w\|$. Untuk bagian imajinernya, karena $\langle w, iw \rangle_R$ dan $\langle w,iv \rangle_R = \langle v, iw \rangle_R$ (serupa), kita peroleh:
+          \begin{equation*}
+            \langle w, v \rangle = \langle w, v \rangle_R + i\langle w, iv \rangle_R = \langle v, w \rangle_R - i\langle v, iw \rangle_R = \overline{\langle v, w \rangle}.
+          \end{equation*}
+  \end{itemize}
+  Dengan demikian, seluruh aksioma hasil kali dalam atas $\C$ terpenuhi.
+\end{frame}
+
+\subsection{Akibat 3.11}
 
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   \setcounter{akibat}{10}
   \begin{akibat}
     Setiap hasil kali dalam adalah kontinu.
   \end{akibat}
+  \textit{Bukti.}
+  Misalkan $(v_n) \to v$ dan $(w_m) \to w$ di $\mathcal{F}$. Karena $v_n \to v$ dan $w_m \to w$, maka $v_n \pm w_m \to v \pm w$, dan berdasarkan kekontinuan norma $\|\cdot\|$:
+  \begin{equation*}
+    \|v_n \pm w_m\| \to \|v \pm w\| \quad \text{untuk } n, m \to \infty.
+  \end{equation*}
 
-  \begin{proof}
-    Misalkan $\mathcal{F}$ adalah ruang Euclidean atas $\R$ dengan hasil kali dalam $(\cdot, \cdot)$. Misalkan $(v_n)_{n \in \N} \subset \mathcal{F}$ dan $(w_n)_{n \in \N} \subset \mathcal{F}$ adalah barisan yang konvergen di $\mathcal{F}$ dengan elemen limit $v \in \mathcal{F}$ dan $w \in \mathcal{F}$ berturut-turut. Menggunakan identitas polarisasi \eqref{eq:3.2} dan sifat kekontinuan norma $\| \cdot \| = (\cdot, \cdot)^{1/2}$, kita peroleh:
-    \begin{align*}
-      (v_n, w_n) &= \frac{1}{4} (\|v_n+w_n\|^2 - \|v_n-w_n\|^2) \\
-      &\to \frac{1}{4} (\|v+w\|^2 - \|v-w\|^2) = (v,w) \quad \text{untuk } n \to \infty.
-    \end{align*}
+  \textbf{Kasus $\mathcal{F}$ atas $\R$:} Dengan identitas polarisasi \eqref{eq:3.2}:
+  \begin{align*}
+    \langle v_n, w_m \rangle & = \frac{1}{4}\left(\|v_n+w_m\|^2 - \|v_n-w_m\|^2\right)
+    \xrightarrow{n,m\to\infty} \frac{1}{4}\left(\|v+w\|^2 - \|v-w\|^2\right) = \langle v, w \rangle.
+  \end{align*}
 
-    Untuk kasus di mana $\mathcal{F}$ adalah ruang Euclidean atas $\C$, kita menunjukkan kekontinuan dari $(\cdot, \cdot)$ melalui identitas polarisasi kompleks \eqref{eq:3.3}:
-    \begin{align*}
-      (v_n, w_n) &= \frac{1}{4} (\|v_n+w_n\|^2 - \|v_n-w_n\|^2 + i\|v_n+iw_n\|^2 - i\|v_n-iw_n\|^2) \\
-      &\to \frac{1}{4} (\|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2) = (v,w) \quad \text{untuk } n \to \infty.
-    \end{align*}
-    Kekontinuan norma menjamin eksistensi limit di atas, sehingga hasil kali dalam kontinu.
-  \end{proof}
+  \textbf{Kasus $\mathcal{F}$ atas $\C$:} Tambahan lagi $v_n \pm iw_m \to v \pm iw$, sehingga dengan identitas polarisasi kompleks \eqref{eq:3.3}:
+  \begin{align*}
+    \langle v_n, w_m \rangle & = \frac{1}{4}\left(\|v_n+w_m\|^2 - \|v_n-w_m\|^2 + i\|v_n+iw_m\|^2 - i\|v_n-iw_m\|^2\right)                                  \\
+                             & \xrightarrow{n,m\to\infty} \frac{1}{4}\left(\|v+w\|^2 - \|v-w\|^2 + i\|v+iw\|^2 - i\|v-iw\|^2\right) = \langle v, w \rangle.
+  \end{align*}
+
+  Pada kedua kasus, $\langle v_n, w_m \rangle \to \langle v, w \rangle$, sehingga $\langle \cdot, \cdot \rangle$ kontinu. \qed
 \end{frame}
 
-\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
-  Kini kita kembali ke pertanyaan mengenai eksistensi hampiran terbaik (best approximations). Di ruang Euclidean $\mathcal{F}$ kita dapat mengandalkan identitas jajar genjang \eqref{eq:3.1}. Selain itu, kita membutuhkan \textit{kelengkapan} dari $\mathcal{F}$. Pada kesempatan ini, kita mengingat kembali definisi berikut.
-
+\begin{frame}[allowframebreaks]{\insertsection}
   \setcounter{definisi}{11}
   \begin{definisi}
     Sebuah ruang Euclidean yang lengkap disebut \textbf{ruang Hilbert}.
   \end{definisi}
-
-  Selain itu, mari kita ingat kembali pengertian himpunan konveks tegas.
-
   \begin{definisi}
     Sebuah himpunan bagian tak-kosong $\mathcal{K} \subset \mathcal{F}$ disebut \textbf{konveks}, jika untuk sebarang $u,v \in \mathcal{K}$ segmen garis
     \begin{equation*}
       [u,v] = \{ \lambda u + (1-\lambda)v \mid \lambda \in [0,1] \}
     \end{equation*}
     antara $u$ dan $v$ terletak di dalam $\mathcal{K}$, yaitu, jika $[u,v] \subset \mathcal{K}$ untuk semua $u,v \in \mathcal{K}$.
-
     Jika untuk sebarang $u,v \in \mathcal{K}$ dengan $u \neq v$, segmen garis terbuka
     \begin{equation*}
       (u,v) = \{ \lambda u + (1-\lambda)v \mid \lambda \in (0,1) \}
@@ -335,44 +403,55 @@
   \end{definisi}
 \end{frame}
 
+\subsection{Teorema 3.14}
+
 \begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
   \setcounter{teorema}{13}
   \begin{teorema}
-    Misalkan $\mathcal{F}$ adalah sebuah ruang Hilbert dengan hasil kali dalam $(\cdot, \cdot)$ dan norma $\| \cdot \| = (\cdot, \cdot)^{1/2}$. Selanjutnya, misalkan $\mathcal{S} \subset \mathcal{F}$ menjadi sebuah himpunan bagian tertutup dan konveks dari $\mathcal{F}$. Maka terdapat untuk sebarang $f \in \mathcal{F}$ sebuah hampiran terbaik $s^* \in \mathcal{S}$ terhadap $f$.
+    Misalkan $\mathcal{F}$ adalah sebuah ruang Hilbert dengan hasil kali dalam $\langle \cdot, \cdot \rangle$ dan norma $\| \cdot \| = \langle \cdot, \cdot \rangle^{1/2}$. Selanjutnya, misalkan $\mathcal{S} \subset \mathcal{F}$ menjadi sebuah himpunan bagian tertutup dan konveks dari $\mathcal{F}$. Maka terdapat untuk sebarang $f \in \mathcal{F}$ sebuah aproksimasi terbaik $s^* \in \mathcal{S}$ terhadap $f$.
   \end{teorema}
+  \textit{Bukti.}
+  Definisikan jarak minimal $\eta \equiv \eta(f, \mathcal{S}) := \inf_{s \in \mathcal{S}} \|s - f\|$. Kita terlebih dahulu membuktikan keberadaan barisan minimal di $\mathcal{S}$.
 
-  \begin{proof}
-    Misalkan $(s_n)_{n \in \N} \subset \mathcal{S}$ adalah sebuah barisan minimal (\textit{minimal sequence}) di $\mathcal{S}$, yaitu:
-    \begin{equation*}
-      \|s_n - f\| \to \eta(f, \mathcal{S}) \quad \text{untuk } n \to \infty,
-    \end{equation*}
-    dengan jarak minimal $\eta \equiv \eta(f, \mathcal{S}) = \inf_{s \in \mathcal{S}} \|s - f\|$.
+  Karena $\mathcal{S}$ tak-kosong sesuai definisi himpunan konveks yang digunakan, ambil $s_0\in\mathcal{S}$. Semua jarak tak-negatif, sehingga:
+  \begin{equation*}
+    0\leq\eta\leq\|s_0-f\|<\infty.
+  \end{equation*}
+  Untuk setiap $n\in\N$, $n\geq 1$, berlaku $\eta+1/n>\eta$. Berdasarkan sifat infimum, harus ada $s_n\in\mathcal{S}$ dengan $\|s_n-f\|<\eta+1/n$. Sebab, jika tidak ada, maka $\|s-f\|\geq\eta+1/n$ untuk semua $s\in\mathcal{S}$. Ini menjadikan $\eta+1/n$ suatu batas bawah yang lebih besar daripada $\eta$, bertentangan dengan definisi infimum sebagai batas bawah terbesar.
 
-    Dengan menggunakan identitas jajar genjang \eqref{eq:3.1} pada elemen $v = s_n - f$ dan $w = s_m - f$, kita memiliki $v-w = s_n - s_m$ dan $v+w = s_n + s_m - 2f = 2\left(\frac{s_n+s_m}{2} - f\right)$. Maka kita peroleh:
-    \begin{align*}
-      \|s_n - s_m\|^2 + \left\| 2\left(\frac{s_n+s_m}{2} - f\right) \right\|^2 &= 2\|s_n - f\|^2 + 2\|s_m - f\|^2 \\
-      \|s_n - s_m\|^2 &= 2\|s_n - f\|^2 + 2\|s_m - f\|^2 - 4 \left\| \frac{s_n + s_m}{2} - f \right\|^2.
-    \end{align*}
-    \framebreak
+  Dengan memilih satu elemen tersebut untuk setiap $n$, diperoleh barisan $(s_n)_{n\in\N}\subset\mathcal{S}$ yang memenuhi:
+  \begin{equation*}
+    \eta\leq\|s_n-f\|<\eta+\frac{1}{n},
+    \qquad 0\leq\|s_n-f\|-\eta<\frac{1}{n}.
+  \end{equation*}
+  Karena $1/n\to 0$, teorema apit memberikan $\|s_n-f\|\to\eta$. Barisan inilah yang disebut \textbf{barisan minimal}. Selanjutnya, kita buktikan bahwa barisan tersebut konvergen ke suatu aproksimasi terbaik.
 
-    Karena $\mathcal{S}$ adalah himpunan konveks dan $s_n, s_m \in \mathcal{S}$, titik tengahnya $\frac{s_n + s_m}{2}$ juga harus berada di dalam $\mathcal{S}$. Menurut definisi jarak minimal $\eta$, jarak dari elemen mana pun di $\mathcal{S}$ (termasuk titik tengah tersebut) ke $f$ minimal adalah $\eta$. Oleh karena itu, $\left\| \frac{s_n + s_m}{2} - f \right\|^2 \geq \eta^2$. Menggunakan batas bawah ini, kita dapatkan estimasi:
-    \begin{equation*}
-      \|s_n - s_m\|^2 \leq 2\|s_n - f\|^2 + 2\|s_m - f\|^2 - 4\eta^2.
-    \end{equation*}
+  Terapkan identitas jajar genjang \eqref{eq:3.1} dengan substitusi $v = s_n - f$ dan $w = s_m - f$, sehingga:
+  \begin{equation*}
+    v - w = s_n - s_m, \qquad v + w = s_n + s_m - 2f = 2\left(\tfrac{s_n+s_m}{2} - f\right).
+  \end{equation*}
+  Diperoleh:
+  \begin{equation*}
+    \|s_n - s_m\|^2 = 2\|s_n - f\|^2 + 2\|s_m - f\|^2 - 4\left\|\frac{s_n+s_m}{2} - f\right\|^2.
+  \end{equation*}
 
-    Saat $n, m \to \infty$, kita tahu bahwa $\|s_n - f\| \to \eta$ dan $\|s_m - f\| \to \eta$. Maka batas atas dari persamaan di atas konvergen ke $2\eta^2 + 2\eta^2 - 4\eta^2 = 0$.
-    Oleh karena itu, untuk setiap $\varepsilon > 0$ terdapat suatu $N = N(\varepsilon) \in \N$ yang memenuhi
-    \begin{equation*}
-      \|s_n - s_m\| < \varepsilon \quad \text{untuk semua } n,m \geq N.
-    \end{equation*}
-    Hal ini menunjukkan bahwa $(s_n)_{n \in \N}$ adalah sebuah barisan Cauchy di dalam ruang Hilbert $\mathcal{F}$, dan oleh karenanya memiliki limit dan konvergen di $\mathcal{F}$.
+  Karena $\mathcal{S}$ konveks dan $s_n, s_m \in \mathcal{S}$, maka $\frac{s_n+s_m}{2} \in \mathcal{S}$, sehingga $\left\|\frac{s_n+s_m}{2} - f\right\| \geq \eta$. Maka:
+  \begin{equation*}
+    \|s_n - s_m\|^2 \leq 2\|s_n - f\|^2 + 2\|s_m - f\|^2 - 4\eta^2.
+  \end{equation*}
 
-    Karena $\mathcal{S}$ adalah himpunan tertutup, elemen limit $s^*$ harus terletak di dalam $\mathcal{S}$. Karena fungsi norma itu kontinu, kita dapat menukar proses limit dengan normanya:
-    \begin{equation*}
-      \eta = \lim_{n \to \infty} \|s_n - f\| = \left\| \lim_{n \to \infty} s_n - f \right\| = \|s^* - f\|.
-    \end{equation*}
-    Ini berarti bahwa $s^* \in \mathcal{S}$ mencapai jarak infimum $\eta$, sehingga $s^*$ adalah sebuah hampiran terbaik terhadap $f$.
-  \end{proof}
+  Karena $\|s_n - f\| \to \eta$ dan $\|s_m - f\| \to \eta$, ruas kanan konvergen ke $2\eta^2 + 2\eta^2 - 4\eta^2 = 0$ saat $n, m \to \infty$. Jadi untuk setiap $\varepsilon > 0$ terdapat $N = N(\varepsilon) \in \N$ sedemikian sehingga:
+  \begin{equation*}
+    \|s_n - s_m\| < \varepsilon \quad \text{untuk semua } n, m \geq N.
+  \end{equation*}
+  Ini berarti $(s_n)$ adalah barisan Cauchy. Karena $\mathcal{F}$ adalah ruang Hilbert (lengkap), barisan ini konvergen ke suatu limit $s^* \in \mathcal{F}$.
+
+  Karena $\mathcal{S}$ tertutup, maka $s^* \in \mathcal{S}$. Kekontinuan norma memberikan:
+  \begin{equation*}
+    \|s^* - f\| = \left\|\lim_{n \to \infty} s_n - f\right\| = \lim_{n \to \infty} \|s_n - f\| = \eta.
+  \end{equation*}
+  Jadi $s^* \in \mathcal{S}$ mencapai infimum $\eta$, yang berarti $s^*$ adalah aproksimasi terbaik dari $f$ di $\mathcal{S}$. \qed
+
 \end{frame}
 
 \end{document}

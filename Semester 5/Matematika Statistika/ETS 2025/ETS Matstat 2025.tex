@@ -1,0 +1,261 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{geometry}
+  \geometry{
+    left = 10mm,
+    right = 15mm,
+    top = 20mm,
+    bottom = 10mm,
+  }
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{D:/Hada Touya/Template-Math-Depart/}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER \\
+    SEMESTER GANJIL 2025/2026 \\
+    DEPARTEMEN MATEMATIKA - FSAD ITS \\
+    PROGRAM SARJANA}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \includegraphics[width=1.8cm]{M.png}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\begin{tabular}{l l p{12cm}}
+  Mata kuliah / kode & : & Matematika Statistika (SM234503)                                                                                            \\
+  Hari / tanggal     & : & Rabu, 15 Oktober 2025                                                                                                       \\
+  Sifat / waktu      & : & Tertutup - 90 menit                                                                                                         \\
+  Dosen              & : & Dra. Laksmi Prita Wardhani, M.Si; Dr. Valeriana Lukitosari, S.Si, MT; Endah RM Putri, S.Si., MT., Ph.D; Amirul Hakam, M.Si.
+\end{tabular}
+
+
+
+\begin{center}
+  \begin{tabular}{|l|p{9cm}|p{1.2cm}|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{CPMK} & Bobot CPMK                                                                                                                     & CPL 5 & CPL 7        & CPL 9                       \\ \hline
+    CPMK-1                     & Mahasiswa mampu menjelaskan Teorema Limit Pusat, asimtotik distribusi Normal, Konvergensi statistik dan konvergensi distribusi & 10\%  & $\checkmark$ &              & $\checkmark$ \\ \hline
+    CPMK-2                     & Mahasiswa mampu menjelaskan Statistik, Distribusi Sampling dan penerapannya                                                    & 15\%  & $\checkmark$ & $\checkmark$ &              \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Soal                        & Bobot Soal & CPMK 1 & CPMK 2 \\ \hline
+    1                           & 25         & 5      &        \\ \hline
+    2                           & 25         & 5      &        \\ \hline
+    3                           & 25         &        & 7      \\ \hline
+    4                           & 25         &        & 8      \\ \hline
+    \multicolumn{2}{|c|}{Total} & 10         & 15              \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{enumerate}
+  \item Perhatikan sampel acak berukuran $n$ dari suatu distribusi dengan CDF,
+        \[
+          F(x) = \begin{cases}
+            1 - x^{-2}, & \text{jika } x > 1 \\
+            0,          & \text{lainnya.}
+          \end{cases}
+        \]
+        \begin{enumerate}[label=(\alph*)]
+          \item Dapatkan CDF untuk $W_n = X_{n:n}$
+          \item Dapatkan CDF untuk $Y_n = n^{-1/2}X_{n:n}$
+          \item Dapatkan distribusi terbatas untuk $Y_n$.
+        \end{enumerate}
+
+
+  \item Diberikan $X_i \sim UNIF(0, 1)$, dimana $X_1, X_2, \cdots, X_{20}$ saling independen. Menggunakan pendekatan normal,
+        \begin{enumerate}[label=(\alph*)]
+          \item Dapatkan $P\left( \sum_{i=1}^{20} X_i \le 12 \right)$.
+          \item Dapatkan percentil ke-90 dari $\sum_{i=1}^{20} X_i$.
+        \end{enumerate}
+
+
+  \item Sebuah perusahaan asuransi ingin memodelkan jumlah klaim yang digunakan oleh pemegang polis dalam satu tahun. Berdasarkan data historis, perusahaan asuransi tersebut menemukan jumlah klaim mengikuti distribusi Gamma, dengan $\theta = 1.5$ dan $\kappa = 2$. Jika perusahaan tersebut ingin mengetahui peluang bahwa jumlah klaim dalam satu tahun adalah 6 atau lebih, bagaimana mereka menggunakan distribusi Chi-Square untuk menyelesaikannya.
+
+
+  \item Misalkan variabel acak independen $Z_i \sim N(0, 1)$ untuk $i = 1, 2, \cdots, 16$, dan $\bar{Z}$ menyatakan suatu mean. Dapatkan:
+        \begin{enumerate}[label=(\alph*)]
+          \item $P\left(\bar{Z} < \frac{1}{2}\right)$.
+          \item $P(Z_1 - Z_2 < 2)$.
+          \item Bentuklah suatu statistik $T$ berdistribusi $t$ dengan derajad kebebasan $v$, $T \sim t(v)$, lalu dapatkan $P(-2.131 < T < 2.131)$.
+        \end{enumerate}
+\end{enumerate}
+
+
+\begin{center}
+  \textbf{SELAMAT MENGERJAKAN}
+\end{center}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+
+\begin{enumerate}
+  \item
+        Diketahui sampel acak $X_1, X_2, \cdots, X_n$ dari distribusi dengan CDF:
+        \[
+          F(x) = \begin{cases}
+            1 - x^{-2}, & \text{jika } x > 1 \\
+            0,          & \text{lainnya.}
+          \end{cases}
+        \]
+        \begin{enumerate}[label=(\alph*)]
+          \item CDF untuk $W_n = X_{n:n} = \max(X_1, X_2, \cdots, X_n)$:
+                \begin{align*}
+                  F_{W_n}(w) & = P(W_n \le w) = P(\max(X_1, \cdots, X_n) \le w)               \\
+                             & = P(X_1 \le w, X_2 \le w, \cdots, X_n \le w)                   \\
+                             & = [F(w)]^n = \begin{cases}
+                                              \left(1 - w^{-2}\right)^n, & \text{jika } w > 1 \\
+                                              0,                         & \text{lainnya.}
+                                            \end{cases}
+                \end{align*}
+
+          \item CDF untuk $Y_n = n^{-1/2}X_{n:n} = \frac{W_n}{\sqrt{n}}$:
+                \begin{align*}
+                  F_{Y_n}(y) & = P(Y_n \le y) = P\left(\frac{W_n}{\sqrt{n}} \le y\right) = P(W_n \le y\sqrt{n})                      \\
+                             & = F_{W_n}(y\sqrt{n})                                                                                  \\
+                             & = \begin{cases}
+                                   \left(1 - (y\sqrt{n})^{-2}\right)^n, & \text{jika } y\sqrt{n} > 1 \implies y > \frac{1}{\sqrt{n}} \\
+                                   0,                                   & \text{lainnya.}
+                                 \end{cases} \\
+                             & = \begin{cases}
+                                   \left(1 - \frac{1}{n y^2}\right)^n, & \text{jika } y > \frac{1}{\sqrt{n}} \\
+                                   0,                                  & \text{lainnya.}
+                                 \end{cases}
+                \end{align*}
+
+          \item Distribusi terbatas untuk $Y_n$ ketika $n \to \infty$:
+                Untuk $y > 0$ dan $n$ yang cukup besar sehingga $y > \frac{1}{\sqrt{n}}$,
+                \begin{align*}
+                  \lim_{n \to \infty} F_{Y_n}(y) & = \lim_{n \to \infty} \left(1 - \frac{1/y^2}{n}\right)^n \\
+                                                 & = e^{-1/y^2}
+                \end{align*}
+                Untuk $y \le 0$, $\lim_{n \to \infty} F_{Y_n}(y) = 0$.
+                Jadi, CDF dari distribusi terbatas untuk $Y_n$ adalah:
+                \[
+                  F_Y(y) = \begin{cases}
+                    e^{-y^{-2}}, & \text{jika } y > 0 \\
+                    0,           & \text{lainnya.}
+                  \end{cases}
+                \]
+        \end{enumerate}
+
+  \item
+        Diberikan $X_i \sim \text{UNIF}(0, 1)$ untuk $i = 1, 2, \cdots, 20$ saling independen.
+        Maka, $\mu = E[X_i] = \frac{0+1}{2} = \frac{1}{2}$ dan $\sigma^2 = \text{Var}(X_i) = \frac{(1-0)^2}{12} = \frac{1}{12}$.
+        Misalkan $S = \sum_{i=1}^{20} X_i$. Berdasarkan Teorema Limit Pusat, $S$ mendekati distribusi Normal dengan:
+        \begin{align*}
+          E[S]          & = n\mu = 20 \left(\frac{1}{2}\right) = 10                \\
+          \text{Var}(S) & = n\sigma^2 = 20 \left(\frac{1}{12}\right) = \frac{5}{3}
+        \end{align*}
+        Sehingga $S \sim N\left(10, \frac{5}{3}\right)$.
+        \begin{enumerate}[label=(\alph*)]
+          \item $P\left( \sum_{i=1}^{20} X_i \le 12 \right) = P(S \le 12)$.
+                Dengan menggunakan pendekatan normal:
+                \begin{align*}
+                  P(S \le 12) & = P\left(Z \le \frac{12 - 10}{\sqrt{5/3}}\right) \\
+                              & = P\left(Z \le \frac{2}{\sqrt{5/3}}\right)       \\
+                              & \approx P(Z \le 1.549)                           \\
+                              & \approx 0.9394
+                \end{align*}
+
+          \item Percentil ke-90 dari $\sum_{i=1}^{20} X_i$, misalkan $c$, berarti $P(S \le c) = 0.90$.
+                Dari tabel distribusi normal standar, nilai $Z$ yang memenuhi $P(Z \le z) = 0.90$ adalah $z \approx 1.282$.
+                \begin{align*}
+                  \frac{c - 10}{\sqrt{5/3}} & = 1.282                         \\
+                  c                         & = 10 + 1.282 \sqrt{\frac{5}{3}} \\
+                  c                         & \approx 10 + 1.282 (1.291)      \\
+                  c                         & \approx 10 + 1.655 = 11.655
+                \end{align*}
+                Jadi, percentil ke-90 adalah 11.655.
+        \end{enumerate}
+
+  \item
+        Diketahui jumlah klaim $X \sim \text{Gamma}(\theta = 1.5, \kappa = 2)$.
+        Berdasarkan sifat hubungan antara distribusi Gamma dan Chi-Square, jika $X \sim \text{Gamma}(\theta, \kappa)$, maka transformasi $Y = \frac{2X}{\theta}$ berdistribusi Chi-Square dengan derajat kebebasan $v = 2\kappa$, yaitu $Y \sim \chi^2(2\kappa)$. \\
+        Di sini, $v = 2(2) = 4$.
+        Maka,
+        \[ Y = \frac{2X}{1.5} = \frac{4}{3}X \sim \chi^2(4) \]
+        Perusahaan ingin mengetahui peluang $X \ge 6$. Peluang ini ekuivalen dengan:
+        \begin{align*}
+          P(X \ge 6) & = P\left(\frac{4}{3}X \ge \frac{4}{3}(6)\right) \\
+                     & = P(Y \ge 8)
+        \end{align*}
+        Karena $Y \sim \chi^2(4)$, maka peluang tersebut dapat diselesaikan dengan mencari nilai $P(\chi^2_4 \ge 8)$ pada tabel distribusi Chi-Square dengan derajat kebebasan 4, atau dihitung sebagai:
+        \begin{align*}
+          P(Y \ge 8) & = \int_8^\infty \frac{1}{2^{4/2}\Gamma(4/2)} y^{4/2 - 1} e^{-y/2} dy                                   \\
+                     & = \int_8^\infty \frac{1}{4} y e^{-y/2} dy                                                              \\
+                     & = \left[ -\frac{1}{2}ye^{-y/2} - e^{-y/2} \right]_8^\infty \quad \text{(menggunakan integral parsial)} \\
+                     & = (0) - \left(-\frac{1}{2}(8)e^{-4} - e^{-4}\right)                                                    \\
+                     & = 4e^{-4} + e^{-4} = 5e^{-4} \approx 0.0916
+        \end{align*}
+        Jadi, perusahaan dapat menggunakan tabel distribusi Chi-Square untuk derajat kebebasan 4 dengan mencari luasan di sebelah kanan nilai 8.
+
+  \item
+        Misalkan $Z_i \sim N(0, 1)$ saling independen untuk $i = 1, 2, \cdots, 16$.
+        \begin{enumerate}[label=(\alph*)]
+          \item $P\left(\bar{Z} < \frac{1}{2}\right)$. \\
+                Karena $Z_i \sim N(0, 1)$, maka rata-rata sampel $\bar{Z} = \frac{1}{16} \sum_{i=1}^{16} Z_i$ berdistribusi $N\left(0, \frac{1}{16}\right)$.
+                \begin{align*}
+                  P\left(\bar{Z} < \frac{1}{2}\right) & = P\left( \frac{\bar{Z} - 0}{\sqrt{1/16}} < \frac{1/2 - 0}{1/4} \right) \\
+                                                      & = P(Z < 2)                                                              \\
+                                                      & \approx 0.9772
+                \end{align*}
+
+          \item $P(Z_1 - Z_2 < 2)$. \\
+                Misalkan $W = Z_1 - Z_2$. Karena kombinasi linear dari distribusi normal saling bebas juga berdistribusi normal, maka:
+                $E[W] = E[Z_1] - E[Z_2] = 0 - 0 = 0$. \\
+                $\text{Var}(W) = \text{Var}(Z_1) + \text{Var}(Z_2) = 1 + 1 = 2$. \\
+                Sehingga $W \sim N(0, 2)$.
+                \begin{align*}
+                  P(Z_1 - Z_2 < 2) & = P(W < 2)                                   \\
+                                   & = P\left( Z < \frac{2 - 0}{\sqrt{2}} \right) \\
+                                   & = P(Z < \sqrt{2}) \approx P(Z < 1.414)       \\
+                                   & \approx 0.9213
+                \end{align*}
+
+          \item Bentuklah suatu statistik $T$ berdistribusi $t$. \\
+                Statistik $t$ dapat dibentuk dari perbandingan distribusi Normal Standar dan akar dari distribusi Chi-Square yang dibagi derajat kebebasannya, dengan keduanya saling bebas.
+                Kita ketahui:
+                \[ \bar{Z} \sim N\left(0, \frac{1}{16}\right) \implies 4\bar{Z} \sim N(0, 1) \]
+                Dan variansi sampel $S^2 = \frac{1}{15} \sum_{i=1}^{16} (Z_i - \bar{Z})^2$, dengan sifat $\frac{15S^2}{1} \sim \chi^2(15)$. \\
+                Rata-rata sampel $\bar{Z}$ dan variansi sampel $S^2$ dari distribusi normal standar saling independen.
+                Maka statistik $T$ dapat dibentuk sebagai:
+                \[ T = \frac{4\bar{Z}}{\sqrt{15S^2 / 15}} = \frac{4\bar{Z}}{S} = \frac{\bar{Z}}{S/\sqrt{16}} \]
+                Statistik ini berdistribusi $t$ dengan derajat kebebasan $v = 15$, yaitu $T \sim t(15)$. \\
+                Kemudian, peluang $P(-2.131 < T < 2.131)$: \\
+                Berdasarkan tabel distribusi $t$ dengan derajat kebebasan $15$, nilai kritis untuk luas area di ekor kanan sebesar $0.025$ adalah $t_{0.025, 15} = 2.131$.
+                Oleh karena itu, area di antara $-2.131$ dan $2.131$ adalah:
+                \begin{align*}
+                  P(-2.131 < T < 2.131) & = 1 - 2 P(T > 2.131) \\
+                                        & = 1 - 2(0.025)       \\
+                                        & = 1 - 0.05 = 0.95
+                \end{align*}
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
