@@ -84,6 +84,9 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\sgn}{\operatorname{sgn}}
 
 \AtBeginEnvironment{contoh}{%
 \setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
@@ -714,12 +717,12 @@
   \begin{equation*}
     \frac{1}{p}+\frac{1}{q}=1, \qquad (p-1)q=p.
   \end{equation*}
-  Ambil dua barisan $x,y\in\ell^p$:
+  Berdasarkan pernyataan $(c)$ pada \myref{thm:3.26}, untuk membuktikan kekonveksan tegas norma $\|\cdot\|_p$, dapat diambil dua barisan $x,y\in\ell^p$:
   \begin{equation*}
     x=(x_k)_{k\in\N},\qquad y=(y_k)_{k\in\N},
     \qquad x\neq y,\quad \|x\|_p=\|y\|_p=1.
   \end{equation*}
-  Berdasarkan pernyataan $(c)$ pada \myref{thm:3.26}, untuk membuktikan kekonveksan tegas norma $\|\cdot\|_p$, cukup ditunjukkan:
+  kemudian cukup ditunjukkan:
   \setcounter{equation}{24}
   \begin{equation}
     \|x+y\|_p<2. \label{eq:3.25}
@@ -729,10 +732,12 @@
 
   \begin{enumerate}
     \item Definisikan $s=(s_k)_{k\in\N}$ dengan $s_k:=|x_k+y_k|^{p-1}\geq 0$. Untuk memastikan $s\in\ell^q$, perhatikan batas sederhana:
-          \begin{equation*}
-            |x_k+y_k|^p\leq (|x_k|+|y_k|)^p
+          \begin{align*}
+            |x_k+y_k|^p
+             & \leq (|x_k|+|y_k|)^p
+            \leq\bigl(2\max\{|x_k|,|y_k|\}\bigr)^p =2^p\max\{|x_k|^p,|y_k|^p\}
             \leq 2^p\bigl(|x_k|^p+|y_k|^p\bigr).
-          \end{equation*}
+          \end{align*}
           Karena $x,y\in\ell^p$, penjumlahan batas ini menunjukkan $x+y\in\ell^p$. Dengan $(p-1)q=p$, diperoleh:
           \begin{equation*}
             \sum_{k=1}^{\infty}|s_k|^q
@@ -743,26 +748,18 @@
           \begin{align*}
             \|s\|_q
              & =\left(\sum_{k=1}^{\infty}|x_k+y_k|^p\right)^{1/q}
-            =\left(\|x+y\|_p^p\right)^{1/q}                       \\
-             & =\|x+y\|_p^{p/q}=\|x+y\|_p^{p-1}.
+            =\left(\|x+y\|_p^p\right)^{1/q}    =\|x+y\|_p^{p/q}=\|x+y\|_p^{p-1}.
           \end{align*}
-
 
     \item Dari definisi $s_k$ dan ketaksamaan segitiga pada setiap komponen, diperoleh:
           \begin{align}
             \|x+y\|_p^p
              & =\sum_{k=1}^{\infty}|x_k+y_k||s_k| \nonumber                             \\
              & \leq\sum_{k=1}^{\infty}\bigl(|x_k||s_k|+|y_k||s_k|\bigr) \label{eq:3.26} \\
+             & =\|xs\|_1+\|ys\|_1 \nonumber                                             \\
              & \leq\|x\|_p\|s\|_q+\|y\|_p\|s\|_q. \label{eq:3.27}
           \end{align}
-          Ketaksamaan \eqref{eq:3.27} diperoleh dengan menerapkan \myref{thm:3.29}, yaitu ketaksamaan H\"older \eqref{eq:3.19}, masing-masing pada pasangan $(x,s)$ dan $(y,s)$:
-          \begin{equation*}
-            \sum_{k=1}^{\infty}|x_k||s_k|\leq\|x\|_p\|s\|_q,
-            \qquad
-            \sum_{k=1}^{\infty}|y_k||s_k|\leq\|y\|_p\|s\|_q.
-          \end{equation*}
-          Selanjutnya, kita gunakan hubungan $\|s\|_q=\|x+y\|_p^{p-1}$ untuk memperoleh batas norma jumlah.
-
+          Ketaksamaan \eqref{eq:3.27} diperoleh dengan menerapkan \myref{thm:3.29}. Selanjutnya, kita gunakan hubungan $\|s\|_q=\|x+y\|_p^{p-1}$ untuk memperoleh batas norma jumlah.
 
     \item Substitusikan $\|s\|_q=\|x+y\|_p^{p-1}$ ke \eqref{eq:3.27}, sehingga:
           \begin{equation*}
@@ -777,7 +774,7 @@
 
           Khususnya, untuk pasangan vektor satuan yang sedang ditinjau:
           \begin{equation*}
-            \|x+y\|_p\leq 2.
+            \|x+y\|_p\leq 2,\quad \text{untuk} \quad \|x\|_p=\|y\|_p=1.
           \end{equation*}
           Untuk menunjukkan bahwa ketaksamaan ini tegas ketika $x\neq y$, andaikan $\|x+y\|_p=2$. Maka $s\neq 0$ dan seluruh ketaksamaan pada \eqref{eq:3.26} serta \eqref{eq:3.27} harus berupa kesamaan.
 
@@ -800,15 +797,27 @@
             \sum_{k=1}^{\infty}
             \bigl(|x_k|+|y_k|-|x_k+y_k|\bigr)|s_k|=0.
           \end{equation*}
-          Setiap suku tak-negatif. Jadi, untuk setiap $k$ dengan $s_k>0$, harus berlaku $|x_k+y_k|=|x_k|+|y_k|$. Untuk skalar real, hal ini berarti $x_k$ dan $y_k$ bertanda sama; untuk skalar kompleks, keduanya memiliki arah yang sama.
+          Setiap suku tak-negatif. Jadi, untuk setiap $k$ dengan $s_k>0$, harus berlaku $|x_k+y_k|=|x_k|+|y_k|$. Untuk skalar real, hal ini berarti $\sgn(x_k)=\sgn(y_k)$ sedangkan untuk skalar kompleks, keduanya memiliki arah yang sama.
 
-          Karena $|x_k|=|y_k|$, kesamaan tersebut mengakibatkan $x_k=y_k$. Secara aljabar:
+          Dari $|x_k+y_k|=|x_k|+|y_k|$ dan $|x_k|=|y_k|$, diperoleh $|x_k+y_k|=2|x_k|$.
+
+          Notasi $\overline{z}$ menyatakan konjugat kompleks dari $z$, sedangkan $\operatorname{Re}(z)$ menyatakan bagian realnya. Gunakan identitas $|z|^2=z\overline{z}$ untuk menguraikan kuadrat modulus:
+          \begin{align*}
+            |x_k+y_k|^2
+             & =(x_k+y_k)(\overline{x_k}+\overline{y_k})               \\
+             & =|x_k|^2+|y_k|^2+x_k\overline{y_k}+\overline{x_k}y_k    \\
+             & =|x_k|^2+|y_k|^2+2\operatorname{Re}(x_k\overline{y_k}).
+          \end{align*}
+          Kuadratkan $|x_k+y_k|=2|x_k|$ dan gunakan $|x_k|=|y_k|$ pada penguraian di atas:
           \begin{equation*}
-            |x_k+y_k|=2|x_k|
-            \implies \operatorname{Re}(x_k\overline{y_k})=|x_k|^2
-            \implies |x_k-y_k|^2=0.
+            4|x_k|^2=|x_k+y_k|^2
+            =2|x_k|^2+2\operatorname{Re}(x_k\overline{y_k}).
           \end{equation*}
-          Jika $s_k=0$, syarat kesamaan H\"older \eqref{eq:3.20} memberikan $|x_k|^{p-1}=|y_k|^{p-1}=0$, sehingga $x_k=y_k=0$.
+          Maka $\operatorname{Re}(x_k\overline{y_k})=|x_k|^2$. Substitusikan hasil ini pada penguraian kuadrat modulus selisih:
+          \begin{align*}
+            |x_k-y_k|^2=|x_k|^2+|y_k|^2-2\operatorname{Re}(x_k\overline{y_k}) =2|x_k|^2-2|x_k|^2=0.
+          \end{align*}
+          Jadi, $x_k=y_k$ untuk setiap $k$ dengan $s_k>0$. Jika $s_k=0$, syarat kesamaan H\"older \eqref{eq:3.20} memberikan $|x_k|^{p-1}=|y_k|^{p-1}=0$, sehingga $x_k=y_k=0$.
   \end{enumerate}
 
   Jadi, $x=y$, bertentangan dengan asumsi $x\neq y$. Oleh karena itu, \eqref{eq:3.25} berlaku untuk setiap dua vektor satuan yang berbeda. Berdasarkan \myref{thm:3.26}, norma $\|\cdot\|_p$ pada $\ell^p$ konveks tegas. \qed
@@ -830,10 +839,7 @@
   \end{equation*}
   Ketaksamaan segitiga pada nilai fungsi dan dua penerapan H\"older memberikan:
   \begin{align*}
-    \|f+g\|_p^p
-     & =\int_\Omega |f+g|s\,d\mu                         \\
-     & \leq\int_\Omega |f|s\,d\mu+\int_\Omega |g|s\,d\mu \\
-     & \leq(\|f\|_p+\|g\|_p)\|s\|_q=2\|f+g\|_p^{p-1}.
+    \|f+g\|_p^p=\int_\Omega |f+g|s\,d\mu                         \leq\int_\Omega |f|s\,d\mu+\int_\Omega |g|s\,d\mu \leq(\|f\|_p+\|g\|_p)\|s\|_q=2\|f+g\|_p^{p-1}.
   \end{align*}
   Jika $\|f+g\|_p=0$, maka $\|f+g\|_p<2$ langsung berlaku. Jika positif, pembagian dengan $\|f+g\|_p^{p-1}$ menghasilkan $\|f+g\|_p\leq 2$.
 
@@ -876,7 +882,7 @@
   \textit{Bukti.}
   Kita buktikan setiap pernyataan menggunakan kriteria $(c)$ pada \myref{thm:3.26}: suatu norma konveks tegas jika dan hanya jika norma jumlah setiap dua vektor satuan yang berbeda kurang dari $2$.
 
-  \begin{enumerate}[(a)]
+  \begin{enumerate}[a]
     \item Untuk $1<p<\infty$, identifikasikan setiap vektor $x=(x_1,\dots,x_d)\in\R^d$ dengan barisan di $\ell^p$ yang diperoleh dengan menambahkan komponen nol:
           \begin{equation*}
             Jx:=(x_1,\dots,x_d,0,0,\dots)\in\ell^p.
@@ -900,7 +906,7 @@
             \|x\|_1=\|y\|_1=1, \qquad
             \|x+y\|_1=\|(1,1,0,\dots,0)\|_1=|1|+|1|=2.
           \end{equation*}
-          Jadi, terdapat dua vektor satuan yang berbeda dengan norma jumlah tepat $2$. Ini melanggar kriteria kekonveksan tegas pada \myref{thm:3.26}. Oleh karena itu, norma $\|\cdot\|_1$ tidak konveks tegas pada $\R^d$ untuk $d>1$.
+          Ini melanggar kriteria kekonveksan tegas pada \myref{thm:3.26}. Oleh karena itu, norma $\|\cdot\|_1$ tidak konveks tegas pada $\R^d$ untuk $d>1$.
 
     \item Untuk $d>1$, pilih dua vektor berikut untuk norma $\|\cdot\|_\infty$:
           \begin{equation*}
@@ -921,8 +927,8 @@
 
 \begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
   \setcounter{teorema}{36}
-  \begin{teorema}\label{thm:3.37}
-    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\|\cdot\|$ yang konveks tegas. Selanjutnya, misalkan $\mathcal{S}\subset\mathcal{F}$ adalah himpunan konveks dan $f\in\mathcal{F}$. Jika terdapat aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$, maka $s^*$ tunggal.
+  \begin{teorema}
+    Misalkan $\mathcal{F}$ adalah ruang linear dengan norma $\|\cdot\|$ yang konveks tegas. Selanjutnya, misalkan $\mathcal{S}\subset\mathcal{F}$ adalah himpunan konveks dan $f\in\mathcal{F}$. Jika terdapat aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$, maka $s^*$ tunggal.\label{thm:3.37}
   \end{teorema}
 
   \textit{Bukti.}
@@ -972,8 +978,8 @@
 
 \begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
   \setcounter{akibat}{38}
-  \begin{akibat}\label{cor:3.39}
-    Misalkan $\mathcal{F}$ adalah ruang Euclidean dan $\mathcal{S}\subset\mathcal{F}$ adalah himpunan konveks. Maka untuk setiap $f\in\mathcal{F}$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$.
+  \begin{akibat}
+    Misalkan $\mathcal{F}$ adalah ruang Euclidean dan $\mathcal{S}\subset\mathcal{F}$ adalah himpunan konveks. Maka untuk setiap $f\in\mathcal{F}$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$.\label{cor:3.39}
   \end{akibat}
 
   \textit{Bukti.}
@@ -990,8 +996,8 @@
 
 \begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
   \setcounter{akibat}{39}
-  \begin{akibat}\label{cor:3.40}
-    Misalkan $\mathcal{S}\subset L^p$ adalah himpunan konveks untuk $1<p<\infty$. Maka untuk setiap $f\in L^p$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $\|\cdot\|_p$.
+  \begin{akibat}
+    Misalkan $\mathcal{S}\subset L^p$ adalah himpunan konveks untuk $1<p<\infty$. Maka untuk setiap $f\in L^p$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $\|\cdot\|_p$.\label{cor:3.40}
   \end{akibat}
 
   \textit{Bukti.}
@@ -1006,8 +1012,8 @@
 
 \begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
   \setcounter{akibat}{40}
-  \begin{akibat}\label{cor:3.41}
-    Misalkan $\mathcal{S}\subset\ell^p$ adalah himpunan konveks untuk $1<p<\infty$. Maka untuk setiap $f\in\ell^p$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $\|\cdot\|_p$.
+  \begin{akibat}
+    Misalkan $\mathcal{S}\subset\ell^p$ adalah himpunan konveks untuk $1<p<\infty$. Maka untuk setiap $f\in\ell^p$, terdapat paling banyak satu aproksimasi terbaik $s^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $\|\cdot\|_p$.\label{cor:3.41}
   \end{akibat}
 
   \textit{Bukti.}
@@ -1020,8 +1026,8 @@
 
 \begin{frame}[allowframebreaks=1]{\insertsection}{\insertsubsection}
   \setcounter{proposisi}{41}
-  \begin{proposisi}\label{prop:3.42}
-    Misalkan $f\in\mathcal{C}[-1,1]$ adalah fungsi genap dan $\mathcal{S}\subset\mathcal{C}[-1,1]$ adalah himpunan yang invarian terhadap refleksi. Jika terdapat aproksimasi terbaik tunggal $s_p^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $L^p$, yaitu $\|\cdot\|_p$, untuk $1\leq p\leq\infty$, maka $s_p^*$ juga merupakan fungsi genap.
+  \begin{proposisi}
+    Misalkan $f\in\mathcal{C}[-1,1]$ adalah fungsi genap dan $\mathcal{S}\subset\mathcal{C}[-1,1]$ adalah himpunan yang invarian terhadap refleksi. Jika terdapat aproksimasi terbaik tunggal $s_p^*\in\mathcal{S}$ terhadap $f$ sehubungan dengan norma $L^p$, yaitu $\|\cdot\|_p$, untuk $1\leq p\leq\infty$, maka $s_p^*$ juga merupakan fungsi genap.\label{prop:3.42}
   \end{proposisi}
 
   \textit{Bukti.}
