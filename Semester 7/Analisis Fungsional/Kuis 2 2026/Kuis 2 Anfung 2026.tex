@@ -1,0 +1,373 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\supnorm}[1]{\left\lVert #1\right\rVert_\infty}
+
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=*,topsep=5pt,itemsep=5pt,parsep=0pt}
+\setlist[enumerate,2]{label=(\roman*),leftmargin=*,topsep=4pt,itemsep=4pt,parsep=0pt}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{4pt}
+\setlength{\belowdisplayshortskip}{4pt}
+
+\begin{center}
+  \textbf{\Large Kuis 2\\[4pt]Analisis Fungsional 2026}
+\end{center}
+\vspace{6pt}
+
+\begin{enumerate}
+  \item Misalkan $P_1=\{p(x)=a+bx\mid a,b\in\R\}$.
+        Didefinisikan fungsi $\lVert\cdot\rVert:P_1\to\R$ dengan
+        $\norm{p}=|a|+|b|$, untuk setiap $p(x)=a+bx\in P_1$.
+        Buktikan bahwa $(P_1,\lVert\cdot\rVert)$ merupakan ruang bernorma.
+
+  \item Diberikan operator linear $T:C[0,1]\to C[0,1]$ yang didefinisikan oleh
+        \[
+          (Tf)(x)=\int_0^x f(t)\,dt,\qquad x\in[0,1].
+        \]
+        Tunjukkan bahwa $T$ merupakan operator linear dan terbatas.
+
+  \item Misalkan $V$ adalah ruang vektor bernorma dan $T$ adalah operator linear
+        terbatas pada $V$. Misalkan $w_k\to w$ di $V$ ketika $k\to\infty$.
+        Tunjukkan bahwa $Tw_k\to Tw$ ketika $k\to\infty$.
+
+  \item Misalkan $V=C([0,1])$ adalah ruang semua fungsi kontinu pada $[0,1]$
+        dengan norma supremum
+        \[
+          \supnorm{f}=\sup_{x\in[0,1]}|f(x)|.
+        \]
+        Diberikan subruang $W=\{f\in C([0,1]):f(0)=0\}$.
+        Untuk setiap $\delta>0$, didefinisikan fungsi $g\in C([0,1])$ oleh
+        \[
+          g(x)=\frac{\delta}{2},\qquad x\in[0,1].
+        \]
+        \begin{enumerate}
+          \item Tunjukkan bahwa $g\in B(0,\delta)$.
+          \item Gunakan (i) untuk menyimpulkan bahwa $W$ bukan himpunan terbuka
+                di $C([0,1])$.
+        \end{enumerate}
+
+  \item Misalkan $X$ adalah ruang semua $n$-tuple terurut
+        $x=(\xi_1,\ldots,\xi_n)$ dari bilangan real dan didefinisikan
+        \[
+          d(x,y)=\max_{1\le j\le n}|\xi_j-\eta_j|,
+        \]
+        dengan $y=(\eta_1,\ldots,\eta_n)$.
+        Tunjukkan bahwa $(X,d)$ merupakan ruang metrik lengkap.
+
+  \item Jika $(x_n)$ dan $(y_n)$ merupakan barisan Cauchy di ruang metrik $(X,d)$,
+        tunjukkan bahwa barisan $(a_n)$, dengan
+        \[
+          a_n=d(x_n,y_n),
+        \]
+        konvergen. Berikan contoh ilustratifnya.
+
+  \item Misalkan $U\subseteq V$ adalah himpunan-himpunan bagian dari suatu
+        ruang metrik $X$. Tunjukkan bahwa jika $U$ padat di $V$ dan $V$ padat
+        di $X$, maka $U$ padat di $X$.
+
+  \item Tunjukkan bahwa
+        \[
+          |d(x,y)-d(x',y')|\le d(x,x')+d(y,y')
+        \]
+        untuk setiap $x,y,x',y'\in X$, dengan $(X,d)$ suatu ruang metrik.
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{\Large Solusi}
+\end{center}
+\vspace{6pt}
+
+\begin{enumerate}[itemsep=12pt,parsep=5pt]
+  \item Setiap anggota $P_1$ memiliki koefisien $a$ dan $b$ yang tunggal.
+        Jadi, nilai $\norm{p}=|a|+|b|$ terdefinisi dengan baik.
+
+        Polinomial nol termasuk $P_1$.
+        Penjumlahan dan perkalian skalar tetap menghasilkan polinomial berbentuk $a+bx$.
+        Jadi, $P_1$ merupakan subruang dari ruang polinomial real.
+
+        Ambil $p(x)=a+bx$, $q(x)=c+dx$, dan $\lambda\in\R$.
+        Periksa sifat-sifat norma berikut.
+        \begin{enumerate}
+          \item Karena $|a|\ge0$ dan $|b|\ge0$, diperoleh
+                \[
+                  \norm{p}=|a|+|b|\ge0.
+                \]
+
+          \item Jika $\norm{p}=0$, maka $|a|+|b|=0$.
+                Kedua suku tidak negatif, sehingga $a=b=0$.
+                Jadi, $p$ adalah polinomial nol.
+                Sebaliknya, polinomial nol memiliki norma nol.
+                Maka,
+                \[
+                  \norm{p}=0\quad\Longleftrightarrow\quad p=0.
+                \]
+
+          \item Koefisien $\lambda p$ adalah $\lambda a$ dan $\lambda b$.
+                Dengan demikian,
+                \begin{align*}
+                  \norm{\lambda p}
+                   & =|\lambda a|+|\lambda b| \\
+                   & =|\lambda|(|a|+|b|)
+                  =|\lambda|\norm{p}.
+                \end{align*}
+
+          \item Karena $(p+q)(x)=(a+c)+(b+d)x$, diperoleh
+                \begin{align*}
+                  \norm{p+q}
+                   & =|a+c|+|b+d|        \\
+                   & \le |a|+|c|+|b|+|d| \\
+                   & =\norm{p}+\norm{q}.
+                \end{align*}
+        \end{enumerate}
+        Semua sifat norma terpenuhi.
+        Jadi, $(P_1,\lVert\cdot\rVert)$ merupakan ruang bernorma.
+
+  \item Gunakan norma supremum pada $C[0,1]$.
+        Jika $f$ kontinu, fungsi $x\mapsto\int_0^x f(t)\,dt$ juga kontinu.
+        Jadi, $Tf\in C[0,1]$ dan operator $T$ terdefinisi dengan baik.
+
+        Ambil $f,h\in C[0,1]$ dan skalar $\alpha,\beta$.
+        Untuk setiap $x\in[0,1]$, berlaku
+        \begin{align*}
+          \bigl(T(\alpha f+\beta h)\bigr)(x)
+           & =\int_0^x \bigl(\alpha f(t)+\beta h(t)\bigr)\,dt \\
+           & =\alpha\int_0^x f(t)\,dt
+          +\beta\int_0^x h(t)\,dt                             \\
+           & =\alpha(Tf)(x)+\beta(Th)(x).
+        \end{align*}
+        Maka, $T(\alpha f+\beta h)=\alpha Tf+\beta Th$.
+        Jadi, $T$ linear.
+
+        Selanjutnya, untuk setiap $x\in[0,1]$,
+        \begin{align*}
+          |(Tf)(x)|
+           & =\left|\int_0^x f(t)\,dt\right| \\
+           & \le\int_0^x |f(t)|\,dt          \\
+           & \le\int_0^x \supnorm{f}\,dt
+          =x\supnorm{f}
+          \le\supnorm{f}.
+        \end{align*}
+        Ambil supremum terhadap $x$.
+        Diperoleh
+        \[
+          \supnorm{Tf}\le\supnorm{f}.
+        \]
+        Jadi, $T$ terbatas dengan konstanta batas $M=1$.
+
+  \item Karena $T$ terbatas, terdapat $M\ge0$ sehingga
+        \[
+          \norm{Tv}\le M\norm{v},\qquad v\in V.
+        \]
+        Dari $w_k\to w$, diketahui bahwa $\norm{w_k-w}\to0$.
+        Linearitas $T$ memberikan
+        \begin{align*}
+          0\le\norm{Tw_k-Tw}
+           & =\norm{T(w_k-w)}   \\
+           & \le M\norm{w_k-w}.
+        \end{align*}
+        Ruas kanan menuju nol ketika $k\to\infty$.
+        Maka, $\norm{Tw_k-Tw}\to0$.
+        Jadi, $Tw_k\to Tw$.
+
+  \item Di sini, $0$ menyatakan fungsi nol.
+        Bola terbuka berpusat di $0$ adalah
+        \[
+          B(0,\delta)=\{h\in C([0,1]):\supnorm{h-0}<\delta\}.
+        \]
+        \begin{enumerate}
+          \item Fungsi $g(x)=\delta/2$ kontinu karena merupakan fungsi konstan.
+                Karena $\delta>0$,
+                \[
+                  \supnorm{g-0}
+                  =\sup_{x\in[0,1]}\left|\frac{\delta}{2}\right|
+                  =\frac{\delta}{2}<\delta.
+                \]
+                Jadi, $g\in B(0,\delta)$.
+
+          \item Fungsi nol berada di $W$ karena nilainya di $x=0$ adalah nol.
+                Namun,
+                \[
+                  g(0)=\frac{\delta}{2}\ne0.
+                \]
+                Jadi, $g\notin W$.
+                Untuk setiap $\delta>0$, bola $B(0,\delta)$ memuat fungsi di luar $W$.
+                Maka, tidak ada bola terbuka berpusat di $0$ yang termuat dalam $W$.
+                Karena $0\in W$, himpunan $W$ bukan himpunan terbuka.
+        \end{enumerate}
+
+  \item Ambil $x=(\xi_1,\ldots,\xi_n)$, $y=(\eta_1,\ldots,\eta_n)$,
+        dan $z=(\zeta_1,\ldots,\zeta_n)$ di $X$.
+        Periksa dahulu sifat-sifat metrik.
+        \begin{enumerate}
+          \item Setiap $|\xi_j-\eta_j|$ tidak negatif, sehingga $d(x,y)\ge0$.
+                Selain itu,
+                \begin{align*}
+                  d(x,y)=0
+                   & \Longleftrightarrow |\xi_j-\eta_j|=0
+                  \text{ untuk semua }j                   \\
+                   & \Longleftrightarrow \xi_j=\eta_j
+                  \text{ untuk semua }j                   \\
+                   & \Longleftrightarrow x=y.
+                \end{align*}
+
+          \item Sifat simetri nilai mutlak memberikan
+                \[
+                  d(x,y)=\max_{1\le j\le n}|\xi_j-\eta_j|
+                  =\max_{1\le j\le n}|\eta_j-\xi_j|
+                  =d(y,x).
+                \]
+
+          \item Untuk setiap $j=1,\ldots,n$,
+                \begin{align*}
+                  |\xi_j-\zeta_j|
+                   & \le |\xi_j-\eta_j|+|\eta_j-\zeta_j| \\
+                   & \le d(x,y)+d(y,z).
+                \end{align*}
+                Ambil maksimum terhadap $j$.
+                Diperoleh $d(x,z)\le d(x,y)+d(y,z)$.
+        \end{enumerate}
+        Jadi, $d$ merupakan metrik pada $X$.
+
+        Selanjutnya, ambil sembarang barisan Cauchy $(x^{(k)})$ di $X$.
+        Tuliskan
+        \[
+          x^{(k)}=(\xi_1^{(k)},\ldots,\xi_n^{(k)}).
+        \]
+        Untuk setiap koordinat $j$,
+        \[
+          |\xi_j^{(k)}-\xi_j^{(m)}|\le d(x^{(k)},x^{(m)}).
+        \]
+        Jadi, $(\xi_j^{(k)})_k$ merupakan barisan Cauchy di $\R$.
+        Karena $\R$ lengkap, ada $\xi_j\in\R$ dengan $\xi_j^{(k)}\to\xi_j$.
+        Tetapkan $x=(\xi_1,\ldots,\xi_n)\in X$.
+
+        Ambil $\varepsilon>0$.
+        Untuk setiap $j$, pilih $N_j$ sehingga
+        \[
+          k\ge N_j\quad\Longrightarrow\quad
+          |\xi_j^{(k)}-\xi_j|<\varepsilon.
+        \]
+        Banyaknya koordinat berhingga.
+        Jadi, kita dapat memilih $N=\max\{N_1,\ldots,N_n\}$.
+        Untuk $k\ge N$, semua selisih koordinat kurang dari $\varepsilon$.
+        Maka,
+        \[
+          d(x^{(k)},x)=\max_{1\le j\le n}|\xi_j^{(k)}-\xi_j|
+          <\varepsilon.
+        \]
+        Jadi, $x^{(k)}\to x\in X$.
+        Setiap barisan Cauchy di $X$ konvergen di $X$.
+        Dengan demikian, $(X,d)$ lengkap.
+
+  \item Pertidaksamaan segitiga memberikan
+        \[
+          d(x_n,y_n)\le d(x_n,x_m)+d(x_m,y_m)+d(y_m,y_n).
+        \]
+        Karena $a_n=d(x_n,y_n)$, diperoleh
+        \[
+          a_n-a_m\le d(x_n,x_m)+d(y_n,y_m).
+        \]
+        Tukar $n$ dan $m$, lalu gunakan simetri metrik.
+        Diperoleh pula
+        \[
+          a_m-a_n\le d(x_n,x_m)+d(y_n,y_m).
+        \]
+        Gabungkan kedua pertidaksamaan tersebut:
+        \[
+          |a_n-a_m|\le d(x_n,x_m)+d(y_n,y_m).
+        \]
+
+        Ambil $\varepsilon>0$.
+        Karena $(x_n)$ Cauchy, ada $N_1$ sehingga
+        \[
+          m,n\ge N_1\quad\Longrightarrow\quad
+          d(x_n,x_m)<\frac{\varepsilon}{2}.
+        \]
+        Karena $(y_n)$ Cauchy, ada $N_2$ sehingga
+        \[
+          m,n\ge N_2\quad\Longrightarrow\quad
+          d(y_n,y_m)<\frac{\varepsilon}{2}.
+        \]
+        Untuk $m,n\ge N=\max\{N_1,N_2\}$,
+        \[
+          |a_n-a_m|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+          =\varepsilon.
+        \]
+        Jadi, $(a_n)$ Cauchy di $\R$.
+        Karena $\R$ lengkap, $(a_n)$ konvergen.
+        Bukti ini tidak memerlukan kelengkapan $X$.
+
+        Sebagai contoh, gunakan $X=\R$ dengan $d(x,y)=|x-y|$.
+        Ambil
+        \[
+          x_n=\frac{1}{n},\qquad y_n=1+\frac{2}{n}.
+        \]
+        Kedua barisan konvergen, masing-masing ke $0$ dan $1$.
+        Jadi, keduanya Cauchy.
+        Barisan jaraknya adalah
+        \[
+          a_n=\left|\frac{1}{n}-\left(1+\frac{2}{n}\right)\right|
+          =1+\frac{1}{n}\longrightarrow1.
+        \]
+
+  \item Ambil sembarang $x\in X$ dan $\varepsilon>0$.
+        Karena $V$ padat di $X$, ada $v\in V$ dengan
+        \[
+          d(x,v)<\frac{\varepsilon}{2}.
+        \]
+        Karena $U$ padat di $V$, ada $u\in U$ dengan
+        \[
+          d(v,u)<\frac{\varepsilon}{2}.
+        \]
+        Metrik pada $V$ adalah pembatasan metrik $d$.
+        Dengan pertidaksamaan segitiga,
+        \[
+          d(x,u)\le d(x,v)+d(v,u)
+          <\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+        \]
+        Jadi, setiap bola $B(x,\varepsilon)$ memuat anggota $U$.
+        Dengan demikian, $U$ padat di $X$.
+
+  \item Terapkan pertidaksamaan segitiga melalui $x'$ dan $y'$:
+        \begin{align*}
+          d(x,y)
+           & \le d(x,x')+d(x',y)           \\
+           & \le d(x,x')+d(x',y')+d(y',y).
+        \end{align*}
+        Karena $d(y',y)=d(y,y')$, diperoleh
+        \[
+          d(x,y)-d(x',y')\le d(x,x')+d(y,y').
+        \]
+
+        Lakukan langkah yang sama dengan menukar pasangan titik:
+        \begin{align*}
+          d(x',y')
+           & \le d(x',x)+d(x,y')         \\
+           & \le d(x',x)+d(x,y)+d(y,y').
+        \end{align*}
+        Karena $d(x',x)=d(x,x')$, diperoleh
+        \[
+          d(x',y')-d(x,y)\le d(x,x')+d(y,y').
+        \]
+
+        Misalkan $M=d(x,x')+d(y,y')$.
+        Kedua hasil di atas memberikan
+        \[
+          -M\le d(x,y)-d(x',y')\le M.
+        \]
+        Maka,
+        \[
+          |d(x,y)-d(x',y')|\le d(x,x')+d(y,y').
+        \]
+\end{enumerate}
+
+\end{document}

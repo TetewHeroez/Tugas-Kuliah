@@ -1,0 +1,291 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage[left=15mm,right=15mm,top=20mm,bottom=25mm]{geometry}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}}
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=*,itemsep=7pt,parsep=0pt,topsep=5pt}
+\setlist[enumerate,2]{label=(\alph*),leftmargin=*,itemsep=4pt,parsep=0pt,topsep=4pt}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{4pt}
+\setlength{\belowdisplayshortskip}{4pt}
+
+\noindent
+\begin{minipage}[t]{0.12\textwidth}
+  \vspace{0pt}
+  \includegraphics[width=1.6cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}[t]{0.76\textwidth}
+  \vspace{0pt}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER GASAL 2025/2026}\\
+  \textbf{DEPARTEMEN MATEMATIKA FSAD ITS}\\
+  \textbf{PROGRAM SARJANA}
+\end{minipage}%
+\begin{minipage}[t]{0.12\textwidth}
+  \vspace{0pt}
+  \centering
+  \includegraphics[width=1.6cm]{M.png}
+\end{minipage}
+
+\vspace{0.4cm}
+\begin{center}
+  \begin{tabular}{@{}l c l@{}}
+    Matakuliah    & : & Analisis 1                                \\
+    Hari, Tanggal & : & Senin, 13 Oktober 2025                    \\
+    Waktu / Sifat & : & 100 menit / \textit{Closed Book}          \\
+    Kelas, Dosen  & : & A.\quad Dr. Sumarsini, M.Si.              \\
+                  &   & B.\quad Dr. Mahmud Yunus, M.Si.           \\
+                  &   & C.\quad Dr. Rinurwati, M.Si.              \\
+                  &   & D.\quad Dr. Helisyah Nur Fadhilah, M.Mat.
+  \end{tabular}
+\end{center}
+
+\noindent
+\begin{tabular}{|p{\dimexpr\textwidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+  \hline
+  ETS mengukur Capaian Pembelajaran yang harus dicapai dalam mata kuliah ini, yaitu: \\
+  \hline
+\end{tabular}
+
+\noindent
+\begin{tabular}{|>{\centering\arraybackslash}p{1.2cm}|p{\dimexpr\textwidth-4.4cm-8\tabcolsep-5\arrayrulewidth\relax}|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{1.8cm}|}
+  \hline
+  \rowcolor{lightgray} CPMK & \multicolumn{1}{c|}{Capaian Pembelajaran Mata Kuliah}
+                            & CPL                                                              & \begin{tabular}{@{}c@{}}Bobot\\CPMK\end{tabular} \\
+  \hline
+  1                         & Mahasiswa mampu menjelaskan Sistem Bilangan Real.
+                            & 1,4,8,9                                                          & 10\%                                             \\
+  \hline
+  2                         & Mahasiswa mampu menjelaskan dan membuktikan konvergensi barisan,
+  barisan terbatas dan barisan Cauchy.
+                            & 1,4,8,9                                                          & 15\%                                             \\
+  \hline
+\end{tabular}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Soal & Bobot Soal & Bobot CPMK-1 & Bobot CPMK-2 \\
+    \hline
+    1    & 20\%       & 5\%          &              \\ \hline
+    2    & 20\%       & 5\%          &              \\ \hline
+    3    & 20\%       &              & 5\%          \\ \hline
+    4    & 20\%       &              & 5\%          \\ \hline
+    5    & 20\%       &              & 5\%          \\ \hline
+  \end{tabular}
+\end{center}
+
+\noindent Soal:
+\begin{enumerate}
+  \item Buktikan dengan Induksi Matematika, bahwa:
+        \[
+          1+3+5+\cdots+(2n-1)=n^2,
+        \]
+        berlaku untuk setiap $n\in\N$.
+
+  \item Tunjukkan bahwa jika $a,b\in\R$, maka
+        \begin{enumerate}
+          \item $(-a)\cdot(-b)=a\cdot b$.
+          \item $-\left(\dfrac{a}{b}\right)=\dfrac{-a}{b}$ dengan $b\ne0$.
+        \end{enumerate}
+        (Berikan penjelasan pada tiap langkah pengerjaan.)
+
+  \item Diketahui $S\subset\R$ suatu himpunan terbatas dan
+        $aS:=\{as:s\in S\}$ dengan $a<0$.
+        Buktikan bahwa:
+        \begin{enumerate}
+          \item $\sup(aS)=a\inf(S)$.
+          \item $\inf(aS)=a\sup(S)$.
+        \end{enumerate}
+
+  \item Dengan menggunakan definisi limit barisan, tunjukkan bahwa
+        \[
+          \lim_{n\to\infty}\left(\frac{1}{n}-\frac{3}{n+1}\right)=0.
+        \]
+
+  \item Buktikan bahwa jika barisan $(x_n)$ konvergen ke suatu bilangan real positif $x$,
+        maka ada bilangan asli $M$ sedemikian sehingga $x_n>0$ untuk semua $n\ge M$.
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{SOLUSI}
+\end{center}
+\begin{enumerate}[itemsep=12pt,parsep=5pt]
+  \item Untuk $n=1$, ruas kiri adalah $1$ dan ruas kanan adalah $1^2=1$.
+        Jadi, pernyataan benar untuk $n=1$.
+
+        Misalkan pernyataan benar untuk suatu $k\in\N$.
+        Artinya,
+        \[
+          1+3+5+\cdots+(2k-1)=k^2.
+        \]
+        Akan ditunjukkan bahwa pernyataan juga benar untuk $n=k+1$.
+        Suku berikutnya adalah $2(k+1)-1=2k+1$.
+        Dengan hipotesis induksi,
+        \begin{align*}
+          1+3+\cdots+(2k-1)+(2k+1)
+          =k^2+(2k+1)
+          =k^2+2k+1
+          =(k+1)^2.
+        \end{align*}
+        Jadi, kebenaran untuk $n=k$ mengakibatkan kebenaran untuk $n=k+1$.
+        Berdasarkan induksi matematika, rumus berlaku untuk setiap $n\in\N$.
+
+  \item Mula-mula, tunjukkan bahwa $0\cdot c=0$ untuk setiap $c\in\R$.
+        Sifat distributif memberikan
+        \[
+          0\cdot c=(0+0)c=0\cdot c+0\cdot c.
+        \]
+        Tambahkan invers aditif dari $0\cdot c$ ke kedua ruas.
+        Diperoleh $0=0\cdot c$.
+        Sifat komutatif juga memberikan $c\cdot0=0$.
+
+        \begin{enumerate}
+          \item Karena $a+(-a)=0$, sifat distributif memberikan
+                \[
+                  0=0\cdot b=(a+(-a))b=ab+(-a)b.
+                \]
+                Tambahkan $-(ab)$ ke kedua ruas.
+                Diperoleh
+                \[
+                  (-a)b=-(ab).
+                \]
+
+                Selanjutnya, gunakan $b+(-b)=0$.
+                Dengan sifat distributif dan hasil sebelumnya,
+                \begin{align*}
+                  0
+                   & =(-a)\cdot0
+                  =(-a)(b+(-b))
+                  =(-a)b+(-a)(-b)
+                  =-(ab)+(-a)(-b).
+                \end{align*}
+                Tambahkan $ab$ ke kedua ruas.
+                Diperoleh
+                \[
+                  (-a)(-b)=ab.
+                \]
+
+          \item Karena $b\ne0$, terdapat invers perkalian $b^{-1}$.
+                Berdasarkan definisi pembagian,
+                \[
+                  \frac{a}{b}=ab^{-1},\qquad
+                  \frac{-a}{b}=(-a)b^{-1}.
+                \]
+                Sifat distributif memberikan
+                \begin{align*}
+                  \frac{a}{b}+\frac{-a}{b} =ab^{-1}+(-a)b^{-1} =(a+(-a))b^{-1}   =0\cdot b^{-1}   =0.
+                \end{align*}
+                Jadi, $\dfrac{-a}{b}$ merupakan invers aditif dari $\dfrac{a}{b}$.
+                Karena invers aditif tunggal,
+                \[
+                  -\left(\frac{a}{b}\right)=\frac{-a}{b}.
+                \]
+        \end{enumerate}
+
+  \item Asumsikan $S\ne \varnothing$ dan misalkan
+        \[
+          m=\inf(S),\qquad M=\sup(S).
+        \]
+        Keduanya ada karena $S$ terbatas dan tidak kosong.
+        Untuk setiap $s\in S$, berlaku $m\le s\le M$.
+        Karena $a<0$, perkalian dengan $a$ membalik arah pertidaksamaan:
+        \[
+          aM\le as\le am.
+        \]
+        Jadi, $aS$ juga terbatas dan tidak kosong.
+
+        \begin{enumerate}
+          \item Dari $as\le am$, diketahui bahwa $am$ merupakan batas atas $aS$.
+                Akan dibuktikan bahwa $am$ adalah batas atas terkecil.
+
+                Ambil sembarang batas atas $u$ dari $aS$.
+                Untuk setiap $s\in S$, berlaku $as\le u$.
+                Bagi kedua ruas dengan $a<0$:
+                \[
+                  s\ge\frac{u}{a}.
+                \]
+                Maka, $u/a$ merupakan batas bawah $S$.
+                Karena $m$ adalah batas bawah terbesar,
+                \[
+                  \frac{u}{a}\le m.
+                \]
+                Kalikan kedua ruas dengan $a<0$.
+                Arah pertidaksamaan kembali berbalik, sehingga $u\ge am$.
+
+                Jadi, setiap batas atas $aS$ tidak lebih kecil dari $am$.
+                Dengan demikian,
+                \[
+                  \sup(aS)=am=a\inf(S).
+                \]
+
+          \item Dari $aM\le as$, diketahui bahwa $aM$ merupakan batas bawah $aS$.
+                Akan dibuktikan bahwa $aM$ adalah batas bawah terbesar.
+
+                Ambil sembarang batas bawah $\ell$ dari $aS$.
+                Untuk setiap $s\in S$, berlaku $\ell\le as$.
+                Bagi kedua ruas dengan $a<0$:
+                \[
+                  \frac{\ell}{a}\ge s.
+                \]
+                Maka, $\ell/a$ merupakan batas atas $S$.
+                Karena $M$ adalah batas atas terkecil,
+                \[
+                  M\le\frac{\ell}{a}\implies aM\ge\ell
+                \]
+                Jadi, setiap batas bawah $aS$ tidak lebih besar dari $aM$.
+                Dengan demikian,
+                \[
+                  \inf(aS)=aM=a\sup(S).
+                \]
+        \end{enumerate}
+
+  \item Ambil sembarang $\varepsilon>0$.
+        Sifat Archimedes menjamin adanya $N\in\N$ dengan
+        \[
+          N>\frac{4}{\varepsilon}.
+        \]
+        Untuk setiap $n\ge N$, pertidaksamaan segitiga memberikan
+        \begin{align*}
+          \left|\left(\frac{1}{n}-\frac{3}{n+1}\right)-0\right|
+           & \le\frac{1}{n}+\frac{3}{n+1}            \\
+           & \le\frac{1}{n}+\frac{3}{n}              \\
+           & =\frac{4}{n}\le\frac{4}{N}<\varepsilon.
+        \end{align*}
+        Jadi, untuk setiap $\varepsilon>0$, ada $N$ yang memenuhi definisi limit.
+        Dengan demikian,
+        \[
+          \lim_{n\to\infty}\left(\frac{1}{n}-\frac{3}{n+1}\right)=0.
+        \]
+
+  \item Diketahui $x_n\to x$ dengan $x>0$.
+        Pilih $\varepsilon=x/2$.
+        Pilihan ini sah karena $x/2>0$.
+        Berdasarkan definisi konvergensi, ada $M\in\N$ sehingga
+        \[
+          n\ge M\quad\Longrightarrow\quad |x_n-x|<\frac{x}{2}.
+        \]
+        Ubah pertidaksamaan nilai mutlak tersebut:
+        \[
+          -\frac{x}{2}<x_n-x<\frac{x}{2}.
+        \]
+        Tambahkan $x$ pada semua ruas.
+        Diperoleh
+        \[
+          \frac{x}{2}<x_n<\frac{3x}{2}.
+        \]
+        Karena $x/2>0$, diperoleh $x_n>0$ untuk semua $n\ge M$.
+\end{enumerate}
+
+\end{document}
