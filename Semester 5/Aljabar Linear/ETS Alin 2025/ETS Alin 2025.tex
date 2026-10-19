@@ -1,0 +1,381 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage[left=10mm,right=20mm,top=20mm,bottom=10mm]{geometry}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Span}{\operatorname{span}}
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}}
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=*,itemsep=9pt,parsep=0pt,topsep=6pt}
+\setlist[enumerate,2]{label=(\alph*),leftmargin=*,itemsep=6pt,parsep=0pt,topsep=5pt}
+
+\begin{document}
+\pagenumbering{gobble}
+\setlength{\abovedisplayskip}{7pt}
+\setlength{\belowdisplayskip}{7pt}
+\setlength{\abovedisplayshortskip}{4pt}
+\setlength{\belowdisplayshortskip}{4pt}
+
+\noindent
+\begin{minipage}{0.15\textwidth}
+  \includegraphics[width=1.8cm]{ITS.png}
+\end{minipage}%
+\begin{minipage}{0.7\textwidth}
+  \centering
+  \textbf{EVALUASI TENGAH SEMESTER GANJIL 2025/2026}\\
+  \textbf{DEPARTEMEN MATEMATIKA -- FSAD ITS}
+\end{minipage}%
+\begin{minipage}{0.15\textwidth}
+  \centering
+  \includegraphics[width=1.8cm]{M.png}
+\end{minipage}
+\begin{center}
+  \begin{tabular}{@{}l c l@{}}
+    Mata kuliah / Kode & : & Aljabar Linier                         \\
+    Hari / Tanggal     & : & Kamis, 16 Oktober 2025                 \\
+    Sifat / waktu      & : & Tertutup / 100 menit                   \\
+    Dosen              & : & Prof. Subiono, M.S.                    \\
+                       &   & Dr. Dian Winda Setyawati, S.Si., M.Si. \\
+                       &   & Soleha, S.Si., M.Si.                   \\
+                       &   & Dr. Dieky Adzkiya, S.Si., M.Si.
+  \end{tabular}
+\end{center}
+
+\noindent\textbf{HARAP DIPERHATIKAN !!!}\\
+\textit{Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat ETS/EAS
+  akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.}
+
+\vspace{0.3cm}
+\noindent ETS mengukur kemampuan
+\begin{center}
+  \begin{tabular}{|>{\centering\arraybackslash}p{1.6cm}|p{\dimexpr\textwidth-5.55cm-12\tabcolsep-7\arrayrulewidth\relax}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{0.65cm}|>{\centering\arraybackslash}p{0.65cm}|>{\centering\arraybackslash}p{0.65cm}|}
+    \hline
+    \multicolumn{2}{|c|}{CPMK}
+                           & \multirow{2}{*}{\shortstack{Bobot\\CPMK (\%)}}
+                           & \multicolumn{3}{c|}{CPL}                                                                                                                              \\ \cline{4-6}
+    \multicolumn{2}{|c|}{} &                                                                                                          & 4            & 5            & 9            \\ \hline
+    CPMK-1                 & Mahasiswa menguasai dan mampu menjelaskan secara tertulis mengenai konsep ruang vektor secara umum
+                           & 5                                                                                                        & $\checkmark$ & $\checkmark$ & $\checkmark$ \\ \hline
+    CPMK-2                 & Mahasiswa menguasai dan mampu menjelaskan secara tertulis mengenai transformasi linier pada ruang vektor
+                           & 10                                                                                                       & $\checkmark$ & $\checkmark$ & $\checkmark$ \\ \hline
+    CPMK-3                 & Mahasiswa menguasai dan mampu menerapkan proses diagonalisasi atau dekomposisi suatu matriks
+                           & 5                                                                                                        & $\checkmark$ & $\checkmark$ & $\checkmark$ \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{Soal}                  & \multirow{2}{*}{Bobot Soal (\%)} & \multicolumn{3}{c|}{}                   \\ \cline{3-5}
+                                           &                                  & CPMK-1                & CPMK-2 & CPMK-3 \\ \hline
+    1                                      & 25                               & 5                     &        &        \\ \hline
+    2                                      & 25                               &                       & 5      &        \\ \hline
+    3                                      & 25                               &                       & 5      &        \\ \hline
+    4                                      & 25                               &                       &        & 5      \\ \hline
+    \multicolumn{2}{|c|}{Total Bobot CPMK} & 5                                & 10                    & 5               \\ \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  Soal
+\end{center}
+\begin{enumerate}[series=soal]
+  \item Diberikan ruang vektor $M_{2\times2}(\R)$ atas lapangan $\R$,
+        dan $S\subseteq M_{2\times2}(\R)$ dengan
+        \[
+          S=\left\{
+          \begin{bmatrix}2&-1\\1&3\end{bmatrix},
+          \begin{bmatrix}0&4\\-1&2\end{bmatrix},
+          \begin{bmatrix}4&2\\1&3\end{bmatrix}
+          \right\}.
+        \]
+        \begin{enumerate}
+          \item Apakah himpunan $S$ bebas linier? Jelaskan jawaban Saudara.
+          \item Apakah $S$ basis untuk $M_{2\times2}(\R)$? Jelaskan jawaban Saudara.
+        \end{enumerate}
+
+  \item Diberikan $T:P_3(\R)\to\R^4$ didefinisikan oleh
+        \[
+          T(a+bx+cx^2+dx^3)=\begin{bmatrix}a+b\\a-b\\c\\c+a\end{bmatrix}.
+        \]
+        \begin{enumerate}
+          \item Tentukan $T(1+2x+3x^2+4x^3)$.
+          \item Tunjukkan bahwa $T$ transformasi linear.
+          \item Tentukan basis dari $N(T)$ dan dimensinya.
+          \item Tentukan basis dari $R(T)$ dan dimensinya.
+        \end{enumerate}
+\end{enumerate}
+
+\vfill
+\begin{center}
+  \textit{Selamat Mengerjakan}
+\end{center}
+\newpage
+
+\begin{enumerate}[resume=soal]
+  \item Diberikan $V,W$ ruang vektor atas lapangan $F$ dan $T$ transformasi linear $T:V\to W$.
+        Basis untuk $V$ adalah $B=\{v_1,v_2\}$.
+        Basis untuk $W$ adalah $C=\{w_1,w_2,w_3\}$.
+        Misalkan $T(v_1)=2w_1+3w_2+4w_3$ dan $T(v_2)=w_1+2w_3$.
+        \begin{enumerate}
+          \item Tentukan matriks representasi $[T]_B^C$.
+          \item Tentukan $[T(v)]_C$ jika $[v]_B=\begin{bmatrix}1\\-2\end{bmatrix}$, $v\in V$.
+        \end{enumerate}
+
+  \item Diberikan matriks $A_{3\times3}$
+        \[
+          A=\begin{bmatrix}4&0&1\\2&3&2\\1&0&4\end{bmatrix}.
+        \]
+        \begin{enumerate}
+          \item Buktikan bahwa persamaan karakteristik dari $A$ adalah $(3-\lambda)^2(5-\lambda)=0$.
+          \item Dapatkan ruang-ruang eigen matriks $A$.
+          \item Dapatkan matriks nonsingular $P$ sedemikian hingga $D=P^{-1}AP$ dengan $D$ matriks diagonal.
+        \end{enumerate}
+\end{enumerate}
+
+\vfill
+\begin{center}
+  \textit{Selamat Mengerjakan}
+\end{center}
+\newpage
+
+\begin{center}
+  Solusi
+\end{center}
+\begin{enumerate}[itemsep=12pt,parsep=5pt]
+  \item Namai ketiga matriks pada $S$ sebagai $A_1,A_2,A_3$, sesuai urutannya.
+        \begin{enumerate}
+          \item Untuk memeriksa kebebasan linier, misalkan
+                \[
+                  \alpha A_1+\beta A_2+\gamma A_3=0.
+                \]
+                Samakan setiap entri dengan entri matriks nol.
+                Diperoleh sistem
+                \[
+                  \begin{cases}
+                    2\alpha+4\gamma=0,        \\
+                    -\alpha+4\beta+2\gamma=0, \\
+                    \alpha-\beta+\gamma=0,    \\
+                    3\alpha+2\beta+3\gamma=0.
+                  \end{cases}
+                \]
+                Persamaan pertama memberikan $\alpha=-2\gamma$.
+                Substitusi ke persamaan ketiga memberikan
+                \[
+                  -2\gamma-\beta+\gamma=0
+                  \quad\Longrightarrow\quad\beta=-\gamma.
+                \]
+                Masukkan keduanya ke persamaan keempat:
+                \[
+                  3(-2\gamma)+2(-\gamma)+3\gamma=0
+                  \quad\Longrightarrow\quad-5\gamma=0.
+                \]
+                Jadi, $\gamma=0$, lalu $\alpha=\beta=0$.
+                Hanya kombinasi linear trivial yang menghasilkan matriks nol.
+                Maka, $S$ bebas linier.
+
+          \item Ruang $M_{2\times2}(\R)$ berdimensi $4$.
+                Setiap matriksnya memiliki empat entri yang dapat dipilih bebas.
+                Jadi, setiap basis ruang ini harus memiliki empat anggota.
+
+                Himpunan $S$ hanya memiliki tiga matriks.
+                Karena itu, $S$ tidak merentang seluruh $M_{2\times2}(\R)$.
+                Maka, $S$ bukan basis untuk $M_{2\times2}(\R)$.
+        \end{enumerate}
+
+  \item Untuk $p(x)=a+bx+cx^2+dx^3$, nilai $T(p)$ ditentukan oleh koefisien $a,b,c$.
+        \begin{enumerate}
+          \item Pada $p(x)=1+2x+3x^2+4x^3$, diperoleh $a=1$, $b=2$, $c=3$, dan $d=4$.
+                Dengan demikian,
+                \[
+                  T(1+2x+3x^2+4x^3)
+                  =\begin{bmatrix}1+2\\1-2\\3\\3+1\end{bmatrix}
+                  =\begin{bmatrix}3\\-1\\3\\4\end{bmatrix}.
+                \]
+
+          \item Ambil $p(x)=a+bx+cx^2+dx^3$ dan $q(x)=e+fx+gx^2+hx^3$.
+                Untuk skalar $\alpha,\beta\in\R$, berlaku
+                \begin{align*}
+                  T(\alpha p+\beta q)
+                   & =\begin{bmatrix}
+                        \alpha(a+b)+\beta(e+f) \\
+                        \alpha(a-b)+\beta(e-f) \\
+                        \alpha c+\beta g       \\
+                        \alpha(c+a)+\beta(g+e)
+                      \end{bmatrix}                           \\
+                   & =\alpha\begin{bmatrix}a+b\\a-b\\c\\c+a\end{bmatrix}
+                  +\beta\begin{bmatrix}e+f\\e-f\\g\\g+e\end{bmatrix}     \\
+                   & =\alpha T(p)+\beta T(q).
+                \end{align*}
+                Jadi, $T$ memenuhi sifat linear.
+
+          \item Ruang nol $N(T)$ berisi semua polinomial yang dipetakan ke vektor nol.
+                Syarat $T(p)=0$ memberikan
+                \[
+                  a+b=0,\qquad a-b=0,\qquad c=0,\qquad c+a=0.
+                \]
+                Jumlahkan dua persamaan pertama.
+                Diperoleh $2a=0$, sehingga $a=0$.
+                Maka, $b=0$ dan $c=0$.
+                Koefisien $d$ tetap bebas karena tidak muncul dalam $T(p)$.
+                Jadi, setiap anggota $N(T)$ berbentuk $dx^3$ dengan $d\in\R$.
+                Polinomial $x^3$ bukan polinomial nol, sehingga $\{x^3\}$ bebas linier.
+                Maka,
+                \[
+                  N(T)=\Span\{x^3\},\qquad B_{N(T)}=\{x^3\},\qquad\dim N(T)=1.
+                \]
+
+          \item Ruang hasil $R(T)$ berisi semua keluaran $T$.
+                Tuliskan keluaran umumnya sebagai kombinasi linear:
+                \[
+                  T(p)=\begin{bmatrix}a+b\\a-b\\c\\c+a\end{bmatrix}
+                  =a\begin{bmatrix}1\\1\\0\\1\end{bmatrix}
+                  +b\begin{bmatrix}1\\-1\\0\\0\end{bmatrix}
+                  +c\begin{bmatrix}0\\0\\1\\1\end{bmatrix}.
+                \]
+                Semua nilai $a,b,c\in\R$ dapat dipilih bebas.
+                Maka, ketiga vektor tersebut merentang $R(T)$.
+
+                Untuk memeriksa kebebasan liniernya, misalkan
+                \[
+                  r\begin{bmatrix}1\\1\\0\\1\end{bmatrix}
+                  +s\begin{bmatrix}1\\-1\\0\\0\end{bmatrix}
+                  +t\begin{bmatrix}0\\0\\1\\1\end{bmatrix}=0.
+                \]
+                Dua komponen pertama memberikan $r+s=0$ dan $r-s=0$.
+                Jadi, $r=s=0$.
+                Komponen ketiga memberikan $t=0$.
+                Maka, ketiganya bebas linier.
+                Dengan demikian,
+                \[
+                  B_{R(T)}=\left\{
+                  \begin{bmatrix}1\\1\\0\\1\end{bmatrix},
+                  \begin{bmatrix}1\\-1\\0\\0\end{bmatrix},
+                  \begin{bmatrix}0\\0\\1\\1\end{bmatrix}
+                  \right\},
+                  \qquad\dim R(T)=3.
+                \]
+                Hasil ini sesuai dengan $\dim N(T)+\dim R(T)=1+3=4=\dim P_3(\R)$.
+        \end{enumerate}
+
+  \item Kolom matriks representasi diambil dari koordinat bayangan setiap vektor basis domain.
+        \begin{enumerate}
+          \item Dari bentuk $T(v_1)$ dan $T(v_2)$, diperoleh
+                \[
+                  [T(v_1)]_C=\begin{bmatrix}2\\3\\4\end{bmatrix},
+                  \qquad
+                  [T(v_2)]_C=\begin{bmatrix}1\\0\\2\end{bmatrix}.
+                \]
+                Susun keduanya sebagai kolom sesuai urutan $v_1,v_2$.
+                Matriks representasinya adalah
+                \[
+                  [T]_B^C
+                  =\begin{bmatrix}[T(v_1)]_C&[T(v_2)]_C\end{bmatrix}
+                  =\begin{bmatrix}2&1\\3&0\\4&2\end{bmatrix}.
+                \]
+
+          \item Gunakan hubungan koordinat $[T(v)]_C=[T]_B^C[v]_B$.
+                Maka,
+                \[
+                  [T(v)]_C
+                  =\begin{bmatrix}2&1\\3&0\\4&2\end{bmatrix}
+                  \begin{bmatrix}1\\-2\end{bmatrix}
+                  =\begin{bmatrix}2-2\\3+0\\4-4\end{bmatrix}
+                  =\begin{bmatrix}0\\3\\0\end{bmatrix}.
+                \]
+                Artinya, $T(v)=3w_2$.
+                Ini juga diperoleh dari $v=v_1-2v_2$ dan linearitas $T$.
+        \end{enumerate}
+
+  \item
+        \begin{enumerate}
+          \item Persamaan karakteristik diperoleh dari $\det(A-\lambda I)=0$.
+                Ekspansikan determinan pada kolom kedua:
+                \begin{align*}
+                  \det(A-\lambda I)
+                   & =\begin{vmatrix}4-\lambda&0&1\\2&3-\lambda&2\\1&0&4-\lambda\end{vmatrix} \\
+                   & =(3-\lambda)\begin{vmatrix}4-\lambda&1\\1&4-\lambda\end{vmatrix}         \\
+                   & =(3-\lambda)\bigl((4-\lambda)^2-1\bigr)                                  \\
+                   & =(3-\lambda)(3-\lambda)(5-\lambda)                                       \\
+                   & =(3-\lambda)^2(5-\lambda).
+                \end{align*}
+                Jadi, persamaan karakteristiknya adalah $(3-\lambda)^2(5-\lambda)=0$.
+                Nilai eigennya adalah $\lambda=3$ dan $\lambda=5$.
+
+          \item Untuk $\lambda=3$, selesaikan $(A-3I)v=0$.
+                Tuliskan $v=(x,y,z)^{\mathsf T}$.
+                Karena
+                \[
+                  A-3I=\begin{bmatrix}1&0&1\\2&0&2\\1&0&1\end{bmatrix},
+                \]
+                semua persamaannya setara dengan $x+z=0$.
+                Maka, $z=-x$ dan $y$ bebas.
+                Setiap solusinya berbentuk
+                \[
+                  v=\begin{bmatrix}x\\y\\-x\end{bmatrix}
+                  =x\begin{bmatrix}1\\0\\-1\end{bmatrix}
+                  +y\begin{bmatrix}0\\1\\0\end{bmatrix}.
+                \]
+                Jadi,
+                \[
+                  E_3=\Span\left\{
+                  \begin{bmatrix}1\\0\\-1\end{bmatrix},
+                  \begin{bmatrix}0\\1\\0\end{bmatrix}
+                  \right\},\qquad\dim E_3=2.
+                \]
+
+                Untuk $\lambda=5$, selesaikan $(A-5I)v=0$.
+                Sistemnya adalah
+                \[
+                  \begin{cases}
+                    -x+z=0,     \\
+                    2x-2y+2z=0, \\
+                    x-z=0.
+                  \end{cases}
+                \]
+                Persamaan pertama memberikan $z=x$.
+                Substitusikan ke persamaan kedua:
+                \[
+                  2x-2y+2x=0\quad\Longrightarrow\quad y=2x.
+                \]
+                Persamaan ketiga juga terpenuhi.
+                Maka,
+                \[
+                  v=x\begin{bmatrix}1\\2\\1\end{bmatrix},
+                  \qquad
+                  E_5=\Span\left\{\begin{bmatrix}1\\2\\1\end{bmatrix}\right\},
+                  \qquad\dim E_5=1.
+                \]
+
+          \item Susun vektor-vektor basis ruang eigen sebagai kolom $P$.
+                Pilih dua kolom dari $E_3$, lalu satu kolom dari $E_5$:
+                \[
+                  P=\begin{bmatrix}1&0&1\\0&1&2\\-1&0&1\end{bmatrix}.
+                \]
+                Ekspansi pada kolom kedua memberikan
+                \[
+                  \det P=\begin{vmatrix}1&1\\-1&1\end{vmatrix}=2\ne0.
+                \]
+                Jadi, $P$ nonsingular.
+                Urutan nilai eigen mengikuti urutan kolom $P$.
+                Maka, pilih
+                \[
+                  D=\begin{bmatrix}3&0&0\\0&3&0\\0&0&5\end{bmatrix}.
+                \]
+                Periksa bahwa
+                \[
+                  AP=\begin{bmatrix}3&0&5\\0&3&10\\-3&0&5\end{bmatrix}
+                  =\begin{bmatrix}1&0&1\\0&1&2\\-1&0&1\end{bmatrix}
+                  \begin{bmatrix}3&0&0\\0&3&0\\0&0&5\end{bmatrix}
+                  =PD.
+                \]
+                Kalikan kedua ruas dengan $P^{-1}$ dari kiri.
+                Diperoleh $P^{-1}AP=D$, sesuai yang diminta.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
