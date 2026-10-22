@@ -1,0 +1,721 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[indonesian]{babel}
+\usepackage{amsmath,amssymb,booktabs,array,graphicx,float}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{microtype}
+% Disable font expansion because the available T1 fonts are not scalable.
+\microtypesetup{expansion=false}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\graphicspath{{Gambar/}}
+\setlength{\parskip}{0.35em}
+\setlength{\emergencystretch}{2em}
+\addto\captionsindonesian{\renewcommand{\figurename}{Gambar}\renewcommand{\tablename}{Tabel}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\RMS}{\operatorname{RMS}}
+\input{hasil_numerik/nilai.tex}
+\title{\LARGE Analisis Waktu--Frekuensi Audio Pendamping\\
+\textit{Bad Piggies Theme Remake}\\[0.4em]
+\large ETS Analisis Fourier dan Wavelet}
+\author{Teosofi Hidayah Agung\\6002261009}
+\date{22 Oktober 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  Laporan ini mengkaji sinyal audio dari berkas \texttt{DRUMS.mp3} dalam
+  paket proyek \textit{Bad Piggies Theme Remake} yang dirujukkan pada video
+  Rick Ruyz. Audio dapat didekode langsung dengan Python sehingga analisis
+  tidak memerlukan FL Studio. Sinyal stereo berdurasi sekitar $160{,}77$
+  detik dan berfrekuensi sampling $44\,100$ Hz diubah menjadi sinyal mono,
+  kemudian dianalisis menggunakan FFT global dan transformasi Fourier
+  waktu-singkat (STFT). Notasi dan normalisasi mengikuti bahan kuliah
+  Analisis Fourier dan Wavelet. Dua jendela Hann dengan panjang $1024$
+  dan $4096$ sampel digunakan untuk membandingkan lokalisasi waktu dan
+  frekuensi. Analisis mencakup puncak spektrum, distribusi energi,
+  perubahan karakteristik lokal, pemeriksaan Parseval, dan hubungan
+  lebar jendela dengan Prinsip Ketaktentuan Heisenberg. Puncak terpilih
+  terkuat berada pada $41{,}60$ Hz dan sekitar $91{,}19\%$ energi berada
+  pada pita $0$--$250$ Hz. Perubahan RMS serta distribusi daya lokal
+  menunjukkan karakteristik nonstasioner secara deskriptif. Cakupan hasil
+  adalah berkas audio pendamping yang tersedia, bukan hasil render
+  keseluruhan aransemen proyek FLP.
+\end{abstract}
+\noindent\textbf{Kata kunci:} transformasi Fourier, FFT, STFT, spektrogram,
+jendela Hann, audio.
+
+\section{Pendahuluan}
+Audio musik tersusun atas osilasi, perubahan amplitudo, serta kejadian
+singkat yang dapat memiliki kandungan frekuensi berbeda. Grafik waktu
+memperlihatkan perubahan amplitudo, sedangkan representasi Fourier
+memperlihatkan kontribusi komponen frekuensi. Akan tetapi, magnitudo
+spektrum global tidak langsung menunjukkan kapan suatu komponen
+menjadi kuat. Kebutuhan akan informasi lokal tersebut menjadi alasan
+penggunaan STFT, sebagaimana dibahas pada bahan kuliah keenam
+\cite{kuliah6}.
+
+Objek yang digunakan adalah \texttt{DRUMS.mp3}, salah satu berkas
+audio pendamping dalam folder
+\texttt{[ FREE FLP ] Bad Piggies - Theme NEW REMAKE FL STUDIO}.
+Menurut keterangan penyedia data untuk proyek ini, paket tersebut
+dirujukkan pada video Rick Ruyz berjudul
+\textit{[ FREE FLP ] Bad Piggies - Theme REMAKE FL STUDIO STOCK PLUGINS}
+\cite{youtube}. Judul video dan nama kanal diperiksa melalui metadata
+publik YouTube; kesamaan audio lokal dengan soundtrack video tidak
+diuji. Penamaan \texttt{DRUMS} dipakai sebagai identitas berkas, bukan
+sebagai bukti bahwa seluruh komponennya berasal dari satu instrumen.
+
+Format FLP menyimpan informasi proyek FL Studio dan menggunakan
+sampel pendamping \cite{flp}. Dalam pekerjaan ini, berkas FLP tidak
+dirender. Berkas MP3 yang sudah tersedia dapat dibaca langsung sebagai
+deret sampel sehingga kebutuhan analisis Fourier tetap terpenuhi tanpa
+aplikasi tersebut. Berkas \texttt{VOCALS.mp3} dan sampel
+\texttt{Classical Acoustic} tidak dijumlahkan dengan data utama karena
+posisi, pengaturan instrumen, dan efek aransemen tidak direkonstruksi.
+
+Tujuan proyek adalah menghubungkan representasi waktu, spektrum global,
+dan spektrogram melalui argumentasi matematis serta hasil komputasi
+yang dapat dijalankan ulang. Secara khusus, dua lebar jendela dibandingkan
+untuk memperlihatkan kompromi lokalisasi waktu dan frekuensi pada
+sinyal audio yang sama.
+
+\section{Dasar Teori}
+\subsection{Notasi dan domain pengamatan}
+Notasi dasar mengikuti Kuliah 4--6 pada folder \texttt{Materi}
+\cite{kuliah4,kuliah5,kuliah6}. Simbol $f$ digunakan untuk sinyal;
+frekuensi dalam Hz dilambangkan dengan $\nu$ agar berbeda dari sinyal.
+Tabel~\ref{tab:notasi} merangkum simbol yang digunakan.
+
+\begin{table}[H]
+  \centering\small
+  \caption{Simbol dan pengertiannya.}\label{tab:notasi}
+  \begin{tabular}{p{0.23\linewidth}p{0.69\linewidth}}
+    \toprule
+    Simbol                       & Pengertian                                                                  \\
+    \midrule
+    $f(t)$, $\widehat f(\omega)$ & Sinyal waktu dan transformasi Fourier uniter.                               \\
+    $t$, $\tau$                  & Waktu pengamatan dan pusat lokalisasi STFT, dalam detik.                    \\
+    $f_s$, $\Delta t$            & Frekuensi sampling (Hz) dan interval sampling $1/f_s$ (detik).              \\
+    $N$, $T$                     & Banyak sampel dan durasi pengamatan $T=N\Delta t$.                          \\
+    $t_k$, $f_k$                 & Waktu $k\Delta t$ dan nilai sinyal pada indeks $k$.                         \\
+    $\nu$, $\omega$              & Frekuensi (Hz) dan frekuensi sudut (rad/s), $\omega=2\pi\nu$.               \\
+    $F_m$                        & Koefisien DFT pada indeks frekuensi $m$.                                    \\
+    $w$, $w_r$                   & Jendela kontinu dan sampel jendela pada indeks lokal $r$.                   \\
+    $M$, $H$, $q$                & Panjang jendela, langkah pergeseran dalam sampel, dan indeks bingkai.       \\
+    $Z_{q,m}$                    & DFT segmen berjendela pada bingkai $q$.                                     \\
+    $V_wf$, $\Spec_wf$           & STFT dan kuadrat magnitudonya (spektrogram).                                \\
+    $P_m$, $P_{q,m}$             & Kerapatan daya satu sisi, masing-masing global dan lokal, per Hz.           \\
+    $c_m$                        & Bobot satu sisi: $2$ pada pasangan frekuensi interior, $1$ pada DC/Nyquist. \\
+    $\sigma_t$, $\sigma_\omega$  & Simpangan baku waktu dan frekuensi sudut berbobot energi jendela.           \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Transformasi Fourier dan energi}
+Untuk sinyal yang memenuhi syarat integrabilitas, konvensi dalam
+Kuliah 4, Bagian 4.2, adalah
+\begin{equation}
+  \widehat f(\omega)=\frac{1}{\sqrt{2\pi}}
+  \int_{\R}f(t)e^{-i\omega t}\,dt,
+  \qquad
+  f(t)=\frac{1}{\sqrt{2\pi}}\int_{\R}\widehat f(\omega)e^{i\omega t}\,d\omega.
+  \label{eq:fourier}
+\end{equation}
+Untuk $f\in L^2(\R)$, transformasi dapat diperluas dalam pengertian
+$L^2$. Teorema Plancherel memberikan
+\begin{equation}
+  E=\|f\|_2^2=\int_{\R}|f(t)|^2\,dt
+  =\int_{\R}|\widehat f(\omega)|^2\,d\omega.
+  \label{eq:plancherel}
+\end{equation}
+Dengan demikian, energi dapat dihitung melalui domain waktu maupun
+domain frekuensi \cite{kuliah4}. Pada audio digital, amplitudo yang
+digunakan tidak dikalibrasi sebagai tekanan akustik. Oleh sebab itu,
+energi dalam laporan ini merupakan energi sinyal digital, bukan energi
+fisik dalam joule.
+
+\subsection{Sampling, DFT, dan FFT}
+Pengamatan diskret dinyatakan sebagai
+\begin{equation}
+  t_k=k\Delta t,\quad f_k=f(t_k),\quad k=0,\ldots,N-1,
+  \qquad \Delta t=\frac1{f_s},\quad T=N\Delta t.
+\end{equation}
+Sampel terakhir terletak pada $(N-1)\Delta t$, sedangkan $T$ menyatakan
+durasi blok berisi $N$ sampel. Batas Nyquist adalah $f_s/2$; pengamatan
+diskret tidak menentukan secara unik komponen analog di atas batas
+tersebut tanpa asumsi tambahan \cite{kuliah5}.
+
+DFT dan inversnya mengikuti Kuliah 5, Bagian 5.3--5.4:
+\begin{equation}
+  F_m=\sum_{k=0}^{N-1}f_k e^{-2\pi i mk/N},\qquad
+  f_k=\frac1N\sum_{m=0}^{N-1}F_m e^{2\pi i mk/N}.
+  \label{eq:dft}
+\end{equation}
+FFT merupakan algoritma untuk menghitung DFT tersebut. Normalisasi
+maju yang tidak memuat faktor $1/N$ sesuai dengan konvensi bawaan
+implementasi FFT \cite{numpy}. Pada sisi frekuensi nonnegatif,
+\begin{equation}
+  \nu_m=\frac{mf_s}{N},\quad
+  \omega_m=2\pi\nu_m,\quad
+  \Delta\nu=\frac{f_s}{N}=\frac1T,\quad
+  \widehat f(\omega_m)\approx\frac{\Delta t}{\sqrt{2\pi}}F_m.
+  \label{eq:konversi}
+\end{equation}
+Pendekatan terakhir adalah aproksimasi integral untuk sinyal dalam
+interval pengamatan yang diperpanjang dengan nol di luar interval.
+DFT sendiri memiliki interpretasi periodisasi deret berhingga. Kisi
+frekuensi yang rapat tidak menjamin setiap puncak dapat diinterpretasikan
+sebagai satu nada yang menetap sepanjang rekaman.
+
+Kesamaan Parseval diskret memberikan pemeriksaan yang tepat secara
+aljabar:
+\begin{equation}
+  E_{\mathrm{waktu}}=\Delta t\sum_{k=0}^{N-1}|f_k|^2
+  =\frac{\Delta t}{N}\sum_{m=0}^{N-1}|F_m|^2
+  =E_{\mathrm{frekuensi}}.
+  \label{eq:parseval}
+\end{equation}
+Untuk sinyal real, pasangan frekuensi negatif merupakan konjugat
+pasangan positifnya. Karena itu, spektrum satu sisi dapat digunakan
+dengan bobot $c_m$ untuk mempertahankan energi. Jika $N$ ganjil,
+tidak ada bin tepat di Nyquist dan seluruh bin positif berbobot $2$.
+Kerapatan daya global didefinisikan sebagai
+\begin{equation}
+  P_m=\frac{c_m|F_m|^2}{f_sN},\qquad
+  \sum_{m\geq0}P_m\Delta\nu=\frac1N\sum_k|f_k|^2.
+  \label{eq:psdglobal}
+\end{equation}
+Jadi integral diskret $P_m$ memberikan rerata kuadrat, dan hasilnya
+dikalikan $T$ untuk memperoleh energi. Tinggi puncak kerapatan daya
+berbeda makna dengan persentase energi suatu pita frekuensi.
+
+\subsection{STFT, jendela Hann, dan spektrogram}
+Definisi STFT dalam Kuliah 6, Bagian 6.3, adalah
+\begin{equation}
+  V_wf(\tau,\omega)=\frac1{\sqrt{2\pi}}
+  \int_{\R} f(t)\overline{w(t-\tau)}e^{-i\omega t}\,dt.
+  \label{eq:stft}
+\end{equation}
+Spektrogramnya adalah
+\begin{equation}
+  \Spec_wf(\tau,\omega)=|V_wf(\tau,\omega)|^2.
+  \label{eq:spec}
+\end{equation}
+STFT menganalisis $f$ setelah dilokalisasi oleh jendela. Untuk jendela
+real, konjugat dalam~\eqref{eq:stft} tidak mengubah nilainya.
+Perkalian oleh jendela di domain waktu bersesuaian dengan konvolusi
+spektrum. Akibatnya, spektrum lokal mengandung pengaruh sinyal
+sekaligus pelebaran dari respons frekuensi jendela \cite{kuliah6}.
+
+Jendela Hann periodik yang digunakan adalah
+\begin{equation}
+  w_r=\frac12-\frac12\cos\left(\frac{2\pi r}{M}\right),
+  \qquad r=0,\ldots,M-1.
+  \label{eq:hann}
+\end{equation}
+Penyebut $M$ sesuai dengan \texttt{hann(M, sym=False)} untuk analisis
+spektral \cite{hann}. Definisi ini merupakan pengambilan sampel jendela
+Hann kontinu pada interval setengah terbuka; berbeda dari varian
+simetris dengan penyebut $M-1$.
+
+Dengan langkah $H$ dan tanpa penambahan nol pada sinyal, digunakan
+bingkai yang memenuhi $qH+M\leq N$:
+\begin{equation}
+  Z_{q,m}=\sum_{r=0}^{M-1} f_{qH+r}w_r e^{-2\pi i mr/M},\quad
+  \tau_q=\frac{qH+M/2}{f_s},\quad \nu_m=\frac{mf_s}{M}.
+  \label{eq:stftdiskret}
+\end{equation}
+Hubungannya dengan konvensi kontinu adalah
+\begin{align}
+  V_wf(\tau_q,\omega_m)     & \approx
+  \frac{\Delta t}{\sqrt{2\pi}}
+  e^{-i\omega_m qH\Delta t}Z_{q,m},   \\
+  \Spec_wf(\tau_q,\omega_m) & \approx
+  \frac{\Delta t^2}{2\pi}|Z_{q,m}|^2.
+  \label{eq:speckonversi}
+\end{align}
+Faktor fase akibat awal bingkai tidak memengaruhi kuadrat magnitudo.
+Untuk membandingkan dua panjang jendela secara konsisten, grafik
+menampilkan kerapatan daya satu sisi
+\begin{equation}
+  P_{q,m}=\frac{c_m|Z_{q,m}|^2}{f_s\sum_r w_r^2},\qquad
+  \Spec_wf\approx P_{q,m}\frac{\sum_r w_r^2}{2\pi f_s c_m}.
+  \label{eq:psdstft}
+\end{equation}
+Grafik tersebut merupakan spektrogram yang diskalakan sebagai
+kerapatan daya, bukan nilai mentah $\Spec_wf$. Penjumlahan frekuensinya
+memenuhi
+\begin{equation}
+  \sum_{m\geq0}P_{q,m}\frac{f_s}{M}
+  =\frac{\sum_r|f_{qH+r}w_r|^2}{\sum_r w_r^2},
+  \label{eq:parsevalframe}
+\end{equation}
+yang merupakan rerata kuadrat lokal berbobot energi jendela.
+Warna dinyatakan sebagai $10\log_{10}(P_{q,m}/P_0)$,
+dengan $P_0=1$ satuan amplitudo digital kuadrat per Hz. Acuan dan
+batas warna dibuat sama untuk kedua jendela. Nilai ini bukan tingkat
+tekanan suara dalam dB SPL.
+
+\subsection{Resolusi dan Prinsip Ketaktentuan Heisenberg}
+Durasi jendela $a=M/f_s$, jarak antarpusat bingkai $H/f_s$, dan jarak
+bin frekuensi $f_s/M$ adalah tiga besaran yang berbeda. Jendela lebih
+panjang menghasilkan jarak bin lebih kecil, tetapi setiap koefisien
+melibatkan rentang waktu lebih panjang. Pada Hann periodik,
+\begin{equation}
+  B_{\mathrm{ENBW}}=f_s\frac{\sum_r w_r^2}{(\sum_r w_r)^2}
+  =\frac32\frac{f_s}{M},
+  \label{eq:enbw}
+\end{equation}
+sedangkan lebar lobus utama antara dua nol pertama sekitar $4f_s/M$.
+Besaran tersebut membantu membedakan jarak kisi dari kemampuan
+memisahkan komponen yang berdekatan.
+
+Heisenberg dalam materi kuliah dinyatakan menggunakan simpangan baku
+berbobot energi. Untuk $w\ne0$, tetapkan
+\begin{align}
+  t_w             & =\frac{\int t|w(t)|^2dt}{\|w\|_2^2},                                 &
+  \omega_w        & =\frac{\int\omega|\widehat w(\omega)|^2d\omega}{\|\widehat w\|_2^2},   \\
+  \sigma_t^2      & =\frac{\int(t-t_w)^2|w(t)|^2dt}{\|w\|_2^2},                          &
+  \sigma_\omega^2 & =\frac{\int(\omega-\omega_w)^2|\widehat w(\omega)|^2d\omega}
+                     {\|\widehat w\|_2^2}.
+\end{align}
+Jika kedua variansi berhingga, berlaku \cite{kuliah6}
+\begin{equation}
+  \sigma_t\sigma_\omega\geq\frac12,
+  \qquad \sigma_t\sigma_\nu\geq\frac1{4\pi}.
+  \label{eq:heisenberg}
+\end{equation}
+Dengan demikian, perkalian $a(f_s/M)=1$ bukan pemeriksaan langsung
+ketaksamaan tersebut: $a$ dan $f_s/M$ bukan simpangan baku dalam
+definisinya.
+
+\section{Permasalahan}
+Domain pengamatan adalah seluruh sinyal mono yang didekode dari
+\texttt{DRUMS.mp3}. Pertanyaan yang dijawab adalah sebagai berikut.
+\begin{enumerate}
+  \item Bagaimana perubahan amplitudo sinyal terhadap waktu, dan bagaimana
+        frekuensi serta interval sampling menentukan representasi diskretnya?
+  \item Frekuensi apa yang menghasilkan puncak spektrum global, dan
+        bagaimana kontribusi energi terbagi ke dalam pita frekuensi?
+  \item Bagaimana distribusi frekuensi lokal berubah terhadap waktu;
+        apakah rekaman menunjukkan karakteristik nonstasioner dalam
+        pengertian sinyal deterministik?
+  \item Bagaimana perbedaan spektrogram Hann dengan $M=1024$ dan
+        $M=4096$ sampel, serta hubungannya dengan Heisenberg?
+  \item Informasi apa yang dapat diperoleh dari spektrum global dan
+        STFT, serta apa keterbatasan penafsirannya untuk berkas ini?
+\end{enumerate}
+
+\section{Pembahasan}
+\subsection{Data dan alur komputasi}
+Data dibaca dari berkas MP3 lokal menggunakan Python. Tidak dilakukan
+pengunduhan ulang audio YouTube ataupun konversi FLP menjadi audio.
+Sumber video dicantumkan sebagai rujukan asal paket sesuai keterangan
+pengguna. Identitas berkas, hash SHA-256, versi pustaka, dan parameter
+komputasi dicatat bersama hasil agar objek yang dianalisis dapat
+diperiksa kembali.
+
+Kedua kanal stereo dirata-ratakan, kemudian rerata globalnya dikurangi:
+\begin{equation}
+  g_k=\frac{L_k+R_k}{2},\quad
+  \overline g=\frac1N\sum_{k=0}^{N-1}g_k,\quad
+  f_k=g_k-\overline g.
+  \label{eq:mono}
+\end{equation}
+Sinyal $f_k$ inilah yang digunakan dalam FFT maupun STFT. Pengurangan
+rerata menghilangkan offset DC; tidak dilakukan perubahan frekuensi
+sampling atau normalisasi amplitudo masing-masing segmen. Perataan
+kanal dapat mereduksi komponen yang berlawanan fase, sehingga hasil
+berlaku untuk proyeksi mono ini dan tidak mewakili seluruh informasi
+spasial stereo.
+
+\begin{table}[H]
+  \centering
+  \caption{Parameter data setelah dekode dan prapemrosesan.}\label{tab:data}
+  \begin{tabular}{lr}
+    \toprule
+    Besaran                                   & Nilai                \\
+    \midrule
+    Kanal sumber                              & 2 (stereo)           \\
+    Jumlah sampel tiap kanal, $N$             & $7\,090\,031$        \\
+    Frekuensi sampling, $f_s$                 & $44\,100$ Hz         \\
+    Interval sampling, $\Delta t$             & $22{,}675737$ $\mu$s \\
+    Durasi, $T$                               & $160{,}771678$ s     \\
+    Batas Nyquist                             & $22\,050$ Hz         \\
+    Rerata mono yang dikurangi, $\overline g$ & ${,}000149161$       \\
+    RMS global setelah pengurangan rerata     & ${,}077565858$       \\
+    Amplitudo absolut maksimum mono           & ${,}892528833$       \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+Alur komputasinya adalah dekode audio, pembentukan $f_k$, penggambaran
+waktu dan RMS, FFT global, perhitungan STFT untuk dua jendela,
+perbandingan fitur lokal, serta ekspor grafik dan tabel. Seluruh hasil
+dalam laporan berasal dari eksekusi notebook, dengan Python 3.11.5,
+NumPy 1.26.4, SciPy 1.16.2, dan SoundFile 0.13.1. Kedua analisis
+memakai frekuensi sampling asli dan data mono yang sama.
+
+\subsection{Representasi dalam domain waktu}
+Grafik waktu pada Gambar~\ref{fig:waktu} memperlihatkan sinyal sepanjang
+rekaman serta cuplikan yang lebih singkat. Kurva RMS digunakan sebagai
+ringkasan kekuatan amplitudo lokal. Untuk suatu blok indeks $I_j$,
+\begin{equation}
+  \RMS_j=\left(\frac1{|I_j|}\sum_{k\in I_j}|f_k|^2\right)^{1/2}.
+\end{equation}
+RMS mengabaikan tanda amplitudo dan lebih mudah dibandingkan
+antarbagian daripada tinggi satu sampel ekstrem.
+\begin{figure}[H]
+  \centering\includegraphics[width=\linewidth]{01_waktu_rms.png}
+  \caption{Representasi waktu dan RMS audio utama setelah konversi mono.
+    Cuplikan waktu memperjelas osilasi yang tidak terlihat pada skala
+    seluruh rekaman.}\label{fig:waktu}
+\end{figure}
+RMS lokal dihitung pada blok $4410$ sampel ($100$ ms), dengan
+penyesuaian jumlah sampel pada blok terakhir. Nilai RMS terbesar
+sekitar $0,22455$ terdapat pada blok berpusat di $t=84{,}85$ s.
+Ringkasan min--maks setiap $10$ ms pada panel pertama mempertahankan
+informasi amplitudo ekstrem tanpa menggambar jutaan titik sekaligus.
+Pada cuplikan $40$--$43$ s tampak kejadian amplitudo besar yang
+berulang, diselingi amplitudo lebih kecil. Pola ini memotivasi
+pemeriksaan apakah kejadian tersebut juga mengandung perubahan
+distribusi frekuensi, bukan hanya perubahan tingkat amplitudo.
+
+Nilai RMS menunjukkan seberapa kuat amplitudo sinyal pada suatu bagian rekaman. Sebagai gambaran, ketukan drum yang kuat seperti "DUM!" biasanya menghasilkan amplitudo efektif lebih besar daripada ketukan yang pelan.
+Pada penelitian ini, RMS lokal terbesar ditemukan di sekitar detik 84,85. Artinya, bagian tersebut mempunyai amplitudo efektif yang relatif tinggi.
+
+\subsection{Analisis Fourier global}
+FFT diterapkan pada seluruh $N$ sampel tanpa jendela tambahan, sehingga
+pengamatan berhingga secara implisit memakai jendela persegi panjang.
+Spektrum yang dihasilkan menggambarkan keseluruhan interval dan dapat
+memuat kebocoran spektral dari batas pengamatan serta perubahan
+komponen di dalamnya. Gambar~\ref{fig:global} menampilkan spektrum satu
+sisi dan pembesaran rentang frekuensi rendah.
+\begin{figure}[H]
+  \centering\includegraphics[width=\linewidth]{02_spektrum_global.png}
+  \caption{Kerapatan daya FFT global ditampilkan sebagai selubung
+    maksimum kelompok frekuensi $5$ Hz pada panel penuh dan ${,}5$ Hz
+    pada pembesaran. Tabel puncak dan energi tetap dihitung dari bin asli.
+    Sumbu menyatakan $\nu$ dalam Hz; $\omega=2\pi\nu$.}\label{fig:global}
+\end{figure}
+Jarak bin FFT seluruh rekaman adalah
+$\Delta\nu=0{,}006220001$ Hz. Tabel~\ref{tab:puncak} merangkum delapan
+puncak lokal terpilih dalam rentang $20$--$10\,000$ Hz. Jarak minimum
+antarpuncak yang dipilih adalah $25$ Hz agar tabel tidak hanya memuat
+bin-bin yang berdekatan dalam satu gugus. Nilai dB relatif dihitung
+terhadap kerapatan daya puncak terpilih terkuat.
+\begin{table}[H]
+  \centering
+  \caption{Puncak spektrum terpilih; angka tabel menggunakan titik desimal.}
+  \label{tab:puncak}
+  \input{hasil_numerik/tabel_puncak.tex}
+\end{table}
+Puncak terkuat dalam pemilihan tersebut berada pada
+$\nu\approx41{,}599367$ Hz, atau $\omega\approx261{,}376530$ rad/s.
+Puncak berikutnya berada di sekitar $75{,}40$ dan $122{,}20$ Hz.
+Kerapatan daya puncak pertama sekitar $0,0333335$ satuan amplitudo
+kuadrat per Hz. Nilai ini dapat melebihi rerata kuadrat sinyal karena
+merupakan kerapatan per satuan frekuensi, bukan integral seluruh daya.
+
+Fraksi energi pita dihitung melalui
+$\eta_B=\sum_{\nu_m\in B}P_m\Delta\nu/\sum_mP_m\Delta\nu$.
+Pita menggunakan batas bawah inklusif dan batas atas eksklusif,
+kecuali pita terakhir yang mencakup bin tertinggi.
+\begin{table}[H]
+  \centering
+  \caption{Distribusi energi global menurut pita frekuensi.}
+  \label{tab:pita}
+  \input{hasil_numerik/tabel_pita.tex}
+\end{table}
+Sekitar $91{,}19\%$ energi berada di bawah $250$ Hz. Energi di atas
+$4000$ Hz sekitar $5{,}20\%$, sehingga komponen frekuensi tinggi tetap
+terukur meskipun energi global didominasi frekuensi rendah. Persentase
+ini dihitung dari seluruh bin asli, bukan dari kurva selubung pada
+gambar. Pembulatan tabel dapat menyebabkan jumlahnya sedikit berbeda
+dari $100\%$.
+
+Pemeriksaan~\eqref{eq:parseval} menghasilkan
+\[
+  E_{\mathrm{waktu}}={,}9672767344661772,\qquad
+  E_{\mathrm{frekuensi}}={,}9672767344661792,
+\]
+dalam satuan amplitudo digital kuadrat dikali detik. Galat relatifnya
+sekitar $2{,}07\times10^{-15}$, konsisten dengan pembulatan numerik.
+Integral kerapatan daya satu sisi memberikan rerata kuadrat
+$0,0060164623$, yang sama dengan kuadrat RMS global. Pemeriksaan ini
+mendukung konsistensi normalisasi dan pembobotan frekuensi; tidak
+membuktikan bahwa seluruh informasi sumber analog atau proyek FLP
+telah direkonstruksi.
+
+Hasil FFT memperlihatkan bahwa salah satu puncak frekuensi terkuat berada pada 41,60 Hz. Frekuensi tersebut termasuk frekuensi rendah yang, jika dibayangkan sebagai bunyi, berhubungan dengan getaran lambat dan berat seperti "buuum", bukan bunyi tinggi seperti "ting".
+
+Selain itu, sekitar 91,19\% energi digital rekaman berada pada rentang 0-250 Hz. Artinya, energi sinyal lebih banyak terkonsentrasi pada frekuensi rendah.
+
+\subsection{Analisis waktu--frekuensi dan perubahan lokal}
+STFT dihitung dengan dua jendela Hann, yaitu $M=1024$ dan $M=4096$,
+serta $H=M/4$ sehingga tumpang tindihnya $75\%$. Panjang FFT per
+bingkai sama dengan $M$. Hanya bingkai lengkap yang digunakan;
+sampel ujung yang tidak membentuk bingkai lengkap tidak dipaksa masuk
+melalui penambahan nol. Karena itu, spektrum global tetap mencakup
+seluruh berkas, sedangkan pusat bingkai STFT berhenti sebelum ujungnya.
+
+\begin{figure}[H]
+  \centering\includegraphics[width=\linewidth]{03_spektrogram_penuh.png}
+  \caption{Spektrogram seluruh rekaman dalam bentuk kerapatan daya
+    satu sisi dengan acuan dB dan batas warna yang sama. Untuk tampilan
+    penuh, nilai maksimum dalam kelompok bingkai dirangkum menjadi
+    sekitar $2000$ kolom; lebar transien pada grafik ini tidak dipakai
+    sebagai ukuran resolusi. Tampilan dibatasi sampai $8000$ Hz,
+    sedangkan perhitungan mencakup seluruh sisi nonnegatif.}\label{fig:specfull}
+\end{figure}
+
+Untuk mengukur perubahan bentuk spektrum selain perubahan amplitudo,
+digunakan sentroid spektral dan fraksi daya pita:
+\begin{equation}
+  C_q=\frac{\sum_m\nu_m P_{q,m}}{\sum_m P_{q,m}},\qquad
+  R_{q,B}=\frac{\sum_{\nu_m\in B}P_{q,m}}{\sum_m P_{q,m}}.
+  \label{eq:centroid}
+\end{equation}
+Keduanya hanya ditafsirkan untuk bingkai dengan daya tidak nol.
+Sentroid adalah pusat massa distribusi daya terhadap frekuensi,
+bukan perkiraan nada dasar. Fraksi pita memungkinkan perubahan
+bentuk spektrum dibedakan dari perubahan tingkat daya keseluruhan.
+\begin{figure}[H]
+  \centering\includegraphics[width=\linewidth]{05_perubahan_temporal.png}
+  \caption{Perubahan sentroid dan distribusi daya pita pada STFT
+    $M=4096$, diringkas per detik dengan bobot daya bingkai. Indikator
+    dihitung dari daya, bukan dari nilai dB.}
+  \label{fig:temporal}
+\end{figure}
+Spektrogram penuh menunjukkan konsentrasi kuat pada frekuensi rendah
+dan kejadian yang menyebar ke frekuensi lebih tinggi. Sebagian
+kejadian tampak sebagai guratan vertikal: kenaikan energi berlangsung
+pada beberapa frekuensi dalam waktu yang berdekatan. Karena grafik
+penuh diringkas dalam kelompok bingkai, pembahasan detail lebar
+kejadian menggunakan pembesaran pada bagian berikutnya.
+
+Sebagai ringkasan numerik tambahan, rekaman dipisahkan menjadi segmen
+tidak tumpang tindih sepanjang $20$ s, dengan segmen terakhir lebih
+pendek. Tabel~\ref{tab:segmen} menggunakan periodogram setiap segmen
+tanpa jendela tambahan, bukan rerata langsung piksel spektrogram.
+Rumus sentroid dan fraksi pitanya sama seperti~\eqref{eq:centroid},
+tetapi $P_{q,m}$ diganti periodogram segmen. Dengan demikian, tabel
+dan grafik lokal menjelaskan variasi temporal pada skala yang berbeda.
+\begin{table}[H]
+  \centering\small
+  \caption{Ringkasan temporal per segmen; dua pita ditampilkan untuk
+    perbandingan. Segmen terakhir hampir senyap.}\label{tab:segmen}
+  \resizebox{\linewidth}{!}{\input{hasil_numerik/tabel_segmen.tex}}
+\end{table}
+Pada $40-60$ s, RMS sekitar $0,10215$, sentroid $558{,}99$ Hz,
+dan fraksi pita $0$--$250$ Hz sekitar $92{,}86\%$. Pada $120$--$140$ s,
+RMS turun menjadi ${,}05724$, tetapi sentroid naik menjadi
+$910{,}64$ Hz dan fraksi pita rendah turun menjadi $79{,}85\%$.
+Fraksi pita di atas $4000$ Hz meningkat dari $4{,}81\%$ menjadi
+$9{,}64\%$. Perubahan fraksi ini menunjukkan bahwa perbedaannya
+tidak cukup dijelaskan dengan satu faktor pengali amplitudo tetap:
+perkalian sinyal oleh konstanta akan mengubah seluruh daya dengan
+faktor yang sama dan mempertahankan fraksi pitanya.
+
+Bagian $160$ s sampai akhir memiliki RMS hanya sekitar $0,000162$.
+Pada bagian hampir senyap ini, pengurangan rerata global dapat
+meninggalkan offset lokal yang sebanding dengan amplitudonya.
+Sentroid dan fraksi pita segmen tersebut tidak digunakan sebagai
+bukti utama perubahan karakter suara.
+
+Ini berarti bagian kedua mempunyai amplitudo efektif yang lebih kecil, tetapi pusat distribusi frekuensinya bergeser ke arah frekuensi tinggi.
+Dalam bahasa sehari-hari, kondisi ini bisa dianalogikan dengan bunyi "DUM!" yang berat dibandingkan bunyi "tak" atau "cess" yang lebih tajam. Bunyi yang lebih pelan tidak selalu memiliki frekuensi lebih rendah.
+Jadi, hasil ini menunjukkan bahwa perubahan karakter suara tidak hanya berkaitan dengan keras-pelannya sinyal, tetapi juga dengan bagaimana energi tersebar pada berbagai frekuensi.
+
+\subsection{Pengaruh lebar jendela}
+Gambar~\ref{fig:zoom} memperlihatkan interval yang sama untuk kedua
+jendela. Pembandingan dilakukan pada koordinat waktu, frekuensi,
+serta skala warna yang sama agar perbedaan tampilan berasal dari
+parameter jendela dan bukan pengaturan grafik.
+\begin{figure}[H]
+  \centering\includegraphics[width=\linewidth]{04_spektrogram_zoom.png}
+  \caption{Pembesaran spektrogram pada interval $40$--$43$ detik.
+    Jendela pendek melokalisasi perubahan waktu pada rentang yang lebih
+    sempit; jendela panjang menghasilkan struktur frekuensi yang lebih
+    sempit dengan rentang pengamatan waktu lebih lebar.}\label{fig:zoom}
+\end{figure}
+\begin{table}[H]
+  \centering\small
+  \caption{Parameter kedua jendela Hann periodik.}\label{tab:jendela}
+  \input{hasil_numerik/tabel_jendela.tex}
+\end{table}
+Lebar lobus utama antara dua nol pertama sekitar $172{,}27$ Hz untuk
+$M=1024$ dan $43{,}07$ Hz untuk $M=4096$. Pada cuplikan
+Gambar~\ref{fig:zoom}, guratan frekuensi pada panel jendela panjang
+lebih tipis secara vertikal, sementara awal dan akhir kejadian
+tersebar pada rentang waktu yang lebih lebar. Misalnya, kejadian
+sekitar $40{,}2$ s dan $41{,}0$ s terlihat lebih terlokalisasi pada
+panel jendela pendek. Ini merupakan pengamatan bentuk tampilan;
+tidak diartikan sebagai pengukuran durasi asli masing-masing sumber.
+
+Jumlah bingkai adalah $27\,692$ untuk $M=1024$ dan $6920$ untuk
+$M=4096$. Sampel ekor yang tidak tercakup bingkai lengkap masing-masing
+$111$ sampel ($2{,}52$ ms) dan $879$ sampel ($19{,}93$ ms).
+Validasi daya dilakukan pada tiga bingkai representatif untuk setiap
+jendela dengan~\eqref{eq:parsevalframe}; galat relatif terbesar
+sekitar $2{,}11\times10^{-16}$.
+
+Memperbesar $M$ empat kali memperkecil jarak bin, ENBW, dan lebar
+lobus utama menjadi seperempat, sekaligus memperpanjang dukungan
+waktu empat kali. Karena $H=M/4$, jarak bingkai juga membesar empat
+kali. Mengurangi $H$ saja dapat memperpadat kisi waktu, tetapi tidak
+menghilangkan perataan waktu oleh jendela selebar $M/f_s$.
+Demikian pula, penambahan nol pada FFT hanya memperpadat kisi
+frekuensi tanpa mempersempit respons frekuensi jendela.
+\begin{figure}[H]
+  \centering\includegraphics[width=\linewidth]{06_jendela.png}
+  \caption{Jendela Hann dan respons frekuensinya. Respons jendela
+    menjelaskan mengapa perubahan panjang dukungan waktu disertai
+    perubahan lebar spektral.}\label{fig:jendela}
+\end{figure}
+
+Jika kita ingin mengetahui kapan bunyi drum seperti "TAK!" muncul, potongan audio yang pendek lebih membantu karena perubahan waktu dapat diamati dengan lebih tajam.
+Namun, jika kita ingin membedakan dua komponen frekuensi yang berdekatan, potongan audio yang lebih panjang memberikan informasi frekuensi yang lebih rinci.
+Karena itu, digunakan jendela 1024 dan 4096 sampel untuk menunjukkan perbedaan kedua kondisi tersebut.
+Fungsi Hann digunakan pada kedua jendela untuk mengurangi spectral leakage, yaitu penyebaran energi frekuensi akibat pemotongan sinyal. Fungsi Hann mengecilkan bobot sampel pada bagian tepi potongan secara bertahap.
+
+Hubungan dengan Heisenberg dapat dihitung secara eksplisit pada
+model kontinu Hann yang disampel oleh~\eqref{eq:hann}:
+\begin{equation}
+  w_a(t)=\begin{cases}
+    \frac12\bigl(1+\cos(2\pi t/a)\bigr), & |t|\leq a/2, \\
+    0,                                   & |t|>a/2.
+  \end{cases}
+\end{equation}
+Karena simetri, $t_w=\omega_w=0$. Integrasi langsung memberikan
+$\|w_a\|_2^2=3a/8$ dan
+\begin{equation}
+  \sigma_t^2=a^2\left(\frac1{12}-\frac5{8\pi^2}\right).
+\end{equation}
+Sifat turunan Fourier dan Plancherel memberikan
+$\int\omega^2|\widehat w_a(\omega)|^2d\omega=\|w_a'\|_2^2$
+dengan $\|w_a'\|_2^2=\pi^2/(2a)$, sehingga
+\begin{equation}
+  \sigma_\omega=\frac{2\pi}{\sqrt3\,a},\qquad
+  \sigma_t\sigma_\omega=
+  \sqrt{\frac{\pi^2}{9}-\frac56}\approx0{,}513117>\frac12.
+  \label{eq:hannheisenberg}
+\end{equation}
+Untuk $M=1024$ diperoleh $\sigma_t\approx3{,}284$ ms dan
+$\sigma_\omega\approx156{,}228$ rad/s; untuk $M=4096$ nilainya
+sekitar $13{,}138$ ms dan $39{,}057$ rad/s. Hasil kali tetap, sedangkan
+penyebaran waktu dan frekuensi berubah berlawanan arah. Ini merupakan
+perhitungan untuk model jendela kontinu, bukan pengukuran
+ketidakpastian setiap komponen audio.
+
+\subsection{Hubungan antarhasil dan keterbatasan}
+FFT global merangkum kontribusi frekuensi sepanjang $T$, sedangkan
+STFT mengulangi analisis tersebut setelah melokalisasi sinyal pada
+setiap $\tau_q$. Spektrogram kemudian menampilkan kuadrat magnitudo
+STFT. Puncak yang kuat secara global dapat berasal dari kejadian
+pendek yang kuat atau komponen lemah yang bertahan lama; spektrogram
+membantu membedakan lokalisasi kedua kemungkinan tersebut.
+
+Transformasi Fourier kompleks lengkap tetap dapat diinversikan;
+yang tidak langsung tersedia pada grafik magnitudo global adalah
+informasi lokasi waktu. Spektrogram juga tidak menampilkan fase
+STFT. Karena itu, grafik daya global dan spektrogram tidak identik
+dengan seluruh informasi koefisien kompleksnya.
+
+Penjumlahan semua piksel spektrogram secara langsung bukan energi
+rekaman: terdapat pembobotan jendela, tumpang tindih, kisi waktu dan
+frekuensi, serta cakupan tepi yang perlu diperhitungkan. Dalam
+laporan ini, energi global diperiksa menggunakan~\eqref{eq:parseval},
+sedangkan konsistensi daya per bingkai diperiksa melalui
+\eqref{eq:parsevalframe}.
+
+Keterbatasan hasil mencakup kompresi MP3, pengurangan informasi stereo
+ketika kedua kanal dirata-ratakan, dan ketiadaan kalibrasi amplitudo
+akustik. Puncak spektrum bukan bukti otomatis identitas instrumen,
+partitur, atau frekuensi fundamental. Selain itu, analisis hanya
+berlaku untuk \texttt{DRUMS.mp3}; susunan lengkap seluruh instrumen
+di dalam FLP tidak direkonstruksi. Jendela tetap juga tidak dapat
+sekaligus memberikan lokalisasi waktu sangat tajam dan pemisahan
+frekuensi sangat halus untuk semua kejadian dalam rekaman.
+
+\section{Kesimpulan}
+Analisis audio dapat dilakukan tanpa FL Studio karena paket proyek
+telah menyediakan berkas MP3 yang dapat didekode menjadi sinyal
+diskret. FFT global, STFT, dan spektrogram memberikan sudut pandang
+yang saling melengkapi terhadap berkas \texttt{DRUMS.mp3}. Konvensi
+notasi dan normalisasi kontinu mengikuti bahan kuliah, sedangkan
+faktor konversi DFT serta pembobotan satu sisi dijelaskan secara
+eksplisit untuk menjaga konsistensi perhitungan energi.
+Puncak terpilih terkuat berada pada $41{,}60$ Hz, dan $91{,}19\%$
+energi terdapat pada pita $0$--$250$ Hz. Kesamaan energi waktu dan
+frekuensi diperiksa dengan galat relatif sekitar
+$2{,}07\times10^{-15}$. Perubahan RMS, sentroid, serta fraksi daya
+antarsegmen mendukung karakteristik nonstasioner secara deskriptif,
+bukan sekadar perubahan amplitudo yang seragam.
+
+Perbandingan Hann $1024$ dan $4096$ sampel menunjukkan kompromi
+antara lokalisasi waktu dan frekuensi. Jendela pendek mencakup sekitar
+$23{,}22$ ms dengan jarak bin $43{,}07$ Hz, sedangkan jendela panjang
+mencakup sekitar $92{,}88$ ms dengan jarak bin $10{,}77$ Hz.
+Perubahan tersebut sesuai dengan Prinsip Ketaktentuan Heisenberg;
+untuk model kontinu Hann, hasil kali simpangan bakunya sekitar
+$0,513117$. Pengamatan lokal diperlukan untuk menafsirkan perubahan
+temporal, sementara spektrum global berguna untuk merangkum distribusi
+frekuensi keseluruhan. Hasil ini belum menentukan aransemen lengkap,
+identitas instrumen secara pasti, ataupun sifat probabilistik suatu
+proses pembangkit audio.
+
+\begin{thebibliography}{9}
+  \bibitem{kuliah4}
+  \textit{Kuliah 4: Transformasi Fourier}. Bahan kuliah Analisis Fourier
+  dan Wavelet, tanpa tahun. Berkas \texttt{Kuliah-04-AFW.pdf}, folder
+  \texttt{Materi}, khususnya Bagian 4.2, hlm.~52--53, dan Bagian 4.5,
+  hlm.~58--59.
+  \bibitem{kuliah5}
+  \textit{Kuliah 5: Sampling dan Analisis Fourier Diskret}. Bahan kuliah
+  Analisis Fourier dan Wavelet, tanpa tahun. Berkas
+  \texttt{KuliahAFW-05.pdf}, folder \texttt{Materi}, khususnya Bagian
+  5.1, hlm.~65, serta Bagian 5.3--5.5, hlm.~69--75.
+  \bibitem{kuliah6}
+  \textit{Kuliah 6: Analisis Waktu-Frekuensi}. Bahan kuliah Analisis
+  Fourier dan Wavelet, tanpa tahun. Berkas \texttt{KuliahAFW-06.pdf},
+  folder \texttt{Materi}. Bagian 6.3--6.7, hlm.~89--100, dan petunjuk
+  Tugas \textit{Project-Based} 1, Bagian 6.10, hlm.~104.
+  \bibitem{youtube}
+  Rick Ruyz. \textit{[ FREE FLP ] Bad Piggies - Theme REMAKE FL STUDIO
+    STOCK PLUGINS}. Video YouTube, tanpa tahun.
+  \url{https://www.youtube.com/watch?v=DdIcPpjQXV4}.
+  Judul dan kanal diverifikasi pada 22 Oktober 2026. Rujukan asal paket
+  audio lokal berdasarkan keterangan pengguna.
+  \bibitem{flp}
+  Image-Line. \textit{FL Studio Project File (*.flp)}.
+  Dokumentasi FL Studio.
+  \url{https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/fformats_open_flp.htm}.
+  Diakses 22 Oktober 2026.
+  \bibitem{numpy}
+  NumPy Developers. \textit{Discrete Fourier Transform}.
+  \url{https://numpy.org/doc/stable/reference/routines.fft.html}.
+  Diakses 22 Oktober 2026.
+  \bibitem{hann}
+  SciPy Developers. \textit{scipy.signal.windows.hann}.
+  \url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hann.html}.
+  Diakses 22 Oktober 2026.
+\end{thebibliography}
+
+% \appendix
+% \section{Reproduksi komputasi}
+% Notebook \texttt{analisis\_audio.ipynb} memuat penjelasan,
+% kode analisis, dan keluaran komputasi. Berkas
+% \texttt{analisis\_audio.py} menyediakan fungsi analisis yang digunakan
+% notebook. Grafik disimpan di \texttt{Gambar}, sedangkan ringkasan
+% numerik dan tabel CSV disimpan di \texttt{hasil\_numerik}.
+% Jalankan seluruh sel notebook dari awal dengan folder paket audio
+% tetap berada di sebelah notebook. Petunjuk instalasi dependensi
+% dan pembuatan ulang keluaran tersedia di \texttt{README.md}.
+% Notebook tidak memerlukan FL Studio dan tidak mengakses jaringan
+% ketika membaca audio lokal.
+
+\end{document}
