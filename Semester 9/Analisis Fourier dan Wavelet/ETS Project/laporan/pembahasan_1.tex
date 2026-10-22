@@ -1,0 +1,241 @@
+\section{Pembahasan}
+\subsection{Rekonstruksi Komponen Instrumen dari Proyek FLP}
+Untuk membandingkan instrumen, dibutuhkan track dengan not dan waktu
+sesuai sumber. Audit awal menemukan satu FLP, dua MP3 dan 12 sampel
+\texttt{Classical Acoustic}; belum ada WAV track instrumen. ZIP asli
+tidak ditemukan, tetapi paket yang telah diekstrak cukup untuk membaca
+proyek. Sampel Classical Acoustic memakai format tag \texttt{0x674f}:
+payload Ogg Vorbis di dalam wadah RIFF/WAVE. Sampel berhasil didekode,
+tetapi tidak langsung dianggap sebagai track lagu penuh.
+
+PyFLP membaca channel dan not \cite{pyflp}. Proyek berformat FL Studio
+25.1.6.4997, tempo 156 BPM, PPQ 96 dan birama 4/4. Tujuh pattern yang
+ditemukan adalah Brasses 2, Brasses, Piano, Guitar, Guitar Melody,
+Bass dan Tuba. Pembacaan Playlist bawaan PyFLP 2.2.1 tidak sesuai
+versi ini, sehingga event Playlist dibaca langsung sebagai 12 record
+berukuran 80 byte. Perubahan format juga dicatat pada proyek PyFLP
+\cite{playlist}. Indeks dan batas klip diperiksa terhadap data not
+serta channel, bukan ditebak dari nama.
+Penanda record bernilai 20480 dan indeks pattern/channel diperiksa
+sebelum penempatan not. Offset pattern dinyatakan dalam tick;
+nilai $-1$ diperlakukan sebagai penanda tanpa pemotongan.
+
+Posisi not memperhitungkan offset pemotongan:
+\begin{equation}
+ p_{\mathrm{global}}=p_{\mathrm{klip}}+p_{\mathrm{not}}-p_{\mathrm{offset}},
+ \qquad t=\frac{p_{\mathrm{global}}}{\mathrm{PPQ}}\frac{60}{\mathrm{BPM}}.
+ \label{eq:timing}
+\end{equation}
+Contohnya, Guitar Melody ditempatkan pada tick 4224 dan dipotong mulai
+tick sumber 4224. Not pertama pada tick sumber 4272 harus tetap mulai
+di tick global 4272, bukan 8496. Tiap pattern ditempatkan sekali pada
+Playlist ini; pengulangan frasa sudah tertulis pada notnya. Tidak
+ditemukan perubahan tempo pada controller pattern, sehingga digunakan
+tempo tetap yang tersimpan.
+
+Not diekspor menjadi MIDI tiap kelompok dan MIDI multitrack, lalu
+dirender melalui FluidSynth 2.6.1 \cite{fluidsynth}. GeneralUser GS
+2.0.3 karya S.~Christian Collins menjadi SoundFont pengganti;
+lisensi dan sumber disertakan \cite{soundfont}. Pemetaan
+Tabel~\ref{tab:preset} mengikuti keluarga instrumen. Pitch dan timing
+dipertahankan, tetapi timbre, envelope, artikulasi dan efek asli
+tidak dianggap sama.
+\begin{table}[H]
+\centering\small
+\caption{Preset pengganti; program GM dihitung dari nol.}\label{tab:preset}
+\begin{tabular}{llll}
+\toprule
+Kelompok & Channel FLP & Preset asli & SoundFont \\
+\midrule
+Piano & 3, 4, 5 & Close Grand/lite & Grand Piano (0) \\
+Guitar & 2, 6, 7 & Ace Nylon, Classical Acoustic & Nylon Guitar (24) \\
+Bass & 9 & Bass & Acoustic Bass (32) \\
+Brass & 0 & Full Brass Sustain & Brass Section (61) \\
+Tuba & 10 & Tubas Staccato & Tuba (58) \\
+\bottomrule
+\end{tabular}
+\end{table}
+Channel Horns Sustain yang tidak memuat not pada pattern terpasang
+tidak diberi not baru. Velocity FL maksimum 128 dipetakan proporsional
+ke MIDI 0--127; nilai mentah tetap disimpan. Semua render memakai gain
+0,2, volume MIDI CC7 sebesar 100, pan CC10 sebesar 64, serta reverb
+dan chorus nonaktif. Nomor pitch mentah dipakai sebagai nomor MIDI;
+perbedaan penamaan oktaf antarperangkat tidak dijadikan alasan
+transposisi. Root kanal bernilai 60, pitch shift kanal/master nol,
+dan fine pitch not netral pada sumber yang diperiksa.
+Volume mixer dan automation FL Studio tidak direplikasi. Rekonstruksi
+menjaga struktur musikal yang terbaca sambil menyatakan bagian
+pembentukan suara yang berubah.
+
+\subsection{Validasi Waktu, Durasi, dan Integritas Sinyal}
+Sebelum menafsirkan spektrum, perlu dipastikan bahwa data tidak kosong
+atau salah tempat. MIDI dibaca ulang dan dibandingkan dengan daftar
+not pada pitch, velocity hasil konversi, kanal, serta tick mulai dan
+selesai. Pemeriksaan mencakup 2219 not. WAV diperiksa agar amplitudo
+tidak nol, sampel valid dan tidak terjadi clipping.
+\begin{table}[H]
+\centering\small
+\caption{Data not dan waktu aktivitasnya. Titik pada tabel numerik
+digunakan sebagai pemisah desimal.}\label{tab:dataset}
+\input{hasil/instrumen/tabel_dataset.tex}
+\end{table}
+Timeline berakhir pada tick 17280, sekitar 69,230769 s pada 156 BPM.
+Kelima WAV memiliki 3.141.274 sampel, stereo 44.100 Hz, dan durasi
+71,230703 s setelah dua detik tambahan untuk peluruhan. Pembulatan
+tempo MIDI menghasilkan selisih kurang dari 70 mikrodetik pada akhir
+timeline. Onset audio terukur sekitar 0,27--11,21 ms setelah note-on,
+bergantung preset dan ambang deteksi. Selisih dapat berasal dari
+attack dan blok synthesizer, bukan perubahan posisi not pada MIDI.
+
+DRUMS dan VOCALS penuh masing-masing berdurasi 160,77 s. Offset klip
+audio FLP mengisyaratkan cuplikan sekitar 0,256--69,487 s, tetapi
+stretching dan render audio asli tidak diverifikasi. Kedua MP3 penuh
+tidak digabung dengan WAV baru. \texttt{All\_Instruments.wav} hanya
+menjumlahkan kelima WAV yang memiliki asal waktu dan panjang sama.
+Validasi ini memastikan dasar perbandingan timing, tetapi tidak
+membuktikan kesamaan bunyi terhadap video YouTube.
+
+\subsection{Analisis Sinyal dalam Domain Waktu}
+Analisis waktu ingin mengetahui kapan komponen aktif dan bagaimana
+amplitudonya berubah. Osilasi cepat sulit dibaca pada skala seluruh
+lagu, sehingga waveform diringkas memakai minimum--maksimum setiap
+10 ms dan dibandingkan dengan RMS per 100 ms. Stereo dirata-ratakan
+menjadi mono. Rerata global mono dikurangi untuk FFT dan STFT;
+tidak ada normalisasi puncak per instrumen.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{01_waveform_rms_perbandingan.png}
+\caption{Kolom kiri: amplitudo terhadap waktu. Kolom kanan: RMS lokal.
+Skala antarbaris sama. Grafik bukan ukuran keras suara yang telah
+dikalibrasi.}\label{fig:waktu}
+\end{figure}
+Pada Gambar~\ref{fig:waktu}, X adalah waktu dari awal Playlist.
+Kurva semakin jauh dari nol berarti amplitudo sesaat lebih besar;
+RMS semakin tinggi berarti amplitudo efektif potongan lebih besar.
+Bass, piano, gitar dan tuba berulang sepanjang sebagian besar
+aransemen. Brass terutama muncul pada awal dan sekitar 29,23--32,31 s,
+sesuai dua akor pada not sumber. Pola ini menjelaskan mengapa rerata
+seluruh rekaman perlu dibedakan dari rerata saat aktif.
+\begin{table}[H]
+\centering
+\caption{RMS global dan RMS pada blok aktif.}\label{tab:rms}
+\input{hasil/instrumen/tabel_waktu.tex}
+\end{table}
+Blok aktif ditentukan dari RMS mono sebelum pengurangan rerata yang
+sekurang-kurangnya 1\% dari RMS blok tertinggi instrumen tersebut
+(ambang relatif $-40$ dB). Ini definisi operasional, bukan deteksi
+persepsi atau durasi not persis. Pemeriksaan sebelum pengurangan
+rerata mencegah bagian nol dianggap aktif karena offset baru.
+
+Brass memiliki RMS seluruh rekaman sekitar 0,00633, tetapi RMS aktif
+sekitar 0,02367. Nilai global kecil terutama dipengaruhi banyaknya
+bagian diam. Pada piano, nilainya lebih dekat: sekitar 0,01454 dan
+0,01488, karena aktivitas lebih merata. Secara matematis,
+rerata kuadrat pada~\eqref{eq:rms} memasukkan bagian senyap ketika
+seluruh timeline dihitung. Karena itu, hasil tidak cukup untuk
+menyatakan ``brass lebih pelan daripada piano''.
+
+Untuk memeriksa awal bunyi, Gambar~\ref{fig:attack} memakai 180 ms
+sejak note-on pertama tiap kelompok. Y adalah RMS 5 ms, dengan skala
+berbeda antarbaris agar bentuk awal terbaca. Garis putus adalah
+note-off, bukan saat audio harus langsung nol.
+\begin{figure}[H]
+\centering\includegraphics[width=.92\linewidth]{04_attack_awal.png}
+\caption{RMS sejak not pertama. Note-off piano, bass dan tuba sekitar
+92 ms; gitar sekitar 132 ms. Akor brass masih ditahan sepanjang
+tampilan.}\label{fig:attack}
+\end{figure}
+Piano sudah memiliki RMS nyata pada belasan milidetik awal, sedangkan
+bass, gitar dan tuba pada contoh ini meningkat selama puluhan
+milidetik awal. Sesudah note-off sekitar 92 ms, tuba mendekati nol
+lebih cepat daripada sisa amplitudo piano dan bass pada rentang
+tampilan. Brass mempertahankan amplitudo karena akornya belum dilepas.
+Ini contoh perbedaan awal dan peluruhan pada render, bukan sifat
+mutlak setiap instrumen.
+
+RMS 5 ms masih dipengaruhi fase osilasi, terutama nada rendah dengan
+periode melebihi 5 ms. Riak dan waktu puncak kecil tidak ditafsirkan
+sebagai konstanta attack murni. Grafik menghubungkan envelope dengan
+pembobotan energi lokal, tetapi not, velocity dan jumlah suara
+bersamaan pada kelima contoh memang berbeda.
+
+\subsection{Analisis Fourier Global dan Distribusi Energi}
+Analisis ini ingin membandingkan bagian spektrum yang berkontribusi
+kuat. FFT diterapkan pada seluruh sinyal mono setelah pengurangan
+rerata. Tanpa jendela tambahan, batas rekaman bertindak sebagai
+jendela persegi panjang. Jarak bin kelima WAV sekitar 0,014039 Hz.
+Puncak dipilih dari maksimum lokal pada 20--10.000 Hz dengan jarak
+minimal 10 Hz agar bukan hanya bin tetangga dari satu gugus.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{02_fft_perbandingan.png}
+\caption{X: frekuensi; Y: kerapatan daya dalam dB. Tampilan merangkum
+maksimum per 0,5 Hz; hitungan memakai bin asli. Skala panel sama.}
+\label{fig:fft}
+\end{figure}
+Kurva tinggi pada Gambar~\ref{fig:fft} berarti kontribusi spektral
+kuat. Bass terkonsentrasi dekat sisi kiri, sedangkan brass memiliki
+puncak kuat lebih jauh ke frekuensi tinggi. Piano dan gitar mempunyai
+beberapa gugus karena memainkan banyak nada beserta harmoniknya.
+\begin{table}[H]
+\centering\small
+\caption{Ringkasan WAV baru. Puncak adalah puncak terpilih terkuat,
+bukan penetapan fundamental.}\label{tab:spektrum}
+\input{hasil/instrumen/tabel_spektrum.tex}
+\end{table}
+Bass memiliki puncak sekitar 49,40 Hz dan 97,61\% energi di bawah
+250 Hz. Tuba memiliki puncak sekitar 117,00 Hz, tetapi hanya 41,04\%
+energi pada pita tersebut. Data MIDI menunjukkan 187 not bass dan
+tuba memiliki 187 onset yang sama, dengan pitch tuba satu oktaf
+lebih tinggi. Sebanyak 20 note-off tuba lebih lambat 2 atau 4 tick,
+sehingga waktu akhir not tidak seluruhnya identik.
+Dalam rumus nada ideal $\nu(p)=440\,2^{(p-69)/12}$, kenaikan 12
+semiton menggandakan frekuensi. Namun, spektrum tuba bukan sekadar
+salinan bass yang digeser karena preset dan kekuatan harmonik berbeda.
+
+Brass memiliki puncak sekitar 1174,61 Hz, meskipun not tertinggi MIDI
+74 berfrekuensi ideal sekitar 587,33 Hz. Puncak tersebut dekat
+harmonik kedua nada itu. Akor memuat beberapa not, sehingga harmonik
+juga dapat bertumpuk. Inilah contoh puncak terbesar yang tidak langsung
+menjadi fundamental. Pada bass, puncak sekitar 49,40 dan 98,81 Hz
+mendukung hubungan harmonik mendekati 1:2, tetapi spektrum seluruhnya
+tetap gabungan banyak kejadian.
+
+Sentroid dan fraksi pita merangkum bentuk distribusi daya:
+\begin{equation}
+ C=\frac{\sum_m\nu_mP_m}{\sum_mP_m},\qquad
+ \eta_B=\frac{\sum_{\nu_m\in B}P_m}{\sum_mP_m}.
+ \label{eq:fitur}
+\end{equation}
+Sentroid lebih tinggi berarti pusat daya bergeser ke frekuensi lebih
+tinggi, bukan amplitudo lebih besar. Bass mempunyai sentroid sekitar
+91,54 Hz, brass sekitar 1323,02 Hz. Secara spektral, brass lebih kaya
+komponen tinggi dan dapat dianalogikan relatif lebih terang; ini
+bukan hasil uji pendengaran subjektif.
+\begin{figure}[H]
+\centering\includegraphics[width=.94\linewidth]{03_pita_energi.png}
+\caption{X: kelompok instrumen. Tinggi segmen warna: persentase energi
+pada pita di legenda. Tiap batang berjumlah 100\%, sehingga menekankan
+komposisi, bukan besar amplitudo keseluruhan.}\label{fig:pita}
+\end{figure}
+Sekitar 55,70\% energi brass berada di atas 1000 Hz, sedangkan bass
+hanya sekitar 0,05\%. Piano dan gitar masing-masing 8,54\% dan 9,43\%.
+Pembagian mengikuti penjumlahan daya pada~\eqref{eq:fitur}; batas
+pita bukan kategori instrumen universal. Perbandingan dipengaruhi
+register, partitur, velocity, lama aktif dan preset, sehingga tidak
+mengisolasi timbre sebagai satu-satunya penyebab.
+
+\subsection{Validasi Energi Menggunakan Identitas Parseval}
+Pemeriksaan ini ingin mengetahui apakah normalisasi dan pembobotan
+spektrum benar. Energi dihitung langsung dari sampel dan koefisien
+FFT dengan~\eqref{eq:parseval}.
+\begin{table}[H]
+\centering\small
+\caption{Energi dalam amplitudo digital kuadrat detik.}\label{tab:parseval}
+\input{hasil/instrumen/tabel_parseval.tex}
+\end{table}
+Galat relatif semua instrumen di bawah $7\times10^{-15}$, setingkat
+pembulatan numerik. Validasi STFT pada tiga bingkai representatif
+per jendela juga menghasilkan galat di bawah $4\times10^{-16}$.
+Bagi interpretasi audio, ini mendukung bahwa energi tidak berubah
+karena salah faktor FFT. Parseval tidak memvalidasi kesamaan SoundFont
+terhadap preset asli atau mengidentifikasi instrumen: teorema tersebut
+memastikan konsistensi dua representasi sinyal yang sama.

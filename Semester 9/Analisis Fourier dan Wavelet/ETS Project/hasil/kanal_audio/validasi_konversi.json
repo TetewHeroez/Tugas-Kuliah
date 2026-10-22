@@ -1,0 +1,34 @@
+[
+  {
+    "channel": "DRUMS",
+    "source": "data\\sumber\\DRUMS.mp3",
+    "wav": "hasil\\audio\\kanal\\DRUMS.wav",
+    "subtype": "FLOAT",
+    "fs": 44100,
+    "channels": 2,
+    "frames": 7090031,
+    "duration_s": 160.77167800453515,
+    "peak": 0.8947739005088806,
+    "samples_at_or_above_one": 0,
+    "roundtrip_samples_identical": true,
+    "max_abs_conversion_error": 0.0,
+    "source_sha256": "83f79d6fc7ef60f2835791f92b369ec9f74c100dba9539e2ed430a84825f4944",
+    "wav_sha256": "77dea42e5308b81f91c1348e8fb89db5288916e32e7beabba8323f10a4dea10a"
+  },
+  {
+    "channel": "VOCALS",
+    "source": "data\\sumber\\VOCALS.mp3",
+    "wav": "hasil\\audio\\kanal\\VOCALS.wav",
+    "subtype": "FLOAT",
+    "fs": 44100,
+    "channels": 2,
+    "frames": 7090031,
+    "duration_s": 160.77167800453515,
+    "peak": 0.9985337257385254,
+    "samples_at_or_above_one": 0,
+    "roundtrip_samples_identical": true,
+    "max_abs_conversion_error": 0.0,
+    "source_sha256": "2c66a0e3ed66128ac252b46f201184e1e8283aa5c252c8fcf4c949016db2cded",
+    "wav_sha256": "2d6faef35ccb0d9562948d450222e02467df14fa3ae8e8d1f03707b9c316a651"
+  }
+]

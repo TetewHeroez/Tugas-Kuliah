@@ -1,0 +1,609 @@
+{
+  "conversion": [
+    {
+      "channel": "DRUMS",
+      "source": "data\\sumber\\DRUMS.mp3",
+      "wav": "hasil\\audio\\kanal\\DRUMS.wav",
+      "subtype": "FLOAT",
+      "fs": 44100,
+      "channels": 2,
+      "frames": 7090031,
+      "duration_s": 160.77167800453515,
+      "peak": 0.8947739005088806,
+      "samples_at_or_above_one": 0,
+      "roundtrip_samples_identical": true,
+      "max_abs_conversion_error": 0.0,
+      "source_sha256": "83f79d6fc7ef60f2835791f92b369ec9f74c100dba9539e2ed430a84825f4944",
+      "wav_sha256": "77dea42e5308b81f91c1348e8fb89db5288916e32e7beabba8323f10a4dea10a"
+    },
+    {
+      "channel": "VOCALS",
+      "source": "data\\sumber\\VOCALS.mp3",
+      "wav": "hasil\\audio\\kanal\\VOCALS.wav",
+      "subtype": "FLOAT",
+      "fs": 44100,
+      "channels": 2,
+      "frames": 7090031,
+      "duration_s": 160.77167800453515,
+      "peak": 0.9985337257385254,
+      "samples_at_or_above_one": 0,
+      "roundtrip_samples_identical": true,
+      "max_abs_conversion_error": 0.0,
+      "source_sha256": "2c66a0e3ed66128ac252b46f201184e1e8283aa5c252c8fcf4c949016db2cded",
+      "wav_sha256": "2d6faef35ccb0d9562948d450222e02467df14fa3ae8e8d1f03707b9c316a651"
+    }
+  ],
+  "channels": [
+    {
+      "instrument": "DRUMS",
+      "samples": 7090031,
+      "fs": 44100,
+      "duration_s": 160.77167800453515,
+      "mean_removed": 0.0001491613914445926,
+      "rms": 0.07756585761745062,
+      "rms_active": 0.07871773401407801,
+      "active_duration_s": 156.1,
+      "activity_threshold_db": -40,
+      "peak_hz": 41.59936677286743,
+      "centroid_hz": 563.4973785153544,
+      "energy": 0.9672767344661772,
+      "energy_fft": 0.9672767344661792,
+      "parseval_relative_error": 2.0660079717808616e-15,
+      "bin_spacing_hz": 0.006220001012689508,
+      "band_0_250_pct": 91.19454351461133,
+      "band_250_1000_pct": 1.9749499732174645,
+      "band_1000_4000_pct": 1.630947797237091,
+      "band_4000_22050_pct": 5.199558714934189,
+      "sha256": "77dea42e5308b81f91c1348e8fb89db5288916e32e7beabba8323f10a4dea10a"
+    },
+    {
+      "instrument": "VOCALS",
+      "samples": 7090031,
+      "fs": 44100,
+      "duration_s": 160.77167800453515,
+      "mean_removed": 2.8371353219809226e-05,
+      "rms": 0.04894746131107586,
+      "rms_active": 0.16469516598881295,
+      "active_duration_s": 14.2,
+      "activity_threshold_db": -40,
+      "peak_hz": 780.0752070054419,
+      "centroid_hz": 1195.307588672929,
+      "energy": 0.38518546281768345,
+      "energy_fft": 0.38518546281768423,
+      "parseval_relative_error": 2.017615388578292e-15,
+      "bin_spacing_hz": 0.006220001012689508,
+      "band_0_250_pct": 0.017350000302706642,
+      "band_250_1000_pct": 68.11122212203298,
+      "band_1000_4000_pct": 29.606821857670102,
+      "band_4000_22050_pct": 2.2646060199941647,
+      "sha256": "2d6faef35ccb0d9562948d450222e02467df14fa3ae8e8d1f03707b9c316a651"
+    }
+  ],
+  "peaks": [
+    {
+      "instrument": "DRUMS",
+      "rank": 1,
+      "frequency_hz": 41.59936677286743,
+      "omega_rad_s": 261.3765300952553,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "DRUMS",
+      "rank": 2,
+      "frequency_hz": 59.79908973599693,
+      "omega_rad_s": 375.7287620119295,
+      "relative_db": -2.5198601536546446
+    },
+    {
+      "instrument": "DRUMS",
+      "rank": 3,
+      "frequency_hz": 75.39885227582221,
+      "omega_rad_s": 473.7449607976502,
+      "relative_db": -4.275848718017849
+    },
+    {
+      "instrument": "DRUMS",
+      "rank": 4,
+      "frequency_hz": 90.9986148156475,
+      "omega_rad_s": 571.761159583371,
+      "relative_db": -4.350767487917238
+    },
+    {
+      "instrument": "DRUMS",
+      "rank": 5,
+      "frequency_hz": 122.19813989529807,
+      "omega_rad_s": 767.7935571548124,
+      "relative_db": -4.701117032307897
+    },
+    {
+      "instrument": "DRUMS",
+      "rank": 6,
+      "frequency_hz": 101.39845650886436,
+      "omega_rad_s": 637.1052921071848,
+      "relative_db": -7.0113434659496034
+    },
+    {
+      "instrument": "VOCALS",
+      "rank": 1,
+      "frequency_hz": 780.0752070054419,
+      "omega_rad_s": 4901.357079151667,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "VOCALS",
+      "rank": 2,
+      "frequency_hz": 768.0954850550019,
+      "omega_rad_s": 4826.086266208566,
+      "relative_db": -1.9084873454468076
+    },
+    {
+      "instrument": "VOCALS",
+      "rank": 3,
+      "frequency_hz": 795.9299895867874,
+      "omega_rad_s": 5000.975616115304,
+      "relative_db": -2.5023606653006385
+    },
+    {
+      "instrument": "VOCALS",
+      "rank": 4,
+      "frequency_hz": 751.5502823612478,
+      "omega_rad_s": 4722.129691738862,
+      "relative_db": -3.3227192141504247
+    },
+    {
+      "instrument": "VOCALS",
+      "rank": 5,
+      "frequency_hz": 806.9145113751971,
+      "omega_rad_s": 5069.993402022634,
+      "relative_db": -3.4919088124133566
+    },
+    {
+      "instrument": "VOCALS",
+      "rank": 6,
+      "frequency_hz": 846.8406978756511,
+      "omega_rad_s": 5320.8570304139985,
+      "relative_db": -4.0576696035604485
+    }
+  ],
+  "segments": [
+    {
+      "instrument": "DRUMS",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 0.06151804224111253,
+      "meaningful": true,
+      "centroid_hz": 1006.0835542325981,
+      "low_band_pct": 74.34994032439153,
+      "high_band_pct": 18.82584323112577
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 0.05876165936498459,
+      "meaningful": true,
+      "centroid_hz": 643.4081747286361,
+      "low_band_pct": 90.2702973443472,
+      "high_band_pct": 8.991123723109418
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.07533753932054012,
+      "meaningful": true,
+      "centroid_hz": 654.829807366217,
+      "low_band_pct": 90.94091000772364,
+      "high_band_pct": 7.726453562424834
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.0868615470957346,
+      "meaningful": true,
+      "centroid_hz": 653.0213765077485,
+      "low_band_pct": 90.66389923430384,
+      "high_band_pct": 7.378386617376183
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 0.10208433737364056,
+      "meaningful": true,
+      "centroid_hz": 527.2149968612192,
+      "low_band_pct": 93.47946336933927,
+      "high_band_pct": 4.804220220583069
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 0.10221008429475535,
+      "meaningful": true,
+      "centroid_hz": 590.6845669484811,
+      "low_band_pct": 92.25044803274061,
+      "high_band_pct": 6.066274085357692
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 0.08669133136712254,
+      "meaningful": true,
+      "centroid_hz": 256.87911389507343,
+      "low_band_pct": 95.7574616543694,
+      "high_band_pct": 2.993237900467933
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 70.0,
+      "end_s": 80.0,
+      "rms": 0.06502600302540226,
+      "meaningful": true,
+      "centroid_hz": 566.6455435792228,
+      "low_band_pct": 90.06873618733337,
+      "high_band_pct": 8.128124601233578
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 80.0,
+      "end_s": 90.0,
+      "rms": 0.10411688265748319,
+      "meaningful": true,
+      "centroid_hz": 373.65701229037506,
+      "low_band_pct": 94.59421133000862,
+      "high_band_pct": 3.7556849766342446
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 90.0,
+      "end_s": 100.0,
+      "rms": 0.08530314208826381,
+      "meaningful": true,
+      "centroid_hz": 520.8799833591205,
+      "low_band_pct": 92.90185740713898,
+      "high_band_pct": 5.594007208051814
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 100.0,
+      "end_s": 110.0,
+      "rms": 0.08211476686643494,
+      "meaningful": true,
+      "centroid_hz": 561.5209397240786,
+      "low_band_pct": 91.901358414826,
+      "high_band_pct": 6.933497574567441
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 110.0,
+      "end_s": 120.0,
+      "rms": 0.0981396879347596,
+      "meaningful": true,
+      "centroid_hz": 458.61180088674723,
+      "low_band_pct": 94.3297675169098,
+      "high_band_pct": 3.9657760073356667
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 120.0,
+      "end_s": 130.0,
+      "rms": 0.06089078829873749,
+      "meaningful": true,
+      "centroid_hz": 1066.9366416650244,
+      "low_band_pct": 72.39270359190984,
+      "high_band_pct": 19.456261093275877
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 130.0,
+      "end_s": 140.0,
+      "rms": 0.05333813882445109,
+      "meaningful": true,
+      "centroid_hz": 706.9214998125613,
+      "low_band_pct": 89.58050606767861,
+      "high_band_pct": 9.970847328722128
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 140.0,
+      "end_s": 150.0,
+      "rms": 0.04848500211517239,
+      "meaningful": true,
+      "centroid_hz": 687.9090501713863,
+      "low_band_pct": 90.7412330558278,
+      "high_band_pct": 8.12341778661276
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 150.0,
+      "end_s": 160.0,
+      "rms": 0.016220038746653793,
+      "meaningful": true,
+      "centroid_hz": 812.4089877380668,
+      "low_band_pct": 87.6631483160278,
+      "high_band_pct": 9.985950633009514
+    },
+    {
+      "instrument": "DRUMS",
+      "start_s": 160.0,
+      "end_s": 160.77167800453515,
+      "rms": 0.00016168407578659596,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 8.024294379755242e-05,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 0.00012279957439396657,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.00010260374017765871,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.10726670598704849,
+      "meaningful": true,
+      "centroid_hz": 1160.0063360778724,
+      "low_band_pct": 0.03639719314711191,
+      "high_band_pct": 29.229067941727365
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 0.00013831881488835456,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 0.00014268422347201804,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 0.00012280966685435194,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 70.0,
+      "end_s": 80.0,
+      "rms": 0.00011184875856371361,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 80.0,
+      "end_s": 90.0,
+      "rms": 0.00015537444304552755,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 90.0,
+      "end_s": 100.0,
+      "rms": 0.16319963771911966,
+      "meaningful": true,
+      "centroid_hz": 1209.4227352446655,
+      "low_band_pct": 0.007790856001081453,
+      "high_band_pct": 32.903102921669365
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 100.0,
+      "end_s": 110.0,
+      "rms": 0.0007562608314418962,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 110.0,
+      "end_s": 120.0,
+      "rms": 0.00013395883018059172,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 120.0,
+      "end_s": 130.0,
+      "rms": 0.00010352465383236417,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 130.0,
+      "end_s": 140.0,
+      "rms": 0.00012457055728474708,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 140.0,
+      "end_s": 150.0,
+      "rms": 6.522681865441771e-05,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 150.0,
+      "end_s": 160.0,
+      "rms": 0.019430249137586928,
+      "meaningful": true,
+      "centroid_hz": 1276.3521239967226,
+      "low_band_pct": 0.05944078859164587,
+      "high_band_pct": 39.73240570573294
+    },
+    {
+      "instrument": "VOCALS",
+      "start_s": 160.0,
+      "end_s": 160.77167800453515,
+      "rms": 3.590371150005179e-05,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    }
+  ],
+  "validation": [
+    {
+      "instrument": "DRUMS",
+      "M": 1024,
+      "frames": 27692,
+      "frame_parseval_max_error": 1.487125039757677e-16
+    },
+    {
+      "instrument": "DRUMS",
+      "M": 4096,
+      "frames": 6920,
+      "frame_parseval_max_error": 2.1094203327673556e-16
+    },
+    {
+      "instrument": "VOCALS",
+      "M": 1024,
+      "frames": 27692,
+      "frame_parseval_max_error": 2.569095532319671e-16
+    },
+    {
+      "instrument": "VOCALS",
+      "M": 4096,
+      "frames": 6920,
+      "frame_parseval_max_error": 1.284547766923596e-16
+    }
+  ],
+  "flp_audio_channel_audit": [
+    {
+      "name": "DRUMS",
+      "channel_id": 11,
+      "sample_basename": "DRUMS.mp3",
+      "stretch_mode": 0,
+      "stretch_multiplier": 1.0,
+      "stretch_pitch_cents": 0,
+      "stretch_time": [
+        0,
+        0,
+        0
+      ],
+      "pitch_shift_cents": 0,
+      "start_offset_parameter": 0,
+      "use_loop_points": false,
+      "playlist_position_ticks": 0,
+      "playlist_length_ticks": 17280,
+      "playlist_offset_start_raw": 256.40704345703125,
+      "playlist_offset_end_raw": 69487.1796875,
+      "alignment_status": "Berkas penuh; tidak ditempatkan ulang atau dicampur dengan MIDI. Parameter stretching terbaca netral, tetapi pemetaan offset audio dan hasil playback FL Studio belum diuji terhadap render acuan."
+    },
+    {
+      "name": "VOCALS",
+      "channel_id": 12,
+      "sample_basename": "VOCALS.mp3",
+      "stretch_mode": 0,
+      "stretch_multiplier": 1.0,
+      "stretch_pitch_cents": 0,
+      "stretch_time": [
+        0,
+        0,
+        0
+      ],
+      "pitch_shift_cents": 0,
+      "start_offset_parameter": 0,
+      "use_loop_points": false,
+      "playlist_position_ticks": 0,
+      "playlist_length_ticks": 17280,
+      "playlist_offset_start_raw": 256.4101867675781,
+      "playlist_offset_end_raw": 69487.1796875,
+      "alignment_status": "Berkas penuh; tidak ditempatkan ulang atau dicampur dengan MIDI. Parameter stretching terbaca netral, tetapi pemetaan offset audio dan hasil playback FL Studio belum diuji terhadap render acuan."
+    }
+  ],
+  "stft": {
+    "fs": 44100,
+    "M": [
+      1024,
+      4096
+    ],
+    "H": [
+      256,
+      1024
+    ],
+    "overlap_pct": 75,
+    "window": "Hann periodic",
+    "zoom_source_seconds": [
+      29,
+      33
+    ],
+    "frequency_plot_max_hz": 5000,
+    "db_limits": [
+      -110,
+      -20
+    ]
+  },
+  "drums_source_reference": "data\\sumber\\DRUMS.mp3",
+  "drums_source_comparison": {
+    "rms_abs_difference": 0.0,
+    "energy_abs_difference": 0.0,
+    "peak_hz_abs_difference": 0.0
+  },
+  "scope": "Dua WAV dari hasil dekode MP3 penuh; bukan render MIDI atau peningkatan kualitas sumber; timecode belum disetarakan dengan lima instrumen."
+}

@@ -1,0 +1,13 @@
+clip_id,track,kind,item_id,position_ticks,length_ticks,offset_start_raw,offset_end_raw,flags,name,source_start_ticks
+0,10,channel,15,0,17280,0.0,180.0,64,Master - Volume,
+1,3,pattern,3,0,17280,-1.0,-1.0,64,Piano,0.0
+2,2,channel,12,0,17280,256.4101867675781,69487.1796875,64,VOCALS,
+3,1,channel,11,0,17280,256.40704345703125,69487.1796875,64,DRUMS,
+4,8,pattern,2,0,384,-1.0,-1.0,64,Brasses,0.0
+5,9,channel,13,0,396,0.0,4.125,64,Brasses - Volume,
+6,7,pattern,7,192,17088,192.0,17280.0,64,Tuba,192.0
+7,6,pattern,6,192,17088,192.0,17280.0,64,Bass,192.0
+8,5,pattern,4,384,16896,384.0,17280.0,64,Guitar,384.0
+9,4,pattern,5,4224,9984,4224.0,14208.0,64,Guitar Melody,4224.0
+10,8,pattern,1,7296,768,-1.0,-1.0,64,Brasses 2,0.0
+11,9,channel,14,7296,768,76.0,84.0,64,Brasses 2 - Volume,

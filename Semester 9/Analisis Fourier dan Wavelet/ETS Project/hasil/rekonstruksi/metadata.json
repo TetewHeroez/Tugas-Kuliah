@@ -1,0 +1,192 @@
+{
+  "source_flp": "data\\sumber\\[ FLP ] Bad Piggies - Theme NEW REMAKE FL STUDIO.flp",
+  "sha256": "dc5ec61bf178034093a3faa0c70838dd04e0f4faa0761e6c8503806f2ddd13e0",
+  "fl_version": "25.1.6.4997",
+  "tempo_bpm": 156.0,
+  "tempo_midi_us": 384615,
+  "ppq": 96,
+  "time_signature": "4/4",
+  "playlist_record_bytes": 80,
+  "playlist_records": 12,
+  "pattern_clips": 7,
+  "patterns": 7,
+  "pattern_repetitions": {
+    "Piano": 1,
+    "Brasses": 1,
+    "Tuba": 1,
+    "Bass": 1,
+    "Guitar": 1,
+    "Guitar Melody": 1,
+    "Brasses 2": 1
+  },
+  "notes": 2219,
+  "clipped_notes": 0,
+  "timeline_ticks": 17280,
+  "timeline_seconds_exact_bpm": 69.23076923076923,
+  "timeline_seconds_midi": 69.2307,
+  "midi_tempo_quantization_seconds": 6.923076922760174e-05,
+  "sample_rate": 44100,
+  "release_tail_seconds": 2.0,
+  "programs_zero_based": {
+    "Piano": [
+      0,
+      "Acoustic Grand Piano"
+    ],
+    "Guitar": [
+      24,
+      "Nylon Guitar"
+    ],
+    "Bass": [
+      32,
+      "Acoustic Bass"
+    ],
+    "Brass": [
+      61,
+      "Brass Section"
+    ],
+    "Tuba": [
+      58,
+      "Tuba"
+    ]
+  },
+  "tempo_evidence": "Satu event tempo 156 BPM; tidak ada controller pattern; automation bernama volume saja.",
+  "limitations": [
+    "Preset SoundFont pengganti, bukan FLEX/DirectWave asli.",
+    "Volume/pan/mixer/efek/automation asli tidak direplikasi; CC7=100, pan=64, gain=0.2 seragam.",
+    "Velocity FL 0..128 dikonversi proporsional ke MIDI 0..127; nilai mentah disimpan.",
+    "MP3 penuh tidak digabung; klip Playlist dan berkas penuh memiliki durasi berbeda."
+  ],
+  "samples": [
+    {
+      "file": "Classical Acoustic (1).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 353501,
+      "duration_seconds": 8.015895691609977,
+      "peak": 1.0146875381469727,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (10).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 196244,
+      "duration_seconds": 4.449977324263038,
+      "peak": 0.8485648036003113,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (11).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 143135,
+      "duration_seconds": 3.245691609977324,
+      "peak": 0.613251268863678,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (12).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 147248,
+      "duration_seconds": 3.3389569160997734,
+      "peak": 0.5431215763092041,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (2).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 353733,
+      "duration_seconds": 8.021156462585035,
+      "peak": 1.0166910886764526,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (3).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 352084,
+      "duration_seconds": 7.983764172335601,
+      "peak": 0.9899738430976868,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (4).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 352412,
+      "duration_seconds": 7.991201814058957,
+      "peak": 1.054247260093689,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (5).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 353443,
+      "duration_seconds": 8.014580498866213,
+      "peak": 1.017790675163269,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (6).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 247221,
+      "duration_seconds": 5.605918367346939,
+      "peak": 0.9589166641235352,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (7).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 262651,
+      "duration_seconds": 5.955804988662131,
+      "peak": 1.0187307596206665,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (8).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 256559,
+      "duration_seconds": 5.817664399092971,
+      "peak": 0.9181389808654785,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    },
+    {
+      "file": "Classical Acoustic (9).wav",
+      "format_tag": "0x674f",
+      "codec": "Ogg Vorbis in RIFF/WAVE",
+      "fs": 44100,
+      "samples": 232722,
+      "duration_seconds": 5.277142857142858,
+      "peak": 0.9298980832099915,
+      "role": "sampel pendek; tidak dipakai sebagai track penuh"
+    }
+  ],
+  "render_engine": "FluidSynth 2.6.1",
+  "soundfont": "GeneralUser GS 2.0.3",
+  "mix_gain": 1.0,
+  "mix_contains": [
+    "Bass",
+    "Piano",
+    "Guitar",
+    "Brass",
+    "Tuba"
+  ],
+  "midi_roundtrip_all_passed": true
+}

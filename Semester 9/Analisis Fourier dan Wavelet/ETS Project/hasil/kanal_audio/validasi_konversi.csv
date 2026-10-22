@@ -1,0 +1,3 @@
+channel,source,wav,subtype,fs,channels,frames,duration_s,peak,samples_at_or_above_one,roundtrip_samples_identical,max_abs_conversion_error,source_sha256,wav_sha256
+DRUMS,data\sumber\DRUMS.mp3,hasil\audio\kanal\DRUMS.wav,FLOAT,44100,2,7090031,160.77167800453515,0.8947739005088806,0,True,0.0,83f79d6fc7ef60f2835791f92b369ec9f74c100dba9539e2ed430a84825f4944,77dea42e5308b81f91c1348e8fb89db5288916e32e7beabba8323f10a4dea10a
+VOCALS,data\sumber\VOCALS.mp3,hasil\audio\kanal\VOCALS.wav,FLOAT,44100,2,7090031,160.77167800453515,0.9985337257385254,0,True,0.0,2c66a0e3ed66128ac252b46f201184e1e8283aa5c252c8fcf4c949016db2cded,2d6faef35ccb0d9562948d450222e02467df14fa3ae8e8d1f03707b9c316a651

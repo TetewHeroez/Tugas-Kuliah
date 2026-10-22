@@ -1,0 +1,17 @@
+channel_id,name,plugin,type,enabled,group,root,pitch_cents,volume_fl,pan_fl
+0,Full Brass Sustain,FLEX,Instrument,True,Brass,60.0,0.0,10000.0,6400.0
+1,Horns Sustain,FLEX,Instrument,True,tidak dirender,60.0,0.0,10000.0,6400.0
+2,Ace Nylon MK I,FLEX,Instrument,True,Guitar,60.0,0.0,10000.0,6400.0
+3,Close Grand,FLEX,Instrument,True,Piano,60.0,0.0,10000.0,6400.0
+4,Close Grand,FLEX,Instrument,True,Piano,60.0,0.0,10000.0,6400.0
+5,Close Grand lite,FLEX,Instrument,True,Piano,60.0,0.0,12700.0,6400.0
+6,Ace Nylon MK I,FLEX,Instrument,True,Guitar,60.0,0.0,10000.0,6400.0
+7,Classical Acoustic,DirectWave,Instrument,True,Guitar,60.0,0.0,10000.0,6400.0
+8,Horns Sustain,FLEX,Instrument,True,tidak dirender,60.0,0.0,10000.0,6400.0
+9,Bass,FLEX,Instrument,True,Bass,60.0,0.0,12800.0,6400.0
+10,Tubas Staccato,FLEX,Instrument,True,Tuba,60.0,0.0,10000.0,6400.0
+11,DRUMS,,Sampler,True,tidak dirender,,,,
+12,VOCALS,,Sampler,True,tidak dirender,,,,
+13,Brasses - Volume,,Automation,True,tidak dirender,,,,
+14,Brasses 2 - Volume,,Automation,True,tidak dirender,,,,
+15,Master - Volume,,Automation,True,tidak dirender,,,,

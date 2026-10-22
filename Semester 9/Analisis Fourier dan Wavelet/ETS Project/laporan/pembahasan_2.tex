@@ -1,0 +1,217 @@
+\subsection{Analisis Waktu--Frekuensi Menggunakan STFT}
+FFT global belum membedakan apakah puncak kuat berasal dari nada
+panjang atau banyak kejadian pendek. STFT menempatkan komponen
+tersebut pada sumbu waktu. Digunakan Hann 1024 dan 4096 sampel,
+hop seperempat panjang jendela, serta hanya bingkai lengkap tanpa
+penambahan nol pada ujung sinyal.
+
+Gambar~\ref{fig:stftbass}--\ref{fig:stfttuba} menggunakan interval
+29--33 s, frekuensi 0--2000 Hz, dan warna $-110$ sampai $-35$ dB
+dengan acuan sama. X adalah pusat jendela, bukan awal potongan.
+Y adalah frekuensi; warna lebih terang berarti daya per Hz lebih
+besar. Penskalaan terhadap energi jendela dijelaskan pada lampiran.
+Spektrogram seluruh rekaman tersedia dalam notebook. Pembesaran ini
+tidak diagregasi sehingga sesuai untuk membandingkan detail.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi Bass}
+Untuk melihat apakah energi rendah bertahan atau berubah menurut
+not, digunakan spektrogram bass pada Gambar~\ref{fig:stftbass}.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_Bass.png}
+\caption{Bass, 29--33 s. Atas: 1024 sampel; bawah: 4096 sampel.
+Garis rendah yang berganti dan guratan singkat menunjukkan perubahan
+kejadian pada bagian yang sama.}\label{fig:stftbass}
+\end{figure}
+Daerah terang terkonsentrasi pada frekuensi rendah, sesuai FFT.
+Sekitar 29,25 s dan kejadian berikutnya, tampak guratan menuju
+frekuensi lebih tinggi yang kemudian melemah. Pola ini sesuai
+perubahan amplitudo pada awal not, bukan nada tinggi baru yang
+harus dianggap bertahan. Panel 4096 memisahkan beberapa garis di
+bawah 250 Hz; pada panel 1024 daerah itu lebih menyatu.
+Secara matematis, perkalian sinyal dengan jendela menyebabkan
+spektrumnya melebar menurut respons jendela. Ketebalan pita gambar
+bukan ukuran jumlah nada sebenarnya.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi Piano}
+Pada piano, pertanyaannya adalah bagaimana rangkuman banyak not
+dalam FFT berubah saat diamati lokal. STFT memperlihatkan lapisan
+yang bertahan sekaligus pergantian kejadian pendek.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_Piano.png}
+\caption{Piano, 29--33 s. Beberapa komponen tumpang tindih karena
+kelompok piano berasal dari tiga channel sumber.}\label{fig:stftpiano}
+\end{figure}
+Sekitar 31,6--32,3 s, jalur terang bergerak naik dari beberapa ratus
+Hz, sementara garis lain masih bertahan. Komposisi frekuensi berubah,
+bukan seluruh spektrum sekadar bertambah amplitudonya. Panel 4096
+menampilkan garis lebih tipis, sedangkan panel 1024 mengamati
+perubahan waktu dalam potongan lebih pendek. Karena not bersamaan,
+satu garis dapat merupakan fundamental suatu not atau harmonik
+not lain. Linearitas Fourier menjelaskan penjumlahan kontribusi,
+tetapi grafik daya saja tidak memisahkannya secara unik.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi Gitar}
+Kelompok gitar menggabungkan pattern Guitar dan Guitar Melody.
+Analisis lokal diperlukan agar perubahan aransemen dibedakan dari
+sifat preset gitar itu sendiri.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_Guitar.png}
+\caption{Gitar, 29--33 s. Celah gelap berarti daya lebih rendah menurut
+batas warna, bukan selalu keheningan mutlak.}\label{fig:stftgitar}
+\end{figure}
+Sekitar 31,6--32,3 s, jalur terang di frekuensi menengah bergerak naik.
+Setelahnya tampak selang berdaya lebih kecil antara kejadian berikut.
+Panel pendek memperjelas perubahan antarbagian; panel panjang
+merinci garis dalam suatu kejadian. Melodi dan iringan berkontribusi
+pada spektrum kelompok yang sama. Secara matematis, perubahan
+osilasi dan envelope mengubah posisi serta penyebaran spektrum
+lokal. Pola ini tidak membuktikan jenis gitar berubah selama lagu.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi Brass}
+Brass memberi contoh berbeda karena akor kedua berlangsung dari
+29,23074 sampai 32,30766 s. STFT digunakan untuk memeriksa apakah
+komponen frekuensinya bertahan selama akor tersebut.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_Brass.png}
+\caption{Brass pada akor kedua. Struktur mendatar menunjukkan
+komponen yang bertahan; warna melemah setelah note-off.}\label{fig:stftbrass}
+\end{figure}
+Garis terang sekitar 0,59 dan 1,17 kHz bertahan pada sebagian besar
+interval akor. Pada 1,4--1,6 kHz, panel 4096 memperlihatkan beberapa
+garis terpisah, sedangkan panel 1024 lebih menyatu. Ini bukti visual
+spesifik pengaruh panjang jendela pada pemisahan frekuensi.
+Warna di awal dan akhir tidak berhenti tepat pada waktu not karena
+jendela melibatkan sampel di sekitar pusatnya, serta bunyi memiliki
+attack dan release. Pola mendatar sesuai not yang ditahan, tetapi
+bukan bukti amplitudo benar-benar konstan. Osilasi yang bertahan
+memusatkan frekuensi; pembatasan waktunya menimbulkan pelebaran.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi Tuba}
+Bass dan tuba menarik dibandingkan karena seluruh onset not sumber
+sama, sedangkan 20 dari 187 note-off berbeda 2 atau 4 tick.
+STFT tuba memperlihatkan pengaruh pitch satu oktaf lebih tinggi dan
+preset berbeda terhadap tampilan lokal.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_Tuba.png}
+\caption{Tuba, 29--33 s. Kejadian mengikuti onset not yang sama dengan
+bass, tetapi distribusi frekuensinya tidak identik.}\label{fig:stfttuba}
+\end{figure}
+Daya tuba tersebar pada beberapa garis rendah hingga menengah,
+sedangkan bass lebih terkonsentrasi di bawah 250 Hz. Pergantian
+kejadian mengikuti onset yang sama, tetapi warna dan kekuatan
+harmonik berbeda. Hubungan oktaf menjelaskan frekuensi nada ideal;
+pembobotan harmonik menjelaskan mengapa seluruh spektrum bukan
+sekadar salinan. Preset GM Tuba tidak mereproduksi artikulasi FLEX
+\textit{Tubas Staccato} secara identik, sehingga interpretasi dibatasi
+pada audio rekonstruksi.
+
+\subsection{Pengaruh Panjang Jendela terhadap Resolusi Waktu dan Frekuensi}
+Perbandingan ini ingin mengetahui informasi yang bertambah atau
+berkurang ketika potongan diperpanjang. Panjang 1024 dan 4096 dipilih
+karena berbeda empat kali, sementara bentuk Hann dan proporsi
+tumpang tindih sama. Perubahan dapat dikaitkan dengan panjang jendela.
+\begin{table}[H]
+\centering\small
+\caption{Parameter pada $f_s=44\,100$ Hz; overlap keduanya 75\%.}
+\label{tab:jendela}
+\input{hasil/instrumen/tabel_jendela.tex}
+\end{table}
+Durasi bertambah dari 23,22 menjadi 92,88 ms, sedangkan jarak bin
+turun dari 43,07 menjadi 10,77 Hz. Lebar lobus utama Hann antara
+dua nol pertama sekitar 172,27 dan 43,07 Hz. Ini menunjukkan
+mengapa jarak bin bukan satu-satunya ukuran resolusi.
+ENBW adalah lebar pita ekuivalen energi respons jendela, dihitung
+dengan $f_s\sum w_r^2/(\sum w_r)^2=1,5f_s/M$.
+
+Pada brass, garis sekitar 1,4--1,6 kHz terpisah lebih jelas untuk
+4096. Sebaliknya, pergantian kejadian piano dan gitar melibatkan
+rentang sampel lebih luas. Ambang daya 10\% di sekitar awal akor
+kedua brass tercapai pada pusat bingkai sekitar 29,24553 s untuk
+1024 dan 29,23392 s untuk 4096. Jendela panjang yang tampak lebih
+awal tidak berarti onset sebenarnya lebih awal: bingkai terpusat
+sudah mencakup sampel setelah pusat. Angka ambang ini bukan ukuran
+galat pendeteksi onset terhadap suatu standar uji.
+
+Memperpanjang jendela empat kali mempersempit respons frekuensi,
+tetapi memperlebar dukungan waktu. Mengurangi hop saja memperpadat
+kisi waktu tanpa memperpendek jendela. Penambahan nol pada FFT juga
+hanya memperpadat kisi frekuensi tanpa mempersempit lobus utama.
+Model Hann kontinu menghasilkan
+$\sigma_t\sigma_\omega\approx0,513117>1/2$. Nilai ini menjelaskan
+penyebaran energi jendela, bukan ketelitian aktual pendeteksi drum
+atau not musik.
+
+\subsection{Perubahan Temporal dan Karakteristik Nonstasioner}
+Analisis ini membedakan perubahan amplitudo dari perubahan komposisi
+frekuensi. Rekaman dibagi menjadi segmen 10 s; RMS, sentroid dan
+fraksi pita dihitung dari periodogram setiap segmen. Segmen hampir
+senyap tidak ditafsirkan melalui sentroidnya. Tabel berikut memilih
+contoh yang mempunyai amplitudo bermakna.
+\begin{table}[H]
+\centering\small
+\caption{Contoh perubahan temporal pada WAV baru.}\label{tab:temporal}
+\begin{tabular}{llrrr}
+\toprule
+Instrumen & Interval (s) & RMS & Sentroid (Hz) & $\geq1000$ Hz (\%) \\
+\midrule
+Piano & 0--10 & 0.01073 & 692.76 & 10.06 \\
+Piano & 50--60 & 0.01744 & 536.02 & 6.49 \\
+Guitar & 0--10 & 0.00561 & 376.61 & 6.21 \\
+Guitar & 30--40 & 0.01330 & 765.47 & 15.77 \\
+Bass & 10--20 & 0.00950 & 90.43 & 0.04 \\
+Bass & 30--40 & 0.01055 & 91.91 & 0.04 \\
+Tuba & 10--20 & 0.01044 & 304.16 & 0.52 \\
+Tuba & 30--40 & 0.01138 & 313.70 & 0.43 \\
+\bottomrule
+\end{tabular}
+\end{table}
+Piano pada 0--10 s mempunyai RMS lebih kecil daripada 50--60 s,
+tetapi sentroid dan proporsi frekuensi tingginya lebih besar.
+Bagian beramplitudo efektif kecil dapat memiliki komposisi spektral
+relatif lebih tinggi. Keras-pelan secara amplitudo berbeda dari
+tinggi-rendahnya distribusi frekuensi.
+
+Pada gitar, sentroid naik dari sekitar 376,61 menjadi 765,47 Hz
+antara 0--10 dan 30--40 s. Pusat daya bergeser ke frekuensi tinggi,
+sesuai peran melodi dan register pada data serta spektrogram.
+Fraksi di atas 1000 Hz naik dari 6,21\% menjadi 15,77\%.
+Pengalian seluruh sinyal dengan konstanta tidak mengubah fraksi
+pita, sehingga hasil ini bukan sekadar perubahan volume seragam.
+
+Bass mempunyai ringkasan pita lebih stabil daripada gitar, tetapi
+not dan amplitudo lokalnya tetap berubah. Tuba juga berganti not
+meskipun sentroid antarsegmen lebih dekat. Brass berganti dari
+diam menjadi dua kelompok akor. Gabungan waveform, not dan
+spektrogram mendukung deskripsi nonstasioner tiap rekaman: karakter
+amplitudo atau frekuensinya berubah. Ini bukan uji formal proses
+stokastik. Pada proses stasioner, sifat statistik menurut definisi
+yang dipilih harus tetap terhadap pergeseran waktu; hal itu tidak
+dibuktikan atau ditolak hanya dari tabel satu rekaman deterministik.
+
+\input{laporan/kanal_audio}
+\subsection{Keterbatasan Penelitian}
+FFT merangkum kontribusi frekuensi seluruh pengamatan; STFT
+memperlihatkan lokalisasinya. Fourier kompleks lengkap tetap dapat
+diinversikan. Yang tidak langsung memperlihatkan waktu adalah
+grafik magnitudo atau dayanya, bukan berarti transformasi kompleks
+menghilangkan semua informasi waktu. Spektrogram juga tidak
+menampilkan fase STFT secara langsung.
+
+Batas utama penelitian adalah pergantian preset dan mesin bunyi.
+Partitur, velocity, register dan waktu aktif pun berbeda antarkelompok,
+sehingga pengaruh jenis instrumen tidak diisolasi. Perataan stereo
+mengurangi informasi spasial; RMS bukan tekanan suara; puncak
+terbesar bukan identifikasi fundamental otomatis. Jendela tetap
+tidak dapat menajamkan waktu dan frekuensi secara arbitrer sekaligus.
+
+Cuplikan 29--33 s untuk lima instrumen dan campuran selaras, serta
+cuplikan DRUMS dan VOCALS menurut waktu berkas sumber, tersedia
+di folder \texttt{hasil/audio/cuplikan} serta pemutar notebook. Pembaca dapat
+membandingkan audio dengan grafik. Uraian membedakan fakta komputasi,
+interpretasi teori dan analogi bunyi; tidak mengaku melakukan uji
+dengar subjektif.

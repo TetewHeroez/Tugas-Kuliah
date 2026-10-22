@@ -6,6 +6,7 @@
 *media/
 *slides/
 
+
 # Ignore LaTeX auxiliary files
 *.aux
 *.bbl
@@ -45,6 +46,9 @@ __pycache__/
 
 #Ignore folder
 Semester 9/Proposal Tesis/
+/Semester 9/Analisis Fourier dan Wavelet/ETS Project/perangkat/
+/Semester 9/Analisis Fourier dan Wavelet/ETS Project/data/soundfont/*.sf2
+/Semester 9/Analisis Fourier dan Wavelet/ETS Project/hasil/audio/
 
 ## Manim cache:
 *__pycache__/

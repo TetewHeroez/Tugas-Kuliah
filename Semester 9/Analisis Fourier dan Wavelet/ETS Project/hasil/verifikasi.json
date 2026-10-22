@@ -1,0 +1,155 @@
+{
+  "source_flp_unchanged": true,
+  "midi_count": 6,
+  "note_count": 2219,
+  "midi_roundtrip_all_exact": true,
+  "wav": {
+    "All_Instruments.wav": {
+      "frames": 3141274,
+      "fs": 44100,
+      "channels": 2,
+      "duration_seconds": 71.2307029478458,
+      "nonzero": true,
+      "finite": true,
+      "peak": 0.21511977910995483
+    },
+    "Bass.wav": {
+      "frames": 3141274,
+      "fs": 44100,
+      "channels": 2,
+      "duration_seconds": 71.2307029478458,
+      "nonzero": true,
+      "finite": true,
+      "peak": 0.03981244936585426
+    },
+    "Brass.wav": {
+      "frames": 3141274,
+      "fs": 44100,
+      "channels": 2,
+      "duration_seconds": 71.2307029478458,
+      "nonzero": true,
+      "finite": true,
+      "peak": 0.14313147962093353
+    },
+    "Guitar.wav": {
+      "frames": 3141274,
+      "fs": 44100,
+      "channels": 2,
+      "duration_seconds": 71.2307029478458,
+      "nonzero": true,
+      "finite": true,
+      "peak": 0.08829724043607712
+    },
+    "Piano.wav": {
+      "frames": 3141274,
+      "fs": 44100,
+      "channels": 2,
+      "duration_seconds": 71.2307029478458,
+      "nonzero": true,
+      "finite": true,
+      "peak": 0.09074749052524567
+    },
+    "Tuba.wav": {
+      "frames": 3141274,
+      "fs": 44100,
+      "channels": 2,
+      "duration_seconds": 71.2307029478458,
+      "nonzero": true,
+      "finite": true,
+      "peak": 0.0732407420873642
+    }
+  },
+  "max_parseval_relative_error": 6.221519169677833e-15,
+  "notebook_executed_cells": 29,
+  "notebook_errors": 0,
+  "report_figures": [
+    "01_waveform_rms_kanal.png",
+    "02_fft_kanal.png",
+    "stft_zoom_DRUMS.png",
+    "stft_zoom_VOCALS.png",
+    "01_waveform_rms_perbandingan.png",
+    "04_attack_awal.png",
+    "02_fft_perbandingan.png",
+    "03_pita_energi.png",
+    "stft_zoom_Bass.png",
+    "stft_zoom_Piano.png",
+    "stft_zoom_Guitar.png",
+    "stft_zoom_Brass.png",
+    "stft_zoom_Tuba.png"
+  ],
+  "pdf_pages": 25,
+  "pdf_unresolved_references": false,
+  "latex_warnings": [],
+  "additional_audio_channels": [
+    {
+      "channel": "DRUMS",
+      "source": "data\\sumber\\DRUMS.mp3",
+      "wav": "hasil\\audio\\kanal\\DRUMS.wav",
+      "subtype": "FLOAT",
+      "fs": 44100,
+      "channels": 2,
+      "frames": 7090031,
+      "duration_s": 160.77167800453515,
+      "peak": 0.8947739005088806,
+      "samples_at_or_above_one": 0,
+      "roundtrip_samples_identical": true,
+      "max_abs_conversion_error": 0.0,
+      "source_sha256": "83f79d6fc7ef60f2835791f92b369ec9f74c100dba9539e2ed430a84825f4944",
+      "wav_sha256": "77dea42e5308b81f91c1348e8fb89db5288916e32e7beabba8323f10a4dea10a"
+    },
+    {
+      "channel": "VOCALS",
+      "source": "data\\sumber\\VOCALS.mp3",
+      "wav": "hasil\\audio\\kanal\\VOCALS.wav",
+      "subtype": "FLOAT",
+      "fs": 44100,
+      "channels": 2,
+      "frames": 7090031,
+      "duration_s": 160.77167800453515,
+      "peak": 0.9985337257385254,
+      "samples_at_or_above_one": 0,
+      "roundtrip_samples_identical": true,
+      "max_abs_conversion_error": 0.0,
+      "source_sha256": "2c66a0e3ed66128ac252b46f201184e1e8283aa5c252c8fcf4c949016db2cded",
+      "wav_sha256": "2d6faef35ccb0d9562948d450222e02467df14fa3ae8e8d1f03707b9c316a651"
+    }
+  ],
+  "max_parseval_relative_error_additional_channels": 2.0660079717808616e-15,
+  "git_notebook_path": "analisis_instrumen.ipynb",
+  "git_notebook_outputs_included": false,
+  "notebook_self_contained": true,
+  "external_project_python_scripts": [],
+  "full_reconstruction_executed": true,
+  "source_files_unchanged": true,
+  "wav_samples_and_format_reproducible": true,
+  "wav_comparison_excluded_metadata": "PEAK chunk creation timestamp only",
+  "numerical_results_reproducible": true,
+  "bass_tuba_comparison": {
+    "notes_per_instrument": 187,
+    "same_onsets": true,
+    "pitch_difference_semitones": [
+      12
+    ],
+    "same_note_offs": false,
+    "note_off_difference_counts_ticks": {
+      "0": 167,
+      "2": 16,
+      "4": 4
+    }
+  },
+  "drums_source_comparison": {
+    "rms_abs_difference": 0.0,
+    "energy_abs_difference": 0.0,
+    "peak_hz_abs_difference": 0.0
+  },
+  "project_root_directories": [
+    "data",
+    "gambar",
+    "hasil",
+    "laporan",
+    "perangkat"
+  ],
+  "legacy_archives_removed": true,
+  "project_bytecode_cache_directories": 0,
+  "gitignore_location": "repository root"
+}

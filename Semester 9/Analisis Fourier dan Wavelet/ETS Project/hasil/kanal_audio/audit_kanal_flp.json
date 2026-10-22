@@ -1,0 +1,44 @@
+[
+  {
+    "name": "DRUMS",
+    "channel_id": 11,
+    "sample_basename": "DRUMS.mp3",
+    "stretch_mode": 0,
+    "stretch_multiplier": 1.0,
+    "stretch_pitch_cents": 0,
+    "stretch_time": [
+      0,
+      0,
+      0
+    ],
+    "pitch_shift_cents": 0,
+    "start_offset_parameter": 0,
+    "use_loop_points": false,
+    "playlist_position_ticks": 0,
+    "playlist_length_ticks": 17280,
+    "playlist_offset_start_raw": 256.40704345703125,
+    "playlist_offset_end_raw": 69487.1796875,
+    "alignment_status": "Berkas penuh; tidak ditempatkan ulang atau dicampur dengan MIDI. Parameter stretching terbaca netral, tetapi pemetaan offset audio dan hasil playback FL Studio belum diuji terhadap render acuan."
+  },
+  {
+    "name": "VOCALS",
+    "channel_id": 12,
+    "sample_basename": "VOCALS.mp3",
+    "stretch_mode": 0,
+    "stretch_multiplier": 1.0,
+    "stretch_pitch_cents": 0,
+    "stretch_time": [
+      0,
+      0,
+      0
+    ],
+    "pitch_shift_cents": 0,
+    "start_offset_parameter": 0,
+    "use_loop_points": false,
+    "playlist_position_ticks": 0,
+    "playlist_length_ticks": 17280,
+    "playlist_offset_start_raw": 256.4101867675781,
+    "playlist_offset_end_raw": 69487.1796875,
+    "alignment_status": "Berkas penuh; tidak ditempatkan ulang atau dicampur dengan MIDI. Parameter stretching terbaca netral, tetapi pemetaan offset audio dan hasil playback FL Studio belum diuji terhadap render acuan."
+  }
+]

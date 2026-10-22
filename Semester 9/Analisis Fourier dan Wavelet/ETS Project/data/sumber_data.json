@@ -1,0 +1,46 @@
+{
+  "tanggal_pemeriksaan": "2026-10-22",
+  "youtube": {
+    "url": "https://www.youtube.com/watch?v=DdIcPpjQXV4",
+    "title": "[ FREE FLP ] Bad Piggies - Theme REMAKE FL STUDIO STOCK PLUGINS",
+    "author_name": "Rick Ruyz",
+    "author_url": "https://www.youtube.com/@RickRuyz",
+    "verifikasi": "Judul dan kanal dibaca dari endpoint oEmbed publik YouTube pada 22 Oktober 2026; tanggal publikasi tidak diperoleh.",
+    "metadata_endpoint": "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=DdIcPpjQXV4&format=json"
+  },
+  "asal_paket": "Paket lokal dihubungkan dengan video tersebut berdasarkan keterangan pengguna. Kesamaan berkas dengan soundtrack video tidak diuji.",
+  "folder_paket": "data/sumber",
+  "objek_analisis": [
+    "Bass.wav",
+    "Piano.wav",
+    "Guitar.wav",
+    "Brass.wav",
+    "Tuba.wav"
+  ],
+  "batas_cakupan": "Lima instrumen memakai MIDI dan preset SoundFont pengganti, bukan render identik FLEX/DirectWave. All_Instruments.wav hanya campuran lima instrumen tersebut. DRUMS dan VOCALS dianalisis dari WAV hasil dekode MP3 penuh; kualitas sumber tidak ditingkatkan dan sinkronisasinya dengan rekonstruksi belum divalidasi.",
+  "folder_audio": "hasil/audio/instrumen",
+  "metode_dataset": "Not, pitch, durasi, velocity dan posisi Playlist dari FLP; MIDI dirender dengan FluidSynth 2.6.1 dan GeneralUser GS 2.0.3.",
+  "metadata_rekonstruksi": "hasil/rekonstruksi/metadata.json",
+  "validasi_audio": "hasil/rekonstruksi/validasi_audio.csv",
+  "sumber_soundfont": "data/soundfont/sumber.json",
+  "lisensi_soundfont": "data/soundfont/LICENSE.txt",
+  "kanal_audio_tambahan": [
+    {
+      "file": "hasil/audio/kanal/DRUMS.wav",
+      "sumber": "DRUMS.mp3",
+      "metode": "Dekode MP3 lalu WAV float32; sampel hasil baca ulang identik.",
+      "duration_s": 160.77167800453515,
+      "fs": 44100
+    },
+    {
+      "file": "hasil/audio/kanal/VOCALS.wav",
+      "sumber": "VOCALS.mp3",
+      "metode": "Dekode MP3 lalu WAV float32; sampel hasil baca ulang identik.",
+      "duration_s": 160.77167800453515,
+      "fs": 44100
+    }
+  ],
+  "hasil_kanal_audio": "hasil/kanal_audio/summary.json",
+  "validasi_konversi": "hasil/kanal_audio/validasi_konversi.json",
+  "nama_paket_asli": "[ FREE FLP ] Bad Piggies - Theme NEW REMAKE FL STUDIO"
+}

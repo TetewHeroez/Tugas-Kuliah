@@ -1,0 +1,148 @@
+\subsection{Analisis Kanal DRUMS dan VOCALS dalam Format WAV}
+Analisis tambahan ini membandingkan dua kanal audio yang sudah
+tersedia, khususnya pola kejadian singkat dan komponen yang lebih
+jarang muncul. Sumber kedua kanal berbeda dari lima instrumen
+SoundFont, sehingga perolehan data dijelaskan sebelum hasilnya.
+
+\subsubsection{Konversi Format dan Validasi Sampel}
+Channel 11 dan 12 pada FLP masing-masing merujuk ke
+\texttt{DRUMS.mp3} dan \texttt{VOCALS.mp3}. Tidak terdapat not pattern
+untuk merender ulang kedua kanal dengan MIDI. Karena itu, audio
+didekode lalu disimpan sebagai WAV float32 tanpa resampling,
+normalisasi, atau perubahan amplitudo menggunakan SoundFile
+\cite{soundfile}. Masing-masing berisi 7.090.031 frame stereo pada
+44.100 Hz, berdurasi 160,771678 s.
+
+MP3 merupakan sumber yang telah mengalami kompresi lossy. WAV hasil
+konversi hanya menyimpan hasil dekodenya tanpa kompresi lossy baru;
+detail yang hilang tidak dipulihkan. Pemeriksaan baca-tulis
+menunjukkan kesamaan setiap sampel float32, dengan galat maksimum
+nol. Kedua WAV tidak senyap dan tidak memiliki sampel dengan
+magnitudo mencapai satu. Puncak amplitudo stereo DRUMS sekitar
+0,89477, sedangkan VOCALS 0,99853.
+
+Konsekuensi matematisnya sederhana: jika vektor sampel sama,
+RMS, DFT dan STFT dengan parameter sama juga sama. Analisis DRUMS
+dihitung ulang dari WAV; RMS, energi dan puncak frekuensinya sama
+dengan perhitungan langsung dari dekode MP3. Dengan demikian, penggunaan WAV
+di sini adalah pilihan format kerja, bukan peningkatan ketelitian
+analisis atau kualitas sumber.
+
+Parameter stretching yang terbaca pada kedua channel adalah
+multiplier satu, pitch nol dan time nol, dengan start offset
+parameter nol. Namun, pemetaan offset klip audio ke sampel serta
+hasil playback belum diperiksa terhadap render FL Studio acuan.
+Analisis memakai berkas penuh, tanpa memotong atau memaksanya menjadi
+69,23 s. Kedua kanal tidak dimasukkan ke
+\texttt{All\_Instruments.wav}. Nama VOCALS mengikuti label sumber
+dan tidak dianggap sebagai bukti bahwa semua komponennya suara
+manusia murni.
+
+\subsubsection{Aktivitas Temporal dan Amplitudo Efektif}
+Perbandingan waktu bertujuan mengetahui apakah kedua kanal aktif
+sepanjang rekaman atau hanya pada beberapa bagian. Waveform dan
+RMS dihitung dengan metode yang sama seperti instrumen rekonstruksi.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{01_waveform_rms_kanal.png}
+\caption{Amplitudo dan RMS kanal audio penuh. X: waktu dari awal
+berkas sumber; kiri: amplitudo digital; kanan: RMS 100 ms.
+Skala antarbaris sama.}\label{fig:kanalwaktu}
+\end{figure}
+Gambar~\ref{fig:kanalwaktu} memperlihatkan DRUMS aktif pada sebagian
+besar rekaman, sedangkan VOCALS mempunyai kelompok kejadian utama
+sekitar 31,4--35,2 s, 92,3--100,0 s dan 153,0--155,9 s.
+Waktu ini mengikuti batas blok aktivitas, bukan transkripsi suku
+kata atau waktu onset yang persis. Dengan ambang 1\% RMS blok
+maksimum tiap kanal, durasi aktif DRUMS sekitar 156,1 s dan VOCALS
+14,2 s.
+
+RMS global VOCALS sekitar 0,04895, tetapi RMS pada blok aktif sekitar
+0,16470. Untuk DRUMS, keduanya lebih dekat, yaitu 0,07757 dan 0,07872.
+Bagian diam menurunkan rerata kuadrat sepanjang rekaman. Karena itu,
+RMS global VOCALS yang lebih kecil tidak berarti setiap kejadiannya
+beramplitudo lebih kecil daripada DRUMS. Perubahan dari latar
+beramplitudo rendah menuju kejadian kuat juga mendukung deskripsi
+nonstasioner, tanpa menyatakan hasil uji statistik formal.
+
+\subsubsection{Spektrum Global dan Distribusi Energi}
+FFT digunakan untuk membandingkan wilayah frekuensi yang paling
+berkontribusi pada kedua kanal. Semua sampel berkas penuh digunakan;
+jarak bin sekitar 0,006220 Hz. Grafik berikut memperlihatkan
+0--5000 Hz, sedangkan perhitungan energi tetap sampai Nyquist.
+\begin{figure}[H]
+\centering\includegraphics[width=.96\linewidth]{02_fft_kanal.png}
+\caption{Kerapatan daya DRUMS dan VOCALS dengan acuan sama.
+X: frekuensi; Y: daya per Hz dalam dB. Tampilan merangkum maksimum
+per 0,5 Hz; perhitungan memakai bin asli.}\label{fig:kanalfft}
+\end{figure}
+\begin{table}[H]
+\centering\small
+\caption{Hasil perhitungan dari dua WAV hasil dekode.}
+\input{hasil/kanal_audio/tabel_perbandingan.tex}
+\end{table}
+DRUMS memiliki sekitar 91,19\% energi di bawah 250 Hz, sedangkan
+VOCALS hanya sekitar 0,017\%. Pada VOCALS, sekitar 68,11\% berada
+pada 250--1000 Hz dan 31,87\% pada 1000 Hz ke atas. Komposisi
+VOCALS lebih banyak berkontribusi di wilayah menengah dan tinggi
+dibandingkan DRUMS. Ini perbedaan distribusi spektral, bukan bukti
+perbedaan keras suara perseptual atau kemurnian jenis sumber.
+
+Puncak terpilih VOCALS sekitar 780,08 Hz tidak otomatis merupakan
+frekuensi dasar suara manusia. Komponen yang bertahan, harmonik,
+dan perubahan nada sama-sama berkontribusi pada FFT global.
+Sentroid VOCALS sekitar 1195,31 Hz, dibandingkan DRUMS 563,50 Hz,
+menunjukkan pusat distribusi daya pada frekuensi lebih tinggi.
+Parseval kedua WAV menghasilkan galat relatif sekitar
+$2,1\times10^{-15}$ atau lebih kecil. Hasil DRUMS lama tetap
+tersimpan dan tidak digunakan sebagai pengganti perhitungan VOCALS.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi DRUMS}
+STFT dipakai untuk melokalisasi kejadian pada spektrum DRUMS.
+Gambar~\ref{fig:stftdrumswav} dan~\ref{fig:stftvocalswav} menggunakan
+29--33 s menurut waktu berkas sumber, frekuensi 0--5000 Hz, serta
+skala warna yang sama, $-110$ sampai $-20$ dB. Kedua panjang Hann
+tetap 1024 dan 4096, dengan overlap 75\%. Batas tampilan ini berbeda
+dari panel lima instrumen; perbandingan warna langsung dilakukan
+di dalam pasangan yang memakai skala sama.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_DRUMS.png}
+\caption{STFT DRUMS dari WAV hasil dekode, pada waktu sumber 29--33 s.
+Atas: 1024 sampel; bawah: 4096 sampel.}\label{fig:stftdrumswav}
+\end{figure}
+X adalah pusat jendela; Y adalah frekuensi. Daerah terang rendah
+disertai guratan yang menjangkau frekuensi lebih tinggi, terutama
+pada kejadian berulang sekitar 29--31 s. Pola itu sesuai dengan
+perubahan amplitudo singkat yang melibatkan banyak frekuensi,
+bukan hanya satu osilasi tetap. Panel 4096 memperinci garis
+horizontal, sementara panel 1024 melibatkan potongan waktu lebih
+pendek. Perkalian dengan Hann menjelaskan kompromi antara
+penyebaran frekuensi dan dukungan waktu. Grafik ini tidak dipakai
+untuk mengidentifikasi jenis setiap pukulan drum secara otomatis.
+
+\clearpage
+\subsubsection{Karakteristik Waktu--Frekuensi VOCALS}
+STFT VOCALS memperlihatkan hubungan antara periode beramplitudo
+rendah dan kejadian yang membentuk puncak pada FFT global.
+\begin{figure}[H]
+\centering\includegraphics[width=\linewidth]{stft_zoom_VOCALS.png}
+\caption{STFT VOCALS pada waktu sumber 29--33 s. Komponen kuat mulai
+tampak sekitar 31,4 s. Nama kanal mengikuti sumber FLP.}
+\label{fig:stftvocalswav}
+\end{figure}
+Sebelum sekitar 31,4 s, sebagian besar panel gelap pada skala yang
+dipilih. Setelah itu muncul jalur terang sekitar 0,8 kHz dan
+kelipatannya, dengan perubahan posisi sebelum dan sesudah bagian
+yang relatif mendatar sekitar 31,8--32,5 s. Hubungan mendekati
+kelipatan tersebut mendukung keberadaan struktur harmonik, tetapi
+tidak cukup untuk menetapkan fundamental atau mekanisme sumbernya.
+
+Panel 4096 menampilkan garis lebih tipis; pada panel 1024 komponen
+berdekatan lebih melebar. Pergeseran jalur memperlihatkan bahwa
+komponen kuat tidak selalu berada pada frekuensi yang tetap.
+Secara matematis, FFT global merangkum seluruh perubahan itu,
+sedangkan STFT melokalisasinya melalui jendela. Kedua hasil berasal
+dari sampel dekode yang sama, sehingga detail gambar tidak boleh
+diartikan sebagai informasi audio baru yang muncul akibat konversi
+MP3 ke WAV. Cuplikan kedua kanal tersedia dalam notebook untuk
+pemeriksaan pendengaran oleh pembaca.

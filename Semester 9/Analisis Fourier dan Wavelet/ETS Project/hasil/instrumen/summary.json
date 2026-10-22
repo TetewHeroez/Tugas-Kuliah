@@ -1,0 +1,897 @@
+{
+  "instruments": [
+    {
+      "instrument": "Bass",
+      "samples": 3141274,
+      "fs": 44100,
+      "duration_s": 71.2307029478458,
+      "mean_removed": -3.1257885217893205e-05,
+      "rms": 0.009555727349268257,
+      "rms_active": 0.009744329961007733,
+      "active_duration_s": 68.5,
+      "activity_threshold_db": -40,
+      "peak_hz": 49.4028537466009,
+      "centroid_hz": 91.54217690769008,
+      "energy": 0.006504212617633302,
+      "energy_fft": 0.006504212617633305,
+      "parseval_relative_error": 5.334153656889598e-16,
+      "bin_spacing_hz": 0.01403888995356661,
+      "band_0_250_pct": 97.61040495865458,
+      "band_250_1000_pct": 2.34410409008397,
+      "band_1000_4000_pct": 0.045425919789154126,
+      "band_4000_22050_pct": 6.503147229018706e-05,
+      "sha256": "990c7ddd5e68afd8adcec3c614eb8991b341fadd6dc7926c435841a5fada592f"
+    },
+    {
+      "instrument": "Piano",
+      "samples": 3141274,
+      "fs": 44100,
+      "duration_s": 71.2307029478458,
+      "mean_removed": -1.0250952371819972e-05,
+      "rms": 0.01453564791527825,
+      "rms_active": 0.014876934563544796,
+      "active_duration_s": 68.0,
+      "activity_threshold_db": -40,
+      "peak_hz": 312.0002903280643,
+      "centroid_hz": 590.6442369171904,
+      "energy": 0.015049983368753132,
+      "energy_fft": 0.01504998336875312,
+      "parseval_relative_error": 8.06849019982916e-16,
+      "bin_spacing_hz": 0.01403888995356661,
+      "band_0_250_pct": 3.398869918440196,
+      "band_250_1000_pct": 88.06452797948207,
+      "band_1000_4000_pct": 8.467845100522757,
+      "band_4000_22050_pct": 0.06875700155506685,
+      "sha256": "d006a6ab83461b65e99f74668a13289bda18c04fd8b64991407cefa146218fdb"
+    },
+    {
+      "instrument": "Guitar",
+      "samples": 3141274,
+      "fs": 44100,
+      "duration_s": 71.2307029478458,
+      "mean_removed": -1.9828415309065723e-05,
+      "rms": 0.010248969385630143,
+      "rms_active": 0.010551838147437341,
+      "active_duration_s": 67.2,
+      "activity_threshold_db": -40,
+      "peak_hz": 195.00018145504018,
+      "centroid_hz": 575.1388448428578,
+      "energy": 0.0074821708707032,
+      "energy_fft": 0.007482170870703191,
+      "parseval_relative_error": 1.2751618858679908e-15,
+      "bin_spacing_hz": 0.01403888995356661,
+      "band_0_250_pct": 17.542222120570408,
+      "band_250_1000_pct": 73.03246624882725,
+      "band_1000_4000_pct": 8.541859744594449,
+      "band_4000_22050_pct": 0.8834518860078441,
+      "sha256": "4033e180e84026f7cd45769c7d0b53b5ea3a1bd6cb6468b56f34ae6ca8c84698"
+    },
+    {
+      "instrument": "Brass",
+      "samples": 3141274,
+      "fs": 44100,
+      "duration_s": 71.2307029478458,
+      "mean_removed": -1.601565267617604e-08,
+      "rms": 0.006334250343995817,
+      "rms_active": 0.0236724455960408,
+      "active_duration_s": 5.1,
+      "activity_threshold_db": -40,
+      "peak_hz": 1174.605844635011,
+      "centroid_hz": 1323.0238044568018,
+      "energy": 0.002857970078340692,
+      "energy_fft": 0.0028579700783406743,
+      "parseval_relative_error": 6.221519169677833e-15,
+      "bin_spacing_hz": 0.01403888995356661,
+      "band_0_250_pct": 3.0904540134454703,
+      "band_250_1000_pct": 41.207385653424126,
+      "band_1000_4000_pct": 52.050936698702024,
+      "band_4000_22050_pct": 3.651223634428349,
+      "sha256": "ac9de5c04d8498fd46c884c79d949f724226d886a005f25f8ed674455044175c",
+      "brass_onset_10pct_M1024": 29.245532879818594,
+      "brass_onset_10pct_M4096": 29.23392290249433
+    },
+    {
+      "instrument": "Tuba",
+      "samples": 3141274,
+      "fs": 44100,
+      "duration_s": 71.2307029478458,
+      "mean_removed": -0.0004202750959767905,
+      "rms": 0.010588496618626911,
+      "rms_active": 0.01121352606646183,
+      "active_duration_s": 63.5,
+      "activity_threshold_db": -40,
+      "peak_hz": 117.00010887302412,
+      "centroid_hz": 309.6733814537407,
+      "energy": 0.007986120057461535,
+      "energy_fft": 0.00798612005746152,
+      "parseval_relative_error": 1.954955744649029e-15,
+      "bin_spacing_hz": 0.01403888995356661,
+      "band_0_250_pct": 41.04198133546044,
+      "band_250_1000_pct": 58.44299627406705,
+      "band_1000_4000_pct": 0.5150017837328041,
+      "band_4000_22050_pct": 2.0606739616374577e-05,
+      "sha256": "ab79183c50058d2a0ab756c201302a0f5ea37fa4b89be85224440e9f8d9e0993"
+    }
+  ],
+  "peaks": [
+    {
+      "instrument": "Bass",
+      "rank": 1,
+      "frequency_hz": 49.4028537466009,
+      "omega_rad_s": 310.40728479338475,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "Bass",
+      "rank": 2,
+      "frequency_hz": 65.00006048501339,
+      "omega_rad_s": 408.40742500522055,
+      "relative_db": -3.1241633218769174
+    },
+    {
+      "instrument": "Bass",
+      "rank": 3,
+      "frequency_hz": 117.00010887302412,
+      "omega_rad_s": 735.133365009397,
+      "relative_db": -3.4634967512402355
+    },
+    {
+      "instrument": "Bass",
+      "rank": 4,
+      "frequency_hz": 132.5973156114366,
+      "omega_rad_s": 833.1335052212329,
+      "relative_db": -4.305654653576892
+    },
+    {
+      "instrument": "Bass",
+      "rank": 5,
+      "frequency_hz": 98.8057074932018,
+      "omega_rad_s": 620.8145695867695,
+      "relative_db": -4.4361431024300435
+    },
+    {
+      "instrument": "Bass",
+      "rank": 6,
+      "frequency_hz": 156.00014516403215,
+      "omega_rad_s": 980.1778200125294,
+      "relative_db": -6.189574688724903
+    },
+    {
+      "instrument": "Piano",
+      "rank": 1,
+      "frequency_hz": 312.0002903280643,
+      "omega_rad_s": 1960.3556400250588,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "Piano",
+      "rank": 2,
+      "frequency_hz": 522.6678729712849,
+      "omega_rad_s": 3284.0190999879833,
+      "relative_db": -1.072612542132785
+    },
+    {
+      "instrument": "Piano",
+      "rank": 3,
+      "frequency_hz": 392.5414019916759,
+      "omega_rad_s": 2466.4103694537735,
+      "relative_db": -3.692342441879915
+    },
+    {
+      "instrument": "Piano",
+      "rank": 4,
+      "frequency_hz": 465.4593964105009,
+      "omega_rad_s": 2924.567640615138,
+      "relative_db": -3.8098572282122745
+    },
+    {
+      "instrument": "Piano",
+      "rank": 5,
+      "frequency_hz": 413.4593480224902,
+      "omega_rad_s": 2597.8417006109617,
+      "relative_db": -4.810036962414229
+    },
+    {
+      "instrument": "Piano",
+      "rank": 6,
+      "frequency_hz": 291.19465541687856,
+      "omega_rad_s": 1829.629980444554,
+      "relative_db": -5.065501449048119
+    },
+    {
+      "instrument": "Guitar",
+      "rank": 1,
+      "frequency_hz": 195.00018145504018,
+      "omega_rad_s": 1225.2222750156616,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "Guitar",
+      "rank": 2,
+      "frequency_hz": 392.667752001258,
+      "omega_rad_s": 2467.204249977542,
+      "relative_db": -0.363473434500951
+    },
+    {
+      "instrument": "Guitar",
+      "rank": 3,
+      "frequency_hz": 312.02836810797146,
+      "omega_rad_s": 1960.5320579192296,
+      "relative_db": -3.851283000459773
+    },
+    {
+      "instrument": "Guitar",
+      "rank": 4,
+      "frequency_hz": 262.5974365814634,
+      "omega_rad_s": 1649.948355231674,
+      "relative_db": -5.964028674040735
+    },
+    {
+      "instrument": "Guitar",
+      "rank": 5,
+      "frequency_hz": 293.7637722783813,
+      "omega_rad_s": 1845.7722177611752,
+      "relative_db": -7.017242127070297
+    },
+    {
+      "instrument": "Guitar",
+      "rank": 6,
+      "frequency_hz": 465.4593964105009,
+      "omega_rad_s": 2924.567640615138,
+      "relative_db": -7.066738053468924
+    },
+    {
+      "instrument": "Brass",
+      "rank": 1,
+      "frequency_hz": 1174.605844635011,
+      "omega_rad_s": 7380.266184737969,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "Brass",
+      "rank": 2,
+      "frequency_hz": 587.5275445567626,
+      "omega_rad_s": 3691.5444355223503,
+      "relative_db": -3.559050810238342
+    },
+    {
+      "instrument": "Brass",
+      "rank": 3,
+      "frequency_hz": 394.2401076760575,
+      "omega_rad_s": 2477.0836520511025,
+      "relative_db": -3.7866993084749705
+    },
+    {
+      "instrument": "Brass",
+      "rank": 4,
+      "frequency_hz": 196.97966493849307,
+      "omega_rad_s": 1237.6597365546975,
+      "relative_db": -6.485198329085019
+    },
+    {
+      "instrument": "Brass",
+      "rank": 5,
+      "frequency_hz": 978.9598742421067,
+      "omega_rad_s": 6150.98629815638,
+      "relative_db": -7.5322200025151815
+    },
+    {
+      "instrument": "Brass",
+      "rank": 6,
+      "frequency_hz": 295.0974668239701,
+      "omega_rad_s": 1854.1520677342842,
+      "relative_db": -7.8255058118252565
+    },
+    {
+      "instrument": "Tuba",
+      "rank": 1,
+      "frequency_hz": 117.00010887302412,
+      "omega_rad_s": 735.133365009397,
+      "relative_db": 0.0
+    },
+    {
+      "instrument": "Tuba",
+      "rank": 2,
+      "frequency_hz": 465.4593964105009,
+      "omega_rad_s": 2924.567640615138,
+      "relative_db": -1.1815278977523795
+    },
+    {
+      "instrument": "Tuba",
+      "rank": 3,
+      "frequency_hz": 130.00012097002679,
+      "omega_rad_s": 816.8148500104411,
+      "relative_db": -1.5047384993244637
+    },
+    {
+      "instrument": "Tuba",
+      "rank": 4,
+      "frequency_hz": 234.00021774604824,
+      "omega_rad_s": 1470.266730018794,
+      "relative_db": -1.580114506625819
+    },
+    {
+      "instrument": "Tuba",
+      "rank": 5,
+      "frequency_hz": 391.47444635520486,
+      "omega_rad_s": 2459.706489475286,
+      "relative_db": -1.7485571268524123
+    },
+    {
+      "instrument": "Tuba",
+      "rank": 6,
+      "frequency_hz": 311.8458625385751,
+      "omega_rad_s": 1959.38534160712,
+      "relative_db": -2.6903508163298504
+    }
+  ],
+  "segments": [
+    {
+      "instrument": "Bass",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 0.009036838486662951,
+      "meaningful": true,
+      "centroid_hz": 97.41676802070097,
+      "low_band_pct": 97.36690295317145,
+      "high_band_pct": 0.0596271161818501
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 0.009501723691090602,
+      "meaningful": true,
+      "centroid_hz": 90.4275051967927,
+      "low_band_pct": 97.67347690703089,
+      "high_band_pct": 0.042432842382941066
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.010179991870835904,
+      "meaningful": true,
+      "centroid_hz": 88.97804409817608,
+      "low_band_pct": 97.70269143720273,
+      "high_band_pct": 0.03666631258309901
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.010546852634920018,
+      "meaningful": true,
+      "centroid_hz": 91.9096504971147,
+      "low_band_pct": 97.62836709160338,
+      "high_band_pct": 0.041184659366129715
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 0.009526917134381805,
+      "meaningful": true,
+      "centroid_hz": 88.79476809515052,
+      "low_band_pct": 97.69072447106997,
+      "high_band_pct": 0.03960429076681818
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 0.009464697234398923,
+      "meaningful": true,
+      "centroid_hz": 93.5583089372002,
+      "low_band_pct": 97.500035689774,
+      "high_band_pct": 0.062385816088469034
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 0.009124853958488882,
+      "meaningful": true,
+      "centroid_hz": 90.52893451778719,
+      "low_band_pct": 97.66897282495337,
+      "high_band_pct": 0.04027667488290727
+    },
+    {
+      "instrument": "Bass",
+      "start_s": 70.0,
+      "end_s": 71.2307029478458,
+      "rms": 3.12578852178932e-05,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 0.01072626957071021,
+      "meaningful": true,
+      "centroid_hz": 692.7617727052412,
+      "low_band_pct": 6.445775407209949,
+      "high_band_pct": 10.062082818733238
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 0.01328801772295777,
+      "meaningful": true,
+      "centroid_hz": 675.1518501277795,
+      "low_band_pct": 4.7696011898461474,
+      "high_band_pct": 9.101803382350457
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.014065521810603044,
+      "meaningful": true,
+      "centroid_hz": 519.8689367643627,
+      "low_band_pct": 4.607764306583086,
+      "high_band_pct": 9.29203322601613
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.01693797501111248,
+      "meaningful": true,
+      "centroid_hz": 650.7189470226673,
+      "low_band_pct": 3.3176267672873982,
+      "high_band_pct": 11.866598326781391
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 0.01711724804038641,
+      "meaningful": true,
+      "centroid_hz": 571.0734468464686,
+      "low_band_pct": 3.069634187723984,
+      "high_band_pct": 6.134767049064468
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 0.017438699631754623,
+      "meaningful": true,
+      "centroid_hz": 536.0205771128195,
+      "low_band_pct": 2.290330897214992,
+      "high_band_pct": 6.490522568165133
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 0.011468728064781645,
+      "meaningful": true,
+      "centroid_hz": 533.25631545903,
+      "low_band_pct": 0.5517021617367218,
+      "high_band_pct": 8.129557466277598
+    },
+    {
+      "instrument": "Piano",
+      "start_s": 70.0,
+      "end_s": 71.2307029478458,
+      "rms": 1.0253112421742205e-05,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 0.005606407689580653,
+      "meaningful": true,
+      "centroid_hz": 376.60695915881246,
+      "low_band_pct": 53.4797902215204,
+      "high_band_pct": 6.211497668558597
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 0.006637014789335951,
+      "meaningful": true,
+      "centroid_hz": 449.7558047425495,
+      "low_band_pct": 33.93877403951872,
+      "high_band_pct": 7.330436571488151
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.0097141495280356,
+      "meaningful": true,
+      "centroid_hz": 440.1992152578818,
+      "low_band_pct": 18.448772017891102,
+      "high_band_pct": 5.759100551537532
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.013295932670693116,
+      "meaningful": true,
+      "centroid_hz": 765.4663349204878,
+      "low_band_pct": 13.972458567435458,
+      "high_band_pct": 15.769453192266234
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 0.01376559809852293,
+      "meaningful": true,
+      "centroid_hz": 618.9072708262894,
+      "low_band_pct": 9.525357558052393,
+      "high_band_pct": 8.95362523043276
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 0.013507586395161147,
+      "meaningful": true,
+      "centroid_hz": 511.83004480891384,
+      "low_band_pct": 12.499606279341632,
+      "high_band_pct": 7.353155847878715
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 0.005444461251415502,
+      "meaningful": true,
+      "centroid_hz": 376.4252186735367,
+      "low_band_pct": 55.42767805987323,
+      "high_band_pct": 5.554606506088827
+    },
+    {
+      "instrument": "Guitar",
+      "start_s": 70.0,
+      "end_s": 71.2307029478458,
+      "rms": 1.9828415309065726e-05,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 0.009923352150497016,
+      "meaningful": true,
+      "centroid_hz": 1370.102162533737,
+      "low_band_pct": 3.1922882552985072,
+      "high_band_pct": 58.08395391822599
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 1.6015652676176046e-08,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.007674531537554756,
+      "meaningful": true,
+      "centroid_hz": 1433.136685082546,
+      "low_band_pct": 2.947641448966922,
+      "high_band_pct": 55.23908371196925
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.011332504383820644,
+      "meaningful": true,
+      "centroid_hz": 1236.4349245860753,
+      "low_band_pct": 3.084441794892566,
+      "high_band_pct": 54.09970586494119
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 1.6015652676176046e-08,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 1.6015652676176046e-08,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 1.6015652676176046e-08,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Brass",
+      "start_s": 70.0,
+      "end_s": 71.2307029478458,
+      "rms": 1.6015652676176036e-08,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 0.0,
+      "end_s": 10.0,
+      "rms": 0.010257633652494456,
+      "meaningful": true,
+      "centroid_hz": 308.6841035046418,
+      "low_band_pct": 39.58949766571408,
+      "high_band_pct": 0.5010094423601683
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 10.0,
+      "end_s": 20.0,
+      "rms": 0.010436823660079362,
+      "meaningful": true,
+      "centroid_hz": 304.1608807993698,
+      "low_band_pct": 42.80240676390799,
+      "high_band_pct": 0.5212009648190398
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 20.0,
+      "end_s": 30.0,
+      "rms": 0.011596369835613268,
+      "meaningful": true,
+      "centroid_hz": 318.2146715173889,
+      "low_band_pct": 38.796440380066535,
+      "high_band_pct": 0.4684209004132367
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 30.0,
+      "end_s": 40.0,
+      "rms": 0.011377811509647484,
+      "meaningful": true,
+      "centroid_hz": 313.70184970343826,
+      "low_band_pct": 39.14394036902285,
+      "high_band_pct": 0.4275260883981198
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 40.0,
+      "end_s": 50.0,
+      "rms": 0.010332667722350353,
+      "meaningful": true,
+      "centroid_hz": 304.2392470216879,
+      "low_band_pct": 44.24226629981059,
+      "high_band_pct": 0.5675364430961949
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 50.0,
+      "end_s": 60.0,
+      "rms": 0.010574882624727699,
+      "meaningful": true,
+      "centroid_hz": 314.99152512538984,
+      "low_band_pct": 38.0992423626969,
+      "high_band_pct": 0.6767226226121008
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 60.0,
+      "end_s": 70.0,
+      "rms": 0.010095611845581394,
+      "meaningful": true,
+      "centroid_hz": 300.12884105696924,
+      "low_band_pct": 45.885222408405156,
+      "high_band_pct": 0.4634900241324587
+    },
+    {
+      "instrument": "Tuba",
+      "start_s": 70.0,
+      "end_s": 71.2307029478458,
+      "rms": 0.0004202750959767905,
+      "meaningful": false,
+      "centroid_hz": null,
+      "low_band_pct": null,
+      "high_band_pct": null
+    }
+  ],
+  "validation": [
+    {
+      "instrument": "Bass",
+      "M": 1024,
+      "frames": 12267,
+      "frame_parseval_max_error": 2.174053045905568e-16
+    },
+    {
+      "instrument": "Bass",
+      "M": 4096,
+      "frames": 3064,
+      "frame_parseval_max_error": 1.5258362148648255e-16
+    },
+    {
+      "instrument": "Piano",
+      "M": 1024,
+      "frames": 12267,
+      "frame_parseval_max_error": 3.1113575881965493e-16
+    },
+    {
+      "instrument": "Piano",
+      "M": 4096,
+      "frames": 3064,
+      "frame_parseval_max_error": 1.9747846692003495e-16
+    },
+    {
+      "instrument": "Guitar",
+      "M": 1024,
+      "frames": 12267,
+      "frame_parseval_max_error": 3.9448055956618217e-16
+    },
+    {
+      "instrument": "Guitar",
+      "M": 4096,
+      "frames": 3064,
+      "frame_parseval_max_error": 3.9448055956618217e-16
+    },
+    {
+      "instrument": "Brass",
+      "M": 1024,
+      "frames": 12267,
+      "frame_parseval_max_error": 2.5736659400192446e-16
+    },
+    {
+      "instrument": "Brass",
+      "M": 4096,
+      "frames": 3064,
+      "frame_parseval_max_error": 1.9221672221305216e-16
+    },
+    {
+      "instrument": "Tuba",
+      "M": 1024,
+      "frames": 12267,
+      "frame_parseval_max_error": 1.4985906312583869e-16
+    },
+    {
+      "instrument": "Tuba",
+      "M": 4096,
+      "frames": 3064,
+      "frame_parseval_max_error": 2.1641036773080567e-16
+    }
+  ],
+  "attack": [
+    {
+      "instrument": "Bass",
+      "source_onset_s": 0.9615375,
+      "first_note_off_s": 1.05368484375,
+      "next_note_on_s": 1.1538449999999998,
+      "early_rms_peak_ms": 77.32426303854875,
+      "rms_10_30_ms": 0.009647458641186343,
+      "rms_60_90_ms": 0.015328077486218453
+    },
+    {
+      "instrument": "Piano",
+      "source_onset_s": 1.5384599999999995,
+      "first_note_off_s": 1.6306073437499995,
+      "next_note_on_s": 1.7307674999999998,
+      "early_rms_peak_ms": 37.414965986394556,
+      "rms_10_30_ms": 0.005748736406633511,
+      "rms_60_90_ms": 0.005630756852752797
+    },
+    {
+      "instrument": "Guitar",
+      "source_onset_s": 1.7307674999999998,
+      "first_note_off_s": 1.86297890625,
+      "next_note_on_s": 2.1153825,
+      "early_rms_peak_ms": 67.34693877551021,
+      "rms_10_30_ms": 0.004633992272062205,
+      "rms_60_90_ms": 0.012140729109196733
+    },
+    {
+      "instrument": "Brass",
+      "source_onset_s": 0.0,
+      "first_note_off_s": 1.5384599999999995,
+      "next_note_on_s": 29.23074,
+      "early_rms_peak_ms": 87.30158730158729,
+      "rms_10_30_ms": 0.020759604868043492,
+      "rms_60_90_ms": 0.036830269265367144
+    },
+    {
+      "instrument": "Tuba",
+      "source_onset_s": 0.9615375,
+      "first_note_off_s": 1.05368484375,
+      "next_note_on_s": 1.1538449999999998,
+      "early_rms_peak_ms": 77.32426303854875,
+      "rms_10_30_ms": 0.002369313622846575,
+      "rms_60_90_ms": 0.014142738570365519
+    }
+  ],
+  "windows": [
+    {
+      "M": 1024,
+      "H": 256,
+      "overlap_pct": 75,
+      "duration_ms": 23.219954648526077,
+      "hop_ms": 5.804988662131519,
+      "df_hz": 43.06640625,
+      "enbw_hz": 64.599609375,
+      "mainlobe_hz": 172.265625,
+      "sigma_t_ms": 3.284420811575203,
+      "sigma_omega": 156.2276405522051,
+      "product": 0.5131173139729526
+    },
+    {
+      "M": 4096,
+      "H": 1024,
+      "overlap_pct": 75,
+      "duration_ms": 92.87981859410431,
+      "hop_ms": 23.219954648526077,
+      "df_hz": 10.7666015625,
+      "enbw_hz": 16.14990234375,
+      "mainlobe_hz": 43.06640625,
+      "sigma_t_ms": 13.137683246300812,
+      "sigma_omega": 39.05691013805127,
+      "product": 0.5131173139729526
+    }
+  ],
+  "bass_tuba_same_timing_octave_apart": false,
+  "bass_tuba_comparison": {
+    "notes_per_instrument": 187,
+    "same_onsets": true,
+    "pitch_difference_semitones": [
+      12
+    ],
+    "same_note_offs": false,
+    "note_off_difference_counts_ticks": {
+      "0": 167,
+      "2": 16,
+      "4": 4
+    }
+  },
+  "zoom_seconds": [
+    29.0,
+    33.0
+  ],
+  "db_limits": [
+    -110,
+    -35
+  ],
+  "versions": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "scipy": "1.16.2",
+    "soundfile": "0.13.1",
+    "matplotlib": "3.10.7"
+  },
+  "drums_reference": "hasil/kanal_audio/summary.json; dua kanal sumber independen 160.77 s"
+}

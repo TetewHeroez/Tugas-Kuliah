@@ -1,0 +1,231 @@
+\begin{abstract}
+Penelitian ini membandingkan karakteristik bass, piano, gitar, brass,
+dan tuba dalam aransemen ulang soundtrack \textit{Bad Piggies}.
+Karena FL Studio tidak tersedia, data diperoleh dengan membaca not dan
+susunan Playlist proyek FLP, mengekspornya ke MIDI, lalu merendernya
+menggunakan FluidSynth dan SoundFont GeneralUser GS. Sebanyak 2219 not
+berhasil direkonstruksi pada timeline yang sama. Objek penelitian adalah
+komponen aransemen hasil rekonstruksi, bukan audio yang identik dengan
+preset asli FL Studio. Analisis menggunakan representasi waktu, RMS,
+DFT yang dihitung melalui FFT, serta STFT dengan jendela Hann 1024 dan
+4096 sampel. Bass mempunyai sekitar $97{,}61\%$ energi di bawah 250 Hz,
+sedangkan brass mempunyai sekitar $55{,}70\%$ energi di atas 1000 Hz.
+Perbedaan waktu aktif menyebabkan RMS seluruh rekaman dan RMS saat
+aktif memberikan gambaran berbeda. STFT memperlihatkan pergantian not
+dan komponen yang bertahan, yang tidak langsung tampak pada spektrum
+global. Variasi panjang jendela memperlihatkan kompromi lokalisasi
+waktu dan frekuensi yang sesuai dengan Prinsip Ketaktentuan Heisenberg.
+Konsistensi energi diperiksa dengan Parseval. Kanal DRUMS dan VOCALS
+turut dianalisis dari WAV hasil dekode MP3. Konversi tersebut tidak
+meningkatkan kualitas sumber; kedua kanal tetap menjadi pembanding
+independen karena timeline berkas penuh belum diselaraskan dengan
+rekonstruksi. Aktivitas VOCALS terkonsentrasi pada beberapa interval,
+berbeda dari DRUMS yang aktif sepanjang sebagian besar rekaman.
+\end{abstract}
+\noindent\textbf{Kata kunci:} Fourier, FFT, STFT, Hann, instrumen musik,
+MIDI, rekonstruksi audio.
+
+\section{Pendahuluan}
+Dua suara dapat memiliki amplitudo mirip, tetapi karakter berbeda.
+Perbedaannya dapat berasal dari tinggi nada, susunan harmonik, serta
+cara bunyi mulai dan meluruh. Sebagai analogi, bunyi rendah dapat
+dibayangkan seperti ``dum'', sedangkan komponen tinggi dapat
+mengingatkan pada desis atau ``cring''. Analogi ini hanya membantu
+memahami frekuensi; bukan hasil pengamatan pendengaran terhadap setiap
+berkas penelitian, dan tidak menyatakan bahwa frekuensi tertentu
+menentukan suasana musik.
+
+Objek penelitian berasal dari paket
+\texttt{[ FREE FLP ] Bad Piggies - Theme NEW REMAKE FL STUDIO}.
+Asal paket dirujukkan oleh penyedia data pada video Rick Ruyz
+\cite{youtube}. Judul dan kanal diperiksa melalui metadata publik
+YouTube. Paket memuat proyek FLP, dua MP3, dan sampel pendek. FLP
+menyimpan informasi proyek, bukan rekaman audio siap analisis
+\cite{flp}. Karena itu, diperlukan rekonstruksi sebelum komponen
+instrumennya dapat dibandingkan.
+
+Lima kelompok yang notnya terbaca adalah bass, piano, gitar, brass,
+dan tuba. Label instrumen berasal dari channel sumber dan pemetaan
+preset pengganti, bukan identifikasi otomatis. Penelitian tidak memakai
+pembelajaran mesin dan tidak memisahkan instrumen dari campuran audio.
+MIDI menyediakan not serta waktu kejadian, sedangkan SoundFont
+menyediakan model bunyinya. Perbedaan dari FLEX/DirectWave merupakan
+batas utama kesimpulan. Sebagai pembanding tambahan, kanal bernama
+DRUMS dan VOCALS dibaca dari audio sumber yang sudah tersedia.
+Keduanya tidak direkonstruksi melalui MIDI karena sumbernya berupa
+klip audio, bukan not pada pattern.
+
+FFT digunakan untuk merangkum kandungan frekuensi seluruh rekaman.
+STFT menunjukkan kapan kandungan itu muncul atau berubah. Dua panjang
+jendela dipakai agar pengaruh pemilihan potongan waktu dapat diamati
+pada data yang sama. Penjelasan matematis mengikuti Kuliah 4--6 pada
+folder \texttt{Materi}, termasuk sampling, Parseval, STFT dan
+Heisenberg \cite{kuliah4,kuliah5,kuliah6}.
+
+\section{Dasar Teori}
+\subsection{Sinyal Diskret dan Notasi}
+Audio digital menyimpan amplitudo pada waktu yang berjarak tetap.
+Frekuensi sampling menyatakan banyak sampel per detik, berbeda dari
+frekuensi nada dalam audio. Notasi pada Tabel~\ref{tab:notasi}
+mengikuti bahan kuliah. Frekuensi Hz menggunakan $\nu$, sedangkan
+$f$ menyatakan sinyal.
+\begin{table}[H]
+\centering\small
+\caption{Simbol utama dan pengertiannya.}\label{tab:notasi}
+\begin{tabular}{p{.22\linewidth}p{.7\linewidth}}
+\toprule
+Simbol & Pengertian \\
+\midrule
+$f(t)$, $f_k$ & Sinyal kontinu dan sampel ke-$k$ dari sinyal analisis. \\
+$f_s$, $\Delta t$ & Frekuensi sampling dan jarak waktu sampel, $\Delta t=1/f_s$. \\
+$N$, $T$ & Jumlah sampel dan durasi blok, $T=N\Delta t$. \\
+$\nu$, $\omega$ & Frekuensi Hz dan frekuensi sudut rad/s; $\omega=2\pi\nu$. \\
+$\widehat f$, $F_m$ & Transformasi Fourier kontinu dan koefisien DFT ke-$m$. \\
+$w$, $M$, $H$ & Jendela, panjang jendela dan langkah pergeseran dalam sampel. \\
+$\tau$, $q$, $Z_{q,m}$ & Pusat jendela, indeks bingkai, DFT potongan berjendela. \\
+$V_wf$, $\Spec_wf$ & STFT dan spektrogram $|V_wf|^2$. \\
+$P_m$, $P_{q,m}$ & Kerapatan daya satu sisi per Hz, global dan lokal. \\
+$\sigma_t$, $\sigma_\omega$ & Penyebaran energi jendela terhadap waktu dan frekuensi sudut. \\
+\bottomrule
+\end{tabular}
+\end{table}
+Sampel berada pada $t_k=k\Delta t$, $k=0,\ldots,N-1$.
+Dengan $f_s=44\,100$ Hz, batas Nyquist adalah $22\,050$ Hz.
+Data diskret tidak menentukan secara unik komponen analog di atas
+batas ini tanpa asumsi tambahan \cite{kuliah5}.
+
+\subsection{Root Mean Square (RMS)}
+RMS membantu membandingkan kekuatan amplitudo pada dua bagian audio.
+Rerata amplitudo biasa kurang sesuai karena nilai positif dan negatif
+dapat saling meniadakan. Untuk potongan berisi $Q$ sampel,
+\begin{equation}
+ \RMS=\sqrt{\frac1Q\sum_{k=0}^{Q-1}|f_k|^2}.
+ \label{eq:rms}
+\end{equation}
+Kuadrat membuat kontribusi kedua tanda positif; rerata merangkum
+potongan; akar mengembalikan satuan amplitudo. RMS tinggi berarti
+amplitudo efektif lebih besar. Namun, RMS tidak langsung sama dengan
+keras suara yang dirasakan manusia, sebab persepsi juga dipengaruhi
+frekuensi, durasi dan kondisi pendengaran.
+
+\subsection{Transformasi Fourier, DFT, FFT, dan Bin Frekuensi}
+Fourier menyatakan sinyal melalui kontribusi osilasi pada berbagai
+frekuensi. Materi memakai normalisasi kontinu uniter \cite{kuliah4}:
+\begin{equation}
+ \widehat f(\omega)=\frac1{\sqrt{2\pi}}\int_{\R}f(t)e^{-i\omega t}\,dt.
+ \label{eq:ft}
+\end{equation}
+\textbf{DFT adalah transformasi matematis untuk data diskret, sedangkan
+FFT adalah algoritma cepat untuk menghitung DFT}. Keduanya bukan dua
+transformasi berbeda. DFT dan inversnya adalah
+\begin{equation}
+ F_m=\sum_{k=0}^{N-1}f_ke^{-2\pi i mk/N},\qquad
+ f_k=\frac1N\sum_{m=0}^{N-1}F_me^{2\pi i mk/N}.
+ \label{eq:dft}
+\end{equation}
+Satu \textit{bin} adalah satu titik frekuensi tempat DFT dihitung.
+Pada sisi nonnegatif, $\nu_m=mf_s/N$ dan
+\begin{equation}
+ \Delta\nu=\frac{f_s}{N},\quad \omega_m=2\pi\nu_m,\quad
+ \widehat f(\omega_m)\approx\frac{\Delta t}{\sqrt{2\pi}}F_m.
+ \label{eq:grid}
+\end{equation}
+Jarak bin kecil berarti titik pengamatan rapat. Kemampuan memisahkan
+dua komponen tetap dipengaruhi panjang pengamatan, jendela dan sifat
+sinyal. Faktor terakhir menghubungkan keluaran FFT tanpa normalisasi
+maju dengan konvensi kontinu materi \cite{kuliah5,numpy}.
+
+Grafik memakai kerapatan daya satu sisi
+\begin{equation}
+ P_m=\frac{c_m|F_m|^2}{f_sN},
+ \label{eq:psd}
+\end{equation}
+dengan $c_m=2$ pada bin positif yang mempunyai pasangan negatif,
+dan $c_m=1$ pada DC serta Nyquist jika ada. Daya pita dihitung dengan
+menjumlahkan $P_m\Delta\nu$. Tinggi satu puncak berbeda makna dari
+jumlah energi dalam sebuah rentang frekuensi.
+
+\subsection{Identitas Parseval}
+Jika perubahan representasi dilakukan konsisten, energi dari sampel
+dan koefisien Fourier harus sama. Plancherel memberikan
+$\int|f(t)|^2dt=\int|\widehat f(\omega)|^2d\omega$ \cite{kuliah4}.
+Versi diskret untuk memeriksa komputasi ialah
+\begin{equation}
+ E_t=\Delta t\sum_k|f_k|^2
+ =\frac{\Delta t}{N}\sum_{m=0}^{N-1}|F_m|^2=E_F.
+ \label{eq:parseval}
+\end{equation}
+Pada FFT satu sisi digunakan bobot $c_m$. Energi bersatuan amplitudo
+digital kuadrat dikali detik, bukan joule, karena audio tidak
+dikalibrasi sebagai tekanan atau daya akustik.
+
+\subsection{Short-Time Fourier Transform (STFT) dan Spektrogram}
+FFT global membaca seluruh audio sekaligus. STFT menggeser potongan
+pendek, lalu menghitung Fourier berulang kali. Frekuensi kemudian
+dihubungkan dengan lokasi waktunya. Definisi materi adalah
+\cite{kuliah6}
+\begin{equation}
+ V_wf(\tau,\omega)=\frac1{\sqrt{2\pi}}
+ \int_{\R}f(t)\overline{w(t-\tau)}e^{-i\omega t}\,dt,
+ \qquad \Spec_wf=|V_wf|^2.
+ \label{eq:stft}
+\end{equation}
+Sumbu horizontal spektrogram menyatakan waktu, vertikal frekuensi,
+dan warna kekuatan komponen menurut skala daya. Garis mendatar dapat
+menunjukkan frekuensi yang bertahan; guratan tegak dapat menunjukkan
+kejadian singkat yang menjangkau banyak frekuensi. Pola tersebut
+perlu dikaitkan dengan data, bukan langsung dianggap identitas instrumen.
+
+Pemotongan tajam pada tepi dapat menimbulkan kebocoran spektral:
+kontribusi komponen menyebar ke frekuensi sekitar. Hann mengurangi
+bobot tepi. Varian periodik yang dipakai adalah
+\begin{equation}
+ w_r=\frac12-\frac12\cos\left(\frac{2\pi r}{M}\right),
+ \quad r=0,\ldots,M-1.
+ \label{eq:hann}
+\end{equation}
+Kedua panjang jendela memakai bentuk sama agar perbandingan adil
+\cite{hann}. Hann mengurangi kebocoran, tetapi tidak menghilangkannya
+dan mempunyai respons frekuensi dengan lebar tertentu.
+
+\subsection{Prinsip Ketaktentuan Heisenberg}
+Untuk mengetahui kapan bunyi berubah dengan lebih tepat, diperlukan
+potongan pendek. Namun, potongan pendek memuat lebih sedikit siklus
+sehingga frekuensi berdekatan lebih sulit dibedakan. Potongan panjang
+memperinci frekuensi, tetapi merangkum rentang waktu lebih luas.
+
+$\sigma_t$ mengukur penyebaran energi jendela dari pusat waktunya,
+sedangkan $\sigma_\omega$ mengukur penyebaran energi transformasi
+jendela dari pusat frekuensinya. Materi memberikan
+\begin{equation}
+ \sigma_t\sigma_\omega\geq\frac12,\qquad
+ \sigma_t\sigma_\nu\geq\frac1{4\pi}.
+ \label{eq:heisenberg}
+\end{equation}
+Batas pertama memakai rad/s, yang kedua Hz. Durasi $M/f_s$, jarak
+bin $f_s/M$ dan langkah $H/f_s$ bukan simpangan baku tersebut.
+Definisi integral dan perhitungan Hann diberikan pada
+Lampiran~\ref{app:normalisasi}.
+
+\section{Permasalahan}
+Nada rendah yang dipetik dan ditiup dapat memiliki frekuensi dasar
+berdekatan, tetapi susunan harmonik dan perubahan amplitudo berbeda.
+Sebaliknya, instrumen sejenis dapat berbeda spektrum karena memainkan
+register atau not berbeda. Penelitian menanyakan apa yang dapat
+dijelaskan dari komponen aransemen yang tersedia.
+\begin{enumerate}
+\item Bagaimana perbedaan waktu aktif, amplitudo efektif, awal dan
+peluruhan bunyi kelima komponen rekonstruksi?
+\item Frekuensi mana yang berkontribusi kuat dan bagaimana energi
+terdistribusi dalam pita frekuensi masing-masing komponen?
+\item Informasi waktu apa yang ditambahkan STFT terhadap FFT global?
+\item Bagaimana Hann 1024 dan 4096 sampel mengubah tampilan kejadian
+singkat dan komponen frekuensi berdekatan?
+\item Bagaimana hasil sesuai dengan Fourier, Parseval dan Heisenberg,
+serta mendukung deskripsi nonstasioner?
+\end{enumerate}
+Perbedaan yang ditemukan berlaku untuk kombinasi partitur, velocity,
+register dan preset ini. Analisis tambahan membandingkan karakter
+waktu dan frekuensi kanal DRUMS dan VOCALS. Kedua kanal merupakan
+pembanding terpisah; timecode berkas penuhnya belum disetarakan dengan
+lima WAV rekonstruksi.

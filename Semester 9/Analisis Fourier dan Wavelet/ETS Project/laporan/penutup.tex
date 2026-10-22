@@ -1,0 +1,183 @@
+\section{Kesimpulan}
+Rekonstruksi tanpa FL Studio menghasilkan lima komponen dari 2219 not
+yang penempatannya mengikuti Playlist. Hasil menggambarkan komponen
+aransemen dengan SoundFont pengganti, bukan reproduksi identik audio
+asli. Bass paling terkonsentrasi pada frekuensi rendah; tuba mempunyai
+timing serupa dengan pitch satu oktaf lebih tinggi; piano dan gitar
+memuat lapisan not yang berubah; brass berupa dua kelompok akor
+dengan proporsi harmonik tinggi yang besar.
+
+FFT menunjukkan frekuensi berkontribusi global kuat dan distribusi
+energi. Sebagai contoh, 97,61\% energi bass berada di bawah 250 Hz,
+sedangkan 55,70\% energi brass berada di atas 1000 Hz. Angka ini
+mendukung perbedaan komposisi frekuensi, bukan penetapan keras suara
+perseptual atau fundamental otomatis. RMS seluruh timeline juga
+perlu dibedakan dari RMS aktif, terutama pada brass yang banyak diam.
+
+STFT menambahkan lokasi waktu: pergantian not, perubahan lapisan
+melodi dan akor yang bertahan dapat dilihat langsung. Jendela 1024
+lebih terlokalisasi dalam waktu, sedangkan 4096 memisahkan garis
+frekuensi lebih jelas, seperti pada brass sekitar 1,4--1,6 kHz.
+Kompromi ini sesuai Heisenberg; nilai 0,513117 berasal dari model
+Hann kontinu, bukan pengukuran ketelitian pendeteksi audio.
+Parseval mendukung konsistensi energi dengan galat relatif di bawah
+$7\times10^{-15}$.
+
+Analisis kanal audio menambahkan perbedaan pola aktivitas: DRUMS
+aktif sepanjang sebagian besar rekaman, sedangkan VOCALS mempunyai
+kejadian kuat pada beberapa interval dengan total aktivitas sekitar
+14,2 s menurut ambang yang digunakan. DRUMS lebih didominasi
+frekuensi rendah, sementara VOCALS terutama memuat energi menengah
+dan tinggi. WAV keduanya menyimpan sampel hasil dekode MP3 secara
+identik, sehingga konversi tidak meningkatkan kualitas sumber maupun
+ketelitian FFT/STFT; hasil DRUMS yang dihitung ulang tetap konsisten
+dengan analisis sebelumnya.
+
+Perubahan RMS, spektrum lokal dan distribusi pita mendukung deskripsi
+nonstasioner, tetapi bukan uji statistik formal. Penelitian belum
+menentukan kesamaan timbre terhadap FLEX/DirectWave, karakter umum
+semua instrumen sejenis, atau sinkronisasi audio sumber penuh.
+DRUMS dan VOCALS tetap menjadi pembanding independen dan tidak
+dimasukkan ke campuran lima instrumen.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{kuliah4}\textit{Kuliah 4: Transformasi Fourier}. Bahan kuliah
+Analisis Fourier dan Wavelet, tanpa tahun. Folder \texttt{Materi},
+\texttt{Kuliah-04-AFW.pdf}, Bagian 4.2 dan 4.5, hlm.~52--53, 58--59.
+\bibitem{kuliah5}\textit{Kuliah 5: Sampling dan Analisis Fourier Diskret}.
+Bahan kuliah Analisis Fourier dan Wavelet, tanpa tahun.
+\texttt{KuliahAFW-05.pdf}, Bagian 5.1 dan 5.3--5.5, hlm.~65, 69--75.
+\bibitem{kuliah6}\textit{Kuliah 6: Analisis Waktu-Frekuensi}. Bahan kuliah
+Analisis Fourier dan Wavelet, tanpa tahun. \texttt{KuliahAFW-06.pdf},
+Bagian 6.3--6.7, hlm.~89--100; tugas Bagian 6.10, hlm.~104.
+\bibitem{youtube}Rick Ruyz. \textit{[ FREE FLP ] Bad Piggies - Theme REMAKE
+FL STUDIO STOCK PLUGINS}. YouTube, tanpa tahun.
+\url{https://www.youtube.com/watch?v=DdIcPpjQXV4}.
+Judul dan kanal diperiksa 22 Oktober 2026; hubungan dengan paket lokal
+mengikuti keterangan penyedia data.
+\bibitem{flp}Image-Line. \textit{FL Studio Project File (*.flp)}.
+\url{https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/fformats_open_flp.htm}.
+Diakses 22 Oktober 2026.
+\bibitem{numpy}NumPy Developers. \textit{Discrete Fourier Transform}.
+\url{https://numpy.org/doc/stable/reference/routines.fft.html}.
+Diakses 22 Oktober 2026.
+\bibitem{hann}SciPy Developers. \textit{scipy.signal.windows.hann}.
+\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hann.html}.
+Diakses 22 Oktober 2026.
+\bibitem{pyflp}PyFLP. \textit{Documentation: Patterns, Notes, Arrangements}.
+\url{https://pyflp.readthedocs.io/}. Versi parser yang digunakan 2.2.1.
+\bibitem{playlist}PyFLP. \textit{Missing playlist data in FL Studio 2025
+project files}, Issue 200. \url{https://github.com/demberto/PyFLP/issues/200}.
+Bandingkan dokumentasi pemeriksaan format independen:
+\url{https://github.com/dawhubapp/flpdiff/blob/main/docs/fl-format/flp-format-spec.md}.
+Diakses 22 Oktober 2026.
+\bibitem{fluidsynth}FluidSynth Developers. \textit{FluidSynth 2.6.1}.
+\url{https://github.com/FluidSynth/fluidsynth/releases/tag/v2.6.1}.
+Mesin sintesis SoundFont; diakses 22 Oktober 2026.
+\bibitem{soundfont}S.~Christian Collins. \textit{GeneralUser GS 2.0.3}.
+\url{https://www.schristiancollins.com/generaluser.php}.
+Sumber \url{https://github.com/mrbumpy409/GeneralUser-GS}; lisensi v2.0
+disertakan bersama dataset. Diakses 22 Oktober 2026.
+\bibitem{soundfile}Bastian Bechtold dan kontributor.
+\textit{python-soundfile 0.13.1: Reading and Writing Sound Files}.
+\url{https://python-soundfile.readthedocs.io/en/latest/}.
+Dokumentasi pembacaan sampel dan penyimpanan WAV float;
+diakses 22 Oktober 2026.
+\end{thebibliography}
+
+\appendix
+\section{Normalisasi STFT dan Model Hann}\label{app:normalisasi}
+Rincian ini melengkapi uraian utama. Dengan $H$ sampel pergeseran,
+DFT potongan berjendela ialah
+\[
+ Z_{q,m}=\sum_{r=0}^{M-1}f_{qH+r}w_r e^{-2\pi i mr/M},\quad
+ \tau_q=\frac{qH+M/2}{f_s},\quad \omega_m=\frac{2\pi mf_s}{M}.
+\]
+Hubungan dengan STFT materi:
+\[
+ V_wf(\tau_q,\omega_m)\approx\frac{\Delta t}{\sqrt{2\pi}}
+ e^{-i\omega_mqH\Delta t}Z_{q,m}.
+\]
+Faktor fase tidak mengubah spektrogram. Kerapatan daya satu sisi
+yang digunakan untuk grafik adalah
+\[
+ P_{q,m}=\frac{c_m|Z_{q,m}|^2}{f_s\sum_rw_r^2},\quad
+ \Spec_wf\approx\frac{\Delta t^2}{2\pi}|Z_{q,m}|^2
+ =\frac{\sum_rw_r^2}{2\pi f_sc_m}P_{q,m}.
+\]
+Grafik merupakan penskalaan spektrogram per energi jendela dan per
+Hz, bukan nilai mentah spektrogram materi. Nilai dB adalah
+$10\log_{10}(P/P_0)$ dengan $P_0=1$ satuan amplitudo kuadrat per Hz,
+bukan dB SPL. Pemeriksaan daya bingkai memakai
+\[
+ \sum_mP_{q,m}\frac{f_s}{M}
+ =\frac{\sum_r|f_{qH+r}w_r|^2}{\sum_rw_r^2}.
+\]
+Penjumlahan semua piksel spektrogram secara langsung bukan energi
+rekaman, karena tumpang tindih, bobot jendela dan kisi perlu
+diperhitungkan.
+
+Definisi penyebaran Heisenberg menggunakan pusat energi
+$t_w=\int t|w|^2dt/\|w\|_2^2$ dan
+$\omega_w=\int\omega|\widehat w|^2d\omega/\|\widehat w\|_2^2$, kemudian
+\[
+ \sigma_t^2=\frac{\int(t-t_w)^2|w(t)|^2dt}{\|w\|_2^2},\qquad
+ \sigma_\omega^2=\frac{\int(\omega-\omega_w)^2|\widehat w(\omega)|^2d\omega}{\|\widehat w\|_2^2}.
+\]
+Hann kontinu adalah $w_a(t)=\frac12(1+\cos(2\pi t/a))$ untuk
+$|t|\leq a/2$, dan nol di luarnya. Kedua pusat nol karena simetri.
+Integrasi memberi
+\[
+ \|w_a\|_2^2=\frac{3a}{8},\quad
+ \sigma_t=a\sqrt{\frac1{12}-\frac5{8\pi^2}},\quad
+ \|w_a'\|_2^2=\frac{\pi^2}{2a}.
+\]
+Sifat turunan Fourier dan Plancherel kemudian memberi
+\[
+ \sigma_\omega=\frac{2\pi}{\sqrt3a},\qquad
+ \sigma_t\sigma_\omega=\sqrt{\frac{\pi^2}{9}-\frac56}
+ \approx0{,}513117.
+\]
+Dengan $a=M/f_s$, $\sigma_t$ sekitar 3,284 dan 13,138 ms;
+$\sigma_\omega$ sekitar 156,228 dan 39,057 rad/s. Nilai ini
+penyebaran jendela kontinu, bukan durasi dukungan, hop, atau galat
+waktu kejadian audio.
+
+\section{Reproduksi dan Pemeriksaan Hasil}
+Notebook \texttt{analisis\_instrumen.ipynb} memuat seluruh kode
+persiapan perangkat, ekstraksi FLP, rekonstruksi MIDI dan WAV,
+analisis FFT dan STFT, serta validasi di dalam sel-selnya.
+Eksekusi berurutan menghasilkan CSV not dan Playlist,
+grafik, tabel dan pemutar cuplikan. Hasil baru berada di
+\texttt{hasil/instrumen}, grafik di \texttt{gambar/instrumen},
+dan audio pendek di \texttt{hasil/audio/cuplikan}. Sampling WAV adalah
+44.100 Hz. Data sumber ditempatkan di \texttt{data/sumber}, sedangkan
+asal paket dan video dicatat pada \texttt{data/sumber\_data.json}.
+
+Bagian analisis kanal sumber dalam notebook yang sama mengonversi
+DRUMS dan VOCALS ke \texttt{hasil/audio/kanal}, memeriksa kesamaan
+sampel hasil dekode, dan menyimpan hasil baru di
+\texttt{hasil/kanal\_audio} serta \texttt{gambar/kanal\_audio}.
+RMS, energi dan puncak DRUMS dari WAV dibandingkan kembali dengan
+perhitungan langsung pada dekode MP3, sehingga pemeriksaan tidak
+bergantung pada arsip hasil terdahulu. Kesamaan sampel juga diperiksa
+untuk VOCALS. CSV not, Playlist dan audit sampel berada pada
+\texttt{hasil/rekonstruksi}; MIDI berada pada \texttt{hasil/midi}.
+
+Untuk mereproduksi hasil, buka notebook dengan kernel Python 3.11,
+pasang dependensi dari \texttt{requirements.txt} bila diperlukan,
+kemudian jalankan semua sel secara berurutan. Bagian awal notebook
+menjelaskan susunan berkas dan parameter eksekusi. FluidSynth portabel
+dan dependensi lokal berada dalam \texttt{perangkat}; SoundFont dan
+lisensinya berada dalam \texttt{data/soundfont}. Pengunduhan diperlukan
+hanya jika perangkat tersebut belum tersedia. Rekonstruksi dapat
+diulang dengan mengaktifkan \texttt{REBUILD\_AUDIO}; analisis instrumen
+dan kanal sumber dihitung ulang oleh sel masing-masing.
+
+Paper ini memuat penjelasan ilmiah, interpretasi grafik, audit
+rekonstruksi dan batas kesimpulan. Notebook memuat kode dan petunjuk
+komputasinya. Seluruh gambar dikelompokkan dalam \texttt{gambar}
+dan seluruh keluaran numerik serta audio dalam \texttt{hasil}.
+PDF dapat dikompilasi dari \texttt{ETS AFW.tex} dengan menjalankan
+\texttt{pdflatex} dua kali setelah gambar dan tabel tersedia.
