@@ -43,7 +43,6 @@
   \usetikzlibrary{arrows.meta}
 \usepackage{geometry}
 	\geometry{
-		total = {160mm, 237mm},
 		left = 20mm,
 		right = 20mm,
 		top = 20mm,
@@ -61,9 +60,10 @@
 \usepackage{fancyhdr}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\arraystretch}{1.1}
+\setlength{\headheight}{14pt}
 \pagestyle{fancy}
 
-\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
+\graphicspath{{C:/Users/teoso/Documents/Template Math Depart/}{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}{D:/Hada Touya/Tugas-Kuliah/Template Math Depart/}}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -76,11 +76,15 @@
 
 
 \begin{document}
+\setlength{\abovedisplayskip}{7pt}
+\setlength{\belowdisplayskip}{7pt}
+\setlength{\abovedisplayshortskip}{4pt}
+\setlength{\belowdisplayshortskip}{4pt}
 \begin{table}[h!]
   \centering
   \begin{tabular}{|r c|}
     \hline
-    \multicolumn{2}{|c|}{\MakeUppercase{\large\bfseries evaluasi tengah semester gasal 2024/2025}}                         \\
+    \multicolumn{2}{|c|}{\MakeUppercase{\large\bfseries evaluasi akhir semester gasal 2024/2025}}                          \\
      &                                                                                                                     \\
     \begin{tabular}{c}
       \includegraphics[width=2cm]{ITS.png}
@@ -118,130 +122,394 @@
   \textbf{Selamat Mengerjakan Semoga Sukses}
 \end{center}
 \newpage
-\fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+\fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
 \fancyfoot[C]{}
-{\centering
-  \textbf{SOLUSI}
-  \par
-}
-\begin{enumerate}
-  \item Pertama-tama agar lebih mudah dalam mengilustrasikan batas-batas bidang, dapat kita gambar sketsa batas integrasi $R$ di bidang $xy$ terlebih dahulu. Dibawah ini adalah sketsa untuk batas-batas $y=0$, $y=x$, dan $x+y=2$.
+\begin{center}
+  Solusi
+\end{center}
+\begin{enumerate}[itemsep=12pt,parsep=5pt]
+  \item Proyeksi $R$ pada bidang $xy$ dibatasi oleh $y=0$, $y=x$, dan $x+y=2$.
+        Titik potong ketiga garis itu adalah $(0,0)$, $(1,1)$, dan $(2,0)$.
+        Jika $y$ dipilih sebagai variabel terluar, batasnya adalah
+        \[
+          0\le y\le1,\qquad y\le x\le2-y.
+        \]
+        Untuk setiap titik pada segitiga tersebut, $z$ berada di antara
+        bidang $z=0$ dan $z=\frac12x$.
+        Jadi,
+        \[
+          R=\left\{(x,y,z):0\le y\le1,\quad y\le x\le2-y,
+          \quad0\le z\le\frac{x}{2}\right\}.
+        \]
+
         \begin{center}
-          \begin{tikzpicture}[scale=1.2]
-            \draw[-Latex,thick] (-1,0) -- (3,0) node[right] {$x$};
-            \draw[-Latex,thick] (0,-1) -- (0,3) node[above] {$y$};
-            \draw[blue,domain=-0.5:2.5] plot (\x, {2 - \x}) node[right] {\small$x+y=2$};
-            \draw[red,domain=-0.5:2.5] plot (\x, {\x}) node[above] {\small$y=x$};
-            \fill[cyan!30, opacity=0.5] (0,0) -- (1,1) -- (2,0) -- cycle;
-            \draw[thin] (2,0.1) -- (2,-0.1) node[below] {\small$2$};
-            \draw[thin] (0.1,2) -- (-0.1,2) node[left] {\small$2$};
-            \draw[thin,dashed,black!50] (1,1) -- (1,0) node[below] {\small$1$};
-            \draw[thin,dashed,black!50] (1,1) -- (0,1) node[left] {\small$1$};
-          \end{tikzpicture}
+          \begin{minipage}{0.46\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=1.65]
+              \fill[cyan!20] (0,0)--(1,1)--(2,0)--cycle;
+              \draw[-Latex] (-0.2,0)--(2.5,0) node[right] {$x$};
+              \draw[-Latex] (0,-0.2)--(0,1.7) node[above] {$y$};
+              \draw[blue!75!black,thick] (0,0)--(1.3,1.3) node[above] {$y=x$};
+              \draw[orange!85!black,thick] (0.5,1.5)--(2,0);
+              \draw[orange!85!black] (1.5,0.5)--(2,0.85)
+              node[right] {\small$x+y=2$};
+              \draw[dashed,gray] (1,0) node[below,black] {$1$}--(1,1)--(0,1)
+              node[left,black] {$1$};
+              \node[below left] at (0,0) {$O$};
+              \node[below] at (2,0) {$2$};
+              \node[blue!75!black] at (1,0.35) {$D$};
+            \end{tikzpicture}
+            \par\small Proyeksi pada bidang $xy$.
+          \end{minipage}\hfill
+          \begin{minipage}{0.52\linewidth}
+            \centering
+            \tdplotsetmaincoords{70}{120}
+            \begin{tikzpicture}[tdplot_main_coords,scale=2]
+              \coordinate (A) at (0,0,0);
+              \coordinate (B) at (2,0,0);
+              \coordinate (C) at (1,1,0);
+              \coordinate (D) at (2,0,1);
+              \coordinate (E) at (1,1,0.5);
+              \fill[cyan!15] (A)--(B)--(C)--cycle;
+              \fill[orange!20,opacity=0.7] (B)--(C)--(E)--(D)--cycle;
+              \fill[blue!12,opacity=0.7] (A)--(B)--(D)--cycle;
+              \fill[cyan!40,opacity=0.75] (A)--(D)--(E)--cycle;
+              \draw[blue!70!black,thick] (A)--(B)--(C)--cycle;
+              \draw[blue!70!black,thick] (A)--(D)--(E)--cycle;
+              \draw[blue!70!black] (B)--(D) (C)--(E);
+              \draw[-Latex] (0,0,0)--(2.6,0,0) node[below] {$x$};
+              \draw[-Latex] (0,0,0)--(0,1.8,0) node[right] {$y$};
+              \draw[-Latex] (0,0,0)--(0,0,1.55) node[above] {$z$};
+              \node[below] at (B) {$2$};
+              \node[left] at (D) {$1$};
+              \draw[cyan!50!black] (1.4,0.2,0.7)--(1.5,0.9,1.2)
+              node[above] {$z=\frac12x$};
+              \node[blue!70!black] at (1.3,0.3,0.3) {$R$};
+            \end{tikzpicture}
+            \par\small Benda di bawah bidang $z=\frac12x$.
+          \end{minipage}
         \end{center}
-        Jadi untuk bidang-$xy$, batas-batasnya (dipilih yang termudah untuk diintegralkan) adalah $y \leq x \leq 2-y$ dan $0 \leq y \leq 1$.
 
-        Selanjutnya ketika kita buat bangun ruang nya yang berpotongan dengan bidang $z=\frac{1}{2}z$, berikut adalah sketsa batas integrasi $R$.
-        \begin{center}
-          \tdplotsetmaincoords{70}{120}
-
-          \begin{tikzpicture}[tdplot_main_coords, scale=2]
-
-            % Sumbu koordinat
-            \draw[-Latex] (0,0,0) -- (2.5,0,0) node[anchor=north east] {$x$};
-            \draw[-Latex] (0,0,0) -- (0,2,0) node[anchor=west] {$y$};
-            \draw[-Latex] (0,0,0) -- (0,0,1) node[anchor=south] {$z$};
-
-            % Titik-titik pada bidang z=0 (proyeksi di bidang xy)
-            % A = (0,0), B = (2,0), C = (1,1)
-            \coordinate (A) at (0,0,0);
-            \coordinate (B) at (2,0,0);
-            \coordinate (C) at (1,1,0);
-
-            % Segitiga dasar di bidang z=0
-            \draw[thick] (A) --  (B);
-            \draw[thick] (A) --  (C);
-            \draw[thick] (B) --  (C);
-
-            % Titik-titik pada bidang z = x/2
-            % z = x/2: Btop = (2,0,1), Ctop = (1,1,0.5)
-            \coordinate (Btop) at (2,0,1);
-            \coordinate (Ctop) at (1,1,0.5);
-
-            % Garis vertikal (sejajar sumbu z) dari dasar ke bidang z = x/2
-            \draw[dashed] (B) -- (Btop);
-            \draw[dashed] (C) -- (Ctop);
-
-            % Garis-garis pada bidang z = x/2
-            \draw[thick] (A) -- (Btop);
-            \draw[thick] (A) -- (Ctop);
-            \draw[thick] (Btop) -- (Ctop);
-
-            % (Opsional) Arsiran volume R
-            \fill[cyan,opacity=0.10] (A) -- (B) -- (C) -- cycle;          % dasar
-            \fill[cyan,opacity=0.10] (A) -- (Btop) -- (Ctop) -- cycle;    % sisi miring atas
-            \fill[cyan,opacity=0.05] (B) -- (C) -- (Ctop) -- (Btop) -- cycle; % sisi samping
-
-            % Label daerah R
-            \node[blue!30!cyan] at (1,0.4,0) {$R$};
-
-            % \draw[cyan,domain=0:3] plot (\x, 0, {\x/2}) node[left] {\small$z=\frac{1}{2}x$};
-            % \foreach \y in {0,0.1,...,2} {
-            %     \draw[cyan,domain=0:3] plot (\x, \y, {\x/2});
-            %   }
-          \end{tikzpicture}
-        \end{center}
-        Sehingga integral yang diminta dapat dituliskan sebagai berikut.
+        Karena integrannya $1$, nilai integral sama dengan volume $R$.
+        Urutan integrasi dapat dipilih agar batasnya sederhana:
         \begin{align*}
-          \iiint_R dx\,dy\,dz & = \int_{0}^{1}\int_{y}^{2-y}\int_0^{\frac{1}{2}x} dz\,dx\,dy              = \int_{0}^{1}\int_{y}^{2-y} \left[ z \right]_0^{\frac{1}{2}x} dx\,dy    = \int_{0}^{1} \left[ \frac{1}{4}x^2 \right]_{x=y}^{x=2-y} dy                                                                                                                                                                                                                                              \\
-                              & = \int_{0}^{1} \left( \frac{1}{4}(2-y)^2 - \frac{1}{4}y^2 \right) dy                                                                                                                                              = \int_{0}^{1} \left( \frac{1}{4}(4 - 4y + y^2 - y^2) \right) dy                                                                                                                                                  = \int_{0}^{1} (1 - y) dy \\
-                              & = \left[ y - \frac{1}{2}y^2 \right]_0^1 = 1 - \frac{1}{2} = \frac{1}{2}.
-        \end{align*}
-  \item Batas permukaan di bidang-$xy$ dibatasi oleh $y=x^2$ dan $x=y^2$ di oktan pertama.
-        \begin{center}
-          \begin{tikzpicture}[scale=2]
-            \draw[-Latex,thick] (0,0) -- (1.5,0) node[right] {$x$};
-            \draw[-Latex,thick] (0,0) -- (0,1.5) node[above] {$y$};
-            \fill[cyan!30,opacity=0.5,domain=0:1,smooth,thick] plot (\x, {\x^2}) -- cycle;
-            \fill[cyan!30,opacity=0.5,domain=0:1,smooth,thick] plot ({\x*\x}, {\x}) -- cycle;
-            \draw[blue,domain=0:1.2,smooth,thick] plot (\x, {\x^2}) node[above] {\small$y=x^2$};
-            \draw[blue,domain=0:1.2,smooth,thick] plot ({\x*\x}, {\x}) node[right] {\small$x=y^2$};
-            \draw[thin,dashed,black!50] (1,1) -- (1,0) node[below] {\small$1$};
-            \draw[thin,dashed,black!50] (1,1) -- (0,1) node[left] {\small$1$};
-          \end{tikzpicture}
-        \end{center}
-        Dari gambar di atas dapat kita lihat bahwa batas-batasnya adalah $x^2 \leq y \leq \sqrt{x}$ dan $0 \leq x \leq 1$.
-
-        Untuk batas permukaan atasnya adalah $0 \leq z \leq y$. Maka volume benda yang diminta adalah
-        \begin{align*}
-          V & = \int_{0}^{1} \int_{x^2}^{\sqrt{x}} \int_0^y dz\,dy\,dx = \int_{0}^{1} \int_{x^2}^{\sqrt{x}} \left[ z \right]_0^y dy\,dx = \int_{0}^{1} \int_{x^2}^{\sqrt{x}} y\,dy\,dx = \int_{0}^{1} \left[ \frac{1}{2}y^2 \right]_{y=x^2}^{y=\sqrt{x}} dx \\
-            & = \int_{0}^{1} \left( \frac{1}{2}x - \frac{1}{2}x^4 \right) dx = \left[ \frac{1}{4}x^2 - \frac{1}{10}x^5 \right]_0^1 = \frac{1}{4} - \frac{1}{10} = \frac{3}{20}.
+          \iiint_R1\,dV
+           & =\int_0^1\int_y^{2-y}\int_0^{x/2}1\,dz\,dx\,dy        \\
+           & =\int_0^1\int_y^{2-y}\frac{x}{2}\,dx\,dy              \\
+           & =\int_0^1\left[\frac{x^2}{4}\right]_{x=y}^{x=2-y}\,dy \\
+           & =\int_0^1\frac{(2-y)^2-y^2}{4}\,dy
+          =\int_0^1(1-y)\,dy                                       \\
+           & =\left[y-\frac{y^2}{2}\right]_0^1=\boxed{\frac12}.
         \end{align*}
 
-  \item Agar lebih mudah dalam memahami persamaan kurva, dapat kita ubah persamaan kurva tersebut menjadi bentuk $y=f(x)$. Sehingga diperoleh
-        \begin{itemize}
-          \item $x(1-y)=1\implies y=1-\dfrac{1}{x}$
-          \item $x(1-y)=2\implies y=1-\dfrac{2}{x}$
-          \item $xy=1\implies y=\dfrac{1}{x}$
-          \item $xy=3\implies y=\dfrac{3}{x}$
-        \end{itemize}
-        Berikut adalah sketsa daerah yang dibatasi oleh keempat kurva tersebut.
+  \item Dalam oktan pertama, $x,y,z\ge0$.
+        Kurva $x=y^2$ dapat ditulis sebagai $y=\sqrt{x}$.
+        Titik potongnya dengan $y=x^2$ memenuhi
+        \[
+          x=(x^2)^2=x^4
+          \quad\Longrightarrow\quad x=0\ \text{atau}\ x=1.
+        \]
+        Titik potong kedua kurva adalah $(0,0)$ dan $(1,1)$.
+        Untuk $0\le x\le1$, berlaku $x^2\le\sqrt{x}$.
+        Jadi, proyeksi benda pada bidang $xy$ adalah
+        \[
+          D=\{(x,y):0\le x\le1,\quad x^2\le y\le\sqrt{x}\}.
+        \]
+        Batas bawahnya $z=0$ dan batas atasnya $z=y$.
+        Dinding tegaknya terletak pada permukaan $y=x^2$ dan $x=y^2$.
+
         \begin{center}
-          \begin{tikzpicture}[xscale=1.5,yscale=3]
-            \draw[-Latex,thick] (0,0) -- (7,0) node[right] {$x$};
-            \draw[-Latex,thick] (0,0) -- (0,2) node[above] {$y$};
-            \draw[blue,domain=1.5:7,smooth,thick] plot (\x, {1/\x}) node[right] {\footnotesize$xy=1$};
-            \draw[blue,domain=1.5:7,smooth,thick] plot (\x, {3/\x}) node[right] {\footnotesize$xy=3$};
-            \draw[red,domain=1.5:7,smooth,thick] plot (\x, {1-(1/\x)}) node[right] {\footnotesize$x(1-y)=1$};
-            \draw[red,domain=1.5:7,smooth,thick] plot (\x, {1-(2/\x)}) node[right] {\footnotesize$x(1-y)=2$};
-            \fill[cyan!30,opacity=0.5,domain=2:6,smooth,thick] plot (\x, {1/\x}) -- plot (\x, {1-(2/\x)}) -- cycle;
-            \fill[cyan!30,opacity=0.5,domain=2:6,smooth,thick] plot (\x, {1-(1/\x)}) -- plot (\x, {3/\x}) -- cycle;
-            \draw[thin,dashed,black!50] (2,0) node[below] {\small$2$} -- (2,0.5) -- (0,0.5) node[left] {\footnotesize$1/2$};
-            \draw[thin,dashed,black!50] (4,0) node[below] {\small$4$} -- (4,0.75) -- (0,0.75) node[left] {\footnotesize$3/4$};
-            \draw[thin,dashed,black!50] (3,0) node[below] {\small$3$} -- (3,0.333) -- (0,0.333) node[left] {\footnotesize$1/3$};
-            \draw[thin,dashed,black!50] (5,0) node[below] {\small$6$} -- (5,0.6) -- (0,0.6) node[left] {\footnotesize$3/5$};
+          \begin{minipage}{0.43\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              \path[fill=cyan!20]
+              plot[domain=0:1,samples=81] (\x,{\x^2})
+              -- plot[domain=1:0,samples=81] ({\x^2},\x)--cycle;
+              \draw[-Latex] (-0.08,0)--(1.3,0) node[right] {$x$};
+              \draw[-Latex] (0,-0.08)--(0,1.35) node[above] {$y$};
+              \draw[blue!75!black,thick,domain=0:1,samples=81]
+              plot (\x,{\x^2});
+              \draw[orange!85!black,thick,domain=0:1,samples=81]
+              plot ({\x^2},\x);
+              \draw[blue!75!black] (0.75,0.5625)--(1.08,0.43)
+              node[right] {\small$y=x^2$};
+              \draw[orange!85!black] (0.49,0.7)--(0.2,1.2)
+              node[above] {\small$x=y^2$};
+              \draw[dashed,gray] (1,0) node[below,black] {$1$}--(1,1)--(0,1)
+              node[left,black] {$1$};
+              \node[below left] at (0,0) {$O$};
+              \node[blue!70!black] at (0.5,0.48) {$D$};
+            \end{tikzpicture}
+            \par\small Daerah di antara kedua parabola.
+          \end{minipage}\hfill
+          \begin{minipage}{0.55\linewidth}
+            \centering
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=8.7cm,height=6.4cm,view={60}{25},
+                  axis lines=none,ticks=none,clip=false,z buffer=sort,
+                  xmin=0,xmax=1.35,ymin=0,ymax=1.35,zmin=0,zmax=1.35,
+                ]
+                \addplot3[surf,shader=interp,opacity=0.3,
+                  colormap={sideone}{color(0cm)=(orange!20);color(1cm)=(orange!50)},
+                  domain=0:1,y domain=0:1,samples=31,samples y=9,
+                  variable=\t,variable y=\s] (t,{t^2},{s*t^2});
+                \addplot3[surf,shader=interp,opacity=0.3,
+                  colormap={sidetwo}{color(0cm)=(orange!20);color(1cm)=(orange!50)},
+                  domain=0:1,y domain=0:1,samples=31,samples y=9,
+                  variable=\t,variable y=\s] ({t^2},t,{s*t});
+                \addplot3[surf,shader=interp,opacity=0.75,
+                  colormap={topplane}{color(0cm)=(cyan!20);color(1cm)=(cyan!65)},
+                  domain=0:1,y domain=0:1,samples=31,samples y=15,
+                  variable=\t,variable y=\s]
+                (t,{t^2+(sqrt(t)-t^2)*s},{t^2+(sqrt(t)-t^2)*s});
+                \addplot3[thick,blue!75!black,samples y=0,z buffer=none,
+                  domain=0:1,samples=81] (x,{x^2},0);
+                \addplot3[thick,orange!85!black,samples y=0,z buffer=none,
+                  domain=0:1,samples=81] ({x^2},x,0);
+                \addplot3[thick,blue!75!black,samples y=0,z buffer=none,
+                  domain=0:1,samples=81] (x,{x^2},{x^2});
+                \addplot3[thick,orange!85!black,samples y=0,z buffer=none,
+                  domain=0:1,samples=81] ({x^2},x,x);
+                \draw[blue!70!black] (axis cs:1,1,0)--(axis cs:1,1,1);
+                \draw[-Latex] (axis cs:0,0,0)--(axis cs:1.35,0,0) node[below] {$x$};
+                \draw[-Latex] (axis cs:0,0,0)--(axis cs:0,1.35,0) node[right] {$y$};
+                \draw[-Latex] (axis cs:0,0,0)--(axis cs:0,0,1.35) node[above] {$z$};
+                \node[below right,font=\scriptsize] at (axis cs:0,0,0) {$O$};
+                \node[right,font=\scriptsize] at (axis cs:1,1,1) {$(1,1,1)$};
+                \draw[cyan!50!black] (axis cs:0.5,0.5,0.5)
+                -- ++(-0.3cm,0.75cm) node[above] {$z=y$};
+              \end{axis}
+            \end{tikzpicture}
+            \par\small Benda di bawah bidang $z=y$.
+          \end{minipage}
+        \end{center}
+
+        Volume diperoleh dengan mengintegralkan tinggi $y-0$ di atas $D$:
+        \begin{align*}
+          V & =\int_0^1\int_{x^2}^{\sqrt{x}}\int_0^y1\,dz\,dy\,dx          \\
+            & =\int_0^1\int_{x^2}^{\sqrt{x}}y\,dy\,dx                      \\
+            & =\int_0^1\left[\frac{y^2}{2}\right]_{y=x^2}^{y=\sqrt{x}}\,dx \\
+            & =\frac12\int_0^1(x-x^4)\,dx
+          =\left[\frac{x^2}{4}-\frac{x^5}{10}\right]_0^1
+          =\boxed{\frac3{20}}.
+        \end{align*}
+
+  \item Pilih transformasi $u=x(1-y)$ dan $v=xy$.
+        Keempat kurva batas berubah menjadi garis-garis
+        \[
+          \begin{aligned}
+            x(1-y)=1 & \ \Longleftrightarrow\ u=1, &
+            x(1-y)=2 & \ \Longleftrightarrow\ u=2,   \\
+            xy=1     & \ \Longleftrightarrow\ v=1, &
+            xy=3     & \ \Longleftrightarrow\ v=3.
+          \end{aligned}
+        \]
+        Daerah hasilnya adalah persegi panjang $D^*=[1,2]\times[1,3]$.
+        Untuk mendapatkan transformasi balik, jumlahkan $u$ dan $v$:
+        \[
+          u+v=x(1-y)+xy=x
+          \quad\Longrightarrow\quad
+          x=u+v,\qquad y=\frac{v}{u+v}.
+        \]
+        Titik-titik sudutnya berkorespondensi sebagai berikut:
+        \[
+          \begin{aligned}
+            A(2,\tfrac12) & \mapsto A'(1,1), & B(3,\tfrac13) & \mapsto B'(2,1), \\
+            C(5,\tfrac35) & \mapsto C'(2,3), & D(4,\tfrac34) & \mapsto D'(1,3).
+          \end{aligned}
+        \]
+        Pada bidang $xy$, hubungkan titik-titik tersebut mengikuti keempat kurva batas.
+        Pada bidang $uv$, batas-batasnya berupa ruas garis.
+
+        \begin{center}
+          \begin{minipage}{0.56\linewidth}
+            \centering
+            \begin{tikzpicture}[x=1cm,y=4.5cm,font=\small]
+              \path[fill=cyan!20]
+              plot[domain=2:3,samples=51] (\x,{1/\x})
+              -- plot[domain=3:5,samples=61] (\x,{1-2/\x})
+              -- plot[domain=5:4,samples=51] (\x,{3/\x})
+              -- plot[domain=4:2,samples=61] (\x,{1-1/\x})--cycle;
+              \draw[-Latex] (-0.1,0)--(6,0) node[right] {$x$};
+              \draw[-Latex] (0,-0.02)--(0,1) node[above] {$y$};
+              \draw[blue!75!black,very thick,domain=2:3,samples=61]
+              plot (\x,{1/\x});
+              \draw[red!75!black,very thick,domain=3:5,samples=61]
+              plot (\x,{1-2/\x});
+              \draw[teal!80!black,very thick,domain=4:5,samples=61]
+              plot (\x,{3/\x});
+              \draw[orange!90!black,very thick,domain=2:4,samples=61]
+              plot (\x,{1-1/\x});
+              \foreach \x in {2,3,4,5}
+              \draw (\x,0.012)--(\x,-0.012) node[below] {$\x$};
+              \draw (0.06,0.5)--(-0.06,0.5) node[left] {$\frac12$};
+              \draw[dashed,gray] (2,0)--(2,0.5)--(0,0.5);
+              \node[below left] at (0,0) {$O$};
+              \fill (2,0.5) circle (1.2pt) node[left] {$A$};
+              \fill (3,0.333333) circle (1.2pt) node[below right] {$B$};
+              \fill (5,0.6) circle (1.2pt) node[right] {$C$};
+              \fill (4,0.75) circle (1.2pt) node[above left] {$D$};
+              \node[blue!75!black] at (3.4,0.55) {$D$};
+              \draw[blue!75!black] (2.45,0.4082)--(1.9,0.25)
+              node[below] {$xy=1$};
+              \draw[red!75!black] (4.1,0.5122)--(5.25,0.39)
+              node[right] {$x(1-y)=2$};
+              \draw[teal!80!black] (4.5,0.6667)--(5.05,0.86)
+              node[above] {$xy=3$};
+              \draw[orange!90!black] (2.65,0.6226)--(2.1,0.84)
+              node[above] {$x(1-y)=1$};
+            \end{tikzpicture}
+            \par\small Daerah asal $D$ pada bidang $xy$.
+          \end{minipage}\hfill
+          \begin{minipage}{0.42\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=1.25,font=\small]
+              \fill[cyan!20] (1,1) rectangle (2,3);
+              \draw[-Latex] (0,0)--(2.85,0) node[right] {$u$};
+              \draw[-Latex] (0,0)--(0,3.6) node[above] {$v$};
+              \draw[dashed,gray] (1,0)--(1,1)--(0,1);
+              \draw[dashed,gray] (2,0)--(2,1);
+              \draw[dashed,gray] (0,3)--(1,3);
+              \draw[orange!90!black,very thick] (1,1)--(1,3)
+              node[midway,left] {$u=1$};
+              \draw[red!75!black,very thick] (2,1)--(2,3)
+              node[midway,right] {$u=2$};
+              \draw[blue!75!black,very thick] (1,1)--(2,1)
+              node[midway,below] {$v=1$};
+              \draw[teal!80!black,very thick] (1,3)--(2,3)
+              node[midway,above] {$v=3$};
+              \foreach \u in {1,2}
+              \draw (\u,0.04)--(\u,-0.04) node[below] {$\u$};
+              \foreach \v in {1,3}
+              \draw (0.04,\v)--(-0.04,\v) node[left] {$\v$};
+              \node[below left] at (0,0) {$O$};
+              \fill (1,1) circle (1.2pt) node[left] {$A'$};
+              \fill (2,1) circle (1.2pt) node[right] {$B'$};
+              \fill (2,3) circle (1.2pt) node[above right] {$C'$};
+              \fill (1,3) circle (1.2pt) node[above left] {$D'$};
+              \node[blue!75!black] at (1.5,2) {$D^*$};
+            \end{tikzpicture}
+            \par\small Daerah hasil transformasi pada bidang $uv$.
+          \end{minipage}
+        \end{center}
+
+        Jacobian transformasi baliknya adalah
+        \[
+          \frac{\partial(x,y)}{\partial(u,v)}
+          =\begin{vmatrix}
+            1                   & 1                  \\[2pt]
+            -\dfrac{v}{(u+v)^2} & \dfrac{u}{(u+v)^2}
+          \end{vmatrix}
+          =\frac{u+v}{(u+v)^2}=\frac1{u+v}.
+        \]
+        Karena $u+v\ge2$, diperoleh $dA=\dfrac1{u+v}\,du\,dv$.
+        Misalkan kerapatan luas keping adalah konstanta $\rho$.
+        Jarak titik $(x,y)$ ke sumbu $y$ adalah $|x|$, sehingga
+        \begin{align*}
+          I_y & =\iint_D\rho x^2\,dA
+          =\rho\int_1^2\int_1^3\frac{(u+v)^2}{u+v}\,dv\,du                 \\
+              & =\rho\int_1^2\left[uv+\frac{v^2}{2}\right]_{v=1}^{v=3}\,du \\
+              & =\rho\int_1^2(2u+4)\,du
+          =\rho[u^2+4u]_1^2=\boxed{7\rho}.
+        \end{align*}
+        Untuk kerapatan satuan, $\rho=1$, sehingga $I_y=7$.
+
+  \item Tuliskan permukaannya sebagai
+        \[
+          z=4-\frac{x^2+y^2}{2},\qquad x^2+y^2\le3.
+        \]
+        Permukaan ini adalah bagian paraboloida di dalam tabung berjari-jari $\sqrt3$.
+        Puncaknya $(0,0,4)$ dan tepi lingkarannya berada pada $z=\frac52$.
+        Misalkan permukaan ini $\Sigma$ dan kerapatan luasnya konstan $\rho$.
+
+        Karena yang dicari adalah pusat massa permukaan, gunakan elemen luas
+        \[
+          dS=\sqrt{1+z_x^2+z_y^2}\,dx\,dy
+          =\sqrt{1+x^2+y^2}\,dx\,dy,
+        \]
+        dengan $z_x=-x$ dan $z_y=-y$.
+        Gunakan koordinat polar
+        \[
+          x=r\cos\theta,\quad y=r\sin\theta,\quad
+          0\le r\le\sqrt3,\quad0\le\theta\le2\pi.
+        \]
+        Maka $z=4-\frac12r^2$ dan $dS=r\sqrt{1+r^2}\,dr\,d\theta$.
+        Massa permukaan adalah
+        \begin{align*}
+          m & =\iint_\Sigma\rho\,dS
+          =2\pi\rho\int_0^{\sqrt3}r\sqrt{1+r^2}\,dr                    \\
+            & =\frac{2\pi\rho}{3}\left[(1+r^2)^{3/2}\right]_0^{\sqrt3}
+          =\frac{2\pi\rho}{3}(8-1)=\frac{14\pi\rho}{3}.
+        \end{align*}
+        Simetri terhadap bidang $yz$ dan $xz$ memberikan $\bar x=\bar y=0$.
+        Untuk koordinat $\bar z$, hitung momen terhadap bidang $xy$:
+        \[
+          M_{xy}=\iint_\Sigma\rho z\,dS
+          =2\pi\rho\int_0^{\sqrt3}
+          \left(4-\frac{r^2}{2}\right)r\sqrt{1+r^2}\,dr.
+        \]
+        Substitusikan $t=1+r^2$, sehingga $dt=2r\,dr$ dan
+        $4-\frac12r^2=\frac{9-t}{2}$.
+        Batas $r=0,\sqrt3$ berubah menjadi $t=1,4$.
+        Dengan demikian,
+        \begin{align*}
+          M_{xy} & =\frac{\pi\rho}{2}\int_1^4(9-t)t^{1/2}\,dt \\
+                 & =\frac{\pi\rho}{2}
+          \left[6t^{3/2}-\frac25t^{5/2}\right]_1^4
+          =\frac{74\pi\rho}{5}.
+        \end{align*}
+        Jadi, pusat massanya adalah
+        \[
+          \bar z=\frac{M_{xy}}m
+          =\frac{74\pi\rho/5}{14\pi\rho/3}=\frac{111}{35},
+          \qquad
+          \boxed{(\bar x,\bar y,\bar z)=\left(0,0,\frac{111}{35}\right).}
+        \]
+
+        \begin{center}
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=12cm,height=7.4cm,view={125}{24},
+                axis lines=none,ticks=none,clip=false,z buffer=sort,
+                xmin=-2.2,xmax=2.4,ymin=-2.2,ymax=2.4,zmin=0,zmax=4.8,
+              ]
+              % Garis tabung membantu menunjukkan batas permukaan.
+              \addplot3[dashed,gray,samples y=0,z buffer=none,
+                domain=0:360,samples=101,variable=\t]
+              ({sqrt(3)*cos(t)},{sqrt(3)*sin(t)},0);
+              \draw[dashed,gray] (axis cs:1.73205,0,0)--(axis cs:1.73205,0,2.5);
+              \draw[dashed,gray] (axis cs:-1.73205,0,0)--(axis cs:-1.73205,0,2.5);
+              \draw[dashed,gray] (axis cs:0,1.73205,0)--(axis cs:0,1.73205,2.5);
+              \draw[dashed,gray] (axis cs:0,-1.73205,0)--(axis cs:0,-1.73205,2.5);
+              \addplot3[surf,shader=interp,opacity=0.8,
+                colormap={paraboloid}{color(0cm)=(cyan!20);color(1cm)=(cyan!70)},
+                domain=0:1.7320508,y domain=0:360,
+                samples=21,samples y=61,variable=\r,variable y=\t]
+              ({r*cos(t)},{r*sin(t)},{4-r^2/2});
+              \addplot3[thick,blue!75!black,samples y=0,z buffer=none,
+                domain=0:360,samples=121,variable=\t]
+              ({sqrt(3)*cos(t)},{sqrt(3)*sin(t)},2.5);
+              \addplot3[thin,cyan!55!black,samples y=0,z buffer=none,
+                domain=-1.7320508:1.7320508,samples=81]
+              (x,0,{4-x^2/2});
+              \draw[-Latex] (axis cs:-2.1,0,0)--(axis cs:2.35,0,0) node[below] {$x$};
+              \draw[-Latex] (axis cs:0,-2.1,0)--(axis cs:0,2.35,0) node[right] {$y$};
+              \draw[dashed,gray] (axis cs:0,0,0)--(axis cs:0,0,4);
+              \draw[-Latex] (axis cs:0,0,4)--(axis cs:0,0,4.75) node[above] {$z$};
+              \node[left,font=\scriptsize] at (axis cs:0,0,4) {$4$};
+              \node[left,font=\scriptsize] at (axis cs:1.73205,0,2.5) {$\frac52$};
+              \draw[cyan!50!black] (axis cs:0.9,-0.5,3.47)
+              -- ++(-0.5cm,0.75cm) node[above,font=\small] {$\Sigma$};
+              \draw[gray] (axis cs:0,1.73205,1.2)
+              -- ++(0.8cm,0.1cm)
+              node[right,font=\small,black] {$x^2+y^2=3$};
+              \fill[red!75!black] (axis cs:0,0,3.1714286) circle (1.8pt);
+              \draw[red!75!black] (axis cs:0,0,3.1714286)
+              -- ++(1.3cm,-0.65cm)
+              node[right,font=\small] {$\left(0,0,\frac{111}{35}\right)$};
+            \end{axis}
           \end{tikzpicture}
         \end{center}
-  \item
 \end{enumerate}
 \end{document}
